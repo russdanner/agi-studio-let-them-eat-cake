@@ -1,0 +1,27 @@
+{
+  "unk1": 0,
+  "unk2": 1,
+  "numLoops": 1,
+  "descriptionOffset": 1,
+  "loops": [
+    {
+      "loopOffset": 7,
+      "numCels": 1,
+      "cels": [
+        {
+          "celOffset": 3,
+          "celWidth": 10,
+          "celHeight": 10,
+          "celMirrorTrans": 0,
+          "pixelData": [
+            4, 241, 0, 3, 243, 0, 2, 245, 0, 1, 243, 129, 241, 129, 241, 0, 243,
+            129, 241, 129, 241, 129, 241, 0, 1, 241, 129, 241, 129, 241, 130,
+            242, 0, 2, 243, 129, 243, 0, 3, 241, 129, 243, 0, 4, 243, 0, 5, 241,
+            0, 0
+          ]
+        }
+      ]
+    }
+  ],
+  "description": "Loop Description"
+}
