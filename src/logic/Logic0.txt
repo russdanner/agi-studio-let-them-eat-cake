@@ -1,1 +1,4 @@
-new_room(1);
+preint(0)
+quit();
+return;
+#message 1 "         Intro/Opening screen"
