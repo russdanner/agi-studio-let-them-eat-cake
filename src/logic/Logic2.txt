@@ -1,9 +1,0 @@
-load_pic(0);
-draw_pic(0);
-discard_pic(0);
-set_horizon(50);
-program_control();
-show_pic();
-quit();
-return;
-#message 1 "         Intro/Opening screen"

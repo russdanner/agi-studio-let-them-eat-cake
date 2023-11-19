@@ -1,3 +1,0 @@
-quit();
-return;
-#message 1 "         Intro/Opening screen"

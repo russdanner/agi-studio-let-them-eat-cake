@@ -1,0 +1,41 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+    
+    unanimate.all()
+    assignn(vGameCycleDelay, 5)
+    assignn(vRoomInited, 1)
+    load.view(viewWatchBoss)
+
+    animate.obj(objWatchBossSpeech)
+
+    set.view(objWatchBoss, viewWatchBoss)
+    set.view(objWatchBossSpeech, viewWatchBoss)
+    
+    set.loop(objWatchBossSpeech, 1)
+    start.cycling(objWatchBossSpeech)
+
+    draw(objWatchBossSpeech)
+    draw(objWatchBoss)
+    
+    position(objWatchBoss, 57, 83)
+    position(objWatchBossSpeech, 72, 78)
+    set.priority(objWatchBossSpeech, 15)
+    assignn(vTimer, 0)
+}
+if(equaln(vTimer, 30)) {
+    print("Finish up and fly to OS 10. A tiptorian mucaworm explosively decompressed in the flight deck bathroom.")
+}
+
+if(equaln(vTimer, 100)) {
+    assignn(vHasOrders, valTrue)
+    assignn(vRoomInited, 0)
+    assignn(0, 2)
+}
+
+addn(vTimer, 1)
+
+return()
+#message 1 "ABC"

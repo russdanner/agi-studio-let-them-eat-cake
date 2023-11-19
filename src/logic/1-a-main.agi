@@ -1,0 +1,21 @@
+
+
+load.pic(0)
+draw.pic(0)
+show.pic()
+
+if(equaln(0,0)){ //said("2")) {
+    assignn(0, 2)
+}
+
+if(said("inv")) {
+    status()
+}
+
+if(!equaln(0, 0)) {
+    call.v(0)
+}
+
+
+return()
+#message 1 "ABC"
