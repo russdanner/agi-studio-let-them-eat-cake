@@ -1,0 +1,77 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+
+    unanimate.all()
+    assignn(vGameCycleDelay, 3)
+    assignn(vRoomInited, 1)
+
+    load.view(viewRogerSuitBroom)
+    load.view(viewRogerSuitA)
+    load.view(viewBigShuttle)
+    load.view(viewPod)
+    load.view(viewPodPlatform)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRogerSuitBroom)
+    set.view(objBigShuttle, viewBigShuttle)
+    set.view(objPodPlatform, viewPodPlatform)
+    set.view(objPod, viewPod)
+
+    start.cycling(objEgo)
+
+    stop.cycling(objBigShuttle)
+    stop.cycling(objPodPlatform)
+    stop.cycling(objPod)
+
+    draw(objEgo)
+    draw(objBigShuttle)
+    draw(objPodPlatform)
+    draw(objPod)
+
+    position(objBigShuttle, 90, 90)
+    position(objEgo, 20, 100)
+    position(objPodPlatform, 55, 109)
+    position(objPod, 60, 100)
+    
+    set.priority(objPod, 15)
+    set.priority(objEgo, 18)
+}
+
+if(!equaln(vSweeping, valTrue)){
+    if(equaln(vEgoDirection, directionStopped)) {
+        stop.cycling(objEgo)
+    }
+}
+
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+if(said("stop", "sweeping")) {
+    set.view(objEgo, viewRogerSuitA)
+    assignn(vSweeping, valFalse)
+}
+
+if(said("start", "sweeping")) {
+    set.view(objEgo, viewRogerSuitBroom)
+    assignn(vSweeping, valTrue)
+    start.cycling(objEgo)
+}
+
+if(said("enter", "pod")) {
+    if(posn(objEgo, 40, 90, 60, 109)) {
+        print("You lazily drop the broom and climb into the pod. That's going to cost you.")
+        assignn(vRoomInited, 0)
+        assignn(0, 5)    
+    }
+    if(!posn(objEgo, 40, 90, 60, 109)) {
+        print("You are too far away.")
+    }
+}
+
+return()
+#message 1 "ABC"

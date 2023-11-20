@@ -1,0 +1,191 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+    
+    unanimate.all()
+    assignn(vGameCycleDelay, 3)
+    assignn(vRoomInited, 1)
+
+    load.view(viewCockpitThrottle)
+
+    set.view(objCockpitThrottle, viewCockpitThrottle)
+    
+    stop.cycling(objCockpitThrottle)
+    
+    draw(objCockpitThrottle)
+    
+    position(objCockpitThrottle, 106, 128)
+
+    reset(fPodPoweredUp)
+    reset(fPodThrottlePulled)
+    reset(fPodAutoNavPressed)
+
+    assignn(vPodStart, valFalse)
+    assignn(vPodLaunched, valFalse)
+    assignn(vPodAutoNaved, valFalse)
+
+    assignn(vTimer, 0)
+    assignn(vClockTicks, 0)
+}
+
+if(said("press", "power")) {
+    // load.view(viewCockpitPush)
+
+    set.view(objCockpitPush, viewCockpitPush)
+
+    stop.cycling(objCockpitPush)
+
+    draw(objCockpitPush)
+
+    position(objCockpitPush, 75, 170)
+    move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)
+
+    set(fPodPoweredUp)
+    assignn(vPodStart, valTrue)
+}
+
+if(said("push", "autonav")) {
+    if(equaln(vPodStart, valTrue)) { 
+        assignn(vPodAutoNaved, valTrue)
+        print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. StarCon will have piloted you on OS 9 soon.") 
+    }
+    if(!equaln(vPodStart, valTrue)) {
+        print("Nothing happends") 
+    }
+}
+
+if(said("push", "dont")) {
+    print("Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`") 
+}
+
+if(said("pull", "throttle")) {
+    if(equaln(vPodStart, valTrue)) { 
+        // load.view(viewCockpitPush)
+
+        // set.view(objCockpitPush, viewCockpitPush)
+
+        // stop.cycling(objCockpitPush)
+
+        // draw(objCockpitPush)
+
+        // position(objCockpitPush, 100, 180)
+        // move.obj(objCockpitPush, 100, 160, 1, fPodThrottlePulled)
+        set(fPodThrottlePulled)
+    }
+    if(!equaln(vPodStart, valTrue)) {
+        print("You can't. The throttle is locked in its position.") 
+    }
+}
+
+if(isset(fPodThrottlePulled)) {
+    position(objCockpitThrottle,  106, 130)
+    set.cel(objCockpitThrottle, 1)
+    erase(objCockpitPush)
+    reset(fPodThrottlePulled)
+    assignn(vPodLaunched, valTrue)
+    print("With a roar the pod blasts from the launch platorm hurling you into the blackness of space.")
+}
+
+if(equaln(vPodLaunched, valTrue)) {
+    if(!equaln(vPodAutoNaved, valTrue)){
+        if(equaln(vClockTicks, 3)) {
+            print("You should probably engage some form of navigation...")
+        }    
+    }
+    if(equaln(vPodAutoNaved, valTrue)){
+        if(equaln(vClockTicks, 2)) {
+            print("You know.. that AUTONAV button is usually on the right...")
+        }    
+
+        if(equaln(vClockTicks, 4)) {
+            print("A pit forms in your stomach... You have a bad feeling you might be the but of a practical joke.")
+        }    
+
+        if(equaln(vClockTicks, 5)) {
+            print("You pick at the Decal and pull it away from the console. It reveals a hard packard that says 'AUTONAV`")
+        }    
+
+        if(equaln(vClockTicks, 6)) {
+            print("GULP!")
+        }  
+
+        if(equaln(vClockTicks, 6)) {
+            assignn(vRoomInited, 0)
+            assignn(0, 6)       
+            print("Your pod begins to shake and accellerate widly.")
+        }  
+    }
+
+    if(equaln(vTimer, 100)) {
+        addn(vClockTicks, 1)
+    }    
+
+    addn(vTimer, 1)
+}
+
+if(isset(fPodPoweredUp)) {
+    load.view(viewCockpitButtons)
+
+    set.view(objCockpitButtons1, viewCockpitButtons)
+    set.view(objCockpitButtons2, viewCockpitButtons)
+    set.view(objCockpitButtons3, viewCockpitButtons)
+    set.view(objCockpitButtons4, viewCockpitButtons)
+    set.view(objCockpitScreen1, viewCockpitButtons)
+
+    stop.cycling(objCockpitButtons1)
+    stop.cycling(objCockpitButtons2)
+    stop.cycling(objCockpitButtons3)
+    stop.cycling(objCockpitButtons4)
+    stop.cycling(objCockpitScreen1)
+
+    draw(objCockpitButtons1)
+    draw(objCockpitButtons2)
+    draw(objCockpitButtons3)
+    draw(objCockpitButtons4)
+    draw(objCockpitScreen1)
+
+    set.cel(objCockpitButtons2, 1)
+    set.cel(objCockpitButtons3, 2)
+    set.cel(objCockpitButtons4, 4)
+    set.cel(objCockpitScreen1, 3)
+
+    position(objCockpitButtons1, 32, 128)
+    position(objCockpitButtons2, 46, 110)
+    position(objCockpitButtons3, 47, 127)
+    position(objCockpitButtons4, 126.5, 127)
+
+    position(objCockpitScreen1, 73, 92)
+    reset(fPodPoweredUp)
+    print("The pod's systems whir to life!")  
+    erase(objCockpitPush)
+}
+
+if(said("look", "pod")) {
+    print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.")
+}
+
+if(said("look", "console")) {
+    print("The console has serveral buttons and a throttle.")
+}
+
+if(said("look", "throttle")) {
+    print("That thing looks like it means business.")
+}
+
+if(said("look", "buttons")) {
+    print("You see a button marked 'POWER' and 'AUTONAV'. There's also button that clearly marked by a bightly colored decal that says 'DO NOT TOUCH!'")
+}
+
+if(said("look", "screen")) {
+    if(equaln(vPodStart, valTrue)) { 
+        print("The screen lists start proceedures: '1. Pull Throttle. 2. Press AutoNav.' Luckily for you the pod's navigational system is controlled automatically by StarCon. Clogs rather than pods are your forte.")
+    }    
+    if(!equaln(vPodStart, valTrue)) { 
+        print("The screen is dark.")
+    }
+}
+
+return()
+#message 1 "ABC"

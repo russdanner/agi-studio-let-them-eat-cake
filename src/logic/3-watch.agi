@@ -32,7 +32,7 @@ if(equaln(vTimer, 30)) {
 if(equaln(vTimer, 100)) {
     assignn(vHasOrders, valTrue)
     assignn(vRoomInited, 0)
-    assignn(0, 2)
+    assignn(0, 4)
 }
 
 addn(vTimer, 1)

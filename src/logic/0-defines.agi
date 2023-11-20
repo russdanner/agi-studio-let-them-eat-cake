@@ -14,12 +14,15 @@
 #define objWatchBoss 12
 #define objWatchBossSpeech 13
 #define objWatchPower 14
-#define objCockpitThrottle 6
-#define objCockpitButtons1 7
-#define objCockpitButtons2 8
-#define objCockpitButtons3 9
-#define objCockpitButtons4 10
-#define objCockpitScreen1 11
+
+#define objCockpitThrottle 1
+#define objCockpitButtons1 2
+#define objCockpitButtons2 3
+#define objCockpitButtons3 4
+#define objCockpitButtons4 5
+#define objCockpitScreen1 6
+#define objCockpitPush 7
+#define objCockpitPull 8
 
 // pics
 #define picTitle 0
@@ -60,7 +63,8 @@
 #define viewCockpitButtons 19
 #define viewGrahamHatNoFeather 20
 #define viewWatchBoss 21
-#define viewWatchPower 22
+#define viewCockpitPush 22
+#define viewCockpitPull 23
 
 // vars
 #define vCurrentRoom 0
@@ -80,6 +84,14 @@
 #define vClockTicks 43
 #define vSplat1Cleaned 44
 #define vSplat2Cleaned 45
+#define vPodStart 46
+#define vPodLaunched 47
+#define vPodAutoNaved 48
+
+// flags
+#define fPodPoweredUp 90
+#define fPodThrottlePulled 91
+#define fPodAutoNavPressed 92
 
 
 // consts  

@@ -1,0 +1,33 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+    
+    unanimate.all()
+    assignn(vGameCycleDelay, 3)
+    assignn(vRoomInited, 1)
+
+    load.view(viewCockpitThrottle)
+
+    set.view(objCockpitThrottle, viewCockpitThrottle)
+    
+    stop.cycling(objCockpitThrottle)
+    
+    draw(objCockpitThrottle)
+
+    set.cel(objCockpitThrottle, 1)
+
+    position(objCockpitThrottle,  106, 130)
+}
+
+if(said("exit")) {
+    assignn(vRoomInited, 0)
+    assignn(0, 8) 
+    print("You climb out of the pod and discard your pressure suit.")
+}
+
+
+
+return()
+#message 1 "ABC"

@@ -1,0 +1,45 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+
+    unanimate.all()
+    assignn(vGameCycleDelay, 3)
+    assignn(vRoomInited, 1)
+    assignn(35, 1)
+
+    load.view(viewCrashingPod)
+    //load.view(viewRoger)
+    
+    animate.obj(objCrashingPod)
+
+    //set.view(objEgo, viewRoger)
+    set.view(objCrashingPod, viewCrashingPod)
+
+    //draw(objEgo)
+    draw(objCrashingPod)
+
+    //position(objEgo, 20, 100)
+}
+
+if(lessn(35, 60)) {
+    if(lessn(35, 10)) {
+        reposition(objCrashingPod,10,10)
+    }
+
+    addn(35,1)
+}
+
+
+if(equaln(35, 9)) {
+    stop.cycling(objCrashingPod)
+}
+
+if(equaln(35, 50)) {
+    assignn(vRoomInited, 0)
+    assignn(0, 7) 
+}
+
+return()
+#message 1 "ABC"

@@ -113,6 +113,18 @@
   "2015": ["pod"],
   "2016": ["sweeping", "sweep"],
   "2017": ["wear"],
+  "2018": ["press", "push"],
+  "2019": ["power"],
+  "2020": ["autonav"],
+  "2021": ["button", "buttons"],
+  "2022": ["don't", "dont", "touch"],
+  "2023": ["pull"],
+  "2024": ["throttle"],
+  "2025": ["around"],
+  "2026": ["pod"],
+  "2027": ["console"],
+  "2028": ["screen"],
+  "2029": ["exit"],
 
   "3012": ["g"]
 }

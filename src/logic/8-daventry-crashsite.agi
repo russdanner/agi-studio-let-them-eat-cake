@@ -1,0 +1,40 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+
+    unanimate.all()
+    assignn(vGameCycleDelay, 3)
+    assignn(vRoomInited, 1)
+
+    load.view(viewCrashingPod)
+    load.view(viewRoger)
+    
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+    set.view(objCrashingPod, viewCrashingPod)
+
+    draw(objEgo)
+    draw(objCrashingPod)
+
+    stop.cycling(objEgo)
+    stop.cycling(objCrashingPod)
+
+    set.cel(objCrashingPod, 7)
+
+    position(objCrashingPod, 90, 90)
+    position(objEgo, 85, 90)
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+   
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+    
+return()
+#message 1 "ABC"
