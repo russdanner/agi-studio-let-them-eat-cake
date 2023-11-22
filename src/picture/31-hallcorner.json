@@ -137,7 +137,7 @@
     { "command": "DrawFill", "args": [71, 79, 86, 79] },
     { "command": "PriDisable", "args": [] },
     { "command": "PicSetColor", "args": [15] },
-    { "command": "DrawFill", "args": [44, 162, 117, 164] },
+    { "command": "xDrawFill", "args": [44, 162, 117, 164] },
     { "command": "PicSetColor", "args": [12] },
     { "command": "DrawFill", "args": [56, 164, 102, 164] },
     { "command": "PicSetColor", "args": [4] },

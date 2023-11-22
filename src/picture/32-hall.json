@@ -179,7 +179,7 @@
     { "command": "DrawFill", "args": [129, 98, 33, 103] },
     { "command": "PriDisable", "args": [] },
     { "command": "PicSetColor", "args": [15] },
-    { "command": "DrawFill", "args": [54, 106, 75, 20, 84, 22, 110, 139] },
+    { "command": "xDrawFill", "args": [54, 106, 75, 20, 84, 22, 110, 139] },
     { "command": "PicSetColor", "args": [12] },
     { "command": "DrawFill", "args": [91, 69, 83, 24] },
     { "command": "PicSetColor", "args": [0] },
@@ -245,7 +245,7 @@
     },
     { "command": "PicDisable", "args": [] },
     { "command": "PriSetcolor", "args": [15] },
-    { "command": "DrawFill", "args": [80, 81] },
+    { "command": "xDrawFill", "args": [80, 81] },
     { "command": "PriSetcolor", "args": [0] },
     { "command": "PicDisable", "args": [] },
     {

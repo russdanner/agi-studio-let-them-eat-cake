@@ -202,8 +202,24 @@
     { "command": "PriDisable", "args": [] },
     { "command": "DrawFill", "args": [22, 91] },
     { "command": "PicSetColor", "args": [15] },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     {
-      "command": "DrawFill",
+      "command": "xDrawFill",
       "args": [
         70, 70, 99, 100, 122, 98, 73, 82, 79, 85, 43, 119, 72, 130, 79, 142
       ]
@@ -223,7 +239,7 @@
     { "command": "PicSetColor", "args": [1] },
     { "command": "DrawFill", "args": [65, 40] },
     { "command": "PicSetColor", "args": [15] },
-    { "command": "DrawFill", "args": [69, 25] },
+    { "command": "xDrawFill", "args": [69, 25] },
     { "command": "PicSetColor", "args": [2] },
     { "command": "DrawFill", "args": [76, 41] },
     { "command": "PicSetColor", "args": [12] },
@@ -237,7 +253,7 @@
     { "command": "DrawRel", "args": [98, 135, 64] },
     { "command": "PicSetColor", "args": [14] },
     { "command": "PriSetcolor", "args": [14] },
-    { "command": "DrawFill", "args": [104, 146] },
+    { "command": "xDrawFill", "args": [104, 146] },
     { "command": "PicSetColor", "args": [8] },
     { "command": "PriDisable", "args": [] },
     { "command": "DrawRel", "args": [158, 13, 9] },
@@ -247,11 +263,11 @@
     { "command": "PicSetColor", "args": [4] },
     { "command": "DrawFill", "args": [134, 114, 97, 118] },
     { "command": "PicSetColor", "args": [15] },
-    { "command": "DrawFill", "args": [46, 73, 103, 156, 9, 160] },
+    { "command": "xDrawFill", "args": [46, 73, 103, 156, 9, 160] },
     { "command": "PicSetColor", "args": [7] },
-    { "command": "DrawFill", "args": [143, 19] },
+    { "command": "xDrawFill", "args": [143, 19] },
     { "command": "PicSetColor", "args": [9] },
-    { "command": "DrawFill", "args": [155, 44] },
+    { "command": "xDrawFill", "args": [155, 44] },
     { "command": "PicSetColor", "args": [0] },
     { "command": "DrawAbs", "args": [49, 70, 49, 33, 49, 16, 51, 7, 52, 1] },
     { "command": "DrawAbs", "args": [90, 70, 90, 21] },
@@ -285,6 +301,7 @@
       ]
     },
     { "command": "DrawAbs", "args": [103, 149, 103, 167] },
+
     { "command": "End", "args": [] }
   ]
 }
