@@ -1,11 +1,9 @@
-
-
 load.pic(0)
 draw.pic(0)
 show.pic()
 
 if(equaln(0,0)){ //said("2")) {
-    assignn(0, 8)
+    assignn(0, 11)//8
 }
 
 if(said("inv")) {

@@ -65,6 +65,8 @@
 #define viewWatchBoss 21
 #define viewCockpitPush 22
 #define viewCockpitPull 23
+#define viewRogerSplash 24
+#define viewRogerSwim 25
 
 // vars
 #define vCurrentRoom 0
@@ -88,11 +90,13 @@
 #define vPodLaunched 47
 #define vPodAutoNaved 48
 
+
 // flags
 #define fPodPoweredUp 90
 #define fPodThrottlePulled 91
 #define fPodAutoNavPressed 92
-
+#define fDrowning 93
+#define fSwimming 94
 
 // consts  
 #define valTrue 1

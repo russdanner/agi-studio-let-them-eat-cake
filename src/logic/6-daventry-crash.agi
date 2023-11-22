@@ -25,7 +25,7 @@ if(equaln(vRoomInited, 0)) {
 
 if(lessn(35, 60)) {
     if(lessn(35, 10)) {
-        reposition(objCrashingPod,10,10)
+        reposition(objCrashingPod,2,15)
     }
 
     addn(35,1)

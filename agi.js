@@ -2635,12 +2635,14 @@ var Resources;
             var c = buffer.readUint8()
 
             var val = (a << 16) + (b << 8) + c;
-            console.log("!!!!! :"+a+" - " + b + " - " + c + " = "+ val)
-
+            
             var volNo = val >>> 20;
             var volOffset = val & 0xFFFFF;
             if (val >>> 16 == 0xFF)
                 continue;
+
+            console.log("DIRECTORY :("+volNo+") "+a+" - " + b + " - " + c + " = "+ val)
+
             records[i] = { volNo: volNo, volOffset: volOffset };
             if (availableVols[volNo] === undefined)
                 availableVols[volNo] = true;
@@ -2731,16 +2733,16 @@ var Resources;
     }
     Resources.readAgiResource = readAgiResource;
     function load(path, done) {
-        Fs.downloadAllFiles(path, ["LOGDIR", "PICDIR", "VIEWDIR", "SNDDIR"], (buffers) => {
+        Fs.downloadAllFiles(path, ["logdir", "picdir", "viewdir", "snddir"], (buffers) => {
             console.log("Directory files downloaded.");
-            parseDirfile(buffers["LOGDIR"], logdirRecords);
-            parseDirfile(buffers["PICDIR"], picdirRecords);
-            parseDirfile(buffers["VIEWDIR"], viewdirRecords);
-            parseDirfile(buffers["SNDDIR"], snddirRecords);
+            parseDirfile(buffers["logdir"], logdirRecords);
+            parseDirfile(buffers["picdir"], picdirRecords);
+            parseDirfile(buffers["viewdir"], viewdirRecords);
+            parseDirfile(buffers["snddir"], snddirRecords);
             var volNames = [];
             for (var i = 0; i < availableVols.length; i++) {
                 if (availableVols[i] === true) {
-                    volNames.push("VOL." + i);
+                    volNames.push("vol." + i);
                 }
             }
             Fs.downloadAllFiles(path, volNames, (buffers) => {
@@ -2757,8 +2759,8 @@ var Resources;
                     done();
                 });
                 // WORDS.TOK
-                Fs.downloadAllFiles(path, ["WORDS.TOK"], (buffers) => {
-                    var wordsStream = buffers["WORDS.TOK"];
+                Fs.downloadAllFiles(path, ["words.tok"], (buffers) => {
+                    var wordsStream = buffers["words.tok"];
                     Resources.words = parseWordFile(wordsStream);
                     done();
                 });
