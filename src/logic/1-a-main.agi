@@ -2,8 +2,8 @@ load.pic(0)
 draw.pic(0)
 show.pic()
 
-if(equaln(0,0)){ //said("2")) {
-    assignn(0, 32)//8
+if(equaln(0,0)){  
+    assignn(0, picDavRockE4)
 }
 
 if(said("inv")) {

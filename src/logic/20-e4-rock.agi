@@ -1,0 +1,55 @@
+#include "0-defines.aqi"
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+    assignn(vGameCycleDelay, 2)
+    assignn(vRoomInited, 1)
+
+    load.view(viewRoger)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+
+    draw(objEgo)
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 100)
+            assignn(vEgoY, 100)
+        }
+    }
+    position.v(objEgo, vEgoX, vEgoY)
+    set.horizon(58)
+}
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    
+    if(equaln(vEgoEdgeTouched, edgeBottom)) {
+        assignn(vEgoY, 60)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavWizardE5)     
+    }
+
+    if(equaln(vEgoEdgeTouched, edgeLeft)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 150)
+
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavLakeD4)     
+    }
+
+    if(equaln(vEgoEdgeTouched, edgeTop)) {
+        // blocked
+    }
+    
+    if(equaln(vEgoEdgeTouched, edgeRight)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 15)
+
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavDwarfF4)     
+    }
+}
+
+return()
+#message 1 "R11"

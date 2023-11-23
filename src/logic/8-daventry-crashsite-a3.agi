@@ -4,9 +4,10 @@ load.sound(1)
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 3)
+    assignn(vGameCycleDelay, 2)
     assignn(vRoomInited, 1)
 
+    load.view(viewCrashingPod)
     load.view(viewRoger)
     load.view(viewRogerSplash)
     load.view(viewRogerSwim)
@@ -14,12 +15,36 @@ if(equaln(vRoomInited, 0)) {
     animate.obj(objEgo)
 
     set.view(objEgo, viewRoger)
+    set.view(objCrashingPod, viewCrashingPod)
 
     draw(objEgo)
+    draw(objCrashingPod)
 
     stop.cycling(objEgo)
+    stop.cycling(objCrashingPod)
 
-    position(objEgo, 1, 100)
+    set.cel(objCrashingPod, 7)
+
+    position(objCrashingPod, 20, 140)
+    position(objEgo, 15, 140)
+}
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeBottom)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 43)
+
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavRiverBendA4)     
+    }
+
+    if(equaln(vEgoEdgeTouched, edgeLeft)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 150)
+
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavOgreF3)     
+    }
 }
 
 if(isset(0)) {

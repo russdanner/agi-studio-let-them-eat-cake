@@ -26,12 +26,35 @@
 
 // pics
 #define picTitle 0
+
 #define picGrahamsHouseInside 1
+
 #define picHanger 2
 #define picWatch 3
 #define picInPod 4
 #define picInDaventryCrashSite 5
 #define picInPodCrash 6
+
+#define picDavCrashSiteA3 8
+#define picDavCastleLeftA2 9
+#define picDavRiverBendA4 10
+#define picDavBowlA5 11
+#define picDavCastleRightB2 12
+#define picDavMistsCx 13
+#define picDavWellTopD1 14
+#define picDavLakeD2 19
+#define picDavLakeD4 16
+#define picDavWitchHouseD5 17
+#define picDavWolfE1 18
+#define picDavLakeE2 15
+#define picDavRockE4 20
+#define picDavWizardE5 21
+#define picDavTreeF1 22
+#define picDavDaggerF2 23
+#define picDavOgreF3 24
+#define picDavDwarfF4 25
+#define picDavWalnutF5 26
+
 
 // inventory
 #define invSummons 1
@@ -70,8 +93,12 @@
 
 // vars
 #define vCurrentRoom 0
+#define vEgoEdgeTouched 2
 #define vEgoDirection 6
 #define vGameCycleDelay 10
+
+#define vEgoX 30
+#define vEgoY 31
 
 #define vRoomInited 34
 
@@ -111,3 +138,9 @@
 #define directionDownLeft 6
 #define directionDownRight 4
 #define directionStopped 0
+
+#define edgeNone 0
+#define edgeTop 1
+#define edgeRight 2
+#define edgeBottom 3
+#define edgeLeft 4

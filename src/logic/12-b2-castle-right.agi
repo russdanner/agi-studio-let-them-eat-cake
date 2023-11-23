@@ -1,0 +1,86 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+    assignn(vGameCycleDelay, 3)
+    assignn(vRoomInited, 1)
+
+    load.view(viewRoger)
+    load.view(viewRogerSplash)
+    load.view(viewRogerSwim)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+
+    draw(objEgo)
+
+    stop.cycling(objEgo)
+    position.v(objEgo, vEgoX, vEgoY)
+    assignn(vEgoEdgeTouched, edgeNone)
+}
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeBottom)) {
+        // blocked
+    }
+
+    if(equaln(vEgoEdgeTouched, edgeLeft)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 150)
+
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavCastleLeftA2)     
+    }
+
+    if(equaln(vEgoEdgeTouched, edgeRight)) {
+        // MIST 
+    }
+
+}
+
+if(isset(0)) {
+    if(!isset(fSwimming)) {
+        if(!isset(fDrowning)){
+            set.view(objEgo, viewRogerSplash)
+            set(fDrowning)
+            assignn(vEgoDirection, directionStopped)
+            program.control()
+        }
+    }    
+}
+
+if(!isset(0)) {
+    if(isset(fSwimming)) {
+        set.view(objEgo, viewRoger)
+        reset(fSwimming)
+    }
+}
+
+if(said("swim")) {
+    if(isset(0)) {
+        if(isset(fDrowning)) {
+            set.view(objEgo, viewRogerSwim)
+            reset(fDrowning)
+            set(fSwimming)
+            player.control()
+            print("ok")
+       } 
+    }
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    if(!isset(fDrowning)) {
+        if(!isset(fSwimming)){
+            stop.cycling(objEgo)
+        }
+    }
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+    
+return()
+#message 1 "R9"
