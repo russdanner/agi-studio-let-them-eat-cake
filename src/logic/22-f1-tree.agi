@@ -2,37 +2,66 @@
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 2)
     assignn(vRoomInited, 1)
 
     load.view(viewRoger)
+    load.view(viewMist)
 
     animate.obj(objEgo)
 
     set.view(objEgo, viewRoger)
+    set.view(objMist, viewMist)
+    set.view(objMist2, viewMist)
+
+    stop.cycling(objMist)
+    stop.cycling(objMist2)
 
     draw(objEgo)
+    draw(objMist)
+    draw(objMist2)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 15)
+            assignn(vEgoY, 130)
+        }
+    }
+
+    position(objMist, 1, 40)
+    position(objMist2, 43, 40)
 
     position.v(objEgo, vEgoX, vEgoY)
-    set.horizon(58)
+    assignn(vEgoEdgeTouched, edgeNone)
+    set.horizon(50)
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeTop)) {
-        // MIST
+        print("You're a bit foggy here. You decide to turn back.")
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 55)
+        assignn(vEgoDirection, directionDown)
+        set.dir(objEgo, vEgoDirection)
+        position.v(objEgo, vEgoX, vEgoY)
+        assignn(vEgoEdgeTouched, edgeNone)
     }
 
-    // if(equaln(vEgoEdgeTouched, edgeLeft)) {
-    //     get.posn(objEgo, vEgoX, vEgoY)
-    //     assignn(vEgoX, 150)
+    if(equaln(vEgoEdgeTouched, edgeLeft)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 150)
 
-    //     assignn(vRoomInited, valFalse)
-    //     assignn(vCurrentRoom, picDavWalnutF5)     
-    // }
-
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavWolfE1)     
+    }
 
     if(equaln(vEgoEdgeTouched, edgeRight)) {
-        // MIST
+        print("You're a bit foggy here. You decide to turn back.")
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 150)
+        assignn(vEgoDirection, directionLeft)
+        set.dir(objEgo, vEgoDirection)
+        position.v(objEgo, vEgoX, vEgoY)
+        assignn(vEgoEdgeTouched, edgeNone)
     }
 
     if(equaln(vEgoEdgeTouched, edgeBottom)) {
@@ -41,7 +70,13 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavDaggerF2)     
     }
+}
 
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
 }
 
 return()

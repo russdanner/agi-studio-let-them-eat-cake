@@ -2,7 +2,6 @@
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 2)
     assignn(vRoomInited, 1)
 
     load.view(viewRoger)
@@ -13,9 +12,16 @@ if(equaln(vRoomInited, 0)) {
 
     draw(objEgo)
 
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 100)
+            assignn(vEgoY, 100)
+        }
+    }
+
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
-    set.horizon(33)
+    set.horizon(40)
 
 }
 
@@ -27,30 +33,38 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vCurrentRoom, picDavTreeF1)     
     }
 
-    // if(equaln(vEgoEdgeTouched, edgeLeft)) {
-    //     get.posn(objEgo, vEgoX, vEgoY)
-    //     assignn(vEgoX, 150)
-
-    //     assignn(vRoomInited, valFalse)
-    //     assignn(vCurrentRoom, picDavWalnutF5)     
-    // }
-
+    if(equaln(vEgoEdgeTouched, edgeLeft)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 50)
+        assignn(vEgoEdgeTouched, edgeNone)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavLakeE2)  
+    }
 
     if(equaln(vEgoEdgeTouched, edgeRight)) {
-        assignn(vEgoX, 15)
-        assignn(vEgoY, 100)
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 3)
+        assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCastleLeftA2)     
     }
 
     if(equaln(vEgoEdgeTouched, edgeBottom)) {
-        assignn(vEgoY, 50)
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 60)
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavOgreF3)     
     }
-
 }
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
 
 return()
 #message 1 "R11"

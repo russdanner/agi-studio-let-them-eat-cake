@@ -1,9 +1,13 @@
+#include "0-defines.aqi"
+
 load.pic(0)
 draw.pic(0)
 show.pic()
 
+assignn(vGameCycleDelay, 2)
+
 if(equaln(0,0)){  
-    assignn(0, picDavRockE4)
+    assignn(0, picDavCrashSiteA3)
 }
 
 if(said("inv")) {

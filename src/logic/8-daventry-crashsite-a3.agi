@@ -4,7 +4,6 @@ load.sound(1)
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 2)
     assignn(vRoomInited, 1)
 
     load.view(viewCrashingPod)
@@ -27,13 +26,14 @@ if(equaln(vRoomInited, 0)) {
 
     position(objCrashingPod, 20, 140)
     position(objEgo, 15, 140)
+    assignn(vEgoEdgeTouched, edgeNone)
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeBottom)) {
         get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoY, 43)
-
+        assignn(vEgoY, 55)
+        assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavRiverBendA4)     
     }
@@ -41,7 +41,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeLeft)) {
         get.posn(objEgo, vEgoX, vEgoY)
         assignn(vEgoX, 150)
-
+        assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavOgreF3)     
     }

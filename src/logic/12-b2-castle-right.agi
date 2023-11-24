@@ -1,44 +1,82 @@
 #include "0-defines.aqi"
 
-load.sound(1)
+//load.sound(1)
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 3)
     assignn(vRoomInited, 1)
 
     load.view(viewRoger)
     load.view(viewRogerSplash)
     load.view(viewRogerSwim)
+    load.view(viewCastleFlags)
+    load.view(viewCastleCrocs)
+    load.view(viewMist)
 
     animate.obj(objEgo)
+    animate.obj(objCastleFlags)
+    animate.obj(objCastleCrocs)
 
     set.view(objEgo, viewRoger)
+    set.view(objCastleFlags, viewCastleFlags)
+    set.view(objCastleCrocs, viewCastleCrocs)
+    set.view(objMist, viewMist)
+    stop.cycling(objMist)
+
+    //object.on.water(objCastleCrocs)
 
     draw(objEgo)
+    draw(objCastleFlags)
+    draw(objCastleCrocs)
+    draw(objMist)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 140)
+            assignn(vEgoY, 130)
+        }
+    }
 
     stop.cycling(objEgo)
-    position.v(objEgo, vEgoX, vEgoY)
+
     assignn(vEgoEdgeTouched, edgeNone)
+
+    position(objMist, 80, 40)
+    position(objCastleFlags, 5, 20)
+    position(objCastleCrocs, 50, 165)
+
+    position.v(objEgo, vEgoX, vEgoY)
+    set.horizon(40)
+
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    if(equaln(vEgoEdgeTouched, edgeBottom)) {
-        // blocked
+    if(equaln(vEgoEdgeTouched, edgeTop)) {
+        print("You're a bit foggy here. You decide to turn back.")
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 45)
+        assignn(vEgoDirection, directionDown)
+        set.dir(objEgo, vEgoDirection)
+        position.v(objEgo, vEgoX, vEgoY)
+        assignn(vEgoEdgeTouched, edgeNone)
     }
 
     if(equaln(vEgoEdgeTouched, edgeLeft)) {
         get.posn(objEgo, vEgoX, vEgoY)
         assignn(vEgoX, 150)
-
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCastleLeftA2)     
     }
 
     if(equaln(vEgoEdgeTouched, edgeRight)) {
-        // MIST 
+        print("You're a bit foggy here. You decide to turn back.")
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 150)
+        assignn(vEgoDirection, directionLeft)
+        set.dir(objEgo, vEgoDirection)
+        position.v(objEgo, vEgoX, vEgoY)
+        assignn(vEgoEdgeTouched, edgeNone)
     }
-
 }
 
 if(isset(0)) {
@@ -78,6 +116,7 @@ if(equaln(vEgoDirection, directionStopped)) {
         }
     }
 }
+
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }

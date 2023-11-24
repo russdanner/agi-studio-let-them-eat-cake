@@ -1,5 +1,25 @@
 {
   "vectorCommands": [
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     { "command": "PicSetColor", "args": [0] },
     { "command": "PriSetcolor", "args": [15] },
     { "command": "DrawXCorner", "args": [0, 0, 159, 167, 0, 0] },
@@ -762,6 +782,20 @@
     },
     { "command": "PriSetcolor", "args": [3] },
     { "command": "DrawAbs", "args": [96, 139, 96, 139, 95, 139] },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     { "command": "End", "args": [] }
   ]
 }

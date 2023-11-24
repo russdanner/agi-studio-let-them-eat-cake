@@ -15,18 +15,23 @@ if(equaln(vRoomInited, 0)) {
 
     draw(objEgo)
 
-    set.horizon(42)
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 100)
+            assignn(vEgoY, 110)
+        }
+    }
+
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
-
+    set.horizon(50)
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeBottom)) {
         get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 55)
         assignn(vEgoEdgeTouched, edgeNone)
-        assignn(vEgoY, 43)
-
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavBowlA5)     
     }
@@ -34,21 +39,35 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeLeft)) {
         get.posn(objEgo, vEgoX, vEgoY)
         assignn(vEgoX, 150)
-
+        assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavDwarfF4)     
     }
 
     if(equaln(vEgoEdgeTouched, edgeTop)) {
         get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 150)
+        assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCrashSiteA3)     
     }
 
     if(equaln(vEgoEdgeTouched, edgeRight)) {
-        stop.motion(objEgo)
-    }    
+        print("You're a bit foggy here. You decide to turn back.")
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 150)
+        assignn(vEgoDirection, directionLeft)
+        set.dir(objEgo, vEgoDirection)
+        position.v(objEgo, vEgoX, vEgoY)
+        assignn(vEgoEdgeTouched, edgeNone)
+    }
+}
 
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
 }
 
 return()

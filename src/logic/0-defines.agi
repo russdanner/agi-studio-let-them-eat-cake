@@ -15,6 +15,11 @@
 #define objWatchBossSpeech 13
 #define objWatchPower 14
 
+#define objMist 15
+#define objMist2 12
+#define objMist3 13
+#define objMist4 14
+
 #define objCockpitThrottle 1
 #define objCockpitButtons1 2
 #define objCockpitButtons2 3
@@ -23,6 +28,9 @@
 #define objCockpitScreen1 6
 #define objCockpitPush 7
 #define objCockpitPull 8
+#define objCastleFlags 9
+#define objCastleCrocs 10
+#define objCastleDoors 11
 
 // pics
 #define picTitle 0
@@ -42,11 +50,11 @@
 #define picDavCastleRightB2 12
 #define picDavMistsCx 13
 #define picDavWellTopD1 14
-#define picDavLakeD2 19
+#define picDavLakeD2 15
 #define picDavLakeD4 16
 #define picDavWitchHouseD5 17
 #define picDavWolfE1 18
-#define picDavLakeE2 15
+#define picDavLakeE2 19
 #define picDavRockE4 20
 #define picDavWizardE5 21
 #define picDavTreeF1 22
@@ -55,6 +63,9 @@
 #define picDavDwarfF4 25
 #define picDavWalnutF5 26
 
+#define picDavCastleThrone 30
+#define picDavCastleCorner 31
+#define picDavCastleHall 32
 
 // inventory
 #define invSummons 1
@@ -90,7 +101,10 @@
 #define viewCockpitPull 23
 #define viewRogerSplash 24
 #define viewRogerSwim 25
-
+#define viewCastleFlags 26
+#define viewCastleCrocs 27
+#define viewCastleDoors 28
+#define viewMist 29
 // vars
 #define vCurrentRoom 0
 #define vEgoEdgeTouched 2

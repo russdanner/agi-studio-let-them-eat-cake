@@ -1,0 +1,33 @@
+#include "0-defines.aqi"
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+    assignn(vGameCycleDelay, 2)
+    assignn(vRoomInited, 1)
+
+    load.view(viewRoger)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+
+    draw(objEgo)
+
+    position.v(objEgo, vEgoX, vEgoY)
+    set.horizon(43)
+}
+
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeLeft)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 150)
+
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavCastleThrone)  
+    }    
+}
+
+
+return()
+#message 1 "R11"

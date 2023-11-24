@@ -1,31 +1,78 @@
 #include "0-defines.aqi"
 
-load.sound(1)
+//load.sound(1)
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 3)
     assignn(vRoomInited, 1)
 
     load.view(viewRoger)
     load.view(viewRogerSplash)
     load.view(viewRogerSwim)
+    load.view(viewCastleFlags)
+    load.view(viewCastleCrocs)
+    load.view(viewCastleDoors)
+    load.view(viewMist)
 
     animate.obj(objEgo)
+    animate.obj(objCastleFlags)
+    animate.obj(objCastleCrocs)
 
     set.view(objEgo, viewRoger)
+    set.view(objCastleFlags, viewCastleFlags)
+    set.view(objCastleCrocs, viewCastleCrocs)
+    set.view(objCastleDoors, viewCastleDoors)
+    set.loop(objCastleDoors, 1)
+    set.cel(objCastleDoors, 0)
+    set.prioity(objCastleDoors, 1)
+    set.view(objMist, viewMist)
+    set.view(objMist2, viewMist)
+   
+    stop.cycling(objMist)
+    stop.cycling(objMist2)
+    stop.cycling(objCastleDoors)
+
+    //object.on.water(objCastleCrocs)
 
     draw(objEgo)
+    draw(objCastleFlags)
+    draw(objCastleCrocs)
+    draw(objCastleDoors)
+    draw(objMist)
+    draw(objMist2)
 
-    stop.cycling(objEgo)
+    if(equaln(vEgoX, 0)) {
+        stop.cycling(objEgo)
+
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 15)
+            assignn(vEgoY, 130)
+        }
+    }
+
     assignn(vEgoEdgeTouched, edgeNone)
-    position.v(objEgo, vEgoX, vEgoY)
 
+    position(objMist, 1, 40)
+    position(objMist2, 30, 40)
+
+    position(objCastleFlags, 115, 20)
+    position(objCastleCrocs, 50, 165)
+    position(objCastleDoors, 104, 120)
+    //wander(objCastleCrocs)    
+
+    position.v(objEgo, vEgoX, vEgoY)
+    set.horizon(40)   
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    if(equaln(vEgoEdgeTouched, edgeBottom)) {
-        // blocked
+    if(equaln(vEgoEdgeTouched, edgeTop)) {
+        print("You're a bit foggy here. You decide to turn back.")
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 45)
+        assignn(vEgoDirection, directionDown)
+        set.dir(objEgo, vEgoDirection)
+        position.v(objEgo, vEgoX, vEgoY)
+        assignn(vEgoEdgeTouched, edgeNone)
     }
 
     if(equaln(vEgoEdgeTouched, edgeLeft)) {
@@ -43,7 +90,6 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCastleRightB2)     
     }
-
 }
 
 if(isset(0)) {
@@ -86,6 +132,14 @@ if(equaln(vEgoDirection, directionStopped)) {
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
-    
+ 
+if(said("open", "door")) {
+    assignn(vEgoX, 75)
+    assignn(vEgoY, 163)
+
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picDavCastleHall)  
+}
+
 return()
 #message 1 "R9"

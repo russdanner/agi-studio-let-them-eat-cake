@@ -2,7 +2,6 @@
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 2)
     assignn(vRoomInited, 1)
 
     load.view(viewRoger)
@@ -13,40 +12,60 @@ if(equaln(vRoomInited, 0)) {
 
     draw(objEgo)
 
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 100)
+            assignn(vEgoY, 100)
+        }
+    }
+
     position.v(objEgo, vEgoX, vEgoY)
-    set.horizon(58)
+    assignn(vEgoEdgeTouched, edgeNone)
+    set.horizon(55)
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeTop)) {
+        get.posn(objEgo, vEgoX, vEgoY)
         assignn(vEgoY, 150)
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavDaggerF2)     
     }
 
-    // if(equaln(vEgoEdgeTouched, edgeLeft)) {
-    //     get.posn(objEgo, vEgoX, vEgoY)
-    //     assignn(vEgoX, 150)
-
-    //     assignn(vRoomInited, valFalse)
-    //     assignn(vCurrentRoom, picDavWalnutF5)     
-    // }
-
+    if(equaln(vEgoEdgeTouched, edgeLeft)) {
+        print("You're a bit foggy here. You decide to turn back.")
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 15)
+        assignn(vEgoDirection, directionRight)
+        set.dir(objEgo, vEgoDirection)
+        position.v(objEgo, vEgoX, vEgoY)
+        assignn(vEgoEdgeTouched, edgeNone)
+    }
 
     if(equaln(vEgoEdgeTouched, edgeRight)) {
+        get.posn(objEgo, vEgoX, vEgoY)
         assignn(vEgoX, 15)
-
+        assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCrashSiteA3)     
     }
 
     if(equaln(vEgoEdgeTouched, edgeBottom)) {
-        assignn(vEgoY, 50)
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoY, 55)
+        assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavDwarfF4)     
     }
 
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
 }
 
 return()
