@@ -7,23 +7,27 @@ if(equaln(vRoomInited, 0)) {
     load.view(viewRoger)
     load.view(viewRogerSwim)
     load.view(viewMist)
+    load.view(viewWitchDoor)
    
     set.view(objEgo, viewRoger)
     set.view(objMist, viewMist)
     set.view(objMist2, viewMist)
     set.view(objMist3, viewMist)
     set.view(objMist4, viewMist)
+    set.view(objWitchDoor, viewWitchDoor)
 
     stop.cycling(objMist)
     stop.cycling(objMist2)
     stop.cycling(objMist3)
     stop.cycling(objMist4)
+    stop.cycling(objWitchDoor)
 
     draw(objEgo)
     draw(objMist)
     draw(objMist2)
     draw(objMist3)
     draw(objMist4)
+    draw(objWitchDoor)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
@@ -32,17 +36,19 @@ if(equaln(vRoomInited, 0)) {
         }
     }
 
+    reset(fDoAction)
+
     position(objMist, 1, 166)
     position(objMist2, 43, 166)
     position(objMist3, 85, 166)
     position(objMist4, 127, 166)
+    position(objWitchDoor, 45, 129)
 
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
     set.horizon(50)
+
 }
-
-
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeBottom)) {
@@ -87,6 +93,19 @@ if(equaln(vEgoDirection, directionStopped)) {
 }
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
+}
+
+if(said("open", "door")) {
+    end.of.loop(objWitchDoor, fDoAction)
+}
+
+if(isset(fDoAction)) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 50)
+    assignn(vEgoY, 150)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picDavWitchHouseInside)
 }
 
 return()

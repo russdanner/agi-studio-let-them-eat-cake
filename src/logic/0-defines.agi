@@ -32,6 +32,13 @@
 #define objCastleCrocs 10
 #define objCastleDoors 11
 
+#define objWitchDoor 1
+#define objWitchCabinet 2
+#define objCake 3
+#define objBucket 4
+#define objRope 5
+#define objRope2 6
+
 // pics
 #define picTitle 0
 
@@ -62,6 +69,10 @@
 #define picDavOgreF3 24
 #define picDavDwarfF4 25
 #define picDavWalnutF5 26
+
+#define picDavWitchHouseInside 27
+#define picDavWellBottom 28
+#define picDavWellDive 29
 
 #define picDavCastleThrone 30
 #define picDavCastleCorner 31
@@ -105,6 +116,13 @@
 #define viewCastleCrocs 27
 #define viewCastleDoors 28
 #define viewMist 29
+#define viewWitchDoor 30
+#define viewWitchCabinet 31
+#define viewCake 32
+#define viewBucket 33
+#define viewRogerBucket 34
+#define viewRope 35
+
 // vars
 #define vCurrentRoom 0
 #define vEgoEdgeTouched 2
@@ -138,6 +156,9 @@
 #define fPodAutoNavPressed 92
 #define fDrowning 93
 #define fSwimming 94
+#define fDoAction 95
+#define fUndoAction 96
+#define fInBucket 90
 
 // consts  
 #define valTrue 1

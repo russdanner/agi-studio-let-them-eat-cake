@@ -1,0 +1,62 @@
+#include "0-defines.aqi"
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+    assignn(vRoomInited, 1)
+
+    load.view(viewRoger)
+    load.view(viewWitchCabinet)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+    set.view(objWitchCabinet, viewWitchCabinet)
+
+    stop.cycling(objWitchCabinet)
+
+    draw(objEgo)
+    draw(objWitchCabinet)
+    
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 50)
+            assignn(vEgoY, 140)
+        }
+    }
+
+    position.v(objEgo, vEgoX, vEgoY)
+    position(objWitchCabinet, 32, 80)
+    assignn(vEgoEdgeTouched, edgeNone)
+}
+
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeBottom)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 51)
+        assignn(vEgoY, 133)
+        assignn(vEgoEdgeTouched, edgeNone)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavWitchHouseD5)   
+    }
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+if(said("close")) {
+    set.cel(objWitchCabinet, 0)
+}
+
+
+if(said("open")) {
+    end.of.loop(objWitchCabinet, fDoAction)
+}
+
+
+return()
+#message 1 "ABC"

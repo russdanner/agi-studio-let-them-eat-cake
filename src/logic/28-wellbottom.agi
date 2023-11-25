@@ -1,0 +1,68 @@
+#include "0-defines.aqi"
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+
+    assignn(vRoomInited, 1)
+
+    load.view(viewRogerBucket)
+    load.view(viewRope)
+
+    animate.obj(objEgo)
+    animate.obj(objRope)
+    
+    set.view(objEgo, viewRogerBucket)
+    set.view(objRope, viewRope)   
+    set.view(objRope2, viewRope)  
+
+    draw(objEgo)
+    draw(objRope)
+    draw(objRope2)
+
+    stop.cycling(objEgo)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 76)
+            assignn(vEgoY, 150)
+        }
+    }
+
+    reset(fDoAction)
+    position(objRope, 81, 115)
+    position(objRope2, 81, 165)
+
+    position.v(objEgo, vEgoX, vEgoY)
+    
+    end.of.loop(objEgo, fDoAction)
+}
+
+if(isset(fDoAction)) {
+
+}
+
+if(said("exit")) {
+    load.view(viewRogerSplash)
+    load.view(viewBucket)
+    set.view(objEgo, viewRogerSplash)
+    set.view(objBucket, viewBucket)
+    draw(objBucket)
+    stop.cycling(objBucket)
+    start.cycling(objEgo)
+
+    position(objRope2, 81, 185)
+    position(objEgo, 81, 165)
+    position(objBucket, 76, 155)
+    set.cel(objBucket, 0)
+}
+
+if(said("dive")) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoY, 50)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picDavWellDive)   
+}
+
+return()
+#message 1 "ABC"

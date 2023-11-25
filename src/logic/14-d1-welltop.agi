@@ -6,6 +6,7 @@ if(equaln(vRoomInited, 0)) {
 
     load.view(viewRoger)
     load.view(viewMist)
+    load.view(viewBucket)
 
     animate.obj(objEgo)
 
@@ -15,16 +16,20 @@ if(equaln(vRoomInited, 0)) {
     set.view(objMist3, viewMist)
     set.view(objMist4, viewMist)
 
+    set.view(objBucket, viewBucket)
+
     stop.cycling(objMist)
     stop.cycling(objMist2)
     stop.cycling(objMist3)
     stop.cycling(objMist4)
+    stop.cycling(objBucket)
 
     draw(objEgo)
     draw(objMist)
     draw(objMist2)
     draw(objMist3)
     draw(objMist4)
+    draw(objBucket)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
@@ -37,7 +42,10 @@ if(equaln(vRoomInited, 0)) {
     position(objMist2, 43, 47)
     position(objMist3, 85, 47)
     position(objMist4, 127, 47)
+    position(objBucket, 38, 120)
 
+    reset(fInBucket)
+    reset(fDoAction)
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(50)
@@ -86,6 +94,39 @@ if(equaln(vEgoDirection, directionStopped)) {
 }
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
+}
+
+if(said("enter", "bucket")) {
+    load.view(viewRogerBucket)
+    erase(objBucket)
+    set.view(objEgo, viewRogerBucket)
+    position(objEgo, 37, 145)
+    set.priority(objEgo, 11)
+    stop.cycling(objEgo)
+    set.cel(objEgo, 0)
+    set(fInBucket)
+}
+
+if(said("exit", "bucket")) {
+    set.view(objEgo, viewRoger)
+    set.view(objBucket, viewBucket)
+    draw(objBucket)
+    stop.cycling(objBucket)
+    position(objEgo, 42, 110)
+    position(objBucket, 38, 120)
+
+}
+
+if(isset(fInBucket)){
+    end.of.loop(objEgo, fDoAction)    
+}
+
+if(isset(fDoAction)) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 75)
+    assignn(vEgoY, 50)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picDavWellBottom)   
 }
 
 return()

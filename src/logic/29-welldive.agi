@@ -1,0 +1,30 @@
+#include "0-defines.aqi"
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+    assignn(vGameCycleDelay, 2)
+    assignn(vRoomInited, 1)
+
+    load.view(viewRoger)
+
+    
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+
+    draw(objEgo)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 100)
+            assignn(vEgoY, 110)
+        }
+    }
+
+    position.v(objEgo, vEgoX, vEgoY)
+    assignn(vEgoEdgeTouched, edgeNone)
+    set.horizon(50)
+}
+
+return()
+#message 1 "ABC"

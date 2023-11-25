@@ -60,6 +60,8 @@ if(equaln(vRoomInited, 0)) {
     position(objCastleDoors, 104, 120)
     //wander(objCastleCrocs)    
 
+    reset(fDoAction)
+    
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(40)   
 }
@@ -134,11 +136,16 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
  
 if(said("open", "door")) {
+    end.of.loop(objCastleDoors, fDoAction)
+}
+
+if(isset(fDoAction)) {
+    get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 75)
     assignn(vEgoY, 163)
-
+    assignn(vEgoEdgeTouched, edgeNone)
     assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picDavCastleHall)  
+    assignn(vCurrentRoom, picDavCastleHall)
 }
 
 return()
