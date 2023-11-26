@@ -1,0 +1,78 @@
+#include "0-defines.aqi"
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+    assignn(vRoomInited, 1)
+
+    load.view(viewRoger)
+    load.view(viewTram)
+    load.view(viewLift)
+
+    animate.obj(objEgo)
+    animate.obj(objLiftRod)
+    animate.obj(objCrew1)
+    animate.obj(objCrew2)
+
+    set.view(objEgo, viewRoger)
+    set.view(objTram, viewTram)
+    set.view(objLift, viewLift)
+    set.view(objLiftRod, viewLift)
+    set.view(objCrew1, viewLift)
+    set.view(objCrew2, viewLift)
+
+    draw(objTram)
+    draw(objLift)
+    draw(objLiftRod)
+    draw(objCrew1)
+    draw(objCrew2)
+
+    stop.cycling(objTram)
+    stop.cycling(objLift)
+    stop.cycling(objLiftRod)
+
+    set.loop(objLiftRod, 1)
+    set.cel(objLiftRod, 0)
+    set.loop(objCrew1, 2)
+    set.loop(objCrew2, 3)
+
+    position(objTram, 1, 72)
+    reposition.to(objTram, 94, 72)
+
+    position(objLift, 21, 92)
+    position(objLiftRod, 34, 130)
+    position(objCrew1, 70, 110)
+    position(objCrew2, 100, 110)
+
+    set.priority(objTram, 4)
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+if(said("exit")) {    
+    position(objEgo, 95, 74)
+    draw(objEgo)
+}
+
+if(said("enter")) {
+    erase(objEgo)
+    end.of.loop(objTram, fDoAction)
+}
+
+if(isset(fDoAction)) {
+    reposition.to(objTram, 135, 72)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 75)
+    assignn(vEgoY, 148)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picOuterBay)     
+}
+
+
+return()
+#message 1 "Control Room"

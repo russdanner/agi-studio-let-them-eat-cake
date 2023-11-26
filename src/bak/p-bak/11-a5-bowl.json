@@ -1,0 +1,343 @@
+{
+  "vectorCommands": [
+    { "command": "PicSetColor", "args": [0] },
+    { "command": "PriSetcolor", "args": [15] },
+    { "command": "DrawXCorner", "args": [0, 0, 159, 167, 0, 0] },
+    { "command": "PriSetcolor", "args": [12] },
+    {
+      "command": "DrawRel",
+      "args": [
+        66, 135, 202, 194, 202, 224, 29, 44, 11, 76, 166, 150, 57, 45, 29, 43,
+        149, 4, 33, 10, 26, 30, 19, 150, 33, 59, 41, 23, 4, 44, 59, 42, 151, 62,
+        27, 150, 5, 61, 18, 163, 163, 208, 201, 193
+      ]
+    },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "PriSetcolor", "args": [12] },
+    {
+      "command": "DrawRel",
+      "args": [18, 133, 60, 44, 43, 46, 61, 41, 90, 75, 57, 16, 38, 21, 19, 18]
+    },
+    { "command": "DrawRel", "args": [47, 133, 170, 173, 155, 11, 12, 12, 47] },
+    {
+      "command": "DrawRel",
+      "args": [42, 106, 181, 167, 147, 196, 162, 177, 176, 179, 161]
+    },
+    { "command": "PicSetColor", "args": [7] },
+    { "command": "DrawRel", "args": [19, 133, 66, 106, 80, 82, 17, 107] },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "PriSetcolor", "args": [14] },
+    {
+      "command": "DrawRel",
+      "args": [
+        117, 158, 208, 185, 208, 61, 58, 43, 28, 9, 28, 42, 20, 19, 162, 36, 3,
+        3, 18, 145
+      ]
+    },
+    { "command": "PicSetColor", "args": [7] },
+    {
+      "command": "DrawRel",
+      "args": [117, 136, 87, 67, 81, 35, 19, 3, 193, 192, 193, 176]
+    },
+    { "command": "PicSetColor", "args": [8] },
+    {
+      "command": "DrawRel",
+      "args": [147, 159, 218, 29, 59, 28, 29, 41, 5, 149, 164, 5]
+    },
+    { "command": "PicSetColor", "args": [7] },
+    { "command": "DrawRel", "args": [151, 139, 20, 39, 22, 194, 177] },
+    { "command": "PicSetColor", "args": [0] },
+    {
+      "command": "DrawRel",
+      "args": [
+        109, 149, 171, 11, 177, 157, 146, 156, 171, 12, 156, 186, 181, 150, 192,
+        148, 185, 164, 150, 32, 181, 20, 32, 81, 48, 58, 81, 80
+      ]
+    },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "PriSetcolor", "args": [10] },
+    {
+      "command": "DrawRel",
+      "args": [
+        130, 111, 185, 185, 154, 27, 27, 43, 28, 44, 20, 4, 6, 18, 3, 145
+      ]
+    },
+    { "command": "PicSetColor", "args": [7] },
+    {
+      "command": "DrawRel",
+      "args": [131, 90, 35, 37, 50, 51, 66, 163, 193, 193, 193]
+    },
+    { "command": "PicSetColor", "args": [0] },
+    { "command": "PriSetcolor", "args": [11] },
+    {
+      "command": "DrawRel",
+      "args": [25, 20, 166, 1, 165, 149, 2, 41, 59, 5, 166]
+    },
+    {
+      "command": "DrawRel",
+      "args": [34, 1, 19, 20, 5, 21, 22, 38, 145, 171, 160, 2, 36, 22, 5, 2]
+    },
+    { "command": "PicSetColor", "args": [3] },
+    { "command": "PriDisable", "args": [] },
+    {
+      "command": "DrawRel",
+      "args": [12, 38, 46, 27, 45, 156, 179, 29, 45, 29, 12, 43]
+    },
+    { "command": "DrawRel", "args": [23, 1, 22, 21, 185, 22, 19] },
+    {
+      "command": "DrawRel",
+      "args": [46, 36, 33, 171, 155, 154, 157, 33, 173, 154, 11, 157, 157, 12]
+    },
+    { "command": "DrawRel", "args": [12, 39, 146, 49, 42, 66, 57, 16] },
+    { "command": "DrawRel", "args": [47, 38, 19, 177, 185, 177] },
+    { "command": "PicSetColor", "args": [0] },
+    { "command": "PriSetcolor", "args": [11] },
+    { "command": "DrawRel", "args": [29, 1, 150, 148, 150, 146] },
+    {
+      "command": "DrawRel",
+      "args": [
+        24, 46, 165, 150, 164, 181, 41, 148, 3, 41, 34, 7, 164, 164, 164, 162,
+        180, 4, 58, 18, 90, 74, 57, 62, 57, 33, 52, 36, 65, 58, 156, 173, 189,
+        173, 157, 27, 67, 157, 157, 10, 65, 189, 157, 173
+      ]
+    },
+    { "command": "DrawRel", "args": [26, 98, 6, 4, 4, 149, 149] },
+    { "command": "DrawRel", "args": [26, 117, 1] },
+    { "command": "DrawAbs", "args": [32, 91, 31, 101, 33, 109] },
+    { "command": "PriSetcolor", "args": [9] },
+    {
+      "command": "DrawRel",
+      "args": [
+        117, 1, 150, 149, 151, 167, 165, 166, 58, 34, 165, 149, 149, 164, 179,
+        165, 166, 146, 106, 150, 182, 164, 148, 3, 89, 58, 64, 91, 32, 66, 49,
+        105, 64, 33, 43, 173, 155, 172, 189, 156, 174, 173, 15, 157, 52, 28,
+        174, 157, 158, 172, 159, 158, 13, 155
+      ]
+    },
+    { "command": "PicSetColor", "args": [6] },
+    { "command": "DrawRel", "args": [115, 88, 148, 50, 42, 12] },
+    { "command": "PicSetColor", "args": [2] },
+    { "command": "PriDisable", "args": [] },
+    { "command": "DrawRel", "args": [123, 91, 67] },
+    { "command": "DrawXCorner", "args": [1, 40, 10] },
+    { "command": "DrawXCorner", "args": [48, 40, 111] },
+    { "command": "DrawXCorner", "args": [128, 40, 158] },
+    { "command": "DrawRel", "args": [11, 37, 170, 187, 171, 171, 153] },
+    {
+      "command": "DrawRel",
+      "args": [
+        43, 15, 74, 82, 99, 85, 87, 86, 98, 90, 74, 74, 49, 52, 73, 93, 41
+      ]
+    },
+    { "command": "DrawRel", "args": [122, 15, 80, 81, 67, 68, 70, 69, 83, 90] },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "PriSetcolor", "args": [11] },
+    { "command": "DrawRel", "args": [19, 101, 49, 48] },
+    { "command": "DrawRel", "args": [32, 99, 58, 50] },
+    { "command": "PriDisable", "args": [] },
+    { "command": "DrawRel", "args": [4, 27, 58, 34, 52, 17] },
+    {
+      "command": "DrawRel",
+      "args": [
+        67, 28, 32, 44, 160, 28, 46, 6, 20, 18, 43, 74, 48, 50, 49, 17, 11, 28,
+        153, 63, 10, 21, 5, 20, 20, 30, 30, 5, 36, 18, 30, 29, 28, 6, 35, 148,
+        17, 20, 41, 58
+      ]
+    },
+    { "command": "DrawRel", "args": [143, 26, 42, 57, 49, 18, 50, 32, 26] },
+    { "command": "PicSetColor", "args": [9] },
+    { "command": "DrawXCorner", "args": [1, 18, 13] },
+    { "command": "DrawXCorner", "args": [24, 18, 25] },
+    { "command": "DrawXCorner", "args": [59, 18, 70] },
+    { "command": "DrawXCorner", "args": [73, 18, 90] },
+    { "command": "DrawRel", "args": [95, 18, 16] },
+    { "command": "DrawRel", "args": [99, 18, 32] },
+    { "command": "DrawRel", "args": [106, 18, 96, 16] },
+    { "command": "DrawXCorner", "args": [136, 18, 158] },
+    { "command": "PicSetColor", "args": [2] },
+    {
+      "command": "DrawAbs",
+      "args": [97, 90, 67, 95, 100, 100, 113, 102, 124, 99, 125, 99]
+    },
+    {
+      "command": "DrawAbs",
+      "args": [23, 122, 15, 122, 18, 116, 18, 106, 1, 110]
+    },
+    { "command": "DrawRel", "args": [22, 136, 196, 226, 195, 197, 181] },
+    { "command": "PicSetColor", "args": [7] },
+    { "command": "PriSetcolor", "args": [14] },
+    { "command": "DrawFill", "args": [148, 158, 120, 157, 117, 137] },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "DrawFill", "args": [146, 156, 115, 157] },
+    { "command": "PicSetColor", "args": [2] },
+    { "command": "DrawFill", "args": [87, 157] },
+    { "command": "PriSetcolor", "args": [12] },
+    {
+      "command": "DrawFill",
+      "args": [58, 134, 83, 129, 82, 130, 81, 132, 63, 120, 52, 123]
+    },
+    { "command": "PicSetColor", "args": [7] },
+    { "command": "DrawFill", "args": [40, 135, 43, 105] },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "DrawFill", "args": [47, 131, 41, 106, 21, 130, 23, 128] },
+    { "command": "PicSetColor", "args": [6] },
+    { "command": "PriSetcolor", "args": [11] },
+    { "command": "DrawFill", "args": [25, 120, 26, 116] },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "DrawFill", "args": [33, 97, 25, 101, 38, 98] },
+    { "command": "PicSetColor", "args": [3] },
+    { "command": "DrawFill", "args": [39, 30, 41, 72, 15, 100] },
+    { "command": "PicSetColor", "args": [7] },
+    { "command": "PriSetcolor", "args": [10] },
+    { "command": "DrawFill", "args": [132, 110, 135, 109, 131, 91] },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "DrawFill", "args": [130, 110] },
+    { "command": "PicSetColor", "args": [6] },
+    { "command": "PriSetcolor", "args": [9] },
+    { "command": "DrawFill", "args": [117, 93] },
+    { "command": "PicSetColor", "args": [3] },
+    { "command": "DrawFill", "args": [99, 92, 100, 71] },
+    { "command": "PriDisable", "args": [] },
+    { "command": "DrawFill", "args": [14, 21, 13, 41, 39, 41, 44, 24] },
+    { "command": "PicSetColor", "args": [2] },
+    {
+      "command": "DrawFill",
+      "args": [1, 151, 112, 101, 2, 39, 50, 39, 128, 39]
+    },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "DrawFill", "args": [12, 35, 79, 37, 153, 36] },
+    { "command": "PicSetColor", "args": [1] },
+    { "command": "DrawFill", "args": [3, 17, 24, 17, 63, 17, 135, 17] },
+    { "command": "PicSetColor", "args": [9] },
+    {
+      "command": "DrawFill",
+      "args": [13, 30, 68, 27, 96, 19, 100, 19, 89, 23, 108, 26, 155, 27]
+    },
+    { "command": "PicSetColor", "args": [10] },
+    {
+      "command": "DrawFill",
+      "args": [128, 90, 18, 121, 1, 166, 125, 45, 78, 127, 17, 66]
+    },
+    {
+      "command": "DrawRel",
+      "args": [
+        91, 150, 164, 217, 44, 156, 60, 68, 31, 44, 36, 54, 178, 67, 59, 36, 179
+      ]
+    },
+    { "command": "DrawRel", "args": [94, 152, 157, 67, 34, 19] },
+    {
+      "command": "DrawAbs",
+      "args": [
+        52, 122, 51, 131, 56, 130, 58, 123, 59, 132, 62, 123, 62, 128, 67, 127,
+        69, 124, 67, 133, 63, 131
+      ]
+    },
+    { "command": "DrawRel", "args": [76, 128, 164, 65, 30] },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "DrawRel", "args": [119, 144, 71, 98, 35] },
+    { "command": "DrawRel", "args": [134, 98, 55, 51] },
+    { "command": "PicSetColor", "args": [7] },
+    { "command": "DrawRel", "args": [38, 109, 182, 179, 196, 178] },
+    { "command": "DrawRel", "args": [44, 109, 39, 38, 19] },
+    { "command": "PicSetColor", "args": [11] },
+    {
+      "command": "DrawAbs",
+      "args": [17, 92, 14, 100, 25, 83, 24, 91, 31, 81, 39, 93, 39, 86, 45, 97]
+    },
+    {
+      "command": "DrawAbs",
+      "args": [19, 64, 25, 59, 21, 70, 30, 58, 31, 73, 34, 55, 41, 72]
+    },
+    { "command": "DrawAbs", "args": [42, 62, 33, 44, 31, 52, 28, 40, 23, 55] },
+    {
+      "command": "DrawAbs",
+      "args": [27, 21, 23, 33, 29, 26, 32, 35, 32, 20, 39, 30]
+    },
+    { "command": "DrawAbs", "args": [28, 17, 31, 8, 32, 13, 33, 7, 37, 22] },
+    {
+      "command": "DrawAbs",
+      "args": [
+        100, 86, 107, 77, 109, 86, 114, 72, 119, 87, 123, 74, 127, 83, 129, 75,
+        135, 88
+      ]
+    },
+    {
+      "command": "DrawAbs",
+      "args": [102, 67, 113, 48, 114, 60, 118, 43, 126, 62]
+    },
+    {
+      "command": "DrawAbs",
+      "args": [126, 43, 121, 27, 118, 34, 117, 24, 110, 35]
+    },
+    { "command": "DrawAbs", "args": [115, 20, 118, 9, 121, 21] },
+    {
+      "command": "DrawAbs",
+      "args": [108, 66, 110, 62, 117, 71, 118, 58, 125, 70, 127, 65]
+    },
+    { "command": "PicDisable", "args": [] },
+    { "command": "PriSetcolor", "args": [0] },
+    {
+      "command": "DrawAbs",
+      "args": [
+        98, 95, 117, 97, 136, 97, 138, 95, 138, 94, 129, 92, 107, 92, 98, 94
+      ]
+    },
+    {
+      "command": "DrawAbs",
+      "args": [
+        145, 107, 145, 105, 133, 103, 127, 104, 123, 108, 129, 111, 144, 108,
+        144, 106
+      ]
+    },
+    {
+      "command": "DrawAbs",
+      "args": [155, 155, 149, 154, 142, 156, 142, 157, 147, 159, 155, 157]
+    },
+    {
+      "command": "DrawAbs",
+      "args": [
+        80, 156, 85, 154, 129, 154, 134, 156, 118, 158, 100, 157, 93, 157, 89,
+        158, 80, 157
+      ]
+    },
+    { "command": "DrawYCorner", "args": [150, 155, 159, 146, 155] },
+    {
+      "command": "DrawAbs",
+      "args": [
+        18, 132, 18, 133, 23, 135, 30, 133, 33, 133, 40, 136, 47, 133, 53, 133,
+        59, 135, 80, 135, 84, 132, 83, 131, 19, 131
+      ]
+    },
+    {
+      "command": "DrawAbs",
+      "args": [10, 120, 20, 123, 46, 123, 46, 118, 18, 118, 11, 120]
+    },
+    {
+      "command": "DrawYCorner",
+      "args": [16, 119, 122, 20, 118, 24, 123, 28, 118, 32, 123]
+    },
+    {
+      "command": "DrawYCorner",
+      "args": [21, 134, 131, 25, 134, 29, 131, 33, 133]
+    },
+    { "command": "DrawYCorner", "args": [37, 134, 131, 41, 135] },
+    { "command": "DrawYCorner", "args": [45, 133, 132, 56] },
+    {
+      "command": "DrawYCorner",
+      "args": [60, 132, 134, 64, 132, 68, 134, 72, 132, 76, 134, 80, 132]
+    },
+    { "command": "DrawXCorner", "args": [129, 155, 85, 156, 129] },
+    { "command": "DrawRel", "args": [117, 157] },
+    { "command": "DrawRel", "args": [113, 157] },
+    { "command": "DrawAbs", "args": [139, 104, 139, 109, 139, 109] },
+    { "command": "DrawAbs", "args": [131, 111, 131, 104] },
+    { "command": "DrawAbs", "args": [131, 97, 131, 92] },
+    { "command": "DrawAbs", "args": [124, 92, 124, 97] },
+    { "command": "DrawAbs", "args": [118, 97, 118, 92] },
+    { "command": "DrawAbs", "args": [111, 92, 111, 96] },
+    { "command": "PriSetcolor", "args": [11] },
+    { "command": "PicSetColor", "args": [8] },
+    { "command": "DrawAbs", "args": [22, 129] },
+    { "command": "End", "args": [] }
+  ]
+}

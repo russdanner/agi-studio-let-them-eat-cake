@@ -1,0 +1,57 @@
+#include "0-defines.aqi"
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+    assignn(vRoomInited, 1)
+
+    load.view(viewRoger)
+    load.view(viewTram)
+    load.view(viewRogerSuitA)
+    load.view(viewHangerDoorLeft)
+ 
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+    set.view(objTram, viewTram)
+    set.view(objHangingSuit1, viewRogerSuitA)
+    set.view(objHangerDoorLeft, viewHangerDoorLeft)
+
+    draw(objTram)
+    draw(objHangingSuit1)
+    draw(objHangerDoorLeft)
+
+    stop.cycling(objTram)
+    stop.cycling(objHangingSuit1)
+    stop.cycling(objHangerDoorLeft)
+
+    set.loop(objHangingSuit1, 2)
+    position(objHangerDoorLeft, 6, 131)
+
+    position(objHangingSuit1, 35, 95)
+    position(objTram, 1, 72)
+    reposition.to(objTram, 55, 47)
+
+    set.priority(objTram, 4)
+
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+if(said("exit")) {    
+    position(objEgo, 95, 74)
+    draw(objEgo)
+}
+
+if(said("enter")) {
+    erase(objEgo)
+    end.of.loop(objTram, fDoAction)
+}
+
+
+return()
+#message 1 "OutterBay"

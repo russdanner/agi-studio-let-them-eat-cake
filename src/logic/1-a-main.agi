@@ -4,10 +4,10 @@ load.pic(0)
 draw.pic(0)
 show.pic()
 
-assignn(vGameCycleDelay, 2)
+assignn(vGameCycleDelay, 3)
 
 if(equaln(0,0)){  
-    assignn(0, picDavWellBottom)
+    assignn(0, picHangerB)
 }
 
 if(said("inv")) {
@@ -20,4 +20,4 @@ if(!equaln(0, 0)) {
 
 
 return()
-#message 1 "ABC"
+#message 1 "Main Loop"

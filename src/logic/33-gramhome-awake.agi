@@ -1,0 +1,285 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+if(equaln(vRoomInited, 0)) {
+    assignn(vSleeping, valFalse)
+    assignn(vTeaDrank, valFalse)
+    assignn(vClockTicks, 0)
+
+    assignn(vRoomInited, 1)
+    load.view(viewGrahamNoHat)
+    load.view(viewSummons)
+    load.view(viewHat)
+    load.view(viewTeapot)
+    load.view(viewTeaCup)
+    load.view(viewGrahamSleep)
+    load.view(viewGrahamHatNoFeather)
+
+    animate.obj(objEgo)
+    animate.obj(objTeapot)
+
+    set.view(objEgo, viewGrahamNoHat)
+    set.view(objSummons, viewSummons)
+    set.view(objHat, viewHat)
+    set.view(objTeapot, viewTeapot)
+    set.view(objTeaCup, viewTeaCup)
+    set.view(objGrahamSleep, viewGrahamSleep)
+
+    stop.cycling(objSummons)
+    stop.cycling(objHat)
+    stop.cycling(objTeaCup)
+
+    draw(objEgo)
+    draw(objSummons)
+    draw(objHat)
+    draw(objTeapot)
+    draw(objTeaCup)
+
+    assignn(vGameCycleDelay, 2)
+
+    position(objEgo, 100, 130)
+    position(objSummons, 80, 105)
+    position(objHat, 130, 125)
+    position(objTeapot, 110, 87)
+    position(objTeaCup, 55, 105)
+
+    set.priority(objSummons, 15)
+    set.priority(objHat, 15)
+    set.priority(objTeapot, 16)
+    set.priority(objTeaCup, 15)
+
+    ignore.blocks(objSummons)
+
+    //print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edwards for reasons unknown.")
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+   stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+if(said("sleep")) {
+    if(posn(objEgo, 75, 30, 115, 85)) {
+        if(!equaln(vTeaDrank, valTrue)) {
+            print("You are a bit on edge about the summons you recieved from the king. You can't sleep.")
+        }
+        if(equaln(vTeaDrank, valTrue)) {
+            assignn(vSleeping, valTrue)
+            assignn(vTimer, 0)
+            assignn(vClockTicks, 0)
+            print("Having taken the tea you climb into bed and doze off.")
+        }
+    }
+    if(!posn(objEgo, 75, 30, 115, 85)) {
+        print("You're not close enough.")
+    }
+}
+
+if(equaln(vSleeping, valTrue)) {
+    erase(objEgo)
+    stop.cycling(objGrahamSleep)
+    draw(objGrahamSleep)
+    position(objGrahamSleep, 110, 82)
+    set.priority(objGrahamSleep, 15)
+}
+
+if(said("wear", "hat")) {
+    if(has(invHat)) {
+        set.view(objEgo, viewGrahamHatNoFeather)
+        print("You put on your trusty hat!")
+    }
+    if(!has(invHat)) {
+        print("You don't have it.")
+    }
+}   
+
+if(said("take", "summons")) {
+    if(posn(objEgo, 80, 100, 100, 130)) {
+        print("You take the summons.")
+        get(invSummons)
+        erase(objSummons)
+    }
+    if(!posn(objEgo, 80, 100, 100, 130)) {
+        print("Get closer.")
+    }
+}
+
+if(said("take", "teapot")) {
+    if(posn(objEgo, 104, 95, 123, 112)) {
+        print("You remove the teapot from the stove.")
+        erase(objTeapot)
+        get(invTeapot)
+    }
+    if(!posn(objEgo, 104, 95, 123, 112)) {
+        print("Get closer.")
+    }
+}
+
+if(said("take", "hat")) {
+    if(posn(objEgo, 117, 131, 129, 150)) {
+        print("You pocket your hat.")
+        erase(objHat)
+        get(invHat)
+    }
+    if(!posn(objEgo, 117, 131, 129, 150)) {
+        print("You cannot reach it.")
+    }
+}
+
+if(said("take", "teacup")) {
+    if(posn(objEgo, 49, 107, 56, 135)) {
+        print("You pick up the teacup and carry it with you.")
+        erase(objTeaCup)
+        get(invTeaCup)
+    }
+    if(!posn(objEgo, 49, 107, 56, 135)) {
+        print("It is not within your reach.")
+    }
+}
+
+if(said("put", "teacup")) {
+    if(posn(objEgo, 49, 107, 56, 135)) {
+        print("You place the teacup on the table.")
+        draw(objTeaCup)
+        drop(invTeaCup)
+    }
+    if(!posn(objEgo, 49, 107, 56, 135)) {
+        print("Get closer.")
+    }
+}
+
+if(said("pour", "tea")) {
+    if(has(invTeapot)) {
+        if(has(invTeaCup)) {
+            print("The tea is hot. Put the cup on the table.")
+        }
+        if(!has(invTeaCup)) {
+            if(equaln(vTeaPoured, valTrue)) {
+                print("the teapot is empty.")
+            }
+            if(!equaln(vTeaPoured, valTrue)) {
+                if(posn(objEgo, 49, 107, 56, 135)) {
+                    print("You pour a cup of hot tea.")
+                    assignn(vTeaPoured, valTrue)
+                }
+                if(!posn(objEgo, 49, 107, 56, 135)) {
+                    print("You should get closer.")
+                }
+            }
+        }
+    }
+    if(!has(invTeapot)) {
+        print("You can't do that from here.")
+    }
+}
+
+if(said("take", "tea")) {
+    if(posn(objEgo, 49, 107, 56, 135)) {
+        if(equaln(vTeaPoured, valTrue)) {
+            get(invTea)        
+            erase(objTeaCup)
+            print("Ok")
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("The cup is empty")
+        }
+    }
+    if(!posn(objEgo, 49, 107, 56, 135)) {
+        print("You are not close enough.")
+    }  
+}
+
+if(said("drink", "tea")) {
+    if(!has(invTea)) {
+        print("You don't have it.")
+    }
+    if(has(invTea)) {
+        print("You drink the tea. In a few minutes you begin to feel drowsy.")
+        assignn(vTeaDrank, valTrue)
+        drop(invTea)
+        get(invTeaCup)    
+    }
+}    
+
+if(equaln(vSleeping, valTrue)) {
+    if(equaln(vClockTicks, 1)) {
+        print("Time passes...")
+    }
+
+    if(equaln(vClockTicks, 2)) {
+        print("More time passes...")
+    }
+
+    if(equaln(vClockTicks, 3)) {
+        print("What on earth was in that tea?!?")
+    }
+
+    if(equaln(vClockTicks, 4)) {
+        print("Your dreams turn psychedelic")
+        assignn(vRoomInited, 0)
+        assignn(0, 2)
+    }
+}
+
+
+
+if(equaln(vClockTicks, 20)) {
+    print("It sure is getting late")
+}
+if(equaln(vClockTicks, 40)) {
+    print("If you don't get to sleep you'll be a real mess in the morning.")
+}
+if(equaln(vClockTicks, 60)) {
+    print("You fall asleep and oversleep. Thanks for playing.")
+}
+
+if(equaln(vTimer, 100)) {
+    assign(vTimer, 0)
+    addn(vClockTicks, 1) 
+}
+addn(vTimer, 1) 
+
+if(said("look", "room")) {
+    print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy.")
+}
+
+if(said("look", "summons")) {
+    print("This ornate parchment is a summons from the king that demands an audience with you first thing in the morning")
+}
+
+if(said("look", "bed")) {
+    print("That's your bed. It looks comfortable.")
+}
+
+if(said("look", "hat")) {
+    print("It's your hat! Wow. You love this hat. It's triangular and blue.")
+}
+
+if(said("look", "cup")) {
+    if(equaln(vTeaPoured, valTrue)) {
+        if(equaln(vTeaDrank, valTrue)) {
+            print("Closer inspection of the cup reveals that it is indeed... a cup.")
+        }
+        if(!equaln(vTeaDrank, valTrue)) {
+            print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+        }
+    }
+    if(!equaln(vTeaPoured, valTrue)) {
+        print("Yep. It's a cup alright.")
+    }
+}
+
+if(said("look", "teapot")) {
+    if(equaln(vTeaPoured, valTrue)) {
+        print("The blue teapot empty.")
+    }
+
+    if(!equaln(vTeaPoured, valTrue)) {
+        print("The blue teapot is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+    }
+}
+
+return()
+#message 1 "a message goes here"

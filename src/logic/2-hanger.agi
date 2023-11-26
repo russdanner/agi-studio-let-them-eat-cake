@@ -5,65 +5,51 @@ load.sound(1)
 if(equaln(vRoomInited, 0)) {
 
     unanimate.all()
-    assignn(vGameCycleDelay, 3)
     assignn(vRoomInited, 1)
 
-    erase(viewSummons)
-    discard.view(viewSummons)
-    erase(viewHat)
-    discard.view(viewHat)
-    erase(viewTeapot)
-    discard.view(viewTeapot)
-    erase(viewTeaCup)
-    discard.view(viewTeaCup)
-    erase(viewGrahamSleep)
-    discard.view(viewGrahamSleep)
-
-    load.view(viewRogerSuitBroom)
     load.view(viewRogerSuitA)
-    load.view(viewBigShuttle)
     load.view(viewHangerSplat)
-    load.view(viewPod)
-    load.view(viewPodPlatform)
+    load.view(viewBigShuttle)
 
     animate.obj(objEgo)
 
-    set.view(objEgo, viewRogerSuitBroom)
-    set.view(objBigShuttle, viewBigShuttle)
     set.view(objHangerSplat1, viewHangerSplat)
     set.view(objHangerSplat2, viewHangerSplat)
-    set.view(objPodPlatform, viewPodPlatform)
-    set.view(objPod, viewPod)
+    set.view(objBigShuttle, viewBigShuttle)
+    set.view(objEgo, viewRogerSuitBroom)
 
     start.cycling(objEgo)
 
-    stop.cycling(objBigShuttle)
     stop.cycling(objHangerSplat1)
     stop.cycling(objHangerSplat2)
-    stop.cycling(objPodPlatform)
-    stop.cycling(objPod)
+    stop.cycling(objBigShuttle)
 
-    draw(objEgo)
-    draw(objBigShuttle)
     draw(objHangerSplat1)
     draw(objHangerSplat2)
-    draw(objPodPlatform)
-    draw(objPod)
+    draw(objBigShuttle)
+    draw(objEgo)
 
-    position(objBigShuttle, 90, 90)
-    position(objEgo, 20, 100)
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 20)
+            assignn(vEgoY, 100)
+
+            assignn(vSweeping, valTrue)
+            assignn(vSplat1Cleaned, valFalse)
+            assignn(vSplat2Cleaned, valFalse)
+            assignn(vHasOrders, valFalse)
+            assignn(vCleanedUp, valFalse)
+        }
+    }
+
     position(objHangerSplat1, 100, 150)
     position(objHangerSplat2, 40, 90)
-    position(objPodPlatform, 55, 109)
-    position(objPod, 60, 100)
-    set.priority(objPod, 15)
-    set.priority(objEgo, 18)
+    position(objBigShuttle, 50, 120)
 
-    assignn(vSweeping, valTrue)
-    assignn(vSplat1Cleaned, valFalse)
-    assignn(vSplat2Cleaned, valFalse)
-    assignn(vHasOrders, valFalse)
-    assignn(vCleanedUp, valFalse)
+    position.v(objEgo, vEgoX, vEgoY)
+
+//    set.priority(objEgo, 18)
+
     assignn(vTimer, 0)
 
 }
@@ -92,14 +78,7 @@ if(said("start", "sweeping")) {
 
 if(said("enter", "pod")) {
     if(posn(objEgo, 53, 93, 60, 109)) {
-        if(equaln(vHasOrders, valTrue)) {
-            print("You climb into the pod.")
-            assignn(vRoomInited, 0)
-            assignn(0, 3)    
-        }
-        if(!equaln(vHasOrders, valTrue)) {
-            print("Your orders are to clean the orbital station's shuttle bay. You better finish the job.")
-        }
+        print("Get real...")
     }
     if(!posn(objEgo, 53, 93, 60, 109)) {
         print("You are too far away")
@@ -149,5 +128,14 @@ if(equaln(vCleanedUp, valTrue)) {
     }
 }
 
+if(obj.in.box(objEgo, 151, 140, 155, 150)) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 10)
+    assignn(vEgoY, 126)
+    assignn(vRoomInited, valFalse)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vCurrentRoom, picInnerBay)     
+}
+
 return()
-#message 1 "ABC"
+#message 1 "Hanger-1"

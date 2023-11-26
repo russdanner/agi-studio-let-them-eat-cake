@@ -1,0 +1,133 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+
+    unanimate.all()
+    assignn(vRoomInited, 1)
+    load.view(viewRogerSuitA)
+    load.view(viewCloset)
+    load.view(viewTram)
+    load.view(viewBathroomDoor)
+    load.view(viewHangerDoorLeft)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRogerSuitA)
+    set.view(objCloset, viewCloset)
+    set.view(objTram, viewTram)
+    set.view(objHangingSuit1, viewRogerSuitA)
+    set.view(objHangingSuit2, viewRogerSuitA)
+    set.view(objBathroomDoor, viewBathroomDoor)
+    set.view(objBathroomDoor1, viewBathroomDoor)
+    set.view(objHangerDoorLeft, viewHangerDoorLeft)
+    
+    draw(objEgo)
+    draw(objCloset)
+    draw(objTram)
+    draw(objHangingSuit1)
+    draw(objBathroomDoor)
+    draw(objBathroomDoor1)
+    draw(objHangerDoorLeft)
+
+    stop.cycling(objCloset)
+    stop.cycling(objTram)
+    stop.cycling(objHangingSuit1)
+    stop.cycling(objHangingSuit2)
+    stop.cycling(objBathroomDoor)
+    stop.cycling(objBathroomDoor1)
+    stop.cycling(objHangerDoorLeft)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 10)
+            assignn(vEgoY, 126)
+        }
+    }
+    
+    set.loop(objBathroomDoor1, 1)
+    set.loop(objHangingSuit1, 2)
+    set.loop(objHangingSuit2, 2)
+
+    position(objCloset, 100, 101)
+    position(objTram, 55, 47)
+    position(objBathroomDoor, 60, 98)
+    position(objBathroomDoor1, 67, 98)
+    position(objHangingSuit1, 35, 95)
+    position(objHangerDoorLeft, 6, 131)
+
+    
+    set.priority(objEgo, 13)
+    reset(fDoAction)
+
+    assignn(vEgoEdgeTouched, edgeNone)
+    position.v(objEgo, vEgoX, vEgoY)
+}
+
+if(obj.in.box(objEgo, 100, 95, 113, 110)) {
+    end.of.loop(objCloset, 99)
+}
+if(!obj.in.box(objEgo, 100, 95, 113, 110)) {
+    set.cel(objCloset, 0)
+}
+
+if(obj.in.box(objEgo, 8, 123, 20, 128)) {
+    end.of.loop(objHangerDoorLeft, 99)
+
+}
+if(obj.in.box(objEgo, 21, 123, 25, 128)) {
+    set.cel(objHangerDoorLeft, 0)
+    //end.of.loop(objHangerDoorLeft, 99)
+}
+
+if(obj.in.box(objEgo, 2, 123, 5, 128)) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 146)
+    assignn(vEgoY, 141)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vCurrentRoom, picHanger)     
+}
+
+
+if(said("push")) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 75)
+    assignn(vEgoY, 148)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picBathroom)     
+}
+
+if(said("remove")) {
+    load.view(viewRoger)
+    set.view(objEgo, viewRoger)
+    draw(objHangingSuit2)
+    position(objHangingSuit2, 43, 95)
+}
+
+if(said("enter")) {
+    erase(objEgo)
+    end.of.loop(objTram, fDoAction)
+}
+
+if(isset(fDoAction)) {
+    reposition.to(objTram, 135, 47)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 75)
+    assignn(vEgoY, 148)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picControlRoom)     
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+
+return()
+#message 1 "ABC"

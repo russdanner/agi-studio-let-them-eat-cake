@@ -41,6 +41,18 @@ if(equaln(vRoomInited, 0)) {
     set.priority(objEgo, 18)
 }
 
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+
+    if(equaln(vEgoEdgeTouched, edgeRight)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 15)
+        assignn(vEgoEdgeTouched, edgeNone)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picInnerBay)     
+    }    
+}
+
 if(!equaln(vSweeping, valTrue)){
     if(equaln(vEgoDirection, directionStopped)) {
         stop.cycling(objEgo)

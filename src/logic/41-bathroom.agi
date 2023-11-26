@@ -1,0 +1,77 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+
+    unanimate.all()
+    assignn(vRoomInited, 1)
+
+    load.view(viewRoger)
+    load.view(viewLockedDoor)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+    set.view(objLockedDoor, viewLockedDoor)
+
+    draw(objEgo)
+    draw(objLockedDoor)
+
+    stop.cycling(objLockedDoor)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 75)
+            assignn(vEgoY, 148)
+        }
+    }
+
+    assignn(vEgoEdgeTouched, edgeNone)
+
+    position(objLockedDoor, 52, 132)
+    position.v(objEgo, vEgoX, vEgoY)
+}
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeRight)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 15)
+        assignn(vEgoEdgeTouched, edgeNone)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picInnerBay)     
+    }    
+}
+
+if(said("poop")) {
+    load.view(viewRogerPotty)
+    set.view(objEgo, viewRogerPotty)
+    position(objEgo, 73, 126)
+    set.cel(objEgo, 0)
+    end.of.loop(objEgo, fDoAction) 
+}
+
+if(said("finish")) {
+    set.view(objEgo, viewRoger)
+    position(objEgo, 73, 126)
+}
+
+if(obj.in.box(objEgo, 68, 149, 84, 151)) {
+    reset(fDoAction)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 73)
+    assignn(vEgoY, 100)
+    assignn(vRoomInited, valFalse)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vCurrentRoom, picInnerBay)     
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+return()
+#message 1 "ABC"

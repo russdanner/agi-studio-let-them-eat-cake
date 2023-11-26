@@ -39,6 +39,25 @@
 #define objRope 5
 #define objRope2 6
 
+
+#define objBathroomDoor 1
+#define objToiletOverflow 2
+#define objToiletWater 3
+#define objLockedDoor 4
+#define objCloset 5
+#define objHangingSuit1 6
+#define objHangingSuit2 7
+#define objBathroomDoor 8
+#define objBathroomDoor1 9
+#define objTram 10
+#define objHangerDoorLeft 11
+
+#define objLift 1
+#define objLiftRod 2
+#define objCrew1 3
+#define objCrew2 4
+
+
 // pics
 #define picTitle 0
 
@@ -77,6 +96,18 @@
 #define picDavCastleThrone 30
 #define picDavCastleCorner 31
 #define picDavCastleHall 32
+
+#define picGrahamHomeAwake 33
+#define picGrahamLawn 34
+#define picGrahamCastle 35
+
+#define picInnerBay 36
+#define picControlRoom 37
+#define picOuterBay 38
+#define picHangerB 39
+#define picStation 40
+#define picBathroom 41
+#define picCredits 42
 
 // inventory
 #define invSummons 1
@@ -122,6 +153,23 @@
 #define viewBucket 33
 #define viewRogerBucket 34
 #define viewRope 35
+
+#define viewLockedDoor 36
+#define viewRogerPotty 37
+#define viewWaterfill 38
+#define viewOverlow 39
+
+#define viewCloset 40
+#define viewBathroomDoor 41
+#define viewHangerDoorLeft 42
+#define viewTram 43
+
+#define viewLift 44
+
+
+
+
+
 
 // vars
 #define vCurrentRoom 0

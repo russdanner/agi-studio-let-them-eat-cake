@@ -1,0 +1,61 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+
+    unanimate.all()
+    assignn(vRoomInited, 1)
+
+
+    
+    load.view(viewRogerSuitA)
+    load.view(viewPod)
+    load.view(viewPodPlatform)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRogerSuitBroom)
+    set.view(objPodPlatform, viewPodPlatform)
+    set.view(objPod, viewPod)
+
+    start.cycling(objEgo)
+
+    stop.cycling(objPodPlatform)
+    stop.cycling(objPod)
+
+    draw(objEgo)
+    draw(objPodPlatform)
+    draw(objPod)
+
+    set.priority(objPod, 12)
+    position(objPodPlatform, 55, 109)
+    position(objPod, 60, 100)
+}
+
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+
+
+if(said("enter", "pod")) {
+    if(posn(objEgo, 53, 93, 60, 109)) {
+        if(equaln(vHasOrders, valTrue)) {
+            print("You climb into the pod.")
+            assignn(vRoomInited, 0)
+            assignn(0, 3)    
+        }
+        if(!equaln(vHasOrders, valTrue)) {
+            print("Your orders are to clean the orbital station's shuttle bay. You better finish the job.")
+        }
+    }
+    if(!posn(objEgo, 53, 93, 60, 109)) {
+        print("You are too far away")
+    }
+}
+
+
+
+return()
+#message 1 "ABC"
