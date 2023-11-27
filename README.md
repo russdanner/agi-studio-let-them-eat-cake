@@ -9,7 +9,7 @@ Happy 40th to King's Quest!
 Much Love
 -Russ
 
-# Let them Eat Cake
+# Let Them Eat Cake
 Tomorrow Graham must meet with King Edwards for reasons unknown. This game takes place the night before.
 Go on a silly quest in Graham's dreams and prepare for the adventure that lies ahead in the following days.
 
