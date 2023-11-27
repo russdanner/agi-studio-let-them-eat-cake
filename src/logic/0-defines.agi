@@ -13,7 +13,10 @@
 #define objPodPlatform 11
 #define objWatchBoss 12
 #define objWatchBossSpeech 13
-#define objWatchPower 14
+#define objWatchPower 1
+#define objWatchAButton 2
+#define objWatchCButton 3
+#define objWatchTButton 4
 
 #define objMist 15
 #define objMist2 12
@@ -56,6 +59,7 @@
 #define objLiftRod 2
 #define objCrew1 3
 #define objCrew2 4
+#define objShip 5
 
 
 // pics
@@ -65,9 +69,10 @@
 
 #define picHanger 2
 #define picWatch 3
-#define picInPod 4
-#define picInDaventryCrashSite 5
-#define picInPodCrash 6
+#define picUNUSED 4
+#define picInPod 5
+#define picInDaventryCrashSite 6
+#define picInPodCrash 7
 
 #define picDavCrashSiteA3 8
 #define picDavCastleLeftA2 9
@@ -115,6 +120,7 @@
 #define invTeapot 3
 #define invTeaCup 4
 #define invTea 5
+#define invBroom 6
 
 // views
 #define viewGrahamNoHat 0
@@ -165,11 +171,8 @@
 #define viewTram 43
 
 #define viewLift 44
-
-
-
-
-
+#define viewShip 45
+#define viewWatchLights 46
 
 // vars
 #define vCurrentRoom 0
@@ -196,17 +199,27 @@
 #define vPodStart 46
 #define vPodLaunched 47
 #define vPodAutoNaved 48
-
+#define vAlJoke 35
 
 // flags
 #define fPodPoweredUp 90
 #define fPodThrottlePulled 91
 #define fPodAutoNavPressed 92
+#define fLaunchAnimationPlayed 93
 #define fDrowning 93
 #define fSwimming 94
 #define fDoAction 95
 #define fUndoAction 96
 #define fInBucket 90
+#define fDoJoke 91
+#define fWatchHasBeeped 92
+#define fBossGiveOrders 95
+#define fWearingSuit 96
+#define fTramRunning 97
+#define fLiftRunning 98
+#define fLiftGoingDown 99
+#define fOnLift 100
+#define fHasFlightPlan 101
 
 // consts  
 #define valTrue 1

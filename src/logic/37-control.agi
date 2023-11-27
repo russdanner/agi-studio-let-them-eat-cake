@@ -1,8 +1,12 @@
 #include "0-defines.aqi"
 
 if(equaln(vRoomInited, 0)) {
+    
     unanimate.all()
     assignn(vRoomInited, 1)
+    set(fTramRunning)
+    set(fLiftGoingDown)
+    reset(fOnLift)
 
     load.view(viewRoger)
     load.view(viewTram)
@@ -36,7 +40,6 @@ if(equaln(vRoomInited, 0)) {
     set.loop(objCrew2, 3)
 
     position(objTram, 1, 72)
-    reposition.to(objTram, 94, 72)
 
     position(objLift, 21, 92)
     position(objLiftRod, 34, 130)
@@ -44,7 +47,14 @@ if(equaln(vRoomInited, 0)) {
     position(objCrew2, 100, 110)
 
     set.priority(objTram, 4)
+    set.priority(objLift, 4)
+    set.priority(objLiftRod, 4)
+    set.priority(objCrew1, 4)
+    set.priority(objCrew1, 4)
+
 }
+
+addn(vTimer, 1)
 
 if(equaln(vEgoDirection, directionStopped)) {
     stop.cycling(objEgo)
@@ -53,26 +63,91 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(said("exit")) {    
+if(said("exit", "tram")) {    
     position(objEgo, 95, 74)
+    set.cel(objTram, 0)
     draw(objEgo)
 }
 
-if(said("enter")) {
-    erase(objEgo)
-    end.of.loop(objTram, fDoAction)
+if(said("enter", "tram")) {
+    if(isset(fHasFlightPlan)) {
+        erase(objEgo)
+        end.of.loop(objTram, fDoAction) 
+        set(fTramRunning)       
+    }
+    if(!isset(fHasFlightPlan)) {
+        print("You better speak with control first.")
+    }
 }
 
-if(isset(fDoAction)) {
-    reposition.to(objTram, 135, 72)
-    get.posn(objEgo, vEgoX, vEgoY)
-    assignn(vEgoX, 75)
-    assignn(vEgoY, 148)
-    assignn(vEgoEdgeTouched, edgeNone)
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picOuterBay)     
+// Detect roger is on the lift
+if(obj.in.box(objEgo, 24, 86, 34, 89)) {
+    if(!isset(fOnLift)) {
+        set(fOnLift)
+        set(fLiftRunning)
+        set(fLiftGoingDown)
+        assignn(vTimer, 0)
+    }
+}
+if(obj.in.box(objEgo, 24, 114, 34, 123)) {
+    if(!isset(fOnLift)) {
+        set(fOnLift)
+        set(fLiftRunning)
+        assignn(vTimer, 0)
+        reset(fLiftGoingDown)
+    }
+}
+if(!obj.in.box(objEgo, 24, 89, 34, 123)) {
+    reset(fOnLift)
 }
 
+if(isset(fLiftRunning)) {
+    stop.motion(objEgo)
+    program.control()
 
+    if(isset(fLiftGoingDown)) {
+        reposition(objLift, 0, 1)
+        reposition(objLiftRod, 0, 1)
+        reposition(objEgo, 0, 1)    
+    }
+    if(!isset(fLiftGoingDown)) {
+        // bug with -1
+        //reposition(objLift, 0, -1)
+        //reposition(objLiftRod, 0, -1)
+        //reposition(objEgo, 0, -1)  
+        position(objEgo, 33, 75)  
+        position(objLift, 21, 92)
+        position(objLiftRod, 34, 130)
+    }
+
+    if(equaln(vTimer, 26)) {
+        reset(fLiftRunning)
+        player.control()
+    }
+}
+
+if(isset(fTramRunning)) {
+    reposition(objTram, 4, 0)
+
+    if(isset(fHasFlightPlan)) {
+        if(equaln(vTimer, 23)) {
+            assignn(vRoomInited, valFalse)
+            assignn(vCurrentRoom, picOuterBay)     
+        }
+    }
+    if(!isset(fHasFlightPlan)) {
+        if(equaln(vTimer, 23)) {
+            reset(fTramRunning)
+            position(objTram, 94, 72)
+            set.cel(objTram, 1)
+        }    
+    }
+}
+
+if(said("talk", "man")) {
+    set(fHasFlightPlan)
+    assignn(vTimer, 0)
+    print("Hey Roger. I'm sending you over to shuttle bay B for departure and transit to Oribital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point.")
+}
 return()
 #message 1 "Control Room"

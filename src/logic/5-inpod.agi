@@ -5,7 +5,6 @@ load.sound(1)
 if(equaln(vRoomInited, 0)) {
     
     unanimate.all()
-    assignn(vGameCycleDelay, 3)
     assignn(vRoomInited, 1)
 
     load.view(viewCockpitThrottle)
@@ -18,21 +17,46 @@ if(equaln(vRoomInited, 0)) {
     
     position(objCockpitThrottle, 106, 128)
 
-    reset(fPodPoweredUp)
-    reset(fPodThrottlePulled)
-    reset(fPodAutoNavPressed)
+    if(isset(fLaunchAnimationPlayed)) {
+        position(objCockpitThrottle,  106, 130)
+        load.view(viewCockpitButtons)
 
-    assignn(vPodStart, valFalse)
-    assignn(vPodLaunched, valFalse)
-    assignn(vPodAutoNaved, valFalse)
+        set.view(objCockpitButtons1, viewCockpitButtons)
+        set.view(objCockpitButtons2, viewCockpitButtons)
+        set.view(objCockpitButtons3, viewCockpitButtons)
+        set.view(objCockpitButtons4, viewCockpitButtons)
+        set.view(objCockpitScreen1, viewCockpitButtons)
+    
+        stop.cycling(objCockpitButtons1)
+        stop.cycling(objCockpitButtons2)
+        stop.cycling(objCockpitButtons3)
+        stop.cycling(objCockpitButtons4)
+        stop.cycling(objCockpitScreen1)
+    
+        draw(objCockpitButtons1)
+        draw(objCockpitButtons2)
+        draw(objCockpitButtons3)
+        draw(objCockpitButtons4)
+        draw(objCockpitScreen1)
+    
+        set.cel(objCockpitButtons2, 1)
+        set.cel(objCockpitButtons3, 2)
+        set.cel(objCockpitButtons4, 4)
+        set.cel(objCockpitScreen1, 3)
+    
+        position(objCockpitButtons1, 32, 128)
+        position(objCockpitButtons2, 46, 110)
+        position(objCockpitButtons3, 47, 127)
+        position(objCockpitButtons4, 126.5, 127)
+    
+        position(objCockpitScreen1, 73, 92)    
+    }
 
     assignn(vTimer, 0)
     assignn(vClockTicks, 0)
 }
 
 if(said("press", "power")) {
-    // load.view(viewCockpitPush)
-
     set.view(objCockpitPush, viewCockpitPush)
 
     stop.cycling(objCockpitPush)
@@ -49,7 +73,9 @@ if(said("press", "power")) {
 if(said("push", "autonav")) {
     if(equaln(vPodStart, valTrue)) { 
         assignn(vPodAutoNaved, valTrue)
-        print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. StarCon will have piloted you on OS 9 soon.") 
+        assignn(vTimer, 0)
+        assignn(vClockTicks, 0)
+        print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
     }
     if(!equaln(vPodStart, valTrue)) {
         print("Nothing happends") 
@@ -85,22 +111,36 @@ if(isset(fPodThrottlePulled)) {
     erase(objCockpitPush)
     reset(fPodThrottlePulled)
     assignn(vPodLaunched, valTrue)
+    assignn(vTimer, 0)
+    assignn(vClockTicks, 0)
     print("With a roar the pod blasts from the launch platorm hurling you into the blackness of space.")
 }
 
 if(equaln(vPodLaunched, valTrue)) {
+
+    if(!isset(fLaunchAnimationPlayed)) {
+        if(equaln(vClockTicks, 0)) {
+            if(equaln(vTimer, 5)) {
+                assignn(vRoomInited, valFalse)
+                assignn(vCurrentRoom, picStation)           
+            }
+        }    
+    }
+
+    
     if(!equaln(vPodAutoNaved, valTrue)){
         if(equaln(vClockTicks, 3)) {
             print("You should probably engage some form of navigation...")
         }    
     }
+
     if(equaln(vPodAutoNaved, valTrue)){
         if(equaln(vClockTicks, 2)) {
             print("You know.. that AUTONAV button is usually on the right...")
         }    
 
         if(equaln(vClockTicks, 4)) {
-            print("A pit forms in your stomach... You have a bad feeling you might be the but of a practical joke.")
+            print("A pit forms in your stomach...  You may be in for some pay back!")
         }    
 
         if(equaln(vClockTicks, 5)) {
@@ -111,10 +151,9 @@ if(equaln(vPodLaunched, valTrue)) {
             print("GULP!")
         }  
 
-        if(equaln(vClockTicks, 6)) {
-            assignn(vRoomInited, 0)
-            assignn(0, 6)       
-            print("Your pod begins to shake and accellerate widly.")
+        if(equaln(vClockTicks, 7)) {
+            assignn(vRoomInited, valFalse)
+            assignn(vCurrentRoom, picInDaventryCrashSite)       
         }  
     }
 

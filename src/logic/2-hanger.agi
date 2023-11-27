@@ -4,9 +4,24 @@ load.sound(1)
 
 if(equaln(vRoomInited, 0)) {
 
+    // debugging scenario: Get your orders with this flag high
+    // assignn(vHasOrders, valTrue)
+    // assignn(vSplat1Cleaned, valTrue)
+    // assignn(vSplat2Cleaned, valTrue)
+    // assignn(vCleanedUp, valTrue)
+
+    // we're roger now. Drop Grahams inventory
+    drop(invSummons)
+    drop(invHat)
+    drop(invTeapot)
+    drop(invTeaCup)
+    drop(invTea)
+    get(invBroom)
+
+
     unanimate.all()
     assignn(vRoomInited, 1)
-
+    load.view(viewRogerSuitBroom)
     load.view(viewRogerSuitA)
     load.view(viewHangerSplat)
     load.view(viewBigShuttle)
@@ -16,7 +31,33 @@ if(equaln(vRoomInited, 0)) {
     set.view(objHangerSplat1, viewHangerSplat)
     set.view(objHangerSplat2, viewHangerSplat)
     set.view(objBigShuttle, viewBigShuttle)
-    set.view(objEgo, viewRogerSuitBroom)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 20)
+            assignn(vEgoY, 100)
+            assignn(vSweeping, valTrue)
+            set(fWearingSuit)
+        }
+    }
+
+    if(equaln(vHasOrders, valFalse)) {
+        assignn(vSplat1Cleaned, valFalse)
+        assignn(vSplat2Cleaned, valFalse)
+        assignn(vHasOrders, valFalse)
+        assignn(vCleanedUp, valFalse)
+        position(objHangerSplat1, 100, 150)
+        position(objHangerSplat2, 40, 90)  
+        
+        print("What is this? Your dreams get more and more wild. You find yourself in a castle fortress unlike anything you have ever seen. Your suit of armor seems to be made of some kind of magical cloth. The stars are so close and bright that you could almost reach out and touch them. HOW STRANGE?!? And.. you're a janitor... Seriosly? That clover tea really packs a punch.")
+    }
+
+    if(equaln(vSweeping, valTrue)) {
+        set.view(objEgo, viewRogerSuitBroom)
+    }
+    if(equaln(vSweeping, valFalse)) {
+        set.view(objEgo, viewRogerSuitA)
+    }
 
     start.cycling(objEgo)
 
@@ -29,29 +70,12 @@ if(equaln(vRoomInited, 0)) {
     draw(objBigShuttle)
     draw(objEgo)
 
-    if(equaln(vEgoX, 0)) {
-        if(equaln(vEgoY, 0)){
-            assignn(vEgoX, 20)
-            assignn(vEgoY, 100)
-
-            assignn(vSweeping, valTrue)
-            assignn(vSplat1Cleaned, valFalse)
-            assignn(vSplat2Cleaned, valFalse)
-            assignn(vHasOrders, valFalse)
-            assignn(vCleanedUp, valFalse)
-        }
-    }
-
-    position(objHangerSplat1, 100, 150)
-    position(objHangerSplat2, 40, 90)
     position(objBigShuttle, 50, 120)
+    set.priority(objBigShuttle, 9)
 
     position.v(objEgo, vEgoX, vEgoY)
 
-//    set.priority(objEgo, 18)
-
     assignn(vTimer, 0)
-
 }
 
 if(!equaln(vSweeping, valTrue)){
@@ -77,10 +101,10 @@ if(said("start", "sweeping")) {
 
 
 if(said("enter", "pod")) {
-    if(posn(objEgo, 53, 93, 60, 109)) {
-        print("Get real...")
+    if(posn(objEgo, 31, 104, 50, 127)) {
+        print("Get real... This is a serious space craft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriosuly lacking.")
     }
-    if(!posn(objEgo, 53, 93, 60, 109)) {
+    if(!posn(objEgo, 31, 104, 50, 127)) {
         print("You are too far away")
     }
 }
@@ -88,7 +112,7 @@ if(said("enter", "pod")) {
 if(posn(objEgo, 85, 139, 105, 151)) {
     if(!equaln(vSplat1Cleaned, valTrue)) {
         if(equaln(vSweeping, valFalse)) {
-            print("You died.")
+            print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and seperate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space. You are dead. Thanks for playing!  As usual you've been a real hoot.")
         }    
         if(equaln(vSweeping, valTrue)) {
             assignn(vSplat1Cleaned, valTrue)
@@ -104,7 +128,7 @@ if(posn(objEgo, 85, 139, 105, 151)) {
 if(posn(objEgo, 36, 80, 48, 95)) {
     if(!equaln(vSplat2Cleaned, valTrue)) {
         if(equaln(vSweeping, valFalse)) {
-            print("You died.")
+            print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and seperate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space. You are dead. Thanks for playing!  As usual you've been a real hoot.")
         }    
         if(equaln(vSweeping, valTrue)) {
             assignn(vSplat2Cleaned, valTrue)
@@ -117,24 +141,50 @@ if(posn(objEgo, 36, 80, 48, 95)) {
     }
 }
 
+if(said("look", "watch")) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vRoomInited, valFalse)
+    assignn(0, picWatch)
+}
+
+if(obj.in.box(objEgo, 151, 140, 155, 150)) {
+    if(equaln(vHasOrders, valTrue)) {
+
+        assignn(vSweeping, valFalse)
+
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 10)
+        assignn(vEgoY, 126)
+        assignn(vRoomInited, valFalse)
+        assignn(vEgoEdgeTouched, edgeNone)
+        assignn(vCurrentRoom, picInnerBay)         
+    }
+    if(equaln(vHasOrders, valFalse)) {
+        print("Look at that deck!! You better keep cleaning.")
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 146)
+        assignn(vEgoDirection, directionLeft)
+        set.dir(objEgo, vEgoDirection)
+        position.v(objEgo, vEgoX, vEgoY)
+        assignn(vEgoEdgeTouched, edgeNone)
+    }
+}
+
 if(equaln(vCleanedUp, valTrue)) {
     if(equaln(vTimer, 100)) {
-        assignn(vRoomInited, 0)
-        assignn(0, 3)
+        if(!isset(fWatchHasBeeped)) {
+            set(fWatchHasBeeped)
+            print("A long beep is emitted from the watch on your arm.")    
+        }
     }
-
+ 
     if(!equaln(vHasOrders, valTrue)) {
         addn(vTimer, 1)
     }
 }
 
-if(obj.in.box(objEgo, 151, 140, 155, 150)) {
-    get.posn(objEgo, vEgoX, vEgoY)
-    assignn(vEgoX, 10)
-    assignn(vEgoY, 126)
-    assignn(vRoomInited, valFalse)
-    assignn(vEgoEdgeTouched, edgeNone)
-    assignn(vCurrentRoom, picInnerBay)     
+if(!isset(fWearingSuit)) {
+    print("Surgeon General's Warning: Exposing yourself to the vacuum of space is hazardous to your health.  You are dead. Thanks for playing.")
 }
 
 return()

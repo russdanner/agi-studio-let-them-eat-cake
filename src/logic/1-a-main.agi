@@ -4,10 +4,10 @@ load.pic(0)
 draw.pic(0)
 show.pic()
 
-assignn(vGameCycleDelay, 3)
+assignn(vGameCycleDelay, 2)
 
 if(equaln(0,0)){  
-    assignn(0, picHangerB)
+    assignn(0, picGrahamsHouseInside)
 }
 
 if(said("inv")) {
@@ -17,7 +17,6 @@ if(said("inv")) {
 if(!equaln(0, 0)) {
     call.v(0)
 }
-
 
 return()
 #message 1 "Main Loop"

@@ -1,20 +1,23 @@
 #include "0-defines.aqi"
 
 if(equaln(vRoomInited, 0)) {
+
+    set(fTramRunning)
+
     unanimate.all()
     assignn(vRoomInited, 1)
 
     load.view(viewRoger)
     load.view(viewTram)
     load.view(viewRogerSuitA)
-    load.view(viewHangerDoorLeft)
+    load.view(viewLockedDoor)
  
     animate.obj(objEgo)
 
     set.view(objEgo, viewRoger)
     set.view(objTram, viewTram)
     set.view(objHangingSuit1, viewRogerSuitA)
-    set.view(objHangerDoorLeft, viewHangerDoorLeft)
+    set.view(objHangerDoorLeft, viewLockedDoor)
 
     draw(objTram)
     draw(objHangingSuit1)
@@ -24,16 +27,19 @@ if(equaln(vRoomInited, 0)) {
     stop.cycling(objHangingSuit1)
     stop.cycling(objHangerDoorLeft)
 
+    set.cel(objTram, 4)
     set.loop(objHangingSuit1, 2)
-    position(objHangerDoorLeft, 6, 131)
+    position(objHangerDoorLeft, 5, 129)
 
     position(objHangingSuit1, 35, 95)
-    position(objTram, 1, 72)
-    reposition.to(objTram, 55, 47)
+    position(objTram, 0, 47)
 
+    assignn(vTimer, 0)
     set.priority(objTram, 4)
 
 }
+
+addn(vTimer, 1)
 
 if(equaln(vEgoDirection, directionStopped)) {
     stop.cycling(objEgo)
@@ -42,15 +48,53 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(said("exit")) {    
-    position(objEgo, 95, 74)
+if(said("exit", "tram")) {   
+    set.cel(objTram, 0) 
+    position(objEgo, 55, 50)
     draw(objEgo)
 }
 
-if(said("enter")) {
-    erase(objEgo)
-    end.of.loop(objTram, fDoAction)
+if(said("enter", "tram")) {
+    print("You prod is waiting... Better get out to the hanger.")
 }
+
+if(isset(fTramRunning)) {
+    reposition(objTram, 4, 0)
+
+    if(!isset(fHasFlightPlan)) {
+        if(equaln(vTimer, 14)) {
+            reset(fTramRunning)
+            position(objTram, 55, 47)
+            set.cel(objTram, 1)
+        }    
+    }
+}
+
+if(said("wear", "suit")) {
+    set.view(objEgo, viewRogerSuitA)
+    erase(objHangingSuit1)
+    set(fWearingSuit)
+    print("Ok")
+}
+
+if(obj.in.box(objEgo, 8, 123, 20, 128)) {
+    //end.of.loop(viewLockedDoor, 99)
+
+}
+if(obj.in.box(objEgo, 21, 123, 25, 128)) {
+    set.cel(viewLockedDoor, 0)
+    //end.of.loop(objHangerDoorLeft, 99)
+}
+
+if(obj.in.box(objEgo, 2, 123, 5, 128)) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 146)
+    assignn(vEgoY, 141)
+    assignn(vRoomInited, valFalse)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vCurrentRoom, picHangerB)     
+}
+
 
 
 return()

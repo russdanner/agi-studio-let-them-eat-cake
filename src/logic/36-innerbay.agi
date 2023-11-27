@@ -4,8 +4,13 @@ load.sound(1)
 
 if(equaln(vRoomInited, 0)) {
 
+    // debugging scenario: Get your orders with this flag high
+    // assignn(vEgoX, 55)
+    // assignn(vEgoY, 55)
+    
     unanimate.all()
     assignn(vRoomInited, 1)
+    load.view(viewRoger)
     load.view(viewRogerSuitA)
     load.view(viewCloset)
     load.view(viewTram)
@@ -14,7 +19,6 @@ if(equaln(vRoomInited, 0)) {
 
     animate.obj(objEgo)
 
-    set.view(objEgo, viewRogerSuitA)
     set.view(objCloset, viewCloset)
     set.view(objTram, viewTram)
     set.view(objHangingSuit1, viewRogerSuitA)
@@ -22,7 +26,23 @@ if(equaln(vRoomInited, 0)) {
     set.view(objBathroomDoor, viewBathroomDoor)
     set.view(objBathroomDoor1, viewBathroomDoor)
     set.view(objHangerDoorLeft, viewHangerDoorLeft)
-    
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 10)
+            assignn(vEgoY, 126)
+            set(fWearingSuit)
+            get(invBroom)
+        }
+    }
+
+    if(isset(fWearingSuit)) {
+        set.view(objEgo, viewRogerSuitA)
+    }
+    if(!isset(fWearingSuit)) {
+        set.view(objEgo, viewRoger)
+    }
+
     draw(objEgo)
     draw(objCloset)
     draw(objTram)
@@ -39,13 +59,6 @@ if(equaln(vRoomInited, 0)) {
     stop.cycling(objBathroomDoor1)
     stop.cycling(objHangerDoorLeft)
 
-    if(equaln(vEgoX, 0)) {
-        if(equaln(vEgoY, 0)){
-            assignn(vEgoX, 10)
-            assignn(vEgoY, 126)
-        }
-    }
-    
     set.loop(objBathroomDoor1, 1)
     set.loop(objHangingSuit1, 2)
     set.loop(objHangingSuit2, 2)
@@ -64,6 +77,8 @@ if(equaln(vRoomInited, 0)) {
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
 }
+
+addn(vTimer, 1)
 
 if(obj.in.box(objEgo, 100, 95, 113, 110)) {
     end.of.loop(objCloset, 99)
@@ -85,40 +100,62 @@ if(obj.in.box(objEgo, 2, 123, 5, 128)) {
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 146)
     assignn(vEgoY, 141)
+    assignn(vRoomInited, valFalse)
     assignn(vEgoEdgeTouched, edgeNone)
     assignn(vCurrentRoom, picHanger)     
 }
 
 
-if(said("push")) {
-    get.posn(objEgo, vEgoX, vEgoY)
-    assignn(vEgoX, 75)
-    assignn(vEgoY, 148)
-    assignn(vEgoEdgeTouched, edgeNone)
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picBathroom)     
+if(said("push", "button")) {
+    if(isset(fWearingSuit)) {
+        print("You can't go in there wearing your spacesuit. That could get VERY messy.")
+    }
+    if(!isset(fWearingSuit)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 75)
+        assignn(vEgoY, 148)
+        assignn(vEgoEdgeTouched, edgeNone)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picBathroom)
+    }
 }
 
-if(said("remove")) {
+if(said("remove", "suit")) {
     load.view(viewRoger)
     set.view(objEgo, viewRoger)
     draw(objHangingSuit2)
     position(objHangingSuit2, 43, 95)
+    reset(fWearingSuit)
 }
 
-if(said("enter")) {
-    erase(objEgo)
-    end.of.loop(objTram, fDoAction)
+if(said("enter", "tram")) {
+    if(isset(fWearingSuit)) {
+        print("You can't get in the tram in your spacesuit.")
+    }
+    if(!isset(fWearingSuit)) {
+        erase(objEgo)
+        end.of.loop(objTram, fDoAction)
+    }
 }
 
 if(isset(fDoAction)) {
-    reposition.to(objTram, 135, 47)
     get.posn(objEgo, vEgoX, vEgoY)
-    assignn(vEgoX, 75)
-    assignn(vEgoY, 148)
-    assignn(vEgoEdgeTouched, edgeNone)
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picControlRoom)     
+    reset(fDoAction)
+    assignn(vTimer, 0)
+    set(fTramRunning)     
+}
+
+if(isset(fTramRunning)) {
+    reposition(objTram, 4, 0)
+
+    if(equaln(vTimer, 20)) {
+        reset(fTramRunning)
+        // assignn(vEgoX, 75)
+        // assignn(vEgoY, 148)
+        assignn(vEgoEdgeTouched, edgeNone)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picControlRoom)    
+    }
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -126,6 +163,19 @@ if(equaln(vEgoDirection, directionStopped)) {
 }
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
+}
+
+if(said("undress")) {
+    print("I'll get naked if you get naked. You go first.")
+}
+
+if(said("drop", "broom")) {
+    drop(invBroom)
+    print("Ok")
+}
+if(said("take", "broom")) {
+    get(invBroom)
+    print("Ok")
 }
 
 

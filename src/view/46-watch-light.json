@@ -1,0 +1,54 @@
+{
+    "unk1": 1,
+    "unk2": 1,
+    "numLoops": 2,
+    "descriptionOffset": 0,
+    "loops": [
+      {
+        "loopOffset": 9,
+        "numCels": 2,
+        "cels": [
+          {
+            "celOffset": 5,
+            "celWidth": 4,
+            "celHeight": 7,
+            "celMirrorTrans": 3,
+            "pixelData": [
+              145, 162, 17, 0, 161, 241, 162, 0, 161, 241, 161, 33, 0, 163, 33, 0,
+              162, 34, 0, 36, 0, 17, 34, 17, 0
+            ]
+          },
+          {
+            "celOffset": 33,
+            "celWidth": 4,
+            "celHeight": 7,
+            "celMirrorTrans": 3,
+            "pixelData": [
+              145, 2, 17, 0, 1, 113, 2, 0, 4, 0, 4, 0, 4, 0, 4, 0, 17, 2, 17, 0
+            ]
+          }
+        ]
+      },
+      {
+        "loopOffset": 65,
+        "numCels": 2,
+        "cels": [
+          {
+            "celOffset": 5,
+            "celWidth": 10,
+            "celHeight": 3,
+            "celMirrorTrans": 3,
+            "pixelData": [33, 232, 33, 0, 33, 168, 33, 0, 42, 0]
+          },
+          {
+            "celOffset": 18,
+            "celWidth": 10,
+            "celHeight": 3,
+            "celMirrorTrans": 3,
+            "pixelData": [10, 0, 10, 0, 10, 0]
+          }
+        ]
+      }
+    ]
+  }
+  

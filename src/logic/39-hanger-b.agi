@@ -6,8 +6,6 @@ if(equaln(vRoomInited, 0)) {
 
     unanimate.all()
     assignn(vRoomInited, 1)
-
-
     
     load.view(viewRogerSuitA)
     load.view(viewPod)
@@ -15,7 +13,7 @@ if(equaln(vRoomInited, 0)) {
 
     animate.obj(objEgo)
 
-    set.view(objEgo, viewRogerSuitBroom)
+    set.view(objEgo, viewRogerSuitA)
     set.view(objPodPlatform, viewPodPlatform)
     set.view(objPod, viewPod)
 
@@ -28,34 +26,37 @@ if(equaln(vRoomInited, 0)) {
     draw(objPodPlatform)
     draw(objPod)
 
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 150)
+            assignn(vEgoY, 144)
+        }
+    }
+
     set.priority(objPod, 12)
     position(objPodPlatform, 55, 109)
     position(objPod, 60, 100)
+
+    position.v(objEgo, vEgoX, vEgoY)    
 }
 
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-
-
 if(said("enter", "pod")) {
     if(posn(objEgo, 53, 93, 60, 109)) {
-        if(equaln(vHasOrders, valTrue)) {
-            print("You climb into the pod.")
-            assignn(vRoomInited, 0)
-            assignn(0, 3)    
-        }
-        if(!equaln(vHasOrders, valTrue)) {
-            print("Your orders are to clean the orbital station's shuttle bay. You better finish the job.")
-        }
+        print("You climb into the pod.")
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picInPod)    
     }
     if(!posn(objEgo, 53, 93, 60, 109)) {
         print("You are too far away")
     }
 }
-
-
 
 return()
 #message 1 "ABC"
