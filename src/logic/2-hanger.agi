@@ -49,7 +49,7 @@ if(equaln(vRoomInited, 0)) {
         position(objHangerSplat1, 100, 150)
         position(objHangerSplat2, 40, 90)  
         
-        print("What is this? Your dreams get more and more wild. You find yourself in a castle fortress unlike anything you have ever seen. Your suit of armor seems to be made of some kind of magical cloth. The stars are so close and bright that you could almost reach out and touch them. HOW STRANGE?!? And.. you're a janitor... Seriosly? That clover tea really packs a punch.")
+        print("What is this? Your dreams get more and more wild. You find yourself in a castle fortress unlike anything you have ever seen. Your suit of armor seems to be made of some kind of magical cloth. The stars are so close and bright that you could almost reach out and touch them. HOW STRANGE?!? And.. you're a janitor... Seriously?! Wow! That Daventry clover tea really packs a punch.")
     }
 
     if(equaln(vSweeping, valTrue)) {

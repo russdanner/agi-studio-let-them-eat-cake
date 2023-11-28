@@ -1,0 +1,84 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+
+    unanimate.all()
+    assignn(vRoomInited, 1)
+
+    load.view(viewGrahamHatNoFeather)
+    load.view(viewWolf)
+
+    animate.obj(objEgo)
+    animate.obj(objWolf1)
+    animate.obj(objWolf2)
+
+    set.view(objEgo, viewGrahamHatNoFeather)
+    set.view(objWolf1, viewWolf)
+    set.view(objWolf2, viewWolf)
+
+    draw(objEgo)
+    draw(objWolf1)
+    draw(objWolf2)
+
+    stop.cycling(objWolf1)
+    stop.cycling(objWolf2)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 119)
+            assignn(vEgoY, 126)
+        }
+    }
+
+    assignn(vEgoEdgeTouched, edgeNone)
+    position.v(objEgo, vEgoX, vEgoY)
+    position(objWolf1, 15, 40)
+    position(objWolf2, 170, 160)
+}
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeRight)) {
+    }    
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+
+if(!obj.in.box(objEgo, 100, 116, 158, 130)) {
+    if(!isset(fDoAction)) {
+        set(fDoAction)
+    }
+}
+
+if(isset(fDoAction)){
+    start.cycling(objWolf1)
+    follow.ego(objWolf1, 3, fGotcha)
+
+    start.cycling(objWolf2)
+    follow.ego(objWolf2, 3, fGotcha)
+}
+
+if(isset(fGotcha)) {
+    if(!isset(fDead)) { 
+        set(fDead) 
+        erase(objEgo)
+
+        load.view(viewFightCloud)
+        
+        //set.view(objWolf1, viewFightCloud)
+        set.view(objWolf2, viewFightCloud)
+        
+        start.cycling(objWolf1)
+        start.cycling(objWolf2)         
+    }
+}
+
+return()
+#message 1 "Grahams Lawn Night"

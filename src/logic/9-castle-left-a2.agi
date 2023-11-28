@@ -61,7 +61,7 @@ if(equaln(vRoomInited, 0)) {
     //wander(objCastleCrocs)    
 
     reset(fDoAction)
-    
+
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(40)   
 }
@@ -149,4 +149,4 @@ if(isset(fDoAction)) {
 }
 
 return()
-#message 1 "R9"
+#message 1 "Castle Left"

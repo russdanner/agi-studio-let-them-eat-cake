@@ -61,6 +61,9 @@
 #define objCrew2 4
 #define objShip 5
 
+#define objWolf1 6
+#define objWolf2 7
+
 
 // pics
 #define picTitle 0
@@ -69,7 +72,7 @@
 
 #define picHanger 2
 #define picWatch 3
-#define picUNUSED 4
+#define picGrahamLawnNight 4
 #define picInPod 5
 #define picInDaventryCrashSite 6
 #define picInPodCrash 7
@@ -173,6 +176,9 @@
 #define viewLift 44
 #define viewShip 45
 #define viewWatchLights 46
+#define viewWolf 47
+#define viewFightCloud 48
+
 
 // vars
 #define vCurrentRoom 0
@@ -202,6 +208,9 @@
 #define vAlJoke 35
 
 // flags
+#define fDead 86
+#define fWearingHat 88
+#define fIsMorning 89
 #define fPodPoweredUp 90
 #define fPodThrottlePulled 91
 #define fPodAutoNavPressed 92
@@ -220,6 +229,7 @@
 #define fLiftGoingDown 99
 #define fOnLift 100
 #define fHasFlightPlan 101
+#define fGotcha 90
 
 // consts  
 #define valTrue 1

@@ -1,0 +1,43 @@
+#include "0-defines.aqi"
+
+load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+
+    unanimate.all()
+    assignn(vRoomInited, 1)
+
+    load.view(viewGrahamHatNoFeather)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewGrahamHatNoFeather)
+
+    draw(objEgo)
+
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 119)
+            assignn(vEgoY, 126)
+        }
+    }
+
+    assignn(vEgoEdgeTouched, edgeNone)
+    position.v(objEgo, vEgoX, vEgoY)
+}
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeRight)) {
+    }    
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+return()
+#message 1 "Grahams Lawn"

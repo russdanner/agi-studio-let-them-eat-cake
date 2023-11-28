@@ -2,6 +2,8 @@
 
 load.sound(1)
 if(equaln(vRoomInited, 0)) {
+    reset(fIsMorning)
+
     assignn(vSleeping, valFalse)
     assignn(vTeaDrank, valFalse)
     assignn(vClockTicks, 0)
@@ -35,13 +37,20 @@ if(equaln(vRoomInited, 0)) {
     draw(objTeapot)
     draw(objTeaCup)
 
-    assignn(vGameCycleDelay, 2)
-
     position(objEgo, 100, 130)
-    position(objSummons, 80, 105)
-    position(objHat, 130, 125)
-    position(objTeapot, 110, 87)
-    position(objTeaCup, 55, 105)
+
+    if(!has(invHat)) {
+        position(objHat, 130, 125)
+    }
+    if(!has(invTeapot)) {
+        position(objTeapot, 110, 87)
+    }
+    if(!has(invTea)) {
+        position(objTeaCup, 55, 105)
+    }
+    if(!has(invSummons)) {
+        position(objSummons, 80, 105)
+    }
 
     set.priority(objSummons, 15)
     set.priority(objHat, 15)
@@ -51,6 +60,27 @@ if(equaln(vRoomInited, 0)) {
     ignore.blocks(objSummons)
 
     //print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edwards for reasons unknown.")
+}
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(isset(fIsMorning)) {
+        if(equaln(vEgoEdgeTouched, edgeLeft)) {
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoX, 119)
+            assignn(vEgoY, 126)
+            assignn(vRoomInited, valFalse)
+            assignn(vCurrentRoom, picGrahamLawn)     
+        }
+    }
+    if(!isset(fIsMorning)) {
+        if(equaln(vEgoEdgeTouched, edgeLeft)) {
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoX, 119)
+            assignn(vEgoY, 126)
+            assignn(vRoomInited, valFalse)
+            assignn(vCurrentRoom, picGrahamLawnNight)     
+        }    
+    }
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -217,12 +247,10 @@ if(equaln(vSleeping, valTrue)) {
     }
 
     if(equaln(vClockTicks, 4)) {
-        print("Your dreams turn psychedelic")
         assignn(vRoomInited, 0)
         assignn(0, 2)
     }
 }
-
 
 
 if(equaln(vClockTicks, 20)) {
@@ -282,4 +310,4 @@ if(said("look", "teapot")) {
 }
 
 return()
-#message 1 "a message goes here"
+#message 1 "Grahams House"

@@ -253,9 +253,9 @@
     { "command": "PicSetColor", "args": [2] },
     { "command": "PriDisable", "args": [] },
     { "command": "DrawFill", "args": [10, 38, 46, 37, 101, 37, 144, 32] },
-    { "command": "PicSetColor", "args": [1] },
+    { "command": "PicSetColor", "args": [5] },
     { "command": "DrawFill", "args": [44, 14, 50, 8, 91, 7, 152, 13] },
-    { "command": "PicSetColor", "args": [9] },
+    { "command": "PicSetColor", "args": [13] },
     {
       "command": "DrawFill",
       "args": [
