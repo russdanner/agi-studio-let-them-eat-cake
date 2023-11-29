@@ -5,6 +5,8 @@
     { "command": "DrawXCorner", "args": [0, 0, 159, 167, 0, 0] },
     { "command": "PriSetcolor", "args": [12] },
     { "command": "DrawXCorner", "args": [158, 136, 141] },
+
+
     { "command": "DrawAbs", "args": [141, 136, 128, 126] },
     { "command": "PriSetcolor", "args": [5] },
     { "command": "DrawAbs", "args": [128, 126, 119, 119, 119, 119] },
@@ -16,14 +18,11 @@
         112, 92, 110, 90, 110, 76, 108, 76, 105, 81, 104, 83, 103, 73
       ]
     }, 
-
-
     {
       "command": "DrawAbs",
       "args": [
         104, 69, 106, 63, 127, 29, 158, 29]
     },
-
 
 
     {
@@ -179,7 +178,7 @@
       "args": [66, 51, 37, 55, 68, 63, 80, 63, 92, 61, 94, 58, 94, 56, 93, 55]
     },
     { "command": "PicSetColor", "args": [0] },
-    { "command": "DrawAbs", "args": [130, 37, 158, 100] },
+    { "command": "DrawAbs", "args": [130, 37, 150, 100, 158, 100] },
 
     { "command": "PicSetColor", "args": [6] },
     { "command": "PriSetcolor", "args": [6] },
@@ -402,6 +401,9 @@
         120, 158, 127, 128, 127, 128, 131, 134, 131, 141, 136, 158, 136
       ]
     },
+    { "command": "PriSetcolor", "args": [0] },
+    { "command": "PriDisable", "args": [] },
+    { "command": "DrawAbs", "args": [110, 110, 145, 145] },
     { "command": "End", "args": [] }
   ]
 }

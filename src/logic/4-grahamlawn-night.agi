@@ -9,21 +9,26 @@ if(equaln(vRoomInited, 0)) {
 
     load.view(viewGrahamHatNoFeather)
     load.view(viewWolf)
+    load.view(viewCabinDoor)
 
     animate.obj(objEgo)
     animate.obj(objWolf1)
     animate.obj(objWolf2)
+    animate.obj(objCabinDoor)
 
     set.view(objEgo, viewGrahamHatNoFeather)
     set.view(objWolf1, viewWolf)
     set.view(objWolf2, viewWolf)
+    set.view(objCabinDoor, viewCabinDoor)
 
-    draw(objEgo)
     draw(objWolf1)
     draw(objWolf2)
+    draw(objCabinDoor)
+    draw(objEgo)
 
     stop.cycling(objWolf1)
     stop.cycling(objWolf2)
+    stop.cycling(objCabinDoor)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
@@ -36,6 +41,8 @@ if(equaln(vRoomInited, 0)) {
     position.v(objEgo, vEgoX, vEgoY)
     position(objWolf1, 15, 40)
     position(objWolf2, 170, 160)
+    position(objCabinDoor, 121, 130)
+    set.priority(objCabinDoor, 4)
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {

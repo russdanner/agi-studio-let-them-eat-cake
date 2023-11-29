@@ -58,11 +58,12 @@ if(equaln(vRoomInited, 0)) {
     position(objCastleFlags, 115, 20)
     position(objCastleCrocs, 50, 165)
     position(objCastleDoors, 104, 120)
-    //wander(objCastleCrocs)    
+    wander(objCastleCrocs)    
 
     reset(fDoAction)
 
     position.v(objEgo, vEgoX, vEgoY)
+    set.priority(objCastleDoors, 10)
     set.horizon(40)   
 }
 

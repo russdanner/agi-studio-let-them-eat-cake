@@ -7,7 +7,7 @@ show.pic()
 assignn(vGameCycleDelay, 2)
 
 if(equaln(0,0)){  
-    assignn(0, picGrahamLawnNight)
+    assignn(0, picDavWellBottom)
 }
 
 if(said("inv")) {

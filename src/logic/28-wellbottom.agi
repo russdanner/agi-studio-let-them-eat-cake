@@ -21,24 +21,23 @@ if(equaln(vRoomInited, 0)) {
 
     stop.cycling(objEgo)
 
+    reset(fBucketDown)
+
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
-            assignn(vEgoX, 76)
-            assignn(vEgoY, 150)
+            position(objEgo, 76, 0)
+            position(objRope, 81, 0)
+            move.obj(objRope, 81, 120, 3, fUndoAction)
+            move.obj(objEgo, 76, 147, 3, fDoAction)
         }
     }
-
-    reset(fDoAction)
-    position(objRope, 81, 115)
-    position(objRope2, 81, 165)
-
-    position.v(objEgo, vEgoX, vEgoY)
-    
-    end.of.loop(objEgo, fDoAction)
 }
 
-if(isset(fDoAction)) {
-
+if(isset(fUndoAction)) {
+    reset(fUndoAction)
+    position(objRope2, 81, 152)
+    end.of.loop(objEgo)
+    normal.motion(objEgo)
 }
 
 if(said("exit")) {
@@ -50,9 +49,9 @@ if(said("exit")) {
     stop.cycling(objBucket)
     start.cycling(objEgo)
 
-    position(objRope2, 81, 185)
+    position(objRope2, 81, 180)
     position(objEgo, 81, 165)
-    position(objBucket, 76, 155)
+    position(objBucket, 76, 152)
     set.cel(objBucket, 0)
 }
 
@@ -65,4 +64,4 @@ if(said("dive")) {
 }
 
 return()
-#message 1 "ABC"
+#message 1 "Well Bottom"

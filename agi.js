@@ -32,10 +32,16 @@ var Agi;
         0xFFFFFF
     ];
     function start(path, context) {
+        // document.addEventListener('keyup', function(evt){  evt.stopPropagation()})
+        // document.addEventListener('keydown', function(evt){  evt.stopPropagation()})
+        // document.addEventListener('keypress', function(evt){  evt.stopPropagation()}, false)
+
         Resources.load(path, () => {
             Agi.interpreter = new Agi.Interpreter(context);
             Agi.interpreter.start();
             window.onkeypress = function (e) {
+                // switch to window.addEventListener
+
                 if (e.keyCode == 32) {
                     // block the default scroll behavior
                     e.preventDefault();
@@ -1069,7 +1075,7 @@ var Agi;
             this.screen.bltText(1, 0, "" + this.flags[0]);
             this.screen.bltText(2, 0, "" + this.variables[42]);
             this.screen.bltText(3, 0, "" + this.variables[43]);
-            this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y);
+            this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
             this.screen.bltText(5, 0, ""+this.inputBuffer);
             this.bltFrame();
             // do sound
@@ -1107,6 +1113,7 @@ try {
                     case Agi.MovementFlags.Normal:
                         break;
                     case Agi.MovementFlags.MoveTo:
+                        console.log("MOVE")
                         if (obj.moveToStep != 0) {
                             xStep = yStep = obj.moveToStep;
                         }
@@ -1135,12 +1142,61 @@ try {
                         yStep = Math.min(yStep, Math.abs(obj.y - obj.moveToY));
                         xStep = Math.min(xStep, Math.abs(obj.x - obj.moveToX));
                         break;
+
+
                     case Agi.MovementFlags.ChaseEgo:
+                        let egoX = this.gameObjects[0].x
+                        let egoY = this.gameObjects[0].y
+
+                        if (obj.moveToStep != 0) {
+                            xStep = yStep = obj.moveToStep;
+                        }
+                        if (egoX > obj.x) {
+                            if (egoY > obj.y)
+                                obj.direction = Agi.Direction.DownRight;
+                            else if (egoY < obj.y)
+                                obj.direction = Agi.Direction.UpRight;
+                            else
+                                obj.direction = Agi.Direction.Right;
+                        }
+                        else if (egoX < obj.x) {
+                            if (egoY > obj.y)
+                                obj.direction = Agi.Direction.DownLeft;
+                            else if (egoY < obj.y)
+                                obj.direction = Agi.Direction.UpLeft;
+                            else
+                                obj.direction = Agi.Direction.Left;
+                        }
+                        else {
+                            if (egoY > obj.y)
+                                obj.direction = Agi.Direction.Down;
+                            else if (egoY < obj.y)
+                                obj.direction = Agi.Direction.Up;
+                        }
+                        yStep = Math.min(yStep, Math.abs(obj.y - egoY));
+                        xStep = Math.min(xStep, Math.abs(obj.x - egoX));
+                        
+                        
+                        if((obj.x == egoX || obj.x == egoX-1 || obj.x == egoX+1)
+                        && (obj.y == egoY || obj.y == egoY-1 || obj.y == egoY+1)) {
+                            this.flags[obj.flagToSetWhenFinished] = true
+                            obj.movementFlag = Agi.MovementFlags.Normal
+                        }
                         break;
+
+
+
                     case Agi.MovementFlags.Wander:
+                        if (obj.moveToStep != 0) {
+                            obj.moveToStep = 3
+                            obj.direction = this.randomBetween(1, 9);
+                        }
+                        obj.moveToStep--
                         break;
                     default:
                 }
+
+
                 var newX = obj.x;
                 var newY = obj.y;
                 if (obj.direction == 1 || obj.direction == 2 || obj.direction == 8)
@@ -1155,23 +1211,21 @@ try {
                     for (var xNumber = 0; xNumber < cel.width; xNumber++) {
                         var idx = newY * 160 + (obj.x + xNumber);
 
-                        if (this.priorityBuffer.data[idx] == 3) {
-                            this.flags[0]=true
-                        }
-                        else {
-                            this.flags[0]=false
-                        }
-    
-                        if (this.priorityBuffer.data[idx] == 0 || this.priorityBuffer.data[idx] == 1) {
-                            newY = obj.y;
-                            obj.direction = 0;
-                            if (obj.movementFlag == Agi.MovementFlags.Wander) {
-                                obj.direction = this.randomBetween(1, 9);
-                                if (no == 0)
-                                    this.variables[6] = obj.direction;
+                        if(no == 0) {
+                            if (this.priorityBuffer.data[idx] == 3) {
+                                this.flags[0]=true
                             }
-                            break;
+                            else {
+                                this.flags[0]=false
+                            }
                         }
+
+                        // WHAT DOES THIS DO?
+                        //if (this.priorityBuffer.data[idx] == 0 || this.priorityBuffer.data[idx] == 1) {
+                            //newY = obj.y;
+                            //obj.direction = 0;
+                        //    break;
+                        //}
                     }
                 }
                 obj.y = newY;
@@ -1179,23 +1233,18 @@ try {
                     var leftIdx = obj.y * 160 + newX;
                     var rightIdx = obj.y * 160 + newX + cel.width;
 
-                    if (this.priorityBuffer.data[leftIdx] == 3 || this.priorityBuffer.data[rightIdx] == 3) {
-                        this.flags[0]=true
-                    }
-                    else {
-                        this.flags[0]=false
+                    if(no == 0) {
+                        if (this.priorityBuffer.data[leftIdx] == 3 || this.priorityBuffer.data[rightIdx] == 3) {
+                            this.flags[0]=true
+                        }
+                        else {
+                            this.flags[0]=false
+                        }    
                     }
 
                     if (this.priorityBuffer.data[leftIdx] == 0 || this.priorityBuffer.data[rightIdx] == 0 || this.priorityBuffer.data[leftIdx] == 1 || this.priorityBuffer.data[rightIdx] == 1) {
-                       
-
                         newX = obj.x;
                         obj.direction = 0;
-                        if (obj.movementFlag == Agi.MovementFlags.Wander) {
-                            obj.direction = this.randomBetween(1, 9);
-                            if (no == 0)
-                                this.variables[6] = obj.direction;
-                        }
                     }
                 }
                 obj.x = newX;
@@ -1370,6 +1419,7 @@ try {
             this.agi_toggle(this.variables[varNo]);
         }
         agi_call(logicNo) {
+//console.log("CALL ROOM: "+logicNo)
             this.logicStack.push(this.logicNo);
             this.logicNo = logicNo;
             if (this.loadedLogics[logicNo] != null) {
@@ -1518,7 +1568,7 @@ try {
         agi_end_of_loop(objNo, flagNo) {
             this.gameObjects[objNo].callAtEndOfLoop = true;
             this.gameObjects[objNo].flagToSetWhenFinished = flagNo;
-            //this.gameObjects[objNo].celCycling = true;
+            this.gameObjects[objNo].celCycling = true;
         }
         agi_reverse_cycle(objNo) {
             this.gameObjects[objNo].reverseCycle = true;
@@ -1528,6 +1578,9 @@ try {
         }
         agi_reverse_loop(objNo, flagNo) {
             this.gameObjects[objNo].reverseLoop = true;
+//            this.gameObjects[objNo].callAtEndOfLoop = true;
+            this.gameObjects[objNo].flagToSetWhenFinished = flagNo;
+            this.gameObjects[objNo].celCycling = true;
         }
         agi_stop_motion(objNo) {
             if (objNo == 0)
@@ -1650,14 +1703,10 @@ try {
             obj.movementFlag = Agi.MovementFlags.ChaseEgo;
         }
         agi_wander(objNo) {
-            this.gameObjects[objNo].movementFlag = Agi.MovementFlags.Wander;
-            this.gameObjects[objNo].direction = this.randomBetween(1, 9);
-            if (objNo == 0) {
-                this.variables[6] = this.gameObjects[objNo].direction;
-                this.agi_program_control();
-            }
+            console.log("Wander "+objNo)
+                this.gameObjects[objNo].movementFlag = Agi.MovementFlags.Wander;
         }
-        aginormal_motion(objNo) {
+        agi_normal_motion(objNo) {
             this.gameObjects[objNo].motion = true;
         }
         agi_set_dir(objNo, varNo) {
@@ -1990,13 +2039,27 @@ try {
                 // this.flags[2] = false
             }
 
+            if(said == true) {
+                this.flags[2] = true; // The player has entered a command
+                this.keyboardCharBuffer = [];
+                this.inputBuffer = ""
+            }
+
             return said;
         }
         agi_test_compare_strings(strNo1, strNo2) {
             return this.strings[strNo1] == this.strings[strNo2];
         }
-        agi_test_obj_in_box() {
-            return false;
+        agi_test_obj_in_box(objNo, x1, y1, x2, y2) {
+            if(this.gameObjects[objNo].x >= x1 
+            && this.gameObjects[objNo].x <= x2
+            && this.gameObjects[objNo].y >= y1 
+            && this.gameObjects[objNo].y <= y2) {
+                return true;
+            }      
+            else {
+                return false;
+            }  
         }
         agi_distance(objNo1, objNo2, varNo) {
             var obj1 = this.gameObjects[objNo1];
@@ -2641,7 +2704,7 @@ var Resources;
             if (val >>> 16 == 0xFF)
                 continue;
 
-            console.log("DIRECTORY :("+volNo+") "+a+" - " + b + " - " + c + " = "+ val)
+            //console.log("DIRECTORY :("+volNo+") "+a+" - " + b + " - " + c + " = "+ val)
 
             records[i] = { volNo: volNo, volOffset: volOffset };
             if (availableVols[volNo] === undefined)

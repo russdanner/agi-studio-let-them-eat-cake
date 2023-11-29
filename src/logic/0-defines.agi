@@ -63,6 +63,7 @@
 
 #define objWolf1 6
 #define objWolf2 7
+#define objCabinDoor 8
 
 
 // pics
@@ -178,6 +179,7 @@
 #define viewWatchLights 46
 #define viewWolf 47
 #define viewFightCloud 48
+#define viewCabinDoor 49
 
 
 // vars
@@ -207,9 +209,13 @@
 #define vPodAutoNaved 48
 #define vAlJoke 35
 
-// flags
+// global flags
+#define fHasSummons 85
 #define fDead 86
+#define fHasHat 87
 #define fWearingHat 88
+
+// flags
 #define fIsMorning 89
 #define fPodPoweredUp 90
 #define fPodThrottlePulled 91
@@ -230,6 +236,7 @@
 #define fOnLift 100
 #define fHasFlightPlan 101
 #define fGotcha 90
+#define fBucketDown 91
 
 // consts  
 #define valTrue 1

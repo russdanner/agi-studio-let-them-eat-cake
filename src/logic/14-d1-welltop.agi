@@ -123,8 +123,8 @@ if(isset(fInBucket)){
 
 if(isset(fDoAction)) {
     get.posn(objEgo, vEgoX, vEgoY)
-    assignn(vEgoX, 75)
-    assignn(vEgoY, 50)
+    assignn(vEgoX, 0)
+    assignn(vEgoY, 0)
     assignn(vRoomInited, valFalse)
     assignn(vCurrentRoom, picDavWellBottom)   
 }
