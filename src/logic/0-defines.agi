@@ -181,6 +181,12 @@
 #define viewFightCloud 48
 #define viewCabinDoor 49
 
+#define viewRogerDive 50
+#define viewRogerClimbRope 51
+#define viewPerson1 52
+#define viewPerson2 53
+#define viewGrahamKing 54
+
 
 // vars
 #define vCurrentRoom 0

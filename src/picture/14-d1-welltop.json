@@ -445,6 +445,16 @@
         62, 143
       ]
     },
+    { "command": "PriSetcolor", "args": [0] },
+    {
+      "command": "DrawAbs",
+      "args": [20, 110, 
+               65, 110, 
+               65, 143,
+               20, 143,
+               20, 100]
+    },
+  
     { "command": "End", "args": [] }
   ]
 }

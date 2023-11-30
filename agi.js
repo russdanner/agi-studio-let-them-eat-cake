@@ -1221,11 +1221,15 @@ try {
                         }
 
                         // WHAT DOES THIS DO?
-                        //if (this.priorityBuffer.data[idx] == 0 || this.priorityBuffer.data[idx] == 1) {
-                            //newY = obj.y;
-                            //obj.direction = 0;
+                        if (this.priorityBuffer.data[idx] == 0 
+                        || this.priorityBuffer.data[idx] == 1) {
+                            if(no == 0) {
+                                newX = obj.x;
+                                newY = obj.y;
+                                obj.direction = 0;
+                            }
                         //    break;
-                        //}
+                        }
                     }
                 }
                 obj.y = newY;

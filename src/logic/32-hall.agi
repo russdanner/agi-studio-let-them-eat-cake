@@ -13,6 +13,13 @@ if(equaln(vRoomInited, 0)) {
 
     draw(objEgo)
 
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 100)
+            assignn(vEgoY, 100)
+        }
+    }
+
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(43)
 }
@@ -21,13 +28,19 @@ if(equaln(vRoomInited, 0)) {
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeTop)) {
         get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoY, 150)
-
+        assignn(vEgoY, 120)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCastleCorner)  
     }    
 }
 
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
 
 return()
-#message 1 "R11"
+#message 1 "Castle Hall"

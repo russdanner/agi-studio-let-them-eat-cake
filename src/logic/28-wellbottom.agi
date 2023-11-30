@@ -6,31 +6,58 @@ if(equaln(vRoomInited, 0)) {
     assignn(vRoomInited, 1)
 
     load.view(viewRogerBucket)
+    load.view(viewRogerSplash)
+    load.view(viewRogerSwim)
+    load.view(viewRogerClimbRope)
+    load.view(viewBucket)
     load.view(viewRope)
+    
 
     animate.obj(objEgo)
     animate.obj(objRope)
-    
-    set.view(objEgo, viewRogerBucket)
+
     set.view(objRope, viewRope)   
     set.view(objRope2, viewRope)  
 
-    draw(objEgo)
-    draw(objRope)
-    draw(objRope2)
-
-    stop.cycling(objEgo)
-
-    reset(fBucketDown)
-
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
+            set.view(objEgo, viewRogerBucket)
+
+            draw(objEgo)
+            draw(objRope)
+            draw(objRope2)
+
             position(objEgo, 76, 0)
             position(objRope, 81, 0)
             move.obj(objRope, 81, 120, 3, fUndoAction)
             move.obj(objEgo, 76, 147, 3, fDoAction)
+        
+            stop.cycling(objEgo)        
+            reset(fBucketDown)
         }
     }
+    if(!equaln(vEgoY, 0)) {
+        assignn(vEgoEdgeTouched, edgeNone)
+
+        set.view(objEgo, viewRogerSwim)
+        set.view(objBucket, viewBucket)
+
+        draw(objEgo)
+        draw(objRope)
+        draw(objRope2)
+        draw(objBucket)
+
+        stop.cycling(objBucket)        
+
+        position(objRope, 81, 120)
+        position(objRope2, 81, 180)
+        position(objBucket, 76, 152)
+        set.cel(objBucket, 0)        
+
+        position(objEgo, 81, 167)
+    }
+
+    set.horizon(0)   
 }
 
 if(isset(fUndoAction)) {
@@ -41,18 +68,59 @@ if(isset(fUndoAction)) {
 }
 
 if(said("exit")) {
-    load.view(viewRogerSplash)
-    load.view(viewBucket)
-    set.view(objEgo, viewRogerSplash)
     set.view(objBucket, viewBucket)
-    draw(objBucket)
-    stop.cycling(objBucket)
-    start.cycling(objEgo)
 
-    position(objRope2, 81, 180)
-    position(objEgo, 81, 165)
+    draw(objBucket)
+
+    stop.cycling(objBucket)
+    
     position(objBucket, 76, 152)
     set.cel(objBucket, 0)
+    
+    position(objRope2, 81, 180)
+    position(objEgo, 81, 167)
+
+    set(fDrowning)
+    set.view(objEgo, viewRogerSplash)
+    start.cycling(objEgo)
+}
+
+if(said("enter")) {
+    erase(objBucket)
+    set.view(objEgo, viewRogerBucket)
+
+    position(objRope2, 81, 180)
+    position(objEgo, 76, 181)
+
+    stop.cycling(objEgo)        
+}
+
+if(said("climb")) {
+    set.view(objBucket, viewBucket)
+
+    draw(objBucket)
+
+    stop.cycling(objBucket)
+    
+    position(objBucket, 76, 152)
+    set.cel(objBucket, 0)
+    
+    position(objRope2, 81, 180)
+    position(objEgo, 80, 123)
+
+    set.view(objEgo, viewRogerClimbRope)
+}
+
+if(said("swim")) {
+    if(isset(0)) {
+        if(isset(fDrowning)) {
+            set.view(objEgo, viewRogerSwim)
+            reset(fDrowning)
+            set(fSwimming)
+            player.control()
+            print("ok")
+       } 
+    }
 }
 
 if(said("dive")) {
@@ -61,6 +129,18 @@ if(said("dive")) {
     assignn(vEgoEdgeTouched, edgeNone)
     assignn(vRoomInited, valFalse)
     assignn(vCurrentRoom, picDavWellDive)   
+}
+
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeTop)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 42)
+        assignn(vEgoY, 109)
+        assignn(vEgoEdgeTouched, edgeNone)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavWellTopD1)
+        print("You climb out of the well and remembering to 'be kind and rewind' you return the bucket to it's original location.")     
+    }
 }
 
 return()
