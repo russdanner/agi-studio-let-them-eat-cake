@@ -1,4 +1,34 @@
 #include "0-defines.aqi"
 
+//load.sound(1)
+
+if(equaln(vRoomInited, 0)) {
+    unanimate.all()
+    assignn(vRoomInited, 1)
+
+    load.view(viewGrahamHatFeather)
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewGrahamHatFeather)
+
+    stop.cycling(viewGrahamHatFeather)
+
+    draw(objEgo)
+
+    if(equaln(vEgoX, 0)) {
+        stop.cycling(objEgo)
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 150)
+            assignn(vEgoY, 120)
+        }
+    }
+
+    position.v(objEgo, vEgoX, vEgoY)
+    assignn(vEgoEdgeTouched, edgeNone)
+}
+
+
+
+
 return()
-#message 1 "ABC"
+#message 1 "Castle Right"

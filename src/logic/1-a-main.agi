@@ -6,8 +6,9 @@ show.pic()
 
 assignn(vGameCycleDelay, 2)
 
-if(equaln(0,0)){  
-    assignn(0, picDavCastleCorner)
+if(equaln(0, 0)) {  
+    assignn(vRoomInited, valFalse)
+    assignn(0, picGrahamLawn)
 }
 
 if(said("inv")) {

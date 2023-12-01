@@ -5,6 +5,10 @@
 #define objTeapot 3
 #define objTeaCup 4
 #define objGrahamSleep 5
+#define objWindow 6
+#define objHawk 7
+#define objFeatherFall 9
+
 #define objBigShuttle 6
 #define objHangerSplat1 7
 #define objHangerSplat2 8
@@ -42,7 +46,6 @@
 #define objRope 5
 #define objRope2 6
 
-
 #define objBathroomDoor 1
 #define objToiletOverflow 2
 #define objToiletWater 3
@@ -65,6 +68,17 @@
 #define objWolf2 7
 #define objCabinDoor 8
 
+#define objPersonA 1
+#define objPersonB 2
+#define objKingGraham 3
+#define objRosella 4
+#define objAlexander 5
+#define objValanice 6
+#define objCrowd 7
+#define objParty1 8
+#define objParty2 9
+#define objParty3 10
+#define objParty4 11
 
 // pics
 #define picTitle 0
@@ -183,10 +197,18 @@
 
 #define viewRogerDive 50
 #define viewRogerClimbRope 51
-#define viewPerson1 52
-#define viewPerson2 53
-#define viewGrahamKing 54
-
+#define viewPersonA 52
+#define viewPersonB 53
+#define viewValanice 54
+#define viewGrahamKing 55
+#define viewRosella 56
+#define viewAlexander 57
+#define viewCrowd 58
+#define viewWindow 59
+#define viewHawk 60
+#define viewFeatherFall 61
+#define viewFireworks 62
+#define viewGrahamHatFeather 63 
 
 // vars
 #define vCurrentRoom 0

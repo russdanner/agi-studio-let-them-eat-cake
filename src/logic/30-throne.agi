@@ -2,16 +2,47 @@
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 2)
     assignn(vRoomInited, 1)
 
     load.view(viewRoger)
+    load.view(viewPersonA)
+    load.view(viewPersonB)
+    load.view(viewGrahamKing)
+    load.view(viewRosella)
+    load.view(viewAlexander)
+    load.view(viewValanice)
+    load.view(viewCrowd)
 
+
+    //load.view(objParty1)
+    //load.view(objParty2)
+    //load.view(objParty3)
+    //load.view(objParty4)
+
+    
     animate.obj(objEgo)
 
     set.view(objEgo, viewRoger)
+    set.view(objPersonA, viewPersonA)
+    set.view(objPersonB, viewPersonB)
+    set.view(objKingGraham, viewGrahamKing)
+    set.view(objRosella, viewRosella)
+    set.view(objAlexander, viewAlexander)
+    set.view(objValanice, viewValanice)
+    set.view(objCrowd, viewCrowd)
+    //set.view(objParty1)
+    //set.view(objParty2)
+    //set.view(objParty3)
+    //set.view(objParty4)
 
     draw(objEgo)
+    draw(objPersonA)
+    draw(objPersonB)
+    draw(objKingGraham)
+    draw(objRosella)
+    draw(objAlexander)
+    draw(objValanice)
+    draw(objCrowd)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
@@ -20,14 +51,34 @@ if(equaln(vRoomInited, 0)) {
         }
     }
 
+    position(objPersonA, 50, 100)
+    position(objPersonB, 50, 130)
+    
+    position(objKingGraham, 60, 100)
+    position(objRosella,    60, 130)
+
+    position(objAlexander, 80, 100)
+    position(objValanice,  80, 130)
+
+    stop.cycling(objKingGraham)
+    wander(objRosella)
+    wander(objPersonA)
+    wander(objPersonB)
+    wander(objAlexander)
+    wander(objValanice)
+
+    position(objCrowd, 96, 89)
+    set.priority(objCrowd, 4)
+
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(43)
 }
 
-
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeRight)) {
         get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 15)
+        assignn(vEgoY, 120)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCastleCorner)  
     }    
@@ -40,6 +91,14 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("happy", "birthday")) {
+    set(fIsMorning)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 15)
+    assignn(vEgoY, 120)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picGrahamsHouseInside)  
+}
 
 return()
-#message 1 "Thrown room"
+#message 1 "Throne room"

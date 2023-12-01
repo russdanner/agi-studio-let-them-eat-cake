@@ -2,14 +2,13 @@
 
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
-    assignn(vGameCycleDelay, 2)
     assignn(vRoomInited, 1)
 
-    load.view(viewPerson2)
+    load.view(viewRoger)
 
     animate.obj(objEgo)
 
-    set.view(objEgo, viewPerson2)
+    set.view(objEgo, viewRoger)
 
     draw(objEgo)
 
@@ -32,6 +31,16 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCastleThrone)  
     }    
+}
+
+if(obj.in.box(objEgo, 10, 166, 160, 168)) {
+    reset(fDoAction)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 73)
+    assignn(vEgoY, 100)
+    assignn(vRoomInited, valFalse)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vCurrentRoom, picDavCastleHall)     
 }
 
 if(equaln(vEgoDirection, directionStopped)) {

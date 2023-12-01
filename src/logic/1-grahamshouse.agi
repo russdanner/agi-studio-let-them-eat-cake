@@ -1,14 +1,10 @@
 #include "0-defines.aqi"
 
-load.sound(1)
 if(equaln(vRoomInited, 0)) {
-    reset(fIsMorning)
+    set(fIsMorning)
 
-    assignn(vSleeping, valFalse)
-    assignn(vTeaDrank, valFalse)
-    assignn(vClockTicks, 0)
+    unanimate.all()
 
-    assignn(vRoomInited, 1)
     load.view(viewGrahamNoHat)
     load.view(viewSummons)
     load.view(viewHat)
@@ -16,6 +12,8 @@ if(equaln(vRoomInited, 0)) {
     load.view(viewTeaCup)
     load.view(viewGrahamSleep)
     load.view(viewGrahamHatNoFeather)
+    load.view(viewWindow)
+    load.view(viewCabinDoor)
 
     animate.obj(objEgo)
     animate.obj(objTeapot)
@@ -26,18 +24,30 @@ if(equaln(vRoomInited, 0)) {
     set.view(objTeapot, viewTeapot)
     set.view(objTeaCup, viewTeaCup)
     set.view(objGrahamSleep, viewGrahamSleep)
+    set.view(objWindow, viewWindow)
+    set.view(objCabinDoor, viewCabinDoor)
 
     stop.cycling(objSummons)
     stop.cycling(objHat)
     stop.cycling(objTeaCup)
+    stop.cycling(objWindow)
+    stop.cycling(objCabinDoor)
 
     draw(objEgo)
     draw(objSummons)
     draw(objHat)
     draw(objTeapot)
     draw(objTeaCup)
+    draw(objWindow)
+    draw(objCabinDoor)
+
+    assignn(vSleeping, valFalse)
+    assignn(vTeaDrank, valFalse)
+    assignn(vClockTicks, 0)
+    assignn(vRoomInited, 1)
 
     position(objEgo, 100, 130)
+    position(objWindow, 90, 58)
 
     if(!has(invHat)) {
         position(objHat, 130, 125)
@@ -57,29 +67,35 @@ if(equaln(vRoomInited, 0)) {
     set.priority(objTeapot, 16)
     set.priority(objTeaCup, 15)
 
-    ignore.blocks(objSummons)
+    if(isset(fIsMorning)) {
+        set.cel(objWindow, 1)
+    }
+
+    set.cel(objCabinDoor, 1)
+    position(objCabinDoor, 26, 131)
 
     //print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edwards for reasons unknown.")
 }
 
-if(!equaln(vEgoEdgeTouched, edgeNone)) {
+//if(!equaln(vEgoEdgeTouched, edgeNone)) {
+if(said("open", "door")) {
     if(isset(fIsMorning)) {
-        if(equaln(vEgoEdgeTouched, edgeLeft)) {
+//        if(equaln(vEgoEdgeTouched, edgeLeft)) {
             get.posn(objEgo, vEgoX, vEgoY)
             assignn(vEgoX, 119)
             assignn(vEgoY, 126)
             assignn(vRoomInited, valFalse)
             assignn(vCurrentRoom, picGrahamLawn)     
-        }
+//        }
     }
     if(!isset(fIsMorning)) {
-        if(equaln(vEgoEdgeTouched, edgeLeft)) {
+//        if(equaln(vEgoEdgeTouched, edgeLeft)) {
             get.posn(objEgo, vEgoX, vEgoY)
             assignn(vEgoX, 119)
             assignn(vEgoY, 126)
             assignn(vRoomInited, valFalse)
             assignn(vCurrentRoom, picGrahamLawnNight)     
-        }    
+//        }    
     }
 }
 

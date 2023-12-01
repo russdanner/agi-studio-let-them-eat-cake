@@ -6,15 +6,27 @@ if(equaln(vRoomInited, 0)) {
 
     unanimate.all()
     assignn(vRoomInited, 1)
-
+    load.view(viewCabinDoor)
     load.view(viewGrahamHatNoFeather)
+    load.view(viewHawk)
+    load.view(viewFeatherFall)
 
     animate.obj(objEgo)
+    animate.obj(objHawk)
+    animate.obj(objFeatherFall)
+    animate.obj(objCabinDoor)
 
     set.view(objEgo, viewGrahamHatNoFeather)
+    set.view(objHawk, viewHawk)
+    set.view(objFeatherFall, viewFeatherFall)
+    set.view(objCabinDoor, viewCabinDoor)
 
+    draw(objHawk)
+    draw(objFeatherFall)
+    draw(objCabinDoor)
     draw(objEgo)
 
+    stop.cycling(objCabinDoor)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
@@ -25,11 +37,21 @@ if(equaln(vRoomInited, 0)) {
 
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
+
+    set.priority(objCabinDoor, 4)
+    position(objCabinDoor, 121, 130)
+
+    set.priority(objHawk, 10)    
+    position(objHawk, 160, 70)
+    move.obj(objHawk, 40, 40, 2, fDoAction)
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    if(equaln(vEgoEdgeTouched, edgeRight)) {
-    }    
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 0)
+    assignn(vEgoY, 0)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picGrahamCastle)     
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -37,6 +59,22 @@ if(equaln(vEgoDirection, directionStopped)) {
 }
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
+}
+
+if(isset(fDoAction)) {
+    reset(fDoAction)
+    position(objFeatherFall, 40, 40)
+    move.obj(objHawk, 0, 40, 1, fUndoAction)
+    move.obj(objFeatherFall, 40, 105, 1, fGotcha)
+}
+
+if(isset(fGotcha)) {
+    reset(fGotcha)
+    stop.cycling(objFeatherFall)
+}
+
+if(isset(fUndoAction)) {
+    erase(objHawk)
 }
 
 return()

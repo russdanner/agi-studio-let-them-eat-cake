@@ -34,6 +34,17 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }    
 }
 
+if(obj.in.box(objEgo, 10, 166, 160, 168)) {
+    reset(fDoAction)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 110)
+    assignn(vEgoY, 123)
+    assignn(vRoomInited, valFalse)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vCurrentRoom, picDavCastleLeftA2)     
+}
+
+
 if(equaln(vEgoDirection, directionStopped)) {
     stop.cycling(objEgo)
 }
