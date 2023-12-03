@@ -68,6 +68,9 @@
 #define objWolf2 7
 #define objCabinDoor 8
 
+#define objBurp 6
+#define objMonster 6
+
 #define objPersonA 1
 #define objPersonB 2
 #define objKingGraham 3
@@ -131,6 +134,7 @@
 #define picStation 40
 #define picBathroom 41
 #define picCredits 42
+#define picTitle 43
 
 // inventory
 #define invSummons 1
@@ -209,6 +213,9 @@
 #define viewFeatherFall 61
 #define viewFireworks 62
 #define viewGrahamHatFeather 63 
+#define viewRogerEaten 64
+#define viewBurp 65
+#define viewOgre 66
 
 // vars
 #define vCurrentRoom 0
@@ -220,7 +227,14 @@
 #define vEgoY 31
 
 #define vRoomInited 34
+#define vTimer 42
+#define vClockTicks 43
+#define vActionCount 35
+#define vDiceRoll 37
+#define vEnemyChance 50
+#define vFeatherChance 51
 
+// screen specific
 #define vTeaPoured 35
 #define vTeaDrank 36
 #define vSleeping 37
@@ -228,8 +242,6 @@
 #define vHasOrders 39
 #define vCleanedUp 40
 #define vSweeping 41
-#define vTimer 42
-#define vClockTicks 43
 #define vSplat1Cleaned 44
 #define vSplat2Cleaned 45
 #define vPodStart 46
@@ -238,21 +250,23 @@
 #define vAlJoke 35
 
 // global flags
-#define fHasSummons 85
 #define fDead 86
-#define fHasHat 87
 #define fWearingHat 88
-
-// flags
+#define fHasSummons 85
+#define fHasHat 87
 #define fIsMorning 89
-#define fPodPoweredUp 90
-#define fPodThrottlePulled 91
-#define fPodAutoNavPressed 92
-#define fLaunchAnimationPlayed 93
+
 #define fDrowning 93
 #define fSwimming 94
 #define fDoAction 95
 #define fUndoAction 96
+#define fProgramControl 84
+
+// flags
+#define fPodPoweredUp 90
+#define fPodThrottlePulled 91
+#define fPodAutoNavPressed 92
+#define fLaunchAnimationPlayed 93
 #define fInBucket 90
 #define fDoJoke 91
 #define fWatchHasBeeped 92

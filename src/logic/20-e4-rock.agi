@@ -3,10 +3,10 @@
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
     assignn(vRoomInited, 1)
+    assignn(vActionCount, 0)
+    reset(fProgramControl)
 
     load.view(viewRoger)
-    load.view(viewRogerSplash)
-    load.view(viewRogerSwim)    
     load.view(viewMist)
 
     animate.obj(objEgo)
@@ -81,12 +81,46 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
-if(equaln(vEgoDirection, directionStopped)) {
-    stop.cycling(objEgo)
+if(said("look", "hole")) {
+    set(fProgramControl)
+    load.view(viewRogerEaten)
+    set.view(objEgo, viewRogerEaten)
+
+    position(objEgo, 97, 138)
+    assignn(vGameCycleDelay, 3)
+    end.of.loop(objEgo, fDoAction)
 }
-if(!equaln(vEgoDirection, directionStopped)) {
-    start.cycling(objEgo)
+
+if(isset(fDoAction)) {
+    reset(fDoAction)
+    addn(vActionCount, 1)
+
+    if(equaln(vActionCount, 1)) {
+        set.loop(objEgo, 1)
+        set.cel(objEgo, 0)
+        assignn(vGameCycleDelay, 3)
+        end.of.loop(objEgo, fDoAction)
+    }
+
+    // Maybe we wont add the burp becuase
+    // it implies who/what killed roger
+    // and this hole already has a storyline
+    // if(equaln(vActionCount, 2)) {
+    //     load.view(viewBurp)
+    //     set.view(objBurp, viewBurp)
+    //     draw(objBurp)
+    //     position(objBurp, 77, 128)
+    // }
+}
+
+if(!isset(fProgramControl)) {
+    if(equaln(vEgoDirection, directionStopped)) {
+        stop.cycling(objEgo)
+    }
+    if(!equaln(vEgoDirection, directionStopped)) {
+        start.cycling(objEgo)
+    }    
 }
 
 return()
-#message 1 "R11"
+#message 1 "Rock"

@@ -7,6 +7,7 @@ if(equaln(vRoomInited, 0)) {
     unanimate.all()
     assignn(vRoomInited, 1)
 
+    load.view(viewGrahamNoHat)
     load.view(viewGrahamHatNoFeather)
     load.view(viewWolf)
     load.view(viewCabinDoor)
@@ -16,7 +17,6 @@ if(equaln(vRoomInited, 0)) {
     animate.obj(objWolf2)
     animate.obj(objCabinDoor)
 
-    set.view(objEgo, viewGrahamHatNoFeather)
     set.view(objWolf1, viewWolf)
     set.view(objWolf2, viewWolf)
     set.view(objCabinDoor, viewCabinDoor)

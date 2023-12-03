@@ -1,0 +1,14 @@
+#include "0-defines.aqi"
+
+if(said("g")) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 0)
+    assignn(vEgoY, 0)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picGrahamsHouseInside)   
+}
+
+return()
+
+#message 1 "Title"

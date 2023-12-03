@@ -5,19 +5,34 @@ draw.pic(0)
 show.pic()
 
 assignn(vGameCycleDelay, 2)
+assignn(vEnemyChance, 90)
+assignn(vFeatherChance, 90)
+
 
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
-    assignn(0, picGrahamLawn)
+    // picTitle
+    assignn(0, picGrahamsHouseInside)
 }
 
 if(said("inv")) {
     status()
 }
 
+if(said("save")) {
+    save_game()
+}
+
+if(said("restore")) {
+    restore_game()
+}
+
+
 if(!equaln(0, 0)) {
     call.v(0)
 }
+
+
 
 return()
 #message 1 "Main Loop"

@@ -1,7 +1,7 @@
 #include "0-defines.aqi"
 
 if(equaln(vRoomInited, 0)) {
-    set(fIsMorning)
+    //set(fIsMorning)
 
     unanimate.all()
 
@@ -74,28 +74,34 @@ if(equaln(vRoomInited, 0)) {
     set.cel(objCabinDoor, 1)
     position(objCabinDoor, 26, 131)
 
-    //print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edwards for reasons unknown.")
+    print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edwards for reasons unknown.")
 }
 
-//if(!equaln(vEgoEdgeTouched, edgeNone)) {
 if(said("open", "door")) {
-    if(isset(fIsMorning)) {
-//        if(equaln(vEgoEdgeTouched, edgeLeft)) {
-            get.posn(objEgo, vEgoX, vEgoY)
-            assignn(vEgoX, 119)
-            assignn(vEgoY, 126)
-            assignn(vRoomInited, valFalse)
-            assignn(vCurrentRoom, picGrahamLawn)     
-//        }
+    if(posn(objEgo, 16, 108, 35, 124)) {
+        if(!has(invHat)) {
+            print("You would never leave the house without your hat.")
+        }
+        if(has(invHat)) {
+            if(isset(fIsMorning)) {
+                get.posn(objEgo, vEgoX, vEgoY)
+                assignn(vEgoX, 119)
+                assignn(vEgoY, 126)
+                assignn(vRoomInited, valFalse)
+                assignn(vCurrentRoom, picGrahamLawn)     
+            }
+            if(!isset(fIsMorning)) {
+                get.posn(objEgo, vEgoX, vEgoY)
+                assignn(vEgoX, 119)
+                assignn(vEgoY, 126)
+                assignn(vRoomInited, valFalse)
+                assignn(vCurrentRoom, picGrahamLawnNight)     
+            }
+    
+        }
     }
-    if(!isset(fIsMorning)) {
-//        if(equaln(vEgoEdgeTouched, edgeLeft)) {
-            get.posn(objEgo, vEgoX, vEgoY)
-            assignn(vEgoX, 119)
-            assignn(vEgoY, 126)
-            assignn(vRoomInited, valFalse)
-            assignn(vCurrentRoom, picGrahamLawnNight)     
-//        }    
+    if(!posn(objEgo, 16, 108, 35, 124)) {
+        print("You can't do that from here.")
     }
 }
 
@@ -133,6 +139,7 @@ if(equaln(vSleeping, valTrue)) {
 
 if(said("wear", "hat")) {
     if(has(invHat)) {
+        assignn()
         set.view(objEgo, viewGrahamHatNoFeather)
         print("You put on your trusty hat!")
     }
@@ -153,12 +160,12 @@ if(said("take", "summons")) {
 }
 
 if(said("take", "teapot")) {
-    if(posn(objEgo, 104, 95, 123, 112)) {
+    if(posn(objEgo, 104, 93, 123, 112)) {
         print("You remove the teapot from the stove.")
         erase(objTeapot)
         get(invTeapot)
     }
-    if(!posn(objEgo, 104, 95, 123, 112)) {
+    if(!posn(objEgo, 104, 93, 123, 112)) {
         print("Get closer.")
     }
 }

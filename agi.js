@@ -560,10 +560,7 @@ var Agi;
                     this.voices.voice1.frequency = 0;
                 }
 
-                window.snds = (window.snds) ? window.snds : ""
-                window.snds+="\t\t[{ \"noteHigh\":"+noteHigh+", \"noteLow\":"+noteLow+", \"maxNoteLow\":"+maxNoteLow+", \"duration\":"+duration+"}],\n"  
-                //console.log(this.frame+ " :{  \"noteHigh\":"+noteHigh+", \"noteLow\":"+noteLow+", \"maxNoteLow\":"+maxNoteLow+", \"duration\":"+duration+"}]" )  
-                
+                window.snds = (window.snds) ? window.snds : ""                
             }
             if (this.ended == false) {
                 this.doSoundFrame();
@@ -592,53 +589,31 @@ var Agi;
     Agi.Loop = Loop;
     class View {
         constructor(data) {
-
-var viewStr="{\n"            
             this.loops = [];
             var unk1 = data.readUint8();
-viewStr+="\t\"unk1\": "+unk1+",\n"        
             var unk2 = data.readUint8();
-viewStr+="\t\"unk2\": "+unk2+",\n"        
-            
             var numLoops = data.readUint8();
-viewStr+="\t\"numLoops\": "+numLoops+","
             var descriptionOffset = data.readUint16();
-viewStr+="\t\"descriptionOffset\": "+unk2+",\n"
 
-viewStr+="\t\"loops\": [\n"
             for (var i = 0; i < numLoops; i++) {
-
-if(i>0) viewStr+=","
 
                 // Loop header
                 var loop = new Loop();
-viewStr+="\t\t{\n"
-                var loopOffset = data.readUint16();
-viewStr+="\t\t\t\"loopOffset\": "+loopOffset+",\n"
 
+                var loopOffset = data.readUint16();
                 var streamPosLoop = data.position;
                 data.position = loopOffset;
                 var numCels = data.readUint8();
-viewStr+="\t\t\t\"numCels\": "+numCels+",\n"
-viewStr+="\t\t\t\"cels\": [\n"
 
                 for (var j = 0; j < numCels; j++) {
-if(j>0) viewStr+=","
-viewStr+="\t\t\t\t{\n"
                     var celOffset = data.readUint16();
-viewStr+="\t\t\t\t\t\"celOffset\": "+celOffset+",\n"
-
                     var streamPosCel = data.position;
                     data.position = loopOffset + celOffset;
                     // Cel header
                     var celWidth = data.readUint8();
-viewStr+="\t\t\t\t\t\"celWidth\": "+celWidth+",\n"
-
                     var celHeight = data.readUint8();
-viewStr+="\t\t\t\t\t\"celHeight\": "+celHeight+",\n"
                     var celMirrorTrans = data.readUint8();
-viewStr+="\t\t\t\t\t\"celMirrorTrans\": "+celMirrorTrans+",\n"
-viewStr+="\t\t\t\t\t\"pixelData\": ["
+
                     var celMirrored = (celMirrorTrans & 0x80) == 0x80;
                     var celMirrorLoop = (celMirrorTrans >>> 4) & 7;
                     var celTransparentColor = celMirrorTrans & 0x0F;
@@ -655,14 +630,8 @@ viewStr+="\t\t\t\t\t\"pixelData\": ["
                         var chunkIdx = 0;
                         var quit=false
                         while (chunkIdx <= cel.width * cel.height){ //true) {
-
-
-
                             var chunkData = data.readUint8();
-
-// viewStr+=""+chunkData
- //viewStr+=","
-chunkIdx++
+                            chunkIdx++
 
                             if (chunkData == 0) {
                                 celX = 0;
@@ -678,16 +647,12 @@ chunkIdx++
                             celX += numPixels;
                         }
                     }
-viewStr+=""+chunkData+"]\n"
                     loop.cels[j] = cel;
                     data.position = streamPosCel;
-viewStr+="}\n"
                 }
                 this.loops[i] = loop;
                 data.position = streamPosLoop;
-viewStr+="]}\n"                
             }
-viewStr+="],\n"
             data.position = descriptionOffset;
             while (true) {
                 var chr = data.readUint8();
@@ -695,17 +660,10 @@ viewStr+="],\n"
                     break;
                 this.description += String.fromCharCode(chr);
             }
-viewStr+="\"description\": \"Loop Description\" } "
-
-viewStr = viewStr.replaceAll(",]","]")
-//console.log(viewStr)
-
 var codes = ""
 for(var i=data.startPosition; i < data.startPosition+200; i++) {
     codes+= data.buffer[i]+", "
 }
-//console.log(codes)
-
         }
     }
     Agi.View = View;
@@ -1143,7 +1101,6 @@ try {
                         xStep = Math.min(xStep, Math.abs(obj.x - obj.moveToX));
                         break;
 
-
                     case Agi.MovementFlags.ChaseEgo:
                         let egoX = this.gameObjects[0].x
                         let egoY = this.gameObjects[0].y
@@ -1176,15 +1133,12 @@ try {
                         yStep = Math.min(yStep, Math.abs(obj.y - egoY));
                         xStep = Math.min(xStep, Math.abs(obj.x - egoX));
                         
-                        
                         if((obj.x == egoX || obj.x == egoX-1 || obj.x == egoX+1)
                         && (obj.y == egoY || obj.y == egoY-1 || obj.y == egoY+1)) {
                             this.flags[obj.flagToSetWhenFinished] = true
                             obj.movementFlag = Agi.MovementFlags.Normal
                         }
                         break;
-
-
 
                     case Agi.MovementFlags.Wander:
                         if (obj.moveToStep != 0) {
@@ -1195,7 +1149,6 @@ try {
                         break;
                     default:
                 }
-
 
                 var newX = obj.x;
                 var newY = obj.y;
@@ -1220,7 +1173,6 @@ try {
                             }
                         }
 
-                        // WHAT DOES THIS DO?
                         if (this.priorityBuffer.data[idx] == 0 
                         || this.priorityBuffer.data[idx] == 1) {
                             if(no == 0) {
@@ -1368,13 +1320,9 @@ try {
         }
         agi_assignn(varNo, num) {
             this.variables[varNo] = num;
-           // console.log("assign n :"+varNo + " :"+num)
-
         }
         agi_assignv(varNo1, varNo2) {
             this.agi_assignn(varNo1, this.variables[varNo2]);
-            //console.log("assign v :"+varNo1 + " :"+varNo2)
-
         }
         agi_addn(varNo, num) {
             this.variables[varNo] += num;
@@ -1423,7 +1371,6 @@ try {
             this.agi_toggle(this.variables[varNo]);
         }
         agi_call(logicNo) {
-//console.log("CALL ROOM: "+logicNo)
             this.logicStack.push(this.logicNo);
             this.logicNo = logicNo;
             if (this.loadedLogics[logicNo] != null) {
@@ -1865,8 +1812,79 @@ try {
         agi_discard_sound(n1) {
         }
         agi_save_game() {
+            var dialogEl = document.getElementById("savegame")
+            var outterEl = (dialogEl) ? dialogEl : document.createElement("div");
+            outterEl.id = "savegame"
+            outterEl.innerHTML = ""
+            var innerEl = document.createElement("div");
+            outterEl.appendChild(innerEl);
+            document.body.appendChild(outterEl);
+            outterEl.style.display = "none";
+            outterEl.style.width = "auto";
+            outterEl.style.top = "20%";
+            outterEl.style.left = "25%";
+            outterEl.style.position = "absolute";
+            outterEl.style.backgroundColor = "white";
+            outterEl.style.padding = "15px";
+            outterEl.style.marginRight = "25%";
+            outterEl.style.fontSize = "xx-large";
+            innerEl.style.display = "block";
+            innerEl.style.width = "auto";
+            innerEl.style.height = "90%";
+            innerEl.style.padding = "15px";
+            innerEl.style.fontFamily = "system-ui";
+            innerEl.style.fontWeight = "bolder";
+            innerEl.style.border = "solid 9px darkred";
+            outterEl.style.display = "block";
+            innerEl.innerHTML = "Please provide a name for your saved game";            
+            var inputEl = document.createElement("input");
+            inputEl.style.display = "block";
+            inputEl.style.width = "97%";
+            inputEl.style.padding = "10px";
+            inputEl.style.marginTop = "23px";
+            innerEl.appendChild(inputEl);
+            
+            var cancelEl = document.createElement("button");
+            //cancelEl.style.display = "block";
+            cancelEl.style.width = "20%";
+            cancelEl.style.padding = "10px";
+            cancelEl.style.marginTop = "23px";
+            cancelEl.style.marginLeft = "55%";
+            cancelEl.innerHTML = "Cancel"
+            innerEl.appendChild(cancelEl);
+            cancelEl.dialogEl = dialogEl
+            cancelEl.addEventListener("click", function() { 
+                var dialogEl = document.getElementById("savegame")
+                dialogEl.style.display = "none";
+            }, true);
+
+            var saveEl = document.createElement("button");
+            //saveEl.style.display = "block";
+            saveEl.style.width = "20%";
+            saveEl.style.padding = "10px";
+            saveEl.style.marginTop = "23px";
+            saveEl.style.marginLeft = "10px";
+            saveEl.innerHTML = "Save"
+            innerEl.appendChild(saveEl);            
+            saveEl.addEventListener("click", function() { 
+                var dialogEl = document.getElementById("savegame")
+                dialogEl.style.display = "none";
+                var savedGame = {}
+                savedGame.flags = Agi.interpreter.flags
+                savedGame.variables = Agi.interpreter.variables
+
+                localStorage.setItem("agiGame", JSON.stringify(savedGame));
+            }, true);
+            
         }
         agi_restore_game() {
+            var gameDataStr = localStorage.getItem("agiGame");
+            var gameData = JSON.parse(gameDataStr)
+            gameData.variables[34] = 0
+            // Agi.interpreter.new_room = gameData.variables[0] 
+
+            Agi.interpreter.flags = gameData.flags
+            Agi.interpreter.variables = gameData.variables
         }
         agi_restart_game() {
         }
@@ -1962,8 +1980,6 @@ try {
             if(!this.pockets) {
                 this.pockets = []
             }
-            // console.log("has? :"+itemNo)
-            // console.log(this.pockets)
 
             return (this.pockets.indexOf(itemNo) != -1)
         }
@@ -1980,9 +1996,6 @@ try {
         agi_test_have_key() {
             var haveKey = this.haveKey;
             this.haveKey = false;
-
-            if(haveKey) 
-            console.log("!!!!!!!!!!!!!!!! KEY")
             return haveKey;
         }
         agi_log(msg) {
@@ -2178,51 +2191,14 @@ var Agi;
             this.logic.data.position += offset;
         }
         loadLogic(no) {
-//            console.log("==>"+no)
             this.logic = new Agi.Logic(no, Resources.readAgiResource(Resources.AgiResource.Logic, no));
-
-            // let debugArray = []
-            // let startAt = this.logic.data.startPosition-5
-            // for(var x=0; x<400; x++){
-            //     debugArray[x] = startAt+x + ": "+this.logic.data.buffer[startAt+x]
-            // }
-
-            //this.logic.data.startPosition -= 14
-            //console.log("trying to read messages at :"+this.logic.data.startPosition+ "     " + (this.logic.data.startPosition-56378))
-            //console.log(debugArray)
-
-
-            var messageOffset = this.readUint16();
-            //console.log("MO :"+messageOffset)
-            
+            var messageOffset = this.readUint16();            
             this.logic.data.position += messageOffset;
             var pos = this.logic.data.position;
             this.messagesStartOffset = pos;
             var numMessages = this.readUint8();
             var ptrMessagesEnd = this.readUint16();
             var decryptionIndex = 0;
-
-//             let str="["
-//             // console.log("No "+no+" ("+this.logic.data.length+")")
-//             for(let x=0; 
-//                     x<this.logic.data.length; 
-//                     x++) {this.logic.data.startPosition
-                
-//                         var num = this.logic.data.buffer[this.logic.data.startPosition+x]
-//                         if(num != undefined) {
-//                             str += num+", "
-//                         }
-//                         else {
-// //                            console.log(">>>"+x)
-//                             break;
-//                         }
-
-//             }  
-//             str+="]"
-            // console.log(str)
-            // console.log("MSG Start :"+this.messagesStartOffset)
-
-            
                 
             for (var i = 0; i < numMessages; i++) {
                 var msgPtr = this.readUint16();
@@ -2245,7 +2221,6 @@ var Agi;
                 this.logic.messages[i + 1] = msg;
                 this.logic.data.position = mpos;
             }
-            //console.log(this.logic.messages)
 
             this.logic.data.position = pos - messageOffset;
             this.scanStart = this.entryPoint = this.logic.data.position;
@@ -2345,13 +2320,7 @@ var Agi;
                     scope.body.push(new StatementNode(opcode, this.logic.data.position, statement));
                 }
             }
-            //lines.push("");
-            //lines.push("// Messages");
-            //var j: number = 0;
-            //this.logic.messages.forEach((message, i) => {
-            //    lines.push("#message" + i + ' = "' + message.replace(/"/g, '\\"') + '"');
-            //});
-            //return lines;
+ 
             return program;
         }
         parseLogic() {
@@ -2696,8 +2665,7 @@ var Resources;
     function parseDirfile(buffer, records) {
         var length = buffer.length / 3;
         for (var i = 0; i < length; i++) {
-//            var val = (buffer.readUint8() << 16) + (buffer.readUint8() << 8) + buffer.readUint8();
-            var a = buffer.readUint8()
+             var a = buffer.readUint8()
             var b = buffer.readUint8()
             var c = buffer.readUint8()
 
@@ -2707,8 +2675,6 @@ var Resources;
             var volOffset = val & 0xFFFFF;
             if (val >>> 16 == 0xFF)
                 continue;
-
-            //console.log("DIRECTORY :("+volNo+") "+a+" - " + b + " - " + c + " = "+ val)
 
             records[i] = { volNo: volNo, volOffset: volOffset };
             if (availableVols[volNo] === undefined)
