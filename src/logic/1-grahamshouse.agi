@@ -112,7 +112,15 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(said("sleep")) {
+if(equaln(vSleeping, valTrue)) {
+    erase(objEgo)
+    stop.cycling(objGrahamSleep)
+    draw(objGrahamSleep)
+    position(objGrahamSleep, 110, 82)
+    set.priority(objGrahamSleep, 15)
+}
+
+if(said("go", "sleep")) {
     if(posn(objEgo, 75, 30, 115, 85)) {
         if(!equaln(vTeaDrank, valTrue)) {
             print("You are a bit on edge about the summons you recieved from the king. You can't sleep.")
@@ -127,14 +135,6 @@ if(said("sleep")) {
     if(!posn(objEgo, 75, 30, 115, 85)) {
         print("You're not close enough.")
     }
-}
-
-if(equaln(vSleeping, valTrue)) {
-    erase(objEgo)
-    stop.cycling(objGrahamSleep)
-    draw(objGrahamSleep)
-    position(objGrahamSleep, 110, 82)
-    set.priority(objGrahamSleep, 15)
 }
 
 if(said("wear", "hat")) {

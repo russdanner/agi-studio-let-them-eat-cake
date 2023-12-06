@@ -109,7 +109,6 @@ var Agi;
         }
         close() {
             this.outterEl.style.display = "none";
-
         }
         setText(text) {
             this.innerEl.innerHTML = text;
@@ -464,10 +463,16 @@ var Agi;
             this.started = false;
             this.ended = false;
             this.frame = -1;
-            this.audioCtx = new AudioContext();
-            this.oscillator = this.audioCtx.createOscillator();
+            //this.audioCtx = new AudioContext();
+//            this.oscillator = this.audioCtx.createOscillator();
+            window.audioCtx = (window.audioCtx) ? window.audioCtx : new AudioContext()
+            this.audioCtx = window.audioCtx
+
+            window.oscillator = (window.oscillator) ? window.oscillator : this.audioCtx.createOscillator() 
+            this.oscillator = window.oscillator
+
             this.oscillator.connect(this.audioCtx.destination);
-            this.oscillator.type = "sine";
+            this.oscillator.type = "square";
             this.voices = {
                 voice1: {
                     durationRemaining: 0,
@@ -501,7 +506,7 @@ var Agi;
         }
         doSoundFrame() {
             try {
-
+                if(this.voices.voice1.durationRemaining <= 20000)
                 this.oscillator.frequency.setValueAtTime(this.voices.voice1.frequency, this.audioCtx.currentTime); // value in hertz                 
                 var now = new Date().getTime();
                 while (new Date().getTime() < now + 5) { }
@@ -509,7 +514,7 @@ var Agi;
             catch (e) {
                 // Nothing to be done    
             }
-            this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 4000;
+            this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 2000;
         }
         play(soundNo, flagNo) {
             this.frame = 0;
@@ -522,7 +527,10 @@ var Agi;
         playCycle() {
             var readNextFrame = false;
             if (this.started == false) {
-                this.oscillator.start();
+                try { //this.oscillator.stop() 
+                    this.oscillator.start();
+
+                }catch(e){}
                 this.started = true;
                 readNextFrame = true;
             }
@@ -535,17 +543,21 @@ var Agi;
                 // read the header
                 this.data.position = 0;
                 var v1Offest = this.data.readUint8(littleEndian);
+                //console.log("f:" + this.frame + " o:" + v1Offest)
 
-                var v2Offest = this.data.readUint8(littleEndian);
-                var v3Offest = this.data.readUint8(littleEndian);
-                var v4Offest = this.data.readUint8(littleEndian);
+                var v2Offest = this.data.readUint8();
+                var v3Offest = this.data.readUint8();
+                var v4Offest = this.data.readUint8();
                 // calculate the frame 
                 this.data.position = this.voices.voice1.offset + (this.frame * 5);
                 // Get the frequency for the duration frame
-                var duration = this.data.readUint16(littleEndian);
-                var noteHigh = this.data.readUint8(littleEndian);
-                var noteLow = this.data.readUint8(littleEndian);
-                var maxNoteLow = this.data.readUint8(littleEndian);
+                var duration = this.data.readUint16(false);
+                var noteHigh = this.data.readUint8();
+                var noteLow = this.data.readUint8();
+                var maxNoteLow = this.data.readUint8();
+
+
+                console.log("f: "+ this.frame + " d:"+duration+" h:"+ noteHigh+" l:"+noteLow)
                 // decode the frequency
                 this.voices.voice1.offset = v1Offest;
                 this.voices.voice1.durationRemaining = duration;
@@ -553,6 +565,7 @@ var Agi;
                 if (duration == 65535 /* 0xFF 0xFF */) {
                     // marks the end of the audio
                     //console.log(window.snds)
+                    console.log("call stop")
                     this.stop();
                     
                 }
@@ -561,9 +574,14 @@ var Agi;
                 }
 
                 window.snds = (window.snds) ? window.snds : ""                
+                window.snds+= "[{ \"duration\":"+duration+", \"noteHi\":"+ noteHigh+", \"noteLow\":"+noteLow+", \"maxNoteLow\":"+maxNoteLow+ "}],"
+
             }
             if (this.ended == false) {
                 this.doSoundFrame();
+            }
+            else {
+                //console.log(window.snds)
             }
         }
     }
@@ -837,6 +855,7 @@ var Agi;
 (function (Agi) {
     class Interpreter {
         constructor(context) {
+            this.scoreTotal = 0;
             this.context = context;
             this.newroom = 0;
             this.scriptSize = 0;
@@ -919,7 +938,6 @@ var Agi;
                         else if (key == 12) // stop
                             this.setEgoDir(0);
                         else if (key == 27) { // Escape
-                            alert("Menu");
                         }
                         else if (key == 13) {
                             this.dialogue = false;
@@ -1034,12 +1052,43 @@ var Agi;
             this.screen.bltText(2, 0, "" + this.variables[42]);
             this.screen.bltText(3, 0, "" + this.variables[43]);
             this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
-            this.screen.bltText(5, 0, ""+this.inputBuffer);
+            this.screen.bltText(21, 0, "]");
+            this.screen.bltText(21, 2, "                                                                            ");
+            this.screen.bltText(21, 2, "" + this.inputBuffer);
+
             this.bltFrame();
             // do sound
             if (this.sound && this.sound.started == true && this.sound.ended == false) {
                 this.sound.playCycle();
             }
+
+            this.doMenuBar()   
+        }
+        doMenuBar() {
+        var canvasEl = document.getElementById("canvas")
+        var menuEl = document.getElementById("menu")
+            if(!menuEl) {
+                menuEl = (menuEl) ? menuEl : document.createElement("div");
+                menuEl.id = "menu"
+                document.body.appendChild(menuEl);    
+            }
+            menuEl.style.display = "block";
+            menuEl.style.width = "98%";
+            menuEl.style.top = "0px";
+            //menuEl.style.position = "absolute";
+            menuEl.style.backgroundColor = "white";
+            menuEl.style.border = "3px solid black";
+            menuEl.style.marginRight = "25%";
+            menuEl.style.fontSize = "x-large";
+            menuEl.innerHTML = "<div style='float:left'>" 
+                             + "<strong>&nbsp; Score: " 
+                             + this.variables[3] 
+                             + " of " 
+                             + this.variables[7] 
+                             + "</strong></div>"
+                             +"<div style='float:right; margin-right:25px;'>" 
+                             + "<strong>&nbsp; Sound: " 
+                             + ((this.flags[9]) ? "On" : "Off") 
         }
         bltFrame() {
             /*var data = this.frameData.data;
@@ -1057,9 +1106,7 @@ var Agi;
             this.context.putImageData(this.frameData, 0, 0);
         }
         updateObject(obj, no) {
-try {
-
-
+        try {
             obj.oldX = obj.x;
             obj.oldY = obj.y;
             if (obj.draw) {
@@ -1071,7 +1118,6 @@ try {
                     case Agi.MovementFlags.Normal:
                         break;
                     case Agi.MovementFlags.MoveTo:
-                        console.log("MOVE")
                         if (obj.moveToStep != 0) {
                             xStep = yStep = obj.moveToStep;
                         }
@@ -1358,7 +1404,6 @@ try {
         }
         agi_setv(varNo) {
             console.log("set v :"+varNo)
-
             this.agi_set(this.variables[varNo]);
         }
         agi_reset_v(varNo) {
@@ -1654,8 +1699,7 @@ try {
             obj.movementFlag = Agi.MovementFlags.ChaseEgo;
         }
         agi_wander(objNo) {
-            console.log("Wander "+objNo)
-                this.gameObjects[objNo].movementFlag = Agi.MovementFlags.Wander;
+            this.gameObjects[objNo].movementFlag = Agi.MovementFlags.Wander;
         }
         agi_normal_motion(objNo) {
             this.gameObjects[objNo].motion = true;
@@ -1748,7 +1792,6 @@ try {
         agi_status_line_off() {
         }
         agi_load_sound(soundNo) {
-
             // console.log("load sound / not used")
         }
         agi_sound(soundNo, flagNo) {
@@ -2024,7 +2067,6 @@ try {
                     inputWords = inputWords.filter(v => v !== fillerWords[fw]);
                 }
 
-
                 //evaluate the input
                 if (wordGroups.length <= inputWords.length) {                    
                     for (var j = 0; j < wordGroups.length; j++) {
@@ -2047,7 +2089,6 @@ try {
                 else {
                     this.inputBuffer = ""
                 }
-
             }
 
             if (this.flags[2] == true && this.inputBuffer != "") {

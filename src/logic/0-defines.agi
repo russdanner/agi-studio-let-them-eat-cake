@@ -217,6 +217,10 @@
 #define viewBurp 65
 #define viewOgre 66
 
+// sounds
+#define sndTitle 0
+
+
 // vars
 #define vCurrentRoom 0
 #define vEgoEdgeTouched 2
@@ -250,10 +254,12 @@
 #define vAlJoke 35
 
 // global flags
-#define fDead 86
-#define fWearingHat 88
+#define fSoundDone 83
+#define fGameInited 84
 #define fHasSummons 85
+#define fDead 86
 #define fHasHat 87
+#define fWearingHat 88
 #define fIsMorning 89
 
 #define fDrowning 93
@@ -283,6 +289,9 @@
 // consts  
 #define valTrue 1
 #define valFalse 0
+
+#define vMaxPoints 7
+#define vCurPoints 3
 
 #define directionUp 1
 #define directionDown 5

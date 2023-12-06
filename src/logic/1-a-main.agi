@@ -8,11 +8,17 @@ assignn(vGameCycleDelay, 2)
 assignn(vEnemyChance, 90)
 assignn(vFeatherChance, 90)
 
+if(!isset(fGameInited)) {
+    set(fGameInited)    
+    assignn(vMaxPoints, 40)
+    assignn(vCurPoints, 0)    
+}
 
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(0, picGrahamsHouseInside)
+    assignn(0, picTitle)
+    //picGrahamsHouseInside)
 }
 
 if(said("inv")) {
@@ -32,6 +38,9 @@ if(!equaln(0, 0)) {
     call.v(0)
 }
 
+if(isset(fDead)) {
+    print("You are dead. It's been a real hoot watching you play. From here you can only restore or restart. Thanks for playing!")
+}
 
 
 return()

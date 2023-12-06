@@ -1,6 +1,6 @@
 #include "0-defines.aqi"
 
-load.sound(1)
+//load.sound(1)
 
 if(equaln(vRoomInited, 0)) {
 
@@ -72,10 +72,13 @@ if(equaln(vRoomInited, 0)) {
 
     position(objBigShuttle, 50, 120)
     set.priority(objBigShuttle, 9)
+    set.priority(objHangerSplat1, 4)
+    set.priority(objHangerSplat2, 4)
 
     position.v(objEgo, vEgoX, vEgoY)
 
     assignn(vTimer, 0)
+    set.horizon(73) 
 }
 
 if(!equaln(vSweeping, valTrue)){
@@ -98,7 +101,6 @@ if(said("start", "sweeping")) {
     assignn(vSweeping, valTrue)
     start.cycling(objEgo)
 }
-
 
 if(said("enter", "pod")) {
     if(posn(objEgo, 31, 104, 50, 127)) {
@@ -129,12 +131,15 @@ if(posn(objEgo, 36, 80, 48, 95)) {
     if(!equaln(vSplat2Cleaned, valTrue)) {
         if(equaln(vSweeping, valFalse)) {
             print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and seperate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space. You are dead. Thanks for playing!  As usual you've been a real hoot.")
+            set(fDead)
         }    
         if(equaln(vSweeping, valTrue)) {
             assignn(vSplat2Cleaned, valTrue)
+            addn(vCurPoints, 1)
             erase(objHangerSplat2)
 
             if(equaln(vSplat1Cleaned, valTrue)) {
+                addn(vCurPoints, 1)
                 assignn(vCleanedUp, valTrue)
             }
         }    
@@ -183,9 +188,20 @@ if(equaln(vCleanedUp, valTrue)) {
     }
 }
 
+if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    if(equaln(vEgoEdgeTouched, edgeTop)) {
+        stop.cycling(objEgo)
+        set.view(objEgo, viewRogerSuitA)
+        move.to(objEgo, 165, 0, 3, fDoAction)
+        set(fDead)
+    }
+}
+
 if(!isset(fWearingSuit)) {
     print("Surgeon General's Warning: Exposing yourself to the vacuum of space is hazardous to your health.  You are dead. Thanks for playing.")
+    set(fDead)
 }
 
 return()
+
 #message 1 "Hanger-1"

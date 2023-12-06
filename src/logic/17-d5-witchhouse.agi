@@ -48,7 +48,6 @@ if(equaln(vRoomInited, 0)) {
     assignn(vEgoEdgeTouched, edgeNone)
     set.horizon(50)
     set.priority(objWitchDoor, 10)
-
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {

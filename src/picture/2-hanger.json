@@ -361,6 +361,7 @@
     { "command": "PicDisable", "args": [] },
     { "command": "PriSetcolor", "args": [0] },
     { "command": "DrawAbs", "args": [48,100, 91,100, 91,125,  48,125,  48,100] },
+    { "command": "DrawAbs", "args": [1, 160, 155, 160] },
 
     { "command": "End", "args": [] }
   ]

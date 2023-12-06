@@ -1,5 +1,11 @@
 #include "0-defines.aqi"
 
+if(equaln(vRoomInited, 0)) {
+   assignn(vRoomInited, 1)
+   sound(sndTitle, fSoundDone)
+
+}
+
 if(said("g")) {
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 0)
