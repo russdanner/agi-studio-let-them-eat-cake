@@ -74,7 +74,7 @@ if(equaln(vRoomInited, 0)) {
     set.cel(objCabinDoor, 1)
     position(objCabinDoor, 26, 131)
 
-    print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edwards for reasons unknown.")
+  //  print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edwards for reasons unknown.")
 }
 
 if(said("open", "door")) {
@@ -323,13 +323,8 @@ if(said("look", "cup")) {
 }
 
 if(said("look", "teapot")) {
-    if(equaln(vTeaPoured, valTrue)) {
-        print("The blue teapot empty.")
-    }
-
-    if(!equaln(vTeaPoured, valTrue)) {
-        print("The blue teapot is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
-    }
+    assignn(vInvShowItem, invTeapot)
+    set(fShowInvItem)
 }
 
 return()

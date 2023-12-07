@@ -11,14 +11,13 @@ assignn(vFeatherChance, 90)
 if(!isset(fGameInited)) {
     set(fGameInited)    
     assignn(vMaxPoints, 40)
-    assignn(vCurPoints, 0)    
+    assignn(vCurPoints, 0)  
 }
 
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(0, picTitle)
-    //picGrahamsHouseInside)
+    assignn(0, 1)
 }
 
 if(said("inv")) {
@@ -36,6 +35,40 @@ if(said("restore")) {
 
 if(!equaln(0, 0)) {
     call.v(0)
+}
+
+if(isset(fShowInvItem)) {
+    reset(fShowInvItem)
+    reset(fWaitForCloseInv)
+
+    if(equaln(vInvShowItem, invTeapot)) {
+        assignn(vInvView, viewObjPot)
+        // if(equaln(vTeaPoured, valTrue)) {
+        // print("The blue teapot empty.")
+        // }
+
+        // if(!equaln(vTeaPoured, valTrue)) {
+        //     print("The blue teapot is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+        // }
+        assignn(19, 0)
+        print("The blue teapot is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+    }
+
+    if(has(invTeapot)) {
+        load.view.v(vInvView)
+        set.view.v(objInv, vInvView)
+        stop.cycling(objInv)
+        draw(objInv)
+        set.priorty(objInv, 15)
+        position(objInv, 65, 155)
+        set(fWaitForCloseInv)        
+    }
+}
+if(isset(fWaitForCloseInv)) {
+    if(greatern(19, 0)) {
+        reset(fWaitForCloseInv)
+         erase(objInv)
+    }
 }
 
 if(isset(fDead)) {

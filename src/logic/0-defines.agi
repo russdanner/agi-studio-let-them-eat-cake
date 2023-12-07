@@ -1,5 +1,7 @@
 // objects
 #define objEgo 0
+#define objInv 15
+
 #define objSummons 1
 #define objHat 2
 #define objTeapot 3
@@ -216,6 +218,10 @@
 #define viewRogerEaten 64
 #define viewBurp 65
 #define viewOgre 66
+#define viewTitleFeather 68
+
+#define viewObjPot 69
+
 
 // sounds
 #define sndTitle 0
@@ -229,6 +235,8 @@
 
 #define vEgoX 30
 #define vEgoY 31
+#define vInvShowItem 32
+#define vInvView 33
 
 #define vRoomInited 34
 #define vTimer 42
@@ -267,6 +275,8 @@
 #define fDoAction 95
 #define fUndoAction 96
 #define fProgramControl 84
+#define fShowInvItem 82
+#define fWaitForCloseInv 80
 
 // flags
 #define fPodPoweredUp 90
