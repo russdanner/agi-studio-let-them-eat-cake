@@ -50,6 +50,7 @@ var Agi;
                 // enter should be allowed to close a dialog
                 Agi.interpreter.keyboardCharBuffer.push(e.which);
                 console.log("Keypress: " + e.keyCode);
+                Agi.interpreter.variables[19] = e.which
                 //}
             };
             window.onkeydown = function (e) {
@@ -63,7 +64,8 @@ var Agi;
             (function renderloop() {
                 //window.requestAnimationFrame(renderloop);
                 Agi.interpreter.cycle();
-                setTimeout(renderloop, (1000 / 20) * Agi.interpreter.variables[10]);
+                // this is normally units of 1000 / 20 
+                setTimeout(renderloop, (1000 / 15) * Agi.interpreter.variables[10]);
             })();
         });
     }
@@ -458,7 +460,8 @@ var Agi;
 var Agi;
 (function (Agi) {
     class Sound {
-        constructor(soundNo, data) {
+        constructor(soundNo, data, flag) {
+            this.flag = flag
             this.data = data;
             this.started = false;
             this.ended = false;
@@ -472,7 +475,7 @@ var Agi;
             this.oscillator = window.oscillator
 
             this.oscillator.connect(this.audioCtx.destination);
-            this.oscillator.type = "square";
+            this.oscillator.type = "sign";
             this.voices = {
                 voice1: {
                     durationRemaining: 0,
@@ -514,7 +517,7 @@ var Agi;
             catch (e) {
                 // Nothing to be done    
             }
-            this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 2000;
+            this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 4000;
         }
         play(soundNo, flagNo) {
             this.frame = 0;
@@ -557,7 +560,7 @@ var Agi;
                 var maxNoteLow = this.data.readUint8();
 
 
-                console.log("f: "+ this.frame + " d:"+duration+" h:"+ noteHigh+" l:"+noteLow)
+                //console.log("f: "+ this.frame + " d:"+duration+" h:"+ noteHigh+" l:"+noteLow)
                 // decode the frequency
                 this.voices.voice1.offset = v1Offest;
                 this.voices.voice1.durationRemaining = duration;
@@ -566,6 +569,7 @@ var Agi;
                     // marks the end of the audio
                     //console.log(window.snds)
                     console.log("call stop")
+                    Agi.interpreter.flags[this.flag] = true    
                     this.stop();
                     
                 }
@@ -577,11 +581,12 @@ var Agi;
                 window.snds+= "[{ \"duration\":"+duration+", \"noteHi\":"+ noteHigh+", \"noteLow\":"+noteLow+", \"maxNoteLow\":"+maxNoteLow+ "}],"
 
             }
+
             if (this.ended == false) {
                 this.doSoundFrame();
             }
             else {
-                //console.log(window.snds)
+                console.log(window.snds)
             }
         }
     }
@@ -867,6 +872,7 @@ var Agi;
             this.loadedViews = [];
             this.loadedLogics = [];
             this.loadedPics = [];
+            this.loadedSounds = [];
             this.logicStack = [];
             this.logicNo = 0;
             this.gameObjects = [];
@@ -1052,6 +1058,9 @@ var Agi;
             this.screen.bltText(2, 0, "" + this.variables[42]);
             this.screen.bltText(3, 0, "" + this.variables[43]);
             this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
+            this.screen.bltText(5, 0, "" + this.variables[19]);
+            this.screen.bltText(6, 0, "" + this.variables[10]);
+
             this.screen.bltText(21, 0, "]");
             this.screen.bltText(21, 2, "                                                                            ");
             this.screen.bltText(21, 2, "" + this.inputBuffer);
@@ -1792,13 +1801,14 @@ var Agi;
         agi_status_line_off() {
         }
         agi_load_sound(soundNo) {
-            // console.log("load sound / not used")
+            this.loadedSounds[soundNo] = Resources.readAgiResource(Resources.AgiResource.Sound, soundNo);
+            Resources.readAgiResource(Resources.AgiResource.Sound, soundNo)
         }
         agi_sound(soundNo, flagNo) {
             if (this.sound) {
                 this.sound.stop();
             }
-            this.sound = new Agi.Sound(soundNo, Resources.readAgiResource(Resources.AgiResource.Sound, soundNo));
+            this.sound = new Agi.Sound(soundNo, this.loadedSounds[soundNo], flagNo);
             this.sound.play(soundNo, flagNo);
         }
         agi_stop_sound() {
@@ -1822,11 +1832,14 @@ var Agi;
         }
         agi_status() {
             if(!this.pockets) this.pockets = []
-            var inv = "You are carrying: "
+            
+            var inv = "You are carrying:<ul>"
+
             for(var i=0; i<this.pockets.length; i++) {
-                if(i>0) { inv+=", "} 
-                inv += this.pockets[i]
+                var itm = this.pockets[i]
+                inv += "<li>"+ Resources.objects[itm] + "</li>"
             }
+            inv += "</ul>"
 
             if (this.dialogueBox.innerEl.innerHTML != inv) {
                 this.dialogueBox.open();
@@ -2722,6 +2735,33 @@ var Resources;
                 availableVols[volNo] = true;
         }
     }
+    function parseObjectFile(buffer) {
+
+        var objectNameOffset = 42 //buffer.readUint16();
+        var objectNames = []
+        var objectName = ""
+        var decryptionIndex = 0
+        var decryptionKey = 'Avis Durgan'
+        buffer.position = 42
+        for(var i=objectNameOffset; i<buffer.length; i++) {
+            var charAsNum = buffer.readUint8();
+            if(charAsNum != 0x00) {
+                var decrypted = String.fromCharCode(decryptionKey[decryptionIndex++].charCodeAt(0) ^ charAsNum);
+                objectName += decrypted
+            }
+            else {
+               objectNames[objectNames.length] = objectName
+               objectName = "" 
+            }
+
+            if (decryptionIndex == decryptionKey.length) decryptionIndex = 0;
+        }
+        if (decryptionIndex == decryptionKey.length) decryptionIndex = 0;
+
+        //console.log("OBJECTS: ("+objectName+")")
+        console.log(objectNames)
+        return objectNames
+    }
     function parseWordFile(buffer) {
         buffer.position = 52;
         let words = [];
@@ -2838,6 +2878,14 @@ var Resources;
                     Resources.words = parseWordFile(wordsStream);
                     done();
                 });
+
+                // OBJECT
+                Fs.downloadAllFiles(path, ["object"], (buffers) => {
+                    var objectStream = buffers["object"];
+                    Resources.objects = parseObjectFile(objectStream);
+                    done();
+                });
+                
             });
         });
     }
