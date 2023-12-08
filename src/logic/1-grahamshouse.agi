@@ -164,6 +164,7 @@ if(said("take", "teapot")) {
         print("You remove the teapot from the stove.")
         erase(objTeapot)
         get(invTeapot)
+        addn(vCurrentScore, 1)
     }
     if(!posn(objEgo, 104, 93, 123, 112)) {
         print("Get closer.")
@@ -175,6 +176,7 @@ if(said("take", "hat")) {
         print("You pocket your hat.")
         erase(objHat)
         get(invHat)
+        addn(vCurrentScore, 1)
     }
     if(!posn(objEgo, 117, 131, 129, 150)) {
         print("You cannot reach it.")
@@ -216,6 +218,7 @@ if(said("pour", "tea")) {
                 if(posn(objEgo, 49, 107, 56, 135)) {
                     print("You pour a cup of hot tea.")
                     assignn(vTeaPoured, valTrue)
+                    addn(vCurrentScore, 1)
                 }
                 if(!posn(objEgo, 49, 107, 56, 135)) {
                     print("You should get closer.")
@@ -249,10 +252,11 @@ if(said("drink", "tea")) {
         print("You don't have it.")
     }
     if(has(invTea)) {
-        print("You drink the tea. In a few minutes you begin to feel drowsy.")
+        print("You drink the tea. In a few minutes you begin to feel much more relaxed.")
         assignn(vTeaDrank, valTrue)
         drop(invTea)
-        get(invTeaCup)    
+        get(invTeaCup)
+        addn(vCurrentScore, 1)    
     }
 }    
 
@@ -270,8 +274,8 @@ if(equaln(vSleeping, valTrue)) {
     }
 
     if(equaln(vClockTicks, 4)) {
-        assignn(vRoomInited, 0)
-        assignn(0, 2)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picHanger)
     }
 }
 
@@ -287,7 +291,7 @@ if(equaln(vClockTicks, 60)) {
 }
 
 if(equaln(vTimer, 100)) {
-    assign(vTimer, 0)
+    assignn(vTimer, 0)
     addn(vClockTicks, 1) 
 }
 addn(vTimer, 1) 

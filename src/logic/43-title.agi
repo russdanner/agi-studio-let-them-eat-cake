@@ -2,19 +2,23 @@
 
 if(equaln(vRoomInited, 0)) {
    assignn(vRoomInited, 1)
-
+   load.sound(sndTitle)
    sound(sndTitle, fSoundDone)
    load.view(viewTitleFeather)
-   set.view(objHangerSplat1, viewTitleFeather)
-   stop.cycling(objHangerSplat1)
-   draw(objHangerSplat1)
-   position(objHangerSplat1, 100, 165)
+   set.view(objTitleFeather, viewTitleFeather)
+   stop.cycling(objTitleFeather)
+   draw(objTitleFeather)
+   position(objTitleFeather, 100, 0)
+   
+   assignn(vEgoX, 100)
+   assignn(vEgoY, 165)
+   move.obj.v(objTitleFeather, vEgoX, vEgoY, 3, 10)
 
-   set.view(objHangerSplat2, viewTitleFeather)
-   stop.cycling(objHangerSplat2)
-   draw(objHangerSplat2)
-   set.cel(objHangerSplat2, 1)
-   position(objHangerSplat2, 3, 165)
+   set.view(objTitleHat, viewTitleFeather)
+   stop.cycling(objTitleHat)
+   draw(objTitleHat)
+   set.cel(objTitleHat, 1)
+   position(objTitleHat, 3, 165)
 
     assignn(71, 12) // x
 
@@ -41,8 +45,14 @@ if(equaln(vRoomInited, 0)) {
     display(24, 1, 3)
 }
 
+if(!posn(objTitleFeather,90,160,110,165)){
+    // float the feather
+    random(90,110, vEgoX)
+    move.obj.v(objTitleFeather, vEgoX, vEgoY, 3, fUndoAction)    
+}
+
 if(greatern(80, 6)) {
-    assignn(vGameCycleDelay, 5)
+    assignn(vGameCycleDelay, 4)
     display.v(80, 71, 72);    
 
     if(lessn(81, 19)) {
@@ -70,7 +80,7 @@ if(greatern(80, 6)) {
 if(!greatern(80, 5)) {
     if(isset(fDoAction)) {
         display(11, 12, 12);    
-        display(13, 15, 13);    
+        display(13, 14, 13);
     }
     if(!isset(fDoAction)) {
         display(6, 12, 4);    
@@ -96,20 +106,20 @@ if(greatern(80, 5)) {
 }
 
 addn(vTimer, 1)
+
 if(equaln(vTimer, 100)) {
     set(fDoAction)
 }
 
 if(isset(fSoundDone)) {
-    assignn(vEgoX, 0)
-    assignn(vEgoY, 0)
-    assignn(vEgoEdgeTouched, edgeNone)
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picGrahamsHouseInside)   
+    display(17, 12, 14);    
+    display(18, 14, 15);    
 }
 
 
-if(said("g")) {
+if(have.key()) {
+    clear.lines(23,24,0)
+
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 0)
     assignn(vEgoY, 0)
@@ -136,3 +146,6 @@ return()
 
 #message 12 "Let Them Eat Cake"
 #message 13 "Version 1.0"
+
+#message 14 "Press Any Key"
+#message 15 "to Continue"

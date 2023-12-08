@@ -1,7 +1,5 @@
 #include "0-defines.aqi"
 
-//load.sound(1)
-
 if(equaln(vRoomInited, 0)) {
 
     // debugging scenario: Get your orders with this flag high
@@ -20,7 +18,9 @@ if(equaln(vRoomInited, 0)) {
 
 
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
+    load.sound(sndWatchBeep)
+
     load.view(viewRogerSuitBroom)
     load.view(viewRogerSuitA)
     load.view(viewHangerSplat)
@@ -46,6 +46,7 @@ if(equaln(vRoomInited, 0)) {
         assignn(vSplat2Cleaned, valFalse)
         assignn(vHasOrders, valFalse)
         assignn(vCleanedUp, valFalse)
+
         position(objHangerSplat1, 100, 150)
         position(objHangerSplat2, 40, 90)  
         
@@ -107,7 +108,7 @@ if(said("enter", "pod")) {
         print("Get real... This is a serious space craft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriosuly lacking.")
     }
     if(!posn(objEgo, 31, 104, 50, 127)) {
-        print("You are too far away")
+        print("You are too far away.")
     }
 }
 
@@ -179,6 +180,7 @@ if(equaln(vCleanedUp, valTrue)) {
     if(equaln(vTimer, 100)) {
         if(!isset(fWatchHasBeeped)) {
             set(fWatchHasBeeped)
+            sound(sndWatchBeep, fDoAction)
             print("A long beep is emitted from the watch on your arm.")    
         }
     }

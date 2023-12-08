@@ -11,9 +11,13 @@
 #define objHawk 7
 #define objFeatherFall 9
 
+#define objTitleFeather 7
+#define objTitleHat 8
+
 #define objBigShuttle 6
 #define objHangerSplat1 7
 #define objHangerSplat2 8
+
 #define objCrashingPod 9
 #define objPod 10
 #define objPodPlatform 11
@@ -139,12 +143,19 @@
 #define picTitle 43
 
 // inventory
-#define invSummons 1
-#define invHat 2
-#define invTeapot 3
+#define invTeapot 0
+#define invHat 1
+#define invSummons 2
+#define invTea 3
 #define invTeaCup 4
-#define invTea 5
-#define invBroom 6
+#define invBroom 5
+#define invGlass 6
+#define invCake 7
+#define invInk 8
+#define invQuil 9 
+#define invFeather 10
+#define invPaper 11
+#define invInvitation 12
 
 // views
 #define viewGrahamNoHat 0
@@ -225,14 +236,24 @@
 
 // sounds
 #define sndTitle 0
+#define sndWatchBeep 1
 
 
 // vars
+// Engine Vars
 #define vCurrentRoom 0
+#define vPreviousRoom 1
 #define vEgoEdgeTouched 2
+#define vCurrentScore 3
+#define vNonEgoIDEdgeTouched 4
+#define vNonEgoEdgeTouched 5
 #define vEgoDirection 6
+#define vMaxScore 7
+#define vNonDictionaryWord 9
 #define vGameCycleDelay 10
+#define vKeyPressed 19
 
+// Game can use any var 27 and up
 #define vEgoX 30
 #define vEgoY 31
 #define vInvShowItem 32
