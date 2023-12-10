@@ -39,8 +39,6 @@ if(equaln(vRoomInited, 0)) {
     set.loop(objCrew1, 2)
     set.loop(objCrew2, 3)
 
-    position(objTram, 1, 72)
-
     position(objLift, 21, 92)
     position(objLiftRod, 34, 130)
     position(objCrew1, 70, 110)
@@ -51,6 +49,11 @@ if(equaln(vRoomInited, 0)) {
     set.priority(objLiftRod, 4)
     set.priority(objCrew1, 4)
     set.priority(objCrew1, 4)
+
+    reset(fTramInboundDone)
+    ignore.blocks(objTram)
+    position(objTram, 5, 72)
+    move.obj(objTram, 95, 72, 2, fTramInboundDone)
 
 }
 
@@ -72,7 +75,7 @@ if(said("exit", "tram")) {
 if(said("enter", "tram")) {
     if(isset(fHasFlightPlan)) {
         erase(objEgo)
-        end.of.loop(objTram, fDoAction) 
+        end.of.loop(objTram, fTramReady) 
         set(fTramRunning)       
     }
     if(!isset(fHasFlightPlan)) {
@@ -80,8 +83,8 @@ if(said("enter", "tram")) {
     }
 }
 
-// Detect roger is on the lift
 if(obj.in.box(objEgo, 24, 86, 34, 89)) {
+    // going down
     if(!isset(fOnLift)) {
         set(fOnLift)
         set(fLiftRunning)
@@ -90,6 +93,7 @@ if(obj.in.box(objEgo, 24, 86, 34, 89)) {
     }
 }
 if(obj.in.box(objEgo, 24, 114, 34, 123)) {
+    // going up
     if(!isset(fOnLift)) {
         set(fOnLift)
         set(fLiftRunning)
@@ -98,7 +102,9 @@ if(obj.in.box(objEgo, 24, 114, 34, 123)) {
     }
 }
 if(!obj.in.box(objEgo, 24, 89, 34, 123)) {
+    // roger stepped off the list
     reset(fOnLift)
+    reset(fLiftRunning)
 }
 
 if(isset(fLiftRunning)) {
@@ -106,6 +112,7 @@ if(isset(fLiftRunning)) {
     program.control()
 
     if(isset(fLiftGoingDown)) {
+        // render down
         reposition(objLift, 0, 1)
         reposition(objLiftRod, 0, 1)
         reposition(objEgo, 0, 1)    
@@ -114,7 +121,8 @@ if(isset(fLiftRunning)) {
         // bug with -1
         //reposition(objLift, 0, -1)
         //reposition(objLiftRod, 0, -1)
-        //reposition(objEgo, 0, -1)  
+        //reposition(objEgo, 0, -1)
+        // rebder yo  
         position(objEgo, 33, 75)  
         position(objLift, 21, 92)
         position(objLiftRod, 34, 130)
@@ -126,28 +134,30 @@ if(isset(fLiftRunning)) {
     }
 }
 
-if(isset(fTramRunning)) {
-    reposition(objTram, 4, 0)
-
-    if(isset(fHasFlightPlan)) {
-        if(equaln(vTimer, 23)) {
-            assignn(vRoomInited, valFalse)
-            assignn(vCurrentRoom, picOuterBay)     
-        }
-    }
-    if(!isset(fHasFlightPlan)) {
-        if(equaln(vTimer, 23)) {
-            reset(fTramRunning)
-            position(objTram, 94, 72)
-            set.cel(objTram, 1)
-        }    
-    }
+if(isset(fTramReady)) {
+    reset(fTramReady)
+    move.obj(objTram, 160, 72, 2, fTramOutboundDone)
 }
+
+if(isset(fTramOutboundDone)) {
+    reset(fTramOutboundDone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picOuterBay)     
+}
+
+if(isset(fTramInboundDone)) {
+    reset(fTramInboundDone)
+    position(objTram, 94, 72)
+    set.cel(objTram, 1)
+}
+
 
 if(said("talk", "man")) {
     set(fHasFlightPlan)
     assignn(vTimer, 0)
     print("Hey Roger. I'm sending you over to shuttle bay B for departure and transit to Oribital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point.")
 }
+
 return()
+
 #message 1 "Control Room"

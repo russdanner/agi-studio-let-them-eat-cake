@@ -27,6 +27,16 @@ if(equaln(vRoomInited, 0)) {
     position(objCrashingPod, 20, 140)
     position(objEgo, 15, 140)
     assignn(vEgoEdgeTouched, edgeNone)
+
+    load.view(viewGlassSparkle)
+    animate.obj(objGlassSparkle)
+    start.cycling(objGlassSparkle)
+    set.view(objGlassSparkle, viewGlassSparkle)    
+    draw(objGlassSparkle)
+ }
+
+ if(!has(invGlass)) {
+    position(objGlassSparkle, 52, 147)
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {

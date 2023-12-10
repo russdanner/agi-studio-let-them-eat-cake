@@ -17,7 +17,9 @@ if(!isset(fGameInited)) {
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(0, 2)
+    assignn(vCurrentRoom, picInDaventryCrashSite)
+    //picInnerBay)
+    //picOuterBay
 }
 
 if(said("inv")) {
@@ -72,7 +74,26 @@ if(isset(fWaitForCloseInv)) {
 }
 
 if(isset(fDead)) {
-    print("You are dead. It's been a real hoot watching you play. From here you can only restore or restart. Thanks for playing!")
+    if(equaln(vDeathReason, valXsGeneric)) {
+        print("You are dead. It's been a real hoot watching you play. From here you can only restore or restart. Thanks for playing!")
+    }
+    if(equaln(vDeathReason, valXsOversleep)) {
+        print("You fall asleep and oversleep. Thanks for playing.")
+    }
+    if(equaln(vDeathReason, valXsNoSuitExplode)) {
+        print("Surgeon General's Warning: Exposing yourself to the vacuum of space is hazardous to your health. You are dead. Thanks for playing.")
+    }
+    if(equaln(vDeathReason, valXsSpaceWalk)) {
+        print("You step off the deck and into the vaccume of space. We're not sure where you are going but we know you'll be a popcycle when you arrive. Thanks for playing.")
+
+    }
+    if(equaln(vDeathReason, valXsFuelFoot)) {
+        print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and seperate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space. You are dead. Thanks for playing!  As usual you've been a real hoot.")
+    }
+    if(equaln(vDeathReason, valXsFlushola)) {
+        print("Unbelievable! The toilet begins to overflow. Where's a janitor when you need one?! As the room fills with 'WATER' you frantically search for a plunger but find only that you are trapped. How embarrasing. Thank you for playing!")
+    }
+
 }
 
 

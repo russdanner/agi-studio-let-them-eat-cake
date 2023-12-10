@@ -3,10 +3,10 @@
 if(equaln(vRoomInited, 0)) {
 
     // debugging scenario: Get your orders with this flag high
-    // assignn(vHasOrders, valTrue)
-    // assignn(vSplat1Cleaned, valTrue)
-    // assignn(vSplat2Cleaned, valTrue)
-    // assignn(vCleanedUp, valTrue)
+    assignn(vHasOrders, valTrue)
+    assignn(vSplat1Cleaned, valTrue)
+    assignn(vSplat2Cleaned, valTrue)
+    assignn(vCleanedUp, valTrue)
 
     // we're roger now. Drop Grahams inventory
     drop(invSummons)
@@ -14,8 +14,9 @@ if(equaln(vRoomInited, 0)) {
     drop(invTeapot)
     drop(invTeaCup)
     drop(invTea)
+    
+    // get roger's goods
     get(invBroom)
-
 
     unanimate.all()
     assignn(vRoomInited, valTrue)
@@ -80,6 +81,8 @@ if(equaln(vRoomInited, 0)) {
 
     assignn(vTimer, 0)
     set.horizon(73) 
+
+    reset(fAdrift)
 }
 
 if(!equaln(vSweeping, valTrue)){
@@ -87,10 +90,9 @@ if(!equaln(vSweeping, valTrue)){
         stop.cycling(objEgo)
     }
 }
-
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
-}
+}    
 
 if(said("stop", "sweeping")) {
     set.view(objEgo, viewRogerSuitA)
@@ -115,7 +117,9 @@ if(said("enter", "pod")) {
 if(posn(objEgo, 85, 139, 105, 151)) {
     if(!equaln(vSplat1Cleaned, valTrue)) {
         if(equaln(vSweeping, valFalse)) {
-            print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and seperate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space. You are dead. Thanks for playing!  As usual you've been a real hoot.")
+            // DEAD: Fuel foot
+            assignn(vDeathReason,  valXsFuelFoot)
+            set(fDead)
         }    
         if(equaln(vSweeping, valTrue)) {
             assignn(vSplat1Cleaned, valTrue)
@@ -131,7 +135,8 @@ if(posn(objEgo, 85, 139, 105, 151)) {
 if(posn(objEgo, 36, 80, 48, 95)) {
     if(!equaln(vSplat2Cleaned, valTrue)) {
         if(equaln(vSweeping, valFalse)) {
-            print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and seperate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space. You are dead. Thanks for playing!  As usual you've been a real hoot.")
+            // DEAD: Fuel foot
+            assignn(vDeathReason,  valXsFuelFoot)
             set(fDead)
         }    
         if(equaln(vSweeping, valTrue)) {
@@ -194,13 +199,40 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeTop)) {
         stop.cycling(objEgo)
         set.view(objEgo, viewRogerSuitA)
-        move.to(objEgo, 165, 0, 3, fDoAction)
+        set.priority(objEgo, 4)
+        move.obj(objEgo, 100, 40, 1, fAdrift)
+        // DEAD: ADRIFT 
+        assignn(vDeathReason, valXsSpaceWalk)
         set(fDead)
     }
 }
+if(isset(fAdrift)) {
+    erase(objEgo)
+}
 
 if(!isset(fWearingSuit)) {
-    print("Surgeon General's Warning: Exposing yourself to the vacuum of space is hazardous to your health.  You are dead. Thanks for playing.")
+    // DEAD: DECOMP
+    reset(fWearingSuit)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 100)
+    move.obj.v(objEgo, vEgoX, vEgoY, 1, fDecompressing)
+}
+
+if(isset(fDecompressing)) {
+    reset(fDecompressing)
+    if(!isset(fDead)) {
+        load.view(viewRogerExplode)
+        set.view(objEgo, viewRogerExplode)
+        set.loop(objEgo, 0)
+        set.cel(objEgo, 0)
+        start.cycling(objEgo)
+        end.of.loop(objEgo, fDecompressed) 
+    }
+}
+
+if(isset(fDecompressed)) {
+    reset(fDecompressed)
+    assignn(vDeathReason, valXsNoSuitExplode)    
     set(fDead)
 }
 

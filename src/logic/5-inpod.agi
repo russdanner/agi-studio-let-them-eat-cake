@@ -1,20 +1,24 @@
 #include "0-defines.aqi"
 
-load.sound(1)
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewCockpitThrottle)
+    load.view(viewDecal)
 
     set.view(objCockpitThrottle, viewCockpitThrottle)
+    set.view(objDecal, viewDecal)
     
     stop.cycling(objCockpitThrottle)
+    stop.cycling(objDecal)
     
     draw(objCockpitThrottle)
-    
+    draw(objDecal)
+
+    position(objDecal, 119, 124)    
     position(objCockpitThrottle, 106, 128)
 
     if(isset(fLaunchAnimationPlayed)) {
@@ -57,17 +61,14 @@ if(equaln(vRoomInited, 0)) {
 }
 
 if(said("press", "power")) {
+    load.view(viewCockpitPush)
     set.view(objCockpitPush, viewCockpitPush)
-
     stop.cycling(objCockpitPush)
-
+    
     draw(objCockpitPush)
 
-    position(objCockpitPush, 75, 170)
+    position(objCockpitPush, 80, 165)
     move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)
-
-    set(fPodPoweredUp)
-    assignn(vPodStart, valTrue)
 }
 
 if(said("push", "autonav")) {
@@ -88,16 +89,16 @@ if(said("push", "dont")) {
 
 if(said("pull", "throttle")) {
     if(equaln(vPodStart, valTrue)) { 
-        // load.view(viewCockpitPush)
+        load.view(viewCockpitPull)
 
-        // set.view(objCockpitPush, viewCockpitPush)
+        set.view(objCockpitPush, viewCockpitPull)
 
-        // stop.cycling(objCockpitPush)
+        stop.cycling(objCockpitPush)
 
-        // draw(objCockpitPush)
+        draw(objCockpitPush)
 
-        // position(objCockpitPush, 100, 180)
-        // move.obj(objCockpitPush, 100, 160, 1, fPodThrottlePulled)
+        position(objCockpitPush, 100, 180)
+        move.obj(objCockpitPush, 100, 160, 1, fPodThrottlePulled)
         set(fPodThrottlePulled)
     }
     if(!equaln(vPodStart, valTrue)) {
@@ -131,6 +132,8 @@ if(equaln(vPodLaunched, valTrue)) {
     if(!equaln(vPodAutoNaved, valTrue)){
         if(equaln(vClockTicks, 3)) {
             print("You should probably engage some form of navigation...")
+            assignn(vTimer, 0)
+            assignn(vClockTicks, 0)
         }    
     }
 
@@ -145,6 +148,7 @@ if(equaln(vPodLaunched, valTrue)) {
 
         if(equaln(vClockTicks, 5)) {
             print("You pick at the Decal and pull it away from the console. It reveals a hard packard that says 'AUTONAV`")
+            erase(objDecal)
         }    
 
         if(equaln(vClockTicks, 6)) {
@@ -159,6 +163,7 @@ if(equaln(vPodLaunched, valTrue)) {
 
     if(equaln(vTimer, 100)) {
         addn(vClockTicks, 1)
+        assignn(vTimer, 0)
     }    
 
     addn(vTimer, 1)
@@ -199,6 +204,7 @@ if(isset(fPodPoweredUp)) {
     reset(fPodPoweredUp)
     print("The pod's systems whir to life!")  
     erase(objCockpitPush)
+    assignn(vPodStart, valTrue)
 }
 
 if(said("look", "pod")) {
@@ -227,4 +233,4 @@ if(said("look", "screen")) {
 }
 
 return()
-#message 1 "ABC"
+#message 1 "In Pod"

@@ -41,10 +41,14 @@
 #define objCockpitScreen1 6
 #define objCockpitPush 7
 #define objCockpitPull 8
+#define objDecal 9
+
+
 #define objCastleFlags 9
 #define objCastleCrocs 10
 #define objCastleDoors 11
 
+#define objGlassSparkle 1
 #define objWitchDoor 1
 #define objWitchCabinet 2
 #define objCake 3
@@ -57,6 +61,8 @@
 #define objToiletWater 3
 #define objLockedDoor 4
 #define objCloset 5
+
+#define objPlate 5
 #define objHangingSuit1 6
 #define objHangingSuit2 7
 #define objBathroomDoor 8
@@ -230,6 +236,11 @@
 #define viewBurp 65
 #define viewOgre 66
 #define viewTitleFeather 68
+#define viewRogerExplode 70
+#define viewPlate 71
+#define viewDecal 72
+#define viewStar 73
+#define viewGlassSparkle 74
 
 #define viewObjPot 69
 
@@ -238,6 +249,13 @@
 #define sndTitle 0
 #define sndWatchBeep 1
 
+// death
+#define valXsGeneric 1
+#define valXsOversleep 2
+#define valXsNoSuitExplode 3
+#define valXsSpaceWalk 4
+#define valXsFuelFoot 5
+#define valXsFlushola 6
 
 // vars
 // Engine Vars
@@ -254,6 +272,7 @@
 #define vKeyPressed 19
 
 // Game can use any var 27 and up
+#define vDeathReason 29
 #define vEgoX 30
 #define vEgoY 31
 #define vInvShowItem 32
@@ -277,10 +296,15 @@
 #define vSweeping 41
 #define vSplat1Cleaned 44
 #define vSplat2Cleaned 45
+
+#define vReadCount 36
+
 #define vPodStart 46
 #define vPodLaunched 47
 #define vPodAutoNaved 48
 #define vAlJoke 35
+
+
 
 // global flags
 #define fSoundDone 83
@@ -300,7 +324,19 @@
 #define fWaitForCloseInv 80
 
 // flags
+#define fPooping 90
+
+#define fDecompressing 90
+#define fDecompressed 91
+#define fAdrift 93
+
+#define fTramInboundDone 93
+#define fTramOutboundDone 91
+#define fTramReady 92
+
+
 #define fPodPoweredUp 90
+#define fFlushing 91
 #define fPodThrottlePulled 91
 #define fPodAutoNavPressed 92
 #define fLaunchAnimationPlayed 93

@@ -11,6 +11,7 @@ if(equaln(vRoomInited, 0)) {
     load.view(viewTram)
     load.view(viewRogerSuitA)
     load.view(viewLockedDoor)
+    load.view(viewPlate)
  
     animate.obj(objEgo)
 
@@ -18,24 +19,31 @@ if(equaln(vRoomInited, 0)) {
     set.view(objTram, viewTram)
     set.view(objHangingSuit1, viewRogerSuitA)
     set.view(objHangerDoorLeft, viewLockedDoor)
+    set.view(objPlate, viewPlate)
 
     draw(objTram)
     draw(objHangingSuit1)
     draw(objHangerDoorLeft)
+    draw(objPlate)
 
     stop.cycling(objTram)
     stop.cycling(objHangingSuit1)
     stop.cycling(objHangerDoorLeft)
+    stop.cycling(objPlate)
 
     set.cel(objTram, 4)
     set.loop(objHangingSuit1, 2)
     position(objHangerDoorLeft, 5, 129)
 
     position(objHangingSuit1, 35, 95)
-    position(objTram, 0, 47)
+
+    set.priority(objPlate, 15)
+    position(objPlate, 85, 118)
 
     assignn(vTimer, 0)
     set.priority(objTram, 4)
+    position(objTram, 5, 47)
+    move.obj(objTram, 55, 47, 2, fTramInboundDone)
 
 }
 
@@ -48,26 +56,19 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(said("exit", "tram")) {   
+if(said("exit", "tram")) {  
     set.cel(objTram, 0) 
     position(objEgo, 55, 50)
     draw(objEgo)
 }
 
 if(said("enter", "tram")) {
-    print("You prod is waiting... Better get out to the hanger.")
+    print("You pod is fueled and waiting... Better get out to the hanger.")
 }
 
-if(isset(fTramRunning)) {
-    reposition(objTram, 4, 0)
-
-    if(!isset(fHasFlightPlan)) {
-        if(equaln(vTimer, 14)) {
-            reset(fTramRunning)
-            position(objTram, 55, 47)
-            set.cel(objTram, 1)
-        }    
-    }
+if(isset(fTramInboundDone)) {
+    reset(fTramInboundDone)
+    set.cel(objTram, 1)
 }
 
 if(said("wear", "suit")) {
@@ -77,12 +78,11 @@ if(said("wear", "suit")) {
     print("Ok")
 }
 
-if(obj.in.box(objEgo, 8, 123, 20, 128)) {
-    //end.of.loop(viewLockedDoor, 99)
-
+if(posn(objEgo, 8, 123, 20, 143)) {
+    end.of.loop(objHangerDoorLeft, fDoAction)
 }
 if(obj.in.box(objEgo, 21, 123, 25, 128)) {
-    set.cel(viewLockedDoor, 0)
+    set.cel(objHangerDoorLeft, 0)
     //end.of.loop(objHangerDoorLeft, 99)
 }
 

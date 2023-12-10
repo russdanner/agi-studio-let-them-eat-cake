@@ -1,7 +1,5 @@
 #include "0-defines.aqi"
 
-load.sound(1)
-
 if(equaln(vRoomInited, 0)) {
 
     // debugging scenario: Get your orders with this flag high
@@ -64,6 +62,7 @@ if(equaln(vRoomInited, 0)) {
     assignn(vTimer, 0)
     reset(fDoJoke)
     reset(fBossGiveOrders)
+    reset(fDoAction)
 }
 
 // We use the time to count cycles for some of the apps
@@ -71,7 +70,7 @@ addn(vTimer, 1)
 
 if(said("exit")) {
     assignn(vRoomInited, valFalse)
-    assignn(0, picHanger)
+    assignn(vCurrentRoom, picHanger)
 }
 if(said("stop")) {
     assignn(vRoomInited, valFalse)

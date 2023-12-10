@@ -287,7 +287,9 @@ if(equaln(vClockTicks, 40)) {
     print("If you don't get to sleep you'll be a real mess in the morning.")
 }
 if(equaln(vClockTicks, 60)) {
-    print("You fall asleep and oversleep. Thanks for playing.")
+    // DEAD: OVERSLEPT
+    assignn(vDeathReason, valXsOversleep)
+    set(fDead)
 }
 
 if(equaln(vTimer, 100)) {
