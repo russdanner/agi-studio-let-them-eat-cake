@@ -68,14 +68,11 @@ if(equaln(vRoomInited, 0)) {
 // We use the time to count cycles for some of the apps
 addn(vTimer, 1)
 
-if(said("exit")) {
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picHanger)
-}
-if(said("stop")) {
-    assignn(vRoomInited, valFalse)
-    assignn(0, picHanger)
-}
+
+// if(said("stop", "watch")) {
+//     assignn(vRoomInited, valFalse)
+//     assignn(vCurrentRoom, picHanger)
+// }
 
 
 if(said("look", "c")) {
@@ -175,6 +172,11 @@ if(isset(fDoJoke)) {
             print("I'm pining for a good tree pun. I wish they were more poplar. Find more jokes on galactiWeb at AlLowe.com")
         }        
     } 
+}
+
+if(said("done", "exit")) {
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picHanger)
 }
 
 return()

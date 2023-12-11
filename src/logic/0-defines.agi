@@ -247,6 +247,7 @@
 #define viewTrunk 75
 #define viewPerson3 76
 #define viewHBD 77
+#define viewGrahamAdvHat 78
 
 #define viewObjPot 69
 
@@ -330,7 +331,9 @@
 #define fShowInvItem 82
 #define fGlassIsSharp 81
 
-// Screen specific. Assume these can be reset by anyone
+// Screen specific. Assume these can be reset by anyone 
+#define fReadyForAdventure 93
+
 #define fDrowning 93
 #define fSwimming 94
 #define fDoAction 95

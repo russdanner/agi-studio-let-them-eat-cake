@@ -86,6 +86,7 @@ if(equaln(vRoomInited, 0)) {
 
     position(objParty3, 26, 89)
 
+    assignn(vTimer, 0)
     set.horizon(43)
 }
 
@@ -109,17 +110,18 @@ if(!equaln(vEgoDirection, directionStopped)) {
 addn(vTimer, 1)
 
 if(equaln(vTimer, 20)) {
-    print("You walk into what looks like a huge party for KING Graham. He's surrounded by fiends and love ones.")
+    print("You walk into what looks like a huge party for KING Graham. He's surrounded by friends and love ones.")
 }
 
 if(equaln(vTimer, 100)) {
+    set.cel(objParty4, 0)
     set.priority(objParty4, 15)
     stop.cycling(objParty4)
     position(objParty4, 60, 100)
 }
 
 if(equaln(vTimer, 200)) {
-    print("... THE KING you think...")
+    print("... THE KING!! Oh My ...")
 }
 
 if(equaln(vTimer, 250)) {

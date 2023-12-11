@@ -67,7 +67,7 @@ if(isset(fUndoAction)) {
     normal.motion(objEgo)
 }
 
-if(said("exit")) {
+if(said("exit", "bucket")) {
     set.view(objBucket, viewBucket)
 
     draw(objBucket)
@@ -85,7 +85,7 @@ if(said("exit")) {
     start.cycling(objEgo)
 }
 
-if(said("enter")) {
+if(said("enter", "bucket")) {
     erase(objBucket)
     set.view(objEgo, viewRogerBucket)
 
@@ -95,7 +95,7 @@ if(said("enter")) {
     stop.cycling(objEgo)        
 }
 
-if(said("climb")) {
+if(said("climb", "rope")) {
     set.view(objBucket, viewBucket)
 
     draw(objBucket)
@@ -111,7 +111,7 @@ if(said("climb")) {
     set.view(objEgo, viewRogerClimbRope)
 }
 
-if(said("swim")) {
+if(said("swim", "done")) {
     if(isset(0)) {
         if(isset(fDrowning)) {
             set.view(objEgo, viewRogerSwim)
@@ -123,7 +123,7 @@ if(said("swim")) {
     }
 }
 
-if(said("dive")) {
+if(said("dive", "done")) {
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoY, 50)
     assignn(vEgoEdgeTouched, edgeNone)
@@ -144,4 +144,5 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 }
 
 return()
+
 #message 1 "Well Bottom"

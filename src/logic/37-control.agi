@@ -135,8 +135,10 @@ if(isset(fLiftRunning)) {
 }
 
 if(isset(fTramReady)) {
-    reset(fTramReady)
-    move.obj(objTram, 160, 72, 2, fTramOutboundDone)
+    if(isset(fHasFlightPlan)) {
+        reset(fTramReady)
+        move.obj(objTram, 160, 72, 2, fTramOutboundDone)    
+    }
 }
 
 if(isset(fTramOutboundDone)) {

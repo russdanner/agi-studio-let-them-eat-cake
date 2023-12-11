@@ -40,12 +40,12 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
-if(said("close")) {
+if(said("close", "trunk")) {
     set.cel(objTrunk, 0)
 }
 
 
-if(said("open")) {
+if(said("open", "trunk")) {
     end.of.loop(objTrunk, fTrunkOpen)
 
 }

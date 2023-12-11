@@ -1,7 +1,5 @@
 #include "0-defines.aqi"
 
-load.sound(1)
-
 if(equaln(vRoomInited, 0)) {
 
     unanimate.all()
@@ -44,14 +42,54 @@ if(equaln(vRoomInited, 0)) {
     set.priority(objHawk, 10)    
     position(objHawk, 160, 70)
     move.obj(objHawk, 40, 40, 2, fDoAction)
+
+    set.horizon(46) 
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    get.posn(objEgo, vEgoX, vEgoY)
-    assignn(vEgoX, 0)
-    assignn(vEgoY, 0)
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picGrahamCastle)     
+    if(isset(fReadyForAdventure)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 0)
+        assignn(vEgoY, 0)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picGrahamCastle)         
+    }
+    if(!isset(fReadyForAdventure)) {
+        print("You feel like you are forgetting something.")    
+        if(equaln(vEgoEdgeTouched, edgeLeft)) {
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoX, 15)
+            assignn(vEgoDirection, directionRight)
+            set.dir(objEgo, vEgoDirection)
+            position.v(objEgo, vEgoX, vEgoY)
+            assignn(vEgoEdgeTouched, edgeNone)
+        }
+        if(equaln(vEgoEdgeTouched, edgeRight)) {
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoX, 150)
+            assignn(vEgoDirection, directionRight)
+            set.dir(objEgo, vEgoDirection)
+            position.v(objEgo, vEgoX, vEgoY)
+            assignn(vEgoEdgeTouched, edgeNone)
+        }    
+        if(equaln(vEgoEdgeTouched, edgeTop)) {
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoY, 50)
+            assignn(vEgoDirection, directionRight)
+            set.dir(objEgo, vEgoDirection)
+            position.v(objEgo, vEgoX, vEgoY)
+            assignn(vEgoEdgeTouched, edgeNone)
+        }    
+        if(equaln(vEgoEdgeTouched, edgeBottom)) {
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoY, 150)
+            assignn(vEgoDirection, directionRight)
+            set.dir(objEgo, vEgoDirection)
+            position.v(objEgo, vEgoX, vEgoY)
+            assignn(vEgoEdgeTouched, edgeNone)
+        }    
+
+    }
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -77,5 +115,14 @@ if(isset(fUndoAction)) {
     erase(objHawk)
 }
 
+if(said("take", "feather")) {
+    get(invFeather) 
+    erase(objFeatherFall)
+    addn(vCurPoints, 1)
+    load.view(viewGrahamAdvHat)
+    set.view(objEgo, viewGrahamAdvHat)
+    set(fReadyForAdventure)
+    print("You pick up the feather. Recalling your dream you put this feather in your cap. You feel ready for a real adventure.")
+} 
 return()
 #message 1 "Grahams Lawn"

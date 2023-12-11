@@ -50,12 +50,12 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(said("close")) {
+if(said("close", "cabinet")) {
     set.cel(objWitchCabinet, 0)
 }
 
 
-if(said("open")) {
+if(said("open", "cabinet")) {
     end.of.loop(objWitchCabinet, fCabinetOpen)
 
 }
@@ -64,6 +64,12 @@ if(said("take", "cake")) {
     get(invCake)
     print("You remove the cake from the cabinet and carry it with you.")
     erase(objCake)
+    addn(vCurPoints, 1)
+}
+
+if(said("take", "paper")) {
+    get(invPaper)
+    print("Ok")
     addn(vCurPoints, 1)
 }
 

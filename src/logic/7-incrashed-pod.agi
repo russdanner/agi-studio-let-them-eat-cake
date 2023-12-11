@@ -21,7 +21,7 @@ if(equaln(vRoomInited, 0)) {
     position(objCockpitThrottle,  106, 130)
 }
 
-if(said("exit")) {
+if(said("exit", "pod")) {
     assignn(vRoomInited, 0)
     assignn(0, 8) 
     print("You climb out of the pod and discard your pressure suit.")

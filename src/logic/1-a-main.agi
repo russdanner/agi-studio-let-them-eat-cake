@@ -17,7 +17,7 @@ if(!isset(fGameInited)) {
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(vCurrentRoom, picDavCastleThrone)
+    assignn(vCurrentRoom, picTitle)
 }
 
 if(said("inv")) {

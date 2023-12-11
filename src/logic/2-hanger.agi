@@ -3,10 +3,10 @@
 if(equaln(vRoomInited, 0)) {
 
     // debugging scenario: Get your orders with this flag high
-    assignn(vHasOrders, valTrue)
-    assignn(vSplat1Cleaned, valTrue)
-    assignn(vSplat2Cleaned, valTrue)
-    assignn(vCleanedUp, valTrue)
+    // assignn(vHasOrders, valTrue)
+    // assignn(vSplat1Cleaned, valTrue)
+    // assignn(vSplat2Cleaned, valTrue)
+    // assignn(vCleanedUp, valTrue)
 
     // we're roger now. Drop Grahams inventory
     drop(invSummons)
