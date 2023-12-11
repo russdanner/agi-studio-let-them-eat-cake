@@ -27,6 +27,8 @@ if(equaln(vRoomInited, 0)) {
     position.v(objEgo, vEgoX, vEgoY)
     position(objWitchCabinet, 32, 80)
     assignn(vEgoEdgeTouched, edgeNone)
+
+    reset(fCabinetOpen)
 }
 
 
@@ -54,9 +56,28 @@ if(said("close")) {
 
 
 if(said("open")) {
-    end.of.loop(objWitchCabinet, fDoAction)
+    end.of.loop(objWitchCabinet, fCabinetOpen)
+
 }
 
+if(said("take", "cake")) {
+    get(invCake)
+    print("You remove the cake from the cabinet and carry it with you.")
+    erase(objCake)
+    addn(vCurPoints, 1)
+}
+
+if(isset(fCabinetOpen)) {
+    if(!has(invCake)) {
+        load.view(viewCake) 
+        set.view(objCake, viewCake)
+        draw(objCake)
+        set.cel(objCake, 0)
+        position(objCake, 33, 69)
+        set.priority(objCake, 10)
+    }
+}
 
 return()
-#message 1 "ABC"
+
+#message 1 "Witch inside"

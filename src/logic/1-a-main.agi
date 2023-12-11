@@ -17,9 +17,7 @@ if(!isset(fGameInited)) {
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(vCurrentRoom, picInDaventryCrashSite)
-    //picInnerBay)
-    //picOuterBay
+    assignn(vCurrentRoom, picDavCastleThrone)
 }
 
 if(said("inv")) {
@@ -34,6 +32,48 @@ if(said("restore")) {
     restore_game()
 }
 
+if(said("cut", "feather")) {
+    if(has(invFeather)) {
+        if(has(invGlass)) {
+            if(isset(fGlassIsSharp)) {
+                drop(invFeather)
+                get(invQuill)
+                addn(vCurPoints, 1)    
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking ourside the box - A real FEATHER IN ANY ADVENTURE'S CAP.")
+            }
+            if(!isset(fGlassIsSharp)) {
+                print("The highly reflective saftey glass couldn't cut through hot Monolith butter. It's no use trying.")
+            }
+        }
+    }
+}
+if(said("make", "quill")) {
+    if(has(invFeather)) {
+        if(has(invGlass)) {
+            if(isset(fGlassIsSharp)) {
+                drop(invFeather)
+                get(invQuill)
+                addn(vCurPoints, 1)    
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking ourside the box - A real FEATHER IN ANY ADVENTURE'S CAP.")
+            }
+            if(!isset(fGlassIsSharp)) {
+                print("The highly reflective saftey glass couldn't cut through hot Monolith butter. It's no use trying.")
+            }
+        }
+    }
+}
+if(said("make", "invitation")) {
+    if(has(invQuill)) {
+        if(has(invInk)) {
+            if(has(invPaper)) {
+                drop(invPaper)
+                get(invInvitation)
+                addn(vCurPoints, 1)
+                print("Dipping the quill into the ink you cleverly pen an invitation to the castle.")     
+            }
+        }
+    }
+}
 
 if(!equaln(0, 0)) {
     call.v(0)
@@ -93,7 +133,17 @@ if(isset(fDead)) {
     if(equaln(vDeathReason, valXsFlushola)) {
         print("Unbelievable! The toilet begins to overflow. Where's a janitor when you need one?! As the room fills with 'WATER' you frantically search for a plunger but find only that you are trapped. How embarrasing. Thank you for playing!")
     }
+    if(equaln(vDeathReason, valXsFastWater)) {
+        print("Oh no! The water here is too fast to swim. You are overcome by the current and rapids and flushed down river. An end fit for a janitor. Thank you for playing!")
+    }
+    if(equaln(vDeathReason, valXsOgreMunch)) {
+        print("What the ORAT was that? You've just become a snack for a local species of ogre with a serious case of the munchies. He dusts you like bunt cake. Thank you for playing!")
+    }
+    if(equaln(vDeathReason, valXsDrown)) {
+        print("You eventually become tired from struggling. Completely exhausted you slip below the water's surgace and drown. Thank you for playing!")
+    }
 
+    
 }
 
 

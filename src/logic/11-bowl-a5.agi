@@ -1,21 +1,36 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
+
+    // testing
+    // get(invCake)
+    // get(invInk)
+    // get(invGlass)
+    // get(invPaper)
+    // get(invQuill)
+    // get(invFeather)
 
     load.view(viewRoger)
     load.view(viewRogerSplash)
     load.view(viewRogerSwim)    
     load.view(viewMist)
+    load.view(viewHawk)
+    load.view(viewFeatherFall)
 
     animate.obj(objEgo)
+    animate.obj(objHawk)
+    animate.obj(objFeatherFall)
 
     set.view(objEgo, viewRoger)
     set.view(objMist, viewMist)
     set.view(objMist2, viewMist)
     set.view(objMist3, viewMist)
     set.view(objMist4, viewMist)
+    set.view(objHawk, viewHawk)
+    set.view(objFeatherFall, viewFeatherFall)
+
 
     stop.cycling(objMist)
     stop.cycling(objMist2)
@@ -27,6 +42,8 @@ if(equaln(vRoomInited, 0)) {
     draw(objMist2)
     draw(objMist3)
     draw(objMist4)
+    draw(objHawk)
+    draw(objFeatherFall)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
@@ -43,6 +60,53 @@ if(equaln(vRoomInited, 0)) {
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(50)
+
+    if(!has(invFeather)) {
+        if(!has(invQuill)) {
+            if(has(invCake)) {
+                if(has(invInk)) {
+                    set.priority(objHawk, 10)    
+                    position(objHawk, 160, 70)
+                    move.obj(objHawk, 40, 40, 2, fHawkFlightADone)                
+                }
+            }
+        }
+    }
+}
+
+
+if(isset(fHawkFlightADone)) {
+    reset(fHawkFlightADone)
+    position(objFeatherFall, 40, 40)
+    move.obj(objHawk, 0, 40, 1, fHawkFlightBDone)
+    move.obj(objFeatherFall, 40, 105, 1, fFeatherFakllDone)
+}
+
+if(isset(fFeatherFakllDone)) {
+    reset(fFeatherFakllDone)
+    stop.cycling(objFeatherFall)
+}
+
+if(isset(fHawkFlightBDone)) {
+    erase(objHawk)
+}
+
+if(said("take", "feather")) {
+    if(!has(invFeather)) {
+        if(!has(invQuill)) {
+            get(invFeather)
+            print("You reach down and pick up the fallen feather.")
+            addn(vCurPoints, 1)    
+            erase(objFeatherFall)       
+        }
+    }
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
@@ -84,4 +148,4 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 }
 
 return()
-#message 1 "R11"
+#message 1 "Bowl"

@@ -12,13 +12,7 @@ if(equaln(vRoomInited, 0)) {
     load.view(viewAlexander)
     load.view(viewValanice)
     load.view(viewCrowd)
-
-
-    //load.view(objParty1)
-    //load.view(objParty2)
-    //load.view(objParty3)
-    //load.view(objParty4)
-
+    load.view(viewHBD)
     
     animate.obj(objEgo)
 
@@ -30,10 +24,11 @@ if(equaln(vRoomInited, 0)) {
     set.view(objAlexander, viewAlexander)
     set.view(objValanice, viewValanice)
     set.view(objCrowd, viewCrowd)
-    //set.view(objParty1)
-    //set.view(objParty2)
-    //set.view(objParty3)
-    //set.view(objParty4)
+
+    set.view(objParty1, viewHBD)
+    set.view(objParty2, viewHBD)
+    set.view(objParty3, viewHBD)
+    set.view(objParty4, viewHBD)
 
     draw(objEgo)
     draw(objPersonA)
@@ -43,6 +38,11 @@ if(equaln(vRoomInited, 0)) {
     draw(objAlexander)
     draw(objValanice)
     draw(objCrowd)
+
+    draw(objParty1)
+    draw(objParty2)
+    draw(objParty3)
+    draw(objParty4)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
@@ -71,6 +71,21 @@ if(equaln(vRoomInited, 0)) {
     set.priority(objCrowd, 4)
 
     position.v(objEgo, vEgoX, vEgoY)
+
+    stop.cycling(objParty1)
+    stop.cycling(objParty2)
+    stop.cycling(objParty3)
+
+    set.cel(objParty1, 1)
+    set.cel(objParty2, 1)
+    set.cel(objParty3, 1)
+
+    position(objParty1, 33, 83)
+
+    position(objParty2, 140, 92)
+
+    position(objParty3, 26, 89)
+
     set.horizon(43)
 }
 
@@ -91,7 +106,23 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(said("happy", "birthday")) {
+addn(vTimer, 1)
+
+if(equaln(vTimer, 20)) {
+    print("You walk into what looks like a huge party for KING Graham. He's surrounded by fiends and love ones.")
+}
+
+if(equaln(vTimer, 100)) {
+    set.priority(objParty4, 15)
+    stop.cycling(objParty4)
+    position(objParty4, 60, 100)
+}
+
+if(equaln(vTimer, 200)) {
+    print("... THE KING you think...")
+}
+
+if(equaln(vTimer, 250)) {
     set(fIsMorning)
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 15)

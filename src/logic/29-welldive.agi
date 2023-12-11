@@ -5,12 +5,16 @@ if(equaln(vRoomInited, 0)) {
     assignn(vRoomInited, 1)
 
     load.view(viewRogerDive)
-    
+    load.view(viewTrunk)
+
     animate.obj(objEgo)
 
     set.view(objEgo, viewRogerDive)
+    set.view(objTrunk, viewTrunk)
+    stop.cycling(objTrunk)
 
     draw(objEgo)
+    draw(objTrunk)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
@@ -18,6 +22,8 @@ if(equaln(vRoomInited, 0)) {
             assignn(vEgoY, 110)
         }
     }
+
+    position(objTrunk, 105, 130)
 
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
@@ -31,6 +37,24 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavWellBottom)     
         assignn(vEgoEdgeTouched, edgeNone)
+    }
+}
+
+if(said("close")) {
+    set.cel(objTrunk, 0)
+}
+
+
+if(said("open")) {
+    end.of.loop(objTrunk, fTrunkOpen)
+
+}
+
+if(said("take", "ink")) {
+    if(!has(invInk)) {
+        get(invInk)
+        print("You remove the bottle of ink from inside the trunk and carry it with you.")
+        addn(vCurPoints, 1)    
     }
 }
 

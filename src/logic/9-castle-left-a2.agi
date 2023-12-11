@@ -1,10 +1,12 @@
 #include "0-defines.aqi"
 
-//load.sound(1)
-
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
+
+    // testing
+    // get(invInvitation)
+    // get(invCake)
 
     load.view(viewRoger)
     load.view(viewRogerSplash)
@@ -137,7 +139,17 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
  
 if(said("open", "door")) {
-    end.of.loop(objCastleDoors, fDoAction)
+    if(has(invInvitation)) {
+        if(has(invCake)) {
+            end.of.loop(objCastleDoors, fDoAction)
+        }
+        if(!has(invCake)) {
+            print("The doors are locked. On the door is a notice.")
+        }
+    }
+    if(!has(invInvitation)) {
+        print("The doors are locked. On the door is a notice.")
+    }
 }
 
 if(isset(fDoAction)) {

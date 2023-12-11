@@ -1,8 +1,13 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
+
+    // testing
+    // get(invGlass)
+    // get(invFeather)
+
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewRoger)
     load.view(viewRogerSwim)
@@ -85,5 +90,17 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("sharpen", "glass")) {
+    set(fGlassIsSharp)
+    print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock")
+    addn(vCurPoints, 1)    
+}
+
+
+if(said("look", "rock")) {
+    print("There's a rock here that looks very sharp and abrasive.")
+}
+
+
 return()
-#message 1 "R11"
+#message 1 "Walnuts"

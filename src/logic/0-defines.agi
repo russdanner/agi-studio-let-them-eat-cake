@@ -56,6 +56,8 @@
 #define objRope 5
 #define objRope2 6
 
+#define objTrunk 4
+
 #define objBathroomDoor 1
 #define objToiletOverflow 2
 #define objToiletWater 3
@@ -158,7 +160,7 @@
 #define invGlass 6
 #define invCake 7
 #define invInk 8
-#define invQuil 9 
+#define invQuill 9 
 #define invFeather 10
 #define invPaper 11
 #define invInvitation 12
@@ -235,12 +237,16 @@
 #define viewRogerEaten 64
 #define viewBurp 65
 #define viewOgre 66
+#define viewOgreMunch 67
 #define viewTitleFeather 68
 #define viewRogerExplode 70
 #define viewPlate 71
 #define viewDecal 72
 #define viewStar 73
 #define viewGlassSparkle 74
+#define viewTrunk 75
+#define viewPerson3 76
+#define viewHBD 77
 
 #define viewObjPot 69
 
@@ -256,6 +262,9 @@
 #define valXsSpaceWalk 4
 #define valXsFuelFoot 5
 #define valXsFlushola 6
+#define valXsFastWater 7
+#define valXsOgreMunch 8
+#define valXsDrown 9 
 
 // vars
 // Engine Vars
@@ -272,6 +281,7 @@
 #define vKeyPressed 19
 
 // Game can use any var 27 and up
+// Game control vars - do not use for other purposes
 #define vDeathReason 29
 #define vEgoX 30
 #define vEgoY 31
@@ -304,9 +314,10 @@
 #define vPodAutoNaved 48
 #define vAlJoke 35
 
-
+// flags
 
 // global flags
+// Do not use for screen specific things
 #define fSoundDone 83
 #define fGameInited 84
 #define fHasSummons 85
@@ -314,17 +325,28 @@
 #define fHasHat 87
 #define fWearingHat 88
 #define fIsMorning 89
+#define fProgramControl 84
+#define fWaitForCloseInv 80
+#define fShowInvItem 82
+#define fGlassIsSharp 81
 
+// Screen specific. Assume these can be reset by anyone
 #define fDrowning 93
 #define fSwimming 94
 #define fDoAction 95
 #define fUndoAction 96
-#define fProgramControl 84
-#define fShowInvItem 82
-#define fWaitForCloseInv 80
+#define fGotcha 90
 
-// flags
+#define fCabinetOpen 95
+
+#define fTrunkOpen 95
+
+#define fHawkFlightADone 95
+#define fHawkFlightBDone 96
+#define fFeatherFakllDone 97
+
 #define fPooping 90
+#define fFlushing 91
 
 #define fDecompressing 90
 #define fDecompressed 91
@@ -333,24 +355,23 @@
 #define fTramInboundDone 93
 #define fTramOutboundDone 91
 #define fTramReady 92
-
-
-#define fPodPoweredUp 90
-#define fFlushing 91
-#define fPodThrottlePulled 91
-#define fPodAutoNavPressed 92
-#define fLaunchAnimationPlayed 93
-#define fInBucket 90
-#define fDoJoke 91
-#define fWatchHasBeeped 92
-#define fBossGiveOrders 95
-#define fWearingSuit 96
 #define fTramRunning 97
 #define fLiftRunning 98
 #define fLiftGoingDown 99
 #define fOnLift 100
 #define fHasFlightPlan 101
-#define fGotcha 90
+
+#define fPodPoweredUp 90
+#define fPodThrottlePulled 91
+#define fPodAutoNavPressed 92
+#define fLaunchAnimationPlayed 93
+#define fInBucket 90
+
+#define fDoJoke 91
+#define fWatchHasBeeped 92
+#define fBossGiveOrders 95
+#define fWearingSuit 96
+
 #define fBucketDown 91
 
 // consts  

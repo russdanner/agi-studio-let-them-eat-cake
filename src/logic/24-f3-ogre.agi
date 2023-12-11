@@ -1,8 +1,8 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewRoger)
 
@@ -23,20 +23,32 @@ if(equaln(vRoomInited, 0)) {
     assignn(vEgoEdgeTouched, edgeNone)
     set.horizon(55)
 
-    random(vDiceRoll, 1, 100)
+    // add wider range to reduce instances of encounter
+    random(1, 100, vDiceRoll) 
+
     if(lessn(vDiceRoll, vEnemyChance)) {
-        load.view(viewOgre)
-        set.view(objMonster, viewOgre)
-        draw(objMonster)
-        position(objMonster, 80, 80)        
-        follow.ego(objMonster, 2, fGotcha)
+        if(!isset(fGotcha)) {
+            load.view(viewOgre)
+            set.view(objMonster, viewOgre)
+            draw(objMonster)
+            position(objMonster, 80, 80)        
+            follow.ego(objMonster, 2, fGotcha)    
+        }
     }
 }
 
 if(isset(fGotcha)) {
+    reset(fGotcha)
     if(!isset(fDead)) { 
-        set(fDead) 
-//        erase(objEgo)
+        erase(objEgo)
+        load.view(viewOgreMunch)
+        set.view(objMonster, viewOgreMunch)
+        normal.motion(objMonster)
+        assignn(vDeathReason, valXsOgreMunch)
+        stop.cycling(objMonster)
+        set.cel(objMonster, 0)
+        stop.motion(objMonster)
+        end.of.loop(objMonster, fDead)    
     }
 }
 
@@ -61,7 +73,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 
     if(equaln(vEgoEdgeTouched, edgeRight)) {
         get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoX, 15)
+        assignn(vEgoX, 1)
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCrashSiteA3)     
@@ -85,4 +97,5 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 return()
+
 #message 1 "Ogre"

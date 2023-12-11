@@ -1,7 +1,5 @@
 #include "0-defines.aqi"
 
-load.sound(1)
-
 if(equaln(vRoomInited, 0)) {
     unanimate.all()
     assignn(vRoomInited, 1)
@@ -25,7 +23,16 @@ if(equaln(vRoomInited, 0)) {
     set.cel(objCrashingPod, 7)
 
     position(objCrashingPod, 20, 140)
-    position(objEgo, 15, 140)
+    set.priority(objCrashingPod, 6)
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 13)
+            assignn(vEgoY, 140)
+        }
+    }
+
+    position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
 
     load.view(viewGlassSparkle)
@@ -35,8 +42,18 @@ if(equaln(vRoomInited, 0)) {
     draw(objGlassSparkle)
  }
 
- if(!has(invGlass)) {
-    position(objGlassSparkle, 52, 147)
+if(!has(invGlass)) {
+    random(1, 100, vDiceRoll)
+
+    if(equaln(vDiceRoll, 40)) {
+        position(objGlassSparkle, 32, 147)
+        draw(objGlassSparkle)
+
+    }
+    if(!equaln(vDiceRoll, 40)) {
+        erase(objGlassSparkle)
+    }
+
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
@@ -64,6 +81,9 @@ if(isset(0)) {
             set(fDrowning)
             assignn(vEgoDirection, directionStopped)
             program.control()
+            assignn(vDeathReason, valXsFastWater)
+            set(fDead)
+        
         }
     }    
 }
@@ -77,13 +97,7 @@ if(!isset(0)) {
 
 if(said("swim")) {
     if(isset(0)) {
-        if(isset(fDrowning)) {
-            set.view(objEgo, viewRogerSwim)
-            reset(fDrowning)
-            set(fSwimming)
-            player.control()
-            print("ok")
-       } 
+        print("The water is too fast here.")
     }
 }
 
@@ -97,6 +111,15 @@ if(equaln(vEgoDirection, directionStopped)) {
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
+
+
+if(said("take", "glass")) {
+    if(!has(invGlass)) {
+        get(invGlass)
+        addn(vCurPoints, 1)    
+        print("A small piece of highly relfective safety glass has broken away from the sheild as it is known to do. You pick it up and carry it with you.")
+    }
+}
     
 return()
-#message 1 "ABC"
+#message 1 "Crash site"
