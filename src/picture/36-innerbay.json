@@ -151,21 +151,6 @@
     { "command": "DrawPen", "args": [52, 137] },
 
     { "command": "PicSetColor", "args": [9] },
-    {
-      "command": "DrawAbs",
-      "args": [
-        73, 109, 73, 120, 72, 120, 72, 116, 74, 120, 74, 109, 75, 109, 75, 119,
-        75, 120, 76, 120, 76, 109, 77, 109, 77, 120, 78, 120, 78, 109, 79, 109,
-        79, 120, 80, 120, 80, 109, 81, 109, 80, 120, 82, 120, 82, 109, 83, 109,
-        83, 120, 84, 120, 84, 116, 81, 115, 81, 120
-      ]
-    },
-
-    { "command": "PriSetcolor", "args": [11] },
-    { "command": "DrawRel", "args": [70, 115, 14] },
-    { "command": "DrawRel", "args": [86, 115, 14] },
-
-    { "command": "PicSetColor", "args": [9] },
     { "command": "DrawAbs", "args": [71, 122, 85, 122] },
     { "command": "DrawAbs", "args": [71, 124, 85, 124] },
     { "command": "PicDisable", "args": [] },
@@ -214,7 +199,6 @@
     { "command": "DrawFill", "args": [110, 49] },
 
     { "command": "PriSetcolor", "args": [1] },
-    { "command": "DrawAbs", "args": [70, 121, 86, 121] },
     { "command": "PicSetColor", "args": [0] },
     { "command": "PriDisable", "args": [] },
     { "command": "DrawAbs", "args": [120, 54, 126, 107, 125, 107, 119, 54] },

@@ -4,7 +4,7 @@ if(equaln(vRoomInited, valFalse)) {
     
     // testing
     //set(fIsMorning)
-
+    
     unanimate.all()
 
     load.view(viewGrahamNoHat)
@@ -144,7 +144,7 @@ if(said("go", "sleep")) {
 
 if(said("wear", "hat")) {
     if(has(invHat)) {
-        assignn()
+        set(fWearingHat)
         set.view(objEgo, viewGrahamHatNoFeather)
         print("You put on your trusty hat!")
     }
@@ -156,6 +156,7 @@ if(said("wear", "hat")) {
 if(said("take", "summons")) {
     if(posn(objEgo, 80, 100, 100, 130)) {
         print("You take the summons.")
+        set(fHasSummons)
         get(invSummons)
         erase(objSummons)
     }
@@ -179,6 +180,7 @@ if(said("take", "teapot")) {
 if(said("take", "hat")) {
     if(posn(objEgo, 117, 131, 129, 150)) {
         print("You pocket your hat.")
+        set(fHasHat)
         erase(objHat)
         get(invHat)
         addn(vCurrentScore, 1)
@@ -284,7 +286,6 @@ if(equaln(vSleeping, valTrue)) {
     }
 }
 
-
 if(equaln(vClockTicks, 20)) {
     print("It sure is getting late")
 }
@@ -301,6 +302,7 @@ if(equaln(vTimer, 100)) {
     assignn(vTimer, 0)
     addn(vClockTicks, 1) 
 }
+
 addn(vTimer, 1) 
 
 if(said("look", "room")) {

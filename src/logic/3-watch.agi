@@ -1,12 +1,12 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
 
     // debugging scenario: Get your orders with this flag high
     // set(fWatchHasBeeped)
 
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
     load.view(viewWatchBoss)
     load.view(viewWatchLights)
 
@@ -69,12 +69,6 @@ if(equaln(vRoomInited, 0)) {
 addn(vTimer, 1)
 
 
-// if(said("stop", "watch")) {
-//     assignn(vRoomInited, valFalse)
-//     assignn(vCurrentRoom, picHanger)
-// }
-
-
 if(said("look", "c")) {
     print("This is the very handy StarCon Communications app. You can use it to talk with the crew or theoretically your friends if you had any.")
 }
@@ -84,12 +78,13 @@ if(said("press", "c")) {
         if(equaln(vHasOrders, valFalse)) {
             stop.cycling(objWatchPower)
             set.cel(objWatchPower, 1)
-
+        
             position(objWatchBoss, 57, 83)
             set.cel(objWatchAButton, 1)
             set.cel(objWatchTButton, 1)
          
             set.cel(objWatchCButton, 0)            
+            set.loop(objWatchBoss, 0)            
 
             assignn(vHasOrders, valTrue)
             position(objWatchBoss, 57, 83)
@@ -180,4 +175,5 @@ if(said("done", "exit")) {
 }
 
 return()
+
 #message 1 "Watch"

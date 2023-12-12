@@ -55,14 +55,24 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("enter", "pod")) {
-    if(posn(objEgo, 53, 93, 60, 109)) {
+    if(posn(objEgo, 49, 93, 60, 109)) {
         print("You climb into the pod.")
+        addn(vCurrentScore, 1)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picInPod)    
     }
-    if(!posn(objEgo, 53, 93, 60, 109)) {
+    if(!posn(objEgo, 49, 93, 60, 109)) {
         print("You are too far away")
     }
+}
+
+if(obj.in.box(objEgo, 151, 140, 155, 150)) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 10)
+    assignn(vEgoY, 126)
+    assignn(vRoomInited, valFalse)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vCurrentRoom, picOuterBay)         
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {

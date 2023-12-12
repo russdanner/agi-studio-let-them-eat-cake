@@ -1,6 +1,6 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
 
     // debugging scenario: Get your orders with this flag high
     // assignn(vHasOrders, valTrue)
@@ -20,8 +20,10 @@ if(equaln(vRoomInited, 0)) {
 
     unanimate.all()
     assignn(vRoomInited, valTrue)
+
     load.sound(sndWatchBeep)
 
+    load.view(viewRoger)
     load.view(viewRogerSuitBroom)
     load.view(viewRogerSuitA)
     load.view(viewHangerSplat)
@@ -51,14 +53,19 @@ if(equaln(vRoomInited, 0)) {
         position(objHangerSplat1, 100, 150)
         position(objHangerSplat2, 40, 90)  
         
-        print("What is this? Your dreams get more and more wild. You find yourself in a castle fortress unlike anything you have ever seen. Your suit of armor seems to be made of some kind of magical cloth. The stars are so close and bright that you could almost reach out and touch them. HOW STRANGE?!? And.. you're a janitor... Seriously?! Wow! That Daventry clover tea really packs a punch.")
+        print("What is going on here?! Your dreams get more and more wild. You find yourself in a castle fortress unlike anything you have ever seen. Your suit of armor seems to be made of some kind of magical cloth. The stars are so close and bright that you could almost reach out and touch them. HOW STRANGE?!? And.. you're a janitor... Seriously?! Wow! That Daventry clover tea really packs a punch.")
     }
 
-    if(equaln(vSweeping, valTrue)) {
-        set.view(objEgo, viewRogerSuitBroom)
+    if(isset(fWearingSuit)) {
+        if(equaln(vSweeping, valTrue)) {
+            set.view(objEgo, viewRogerSuitBroom)
+        }
+        if(equaln(vSweeping, valFalse)) {
+            set.view(objEgo, viewRogerSuitA)
+        }    
     }
-    if(equaln(vSweeping, valFalse)) {
-        set.view(objEgo, viewRogerSuitA)
+    if(!isset(fWearingSuit)) {
+        set.view(objEgo, viewRoger)
     }
 
     start.cycling(objEgo)
@@ -80,9 +87,11 @@ if(equaln(vRoomInited, 0)) {
     position.v(objEgo, vEgoX, vEgoY)
 
     assignn(vTimer, 0)
+
     set.horizon(73) 
 
     reset(fAdrift)
+    reset(fDecompressed)
 }
 
 if(!equaln(vSweeping, valTrue)){
@@ -212,7 +221,6 @@ if(isset(fAdrift)) {
 
 if(!isset(fWearingSuit)) {
     // DEAD: DECOMP
-    reset(fWearingSuit)
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 100)
     move.obj.v(objEgo, vEgoX, vEgoY, 1, fDecompressing)

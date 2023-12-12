@@ -1,11 +1,9 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
-
-    set(fTramRunning)
+if(equaln(vRoomInited, valFalse)) {
 
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewRoger)
     load.view(viewTram)
@@ -31,23 +29,33 @@ if(equaln(vRoomInited, 0)) {
     stop.cycling(objHangerDoorLeft)
     stop.cycling(objPlate)
 
-    set.cel(objTram, 4)
-    set.loop(objHangingSuit1, 2)
+    if(equaln(vEgoX, 10)) {
+        if(equaln(vEgoY, 126)) {
+            // returned or debug teleport
+            set.view(objEgo, viewRogerSuitA)
+            draw(objEgo)
+            position(objTram, 55, 47)
+            set.priority(objTram, 4)
+            position.v(objEgo, vEgoX, vEgoY)
+        }
+    }
+    if(!equaln(vEgoY, 126)) {
+        // sent into the room via tram 
+        set.cel(objTram, 4)
+        set.loop(objHangingSuit1, 2)
+        position(objHangingSuit1, 35, 95)
+
+        set(fTramRunning)
+        set.priority(objTram, 4)
+        position(objTram, 5, 47)
+        move.obj(objTram, 55, 47, 2, fTramInboundDone)        
+    }
+
     position(objHangerDoorLeft, 5, 129)
-
-    position(objHangingSuit1, 35, 95)
-
     set.priority(objPlate, 15)
     position(objPlate, 85, 118)
-
     assignn(vTimer, 0)
-    set.priority(objTram, 4)
-    position(objTram, 5, 47)
-    move.obj(objTram, 55, 47, 2, fTramInboundDone)
-
 }
-
-addn(vTimer, 1)
 
 if(equaln(vEgoDirection, directionStopped)) {
     stop.cycling(objEgo)
@@ -75,6 +83,7 @@ if(said("wear", "suit")) {
     set.view(objEgo, viewRogerSuitA)
     erase(objHangingSuit1)
     set(fWearingSuit)
+    addn(vCurrentScore, 1)
     print("Ok")
 }
 

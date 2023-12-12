@@ -1,11 +1,8 @@
 #include "0-defines.aqi"
 
 if(equaln(vRoomInited, valFalse)) {
-
-    unanimate.all()
     assignn(vRoomInited, valTrue)
-    reset(fFlushing)
-    assignn(vReadCount, 0)
+    unanimate.all()
 
     load.view(viewRoger)
     load.view(viewLockedDoor)
@@ -33,8 +30,12 @@ if(equaln(vRoomInited, valFalse)) {
     set.priority(objLockedDoor, 4)
 
     position.v(objEgo, vEgoX, vEgoY)
-}
 
+    reset(fPooping)
+    reset(fStillPooping)
+    reset(fFlushing)
+    assignn(vReadCount, 0)
+}
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeRight)) {
@@ -48,15 +49,15 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 
 if(said("go", "poop")) {
     set(fPooping)
+    assignn(vTimer, 0)
     load.view(viewRogerPotty)
     set.view(objEgo, viewRogerPotty)
-    position(objEgo, 73, 126)
     set.cel(objEgo, 0)
+    position(objEgo, 73, 126)
     start.cycling()
     assignn(vGameCycleDelay, 6)
-    end.of.loop(objEgo, fDoAction) 
+    end.of.loop(objEgo, fStillPooping) 
 }
-
 
 if(said("read", "graffiti")) {
     addn(vReadCount, 1)
@@ -67,47 +68,52 @@ if(said("read", "graffiti")) {
         print("Al-be back.")
     }
     if(equaln(vReadCount, 3)) {
+        addn(vCurrentScore, 1)
         print("Look at you siting here reflecting.. Don't hurt yourself. You're about as sharp as a rock.")
     }
     if(equaln(vReadCount, 4)) {
         print("Pull on paper for StarCon career application")
     }
     if(equaln(vReadCount, 5)) {
-        print("NSP yo!")
+        print("N.S.P. yo!")
     }
     if(equaln(vReadCount, 6)) {
         print("Ken sent me")
     }
     if(equaln(vReadCount, 7)) {
-        print("You're in Smell Room. There is an enormous 'oyster' here. Your nose should be tightly closed.")
+        print("You're in the Smell Room. There is an enormous 'oyster' here. Your nose should be tightly closed.")
         assignn(vReadCount, 1)
     }
 }
-
 
 if(isset(fPooping)) {
     addn(vTimer, 1)
     if(equaln(vTimer, 10)) {
         set.loop(objEgo, 1) 
         set.cel(objEgo, 0)
-        end.of.loop(objEgo, fDoAction) 
+        end.of.loop(objEgo, fStillPooping) 
     }
     if(equaln(vTimer, 20)) {
         set.loop(objEgo, 0) 
         set.cel(objEgo, 0)
-        end.of.loop(objEgo, fDoAction) 
+        end.of.loop(objEgo, fStillPooping) 
     }
     if(equaln(vTimer, 50)) {
         set.loop(objEgo, 1) 
         set.cel(objEgo, 0)
-        end.of.loop(objEgo, fDoAction) 
+        end.of.loop(objEgo, fStillPooping) 
     }
     if(equaln(vTimer, 90)) {
-        print("Whew! You feel relieved. It turns out you are as good at making clogs as you are at clearing them.")
-        set.view(objEgo, viewRoger)
         position(objEgo, 73, 126)
-        reset(fPooping)
         assignn(vGameCycleDelay, 2)
+        player.control()
+        set.view(objEgo, viewRoger)
+        set.loop(objEgo, 0) 
+        set.cel(objEgo, 0) 
+        reset(fPooping)
+        reset(fStillPooping)
+
+        print("Whew! You feel relieved. It turns out you are as good at making clogs as you are at clearing them.")
     }
 }
 
@@ -173,13 +179,7 @@ if(isset(fDead)) {
     add.to.pic(viewWaterfill, 0, 0, 47, 110, 6, 14)
 }
 
-
-
-
-
-
 if(obj.in.box(objEgo, 68, 149, 84, 151)) {
-    reset(fDoAction)
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 73)
     assignn(vEgoY, 100)
@@ -188,14 +188,13 @@ if(obj.in.box(objEgo, 68, 149, 84, 151)) {
     assignn(vCurrentRoom, picInnerBay)     
 }
 
-if(!isset(fPooping)){
-    if(equaln(vEgoDirection, directionStopped)) {
-        stop.cycling(objEgo)
-    }
-    if(!equaln(vEgoDirection, directionStopped)) {
-        start.cycling(objEgo)
-    }    
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
 }
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}    
 
 return()
+
 #message 1 "Bathroom"

@@ -319,6 +319,15 @@
 
 // global flags
 // Do not use for screen specific things
+// These should be 89 and lower
+// Note that we use flags in this game fore a few items in addition to inventory
+// because we change the character and have to clear / build the invetory when the 
+// character changes.
+
+#define fProgramControl 79
+#define fWaitForCloseInv 80
+#define fGlassIsSharp 81
+#define fShowInvItem 82
 #define fSoundDone 83
 #define fGameInited 84
 #define fHasSummons 85
@@ -326,14 +335,10 @@
 #define fHasHat 87
 #define fWearingHat 88
 #define fIsMorning 89
-#define fProgramControl 84
-#define fWaitForCloseInv 80
-#define fShowInvItem 82
-#define fGlassIsSharp 81
 
 // Screen specific. Assume these can be reset by anyone 
+// These should be 90 and up
 #define fReadyForAdventure 93
-
 #define fDrowning 93
 #define fSwimming 94
 #define fDoAction 95
@@ -344,11 +349,14 @@
 
 #define fTrunkOpen 95
 
+
 #define fHawkFlightADone 95
 #define fHawkFlightBDone 96
 #define fFeatherFakllDone 97
 
 #define fPooping 90
+#define fStillPooping 95
+
 #define fFlushing 91
 
 #define fDecompressing 90

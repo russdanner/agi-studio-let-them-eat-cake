@@ -1,6 +1,6 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
 
     // debugging scenario: Get your orders with this flag high
     // assignn(vEgoX, 55)
@@ -8,6 +8,7 @@ if(equaln(vRoomInited, 0)) {
     
     unanimate.all()
     assignn(vRoomInited, valTrue)
+
     load.view(viewRoger)
     load.view(viewRogerSuitA)
     load.view(viewCloset)
@@ -17,8 +18,8 @@ if(equaln(vRoomInited, 0)) {
 
     animate.obj(objEgo)
 
-    set.view(objCloset, viewCloset)
     set.view(objTram, viewTram)
+    set.view(objCloset, viewCloset)
     set.view(objHangingSuit1, viewRogerSuitA)
     set.view(objHangingSuit2, viewRogerSuitA)
     set.view(objBathroomDoor, viewBathroomDoor)
@@ -30,7 +31,11 @@ if(equaln(vRoomInited, 0)) {
             assignn(vEgoX, 10)
             assignn(vEgoY, 126)
             set(fWearingSuit)
-            // get(invBroom)
+
+            if(!has(invBroom)) {
+                // debug teleport case
+                get(invBroom)
+            }
         }
     }
 
@@ -39,6 +44,8 @@ if(equaln(vRoomInited, 0)) {
     }
     if(!isset(fWearingSuit)) {
         set.view(objEgo, viewRoger)
+        draw(objHangingSuit2)
+        position(objHangingSuit2, 43, 95)    
     }
 
     draw(objEgo)
@@ -67,14 +74,13 @@ if(equaln(vRoomInited, 0)) {
     position(objBathroomDoor1, 67, 98)
     position(objHangingSuit1, 35, 95)
     position(objHangerDoorLeft, 6, 131)
-
-    
+   
     set.priority(objEgo, 13)
-    reset(fDoAction)
 
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
-    reset(fWearingSuit)
+
+    reset(fDoAction)
 }
 
 addn(vTimer, 1)
@@ -102,7 +108,6 @@ if(obj.in.box(objEgo, 2, 123, 5, 128)) {
     assignn(vEgoEdgeTouched, edgeNone)
     assignn(vCurrentRoom, picHanger)     
 }
-
 
 if(said("push", "button")) {
     if(isset(fWearingSuit)) {
@@ -169,13 +174,15 @@ if(said("undress")) {
 
 if(said("drop", "broom")) {
     drop(invBroom)
+    addn(vCurrentScore, 1)
     print("Ok")
 }
 if(said("take", "broom")) {
     get(invBroom)
+    subn(vCurrentScore, 1)
     print("Ok")
 }
 
-
 return()
+
 #message 1 "Inner Bay"
