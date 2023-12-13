@@ -1,9 +1,9 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
 
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewRogerBucket)
     load.view(viewRogerSplash)
@@ -83,6 +83,7 @@ if(said("exit", "bucket")) {
     set(fDrowning)
     set.view(objEgo, viewRogerSplash)
     start.cycling(objEgo)
+    addn(vCurPoints, 1)
 }
 
 if(said("enter", "bucket")) {
@@ -109,6 +110,8 @@ if(said("climb", "rope")) {
     position(objEgo, 80, 123)
 
     set.view(objEgo, viewRogerClimbRope)
+    addn(vCurPoints, 1)
+
 }
 
 if(said("swim", "done")) {
@@ -117,6 +120,7 @@ if(said("swim", "done")) {
             set.view(objEgo, viewRogerSwim)
             reset(fDrowning)
             set(fSwimming)
+            addn(vCurPoints, 1)
             player.control()
             print("ok")
        } 
@@ -124,6 +128,7 @@ if(said("swim", "done")) {
 }
 
 if(said("dive", "done")) {
+    addn(vCurPoints, 1)
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoY, 50)
     assignn(vEgoEdgeTouched, edgeNone)

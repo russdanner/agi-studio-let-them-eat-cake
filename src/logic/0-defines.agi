@@ -55,6 +55,7 @@
 #define objBucket 4
 #define objRope 5
 #define objRope2 6
+#define objPaper 7
 
 #define objTrunk 4
 
@@ -248,6 +249,7 @@
 #define viewPerson3 76
 #define viewHBD 77
 #define viewGrahamAdvHat 78
+#define viewPaper 79
 
 #define viewObjPot 69
 
@@ -265,7 +267,8 @@
 #define valXsFlushola 6
 #define valXsFastWater 7
 #define valXsOgreMunch 8
-#define valXsDrown 9 
+#define valXsDrown 9
+#define valXsSafteyThird 10
 
 // vars
 // Engine Vars
@@ -309,10 +312,6 @@
 #define vSplat2Cleaned 45
 
 #define vReadCount 36
-
-#define vPodStart 46
-#define vPodLaunched 47
-#define vPodAutoNaved 48
 #define vAlJoke 35
 
 // flags
@@ -349,15 +348,13 @@
 
 #define fTrunkOpen 95
 
-
 #define fHawkFlightADone 95
 #define fHawkFlightBDone 96
 #define fFeatherFakllDone 97
 
 #define fPooping 90
-#define fStillPooping 95
-
 #define fFlushing 91
+#define fStillPooping 95
 
 #define fDecompressing 90
 #define fDecompressed 91
@@ -376,14 +373,19 @@
 #define fPodThrottlePulled 91
 #define fPodAutoNavPressed 92
 #define fLaunchAnimationPlayed 93
+#define fBeltBuckled 94
+#define fPodStart 95
+#define fPodLaunched 96
+#define fPodAutoNaved 97
+
 #define fInBucket 90
+#define fBucketDown 91
 
 #define fDoJoke 91
 #define fWatchHasBeeped 92
 #define fBossGiveOrders 95
 #define fWearingSuit 96
 
-#define fBucketDown 91
 
 // consts  
 #define valTrue 1

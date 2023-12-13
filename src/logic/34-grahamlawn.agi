@@ -1,9 +1,11 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
 
     unanimate.all()
-    assignn(vRoomInited, 1)
+
+    assignn(vRoomInited, valTrue)
+
     load.view(viewCabinDoor)
     load.view(viewGrahamHatNoFeather)
     load.view(viewHawk)
@@ -42,6 +44,10 @@ if(equaln(vRoomInited, 0)) {
     set.priority(objHawk, 10)    
     position(objHawk, 160, 70)
     move.obj(objHawk, 40, 40, 2, fDoAction)
+
+    reset(fHawkFlightADone)
+    reset(fHawkFlightBDone)
+    reset(fFeatherFakllDone)
 
     set.horizon(46) 
 }

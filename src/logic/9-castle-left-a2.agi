@@ -128,19 +128,21 @@ if(said("swim")) {
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
-    if(!isset(fDrowning)) {
-        if(!isset(fSwimming)){
-            stop.cycling(objEgo)
-        }
-    }
+    stop.cycling(objEgo)
 }
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
- 
+
+if(said("read", "notice")) {
+    addn(vCurrentScore, 1)
+    print("The notice reads 'Hear Ye! Hear Ye! A party for the King will be held today. Attendees must bring an invitation and a party favor.' The notice gets you thinking. You need to get in here. If anyone can be of service. They will be inside.")
+}
+
 if(said("open", "door")) {
     if(has(invInvitation)) {
         if(has(invCake)) {
+            addn(vCurPoints, 1)    
             end.of.loop(objCastleDoors, fDoAction)
         }
         if(!has(invCake)) {
@@ -162,4 +164,5 @@ if(isset(fDoAction)) {
 }
 
 return()
+
 #message 1 "Castle Left"

@@ -21,6 +21,16 @@ if(equaln(vRoomInited, valFalse)) {
     position(objDecal, 119, 124)    
     position(objCockpitThrottle, 106, 128)
 
+    if(!isset(fLaunchAnimationPlayed)) {
+        reset(fBeltBuckled)
+        reset(fPodPoweredUp)
+        reset(fPodThrottlePulled)
+        reset(fPodAutoNavPressed)
+        reset(fBeltBuckled)
+        reset(fPodStart)
+        reset(fPodLaunched)
+        reset(fPodAutoNaved)
+    }
     if(isset(fLaunchAnimationPlayed)) {
         position(objCockpitThrottle,  106, 130)
         load.view(viewCockpitButtons)
@@ -53,14 +63,26 @@ if(equaln(vRoomInited, valFalse)) {
         position(objCockpitButtons3, 47, 127)
         position(objCockpitButtons4, 126.5, 127)
     
-        position(objCockpitScreen1, 73, 92)    
+        position(objCockpitScreen1, 73, 92)   
     }
 
     assignn(vTimer, 0)
     assignn(vClockTicks, 0)
 }
 
+if(said("buckle", "belt")){
+    if(isset(fBeltBuckled)) {
+        print("You are already buckled in.")
+    }
+    if(!isset(fBeltBuckled)) {
+        set(fBeltBuckled)
+        addn(vCurrentScore, 1)
+        print("Good move Roger. Saftey third.")
+    }
+}
+
 if(said("press", "power")) {
+    addn(vCurrentScore, 1)
     load.view(viewCockpitPush)
     set.view(objCockpitPush, viewCockpitPush)
     stop.cycling(objCockpitPush)
@@ -72,14 +94,23 @@ if(said("press", "power")) {
 }
 
 if(said("push", "autonav")) {
-    if(equaln(vPodStart, valTrue)) { 
-        assignn(vPodAutoNaved, valTrue)
-        assignn(vTimer, 0)
-        assignn(vClockTicks, 0)
-        print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
+    if(isset(fPodStart)) { 
+        if(!isset(fPodThrottlePulled)) {
+            print("Nothing happens.")
+        }        
+        if(isset(fPodThrottlePulled)) {
+            addn(vCurrentScore, 1)
+
+            set(fPodAutoNaved)
+            
+            assignn(vTimer, 0)
+            assignn(vClockTicks, 0)
+
+            print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
+        }
     }
-    if(!equaln(vPodStart, valTrue)) {
-        print("Nothing happends") 
+    if(!sset(fPodStart)) {
+        print("Nothing happens.") 
     }
 }
 
@@ -88,7 +119,9 @@ if(said("push", "dont")) {
 }
 
 if(said("pull", "throttle")) {
-    if(equaln(vPodStart, valTrue)) { 
+    if(isset(fPodStart)) { 
+        addn(vCurrentScore, 1)
+
         load.view(viewCockpitPull)
 
         set.view(objCockpitPush, viewCockpitPull)
@@ -99,28 +132,27 @@ if(said("pull", "throttle")) {
 
         position(objCockpitPush, 100, 180)
         move.obj(objCockpitPush, 100, 160, 1, fPodThrottlePulled)
-        set(fPodThrottlePulled)
     }
-    if(!equaln(vPodStart, valTrue)) {
+    if(!isset(fPodStart)) {
         print("You can't. The throttle is locked in its position.") 
     }
 }
 
 if(isset(fPodThrottlePulled)) {
-    position(objCockpitThrottle,  106, 130)
-    set.cel(objCockpitThrottle, 1)
-    erase(objCockpitPush)
-    reset(fPodThrottlePulled)
-    assignn(vPodLaunched, valTrue)
-    assignn(vTimer, 0)
-    assignn(vClockTicks, 0)
-    print("With a roar the pod blasts from the launch platform hurling you into the blackness of space.")
+    if(!isset(fPodLaunched)) {
+        position(objCockpitThrottle,  106, 130)
+        set.cel(objCockpitThrottle, 1)
+        erase(objCockpitPush)
+    
+        set(fPodLaunched)
+        print("With a roar the pod blasts from the launch platform hurling you into the blackness of space.")    
+    }
 }
 
-if(equaln(vPodLaunched, valTrue)) {
+if(isset(fPodLaunched)) {
 
     if(!isset(fLaunchAnimationPlayed)) {
-        if(equaln(vClockTicks, 0)) {
+        if(equaln(vClockTicks, 1)) {
             if(equaln(vTimer, 5)) {
                 assignn(vRoomInited, valFalse)
                 assignn(vCurrentRoom, picStation)           
@@ -128,8 +160,7 @@ if(equaln(vPodLaunched, valTrue)) {
         }    
     }
 
-    
-    if(!equaln(vPodAutoNaved, valTrue)){
+    if(!isset(fPodAutoNaved)){
         if(equaln(vClockTicks, 3)) {
             print("You should probably engage some form of navigation...")
             assignn(vTimer, 0)
@@ -137,7 +168,7 @@ if(equaln(vPodLaunched, valTrue)) {
         }    
     }
 
-    if(equaln(vPodAutoNaved, valTrue)){
+    if(isset(fPodAutoNaved)) {
         if(equaln(vClockTicks, 2)) {
             print("You know.. that AUTONAV button is usually on the right...")
         }    
@@ -202,9 +233,12 @@ if(isset(fPodPoweredUp)) {
 
     position(objCockpitScreen1, 73, 92)
     reset(fPodPoweredUp)
-    print("The pod's systems whir to life!")  
+
     erase(objCockpitPush)
-    assignn(vPodStart, valTrue)
+
+    set(fPodStart)
+
+    print("The pod's systems whir to life!")  
 }
 
 if(said("look", "pod")) {
@@ -224,13 +258,14 @@ if(said("look", "buttons")) {
 }
 
 if(said("look", "screen")) {
-    if(equaln(vPodStart, valTrue)) { 
+    if(isset(fPodStart)) { 
         print("The screen lists start proceedures: '1. Pull Throttle. 2. Press AutoNav.' Luckily for you the pod's navigational system is controlled automatically by StarCon. Clogs rather than pods are your forte.")
     }    
-    if(!equaln(vPodStart, valTrue)) { 
+    if(!isset(fPodStart)) { 
         print("The screen is dark.")
     }
 }
 
 return()
+
 #message 1 "In Pod"

@@ -1,8 +1,8 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewRoger)
     load.view(viewMist)
@@ -105,6 +105,7 @@ if(said("enter", "bucket")) {
     stop.cycling(objEgo)
     set.cel(objEgo, 0)
     set(fInBucket)
+    addn(vCurPoints, 1)
 }
 
 if(said("exit", "bucket")) {
@@ -114,7 +115,6 @@ if(said("exit", "bucket")) {
     stop.cycling(objBucket)
     position(objEgo, 42, 110)
     position(objBucket, 38, 120)
-
 }
 
 if(isset(fInBucket)){
@@ -130,4 +130,5 @@ if(isset(fDoAction)) {
 }
 
 return()
+
 #message 1 "Welltop"

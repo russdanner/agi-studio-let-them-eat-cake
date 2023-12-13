@@ -1,8 +1,8 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewCrashingPod)
     load.view(viewRoger)
@@ -33,6 +33,7 @@ if(equaln(vRoomInited, 0)) {
     }
 
     position.v(objEgo, vEgoX, vEgoY)
+
     assignn(vEgoEdgeTouched, edgeNone)
 
     load.view(viewGlassSparkle)
@@ -102,11 +103,7 @@ if(said("swim")) {
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
-    if(!isset(fDrowning)) {
-        if(!isset(fSwimming)){
-            stop.cycling(objEgo)
-        }
-    }
+    stop.cycling(objEgo)
 }
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
@@ -120,6 +117,7 @@ if(said("take", "glass")) {
         print("A small piece of highly relfective safety glass has broken away from the sheild as it is known to do. You pick it up and carry it with you.")
     }
 }
+
     
 return()
 #message 1 "Crash site"

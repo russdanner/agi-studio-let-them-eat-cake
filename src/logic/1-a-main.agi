@@ -5,7 +5,7 @@ draw.pic(0)
 show.pic()
 
 assignn(vGameCycleDelay, 2)
-assignn(vEnemyChance, 90)
+assignn(vEnemyChance, 65)
 assignn(vFeatherChance, 90)
 
 if(!isset(fGameInited)) {
@@ -141,6 +141,9 @@ if(isset(fDead)) {
     }
     if(equaln(vDeathReason, valXsDrown)) {
         print("You eventually become tired from struggling. Completely exhausted you slip below the water's surgace and drown. Thank you for playing!")
+    }
+    if(equaln(vDeathReason, valXsSafteyThird)) {
+        print("StarCon requires all passengers to buckle up for a reason. That reason is sudden and violent decelleration. You have just become up close and personal with this concept... and the pod's shield. Thanks for playing!")
     }
 
     

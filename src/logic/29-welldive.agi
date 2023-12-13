@@ -1,8 +1,8 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewRogerDive)
     load.view(viewTrunk)
@@ -44,8 +44,8 @@ if(said("close", "trunk")) {
     set.cel(objTrunk, 0)
 }
 
-
 if(said("open", "trunk")) {
+    addn(vCurPoints, 1)
     end.of.loop(objTrunk, fTrunkOpen)
 
 }
@@ -53,8 +53,8 @@ if(said("open", "trunk")) {
 if(said("take", "ink")) {
     if(!has(invInk)) {
         get(invInk)
-        print("You remove the bottle of ink from inside the trunk and carry it with you.")
         addn(vCurPoints, 1)    
+        print("You remove the bottle of ink from inside the trunk and carry it with you.")
     }
 }
 
@@ -63,4 +63,5 @@ if(said("look", "cave")) {
 }
 
 return()
+
 #message 1 "Well Dive"

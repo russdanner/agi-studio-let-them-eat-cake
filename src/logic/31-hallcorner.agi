@@ -1,8 +1,8 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewRoger)
 
@@ -13,7 +13,7 @@ if(equaln(vRoomInited, 0)) {
     draw(objEgo)
 
     if(equaln(vEgoX, 0)) {
-        if(equaln(vEgoY, 0)){
+        if(equaln(vEgoY, 0)) {
             assignn(vEgoX, 100)
             assignn(vEgoY, 100)
         }

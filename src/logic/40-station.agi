@@ -1,8 +1,8 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewCrashingPod)
 
@@ -35,4 +35,5 @@ if(isset(fDoAction)) {
 }
 
 return()
+
 #message 1 "Station"

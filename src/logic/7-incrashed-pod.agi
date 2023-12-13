@@ -1,12 +1,10 @@
 #include "0-defines.aqi"
 
-load.sound(1)
 
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     
     unanimate.all()
-    assignn(vGameCycleDelay, 3)
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewCockpitThrottle)
 
@@ -19,15 +17,28 @@ if(equaln(vRoomInited, 0)) {
     set.cel(objCockpitThrottle, 1)
 
     position(objCockpitThrottle,  106, 130)
+
+    set(fBeltBuckled)
+}
+
+if(said("unbuckle", "belt")) {
+    reset(fBeltBuckled)
+    print("Ok")
 }
 
 if(said("exit", "pod")) {
-    assignn(vRoomInited, 0)
-    assignn(0, 8) 
-    print("You climb out of the pod and discard your pressure suit.")
+    if(isset(fBeltBuckled)) {
+        print("Oooof that's gonna leave a mark. Your seatbelt is still buckled.")
+    }
+    if(!isset(fBeltBuckled)) {
+        assignn(vEgoX, 0)
+        assignn(vEgoY, 0)        
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavCrashSiteA3) 
+        print("You climb out of the pod and discard your pressure suit.")
+    }
 }
 
-
-
 return()
-#message 1 "ABC"
+
+#message 1 "In Crashed Pod"

@@ -31,13 +31,17 @@ if(equaln(vActionCount, 8)) {
 }
 
 if(equaln(vActionCount, 50)) {
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picInPodCrash) 
+
+    if(!isset(fBeltBuckled)) {
+        assignn(vDeathReason, valXsSafteyThird)    
+        set(fDead)    
+    }
+    if(isset(fBeltBuckled)) {
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picInPodCrash)         
+    }    
 }
 
-
-
-
-
 return()
+
 #message 1 "The Crash"
