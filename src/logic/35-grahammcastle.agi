@@ -3,7 +3,7 @@
 if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
     assignn(vRoomInited, valTrue)
-    
+//add banners    
     load.view(viewGrahamHatFeather)
 
     animate.obj(objEgo)
@@ -19,16 +19,13 @@ if(equaln(vRoomInited, valFalse)) {
         }
     }
 
-    reset(fDoAction)
-    position.v(objEgo, vEgoX, vEgoY)
-    move.obj(objEgo, 116, 112, 1, fDoAction)
-
     assignn(vEgoEdgeTouched, edgeNone)
-}
 
-if(isset(fDoAction)) {
-    assignn(vEgoDirection, directionStopped)
-    print("You have won! Good luck on you next adventure (and HAPPY BIRTHDAY!!) Thanks for playing!")
+    reset(fDoAction)
+    
+    position.v(objEgo, vEgoX, vEgoY)
+
+    move.obj(objEgo, 116, 112, 1, fDoAction)
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -38,6 +35,10 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(isset(fDoAction)) {
+    // assignn(vEgoDirection, directionStopped)
+    print("You have won! Good luck on you next adventure and HAPPY 40th BIRTHDAY TO GRAPHIC ADVENTURE GAMES!! Thanks for playing!")
+}
 
 return()
 

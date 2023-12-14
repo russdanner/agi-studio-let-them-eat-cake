@@ -252,8 +252,21 @@
 #define viewPaper 79
 
 #define viewObjPot 69
-
-
+#define viewObjSummons 83
+#define viewObjTeaCup 84
+#define viewObjTea 85
+#define viewObjHat 86
+#define viewObjBroom 87 
+#define viewObjGlass 88
+#define viewObjGlasSharp 89
+#define viewObjCake 90
+#define viewObjFeather 91
+#define viewObjQuill 92
+#define viewObjInk 93
+#define viewObjPaper 94
+#define viewObjInvitation 95
+#define viewObjAdvHat 96
+    
 // sounds
 #define sndTitle 0
 #define sndWatchBeep 1

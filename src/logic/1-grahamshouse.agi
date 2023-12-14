@@ -309,36 +309,7 @@ if(said("look", "room")) {
     print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy.")
 }
 
-if(said("look", "summons")) {
-    print("This ornate parchment is a summons from the king that demands an audience with you first thing in the morning")
-}
 
-if(said("look", "bed")) {
-    print("That's your bed. It looks comfortable.")
-}
-
-if(said("look", "hat")) {
-    print("It's your hat! Wow. You love this hat. It's triangular and blue.")
-}
-
-if(said("look", "cup")) {
-    if(equaln(vTeaPoured, valTrue)) {
-        if(equaln(vTeaDrank, valTrue)) {
-            print("Closer inspection of the cup reveals that it is indeed... a cup.")
-        }
-        if(!equaln(vTeaDrank, valTrue)) {
-            print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
-        }
-    }
-    if(!equaln(vTeaPoured, valTrue)) {
-        print("Yep. It's a cup alright.")
-    }
-}
-
-if(said("look", "teapot")) {
-    assignn(vInvShowItem, invTeapot)
-    set(fShowInvItem)
-}
 
 return()
 #message 1 "Grahams House"

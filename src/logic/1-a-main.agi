@@ -17,7 +17,7 @@ if(!isset(fGameInited)) {
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(vCurrentRoom, 39)
+    assignn(vCurrentRoom, picTitle)
 }
 
 if(said("inv")) {
@@ -79,35 +79,155 @@ if(!equaln(0, 0)) {
     call.v(0)
 }
 
+if(said("look", "pot")) {
+    assignn(vInvShowItem, viewObjPot)
+    set(fShowInvItem)
+}
+if(said("look", "hat")) {
+    assignn(vInvShowItem, invHat)
+    set(fShowInvItem)
+}
+if(said("look", "summons")) {
+    assignn(vInvShowItem, invSummons)
+    set(fShowInvItem)
+}
+if(said("look", "tea")) {
+    assignn(vInvShowItem, invTea)
+    set(fShowInvItem)
+}
+if(said("look", "cup")) {
+    assignn(vInvShowItem, invTeaCup)
+    set(fShowInvItem)
+}
+if(said("look", "broom")) {
+    assignn(vInvShowItem, invBroom)
+    set(fShowInvItem)
+}
+if(said("look", "glass")) {
+    assignn(vInvShowItem, invGlass)
+    set(fShowInvItem)
+}
+if(said("look", "cake")) {
+    assignn(vInvShowItem, invCake)
+    set(fShowInvItem)
+}
+if(said("look", "ink")) {
+    assignn(vInvShowItem, invInk)
+    set(fShowInvItem)
+}
+if(said("look", "quill")) {
+    assignn(vInvShowItem, invQuill)
+    set(fShowInvItem)
+}
+if(said("look", "feather")) {
+    assignn(vInvShowItem, invFeather)
+    set(fShowInvItem)
+}
+if(said("look", "paper")) {
+    assignn(vInvShowItem, invPaper)
+    set(fShowInvItem)
+}
+if(said("look", "invitation")) {
+    assignn(vInvShowItem, invInvitation)
+    set(fShowInvItem)
+}
+
+// if(said("look", "summons")) {
+//     print("This ornate parchment is a summons from the king that demands an audience with you first thing in the morning")
+// }
+// if(said("look", "bed")) {
+//     print("That's your bed. It looks comfortable.")
+// }
+// if(said("look", "hat")) {
+//     print("It's your hat! Wow. You love this hat. It's triangular and blue.")
+// }
+// if(said("look", "cup")) {
+//     if(equaln(vTeaPoured, valTrue)) {
+//         if(equaln(vTeaDrank, valTrue)) {
+//             print("Closer inspection of the cup reveals that it is indeed... a cup.")
+//         }
+//         if(!equaln(vTeaDrank, valTrue)) {
+//             print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+//         }
+//     }
+//     if(!equaln(vTeaPoured, valTrue)) {
+//         print("Yep. It's a cup alright.")
+//     }
+// }
+// if(said("look", "teapot")) {
+//     assignn(vInvShowItem, invTeapot)
+// }
+
 if(isset(fShowInvItem)) {
     reset(fShowInvItem)
     reset(fWaitForCloseInv)
+    assignn(vKeyPressed, 0)
 
     if(equaln(vInvShowItem, invTeapot)) {
         assignn(vInvView, viewObjPot)
-        // if(equaln(vTeaPoured, valTrue)) {
-        // print("The blue teapot empty.")
-        // }
-
-        // if(!equaln(vTeaPoured, valTrue)) {
-        //     print("The blue teapot is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
-        // }
-        assignn(19, 0)
-        print("The blue teapot is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+        print("Hat")
+    }
+    if(equaln(vInvShowItem, invHat)) {
+        assignn(vInvView, viewObjHat)
+        print("Hat")
+    }
+    if(equaln(vInvShowItem, invSummons)) {
+        assignn(vInvView, viewObjSummons)
+        print("Summons")
+    }
+    if(equaln(vInvShowItem, invTea)) {
+        assignn(vInvView, viewObjTea)
+        print("Tea")
+    }
+    if(equaln(vInvShowItem, invTeaCup)) {
+        assignn(vInvView, viewObjTeaCup)
+        print("Teacup")
+    }
+    if(equaln(vInvShowItem, invBroom)) {
+        assignn(vInvView, viewObjBroom)
+        print("Broom")
+    }
+    if(equaln(vInvShowItem, invGlass)) {
+        assignn(vInvView, viewObjGlass)
+        print("Glass")
+    }
+    if(equaln(vInvShowItem, invCake)) {
+        assignn(vInvView, viewObjCake)
+        print("Cake")
+    }
+    if(equaln(vInvShowItem, invInk)) {
+        assignn(vInvView, viewObjInk)
+        print("Ink")
+    }
+    if(equaln(vInvShowItem, invQuill)) {
+        assignn(vInvView, viewObjQuill)
+        print("Quill")
+    }
+    if(equaln(vInvShowItem, invFeather)) {
+        assignn(vInvView, viewObjFeather)
+        print("Feather")
+    }
+    if(equaln(vInvShowItem, invPaper)) {
+        assignn(vInvView, viewObjPaper)
+        print("Paper")
+    }
+    if(equaln(vInvShowItem, invInvitation)) {
+        assignn(vInvView, viewObjInvitation)
+        print("Invitation")
     }
 
-    if(has(invTeapot)) {
-        load.view.v(vInvView)
-        set.view.v(objInv, vInvView)
-        stop.cycling(objInv)
-        draw(objInv)
-        set.priorty(objInv, 15)
-        position(objInv, 65, 155)
-        set(fWaitForCloseInv)        
-    }
+    load.view.v(vInvView)
+    set.view.v(objInv, vInvView)
+
+    stop.cycling(objInv)
+    draw(objInv)
+    set.priorty(objInv, 15)
+    position(objInv, 65, 155)
+    set(fWaitForCloseInv)        
+
 }
 if(isset(fWaitForCloseInv)) {
-    if(greatern(19, 0)) {
+    if(greatern(vKeyPressed, 0)) {
         reset(fWaitForCloseInv)
          erase(objInv)
     }
