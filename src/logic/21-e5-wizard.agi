@@ -37,9 +37,30 @@ if(equaln(vRoomInited, 0)) {
     position(objMist3, 85, 166)
     position(objMist4, 127, 166)
 
+    // add wider range to reduce instances of encounter
+    random(1, 100, vDiceRoll) 
+
+    reset(fGotcha)
+    if(lessn(vDiceRoll, vEnemyChance)) {
+        load.view(viewWizard)
+        set.view(objMonster, viewWizard)
+        draw(objMonster)
+        position(objMonster, 15, 50)        
+        follow.ego(objMonster, 2, fGotcha)    
+    }
+
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
     set.horizon(50)
+}
+
+if(isset(fGotcha)) {
+    reset(fGotcha)
+    if(!isset(fDead)) { 
+        erase(objMonster)
+        stop.motion(objEgo)
+        // todo freeze the power
+    }
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {

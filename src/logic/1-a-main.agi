@@ -12,12 +12,16 @@ if(!isset(fGameInited)) {
     set(fGameInited)    
     assignn(vMaxPoints, 40)
     assignn(vCurPoints, 0)  
+    
+    reset(fShowInvItem)
+    reset(fWaitForCloseInv)
+    assignn(vInvShowItem, invNone)
 }
 
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(vCurrentRoom, picTitle)
+    assignn(vCurrentRoom, 1)
 }
 
 if(said("inv")) {
@@ -79,84 +83,126 @@ if(!equaln(0, 0)) {
     call.v(0)
 }
 
+reset(fShowInvItem)
+assignn(vInvShowItem, invNone)
+
 if(said("look", "pot")) {
-    assignn(vInvShowItem, viewObjPot)
-    set(fShowInvItem)
+    if(has(invTeapot)) {
+        assignn(vInvShowItem, invTeapot)
+        set(fShowInvItem)    
+    }
+    if(!has(invTeapot)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "hat")) {
-    assignn(vInvShowItem, invHat)
-    set(fShowInvItem)
+    if(has(invHat)) {
+        assignn(vInvShowItem, invHat)
+        set(fShowInvItem)
+    }
+    if(!has(invHat)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "summons")) {
-    assignn(vInvShowItem, invSummons)
-    set(fShowInvItem)
+    if(has(invSummons)) {
+        assignn(vInvShowItem, invSummons)
+        set(fShowInvItem)
+    }
+    if(!has(invSummons)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "tea")) {
-    assignn(vInvShowItem, invTea)
-    set(fShowInvItem)
+    if(has(invTea)) {
+        assignn(vInvShowItem, invTea)
+        set(fShowInvItem)
+    }
+    if(!has(invTea)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "cup")) {
-    assignn(vInvShowItem, invTeaCup)
-    set(fShowInvItem)
+    if(has(invTeaCup)) {
+        assignn(vInvShowItem, invTeaCup)
+        set(fShowInvItem)
+    }
+    if(!has(invTeaCup)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "broom")) {
-    assignn(vInvShowItem, invBroom)
-    set(fShowInvItem)
+    if(has(invBroom)) {
+        assignn(vInvShowItem, invBroom)
+        set(fShowInvItem)
+    }
+    if(!has(invBroom)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "glass")) {
-    assignn(vInvShowItem, invGlass)
-    set(fShowInvItem)
+    if(has(invGlass)) {
+        assignn(vInvShowItem, invGlass)
+        set(fShowInvItem)
+    }
+    if(!has(invGlass)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "cake")) {
-    assignn(vInvShowItem, invCake)
-    set(fShowInvItem)
+    if(has(invCake)) {
+        assignn(vInvShowItem, invCake)
+        set(fShowInvItem)
+    }
+    if(!has(invCake)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "ink")) {
-    assignn(vInvShowItem, invInk)
-    set(fShowInvItem)
+    if(has(invInk)) {
+        assignn(vInvShowItem, invInk)
+        set(fShowInvItem)
+    }
+    if(!has(invInk)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "quill")) {
-    assignn(vInvShowItem, invQuill)
-    set(fShowInvItem)
+    if(has(invQuill)) {
+        assignn(vInvShowItem, invQuill)
+        set(fShowInvItem)
+    }
+    if(!has(invQuill)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "feather")) {
-    assignn(vInvShowItem, invFeather)
-    set(fShowInvItem)
+    if(has(invFeather)) {
+        assignn(vInvShowItem, invFeather)
+        set(fShowInvItem)
+    }
+    if(!has(invFeather)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "paper")) {
-    assignn(vInvShowItem, invPaper)
-    set(fShowInvItem)
+    if(has(invPaper)) {
+        assignn(vInvShowItem, invPaper)
+        set(fShowInvItem)
+    }
+    if(!has(invPaper)) {
+        print("You don't have it.")    
+    }
 }
 if(said("look", "invitation")) {
-    assignn(vInvShowItem, invInvitation)
-    set(fShowInvItem)
+    if(has(invInvitation)) {
+        assignn(vInvShowItem, invInvitation)
+        set(fShowInvItem)
+    }
+    if(!has(invInvitation)) {
+        print("You don't have it.")    
+    }
 }
-
-// if(said("look", "summons")) {
-//     print("This ornate parchment is a summons from the king that demands an audience with you first thing in the morning")
-// }
-// if(said("look", "bed")) {
-//     print("That's your bed. It looks comfortable.")
-// }
-// if(said("look", "hat")) {
-//     print("It's your hat! Wow. You love this hat. It's triangular and blue.")
-// }
-// if(said("look", "cup")) {
-//     if(equaln(vTeaPoured, valTrue)) {
-//         if(equaln(vTeaDrank, valTrue)) {
-//             print("Closer inspection of the cup reveals that it is indeed... a cup.")
-//         }
-//         if(!equaln(vTeaDrank, valTrue)) {
-//             print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
-//         }
-//     }
-//     if(!equaln(vTeaPoured, valTrue)) {
-//         print("Yep. It's a cup alright.")
-//     }
-// }
-// if(said("look", "teapot")) {
-//     assignn(vInvShowItem, invTeapot)
-// }
 
 if(isset(fShowInvItem)) {
     reset(fShowInvItem)
@@ -165,66 +211,91 @@ if(isset(fShowInvItem)) {
 
     if(equaln(vInvShowItem, invTeapot)) {
         assignn(vInvView, viewObjPot)
-        print("Hat")
+        if(equaln(vTeaPoured, valTrue)) {
+            print("This is a simple empty blue teapot")
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("This is a simple blue teapot full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+        }
     }
     if(equaln(vInvShowItem, invHat)) {
         assignn(vInvView, viewObjHat)
-        print("Hat")
+        print("Your trusty hat! Wow. You love this hat. It's triangular and blue.")
     }
     if(equaln(vInvShowItem, invSummons)) {
         assignn(vInvView, viewObjSummons)
-        print("Summons")
+        print("This ornate parchment is a summons from the king that demands an audience with you first thing in the morning")
     }
     if(equaln(vInvShowItem, invTea)) {
         assignn(vInvView, viewObjTea)
-        print("Tea")
+        if(equaln(vTeaPoured, valTrue)) {
+            if(equaln(vTeaDrank, valTrue)) {
+                print("Closer inspection of the cup reveals that it is indeed... a cup.")
+            }
+            if(!equaln(vTeaDrank, valTrue)) {
+                print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+            }
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("Yep. It's a cup alright.")
+        }
     }
     if(equaln(vInvShowItem, invTeaCup)) {
         assignn(vInvView, viewObjTeaCup)
-        print("Teacup")
+        if(equaln(vTeaPoured, valTrue)) {
+            if(equaln(vTeaDrank, valTrue)) {
+                print("Closer inspection of the cup reveals that it is indeed... a cup.")
+            }
+            if(!equaln(vTeaDrank, valTrue)) {
+                print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+            }
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("Yep. This is a cup alright.")
+        }
     }
     if(equaln(vInvShowItem, invBroom)) {
         assignn(vInvView, viewObjBroom)
-        print("Broom")
+        print("This is a standard issue StarCon broom. One of the many tools in your janitorial arsenal.")
     }
     if(equaln(vInvShowItem, invGlass)) {
         assignn(vInvView, viewObjGlass)
-        print("Glass")
+        print("This is a piece of highly reflective view shield glass from the pod. Due to its special design there are no sharp edges.")
     }
     if(equaln(vInvShowItem, invCake)) {
         assignn(vInvView, viewObjCake)
-        print("Cake")
+        print("This is a delicious looking birtday cake.")
     }
     if(equaln(vInvShowItem, invInk)) {
         assignn(vInvView, viewObjInk)
-        print("Ink")
+        print("This is an old bottle full of black fluid. The label on the bottle says Ink.")
     }
     if(equaln(vInvShowItem, invQuill)) {
         assignn(vInvView, viewObjQuill)
-        print("Quill")
+        print("This is a feather you have sharpened in to a quill -- an ancient implement of writing.")
     }
     if(equaln(vInvShowItem, invFeather)) {
         assignn(vInvView, viewObjFeather)
-        print("Feather")
+        print("This a beautiful red feather.")
     }
     if(equaln(vInvShowItem, invPaper)) {
         assignn(vInvView, viewObjPaper)
-        print("Paper")
+        print("This is a blank piece of paper.")
     }
-    if(equaln(vInvShowItem, invInvitation)) {
-        assignn(vInvView, viewObjInvitation)
-        print("Invitation")
-    }
+    // if(equaln(vInvShowItem, invInvitation)) {
+    //     assignn(vInvView, viewObjInvitation)
+    //     print("This is a forged invitation to the castle.")
+    // }
 
     load.view.v(vInvView)
+
     set.view.v(objInv, vInvView)
 
     stop.cycling(objInv)
     draw(objInv)
     set.priorty(objInv, 15)
     position(objInv, 65, 155)
-    set(fWaitForCloseInv)        
-
+    set(fWaitForCloseInv)            
 }
 if(isset(fWaitForCloseInv)) {
     if(greatern(vKeyPressed, 0)) {
@@ -264,6 +335,12 @@ if(isset(fDead)) {
     }
     if(equaln(vDeathReason, valXsSafteyThird)) {
         print("StarCon requires all passengers to buckle up for a reason. That reason is sudden and violent decelleration. You have just become up close and personal with this concept... and the pod's shield. Thanks for playing!")
+    }
+    if(equaln(vDeathReason, valXsWolfMunch)) {
+        print("You would rather outrun a Sarien spider droid. Whatever that was it sure was fast. You're wolf chow. Thanks for playing!")
+    }
+    if(equaln(vDeathReason, valXsWitchSnag)) {
+        print("What you assume is one of the ugliest members of Vohaul's monkey army swoops down an snatches you up. Thanks for playing!")
     }
 
     

@@ -43,6 +43,11 @@
 #define objCockpitPull 8
 #define objDecal 9
 
+#define objPodStars1 10
+#define objPodStars2 11
+#define objPodStars3 12
+#define objPodStars4 13
+#define objPodStars5 14
 
 #define objCastleFlags 9
 #define objCastleCrocs 10
@@ -97,6 +102,9 @@
 #define objParty2 9
 #define objParty3 10
 #define objParty4 11
+#define objPerson3 12
+#define objPersonG1 13
+#define objPersonG2 14
 
 // pics
 #define picTitle 0
@@ -152,6 +160,7 @@
 #define picTitle 43
 
 // inventory
+#define invNone 99
 #define invTeapot 0
 #define invHat 1
 #define invSummons 2
@@ -251,6 +260,13 @@
 #define viewGrahamAdvHat 78
 #define viewPaper 79
 
+#define viewWitch 80
+#define viewWitchKill 81
+#define viewWizard 82
+
+#define viewPersonG1 97
+#define viewPersonG2 98
+
 #define viewObjPot 69
 #define viewObjSummons 83
 #define viewObjTeaCup 84
@@ -282,6 +298,8 @@
 #define valXsOgreMunch 8
 #define valXsDrown 9
 #define valXsSafteyThird 10
+#define valXsWolfMunch 11
+#define valXsWitchSnag 12
 
 // vars
 // Engine Vars
@@ -336,10 +354,10 @@
 // because we change the character and have to clear / build the invetory when the 
 // character changes.
 
+#define fShowInvItem 78
 #define fProgramControl 79
 #define fWaitForCloseInv 80
 #define fGlassIsSharp 81
-#define fShowInvItem 82
 #define fSoundDone 83
 #define fGameInited 84
 #define fHasSummons 85
@@ -390,6 +408,12 @@
 #define fPodStart 95
 #define fPodLaunched 96
 #define fPodAutoNaved 97
+
+#define fStarDone1 100
+#define fStarDone2 101
+#define fStarDone3 102
+#define fStarDone4 103
+#define fStarDone5 104
 
 #define fInBucket 90
 #define fBucketDown 91

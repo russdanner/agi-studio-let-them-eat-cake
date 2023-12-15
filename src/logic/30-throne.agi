@@ -13,7 +13,10 @@ if(equaln(vRoomInited, 0)) {
     load.view(viewValanice)
     load.view(viewCrowd)
     load.view(viewHBD)
-    
+    load.view(viewPerson3)
+    load.view(viewPersonG1)
+    load.view(viewPersonG2)
+
     animate.obj(objEgo)
 
     set.view(objEgo, viewRoger)
@@ -24,6 +27,9 @@ if(equaln(vRoomInited, 0)) {
     set.view(objAlexander, viewAlexander)
     set.view(objValanice, viewValanice)
     set.view(objCrowd, viewCrowd)
+    set.view(objPerson3, viewPerson3)
+    set.view(objPersonG1, viewPersonG1)
+    set.view(objPersonG2, viewPersonG2)
 
     set.view(objParty1, viewHBD)
     set.view(objParty2, viewHBD)
@@ -38,7 +44,10 @@ if(equaln(vRoomInited, 0)) {
     draw(objAlexander)
     draw(objValanice)
     draw(objCrowd)
-
+    draw(objPerson3)
+    draw(objPersonG1)
+    draw(objPersonG2)
+    
     draw(objParty1)
     draw(objParty2)
     draw(objParty3)
@@ -60,12 +69,20 @@ if(equaln(vRoomInited, 0)) {
     position(objAlexander, 80, 100)
     position(objValanice,  80, 130)
 
+    position(objPerson3, 50, 70)
+    position(objPersonG1,  90, 130)
+    position(objPersonG2,  100, 130)
+
     stop.cycling(objKingGraham)
+
     wander(objRosella)
     wander(objPersonA)
     wander(objPersonB)
     wander(objAlexander)
     wander(objValanice)
+    wander(objPerson3)
+    wander(objPersonG1)
+    wander(objPersonG2)
 
     position(objCrowd, 96, 89)
     set.priority(objCrowd, 4)

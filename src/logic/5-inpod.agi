@@ -8,6 +8,15 @@ if(equaln(vRoomInited, valFalse)) {
 
     load.view(viewCockpitThrottle)
     load.view(viewDecal)
+    load.view(viewStar)
+
+    load.view(viewStar)
+
+    set.view(objPodStars1, viewStar)
+    set.view(objPodStars2, viewStar)
+    set.view(objPodStars3, viewStar)
+    set.view(objPodStars4, viewStar)
+    set.view(objPodStars5, viewStar)
 
     set.view(objCockpitThrottle, viewCockpitThrottle)
     set.view(objDecal, viewDecal)
@@ -46,12 +55,22 @@ if(equaln(vRoomInited, valFalse)) {
         stop.cycling(objCockpitButtons3)
         stop.cycling(objCockpitButtons4)
         stop.cycling(objCockpitScreen1)
+        stop.cycling(objPodStars1)
+        stop.cycling(objPodStars2)
+        stop.cycling(objPodStars3)
+        stop.cycling(objPodStars4)
+        stop.cycling(objPodStars5)
     
         draw(objCockpitButtons1)
         draw(objCockpitButtons2)
         draw(objCockpitButtons3)
         draw(objCockpitButtons4)
         draw(objCockpitScreen1)
+        draw(objPodStars1)
+        draw(objPodStars2)
+        draw(objPodStars3)
+        draw(objPodStars4)
+        draw(objPodStars5)
     
         set.cel(objCockpitButtons2, 1)
         set.cel(objCockpitButtons3, 2)
@@ -65,6 +84,11 @@ if(equaln(vRoomInited, valFalse)) {
     
         position(objCockpitScreen1, 73, 92)   
     }
+
+    position(objPodStars1, 50, 50)
+    position(objPodStars2, 100, 50)
+    position(objPodStars3, 40, 50)
+    position(objPodStars4, 90, 50)
 
     assignn(vTimer, 0)
     assignn(vClockTicks, 0)
@@ -145,19 +169,54 @@ if(isset(fPodThrottlePulled)) {
         erase(objCockpitPush)
     
         set(fPodLaunched)
+        assignn(vTimer, 0)
         print("With a roar the pod blasts from the launch platform hurling you into the blackness of space.")    
     }
 }
 
 if(isset(fPodLaunched)) {
 
-    if(!isset(fLaunchAnimationPlayed)) {
+    if(!isset(fLaunchAnimationPlayed)) {        
         if(equaln(vClockTicks, 1)) {
             if(equaln(vTimer, 5)) {
                 assignn(vRoomInited, valFalse)
                 assignn(vCurrentRoom, picStation)           
             }
         }    
+    }
+
+    if(isset(fLaunchAnimationPlayed)) {        
+
+        if(!isset(fStarDone1)) {
+            move.obj(objPodStars1, 20, 80, 2, fStarDone1)
+        }
+        if(!isset(fStarDone2)) {
+            move.obj(objPodStars2, 130, 80, 2, fStarDone2)
+        }
+        if(!isset(fStarDone3)) {
+           move.obj(objPodStars3, 20, 15, 2, fStarDone3)
+        }
+        if(!isset(fStarDone4)) {
+           move.obj(objPodStars4, 130, 15, 2, fStarDone4)
+        }
+
+    
+        if(isset(fStarDone1)) {
+            reset(fStarDone1)
+            position(objPodStars1, 50, 50)
+        }
+        if(isset(fStarDone2)) {
+            reset(fStarDone2)
+            position(objPodStars2, 100, 50)
+        }
+        if(isset(fStarDone3)) {
+            reset(fStarDone3)
+            position(objPodStars3, 40, 50)        
+        }
+        if(isset(fStarDone4)) {
+            reset(fStarDone4)
+            position(objPodStars4, 90, 50)
+        }
     }
 
     if(!isset(fPodAutoNaved)){

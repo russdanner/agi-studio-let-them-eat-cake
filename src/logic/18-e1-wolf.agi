@@ -38,10 +38,38 @@ if(equaln(vRoomInited, 0)) {
     position(objMist3, 85, 47)
     position(objMist4, 127, 47)
 
+    // add wider range to reduce instances of encounter
+    random(1, 100, vDiceRoll) 
+
+    if(lessn(vDiceRoll, vEnemyChance)) {
+        load.view(viewWolf)
+        set.view(objMonster, viewWolf)
+        draw(objMonster)
+        position(objMonster, 80, 80)        
+        follow.ego(objMonster, 2, fGotcha)    
+    }
+    
+    reset(fGotcha)
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
     set.horizon(50)
 }
+
+if(isset(fGotcha)) {
+    reset(fGotcha)
+    if(!isset(fDead)) { 
+        erase(objEgo)
+        load.view(viewFightCloud)
+        set.view(objMonster, viewFightCloud)
+        normal.motion(objMonster)
+        assignn(vDeathReason, valXsWolfMunch)
+        stop.cycling(objMonster)
+        set.cel(objMonster, 0)
+        stop.motion(objMonster)
+        end.of.loop(objMonster, fDead)    
+    }
+}
+
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeTop)) {

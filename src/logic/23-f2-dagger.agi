@@ -19,10 +19,36 @@ if(equaln(vRoomInited, 0)) {
         }
     }
 
+    // add wider range to reduce instances of encounter
+    random(1, 100, vDiceRoll) 
+
+    reset(fGotcha)
+    if(lessn(vDiceRoll, vEnemyChance)) {
+        load.view(viewWitch)
+        set.view(objMonster, viewWitch)
+        draw(objMonster)
+        position(objMonster, 80, 80)        
+        follow.ego(objMonster, 2, fGotcha)    
+    }
+
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
     set.horizon(40)
+}
 
+if(isset(fGotcha)) {
+    reset(fGotcha)
+    if(!isset(fDead)) { 
+        erase(objEgo)
+        load.view(viewWitchKill)
+        set.view(objMonster, viewWitchKill)
+        normal.motion(objMonster)
+        assignn(vDeathReason, valXsWitchSnag)
+        stop.cycling(objMonster)
+        set.cel(objMonster, 0)
+        stop.motion(objMonster)
+        end.of.loop(objMonster, fDead)    
+    }
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
