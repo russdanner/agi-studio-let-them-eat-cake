@@ -124,11 +124,17 @@ if(said("push", "button")) {
 }
 
 if(said("remove", "suit")) {
-    load.view(viewRoger)
-    set.view(objEgo, viewRoger)
-    draw(objHangingSuit2)
-    position(objHangingSuit2, 43, 95)
-    reset(fWearingSuit)
+    if(isset(fWearingSuit)) {
+        addn(vCurPoints, 1)
+        load.view(viewRoger)
+        set.view(objEgo, viewRoger)
+        draw(objHangingSuit2)
+        position(objHangingSuit2, 43, 95)
+        reset(fWearingSuit)    
+    }
+    if(!isset(fWearingSuit)) {
+        print("You are not wearing it.")
+    }
 }
 
 if(said("enter", "tram")) {

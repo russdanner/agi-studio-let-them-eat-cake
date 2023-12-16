@@ -76,6 +76,7 @@ if(said("look", "c")) {
 if(said("press", "c")) {
     if(isset(fWatchHasBeeped)) {
         if(equaln(vHasOrders, valFalse)) {
+            addn(vCurPoints, 1)
             stop.cycling(objWatchPower)
             set.cel(objWatchPower, 1)
         
@@ -95,20 +96,21 @@ if(said("press", "c")) {
             assignn(vTimer, 0)
         }
         if(equaln(vHasOrders, valFalse)) {
-            print("You have no new incomming messages.")
+            print("You have no new incoming messages.")
         }
     }
     if(!isset(fWatchHasBeeped)) {
-        print("You have no incomming messages at this time.")
+        print("You have no incoming messages at this time.")
     }
 }
 
 if(isset(fBossGiveOrders)) {
     if(equaln(vTimer, 30)) {
-        print("Roger Wilco! Have you been napping in the closet again!? You were due at your next assignment an hour ago. Finish up forthwith and get over to Oribital Station 3 on the double. A Trolsdorian Muccaworm uh... 'explosively decompressed' in the flight deck bathroom. The walls are covered with an unfathomable amount Monolith Burger. Filet-o-Rat. polycheese and Tang. Clean it up! StarCon Control already has your flight plan. Move it! Commander Out.")
+        print("Roger Wilco! Have you been napping in the closet again!? You were due at your next assignment an hour ago. Finish up forthwith and get over to Orbital Station 3 on the double. A Trolsdorian Muccaworm uh... 'explosively decompressed' in the flight deck bathroom. The walls are covered with an unfathomable amount of Monolith Burger. Filet-o-Rat. polycheese and Tang. Clean it up! StarCon Control already has your flight plan. Move it! Commander Out.")
     }
 
     if(equaln(vTimer, 255)) {
+        reset(fBossGiveOrders)
         position(objWatchBoss, 0, 0)
         set.priority(objWatchBossSpeech, 1)
         set.cel(objWatchCButton, 1)
@@ -117,7 +119,7 @@ if(isset(fBossGiveOrders)) {
 }
 
 if(said("look", "t")) {
-    print("This is your time and tempature app.")
+    print("This is your time and temperature app.")
 }
 
 if(said("press", "t")) {
@@ -169,7 +171,7 @@ if(isset(fDoJoke)) {
     } 
 }
 
-if(said("done", "exit")) {
+if(said("exit", "watch")) {
     assignn(vRoomInited, valFalse)
     assignn(vCurrentRoom, picHanger)
 }

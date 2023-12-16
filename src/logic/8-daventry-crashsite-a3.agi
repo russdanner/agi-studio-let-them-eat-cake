@@ -114,7 +114,7 @@ if(said("take", "glass")) {
     if(!has(invGlass)) {
         get(invGlass)
         addn(vCurPoints, 1)    
-        print("A small piece of highly relfective safety glass has broken away from the sheild as it is known to do. You pick it up and carry it with you.")
+        print("A small piece of highly reflective safety glass has broken away from the shield as it is known to do. You pick it up and carry it with you.")
     }
 }
 

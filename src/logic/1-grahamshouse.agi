@@ -72,7 +72,7 @@ if(equaln(vRoomInited, valFalse)) {
     if(isset(fIsMorning)) {
         set.cel(objWindow, 1)
         position(objEgo, 100,80) 
-        print("Thinking of the King you are jared awake. It's morning. You must get to the castle to meet with King Edwards!")
+        print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edwards!")
     }
     if(!isset(fIsMorning)) {
         print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edwards for reasons unknown.")
@@ -129,7 +129,7 @@ if(equaln(vSleeping, valTrue)) {
 if(said("go", "sleep")) {
     if(posn(objEgo, 75, 30, 115, 85)) {
         if(!equaln(vTeaDrank, valTrue)) {
-            print("You are a bit on edge about the summons you recieved from the king. You can't sleep.")
+            print("You are a bit on edge about the summons you received from the king. You can't sleep.")
         }
         if(equaln(vTeaDrank, valTrue)) {
             assignn(vSleeping, valTrue)

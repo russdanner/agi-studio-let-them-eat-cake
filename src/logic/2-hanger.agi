@@ -116,7 +116,7 @@ if(said("start", "sweeping")) {
 
 if(said("enter", "pod")) {
     if(posn(objEgo, 31, 104, 50, 127)) {
-        print("Get real... This is a serious space craft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriosuly lacking.")
+        print("Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking.")
     }
     if(!posn(objEgo, 31, 104, 50, 127)) {
         print("You are too far away.")
@@ -131,6 +131,7 @@ if(posn(objEgo, 85, 139, 105, 151)) {
             set(fDead)
         }    
         if(equaln(vSweeping, valTrue)) {
+            addn(vCurPoints, 1)
             assignn(vSplat1Cleaned, valTrue)
             erase(objHangerSplat1)
 
@@ -154,7 +155,6 @@ if(posn(objEgo, 36, 80, 48, 95)) {
             erase(objHangerSplat2)
 
             if(equaln(vSplat1Cleaned, valTrue)) {
-                addn(vCurPoints, 1)
                 assignn(vCleanedUp, valTrue)
             }
         }    
@@ -164,7 +164,7 @@ if(posn(objEgo, 36, 80, 48, 95)) {
 if(said("look", "watch")) {
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vRoomInited, valFalse)
-    assignn(0, picWatch)
+    assignn(vCurrentRoom, picWatch)
 }
 
 if(obj.in.box(objEgo, 151, 140, 155, 150)) {

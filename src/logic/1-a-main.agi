@@ -21,7 +21,7 @@ if(!isset(fGameInited)) {
 if(equaln(0, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(vCurrentRoom, 1)
+    assignn(vCurrentRoom, picTitle)
 }
 
 if(said("inv")) {
@@ -43,10 +43,10 @@ if(said("cut", "feather")) {
                 drop(invFeather)
                 get(invQuill)
                 addn(vCurPoints, 1)    
-                print("You cut the feather into a quill. Roger we are impressed! That's thinking ourside the box - A real FEATHER IN ANY ADVENTURE'S CAP.")
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP.")
             }
             if(!isset(fGlassIsSharp)) {
-                print("The highly reflective saftey glass couldn't cut through hot Monolith butter. It's no use trying.")
+                print("The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying.")
             }
         }
     }
@@ -58,10 +58,10 @@ if(said("make", "quill")) {
                 drop(invFeather)
                 get(invQuill)
                 addn(vCurPoints, 1)    
-                print("You cut the feather into a quill. Roger we are impressed! That's thinking ourside the box - A real FEATHER IN ANY ADVENTURE'S CAP.")
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP.")
             }
             if(!isset(fGlassIsSharp)) {
-                print("The highly reflective saftey glass couldn't cut through hot Monolith butter. It's no use trying.")
+                print("The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying.")
             }
         }
     }
@@ -264,7 +264,7 @@ if(isset(fShowInvItem)) {
     }
     if(equaln(vInvShowItem, invCake)) {
         assignn(vInvView, viewObjCake)
-        print("This is a delicious looking birtday cake.")
+        print("This is a delicious looking birthday cake.")
     }
     if(equaln(vInvShowItem, invInk)) {
         assignn(vInvView, viewObjInk)
@@ -272,11 +272,11 @@ if(isset(fShowInvItem)) {
     }
     if(equaln(vInvShowItem, invQuill)) {
         assignn(vInvView, viewObjQuill)
-        print("This is a feather you have sharpened in to a quill -- an ancient implement of writing.")
+        print("This is a feather you have sharpened into a quill -- an ancient implement of writing.")
     }
     if(equaln(vInvShowItem, invFeather)) {
         assignn(vInvView, viewObjFeather)
-        print("This a beautiful red feather.")
+        print("This is a beautiful red feather.")
     }
     if(equaln(vInvShowItem, invPaper)) {
         assignn(vInvView, viewObjPaper)
@@ -315,32 +315,32 @@ if(isset(fDead)) {
         print("Surgeon General's Warning: Exposing yourself to the vacuum of space is hazardous to your health. You are dead. Thanks for playing.")
     }
     if(equaln(vDeathReason, valXsSpaceWalk)) {
-        print("You step off the deck and into the vaccume of space. We're not sure where you are going but we know you'll be a popcycle when you arrive. Thanks for playing.")
+        print("You step off the deck and into the vaccuum of space. We're not sure where you are going but we know you'll be a popsicle when you arrive. Thanks for playing.")
 
     }
     if(equaln(vDeathReason, valXsFuelFoot)) {
-        print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and seperate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space. You are dead. Thanks for playing!  As usual you've been a real hoot.")
+        print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and separate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space. You are dead. Thanks for playing!  As usual you've been a real hoot.")
     }
     if(equaln(vDeathReason, valXsFlushola)) {
-        print("Unbelievable! The toilet begins to overflow. Where's a janitor when you need one?! As the room fills with 'WATER' you frantically search for a plunger but find only that you are trapped. How embarrasing. Thank you for playing!")
+        print("Unbelievable! The toilet begins to overflow. Where's a janitor when you need one?! As the room fills with 'WATER' you frantically search for a plunger but find only that you are trapped. How embarrassing. Thank you for playing!")
     }
     if(equaln(vDeathReason, valXsFastWater)) {
         print("Oh no! The water here is too fast to swim. You are overcome by the current and rapids and flushed down river. An end fit for a janitor. Thank you for playing!")
     }
     if(equaln(vDeathReason, valXsOgreMunch)) {
-        print("What the ORAT was that? You've just become a snack for a local species of ogre with a serious case of the munchies. He dusts you like bunt cake. Thank you for playing!")
+        print("What the ORAT was that? You've just become a snack for a local species of ogre with a serious case of the munchies. He dusts you like bundt cake. Thank you for playing!")
     }
     if(equaln(vDeathReason, valXsDrown)) {
-        print("You eventually become tired from struggling. Completely exhausted you slip below the water's surgace and drown. Thank you for playing!")
+        print("You eventually become tired from struggling. Completely exhausted you slip below the water's surface and drown. Thank you for playing!")
     }
     if(equaln(vDeathReason, valXsSafteyThird)) {
-        print("StarCon requires all passengers to buckle up for a reason. That reason is sudden and violent decelleration. You have just become up close and personal with this concept... and the pod's shield. Thanks for playing!")
+        print("StarCon requires all passengers to buckle up for a reason. That reason is sudden and violent deceleration. You have just become up close and personal with this concept... and the pod's shield. Thanks for playing!")
     }
     if(equaln(vDeathReason, valXsWolfMunch)) {
         print("You would rather outrun a Sarien spider droid. Whatever that was it sure was fast. You're wolf chow. Thanks for playing!")
     }
     if(equaln(vDeathReason, valXsWitchSnag)) {
-        print("What you assume is one of the ugliest members of Vohaul's monkey army swoops down an snatches you up. Thanks for playing!")
+        print("What you assume is one of the ugliest members of Vohaul's monkey army toops swoops down and snatches you up. Thanks for playing!")
     }
 
     

@@ -101,7 +101,7 @@ if(said("buckle", "belt")){
     if(!isset(fBeltBuckled)) {
         set(fBeltBuckled)
         addn(vCurrentScore, 1)
-        print("Good move Roger. Saftey third.")
+        print("Good move Roger. Safety third.")
     }
 }
 
@@ -305,7 +305,7 @@ if(said("look", "pod")) {
 }
 
 if(said("look", "console")) {
-    print("The console has serveral buttons and a throttle.")
+    print("The console has several buttons and a throttle.")
 }
 
 if(said("look", "throttle")) {
@@ -318,7 +318,7 @@ if(said("look", "buttons")) {
 
 if(said("look", "screen")) {
     if(isset(fPodStart)) { 
-        print("The screen lists start proceedures: '1. Pull Throttle. 2. Press AutoNav.' Luckily for you the pod's navigational system is controlled automatically by StarCon. Clogs rather than pods are your forte.")
+        print("The screen lists start procedures: '1. Pull Throttle. 2. Press AutoNav.' Luckily for you the pod's navigational system is controlled automatically by StarCon. Clogs rather than pods are your forte.")
     }    
     if(!isset(fPodStart)) { 
         print("The screen is dark.")
