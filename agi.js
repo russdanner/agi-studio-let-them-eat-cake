@@ -49,7 +49,7 @@ var Agi;
                 //if (e.which != 13) {
                 // enter should be allowed to close a dialog
                 Agi.interpreter.keyboardCharBuffer.push(e.which);
-                console.log("Keypress: " + e.keyCode);
+                //console.log("Keypress: " + e.keyCode);
                 Agi.interpreter.variables[19] = e.which
                 //}
             };
@@ -59,7 +59,7 @@ var Agi;
                     e.preventDefault();
                 }
                 Agi.interpreter.keyboardSpecialBuffer.push(e.which);
-                console.log("keydown: " + e.keyCode);
+                //console.log("keydown: " + e.keyCode);
             };
             (function renderloop() {
                 //window.requestAnimationFrame(renderloop);
@@ -950,6 +950,7 @@ var Agi;
                             this.agi_close_dialogue();
                             this.flags[2] = true; // The player has entered a command
                             this.keyboardCharBuffer = [];
+                            this.dialogueBox.innerEl.innerHTML = ""
                         }
                         else if (key == 8) {
                             this.inputBuffer = this.inputBuffer.substr(0, this.inputBuffer.length - 1);
@@ -1045,6 +1046,9 @@ var Agi;
                     }
                     this.variables[2] = 0;
                     this.flags[2] = false;
+                    this.flags[4] = false;    //RDX 
+                    this.inputBuffer = ""
+                    
                     this.agi_load_logic_v(0);
                     this.flags[5] = true;
                     this.newroom = 0;
@@ -1682,6 +1686,7 @@ var Agi;
         }
         agi_add_to_pic(viewNo, loopNo, celNo, x, y, priority, margin) {
             // TODO: Add margin
+            console.log("ATP BLTVIEW: v:"+viewNo+" l:"+loopNo+" c:"+celNo+" x:"+x+" y:"+y+" p:"+priority)                        
             this.screen.bltView(viewNo, loopNo, celNo, x, y, priority);
         }
         agi_add_to_pic_v(varNo1, varNo2, varNo3, varNo4, varNo5, varNo6, varNo7) {
@@ -1894,6 +1899,7 @@ var Agi;
             outterEl.style.display = "block";
             innerEl.innerHTML = "Please provide a name for your saved game";            
             var inputEl = document.createElement("input");
+            inputEl.id = "savedGameId"
             inputEl.style.display = "block";
             inputEl.style.width = "97%";
             inputEl.style.padding = "10px";
@@ -1909,6 +1915,7 @@ var Agi;
             cancelEl.innerHTML = "Cancel"
             innerEl.appendChild(cancelEl);
             cancelEl.dialogEl = dialogEl
+
             cancelEl.addEventListener("click", function() { 
                 var dialogEl = document.getElementById("savegame")
                 dialogEl.style.display = "none";
@@ -1923,24 +1930,117 @@ var Agi;
             saveEl.innerHTML = "Save"
             innerEl.appendChild(saveEl);            
             saveEl.addEventListener("click", function() { 
+                var savedGameName = document.getElementById("savedGameId").value;
                 var dialogEl = document.getElementById("savegame")
                 dialogEl.style.display = "none";
                 var savedGame = {}
                 savedGame.flags = Agi.interpreter.flags
                 savedGame.variables = Agi.interpreter.variables
 
-                localStorage.setItem("agiGame", JSON.stringify(savedGame));
+                var savedGames
+                var savedGamesStr = localStorage.getItem("agiGame");
+                if(!savedGamesStr) {
+                    savedGames = {"games":[]}
+                }
+                else {
+                    savedGames = JSON.parse(savedGamesStr)
+                }
+
+                savedGames.games[savedGames.games.length] = { "name": savedGameName, "data": savedGame}
+
+                localStorage.setItem("agiGame", JSON.stringify(savedGames));
             }, true);
             
         }
         agi_restore_game() {
             var gameDataStr = localStorage.getItem("agiGame");
             var gameData = JSON.parse(gameDataStr)
-            gameData.variables[34] = 0
-            // Agi.interpreter.new_room = gameData.variables[0] 
 
-            Agi.interpreter.flags = gameData.flags
-            Agi.interpreter.variables = gameData.variables
+            var dialogEl = document.getElementById("restoregame")
+            var outterEl = (dialogEl) ? dialogEl : document.createElement("div");
+            outterEl.id = "restoregame"
+            outterEl.innerHTML = ""
+            var innerEl = document.createElement("div");
+            outterEl.appendChild(innerEl);
+            document.body.appendChild(outterEl);
+            outterEl.style.display = "none";
+            outterEl.style.width = "auto";
+            outterEl.style.top = "20%";
+            outterEl.style.left = "25%";
+            outterEl.style.position = "absolute";
+            outterEl.style.backgroundColor = "white";
+            outterEl.style.padding = "15px";
+            outterEl.style.marginRight = "25%";
+            outterEl.style.fontSize = "xx-large";
+            innerEl.style.display = "block";
+            innerEl.style.width = "auto";
+            innerEl.style.height = "90%";
+            innerEl.style.padding = "15px";
+            innerEl.style.fontFamily = "system-ui";
+            innerEl.style.fontWeight = "bolder";
+            innerEl.style.border = "solid 9px darkred";
+            outterEl.style.display = "block";
+            
+            var cancelEl = document.createElement("button");
+            //cancelEl.style.display = "block";
+            cancelEl.style.width = "65px";
+            cancelEl.style.padding = "10px";
+            cancelEl.style.marginTop = "23px";
+            cancelEl.style.marginLeft = "55%";
+            cancelEl.innerHTML = "Cancel"
+            innerEl.appendChild(cancelEl);
+            cancelEl.dialogEl = dialogEl
+
+            cancelEl.addEventListener("click", function() { 
+                var dialogEl = document.getElementById("restoregame")
+                dialogEl.style.display = "none";
+            }, true);
+
+            if(!gameData) {
+                gameData = { "games": [] }
+            }
+
+            innerEl.innerHTML = "Restore Game<br>"
+
+            for(var i=0; i<gameData.games.length; i++) {
+                var tableRowEl = document.createElement("tr");
+                var tableCol1El = document.createElement("td");
+                var tableCol2El = document.createElement("td");
+                tableRowEl.appendChild(tableCol1El)
+                tableRowEl.appendChild(tableCol2El)
+
+                var restEl = document.createElement("button");
+                restEl.style.width = "20%";
+                restEl.style.padding = "10px";
+                restEl.style.marginTop = "23px";
+                restEl.style.marginLeft = "10px";
+                restEl.innerHTML = "&nbsp;"
+
+                restEl.gameId = i
+                restEl.addEventListener("click", function() {
+                    var gameDataStr = localStorage.getItem("agiGame");
+                    var gameData = JSON.parse(gameDataStr)
+                    var game = gameData.games[this.gameId]
+                    game.data.variables[34] = 0
+                    Agi.interpreter.new_room = game.data.variables[0] 
+                    Agi.interpreter.flags = game.data.flags
+                    Agi.interpreter.variables = game.data.variables
+
+                    var dialogEl = document.getElementById("restoregame")
+                    dialogEl.style.display = "none";
+                });
+    
+                var gameEl = document.createElement("div")
+                gameEl.innerHTML = gameData.games[i].name;
+                gameEl.style.display = "block";
+                gameEl.style.fontSize = "x-large";
+
+                tableCol1El.appendChild(restEl);            
+                tableCol2El.appendChild(gameEl)
+                innerEl.appendChild(tableRowEl)
+            }
+
+            innerEl.appendChild(cancelEl)
         }
         agi_restart_game() {
         }
@@ -2112,6 +2212,7 @@ var Agi;
 
             if(said == true) {
                 this.flags[2] = true; // The player has entered a command
+                this.flags[4] = true; // command accepted
                 this.keyboardCharBuffer = [];
                 this.inputBuffer = ""
             }
@@ -2995,6 +3096,7 @@ var Agi;
             }
         }
         bltView(viewNo, loopNo, celNo, x, y, priority) {
+
             try{
             var view = this.interpreter.loadedViews[viewNo];
             var cel = view.loops[loopNo].cels[celNo];
@@ -3031,7 +3133,7 @@ var Agi;
                 }
             }
         }catch(err) {
-           // console.log(err)
+           console.log(err)
         }
         }
         drawObject(obj, no) {
