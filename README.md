@@ -1,8 +1,8 @@
 # agi-studio-let-them-eat-cake
 
 # A Note From Russ, One Guy From CrafterCMS :)
-This game is a birthday card to my childhood heroes. Roberta and Ken Williams, Scott Murphy, Mark Crowe (the two guys from Andromeda), Al Lowe, and many others who contributed to Sierra's adventure games.
-I have no doubt that these games had a similar impact on many others. They taught us to solve problems, to laugh at ourselves, to get back up and keep trying when we failed, and to "Save early, Save often." For some like myself, they inspired us to get into programming.
+This game is a birthday card for the work of some of my childhood heroes. Roberta and Ken Williams, Scott Murphy, Mark Crowe (the two guys from Andromeda), Al Lowe, and many others who contributed to Sierra's adventure games.
+These games had a major impact on my childhood. There is no doubt in my mind that this is true for many others as well. They taught us to solve problems, to laugh at ourselves, to get back up and keep trying when we failed, and to "Save early, Save often." For some like myself, they inspired us to get into programming.
 
 Happy 40th to King's Quest!  
 
