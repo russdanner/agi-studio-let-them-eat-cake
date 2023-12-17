@@ -11,7 +11,7 @@ Much Love
 
 # Let Them Eat Cake
 Tomorrow Graham must meet with King Edwards for reasons unknown. This game takes place the night before.
-Go on a silly quest in Graham's dreams and prepare for the adventure that lies ahead in the following days.
+Go on a silly quest in Graham's dreams that prepares him for the adventure that lies ahead in the following days.
 
 # To Play the Game
 This is the source code of the game. Don't venture further here unless you wish to encounter spoilers.
