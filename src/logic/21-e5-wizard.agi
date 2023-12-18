@@ -46,7 +46,10 @@ if(equaln(vRoomInited, 0)) {
         set.view(objMonster, viewWizard)
         draw(objMonster)
         position(objMonster, 15, 50)        
-        follow.ego(objMonster, 2, fGotcha)    
+        follow.ego(objMonster, 2, fGotcha)  
+
+        load.sound(sndDevMonster)
+        sound(sndDevMonster, fSoundDone)    
     }
 
     position.v(objEgo, vEgoX, vEgoY)
@@ -84,7 +87,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 
     if(equaln(vEgoEdgeTouched, edgeRight)) {
         get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoX, 15)
+        assignn(vEgoX, 5)
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavWalnutF5)     

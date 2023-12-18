@@ -194,7 +194,8 @@ if(equaln(vCleanedUp, valTrue)) {
     if(equaln(vTimer, 100)) {
         if(!isset(fWatchHasBeeped)) {
             set(fWatchHasBeeped)
-            sound(sndWatchBeep, fDoAction)
+            sound(sndWatchBeep, fSoundDone)
+
             print("A long beep is emitted from the watch on your arm.")    
         }
     }

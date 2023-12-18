@@ -63,6 +63,9 @@ if(equaln(vRoomInited, valFalse)) {
     ignore.blocks(objTram)
     position(objTram, 5, 72)
     move.obj(objTram, 95, 72, 2, fTramInboundDone)
+
+    load.sound(sndTramStop)
+    sound(sndTramStop, fSoundDone)
 }
 
 addn(vTimer, 1)
@@ -85,6 +88,9 @@ if(said("enter", "tram")) {
         erase(objEgo)
         end.of.loop(objTram, fTramReady) 
         set(fTramRunning)       
+
+        load.sound(sndTramGo)
+        sound(sndTramGo, fSoundDone)    
     }
     if(!isset(fHasFlightPlan)) {
         print("You better speak with control first.")

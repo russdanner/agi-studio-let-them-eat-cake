@@ -466,6 +466,7 @@ var Agi;
             this.started = false;
             this.ended = false;
             this.frame = -1;
+            window.snds = []
             //this.audioCtx = new AudioContext();
 //            this.oscillator = this.audioCtx.createOscillator();
             window.audioCtx = (window.audioCtx) ? window.audioCtx : new AudioContext()
@@ -475,7 +476,7 @@ var Agi;
             this.oscillator = window.oscillator
 
             this.oscillator.connect(this.audioCtx.destination);
-            this.oscillator.type = "sign";
+            //this.oscillator.type = "sign";
             this.voices = {
                 voice1: {
                     durationRemaining: 0,
@@ -517,7 +518,7 @@ var Agi;
             catch (e) {
                 // Nothing to be done    
             }
-            this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 4000;
+            this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 2000;
         }
         play(soundNo, flagNo) {
             this.frame = 0;
@@ -525,7 +526,10 @@ var Agi;
         }
         stop() {
             this.ended = true;
-            this.oscillator.stop();
+//            this.oscillator.stop();
+            this.oscillator.frequency.setValueAtTime(0, 0)
+            console.log("Sound Flag Done:"+this.flag)
+            Agi.interpreter.flags[this.flag] = true    
         }
         playCycle() {
             var readNextFrame = false;
@@ -565,11 +569,10 @@ var Agi;
                 this.voices.voice1.offset = v1Offest;
                 this.voices.voice1.durationRemaining = duration;
                 this.voices.voice1.frequency = 99320 / (((noteHigh & 0x3F) << 4) + (noteLow & 0x0F));
+
                 if (duration == 65535 /* 0xFF 0xFF */) {
                     // marks the end of the audio
                     //console.log(window.snds)
-                    console.log("call stop")
-                    Agi.interpreter.flags[this.flag] = true    
                     this.stop();
                     
                 }
@@ -586,7 +589,9 @@ var Agi;
                 this.doSoundFrame();
             }
             else {
-                console.log(window.snds)
+                var sndStr = "{ \"soundData\": [" + window.snds + "] }"
+                sndStr = sndStr.replace(",] }", "] }")
+                console.log(sndStr)
             }
         }
     }

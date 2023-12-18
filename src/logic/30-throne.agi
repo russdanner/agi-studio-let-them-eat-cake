@@ -135,13 +135,16 @@ if(equaln(vTimer, 100)) {
     set.priority(objParty4, 15)
     stop.cycling(objParty4)
     position(objParty4, 60, 100)
-}
 
-if(equaln(vTimer, 200)) {
-    print("... THE KING!! Oh My ...")
+    load.sound(sndHappyBirthday)
+    sound(sndHappyBirthday, fSoundDone)  
 }
 
 if(equaln(vTimer, 250)) {
+    print("... THE KING!! Oh My ...")
+}
+
+if(equaln(vTimer, 255)) {
     set(fIsMorning)
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 15)

@@ -18,6 +18,10 @@ if(equaln(vRoomInited, valFalse)) {
     assignn(vClockTicks, 0)
     position(objShip, 35, 100)
     reset(fDoAction)
+
+    load.sound(sndSQTheme)
+    sound(sndSQTheme, fSoundDone)  
+
 }
 
 reposition(objShip, 1, 3)

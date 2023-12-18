@@ -1,8 +1,8 @@
 {
   "soundData": [
     [{ "duration": 3147, "noteHi": 19, "noteLow": 2, "maxNoteLow": 0 }],
-    [{ "duration": 5120, "noteHi": 0, "noteLow": 128, "maxNoteLow": 159 }],
-    [{ "duration": 1536, "noteHi": 2, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 50120, "noteHi": 0, "noteLow": 128, "maxNoteLow": 159 }],
+    [{ "duration": 50120, "noteHi": 2, "noteLow": 128, "maxNoteLow": 144 }],
     [{ "duration": 65535, "noteHi": 6, "noteLow": 0, "maxNoteLow": 3 }]
   ]
 }

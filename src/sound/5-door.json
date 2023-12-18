@@ -1,0 +1,9 @@
+{
+  "soundData": [
+    [{ "duration": 768, "noteHi": 46, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 33, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 16, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 33, "noteLow": 128, "maxNoteLow": 159 }],
+    [{ "duration": 65535, "noteHi": 18, "noteLow": 0, "maxNoteLow": 63 }]
+  ]
+}

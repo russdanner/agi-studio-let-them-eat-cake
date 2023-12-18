@@ -33,6 +33,9 @@ if(equaln(vRoomInited, valFalse)) {
             draw(objMonster)
             position(objMonster, 80, 80)        
             follow.ego(objMonster, 2, fGotcha)    
+
+            load.sound(sndDevMonster)
+            sound(sndDevMonster, fSoundDone)        
         }
     }
 }
@@ -73,7 +76,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 
     if(equaln(vEgoEdgeTouched, edgeRight)) {
         get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoX, 1)
+        assignn(vEgoX, 5)
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavCrashSiteA3)     

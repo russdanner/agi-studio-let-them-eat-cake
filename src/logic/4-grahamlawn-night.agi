@@ -1,11 +1,9 @@
 #include "0-defines.aqi"
 
-load.sound(1)
-
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
 
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewGrahamNoHat)
     load.view(viewGrahamHatNoFeather)
@@ -37,8 +35,13 @@ if(equaln(vRoomInited, 0)) {
         }
     }
 
+    reset(fSoundDone)
+    reset(fDoAction)
+    reset(fGotcha)
+
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
+
     position(objWolf1, 15, 40)
     position(objWolf2, 170, 160)
     position(objCabinDoor, 121, 130)
@@ -58,34 +61,48 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 
-if(!obj.in.box(objEgo, 100, 116, 158, 130)) {
-    if(!isset(fDoAction)) {
-        set(fDoAction)
+if(!isset(fDead)) { 
+    if(!obj.in.box(objEgo, 100, 116, 158, 130)) {
+        if(!isset(fRunForIt)) {
+            set(fRunForIt)
+            load.sound(sndDevMonster)
+            sound(sndDevMonster, fSoundDone)    
+        }
     }
-}
 
-if(isset(fDoAction)){
-    start.cycling(objWolf1)
-    follow.ego(objWolf1, 3, fGotcha)
+    if(isset(fSoundDone)) {
+        if(!isset(fDoAction)) {
+            set(fDoAction)
+        }
+    }
 
-    start.cycling(objWolf2)
-    follow.ego(objWolf2, 3, fGotcha)
-}
+    if(isset(fDoAction)) {
+        reset(fSoundDone)
+        start.cycling(objWolf1)
+        follow.ego(objWolf1, 3, fGotcha)
 
-if(isset(fGotcha)) {
-    if(!isset(fDead)) { 
-        set(fDead) 
+        start.cycling(objWolf2)
+        follow.ego(objWolf2, 3, fGotcha)
+    }
+
+    if(isset(fGotcha)) {
         erase(objEgo)
 
+        set(fDead) 
+        assignn(vDeathReason, valXsWolfMunchGraham)
         load.view(viewFightCloud)
         
+
         //set.view(objWolf1, viewFightCloud)
         set.view(objWolf2, viewFightCloud)
         
         start.cycling(objWolf1)
-        start.cycling(objWolf2)         
+        start.cycling(objWolf2)
+        wander(objWolf1)         
+        wander(objWolf2)         
     }
 }
 
 return()
+
 #message 1 "Grahams Lawn Night"

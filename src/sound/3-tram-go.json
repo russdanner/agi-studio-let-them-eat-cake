@@ -1,0 +1,23 @@
+{
+  "soundData": [
+    [{ "duration": 768, "noteHi": 63, "noteLow": 128, "maxNoteLow": 159 }],
+    [{ "duration": 768, "noteHi": 63, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 61, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 60, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 59, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 57, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 56, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 54, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 53, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 51, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 49, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 48, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 47, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 44, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 41, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 37, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 34, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 768, "noteHi": 31, "noteLow": 128, "maxNoteLow": 144 }],
+    [{ "duration": 65535, "noteHi": 81, "noteLow": 0, "maxNoteLow": 5 }]
+  ]
+}

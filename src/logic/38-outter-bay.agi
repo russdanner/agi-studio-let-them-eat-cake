@@ -49,6 +49,10 @@ if(equaln(vRoomInited, valFalse)) {
         set.priority(objTram, 4)
         position(objTram, 5, 47)
         move.obj(objTram, 55, 47, 2, fTramInboundDone)        
+
+
+        load.sound(sndTramStop)
+        sound(sndTramStop, fSoundDone)    
     }
 
     position(objHangerDoorLeft, 5, 129)
@@ -89,10 +93,16 @@ if(said("wear", "suit")) {
 
 if(posn(objEgo, 8, 123, 20, 143)) {
     end.of.loop(objHangerDoorLeft, fDoAction)
+
+    load.sound(sndSpaceDoor)
+    sound(sndSpaceDoor, fSoundDone)    
 }
 if(obj.in.box(objEgo, 21, 123, 25, 128)) {
     set.cel(objHangerDoorLeft, 0)
     //end.of.loop(objHangerDoorLeft, 99)
+
+    load.sound(sndSpaceDoor)
+    sound(sndSpaceDoor, fSoundDone)    
 }
 
 if(obj.in.box(objEgo, 2, 123, 5, 128)) {

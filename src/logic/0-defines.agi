@@ -284,8 +284,16 @@
 #define viewObjAdvHat 96
     
 // sounds
-#define sndTitle 0
-#define sndWatchBeep 1
+#define sndTitle 1
+#define sndWatchBeep 2
+#define sndTramGo 3
+#define sndTramStop 4
+#define sndSpaceDoor 5
+#define sndDevMonster 6
+#define sndHappyBirthday 7
+#define sndRogerDead 8
+#define sndGrahamDead 9
+#define sndSQTheme 10
 
 // death
 #define valXsGeneric 1
@@ -300,6 +308,7 @@
 #define valXsSafteyThird 10
 #define valXsWolfMunch 11
 #define valXsWitchSnag 12
+#define valXsWolfMunchGraham 13
 
 // vars
 // Engine Vars
@@ -353,6 +362,10 @@
 // Note that we use flags in this game fore a few items in addition to inventory
 // because we change the character and have to clear / build the invetory when the 
 // character changes.
+#define fGameOver 74
+#define fDeathSoundDone 75
+#define fRogerDead 76
+#define fGrahamDead 77
 
 #define fShowInvItem 78
 #define fProgramControl 79
@@ -374,6 +387,7 @@
 #define fDoAction 95
 #define fUndoAction 96
 #define fGotcha 90
+#define fRunForIt 91
 
 #define fCabinetOpen 95
 
@@ -399,6 +413,10 @@
 #define fLiftGoingDown 99
 #define fOnLift 100
 #define fHasFlightPlan 101
+
+#define fDoorOpen 99
+#define fDoor2Open 102
+
 
 #define fPodPoweredUp 90
 #define fPodThrottlePulled 91

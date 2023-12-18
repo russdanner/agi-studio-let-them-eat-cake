@@ -1,9 +1,11 @@
 #include "0-defines.aqi"
 
-if(equaln(vRoomInited, 0)) {
-   assignn(vRoomInited, 1)
+if(equaln(vRoomInited, valFalse)) {
+   assignn(vRoomInited, valTrue)
+   
    load.sound(sndTitle)
    sound(sndTitle, fSoundDone)
+
    load.view(viewTitleFeather)
    set.view(objTitleFeather, viewTitleFeather)
    stop.cycling(objTitleFeather)

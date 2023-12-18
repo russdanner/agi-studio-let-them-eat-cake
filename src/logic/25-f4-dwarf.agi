@@ -52,7 +52,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     
     if(equaln(vEgoEdgeTouched, edgeRight)) {
         get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoX, 15)
+        assignn(vEgoX, 5)
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavRiverBendA4)     
