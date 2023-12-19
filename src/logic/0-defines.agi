@@ -356,6 +356,24 @@
 
 // flags
 
+// System Flags
+#define fSysEgoOnWater 0
+#define fSysEgoObscured 1
+#define fSysPlayerIssuedCommand 2
+#define fSysEgoTouchedPriority2 3
+#define fSysSaidAccepted 4
+#define fSysNewRoomCodeExecuted 5
+#define fSysRestartGameExecuted 6
+#define fSysScriptBufferWriteBlock 7
+#define fSysJoystickEnabled 8
+#define fSysSoundOn 9
+#define fSysDebuggerOn 10
+#define fSysLogicZeroExecuted 11
+#define fSysRestoreExecuted 12
+#define fSysStatusSelect 13
+#define fSysMenuOn 14
+#define fSysPrintMode 15
+
 // global flags
 // Do not use for screen specific things
 // These should be 89 and lower

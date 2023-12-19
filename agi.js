@@ -518,7 +518,7 @@ var Agi;
             catch (e) {
                 // Nothing to be done    
             }
-            this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 2000;
+            this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 3000;
         }
         play(soundNo, flagNo) {
             this.frame = 0;
@@ -817,6 +817,7 @@ var Agi;
     })(Direction = Agi.Direction || (Agi.Direction = {}));
     class GameObject {
         constructor() {
+            this.pockets = []
             this.x = 0;
             this.y = 0;
             this.draw = false;
@@ -1063,12 +1064,12 @@ var Agi;
                 }
             }
             //console.log("----- CYCLE ------");
-            this.screen.bltText(1, 0, "" + this.flags[0]);
-            this.screen.bltText(2, 0, "" + this.variables[42]);
-            this.screen.bltText(3, 0, "" + this.variables[43]);
-            this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
-            this.screen.bltText(5, 0, "" + this.variables[19]);
-            this.screen.bltText(6, 0, "" + this.variables[10]);
+            // this.screen.bltText(1, 0, "" + this.flags[0]);
+            // this.screen.bltText(2, 0, "" + this.variables[42]);
+            // this.screen.bltText(3, 0, "" + this.variables[43]);
+            // this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
+            // this.screen.bltText(5, 0, "" + this.variables[19]);
+            // this.screen.bltText(6, 0, "" + this.variables[10]);
 
             this.screen.bltText(21, 0, "]");
             this.screen.bltText(21, 2, "                                                                            ");
@@ -1815,11 +1816,13 @@ var Agi;
             Resources.readAgiResource(Resources.AgiResource.Sound, soundNo)
         }
         agi_sound(soundNo, flagNo) {
-            if (this.sound) {
-                this.sound.stop();
+            if(this.flags[9] == true) {
+                if (this.sound) {
+                    this.sound.stop();
+                }
+                this.sound = new Agi.Sound(soundNo, this.loadedSounds[soundNo], flagNo);
+                this.sound.play(soundNo, flagNo);
             }
-            this.sound = new Agi.Sound(soundNo, this.loadedSounds[soundNo], flagNo);
-            this.sound.play(soundNo, flagNo);
         }
         agi_stop_sound() {
             if (this.sound) {
@@ -1941,6 +1944,7 @@ var Agi;
                 var savedGame = {}
                 savedGame.flags = Agi.interpreter.flags
                 savedGame.variables = Agi.interpreter.variables
+                savedGame.pockets = Agi.interpreter.pockets
 
                 var savedGames
                 var savedGamesStr = localStorage.getItem("agiGame");
@@ -2030,6 +2034,7 @@ var Agi;
                     Agi.interpreter.new_room = game.data.variables[0] 
                     Agi.interpreter.flags = game.data.flags
                     Agi.interpreter.variables = game.data.variables
+                    Agi.interpreter.pockets = game.data.pockets
 
                     var dialogEl = document.getElementById("restoregame")
                     dialogEl.style.display = "none";
@@ -2048,6 +2053,7 @@ var Agi;
             innerEl.appendChild(cancelEl)
         }
         agi_restart_game() {
+            window.location.reload() 
         }
         agi_quit(n1) {
         }

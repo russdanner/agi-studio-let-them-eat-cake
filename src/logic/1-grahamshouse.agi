@@ -48,6 +48,29 @@ if(equaln(vRoomInited, valFalse)) {
     assignn(vClockTicks, 0)
     assignn(vRoomInited, valTrue)
 
+    if(isset(fIsMorning)) {
+        // switching from roger back to graham
+        drop(invBroom)
+        drop(invGlass)
+        drop(invCake)
+        drop(invInk)
+        drop(invQuill)
+        drop(invFeather)
+        drop(invPaper)
+        drop(invInvitation)
+
+        drop(invTea)
+        get(invTeaCup)
+        get(invTeapot)
+
+        if(isset(fHasHat)) {
+            get(invHat)
+        }        
+        if(isset(fHasSummons)) {
+            get(invSummons)
+        }        
+    }
+
     position(objEgo, 100, 130)
     position(objWindow, 90, 58)
 
@@ -58,7 +81,9 @@ if(equaln(vRoomInited, valFalse)) {
         position(objTeapot, 110, 87)
     }
     if(!has(invTea)) {
-        position(objTeaCup, 55, 105)
+        if(!has(invTeaCup)) {
+            position(objTeaCup, 55, 105)
+        }
     }
     if(!has(invSummons)) {
         position(objSummons, 80, 105)

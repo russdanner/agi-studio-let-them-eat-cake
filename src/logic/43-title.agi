@@ -120,8 +120,8 @@ if(isset(fSoundDone)) {
 
 
 if(have.key()) {
+    assignn(vGameCycleDelay, 2)
     clear.lines(23,24,0)
-
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 0)
     assignn(vEgoY, 0)

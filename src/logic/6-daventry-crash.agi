@@ -37,6 +37,7 @@ if(equaln(vActionCount, 50)) {
         set(fDead)    
     }
     if(isset(fBeltBuckled)) {
+        assignn(vGameCycleDelay, 2)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picInPodCrash)         
     }    

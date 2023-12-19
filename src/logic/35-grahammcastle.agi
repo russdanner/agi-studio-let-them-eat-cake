@@ -3,14 +3,18 @@
 if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
     assignn(vRoomInited, valTrue)
-//add banners    
+
+    load.view(viewCastleFlags)
     load.view(viewGrahamHatFeather)
 
     animate.obj(objEgo)
+    animate.obj(objCastleFlags)
 
     set.view(objEgo, viewGrahamHatFeather)
+    set.view(objCastleFlags, viewCastleFlags)
 
     draw(objEgo)
+    draw(objCastleFlags)
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
@@ -19,10 +23,12 @@ if(equaln(vRoomInited, valFalse)) {
         }
     }
 
+    addn(vCurrentScore, 2)  
     assignn(vEgoEdgeTouched, edgeNone)
 
     reset(fDoAction)
-    
+
+    position(objCastleFlags, 5, 20)
     position.v(objEgo, vEgoX, vEgoY)
 
     move.obj(objEgo, 116, 112, 1, fDoAction)

@@ -15,7 +15,6 @@
     "me",
     "now",
     "of",
-    "off",
     "out",
     "some",
     "that",
@@ -175,6 +174,8 @@
   "2082":["unbuckle"],
   "2083":["notice"],
   "2084":["snyde"],
+  "2085":["sound"],
+  "2086":["off"],
 
   "3012": ["crafterCMS"]
 }

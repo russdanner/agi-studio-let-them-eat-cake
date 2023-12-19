@@ -34,6 +34,10 @@ if(said("save")) {
     save_game()
 }
 
+if(said("restart")) {
+    restart_game()
+}
+
 if(said("restore")) {
     restore_game()
 }
@@ -385,7 +389,31 @@ if(!isset(fGameOver)) {
 }
 
 if(isset(fDeathSoundDone)) {
-    print("You are dead. It's been a real hoot watching play. Thanks for playing Let them Eat Cake. You can only RESTORE or RESTART.")
+    print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. You can only RESTORE or RESTART.")
+}
+
+// unkown word
+// if(!equaln(9, 0)) {
+//     print("Say what?")    
+// } 
+
+if(said("fastest", "speed")) {
+    assignn(10, 1)
+}
+if(said("fast", "speed")) {
+    assignn(10, 2)
+}
+if(said("normal", "speed")) {
+    assignn(10, 3)
+}
+if(said("slow", "speed")) {
+    assignn(10, 5)
+}
+if(said("sound", "on")) {
+    set(fSysSoundOn)
+}
+if(said("sound", "off")) {
+    reset(fSysSoundOn)
 }
 
 return()
