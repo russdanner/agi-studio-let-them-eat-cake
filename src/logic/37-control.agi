@@ -185,6 +185,16 @@ if(said("talk", "man")) {
     }
 }
 
+if(said("look", "room")) {
+    print("This is the main control room for the station. It's alive with activity. To the rear wall there is a tram. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.")
+}
+if(said("look", "man")) {
+    print("Keep your eyes to yourself Roger.")
+}
+if(said("look", "tram")) {
+    print("The tram enables personnel to move about the station. It's destinations are managed by control. #tramIt")
+}
+
 return()
 
 #message 1 "Control Room"

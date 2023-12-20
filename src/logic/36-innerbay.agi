@@ -217,6 +217,22 @@ if(said("take", "broom")) {
     print("Ok")
 }
 
+if(said("look", "room")) {
+    print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a tram.")
+}
+if(said("look", "bathroom")) {
+    print("'Look' is really not really the verb you would prefer to associate with StarCon bathrooms. It appears to be your standard issue StarCon facilities. There is a button by the door and a small display which indicates that the room is currently unoccupied.")
+}
+if(said("look", "closet")) {
+    print("It sure looks comfy... I mean... like the pinnacle of storage solutions.")
+}
+if(said("look", "suit")) {
+    print("Good eye. There is a pressure suit rack here.")
+}
+if(said("look", "tram")) {
+    print("The tram is used to move about the various areas within the station. A tram car is currently waiting in this location.")
+}
+
 return()
 
 #message 1 "Inner Bay"

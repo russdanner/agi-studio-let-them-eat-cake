@@ -48,6 +48,7 @@
 #define objPodStars3 12
 #define objPodStars4 13
 #define objPodStars5 14
+#define objPodStars6 15
 
 #define objCastleFlags 9
 #define objCastleCrocs 10

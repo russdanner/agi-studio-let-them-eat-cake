@@ -1,6 +1,5 @@
 #include "0-defines.aqi"
 
-
 if(equaln(vRoomInited, valFalse)) {
     
     unanimate.all()
@@ -17,15 +16,28 @@ if(equaln(vRoomInited, valFalse)) {
     set.view(objPodStars3, viewStar)
     set.view(objPodStars4, viewStar)
     set.view(objPodStars5, viewStar)
+    set.view(objPodStars6, viewStar)
 
     set.view(objCockpitThrottle, viewCockpitThrottle)
     set.view(objDecal, viewDecal)
     
     stop.cycling(objCockpitThrottle)
     stop.cycling(objDecal)
-    
+    stop.cycling(objPodStars1)
+    stop.cycling(objPodStars2)
+    stop.cycling(objPodStars3)
+    stop.cycling(objPodStars4)
+    stop.cycling(objPodStars5)
+    stop.cycling(objPodStars6)
+
     draw(objCockpitThrottle)
     draw(objDecal)
+    draw(objPodStars1)
+    draw(objPodStars2)
+    draw(objPodStars3)
+    draw(objPodStars4)
+    draw(objPodStars5)
+    draw(objPodStars6)
 
     position(objDecal, 119, 124)    
     position(objCockpitThrottle, 106, 128)
@@ -55,22 +67,12 @@ if(equaln(vRoomInited, valFalse)) {
         stop.cycling(objCockpitButtons3)
         stop.cycling(objCockpitButtons4)
         stop.cycling(objCockpitScreen1)
-        stop.cycling(objPodStars1)
-        stop.cycling(objPodStars2)
-        stop.cycling(objPodStars3)
-        stop.cycling(objPodStars4)
-        stop.cycling(objPodStars5)
     
         draw(objCockpitButtons1)
         draw(objCockpitButtons2)
         draw(objCockpitButtons3)
         draw(objCockpitButtons4)
         draw(objCockpitScreen1)
-        draw(objPodStars1)
-        draw(objPodStars2)
-        draw(objPodStars3)
-        draw(objPodStars4)
-        draw(objPodStars5)
     
         set.cel(objCockpitButtons2, 1)
         set.cel(objCockpitButtons3, 2)
@@ -80,15 +82,17 @@ if(equaln(vRoomInited, valFalse)) {
         position(objCockpitButtons1, 32, 128)
         position(objCockpitButtons2, 46, 110)
         position(objCockpitButtons3, 47, 127)
-        position(objCockpitButtons4, 126.5, 127)
+        position(objCockpitButtons4, 126, 127)
     
         position(objCockpitScreen1, 73, 92)   
     }
 
-    position(objPodStars1, 50, 50)
-    position(objPodStars2, 100, 50)
-    position(objPodStars3, 40, 50)
-    position(objPodStars4, 90, 50)
+    position(objPodStars1, 65, 40)
+    position(objPodStars2, 85, 40)
+    position(objPodStars3, 65, 50)
+    position(objPodStars4, 85, 50)
+    position(objPodStars5, 65, 60)
+    position(objPodStars6, 35, 70)
 
     assignn(vTimer, 0)
     assignn(vClockTicks, 0)
@@ -188,10 +192,10 @@ if(isset(fPodLaunched)) {
     if(isset(fLaunchAnimationPlayed)) {        
 
         if(!isset(fStarDone1)) {
-            move.obj(objPodStars1, 20, 80, 2, fStarDone1)
+            move.obj(objPodStars1, 20, 75, 2, fStarDone1)
         }
         if(!isset(fStarDone2)) {
-            move.obj(objPodStars2, 130, 80, 2, fStarDone2)
+            move.obj(objPodStars2, 125, 80, 2, fStarDone2)
         }
         if(!isset(fStarDone3)) {
            move.obj(objPodStars3, 20, 15, 2, fStarDone3)
@@ -199,29 +203,28 @@ if(isset(fPodLaunched)) {
         if(!isset(fStarDone4)) {
            move.obj(objPodStars4, 130, 15, 2, fStarDone4)
         }
-
     
         if(isset(fStarDone1)) {
             reset(fStarDone1)
-            position(objPodStars1, 50, 50)
+            position(objPodStars1, 65, 40)
         }
         if(isset(fStarDone2)) {
             reset(fStarDone2)
-            position(objPodStars2, 100, 50)
+            position(objPodStars2, 85, 40)
         }
         if(isset(fStarDone3)) {
             reset(fStarDone3)
-            position(objPodStars3, 40, 50)        
+            position(objPodStars3, 65, 50)        
         }
         if(isset(fStarDone4)) {
             reset(fStarDone4)
-            position(objPodStars4, 90, 50)
+            position(objPodStars4, 85, 50)
         }
     }
 
     if(!isset(fPodAutoNaved)){
         if(equaln(vClockTicks, 3)) {
-            print("You should probably engage some form of navigation...")
+            // print("You should probably engage some form of navigation...")
             assignn(vTimer, 0)
             assignn(vClockTicks, 0)
         }    

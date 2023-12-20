@@ -195,6 +195,22 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }    
 
+if(said("look", "room")) {
+    print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.")
+}
+if(said("look", "door")) {
+    print("To your surprise it is as it appears... a door. The door is locked.")
+}
+if(said("look", "commode")) {
+    print("A worthy adversary indeed. Clean it is not.")
+}
+if(said("look", "sink")) {
+    print("The sink appears to be broken. Gross.")
+}
+if(said("look", "mirror")) {
+    print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. if the ladies don't find you handsome they should atleast find you handy. You thread that needle pretty well.")
+}
+
 return()
 
 #message 1 "Bathroom"
