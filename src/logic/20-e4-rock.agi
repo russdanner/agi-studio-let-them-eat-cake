@@ -122,5 +122,16 @@ if(!isset(fProgramControl)) {
     }    
 }
 
+if(said("look", "room")) {
+    print("The area is heavily wooded. A large rock dominates the area.")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+}
+if(said("look", "rock")) {
+    print("There's a large rock here. A large hole can be seen at the base of the rock.")
+}
+
+
 return()
 #message 1 "Rock"

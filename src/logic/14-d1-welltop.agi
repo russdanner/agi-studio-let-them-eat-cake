@@ -129,6 +129,16 @@ if(isset(fDoAction)) {
     assignn(vCurrentRoom, picDavWellBottom)   
 }
 
+if(said("look", "room")) {
+    print("There's an ancient well here. There's a thick fog to the north and west.")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+}
+if(said("look", "well")) {
+    print("The ancient well reaches deep into the earth. There's a bucket at the top of the well.")
+}
+
 return()
 
 #message 1 "Welltop"

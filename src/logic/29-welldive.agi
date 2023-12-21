@@ -57,9 +57,14 @@ if(said("take", "ink")) {
         print("You remove the bottle of ink from inside the trunk and carry it with you.")
     }
 }
-
+if(said("look", "room")) {
+    print("You are at the very bottom of the well. The walls are rough cut and the floor is full bits and bobs that people have thrown down the well over the ages. A large trunk lays up againt the wall to the east. There's a small opening in the wall to the west.")
+}
 if(said("look", "cave")) {
     print("Wow.. It looks like a COLOSSAL CAVE. That's different game Roger. Go check it out.")
+}
+if(said("look", "trunk")) {
+    print("The large trunk looks old but sturdy. It's clear that it has been here for some time.")
 }
 
 return()

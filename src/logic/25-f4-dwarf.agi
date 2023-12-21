@@ -66,5 +66,9 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look", "room")) {
+    print("This is a lightly wooded area with rocky outcroppings.")
+}
+
 return()
 #message 1 "Dwarf"

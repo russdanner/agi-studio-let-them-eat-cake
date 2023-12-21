@@ -97,10 +97,15 @@ if(said("sharpen", "glass")) {
 }
 
 
+if(said("look", "room")) {
+    print("The ground is covered in walnuts. They have fallen from a beautiful walnut tree that towers into the sky. A point rock juts up from the ground by the tree. A thick fog rolls in from the south. ")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+}
 if(said("look", "rock")) {
     print("There's a rock here that looks very sharp and abrasive.")
 }
-
 
 return()
 #message 1 "Walnuts"

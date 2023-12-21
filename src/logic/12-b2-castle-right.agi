@@ -1,10 +1,8 @@
 #include "0-defines.aqi"
 
-//load.sound(1)
-
-if(equaln(vRoomInited, 0)) {
+if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
-    assignn(vRoomInited, 1)
+    assignn(vRoomInited, valTrue)
 
     load.view(viewRoger)
     load.view(viewRogerSplash)
@@ -120,6 +118,14 @@ if(equaln(vEgoDirection, directionStopped)) {
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
-    
+
+if(said("look", "room")) {
+    print("You are at the east end of a castle. There is a thick fog to the north and east.")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+}
+
+
 return()
-#message 1 "R9"
+#message 1 "Castle Right"

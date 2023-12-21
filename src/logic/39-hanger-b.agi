@@ -63,11 +63,11 @@ if(said("enter", "pod")) {
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picInPod)    
 
-        print("You climb into the pod.")
+        print("You climb into the pod and shut the door.")
 
     }
     if(!posn(objEgo, 49, 93, 60, 109)) {
-        print("You are too far away")
+        print("You are too far away.")
     }
 }
 
@@ -117,6 +117,20 @@ if(isset(fDecompressed)) {
     reset(fDecompressed)
     assignn(vDeathReason, valXsNoSuitExplode)    
     set(fDead)
+}
+
+
+if(said("look", "room")) {
+    print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.")
+}
+if(said("look", "panel")) {
+    print("The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.")
+}
+if(said("look", "space")) {
+    print("Ah space... It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.")
+}
+if(said("look", "pod")) {
+    print("Ain't she cute? It's a standard issue StarCon shuttle pod used for short trips between stations and bases. In the extremely rare and unlikely event of an emergency including but not limited to a hostile encounter with a crew of marauding aliens it can be used as an escape vehicle. That'll never happen. 'Anywho'.. She's all fueled up and ready to go.")
 }
 
 return()

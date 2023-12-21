@@ -108,5 +108,21 @@ if(isset(fDoAction)) {
     assignn(vCurrentRoom, picDavWitchHouseInside)
 }
 
+if(said("look", "room")) {
+    print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south.")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+}
+if(said("look", "house")) {
+    print("You are not quite sure what to make of it. It's a house made out of candy. It looks... sticky. As a janitor sticky bothers you.")
+}
+if(said("lick", "house")) {
+    print("You give the house a lick.")
+}
+if(said("knock", "door")) {
+    print("There is no answer.")
+}
+
 return()
 #message 1 "Whitch House"

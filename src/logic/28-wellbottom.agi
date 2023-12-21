@@ -148,6 +148,19 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
+if(said("look", "room")) {
+    print("You are at the bottom of the ancient well.")
+}
+if(said("look", "water")) {
+    print("It's water. Wet. Hydrated.")
+}
+if(said("look", "rope")) {
+    print("The rope reaches up to the top of the well.")
+}
+if(said("look", "bucket")) {
+    print("You gotta admit that it is a nice bucket.")
+}
+
 return()
 
 #message 1 "Well Bottom"

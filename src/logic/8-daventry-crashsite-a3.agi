@@ -32,6 +32,8 @@ if(equaln(vRoomInited, valFalse)) {
         }
     }
 
+    reset(fDrowning)
+
     position.v(objEgo, vEgoX, vEgoY)
 
     assignn(vEgoEdgeTouched, edgeNone)
@@ -44,7 +46,7 @@ if(equaln(vRoomInited, valFalse)) {
  }
 
 if(!has(invGlass)) {
-    random(1, 100, vDiceRoll)
+    random(1, 200, vDiceRoll)
 
     if(equaln(vDiceRoll, 40)) {
         position(objGlassSparkle, 32, 147)
@@ -54,7 +56,6 @@ if(!has(invGlass)) {
     if(!equaln(vDiceRoll, 40)) {
         erase(objGlassSparkle)
     }
-
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
@@ -75,30 +76,23 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
-if(isset(0)) {
-    if(!isset(fSwimming)) {
-        if(!isset(fDrowning)){
-            set.view(objEgo, viewRogerSplash)
-            set(fDrowning)
-            assignn(vEgoDirection, directionStopped)
-            program.control()
-            assignn(vDeathReason, valXsFastWater)
-            set(fDead)
-        
-        }
-    }    
-}
-
-if(!isset(0)) {
-    if(isset(fSwimming)) {
-        set.view(objEgo, viewRoger)
-        reset(fSwimming)
+if(isset(fSysEgoOnWater)) {
+    if(!isset(fDrowning)){
+        set.view(objEgo, viewRogerSplash)
+        set(fDrowning)
+        assignn(vEgoDirection, directionStopped)
+        program.control()
+        assignn(vDeathReason, valXsFastWater)
+        set(fDead)
     }
 }
 
 if(said("swim")) {
-    if(isset(0)) {
+    if(isset(fSysEgoOnWater)) {
         print("The water is too fast here.")
+    }
+    if(!isset(fSysEgoOnWater)) {
+        print("This may come as a surprise to you but you need to be IN the water in order to go swimming.")
     }
 }
 
@@ -118,6 +112,19 @@ if(said("take", "glass")) {
     }
 }
 
+if(said("look", "area")) {
+    print("The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance.")
+}
+if(said("look", "pod")) {
+    print("It WAS a pod. It's now a pile of twisted parts and wreckage that has been thoroughly plowed into the ground. Your handiwork so-to-speak.")
+}
+if(said("look", "water")) {
+    print("The river is flowing off to the east and looks to have a strong current.")
+}
+if(said("look", "castle")) {
+    print("There's a base of fortress of some kind off in the distance. You wonder how to get over there. Maybe there's someone there that could help you out.")
+}
     
 return()
+
 #message 1 "Crash site"

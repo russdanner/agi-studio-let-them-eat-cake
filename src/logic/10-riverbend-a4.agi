@@ -69,5 +69,15 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look", "room")) {
+    print("The river winds off to the east into a mist which grow thicker to the east")
+}
+if(said("look", "water")) {
+    print("The river is flowing off to the east and looks to have a strong current.")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+}
+
 return()
-#message 1 "R10"
+#message 1 "Riverbend"

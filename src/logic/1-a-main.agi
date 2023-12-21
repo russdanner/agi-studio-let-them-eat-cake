@@ -344,7 +344,7 @@ if(!isset(fGameOver)) {
         }
         if(equaln(vDeathReason, valXsFastWater)) {
             set(fRogerDead)
-            print("Oh no! The water here is too fast to swim. You are overcome by the current and rapids and flushed down river. An end fit for a janitor.")
+            print("Oh no! The water here is too fast to swim. You are overcome by the current and rapids. You are quickly flushed down river. An end fit for a janitor.")
         }
         if(equaln(vDeathReason, valXsOgreMunch)) {
             set(fRogerDead)
@@ -368,7 +368,7 @@ if(!isset(fGameOver)) {
         }
         if(equaln(vDeathReason, valXsWitchSnag)) {
             set(fRogerDead)
-            print("What you assume is one of the ugliest members of Vohaul's monkey army troops swoops down and snatches you up.")
+            print("What you assume is one of the ugliest members of Vohaul's monkey troops swoops down and snatches you up.")
         }
     }    
 }
@@ -392,10 +392,6 @@ if(isset(fDeathSoundDone)) {
     print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. You can only RESTORE or RESTART.")
 }
 
-// unkown word
-// if(!equaln(9, 0)) {
-//     print("Say what?")    
-// } 
 
 if(said("fastest", "speed")) {
     assignn(10, 1)
@@ -414,6 +410,20 @@ if(said("sound", "on")) {
 }
 if(said("sound", "off")) {
     reset(fSysSoundOn)
+}
+if(said("look", "anyword")) {
+        print("It's nothing special or important.")
+}
+if(said("lick", "cake")) {
+    if(has(invCake)) {
+        print("Party foul.")
+    }
+    if(!has(invCake)) {
+        print("If you had cake you could try that.")
+    }    
+}
+if(said("craftercms")) {
+    print("Hell yeah! Got content? Like Open Source? CrafterCMS.com check it out. Give the project a like on Github or reach out and tell 'em Russ sent ya.")
 }
 
 return()

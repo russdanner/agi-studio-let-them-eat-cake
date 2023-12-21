@@ -94,6 +94,9 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look", "room")) {
+    print("This is an open clearing. There's nothing particularly noteworthy here.")
+}
 
 return()
 #message 1 "Dagger"

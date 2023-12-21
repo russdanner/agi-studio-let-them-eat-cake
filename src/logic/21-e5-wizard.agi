@@ -109,5 +109,12 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look", "room")) {
+    print("You are at the edge of a thick forest. A clearing sits aside of the wooded area. There's a thick fog to the south.")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+}
+
 return()
 #message 1 "Wizard"

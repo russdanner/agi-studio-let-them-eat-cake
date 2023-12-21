@@ -19,6 +19,8 @@ if(equaln(vRoomInited, valFalse)) {
     position(objCockpitThrottle,  106, 130)
 
     set(fBeltBuckled)
+
+    print("After a skull-jarring landing you peer through the shattered viewing port out onto lush green landscape. It feels alien and familiar all at once. You're in a fine mess now.")
 }
 
 if(said("unbuckle", "belt")) {
@@ -37,6 +39,32 @@ if(said("exit", "pod")) {
         assignn(vCurrentRoom, picDavCrashSiteA3) 
         print("You climb out of the pod and discard your pressure suit.")
     }
+}
+
+if(said("look", "pod")) {
+    print("You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment.")
+}
+
+if(said("look", "console")) {
+    print("What was once a console is now a twisted mess of broken buttons and wires.")
+}
+
+if(said("look", "throttle")) {
+    print("She's locked in the on position but you are definately not going anywhere.")
+}
+if(said("pull", "throttle")) {
+    print("All of a sudden... nothing happens!")
+}
+if(said("push", "power")) {
+    print("Nothing happens")
+}
+
+if(said("look", "buttons")) {
+    print("The buttons are of no use at this point.")
+}
+
+if(said("search", "pod")) {
+    print("You search the pod in hopes of finding supplies. You find only disappointment.")
 }
 
 return()

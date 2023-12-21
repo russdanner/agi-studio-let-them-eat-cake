@@ -57,6 +57,10 @@ if(equaln(vRoomInited, valFalse)) {
     position(objMist3, 85, 166)
     position(objMist4, 127, 166)
 
+    reset(fHawkFlightADone)
+    reset(fHawkFlightBDone)
+    reset(fFeatherFakllDone)
+
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(50)
@@ -145,6 +149,13 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavWalnutF5)    
     }
+}
+
+if(said("look", "room")) {
+    print("This is a forrested and rocky area. A think fog has developed to the south and the east.")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
 }
 
 return()

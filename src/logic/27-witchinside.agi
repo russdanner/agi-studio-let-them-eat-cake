@@ -95,6 +95,21 @@ if(isset(fCabinetOpen)) {
     }
 }
 
+if(said("look", "room")) {
+    print("You stand in a large open room with access to a small bedroom in the back. The inside of the house is clean and tidy. There's a large oven here and A cage.. That's right.. A CAGE. Not cool. Better get out of here.")
+}
+if(said("look", "table")) {
+    if(!has(invPaper)) {
+        print("There's a large table here with a piece of paper on it.")
+    }
+    if(has(invPaper)) {
+        print("There's a large table here.")
+    }
+}
+if(said("look", "cabinet")) {
+    print("There's a large cabinet here that is built into the wall.")
+}
+
 return()
 
 #message 1 "Witch inside"
