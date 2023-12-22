@@ -97,24 +97,34 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("enter", "bucket")) {
-    load.view(viewRogerBucket)
-    erase(objBucket)
-    set.view(objEgo, viewRogerBucket)
-    position(objEgo, 37, 145)
-    set.priority(objEgo, 11)
-    stop.cycling(objEgo)
-    set.cel(objEgo, 0)
-    set(fInBucket)
-    addn(vCurPoints, 1)
+    if(posn(objEgo, 21, 105, 110, 145)) {    
+        load.view(viewRogerBucket)
+        erase(objBucket)
+        set.view(objEgo, viewRogerBucket)
+        position(objEgo, 37, 145)
+        set.priority(objEgo, 11)
+        stop.cycling(objEgo)
+        set.cel(objEgo, 0)
+        set(fInBucket)
+        addn(vCurPoints, 1)
+    }
+    if(!posn(objEgo, 21, 105, 110, 145)) {
+        print("You are not close enough.")    
+    }    
 }
 
 if(said("exit", "bucket")) {
-    set.view(objEgo, viewRoger)
-    set.view(objBucket, viewBucket)
-    draw(objBucket)
-    stop.cycling(objBucket)
-    position(objEgo, 42, 110)
-    position(objBucket, 38, 120)
+    if(isset(fInBucket)){
+        set.view(objEgo, viewRoger)
+        set.view(objBucket, viewBucket)
+        draw(objBucket)
+        stop.cycling(objBucket)
+        position(objEgo, 42, 110)
+        position(objBucket, 38, 120)
+    }
+    if(!isset(fInBucket)){
+        print("Say what?")
+    }
 }
 
 if(isset(fInBucket)){
@@ -122,6 +132,7 @@ if(isset(fInBucket)){
 }
 
 if(isset(fDoAction)) {
+    assignn(vEgoDirection, directionStopped)
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoX, 0)
     assignn(vEgoY, 0)
@@ -137,6 +148,9 @@ if(said("look", "fog")) {
 }
 if(said("look", "well")) {
     print("The ancient well reaches deep into the earth. There's a bucket at the top of the well.")
+}
+if(said("look", "bucket")) {
+    print("The bucket is old but looks sturdy and watertight.")
 }
 
 return()

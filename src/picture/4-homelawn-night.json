@@ -384,11 +384,13 @@
     { "command": "DrawFill", "args": [8, 53, 54, 55, 140, 10, 146, 10, 157, 20] },
     { "command": "DrawFill", "args": [54, 117, 78, 112] },
     { "command": "PicDisable", "args": [] },
-    { "command": "PriSetcolor", "args": [0] },
+    { "command": "PriSetcolor", "args": [15] },
     {
       "command": "DrawAbs",
       "args": [63, 59, 65, 56, 75, 54, 89, 54, 94, 59, 78, 61, 64, 59]
     },
+    { "command": "PriSetcolor", "args": [0] },
+
     {
       "command": "DrawAbs",
       "args": [10, 59, 10, 57, 17, 54, 25, 56, 25, 59, 10, 59]
@@ -401,8 +403,6 @@
         120, 158, 127, 128, 127, 128, 131, 134, 131, 141, 136, 158, 136
       ]
     },
-    { "command": "PriSetcolor", "args": [0] },
-    { "command": "PriDisable", "args": [] },
     { "command": "DrawAbs", "args": [110, 110, 145, 145] },
     { "command": "End", "args": [] }
   ]

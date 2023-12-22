@@ -143,7 +143,9 @@
         167
       ]
     },
-    { "command": "PriSetcolor", "args": [4] },
+    { "command": "PriSetcolor", "args": [0] },
+    { "command": "PicSetColor", "args": [0] },
+
     { "command": "DrawAbs", "args": [112, 167] },
     { "command": "DrawAbs", "args": [112, 167, 112, 167, 53, 167, 53, 167] },
     { "command": "DrawAbs", "args": [53, 167, 53, 167] },

@@ -158,7 +158,7 @@
   "2067": ["glass"],
   "2068": ["cake", "food"],
   "2069": ["trunk", "chest"],
-  "2070": ["ink"],
+  "2070": ["ink", "bottle"],
   "2071": ["feather"],
   "2072": ["quill"],
   "2073": ["paper"],
@@ -189,7 +189,9 @@
   "2098":["knock"],
   "2099":["house", "candy", "home", "gingerbread"],
   "2100":["rock"],
-  "2101":["tree"],
+  "2101":["tree"],  
+  "2102":["sparkle"],
+  "2103":["breath"],
 
   "3012": ["craftercms"]
 }

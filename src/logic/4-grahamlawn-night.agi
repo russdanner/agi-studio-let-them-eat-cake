@@ -46,11 +46,8 @@ if(equaln(vRoomInited, valFalse)) {
     position(objWolf2, 170, 160)
     position(objCabinDoor, 121, 130)
     set.priority(objCabinDoor, 4)
-}
+    set.priority(objEgo, 8)
 
-if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    if(equaln(vEgoEdgeTouched, edgeRight)) {
-    }    
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -102,6 +99,24 @@ if(!isset(fDead)) {
         wander(objWolf2)         
     }
 }
+
+if(said("look", "room")) {
+    print("You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow.")
+}
+
+if(said("open", "door")) {
+    if(obj.in.box(objEgo, 100, 116, 158, 130)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 35)
+        assignn(vEgoY, 110)
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picGrahamsHouseInside)
+    }
+    if(!obj.in.box(objEgo, 100, 116, 158, 130)) {
+        print("You are not close enough.")
+    }
+}
+
 
 return()
 

@@ -20,7 +20,7 @@ if(!isset(fGameInited)) {
     assignn(vInvShowItem, invNone)
 }
 
-if(equaln(0, 0)) {  
+if(equaln(vCurrentRoom, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
     assignn(vCurrentRoom, picTitle)
@@ -45,6 +45,10 @@ if(said("restore")) {
 if(said("snyde")) {
     print("Fint.. fint.. men bare ikke slikke noget.")
     addn(vCurPoints, 1)    
+}
+
+if(!equaln(vCurrentRoom, 0)) {
+    call.v(vCurrentRoom)
 }
 
 if(said("cut", "feather")) {
@@ -88,10 +92,6 @@ if(said("make", "invitation")) {
             }
         }
     }
-}
-
-if(!equaln(0, 0)) {
-    call.v(0)
 }
 
 reset(fShowInvItem)

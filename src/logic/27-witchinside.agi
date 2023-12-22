@@ -61,26 +61,59 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("close", "cabinet")) {
-    set.cel(objWitchCabinet, 0)
+    if(posn(objEgo, 34, 89, 51, 92)) {
+        set.cel(objWitchCabinet, 0)
+    }
+    if(!posn(objEgo, 34, 89, 51, 92)) {
+        print("From here? Not happening.")
+    }
 }
 
 if(said("open", "cabinet")) {
-    end.of.loop(objWitchCabinet, fCabinetOpen)
+    if(posn(objEgo, 34, 89, 51, 92)) {
+        end.of.loop(objWitchCabinet, fCabinetOpen)
+    }
+    if(!posn(objEgo, 34, 89, 51, 92)) {
+        print("From here? Not happening.")
+    }
 }
 
 if(said("take", "cake")) {
-    get(invCake)
-    erase(objCake)
-    addn(vCurPoints, 1)
-    print("You remove the cake from the cabinet and carry it with you.")
+    if(has(invCake)) {
+        print("You already have it.")
+    }
+    if(!has(invCake)) {
+        if(isset(fCabinetOpen)) {
+            if(posn(objEgo, 34, 89, 51, 92)) {
+                get(invCake)
+                erase(objCake)
+                addn(vCurPoints, 1)
+                print("You remove the cake from the cabinet and carry it with you.")        
+            }
+            if(!posn(objEgo, 34, 89, 51, 92)) {
+                print("Try as you may you cannot reach it.")
+            }
+        }
+        if(!isset(fCabinetOpen)) {
+            print("Cake? What cake?")
+        }        
+    }    
 }
 
 if(said("take", "paper")) {
+    if(has(invPaper)) {
+        print("You already have it.")
+    }
     if(!has(invPaper)) {
-        get(invPaper)
-        erase(objPaper)        
-        addn(vCurPoints, 1)
-        print("Ok")
+        if(posn(objEgo, 45, 129, 63, 139)) {    
+            get(invPaper)
+            erase(objPaper)        
+            addn(vCurPoints, 1)
+            print("Ok")
+        }
+        if(!posn(objEgo, 45, 129, 63, 139)) {
+            print("You can't reach it.")
+        }    
     }
 }
 

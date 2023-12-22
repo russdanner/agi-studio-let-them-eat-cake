@@ -135,22 +135,32 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("read", "notice")) {
-    addn(vCurrentScore, 1)
-    print("The notice reads 'Hear Ye! Hear Ye! A party for the King will be held today. Attendees must bring an invitation and a party favor.' The notice gets you thinking. You need to get in here. If anyone can be of service. They will be inside.")
+    if(posn(objEgo, 97, 122, 121, 125)) {
+        addn(vCurrentScore, 1)
+        print("The notice reads 'Hear Ye! Hear Ye! A party for the King will be held today. Attendees must bring an invitation and a party favor.' The notice gets you thinking. You need to get in here. If anyone can be of service. They will be inside.")
+    }
+    if(!posn(objEgo, 97, 122, 121, 125)) {
+        print("You need to be closer.")
+    }
 }
 
 if(said("open", "door")) {
-    if(has(invInvitation)) {
-        if(has(invCake)) {
-            addn(vCurPoints, 1)    
-            end.of.loop(objCastleDoors, fDoAction)
+    if(posn(objEgo, 97, 122, 121, 125)) {
+        if(has(invInvitation)) {
+            if(has(invCake)) {
+                addn(vCurPoints, 1)    
+                end.of.loop(objCastleDoors, fDoAction)
+            }
+            if(!has(invCake)) {
+                print("The doors are locked. On the door is a notice.")
+            }
         }
-        if(!has(invCake)) {
+        if(!has(invInvitation)) {
             print("The doors are locked. On the door is a notice.")
-        }
+        }    
     }
-    if(!has(invInvitation)) {
-        print("The doors are locked. On the door is a notice.")
+    if(!posn(objEgo, 97, 122, 121, 125)) {
+        print("You need to be closer.")
     }
 }
 

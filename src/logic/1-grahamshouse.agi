@@ -71,7 +71,18 @@ if(equaln(vRoomInited, valFalse)) {
         }        
     }
 
-    position(objEgo, 100, 130)
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            position(objEgo, 100, 130)
+            if(!isset(fIsMorning)) {
+                print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edward for reasons unknown.")
+            }        
+        }
+    }
+    if(!equaln(vEgoX, 0)) {
+        position.v(objEgo, vEgoX, vEgoY)
+    }
+
     position(objWindow, 90, 58)
 
     if(!has(invHat)) {
@@ -98,9 +109,6 @@ if(equaln(vRoomInited, valFalse)) {
         set.cel(objWindow, 1)
         position(objEgo, 100,80) 
         print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!")
-    }
-    if(!isset(fIsMorning)) {
-        print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edward for reasons unknown.")
     }
 
     set.cel(objCabinDoor, 1)

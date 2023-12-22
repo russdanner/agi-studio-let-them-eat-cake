@@ -21,6 +21,9 @@ if(equaln(vRoomInited, valFalse)) {
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
+            reset(fUndoAction)
+            reset(fBucketDown)
+
             set.view(objEgo, viewRogerBucket)
 
             draw(objEgo)
@@ -33,7 +36,6 @@ if(equaln(vRoomInited, valFalse)) {
             move.obj(objEgo, 76, 147, 3, fDoAction)
         
             stop.cycling(objEgo)        
-            reset(fBucketDown)
         }
     }
     if(!equaln(vEgoY, 0)) {
@@ -65,6 +67,33 @@ if(isset(fUndoAction)) {
     position(objRope2, 81, 152)
     end.of.loop(objEgo)
     normal.motion(objEgo)
+}
+
+if(isset(0)) {
+    // on water
+    if(!isset(fSwimming)) {
+        set(fDrowning)
+    }
+}
+
+if(said("swim")) {
+    if(isset(fDrowning)) {
+        set.view(objEgo, viewRogerSwim)
+        reset(fDrowning)
+        set(fSwimming)
+        addn(vCurPoints, 1)
+        player.control()
+        print("ok")
+    } 
+}
+
+if(said("dive")) {
+    addn(vCurPoints, 1)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoY, 50)
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picDavWellDive)   
 }
 
 if(said("exit", "bucket")) {
@@ -114,26 +143,8 @@ if(said("climb", "rope")) {
 
 }
 
-if(said("swim", "done")) {
-    if(isset(0)) {
-        if(isset(fDrowning)) {
-            set.view(objEgo, viewRogerSwim)
-            reset(fDrowning)
-            set(fSwimming)
-            addn(vCurPoints, 1)
-            player.control()
-            print("ok")
-       } 
-    }
-}
-
-if(said("dive", "done")) {
-    addn(vCurPoints, 1)
-    get.posn(objEgo, vEgoX, vEgoY)
-    assignn(vEgoY, 50)
-    assignn(vEgoEdgeTouched, edgeNone)
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picDavWellDive)   
+if(said("take", "breath")) {
+    print("You take a deep breath.")
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {

@@ -98,10 +98,15 @@ if(isset(fHawkFlightBDone)) {
 if(said("take", "feather")) {
     if(!has(invFeather)) {
         if(!has(invQuill)) {
-            get(invFeather)
-            print("You reach down and pick up the fallen feather.")
-            addn(vCurPoints, 1)    
-            erase(objFeatherFall)       
+            if(posn(objEgo, 40, 101, 52, 107)) {
+                get(invFeather)
+                print("You reach down and pick up the fallen feather.")
+                addn(vCurPoints, 1)    
+                erase(objFeatherFall)      
+            } 
+            if(!posn(objEgo, 40, 101, 52, 107)) {
+                print("You can't reach it from here.")
+            }
         }
     }
 }

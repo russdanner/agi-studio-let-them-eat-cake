@@ -136,15 +136,20 @@ if(said("push", "button")) {
         print("You can't go in there wearing your spacesuit. That could get VERY messy.")
     }
     if(!isset(fWearingSuit)) {
-        load.sound(sndSpaceDoor)
-        sound(sndSpaceDoor, fSoundDone)    
-    
-        get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoX, 75)
-        assignn(vEgoY, 148)
-        assignn(vEgoEdgeTouched, edgeNone)
-        assignn(vRoomInited, valFalse)
-        assignn(vCurrentRoom, picBathroom)
+        if(posn(objEgo, 71, 100, 85, 105)) {
+            load.sound(sndSpaceDoor)
+            sound(sndSpaceDoor, fSoundDone)    
+        
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoX, 75)
+            assignn(vEgoY, 148)
+            assignn(vEgoEdgeTouched, edgeNone)
+            assignn(vRoomInited, valFalse)
+            assignn(vCurrentRoom, picBathroom)
+        }
+        if(!posn(objEgo, 71, 100, 85, 105)) {
+            print("Which one?")
+        }
     }
 }
 
@@ -153,12 +158,17 @@ if(said("remove", "suit")) {
         print("You are not wearing it.")
     }
     if(isset(fWearingSuit)) {
-        addn(vCurPoints, 1)
-        load.view(viewRoger)
-        set.view(objEgo, viewRoger)
-        draw(objHangingSuit2)
-        position(objHangingSuit2, 43, 95)
-        reset(fWearingSuit)    
+        if(posn(objEgo, 35, 100, 44, 105)) {
+            addn(vCurPoints, 1)
+            load.view(viewRoger)
+            set.view(objEgo, viewRoger)
+            draw(objHangingSuit2)
+            position(objHangingSuit2, 43, 95)
+            reset(fWearingSuit)        
+        }
+        if(!posn(objEgo, 35, 100, 44, 105)) {
+            print("You are not close enough.")
+        }
     }
 }
 
@@ -167,8 +177,13 @@ if(said("enter", "tram")) {
         print("You can't get in the tram in your spacesuit.")
     }
     if(!isset(fWearingSuit)) {
-        erase(objEgo)
-        end.of.loop(objTram, fDoAction)
+        if(posn(objEgo, 56, 45, 68, 51)) {
+            erase(objEgo)
+            end.of.loop(objTram, fDoAction)
+        }
+        if(!posn(objEgo, 56, 45, 68, 51)) {
+            print("Get closer.")
+        }
     }
 }
 
@@ -207,14 +222,27 @@ if(said("undress")) {
 }
 
 if(said("drop", "broom")) {
-    drop(invBroom)
-    addn(vCurrentScore, 1)
-    print("Ok")
+    if(posn(objEgo, 100, 95, 120, 103)) {
+        if(has(invBroom)) {
+            drop(invBroom)
+            addn(vCurrentScore, 1)
+            print("Ok")    
+        }
+        if(!has(invBroom)) {
+            print("You don't have one.")
+        }
+    }
+    if(!posn(objEgo, 100, 95, 120, 103)) {
+        print("You can't do that here.")
+    }
 }
 if(said("take", "broom")) {
-    get(invBroom)
-    subn(vCurrentScore, 1)
-    print("Ok")
+    if(!has(invBroom)) {
+        get(invBroom)
+        subn(vCurrentScore, 1)
+        print("Ok")
+    }
+
 }
 
 if(said("look", "room")) {

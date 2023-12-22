@@ -85,12 +85,17 @@ if(said("exit", "tram")) {
 
 if(said("enter", "tram")) {
     if(isset(fHasFlightPlan)) {
-        erase(objEgo)
-        end.of.loop(objTram, fTramReady) 
-        set(fTramRunning)       
-
-        load.sound(sndTramGo)
-        sound(sndTramGo, fSoundDone)    
+        if(posn(objEgo, 91, 73, 109, 76)) {
+            erase(objEgo)
+            end.of.loop(objTram, fTramReady) 
+            set(fTramRunning)       
+    
+            load.sound(sndTramGo)
+            sound(sndTramGo, fSoundDone)        
+        }
+        if(!posn(objEgo, 91, 73, 109, 76)) {
+            print("You are not close enough.")
+        }
     }
     if(!isset(fHasFlightPlan)) {
         print("You better speak with control first.")

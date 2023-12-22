@@ -84,11 +84,16 @@ if(isset(fTramInboundDone)) {
 }
 
 if(said("wear", "suit")) {
-    set.view(objEgo, viewRogerSuitA)
-    erase(objHangingSuit1)
-    set(fWearingSuit)
-    addn(vCurrentScore, 1)
-    print("Ok")
+    if(posn(objEgo, 28, 100, 50, 103)) {
+        set.view(objEgo, viewRogerSuitA)
+        erase(objHangingSuit1)
+        set(fWearingSuit)
+        addn(vCurrentScore, 1)
+        print("Ok")
+    }
+    if(!posn(objEgo, 28, 100, 50, 103)) {
+        print("You can't reach it.")
+    }
 }
 
 if(posn(objEgo, 8, 123, 20, 143)) {
