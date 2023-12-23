@@ -99,6 +99,9 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look")) {
+    print("You find yourself in a beautiful field full of wild flowers. A fog rolls in from the west.")
+}
 if(said("look", "area")) {
     print("You find yourself in a beautiful field full of wild flowers. A fog rolls in from the west.")
 }

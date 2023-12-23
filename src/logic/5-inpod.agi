@@ -97,6 +97,18 @@ if(equaln(vRoomInited, valFalse)) {
     assignn(vTimer, 0)
     assignn(vClockTicks, 0)
 }
+if(said("look")) {
+    print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.")
+}
+if(said("exit")) {
+    print("You shut the door behind you. You cannot get out now unless there is an emergency.")
+}
+if(said("exit", "pod")) {
+    print("You shut the door behind you. You cannot get out now unless there is an emergency.")
+}
+if(said("look", "pod")) {
+    print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.")
+}
 
 if(said("buckle", "belt")){
     if(isset(fBeltBuckled)) {
@@ -240,7 +252,7 @@ if(isset(fPodLaunched)) {
         }    
 
         if(equaln(vClockTicks, 5)) {
-            print("You pick at the Decal and pull it away from the console. It reveals a hard packard that says 'AUTONAV`")
+            print("You pick at the bightly colored decal and pull it away from the console. It reveals a hard packard that says 'AUTONAV`")
             erase(objDecal)
         }    
 
@@ -301,10 +313,6 @@ if(isset(fPodPoweredUp)) {
     set(fPodStart)
 
     print("The pod's systems whir to life!")  
-}
-
-if(said("look", "pod")) {
-    print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.")
 }
 
 if(said("look", "console")) {

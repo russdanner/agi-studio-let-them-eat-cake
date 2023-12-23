@@ -95,9 +95,6 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(said("open", "door")) {
-    end.of.loop(objWitchDoor, fDoAction)
-}
 
 if(isset(fDoAction)) {
     get.posn(objEgo, vEgoX, vEgoY)
@@ -108,11 +105,14 @@ if(isset(fDoAction)) {
     assignn(vCurrentRoom, picDavWitchHouseInside)
 }
 
+if(said("look")) {
+    print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south.")
+}
 if(said("look", "room")) {
     print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south.")
 }
 if(said("look", "fog")) {
-    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+    print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
 }
 if(said("look", "house")) {
     print("You are not quite sure what to make of it. It's a house made out of candy. It looks... sticky. As a janitor sticky bothers you.")
@@ -122,6 +122,15 @@ if(said("lick", "house")) {
 }
 if(said("knock", "door")) {
     print("There is no answer.")
+}
+
+if(said("open", "door")) {
+    if(posn(objEgo, 38, 128, 56, 135)) {
+        end.of.loop(objWitchDoor, fDoAction)
+    }
+    if(!posn(objEgo, 38, 128, 56, 135)) {
+        print("You can't reach it from here.")
+    }
 }
 
 return()

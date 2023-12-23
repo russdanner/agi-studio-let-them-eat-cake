@@ -310,6 +310,7 @@
 #define valXsWolfMunch 11
 #define valXsWitchSnag 12
 #define valXsWolfMunchGraham 13
+#define valXsBewareRandomHoles 14
 
 // vars
 // Engine Vars

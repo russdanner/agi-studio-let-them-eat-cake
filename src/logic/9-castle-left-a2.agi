@@ -134,6 +134,13 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look")) {
+    print("You find yourself at the west end of a great castle. There's a large staircase and door here that leads into the castle.")
+}
+if(said("look", "room")) {
+    print("You find yourself at the west end of a great castle. There's a large staircase and door here that leads into the castle.")
+}
+
 if(said("read", "notice")) {
     if(posn(objEgo, 97, 122, 121, 125)) {
         addn(vCurrentScore, 1)
@@ -142,6 +149,9 @@ if(said("read", "notice")) {
     if(!posn(objEgo, 97, 122, 121, 125)) {
         print("You need to be closer.")
     }
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
 }
 
 if(said("open", "door")) {

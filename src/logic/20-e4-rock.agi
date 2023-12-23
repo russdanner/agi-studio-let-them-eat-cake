@@ -40,6 +40,7 @@ if(equaln(vRoomInited, 0)) {
     position(objMist3, 85, 43)
     position(objMist4, 127, 43)
 
+    reset(fDoAction)
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(50)
@@ -81,36 +82,14 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
-if(said("look", "hole")) {
-    set(fProgramControl)
-    load.view(viewRogerEaten)
-    set.view(objEgo, viewRogerEaten)
-
-    position(objEgo, 97, 138)
-    assignn(vGameCycleDelay, 3)
-    end.of.loop(objEgo, fDoAction)
-}
 
 if(isset(fDoAction)) {
     reset(fDoAction)
-    addn(vActionCount, 1)
-
-    if(equaln(vActionCount, 1)) {
-        set.loop(objEgo, 1)
-        set.cel(objEgo, 0)
-        assignn(vGameCycleDelay, 3)
-        end.of.loop(objEgo, fDoAction)
-    }
-
-    // Maybe we wont add the burp becuase
-    // it implies who/what killed roger
-    // and this hole already has a storyline
-    // if(equaln(vActionCount, 2)) {
-    //     load.view(viewBurp)
-    //     set.view(objBurp, viewBurp)
-    //     draw(objBurp)
-    //     position(objBurp, 77, 128)
-    // }
+    set.loop(objEgo, 1)
+    set.cel(objEgo, 0)
+    assignn(vGameCycleDelay, 3)
+    assignn(vDeathReason, valXsBewareRandomHoles)
+    end.of.loop(objEgo, fDead)
 }
 
 if(!isset(fProgramControl)) {
@@ -122,14 +101,32 @@ if(!isset(fProgramControl)) {
     }    
 }
 
+if(said("look")) {
+    print("The area is heavily wooded. A large rock dominates the area.")
+}
 if(said("look", "room")) {
     print("The area is heavily wooded. A large rock dominates the area.")
 }
 if(said("look", "fog")) {
-    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+    print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
 }
 if(said("look", "rock")) {
     print("There's a large rock here. A large hole can be seen at the base of the rock.")
+}
+
+if(said("look", "hole")) {
+    if(posn(objEgo, 88, 128, 104, 140)) {
+        set(fProgramControl)
+        load.view(viewRogerEaten)
+        set.view(objEgo, viewRogerEaten)
+    
+        position(objEgo, 97, 138)
+        assignn(vGameCycleDelay, 3)
+        end.of.loop(objEgo, fDoAction)
+    }
+    if(!posn(objEgo, 88, 128, 104, 140)) {
+        print("You can't see much from here.")        
+    }
 }
 
 

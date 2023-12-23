@@ -54,7 +54,7 @@ if(!posn(objTitleFeather,90,160,110,165)){
 }
 
 if(greatern(80, 6)) {
-    assignn(vGameCycleDelay, 4)
+    assignn(vGameCycleDelay, 2)
     display.v(80, 71, 72);    
 
     if(lessn(81, 19)) {

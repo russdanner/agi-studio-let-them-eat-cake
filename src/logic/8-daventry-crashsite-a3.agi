@@ -87,6 +87,17 @@ if(isset(fSysEgoOnWater)) {
     }
 }
 
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+if(said("look")) {
+    print("The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance.")
+}
+
 if(said("swim")) {
     if(isset(fSysEgoOnWater)) {
         print("The water is too fast here.")
@@ -96,13 +107,9 @@ if(said("swim")) {
     }
 }
 
-if(equaln(vEgoDirection, directionStopped)) {
-    stop.cycling(objEgo)
+if(said("look", "room")) {
+    print("The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance.")
 }
-if(!equaln(vEgoDirection, directionStopped)) {
-    start.cycling(objEgo)
-}
-
 if(said("take", "glass")) {
     if(!has(invGlass)) {
         if(posn(objEgo, 28, 142, 37, 145)) {    
@@ -117,9 +124,6 @@ if(said("take", "glass")) {
     }
 }
 
-if(said("look", "area")) {
-    print("The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance.")
-}
 if(said("look", "pod")) {
     print("It WAS a pod. It's now a pile of twisted parts and wreckage that has been thoroughly plowed into the ground. Your handiwork so-to-speak.")
 }

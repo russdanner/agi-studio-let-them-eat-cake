@@ -40,6 +40,10 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
+if(said("look")) {
+    print("You are at the very bottom of the well. The walls are rough cut and the floor is full bits and bobs that people have thrown down the well over the ages. A large trunk lays up against the wall to the east. There's a small opening in the wall to the west.")
+}
+
 if(said("close", "trunk")) {
     if(posn(objEgo, 95, 110, 107, 134)) {      
         set.cel(objTrunk, 0)
@@ -62,13 +66,13 @@ if(said("open", "trunk")) {
 
 if(said("take", "ink")) {
     if(posn(objEgo, 95, 110, 107, 134)) {      
+        if(has(invInk)) {
+            print("You already have it.")
+        }
         if(!has(invInk)) {
             get(invInk)
             addn(vCurPoints, 1)    
             print("You remove the bottle of ink from inside the trunk and carry it with you.")
-        }
-        if(has(invInk)) {
-            print("You already have it.")
         }
     }
     if(!posn(objEgo, 95, 110, 107, 134)) {    

@@ -99,6 +99,13 @@ if(!isset(0)) {
     }
 }
 
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
 if(said("swim")) {
     if(isset(0)) {
         if(isset(fDrowning)) {
@@ -111,18 +118,14 @@ if(said("swim")) {
     }
 }
 
-if(equaln(vEgoDirection, directionStopped)) {
-    stop.cycling(objEgo)
+if(said("look")) {
+    print("There's a large beautiful lake that goes off to the east here and a thick fog to the south and west.")
 }
-if(!equaln(vEgoDirection, directionStopped)) {
-    start.cycling(objEgo)
-}
-
 if(said("look", "room")) {
     print("There's a large beautiful lake that goes off to the east here and a thick fog to the south and west.")
 }
 if(said("look", "fog")) {
-    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+    print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
 }
 if(said("look", "water")) {
     print("The lake is calm and beautiful.")

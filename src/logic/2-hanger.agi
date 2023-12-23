@@ -94,6 +94,10 @@ if(equaln(vRoomInited, valFalse)) {
     reset(fDecompressed)
 }
 
+if(said("look")) {
+    print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.")
+}
+
 if(!equaln(vSweeping, valTrue)){
     if(equaln(vEgoDirection, directionStopped)) {
         stop.cycling(objEgo)
@@ -245,9 +249,6 @@ if(isset(fDecompressed)) {
     set(fDead)
 }
 
-if(said("look", "room")) {
-    print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.")
-}
 if(said("look", "panel")) {
     print("The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.")
 }

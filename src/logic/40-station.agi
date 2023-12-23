@@ -21,7 +21,6 @@ if(equaln(vRoomInited, valFalse)) {
 
     load.sound(sndSQTheme)
     sound(sndSQTheme, fSoundDone)  
-
 }
 
 reposition(objShip, 1, 3)

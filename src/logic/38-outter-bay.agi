@@ -68,6 +68,10 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look")) {
+    print("This is Outer Bay B. Along the rear wall is a Tram. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.")
+}
+
 if(said("exit", "tram")) {  
     set.cel(objTram, 0) 
     position(objEgo, 55, 50)

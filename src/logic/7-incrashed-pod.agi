@@ -23,6 +23,26 @@ if(equaln(vRoomInited, valFalse)) {
     print("After a skull-jarring landing you peer through the shattered viewing port out onto lush green landscape. It feels alien and familiar all at once. You're in a fine mess now.")
 }
 
+if(said("look")) {
+    print("You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment.")
+}
+if(said("exit")) {
+    if(isset(fBeltBuckled)) {
+        print("Oooof that's gonna leave a mark. Your seatbelt is still buckled.")
+    }
+    if(!isset(fBeltBuckled)) {
+        assignn(vEgoX, 0)
+        assignn(vEgoY, 0)        
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picDavCrashSiteA3) 
+        print("You climb out of the pod and discard your pressure suit.")
+    }
+}
+
+if(said("look", "pod")) {
+    print("You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment.")
+}
+
 if(said("unbuckle", "belt")) {
     reset(fBeltBuckled)
     print("Ok")
@@ -39,10 +59,6 @@ if(said("exit", "pod")) {
         assignn(vCurrentRoom, picDavCrashSiteA3) 
         print("You climb out of the pod and discard your pressure suit.")
     }
-}
-
-if(said("look", "pod")) {
-    print("You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment.")
 }
 
 if(said("look", "console")) {

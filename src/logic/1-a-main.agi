@@ -370,6 +370,10 @@ if(!isset(fGameOver)) {
             set(fRogerDead)
             print("What you assume is one of the ugliest members of Vohaul's monkey troops swoops down and snatches you up.")
         }
+        if(equaln(vDeathReason, valXsBewareRandomHoles)) {
+            set(fRogerDead)
+            print("Whatever lives in that hole made speedy work of cleaning your bones. You really should mind your own business.")
+        }
     }    
 }
 

@@ -47,6 +47,25 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }    
 }
 
+if(said("look")) {
+    print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.")
+}
+if(said("look", "room")) {
+    print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.")
+}
+
+if(said("poop")) {
+    set(fPooping)
+    assignn(vTimer, 0)
+    load.view(viewRogerPotty)
+    set.view(objEgo, viewRogerPotty)
+    set.cel(objEgo, 0)
+    position(objEgo, 73, 126)
+    start.cycling()
+    assignn(vGameCycleDelay, 6)
+    end.of.loop(objEgo, fStillPooping) 
+}
+
 if(said("go", "poop")) {
     set(fPooping)
     assignn(vTimer, 0)
@@ -59,10 +78,14 @@ if(said("go", "poop")) {
     end.of.loop(objEgo, fStillPooping) 
 }
 
+if(said("look", "graffiti")) {
+    print("The walls are cover in graffiti... err... wisdom captured in a variety of alien languages.")
+}
+
 if(said("read", "graffiti")) {
     addn(vReadCount, 1)
     if(equaln(vReadCount, 1)) {
-        print("Use the force. Except here.")
+        print("Use the force. Except here. Don't force anything in here.")
     }
     if(equaln(vReadCount, 2)) {
         print("Al-be back.")
@@ -195,9 +218,6 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }    
 
-if(said("look", "room")) {
-    print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.")
-}
 if(said("look", "door")) {
     print("To your surprise it is as it appears... a door. The door is locked.")
 }

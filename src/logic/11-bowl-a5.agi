@@ -95,22 +95,6 @@ if(isset(fHawkFlightBDone)) {
     erase(objHawk)
 }
 
-if(said("take", "feather")) {
-    if(!has(invFeather)) {
-        if(!has(invQuill)) {
-            if(posn(objEgo, 40, 101, 52, 107)) {
-                get(invFeather)
-                print("You reach down and pick up the fallen feather.")
-                addn(vCurPoints, 1)    
-                erase(objFeatherFall)      
-            } 
-            if(!posn(objEgo, 40, 101, 52, 107)) {
-                print("You can't reach it from here.")
-            }
-        }
-    }
-}
-
 if(equaln(vEgoDirection, directionStopped)) {
     stop.cycling(objEgo)
 }
@@ -155,12 +139,29 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vCurrentRoom, picDavWalnutF5)    
     }
 }
-
+if(said("look")) {
+    print("This is a forrested and rocky area. A think fog has developed to the south and the east.")
+}
 if(said("look", "room")) {
     print("This is a forrested and rocky area. A think fog has developed to the south and the east.")
 }
 if(said("look", "fog")) {
-    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+    print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
+}
+if(said("take", "feather")) {
+    if(!has(invFeather)) {
+        if(!has(invQuill)) {
+            if(posn(objEgo, 40, 101, 52, 107)) {
+                get(invFeather)
+                print("You reach down and pick up the fallen feather.")
+                addn(vCurPoints, 1)    
+                erase(objFeatherFall)      
+            } 
+            if(!posn(objEgo, 40, 101, 52, 107)) {
+                print("You can't reach it from here.")
+            }
+        }
+    }
 }
 
 return()

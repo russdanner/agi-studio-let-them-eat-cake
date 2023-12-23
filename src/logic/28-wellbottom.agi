@@ -96,6 +96,13 @@ if(said("dive")) {
     assignn(vCurrentRoom, picDavWellDive)   
 }
 
+if(said("look")) {
+    print("You are at the bottom of the ancient well.")
+}
+if(said("look", "room")) {
+    print("You are at the bottom of the ancient well.")
+}
+
 if(said("exit", "bucket")) {
     set.view(objBucket, viewBucket)
 
@@ -159,9 +166,6 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
-if(said("look", "room")) {
-    print("You are at the bottom of the ancient well.")
-}
 if(said("look", "water")) {
     print("It's water. Wet. Hydrated.")
 }

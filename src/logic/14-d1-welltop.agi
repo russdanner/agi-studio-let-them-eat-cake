@@ -96,6 +96,22 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look")) {
+    print("There's an ancient well here. There's a thick fog to the north and west.")
+}
+if(said("look", "room")) {
+    print("There's an ancient well here. There's a thick fog to the north and west.")
+}
+if(said("look", "fog")) {
+    print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
+}
+if(said("look", "well")) {
+    print("The ancient well reaches deep into the earth. There's a bucket at the top of the well.")
+}
+if(said("look", "bucket")) {
+    print("The bucket is old but looks sturdy and watertight.")
+}
+
 if(said("enter", "bucket")) {
     if(posn(objEgo, 21, 105, 110, 145)) {    
         load.view(viewRogerBucket)
@@ -138,19 +154,6 @@ if(isset(fDoAction)) {
     assignn(vEgoY, 0)
     assignn(vRoomInited, valFalse)
     assignn(vCurrentRoom, picDavWellBottom)   
-}
-
-if(said("look", "room")) {
-    print("There's an ancient well here. There's a thick fog to the north and west.")
-}
-if(said("look", "fog")) {
-    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
-}
-if(said("look", "well")) {
-    print("The ancient well reaches deep into the earth. There's a bucket at the top of the well.")
-}
-if(said("look", "bucket")) {
-    print("The bucket is old but looks sturdy and watertight.")
 }
 
 return()

@@ -77,6 +77,10 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look")) {
+    print("This is the main control room for the station. It's alive with activity. To the rear wall there is a tram. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.")
+}
+
 if(said("exit", "tram")) {    
     position(objEgo, 95, 74)
     set.cel(objTram, 0)
@@ -178,7 +182,7 @@ if(said("talk", "man")) {
         set(fHasFlightPlan)
         addn(vCurrentScore, 1)
         assignn(vTimer, 0)
-        print("Hey Roger. I'm sending you over to shuttle bay B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point.")
+        print("Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point.")
     }
     if(!posn(objEgo, 94, 114, 106, 120)) {
         if(posn(objEgo, 63, 114, 78, 120)) {

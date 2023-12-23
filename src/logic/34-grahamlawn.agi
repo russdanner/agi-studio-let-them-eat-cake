@@ -121,6 +121,13 @@ if(isset(fUndoAction)) {
     erase(objHawk)
 }
 
+if(said("look")) {
+    print("This is the front lawn of your home.")
+} 
+if(said("look", "room.")) {
+    print("This is the front lawn of your home.")
+}
+
 if(said("take", "feather")) {
     get(invFeather) 
     erase(objFeatherFall)

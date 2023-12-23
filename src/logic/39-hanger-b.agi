@@ -54,6 +54,10 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look")) {
+    print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.")
+}
+
 if(said("enter", "pod")) {
     if(posn(objEgo, 49, 93, 60, 109)) {
         addn(vCurrentScore, 1)
@@ -63,8 +67,13 @@ if(said("enter", "pod")) {
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picInPod)    
 
-        print("You climb into the pod and shut the door.")
-
+        if(!has(invBroom)) {
+            print("You climb into the pod and shut the door.")
+        }
+        if(has(invBroom)) {
+            drop(invBroom)
+            print("As you go to climb into the pod you realize you still have the broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door.")
+        }        
     }
     if(!posn(objEgo, 49, 93, 60, 109)) {
         print("You are too far away.")

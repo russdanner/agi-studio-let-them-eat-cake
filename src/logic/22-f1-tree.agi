@@ -79,11 +79,14 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look")) {
+    print("This a beatiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east.")
+}
 if(said("look", "room")) {
     print("This a beatiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east.")
 }
 if(said("look", "fog")) {
-    print("There's a thick fog here. It almost feels as much mental as it is physical. To more you look into it the most lost you feel.")
+    print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
 }
 if(said("look", "tree")) {
     print("What a beautiful tree.")

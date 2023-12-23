@@ -100,6 +100,9 @@ if(!isset(fDead)) {
     }
 }
 
+if(said("look")) {
+    print("You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow.")
+}
 if(said("look", "room")) {
     print("You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow.")
 }

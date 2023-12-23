@@ -52,8 +52,11 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
+if(said("look")) {
+    print("You are in large ornate hallway. You can hear music and laughter further down the hall.")
+}
 if(said("look", "room")) {
-    print("You are in large, ornate hallway. You can hear music and laughter further down the hall.")
+    print("You are in large ornate hallway. You can hear music and laughter further down the hall.")
 }
 
 return()

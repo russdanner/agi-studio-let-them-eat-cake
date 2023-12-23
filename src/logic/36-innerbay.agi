@@ -131,6 +131,23 @@ if(obj.in.box(objEgo, 2, 123, 5, 128)) {
     assignn(vCurrentRoom, picHanger)     
 }
 
+if(said("undress")) {
+    print("I'll get naked if you get naked. You go first.")
+}
+
+if(said("look")) {
+    print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a tram.")
+}
+
+if(said("sleep")) {
+    if(posn(objEgo, 100, 95, 120, 103)) {
+        print("You have to admit this closet looks like a perfect place for a nap. You also have to admit that you had a similar thought earlier today. Given that you are running behind you decide with a degree of sadness NOT to take another nap.")
+    }
+    if(!posn(objEgo, 100, 95, 120, 103)) {
+        print("You can't do that here. Perhaps a comfy janitorial closet would be a more suitable.")
+    }
+}
+
 if(said("push", "button")) {
     if(isset(fWearingSuit)) {
         print("You can't go in there wearing your spacesuit. That could get VERY messy.")
@@ -217,19 +234,15 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(said("undress")) {
-    print("I'll get naked if you get naked. You go first.")
-}
-
 if(said("drop", "broom")) {
     if(posn(objEgo, 100, 95, 120, 103)) {
+        if(!has(invBroom)) {
+            print("You don't have one.")
+        }
         if(has(invBroom)) {
             drop(invBroom)
             addn(vCurrentScore, 1)
             print("Ok")    
-        }
-        if(!has(invBroom)) {
-            print("You don't have one.")
         }
     }
     if(!posn(objEgo, 100, 95, 120, 103)) {

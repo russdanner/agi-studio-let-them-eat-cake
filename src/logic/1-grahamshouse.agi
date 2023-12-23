@@ -115,6 +115,59 @@ if(equaln(vRoomInited, valFalse)) {
     position(objCabinDoor, 26, 131)
 }
 
+if(said("look")) {
+    print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy.")
+}
+
+if(said("sleep")) {
+    if(posn(objEgo, 75, 30, 115, 85)) {
+        if(!equaln(vTeaDrank, valTrue)) {
+            print("You are a bit on edge about the summons you received from the king. You can't sleep.")
+        }
+        if(equaln(vTeaDrank, valTrue)) {
+            assignn(vSleeping, valTrue)
+            assignn(vTimer, 0)
+            assignn(vClockTicks, 0)
+            addn(vCurrentScore, 1)    
+            print("Having taken the tea you climb into bed and doze off.")
+        }
+    }
+    if(!posn(objEgo, 75, 30, 115, 85)) {
+        print("You're not close enough.")
+    }
+}
+
+if(said("go", "sleep")) {
+    if(posn(objEgo, 75, 30, 115, 85)) {
+        if(!equaln(vTeaDrank, valTrue)) {
+            print("You are a bit on edge about the summons you received from the king. You can't sleep.")
+        }
+        if(equaln(vTeaDrank, valTrue)) {
+            assignn(vSleeping, valTrue)
+            assignn(vTimer, 0)
+            assignn(vClockTicks, 0)
+            addn(vCurrentScore, 1)    
+            print("Having taken the tea you climb into bed and doze off.")
+        }
+    }
+    if(!posn(objEgo, 75, 30, 115, 85)) {
+        print("You're not close enough.")
+    }
+}
+
+if(said("look", "room")) {
+    print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy.")
+}
+
+if(said("look", "table")) {
+    if(has(invSummons)) {
+        print("It's a sturdy table.")
+    }
+    if(!has(invSummons)) {
+        print("There is a study table here. The summons you received from the King today lays on the table.")
+    }
+}
+
 if(said("open", "door")) {
     if(posn(objEgo, 16, 108, 35, 124)) {
         if(!has(invHat)) {
@@ -157,24 +210,6 @@ if(equaln(vSleeping, valTrue)) {
     draw(objGrahamSleep)
     position(objGrahamSleep, 110, 82)
     set.priority(objGrahamSleep, 15)
-}
-
-if(said("go", "sleep")) {
-    if(posn(objEgo, 75, 30, 115, 85)) {
-        if(!equaln(vTeaDrank, valTrue)) {
-            print("You are a bit on edge about the summons you received from the king. You can't sleep.")
-        }
-        if(equaln(vTeaDrank, valTrue)) {
-            assignn(vSleeping, valTrue)
-            assignn(vTimer, 0)
-            assignn(vClockTicks, 0)
-            addn(vCurrentScore, 1)    
-            print("Having taken the tea you climb into bed and doze off.")
-        }
-    }
-    if(!posn(objEgo, 75, 30, 115, 85)) {
-        print("You're not close enough.")
-    }
 }
 
 if(said("wear", "hat")) {
@@ -318,6 +353,8 @@ if(equaln(vSleeping, valTrue)) {
     }
 
     if(equaln(vClockTicks, 4)) {
+        assignn(vEgoX, 0)
+        assignn(vEgoY, 0)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picHanger)
     }
@@ -341,12 +378,6 @@ if(equaln(vTimer, 100)) {
 }
 
 addn(vTimer, 1) 
-
-if(said("look", "room")) {
-    print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy.")
-}
-
-
 
 return()
 #message 1 "Grahams House"

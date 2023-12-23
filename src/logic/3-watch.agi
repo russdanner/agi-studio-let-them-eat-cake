@@ -68,6 +68,18 @@ if(equaln(vRoomInited, valFalse)) {
 // We use the time to count cycles for some of the apps
 addn(vTimer, 1)
 
+if(said("look")) {
+    print("This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also a incoming message indicator on the right side of the screen.")
+}
+
+if(said("exit")) {
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picHanger)
+}
+
+if(said("look", "watch")) {
+    print("This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also a incoming message indicator on the right side of the screen.")
+}
 
 if(said("look", "c")) {
     print("This is the very handy StarCon Communications app. You can use it to talk with the crew or theoretically your friends if you had any.")
@@ -106,7 +118,7 @@ if(said("press", "c")) {
 
 if(isset(fBossGiveOrders)) {
     if(equaln(vTimer, 30)) {
-        print("Roger Wilco! Have you been napping in the closet again!? You were due at your next assignment an hour ago. Finish up forthwith and get over to Orbital Station 3 on the double. A Trolsdorian Muccaworm uh... 'explosively decompressed' in the flight deck bathroom. The walls are covered with an unfathomable amount of Monolith Burger. Filet-o-Rat. polycheese and Tang. Clean it up! StarCon Control already has your flight plan. Move it! Commander Out.")
+        print("Roger Wilco! Have you been napping in the closet again!? You were due at your next assignment an hour ago. Finish up forthwith and get over to Orbital Station 3 on the double. A Trolsdorian Muccaworm uh... 'explosively decompressed' in the flight deck bathroom. The walls are covered with an unfathomable amount of Monolith Burger. Filet-o-Rat. polycheese and Tang. Clean it up! StarCon Control already has your flight plan secured. Move it! Commander Out.")
     }
 
     if(equaln(vTimer, 255)) {
@@ -154,26 +166,21 @@ if(isset(fDoJoke)) {
         set.cel(objWatchAButton, 1)
 
         if(equaln(vAlJoke, 1)) {
-            print("Working at the unemployment office must be tense knowing that if you get fired you still have to come in the next day! Find more jokes on galactiWeb at AlLowe.com")
+            print("Working at the unemployment office must be tense knowing that if you get fired you still have to come in the next day! Find more jokes on the galactiWeb at AlLowe.com")
         }
         if(equaln(vAlJoke, 2)) {
-            print("I phoned the Tinnitus Help Line but there was no answer. It just kept ringing and ringing! Find more jokes on galactiWeb at AlLowe.com")
+            print("I phoned the Tinnitus Help Line but there was no answer. It just kept ringing and ringing! Find more jokes on the galactiWeb at AlLowe.com")
         }
         if(equaln(vAlJoke, 3)) {
-            print("I shot a man with my paintball gun just to watch him dye. Find more jokes on galactiWeb at AlLowe.com")
+            print("I shot a man with my paintball gun just to watch him dye. Find more jokes on the galactiWeb at AlLowe.com")
         }
         if(equaln(vAlJoke, 4)) {
-            print("If buckazoids don't grow on trees then why do banks have branches? Find more jokes on galactiWeb at AlLowe.com")
+            print("If buckazoids don't grow on trees then why do banks have branches? Find more jokes on the galactiWeb at AlLowe.com")
         }
         if(equaln(vAlJoke, 5)) {
-            print("I'm pining for a good tree pun. I wish they were more poplar. Find more jokes on galactiWeb at AlLowe.com")
+            print("I'm pining for a good tree pun. I wish they were more poplar. Find more jokes on the galactiWeb at AlLowe.com")
         }        
     } 
-}
-
-if(said("exit", "watch")) {
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picHanger)
 }
 
 return()
