@@ -111,6 +111,12 @@ if(said("look", "well")) {
 if(said("look", "bucket")) {
     print("The bucket is old but looks sturdy and watertight.")
 }
+if(said("lower", "bucket")) {
+    print("There's no crank here.")
+}
+if(said("take", "bucket")) {
+    print("You don't need it.")
+}
 
 if(said("enter", "bucket")) {
     if(posn(objEgo, 21, 105, 110, 145)) {    

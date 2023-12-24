@@ -162,7 +162,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavWellTopD1)
-        print("You climb out of the well and remembering to 'be kind and rewind' you return the bucket to it's original location.")     
+        print("You climb out of the bucket and well. In a uncharacteristic moment and remembering to 'be kind and rewind' you laboriously return the bucket to it's original location.")     
     }
 }
 

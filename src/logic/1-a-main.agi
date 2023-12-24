@@ -217,10 +217,6 @@ if(said("look", "invitation")) {
 }
 
 if(isset(fShowInvItem)) {
-    reset(fShowInvItem)
-    reset(fWaitForCloseInv)
-    assignn(vKeyPressed, 0)
-
     if(equaln(vInvShowItem, invTeapot)) {
         assignn(vInvView, viewObjPot)
         if(equaln(vTeaPoured, valTrue)) {
@@ -270,10 +266,6 @@ if(isset(fShowInvItem)) {
         assignn(vInvView, viewObjBroom)
         print("This is a standard issue StarCon broom. One of the many tools in your janitorial arsenal.")
     }
-    if(equaln(vInvShowItem, invGlass)) {
-        assignn(vInvView, viewObjGlass)
-        print("This is a piece of highly reflective view shield glass from the pod. Due to its special design there are no sharp edges.")
-    }
     if(equaln(vInvShowItem, invCake)) {
         assignn(vInvView, viewObjCake)
         print("This is a delicious looking birthday cake.")
@@ -294,10 +286,25 @@ if(isset(fShowInvItem)) {
         assignn(vInvView, viewObjPaper)
         print("This is a blank piece of paper.")
     }
-    // if(equaln(vInvShowItem, invInvitation)) {
-    //     assignn(vInvView, viewObjInvitation)
-    //     print("This is a forged invitation to the castle.")
-    // }
+}
+if(isset(fShowInvItem)) {
+    reset(fShowInvItem)
+    reset(fWaitForCloseInv)
+    assignn(vKeyPressed, 0)
+
+    if(equaln(vInvShowItem, invGlass)) {
+        assignn(vInvView, viewObjGlass)
+        if(isset(fGlassIsSharp)) {
+            print("This is a piece of highly reflective view shield glass from the pod. You have crafted a sharp knife like edge on it.")
+        }
+        if(!isset(fGlassIsSharp)) {
+            print("This is a piece of highly reflective view shield glass from the pod. Due to its special design there are no sharp edges.")
+        }
+    }
+    if(equaln(vInvShowItem, invInvitation)) {
+        assignn(vInvView, viewObjInvitation)
+        print("This is a forged invitation to the castle.")
+    }
 
     load.view.v(vInvView)
 
@@ -369,7 +376,7 @@ if(!isset(fGameOver)) {
         }
         if(equaln(vDeathReason, valXsWitchSnag)) {
             set(fRogerDead)
-            print("What you assume is one of the ugliest members of Vohaul's monkey troops (that's saying something) swoops down and snatches you up.")
+            print("What you assume is one of the ugliest members of Vohaul's monkey troops swoops down and snatches you up.")
         }
         if(equaln(vDeathReason, valXsBewareRandomHoles)) {
             set(fRogerDead)
