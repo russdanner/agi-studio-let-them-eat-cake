@@ -60,9 +60,13 @@ if(equaln(vRoomInited, 0)) {
 if(isset(fGotcha)) {
     reset(fGotcha)
     if(!isset(fDead)) { 
-        erase(objMonster)
         stop.motion(objEgo)
-        // todo freeze the power
+        stop.motion(objMonster)
+        stop.cycling(objMonster)
+        load.view(viewRogerStoned)
+        set.view(objEgo, viewRogerStoned)
+        assignn(vDeathReason, valXsStoned)
+        end.of.loop(objEgo, fDead)    
     }
 }
 

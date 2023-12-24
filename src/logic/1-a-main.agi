@@ -7,7 +7,8 @@ show.pic()
 
 if(!isset(fGameInited)) {
     set(fGameInited)   
-     
+    reset(fGameOver)
+
     assignn(vMaxPoints, 40)
     assignn(vCurPoints, 0)  
 
@@ -368,11 +369,15 @@ if(!isset(fGameOver)) {
         }
         if(equaln(vDeathReason, valXsWitchSnag)) {
             set(fRogerDead)
-            print("What you assume is one of the ugliest members of Vohaul's monkey troops swoops down and snatches you up.")
+            print("What you assume is one of the ugliest members of Vohaul's monkey troops (that's saying something) swoops down and snatches you up.")
         }
         if(equaln(vDeathReason, valXsBewareRandomHoles)) {
             set(fRogerDead)
             print("Whatever lives in that hole made speedy work of cleaning your bones. You really should mind your own business.")
+        }
+        if(equaln(vDeathReason, valXsStoned)) {
+            set(fRogerDead)
+            print("That guy in the wierd space suit zaps you with some kind of laser beam. You are quickly turned to stone. You always dreamed of being immortalzied in a statue. Congratulations you got your wish! Unfortunately you are also now dead.")
         }
     }    
 }

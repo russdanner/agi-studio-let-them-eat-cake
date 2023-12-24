@@ -267,7 +267,10 @@
 
 #define viewPersonG1 97
 #define viewPersonG2 98
+#define viewRogerStoned 100
+#define viewGrahamFightCloud 101
 
+// objects
 #define viewObjPot 69
 #define viewObjSummons 83
 #define viewObjTeaCup 84
@@ -311,6 +314,7 @@
 #define valXsWitchSnag 12
 #define valXsWolfMunchGraham 13
 #define valXsBewareRandomHoles 14
+#define valXsStoned 15
 
 // vars
 // Engine Vars

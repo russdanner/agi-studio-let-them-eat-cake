@@ -87,11 +87,11 @@ if(!isset(fDead)) {
 
         set(fDead) 
         assignn(vDeathReason, valXsWolfMunchGraham)
-        load.view(viewFightCloud)
+        load.view(viewGrahamFightCloud)
         
 
         //set.view(objWolf1, viewFightCloud)
-        set.view(objWolf2, viewFightCloud)
+        set.view(objWolf2, viewGrahamFightCloud)
         
         start.cycling(objWolf1)
         start.cycling(objWolf2)

@@ -543,7 +543,16 @@
    { "command": "DrawAbs", "args": [30, 51, 132, 51] },
    { "command": "PriSetcolor", "args": [0] },
    { "command": "DrawAbs", "args": [30, 48, 132, 48] },    
-    
+
+   { "command": "PicSetColor", "args": [0] },
+   { "command": "PriSetcolor", "args": [0] },
+   { "command": "DrawAbs", "args": [1, 167, 165, 167] },    
+
+   { "command": "PicDisable", "args": [] },
+   { "command": "PriSetcolor", "args": [0] },
+   { "command": "DrawAbs", "args": [132, 10, 132, 50] },    
+   { "command": "DrawAbs", "args": [29, 10, 29, 50] },    
+
     { "command": "End", "args": [] }
   ]
 }
