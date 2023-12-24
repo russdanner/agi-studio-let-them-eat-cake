@@ -79,33 +79,38 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
-if(isset(0)) {
+if(isset(fSysEgoOnWater)) {
     if(!isset(fSwimming)) {
         if(!isset(fDrowning)){
             set.view(objEgo, viewRogerSplash)
             set(fDrowning)
-            assignn(vEgoDirection, directionStopped)
-            program.control()
         }
     }    
 }
 
-if(equaln(vEgoDirection, directionStopped)) {
-    stop.cycling(objEgo)
-}
-if(!equaln(vEgoDirection, directionStopped)) {
-    start.cycling(objEgo)
-}
-
-if(!isset(0)) {
+if(!isset(fSysEgoOnWater)) {
     if(isset(fSwimming)) {
         set.view(objEgo, viewRoger)
         reset(fSwimming)
     }
+    if(isset(fDrowning)) {
+        set.view(objEgo, viewRoger)
+        reset(fDrowning)    
+    }
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    if(!isset(fSysEgoOnWater)) {
+        stop.cycling(objEgo)
+    }
+}
+
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
 }
 
 if(said("swim")) {
-    if(isset(0)) {
+    if(isset(fSysEgoOnWater)) {
         if(isset(fDrowning)) {
             set.view(objEgo, viewRogerSwim)
             reset(fDrowning)
@@ -115,6 +120,7 @@ if(said("swim")) {
        } 
     }
 }
+
 
 if(said("look")) {
     print("There's a large beautiful lake that goes off to the west here and a thick fog to the south.")

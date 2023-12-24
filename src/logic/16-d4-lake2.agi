@@ -41,6 +41,9 @@ if(equaln(vRoomInited, 0)) {
     position(objMist3, 85, 43)
     position(objMist4, 127, 43)
 
+    reset(fSwimming)
+    reset(fDrowning)
+
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(50)
@@ -84,41 +87,38 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
     }
 }
 
-if(isset(0)) {
+if(isset(fSysEgoOnWater)) {
     if(!isset(fSwimming)) {
         if(!isset(fDrowning)){
             set.view(objEgo, viewRogerSplash)
             set(fDrowning)
-            assignn(vEgoDirection, directionStopped)
-            program.control()
         }
     }    
 }
 
-if(!isset(0)) {
+if(!isset(fSysEgoOnWater)) {
     if(isset(fSwimming)) {
         set.view(objEgo, viewRoger)
         reset(fSwimming)
     }
-}
-
-if(equaln(vEgoDirection, directionStopped)) {
-    if(!isset(fDrowning)) {
-        if(!isset(fSwimming)){
-            stop.cycling(objEgo)
-        }
+    if(isset(fDrowning)) {
+        set.view(objEgo, viewRoger)
+        reset(fDrowning)    
     }
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
-    stop.cycling(objEgo)
+    if(!isset(fSysEgoOnWater)) {
+        stop.cycling(objEgo)
+    }
 }
+
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
 if(said("swim")) {
-    if(isset(0)) {
+    if(isset(fSysEgoOnWater)) {
         if(isset(fDrowning)) {
             set.view(objEgo, viewRogerSwim)
             reset(fDrowning)
