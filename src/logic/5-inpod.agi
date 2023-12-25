@@ -51,6 +51,8 @@ if(equaln(vRoomInited, valFalse)) {
         reset(fPodStart)
         reset(fPodLaunched)
         reset(fPodAutoNaved)
+        reset(fWarping)
+        reset(fWarpingStarted)
     }
     if(isset(fLaunchAnimationPlayed)) {
         position(objCockpitThrottle,  106, 130)
@@ -96,6 +98,7 @@ if(equaln(vRoomInited, valFalse)) {
 
     assignn(vTimer, 0)
     assignn(vClockTicks, 0)
+//set(fWarping)
 }
 if(said("look")) {
     print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.")
@@ -193,50 +196,47 @@ if(isset(fPodThrottlePulled)) {
 if(isset(fPodLaunched)) {
 
     if(!isset(fLaunchAnimationPlayed)) {        
-        if(equaln(vClockTicks, 1)) {
-            if(equaln(vTimer, 5)) {
-                assignn(vRoomInited, valFalse)
-                assignn(vCurrentRoom, picStation)           
-            }
-        }    
+        assignn(vRoomInited, valFalse)
+        assignn(vCurrentRoom, picStation)           
     }
 
     if(isset(fLaunchAnimationPlayed)) {        
-
-        if(!isset(fStarDone1)) {
-            move.obj(objPodStars1, 20, 75, 2, fStarDone1)
-        }
-        if(!isset(fStarDone2)) {
-            move.obj(objPodStars2, 125, 80, 2, fStarDone2)
-        }
-        if(!isset(fStarDone3)) {
-           move.obj(objPodStars3, 20, 15, 2, fStarDone3)
-        }
-        if(!isset(fStarDone4)) {
-           move.obj(objPodStars4, 130, 15, 2, fStarDone4)
-        }
-    
-        if(isset(fStarDone1)) {
-            reset(fStarDone1)
-            position(objPodStars1, 65, 40)
-        }
-        if(isset(fStarDone2)) {
-            reset(fStarDone2)
-            position(objPodStars2, 85, 40)
-        }
-        if(isset(fStarDone3)) {
-            reset(fStarDone3)
-            position(objPodStars3, 65, 50)        
-        }
-        if(isset(fStarDone4)) {
-            reset(fStarDone4)
-            position(objPodStars4, 85, 50)
+        if(!isset(fWarping)) {
+            if(!isset(fStarDone1)) {
+                move.obj(objPodStars1, 20, 75, 2, fStarDone1)
+            }
+            if(!isset(fStarDone2)) {
+                move.obj(objPodStars2, 125, 80, 2, fStarDone2)
+            }
+            if(!isset(fStarDone3)) {
+               move.obj(objPodStars3, 20, 15, 2, fStarDone3)
+            }
+            if(!isset(fStarDone4)) {
+               move.obj(objPodStars4, 130, 15, 2, fStarDone4)
+            }
+        
+            if(isset(fStarDone1)) {
+                reset(fStarDone1)
+                position(objPodStars1, 65, 40)
+            }
+            if(isset(fStarDone2)) {
+                reset(fStarDone2)
+                position(objPodStars2, 85, 40)
+            }
+            if(isset(fStarDone3)) {
+                reset(fStarDone3)
+                position(objPodStars3, 65, 50)        
+            }
+            if(isset(fStarDone4)) {
+                reset(fStarDone4)
+                position(objPodStars4, 85, 50)
+            }    
         }
     }
 
     if(!isset(fPodAutoNaved)){
         if(equaln(vClockTicks, 3)) {
-            // print("You should probably engage some form of navigation...")
+            print("There's only so much fuel on thes pods. You should probably engage some form of navigation...")
             assignn(vTimer, 0)
             assignn(vClockTicks, 0)
         }    
@@ -254,6 +254,7 @@ if(isset(fPodLaunched)) {
         if(equaln(vClockTicks, 5)) {
             print("You pick at the bightly colored decal and pull it away from the console. It reveals a hard packard that says 'AUTONAV`")
             erase(objDecal)
+            set(fWarping)
         }    
 
         if(equaln(vClockTicks, 6)) {
@@ -273,6 +274,22 @@ if(isset(fPodLaunched)) {
 
     addn(vTimer, 1)
 }
+
+if(isset(fWarping)) {
+    if(!isset(fWarpingStarted)) {
+        set(fWarpingStarted)
+        load.view(viewWorldWarp)
+        set.view(objWarp, viewWorldWarp)
+        set.priority(objWarp, 4)
+        start.cycling(objWarp)
+
+        erase(objPodStars2)
+        erase(objPodStars3)
+        erase(objPodStars4)    
+    }
+    position(objWarp, 9, 84)
+}
+
 
 if(isset(fPodPoweredUp)) {
     load.view(viewCockpitButtons)

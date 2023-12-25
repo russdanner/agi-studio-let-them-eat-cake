@@ -49,6 +49,7 @@
 #define objPodStars4 13
 #define objPodStars5 14
 #define objPodStars6 15
+#define objWarp 10
 
 #define objCastleFlags 9
 #define objCastleCrocs 10
@@ -269,6 +270,7 @@
 #define viewPersonG2 98
 #define viewRogerStoned 100
 #define viewGrahamFightCloud 101
+#define viewWorldWarp 102
 
 // objects
 #define viewObjPot 69
@@ -426,6 +428,7 @@
 #define fStillPooping 95
 
 #define fDecompressing 90
+#define fDecompressOnce 94
 #define fDecompressed 91
 #define fAdrift 93
 
@@ -456,6 +459,8 @@
 #define fStarDone3 102
 #define fStarDone4 103
 #define fStarDone5 104
+#define fWarping 105
+#define fWarpingStarted 106
 
 #define fInBucket 90
 #define fBucketDown 91

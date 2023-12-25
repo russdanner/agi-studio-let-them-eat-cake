@@ -225,29 +225,32 @@ if(isset(fAdrift)) {
 }
 
 if(!isset(fWearingSuit)) {
-    // DEAD: DECOMP
-    get.posn(objEgo, vEgoX, vEgoY)
-    assignn(vEgoX, 100)
-    move.obj.v(objEgo, vEgoX, vEgoY, 1, fDecompressing)
+    if(!isset(fDecompressing)) {
+        // DEAD: DECOMP
+        get.posn(objEgo, vEgoX, vEgoY)
+        assignn(vEgoX, 100)
+        reset(fDecompressed)
+        reset(fDecompressOnce)
+        move.obj.v(objEgo, vEgoX, vEgoY, 1, fDecompressing)
+    }
 }
 
 if(isset(fDecompressing)) {
-    reset(fDecompressing)
-    if(!isset(fDead)) {
+    if(!isset(fDecompressOnce)) {
+        set(fDecompressOnce)
+        stop.motion(objEgo)
         load.view(viewRogerExplode)
         set.view(objEgo, viewRogerExplode)
-        set.loop(objEgo, 0)
-        set.cel(objEgo, 0)
-        start.cycling(objEgo)
-        end.of.loop(objEgo, fDecompressed) 
+        end.of.loop(objEgo, fDecompressed)     
     }
 }
 
 if(isset(fDecompressed)) {
-    reset(fDecompressed)
+    erase(objEgo)
     assignn(vDeathReason, valXsNoSuitExplode)    
     set(fDead)
 }
+
 
 if(said("look", "panel")) {
     print("The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.")
