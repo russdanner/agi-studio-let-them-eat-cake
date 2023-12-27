@@ -59,7 +59,7 @@ if(equaln(vRoomInited, valFalse)) {
 
     reset(fHawkFlightADone)
     reset(fHawkFlightBDone)
-    reset(fFeatherFakllDone)
+    reset(fFeatherFallDone)
 
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
@@ -83,11 +83,11 @@ if(isset(fHawkFlightADone)) {
     reset(fHawkFlightADone)
     position(objFeatherFall, 40, 40)
     move.obj(objHawk, 0, 40, 1, fHawkFlightBDone)
-    move.obj(objFeatherFall, 40, 105, 1, fFeatherFakllDone)
+    move.obj(objFeatherFall, 40, 105, 1, fFeatherFallDone)
 }
 
-if(isset(fFeatherFakllDone)) {
-    reset(fFeatherFakllDone)
+if(isset(fFeatherFallDone)) {
+    reset(fFeatherFallDone)
     stop.cycling(objFeatherFall)
 }
 

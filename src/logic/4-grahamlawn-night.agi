@@ -38,12 +38,13 @@ if(equaln(vRoomInited, valFalse)) {
     reset(fSoundDone)
     reset(fDoAction)
     reset(fGotcha)
+    reset(fGotcha2)
 
     assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)
 
     position(objWolf1, 15, 40)
-    position(objWolf2, 170, 160)
+    position(objWolf2, 160, 180)
     position(objCabinDoor, 121, 130)
     set.priority(objCabinDoor, 4)
     set.priority(objEgo, 8)
@@ -79,7 +80,7 @@ if(!isset(fDead)) {
         follow.ego(objWolf1, 3, fGotcha)
 
         start.cycling(objWolf2)
-        follow.ego(objWolf2, 3, fGotcha)
+        follow.ego(objWolf2, 3, fGotcha2)
     }
 
     if(isset(fGotcha)) {
@@ -88,9 +89,21 @@ if(!isset(fDead)) {
         set(fDead) 
         assignn(vDeathReason, valXsWolfMunchGraham)
         load.view(viewGrahamFightCloud)
-        
 
-        //set.view(objWolf1, viewFightCloud)
+        set.view(objWolf1, viewGrahamFightCloud)
+        
+        start.cycling(objWolf1)
+        start.cycling(objWolf2)
+        wander(objWolf1)         
+        wander(objWolf2)         
+    }
+    if(isset(fGotcha2)) {
+        erase(objEgo)
+
+        set(fDead) 
+        assignn(vDeathReason, valXsWolfMunchGraham)
+        load.view(viewGrahamFightCloud)
+
         set.view(objWolf2, viewGrahamFightCloud)
         
         start.cycling(objWolf1)
@@ -98,6 +111,7 @@ if(!isset(fDead)) {
         wander(objWolf1)         
         wander(objWolf2)         
     }
+
 }
 
 if(said("look")) {

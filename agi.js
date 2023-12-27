@@ -37,8 +37,11 @@ var Agi;
         // document.addEventListener('keypress', function(evt){  evt.stopPropagation()}, false)
 
         Resources.load(path, () => {
-            Agi.interpreter = new Agi.Interpreter(context);
-            Agi.interpreter.start();
+
+            if(!Agi.interpreter) {
+                Agi.interpreter = new Agi.Interpreter(context);
+                Agi.interpreter.start();    
+            }
             window.onkeypress = function (e) {
                 // switch to window.addEventListener
 
@@ -49,7 +52,6 @@ var Agi;
                 //if (e.which != 13) {
                 // enter should be allowed to close a dialog
                 Agi.interpreter.keyboardCharBuffer.push(e.which);
-                //console.log("Keypress: " + e.keyCode);
                 Agi.interpreter.variables[19] = e.which
                 //}
             };
@@ -59,7 +61,6 @@ var Agi;
                     e.preventDefault();
                 }
                 Agi.interpreter.keyboardSpecialBuffer.push(e.which);
-                //console.log("keydown: " + e.keyCode);
             };
             (function renderloop() {
                 //window.requestAnimationFrame(renderloop);
@@ -461,22 +462,17 @@ var Agi;
 (function (Agi) {
     class Sound {
         constructor(soundNo, data, flag) {
+
+            this.audioCtx =  new AudioContext()
+            this.oscillator = this.audioCtx.createOscillator() 
+            this.oscillator.connect(this.audioCtx.destination);
+
             this.flag = flag
             this.data = data;
             this.started = false;
             this.ended = false;
             this.frame = -1;
-            window.snds = []
-            //this.audioCtx = new AudioContext();
-//            this.oscillator = this.audioCtx.createOscillator();
-            window.audioCtx = (window.audioCtx) ? window.audioCtx : new AudioContext()
-            this.audioCtx = window.audioCtx
 
-            window.oscillator = (window.oscillator) ? window.oscillator : this.audioCtx.createOscillator() 
-            this.oscillator = window.oscillator
-
-            this.oscillator.connect(this.audioCtx.destination);
-            //this.oscillator.type = "sign";
             this.voices = {
                 voice1: {
                     durationRemaining: 0,
@@ -509,33 +505,43 @@ var Agi;
             };
         }
         doSoundFrame() {
-            try {
-                if(this.voices.voice1.durationRemaining <= 20000)
-                this.oscillator.frequency.setValueAtTime(this.voices.voice1.frequency, this.audioCtx.currentTime); // value in hertz                 
-                var now = new Date().getTime();
-                while (new Date().getTime() < now + 5) { }
-            }
-            catch (e) {
-                // Nothing to be done    
-            }
+
+//            try {
+                if(this.voices.voice1.durationRemaining > 0) {    // why this check?                            
+
+                    this.oscillator.frequency.setValueAtTime(this.voices.voice1.frequency, this.audioCtx.currentTime); // value in hertz                 
+
+                    var now = new Date().getTime();
+                    while (new Date().getTime() < now + 5) {   }
+                    
+                }
+            // }
+            // catch (e) {
+            //     // Nothing to be done    
+            // }
             this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 3000;
         }
         play(soundNo, flagNo) {
+            this.oscillator.start()
+            this.ended = false    
+            this.started = true
             this.frame = 0;
             this.playCycle();
         }
         stop() {
             this.ended = true;
-//            this.oscillator.stop();
-            this.oscillator.frequency.setValueAtTime(0, 0)
-            console.log("Sound Flag Done:"+this.flag)
+            window.started = false;
+            this.oscillator.stop();
+            this.oscillator.disconnect();
+
             Agi.interpreter.flags[this.flag] = true    
         }
         playCycle() {
             var readNextFrame = false;
             if (this.started == false) {
-                try { //this.oscillator.stop() 
-                    this.oscillator.start();
+                try { 
+                    //this.oscillator.stop() 
+                    //this.oscillator.start();
 
                 }catch(e){}
                 this.started = true;
@@ -550,7 +556,6 @@ var Agi;
                 // read the header
                 this.data.position = 0;
                 var v1Offest = this.data.readUint8(littleEndian);
-                //console.log("f:" + this.frame + " o:" + v1Offest)
 
                 var v2Offest = this.data.readUint8();
                 var v3Offest = this.data.readUint8();
@@ -563,8 +568,6 @@ var Agi;
                 var noteLow = this.data.readUint8();
                 var maxNoteLow = this.data.readUint8();
 
-
-                //console.log("f: "+ this.frame + " d:"+duration+" h:"+ noteHigh+" l:"+noteLow)
                 // decode the frequency
                 this.voices.voice1.offset = v1Offest;
                 this.voices.voice1.durationRemaining = duration;
@@ -572,26 +575,16 @@ var Agi;
 
                 if (duration == 65535 /* 0xFF 0xFF */) {
                     // marks the end of the audio
-                    //console.log(window.snds)
                     this.stop();
                     
                 }
                 else if (isFinite(this.voices.voice1.frequency) == false) {
                     this.voices.voice1.frequency = 0;
                 }
-
-                window.snds = (window.snds) ? window.snds : ""                
-                window.snds+= "[{ \"duration\":"+duration+", \"noteHi\":"+ noteHigh+", \"noteLow\":"+noteLow+", \"maxNoteLow\":"+maxNoteLow+ "}],"
-
             }
 
             if (this.ended == false) {
                 this.doSoundFrame();
-            }
-            else {
-                var sndStr = "{ \"soundData\": [" + window.snds + "] }"
-                sndStr = sndStr.replace(",] }", "] }")
-                console.log(sndStr)
             }
         }
     }
@@ -772,7 +765,6 @@ var Fs;
                         throw "Fatal error downloading '" + url + "'";
                     }
                     else {
-                        console.log("Successfully downloaded '" + url + "'");
                         success(xhr.response);
                     }
                 }
@@ -866,6 +858,7 @@ var Agi;
 (function (Agi) {
     class Interpreter {
         constructor(context) {
+            console.log("new interp")
             this.scoreTotal = 0;
             this.context = context;
             this.newroom = 0;
@@ -1063,13 +1056,12 @@ var Agi;
                     break;
                 }
             }
-            //console.log("----- CYCLE ------");
-            // this.screen.bltText(1, 0, "" + this.flags[0]);
-            // this.screen.bltText(2, 0, "" + this.variables[42]);
-            // this.screen.bltText(3, 0, "" + this.variables[43]);
-            // this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
-            // this.screen.bltText(5, 0, "" + this.variables[19]);
-            // this.screen.bltText(6, 0, "" + this.variables[10]);
+            this.screen.bltText(1, 0, "" + this.flags[0]);
+            this.screen.bltText(2, 0, "" + this.variables[42]);
+            this.screen.bltText(3, 0, "" + this.variables[43]);
+            this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
+            this.screen.bltText(5, 0, "" + this.variables[19]);
+            this.screen.bltText(6, 0, "" + this.variables[10]);
 
             this.screen.bltText(21, 0, "]");
             this.screen.bltText(21, 2, "                                                                            ");
@@ -1411,8 +1403,6 @@ var Agi;
             this.variables[varNo1] = this.variables[this.variables[varNo2]];
         }
         agi_set(flagNo) {
-            console.log("set f :"+flagNo)
-
             this.flags[flagNo] = true;
         }
         agi_reset(flagNo) {
@@ -1422,7 +1412,6 @@ var Agi;
             this.flags[flagNo] = !this.flags[flagNo];
         }
         agi_setv(varNo) {
-            console.log("set v :"+varNo)
             this.agi_set(this.variables[varNo]);
         }
         agi_reset_v(varNo) {
@@ -1474,7 +1463,6 @@ var Agi;
             this.agi_divn(varNo1, this.variables[varNo2]);
         }
         agi_new_room(roomNo) {
-            console.log("NEW_ROOM " + roomNo);
             this.newroom = roomNo;
         }
         agi_get_room_v(varNo) {
@@ -1692,7 +1680,6 @@ var Agi;
         }
         agi_add_to_pic(viewNo, loopNo, celNo, x, y, priority, margin) {
             // TODO: Add margin
-            console.log("ATP BLTVIEW: v:"+viewNo+" l:"+loopNo+" c:"+celNo+" x:"+x+" y:"+y+" p:"+priority)                        
             this.screen.bltView(viewNo, loopNo, celNo, x, y, priority);
         }
         agi_add_to_pic_v(varNo1, varNo2, varNo3, varNo4, varNo5, varNo6, varNo7) {
@@ -1820,6 +1807,7 @@ var Agi;
                 if (this.sound) {
                     this.sound.stop();
                 }
+                                
                 this.sound = new Agi.Sound(soundNo, this.loadedSounds[soundNo], flagNo);
                 this.sound.play(soundNo, flagNo);
             }
@@ -1873,9 +1861,6 @@ var Agi;
             if(!this.pockets) {
                 this.pockets = []
             }
-//            console.log("take :"+itemNo)
-            console.log(this.pockets)
-
             this.pockets.push(itemNo)
         }
         agi_discard_sound(n1) {
@@ -2199,9 +2184,8 @@ var Agi;
                         words = (words) ? words : []
 
                         var inputWord = inputWords[j];
-                        console.log(words)
 
-                        if (words.includes(inputWord)) {
+                        if (words.includes(inputWord) || words.includes("anyword")) {
                             if (j == (inputWords.length - 1)) {
                                 said = true;
                                 break;
@@ -2213,12 +2197,6 @@ var Agi;
                 else {
                     this.inputBuffer = ""
                 }
-            }
-
-            if (this.flags[2] == true && this.inputBuffer != "") {
-                console.log("SAID: ("+this.inputBuffer+") "+said)            
-                // this.inputBuffer = ""
-                // this.flags[2] = false
             }
 
             if(said == true) {
@@ -2255,10 +2233,10 @@ var Agi;
             }
         }
         agi_object_on_land() {
-            console.log("on land");
+
         }
         agi_object_on_water() {
-            console.log("on water");
+
         }
         agi_undefined() {
             // at some point remove this and figure out what is producing this instruction
@@ -2869,9 +2847,6 @@ var Resources;
             if (decryptionIndex == decryptionKey.length) decryptionIndex = 0;
         }
         if (decryptionIndex == decryptionKey.length) decryptionIndex = 0;
-
-        //console.log("OBJECTS: ("+objectName+")")
-        console.log(objectNames)
         return objectNames
     }
     function parseWordFile(buffer) {
@@ -2960,7 +2935,6 @@ var Resources;
     Resources.readAgiResource = readAgiResource;
     function load(path, done) {
         Fs.downloadAllFiles(path, ["logdir", "picdir", "viewdir", "snddir"], (buffers) => {
-            console.log("Directory files downloaded.");
             parseDirfile(buffers["logdir"], logdirRecords);
             parseDirfile(buffers["picdir"], picdirRecords);
             parseDirfile(buffers["viewdir"], viewdirRecords);
@@ -2972,7 +2946,6 @@ var Resources;
                 }
             }
             Fs.downloadAllFiles(path, volNames, (buffers) => {
-                console.log("Resource volumes downloaded.");
                 for (var j = 0; j < volNames.length; j++) {
                     volBuffers[j] = buffers[volNames[j]];
                 }

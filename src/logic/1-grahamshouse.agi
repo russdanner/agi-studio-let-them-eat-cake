@@ -115,8 +115,20 @@ if(equaln(vRoomInited, valFalse)) {
     position(objCabinDoor, 26, 131)
 }
 
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+ }
+ if(!equaln(vEgoDirection, directionStopped)) {
+     start.cycling(objEgo)
+ }
+ 
 if(said("look")) {
-    print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy.")
+    if(!has(invHat)) {
+        print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter with a hat on it in the corner.")
+    }
+    if(has(invHat)) {
+        print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter in the corner.")
+    }
 }
 
 if(said("sleep")) {
@@ -156,7 +168,12 @@ if(said("go", "sleep")) {
 }
 
 if(said("look", "room")) {
-    print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy.")
+    if(!has(invHat)) {
+        print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter with a hat on it in the corner.")
+    }
+    if(has(invHat)) {
+        print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter in the corner.")
+    }
 }
 
 if(said("look", "table")) {
@@ -195,13 +212,6 @@ if(said("open", "door")) {
     if(!posn(objEgo, 16, 108, 35, 124)) {
         print("You can't do that from here.")
     }
-}
-
-if(equaln(vEgoDirection, directionStopped)) {
-   stop.cycling(objEgo)
-}
-if(!equaln(vEgoDirection, directionStopped)) {
-    start.cycling(objEgo)
 }
 
 if(equaln(vSleeping, valTrue)) {
@@ -264,16 +274,22 @@ if(said("take", "hat")) {
 
 if(said("take", "teacup")) {
     if(posn(objEgo, 49, 107, 56, 135)) {
-        print("You pick up the teacup and carry it with you.")
         erase(objTeaCup)
-        get(invTeaCup)
+        if(equaln(vTeaPoured, valTrue)) {
+            print("You pick up the teacup full of hot clover tea and carry it with you.")
+            get(invTea)
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("You pick up the teacup and carry it with you.")
+            get(invTeaCup)            
+        }
     }
     if(!posn(objEgo, 49, 107, 56, 135)) {
         print("It is not within your reach.")
     }
 }
 
-if(said("put", "teacup")) {
+if(said("drop", "teacup")) {
     if(posn(objEgo, 49, 107, 56, 135)) {
         print("You place the teacup on the table.")
         draw(objTeaCup)

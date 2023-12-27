@@ -43,11 +43,11 @@ if(equaln(vRoomInited, valFalse)) {
 
     set.priority(objHawk, 10)    
     position(objHawk, 160, 70)
-    move.obj(objHawk, 40, 40, 2, fDoAction)
+    move.obj(objHawk, 40, 40, 2, fHawkFlightADone)
 
     reset(fHawkFlightADone)
     reset(fHawkFlightBDone)
-    reset(fFeatherFakllDone)
+    reset(fFeatherFallDone)
 
     set.horizon(46) 
 }
@@ -105,19 +105,19 @@ if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
 
-if(isset(fDoAction)) {
-    reset(fDoAction)
+if(isset(fHawkFlightADone)) {
+    reset(fHawkFlightADone)
     position(objFeatherFall, 40, 40)
-    move.obj(objHawk, 0, 40, 1, fUndoAction)
-    move.obj(objFeatherFall, 40, 105, 1, fGotcha)
+    move.obj(objHawk, 0, 40, 1, fHawkFlightBDone)
+    move.obj(objFeatherFall, 40, 105, 1, fFeatherFallDone)
 }
 
-if(isset(fGotcha)) {
-    reset(fGotcha)
+if(isset(fFeatherFallDone)) {
+    reset(fFeatherFallDone)
     stop.cycling(objFeatherFall)
 }
 
-if(isset(fUndoAction)) {
+if(isset(fHawkFlightBDone)) {
     erase(objHawk)
 }
 

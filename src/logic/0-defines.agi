@@ -413,6 +413,8 @@
 #define fDoAction 95
 #define fUndoAction 96
 #define fGotcha 90
+#define fGotcha2 97
+
 #define fRunForIt 91
 
 #define fCabinetOpen 95
@@ -421,7 +423,7 @@
 
 #define fHawkFlightADone 95
 #define fHawkFlightBDone 96
-#define fFeatherFakllDone 97
+#define fFeatherFallDone 97
 
 #define fPooping 90
 #define fFlushing 91
