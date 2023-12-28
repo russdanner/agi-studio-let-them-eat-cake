@@ -34,7 +34,7 @@ if(equaln(vRoomInited, valFalse)) {
     stop.cycling(objMist2)
     stop.cycling(objCastleDoors)
 
-    //object.on.water(objCastleCrocs)
+    object.on.water(objCastleCrocs)
 
     draw(objEgo)
     draw(objCastleFlags)

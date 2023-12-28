@@ -21,7 +21,7 @@ if(equaln(vRoomInited, valFalse)) {
     set.view(objMist, viewMist)
     stop.cycling(objMist)
 
-    //object.on.water(objCastleCrocs)
+    object.on.water(objCastleCrocs)
 
     draw(objEgo)
     draw(objCastleFlags)
@@ -42,6 +42,7 @@ if(equaln(vRoomInited, valFalse)) {
     position(objMist, 80, 40)
     position(objCastleFlags, 5, 20)
     position(objCastleCrocs, 50, 165)
+    wander(objCastleCrocs)    
 
     position.v(objEgo, vEgoX, vEgoY)
     set.horizon(40)

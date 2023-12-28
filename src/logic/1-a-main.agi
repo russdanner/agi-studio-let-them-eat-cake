@@ -331,6 +331,7 @@ if(isset(fWaitForCloseInv)) {
 }
 
 if(!isset(fGameOver)) {
+
     if(isset(fDead)) {
         if(equaln(vDeathReason, valXsGeneric)) {
             set(fRogerDead)
@@ -347,7 +348,6 @@ if(!isset(fGameOver)) {
         if(equaln(vDeathReason, valXsSpaceWalk)) {
             set(fRogerDead)
             print("You step off the deck and into the vaccuum of space. We're not sure where you are going but we know you'll be a popsicle when you arrive.")
-    
         }
         if(equaln(vDeathReason, valXsFuelFoot)) {
             set(fRogerDead)
@@ -359,7 +359,7 @@ if(!isset(fGameOver)) {
         }
         if(equaln(vDeathReason, valXsFastWater)) {
             set(fRogerDead)
-            print("Oh no! The water here is too fast to swim. You are overcome by the current and rapids. You are quickly flushed down river. An end fit for a janitor.")
+            print("Oh no! The water here is too fast to swim. You are overcome by the current and rapids. You are quickly 'flushed' down river. An end fit for a janitor.")
         }
         if(equaln(vDeathReason, valXsOgreMunch)) {
             set(fRogerDead)

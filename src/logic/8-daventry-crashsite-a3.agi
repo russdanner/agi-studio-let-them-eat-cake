@@ -2,6 +2,7 @@
 
 if(equaln(vRoomInited, valFalse)) {
     unanimate.all()
+
     assignn(vRoomInited, valTrue)
 
     load.view(viewCrashingPod)
@@ -78,12 +79,11 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 
 if(isset(fSysEgoOnWater)) {
     if(!isset(fDrowning)){
-        set.view(objEgo, viewRogerSplash)
         set(fDrowning)
-        assignn(vEgoDirection, directionStopped)
-        program.control()
+        stop.motion(objEgo)
+        set.view(objEgo, viewRogerSplash)
         assignn(vDeathReason, valXsFastWater)
-        set(fDead)
+        move.obj(objEgo, 25, 50, 2, fDead)
     }
 }
 

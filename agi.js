@@ -32,10 +32,6 @@ var Agi;
         0xFFFFFF
     ];
     function start(path, context) {
-        // document.addEventListener('keyup', function(evt){  evt.stopPropagation()})
-        // document.addEventListener('keydown', function(evt){  evt.stopPropagation()})
-        // document.addEventListener('keypress', function(evt){  evt.stopPropagation()}, false)
-
         Resources.load(path, () => {
 
             if(!Agi.interpreter) {
@@ -74,10 +70,7 @@ var Agi;
 })(Agi || (Agi = {}));
 var Agi;
 (function (Agi) {
-    /* writing text via HTML is easier than drawing a dialogue box and blitting in the text. Anyway it beats alert(..)
-       If there's a goal to run this code server side then this needs to change.
-       For now assume HTML and hide all the implementation details.
-       */
+    /* May switch this to use the blitter */
     class Dialogue {
         constructor() {
             var dialogEl = document.getElementById("dialogue")
@@ -461,8 +454,9 @@ var Agi;
 var Agi;
 (function (Agi) {
     class Sound {
-        constructor(soundNo, data, flag) {
-
+        constructor(soundNo, data, flag, soundOn) {
+            this.soundOn = soundOn
+            this.soundNo = soundNo
             this.audioCtx =  new AudioContext()
             this.oscillator = this.audioCtx.createOscillator() 
             this.oscillator.connect(this.audioCtx.destination);
@@ -505,24 +499,22 @@ var Agi;
             };
         }
         doSoundFrame() {
-
-//            try {
-                if(this.voices.voice1.durationRemaining > 0) {    // why this check?                            
-
+            if(this.voices.voice1.durationRemaining > 0) { 
+                
+                if(this.soundOn) {
                     this.oscillator.frequency.setValueAtTime(this.voices.voice1.frequency, this.audioCtx.currentTime); // value in hertz                 
-
-                    var now = new Date().getTime();
-                    while (new Date().getTime() < now + 5) {   }
-                    
                 }
-            // }
-            // catch (e) {
-            //     // Nothing to be done    
-            // }
+
+                var now = new Date().getTime();
+                while (new Date().getTime() < now + 5) {   }
+            }
             this.voices.voice1.durationRemaining = this.voices.voice1.durationRemaining - 3000;
         }
         play(soundNo, flagNo) {
-            this.oscillator.start()
+            if(this.soundOn) {
+                this.oscillator.start()
+            }
+
             this.ended = false    
             this.started = true
             this.frame = 0;
@@ -531,7 +523,11 @@ var Agi;
         stop() {
             this.ended = true;
             window.started = false;
-            this.oscillator.stop();
+            
+            if(this.soundOn) {
+                this.oscillator.stop();
+            }
+
             this.oscillator.disconnect();
 
             Agi.interpreter.flags[this.flag] = true    
@@ -539,11 +535,6 @@ var Agi;
         playCycle() {
             var readNextFrame = false;
             if (this.started == false) {
-                try { 
-                    //this.oscillator.stop() 
-                    //this.oscillator.start();
-
-                }catch(e){}
                 this.started = true;
                 readNextFrame = true;
             }
@@ -858,7 +849,7 @@ var Agi;
 (function (Agi) {
     class Interpreter {
         constructor(context) {
-            console.log("new interp")
+            this.rdDebug = false;
             this.scoreTotal = 0;
             this.context = context;
             this.newroom = 0;
@@ -913,8 +904,10 @@ var Agi;
             this.cycle();
         }
         setEgoDir(newEgoDir) {
-            let egoDir = this.variables[6];
-            this.variables[6] = egoDir == newEgoDir ? 0 : newEgoDir;
+            if(!this.programControl) {
+                let egoDir = this.variables[6];
+                this.variables[6] = egoDir == newEgoDir ? 0 : newEgoDir;    
+            }
         }
         cycle() {
             this.flags[2] = false; // The player has entered a command
@@ -1056,12 +1049,15 @@ var Agi;
                     break;
                 }
             }
-            this.screen.bltText(1, 0, "" + this.flags[0]);
-            this.screen.bltText(2, 0, "" + this.variables[42]);
-            this.screen.bltText(3, 0, "" + this.variables[43]);
-            this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
-            this.screen.bltText(5, 0, "" + this.variables[19]);
-            this.screen.bltText(6, 0, "" + this.variables[10]);
+
+            if(this.rdDebug) {
+                this.screen.bltText(1, 0, "" + this.flags[0]);
+                this.screen.bltText(2, 0, "" + this.variables[42]);
+                this.screen.bltText(3, 0, "" + this.variables[43]);
+                this.screen.bltText(4, 0, "" + this.gameObjects[0].x + ", " + this.gameObjects[0].y+" : "+ this.gameObjects[0].direction);
+                this.screen.bltText(5, 0, "" + this.variables[19]);
+                this.screen.bltText(6, 0, "" + this.variables[10]);    
+            }
 
             this.screen.bltText(21, 0, "]");
             this.screen.bltText(21, 2, "                                                                            ");
@@ -1229,6 +1225,21 @@ var Agi;
                                 this.flags[0]=false
                             }
                         }
+                        else {
+                            if (this.priorityBuffer.data[idx] != 3) {
+                                if(obj.allowedSurface == 3) {
+                                    // things in the water should stay in the water
+                                    obj.x = obj.oldX
+                                    obj.y = obj.oldY
+                                    newX = obj.oldX
+                                    newY = obj.oldY
+
+                                    if(newY > 166) {
+                                        newY = 166
+                                    }
+                                }
+                            }
+                        }
 
                         if (this.priorityBuffer.data[idx] == 0 
                         || this.priorityBuffer.data[idx] == 1) {
@@ -1253,6 +1264,21 @@ var Agi;
                         else {
                             this.flags[0]=false
                         }    
+                    }
+                    else {
+                        if (this.priorityBuffer.data[leftIdx] != 3 || this.priorityBuffer.data[rightIdx] != 3) {
+                            if(obj.allowedSurface == 3) {
+                                // things in the water should stay in the water
+                                obj.x = obj.oldX
+                                obj.y = obj.oldY
+                                newX = obj.oldX
+                                newY = obj.oldY
+
+                                if(newY > 166) {
+                                    newY = 166
+                                }
+                            }
+                        }
                     }
 
                     if (this.priorityBuffer.data[leftIdx] == 0 || this.priorityBuffer.data[rightIdx] == 0 || this.priorityBuffer.data[leftIdx] == 1 || this.priorityBuffer.data[rightIdx] == 1) {
@@ -1803,14 +1829,12 @@ var Agi;
             Resources.readAgiResource(Resources.AgiResource.Sound, soundNo)
         }
         agi_sound(soundNo, flagNo) {
-            if(this.flags[9] == true) {
-                if (this.sound) {
-                    this.sound.stop();
-                }
-                                
-                this.sound = new Agi.Sound(soundNo, this.loadedSounds[soundNo], flagNo);
-                this.sound.play(soundNo, flagNo);
+            if (this.sound) {
+                this.sound.stop();
             }
+                            
+            this.sound = new Agi.Sound(soundNo, this.loadedSounds[soundNo], flagNo, this.flags[9]);
+            this.sound.play(soundNo, flagNo);
         }
         agi_stop_sound() {
             if (this.sound) {
@@ -2232,11 +2256,11 @@ var Agi;
                 this.variables[varNo] = 255;
             }
         }
-        agi_object_on_land() {
-
+        agi_object_on_land(objNo) {
+            this.gameObjects[objNo].allowedSurface = 0
         }
-        agi_object_on_water() {
-
+        agi_object_on_water(objNo) {
+            this.gameObjects[objNo].allowedSurface = 3
         }
         agi_undefined() {
             // at some point remove this and figure out what is producing this instruction
