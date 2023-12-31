@@ -27,7 +27,27 @@ if(equaln(vRoomInited, valFalse)) {
 
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
-    set.horizon(30)   
+    set.horizon(30)  
+    
+    assignn(vTimer, 0)
+    assignn(vClockTicks, 0)
+
+}
+
+// We use the time to count cycles for some of the apps
+addn(vTimer, 1)
+
+if(equaln(vTimer, 100)) {
+    addn(vClockTicks, 1)
+    assignn(vTimer, 0)
+    if(equaln(vClockTicks, 9)) {
+        print("On a scale of 1 to low on oxygen you 3 fumes past empty.")
+    }
+    if(equaln(vClockTicks, 12)) {
+        // DEAD: Drown
+        assignn(vDeathReason, valXsOutOfAir)
+        set(fDead)
+    }
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {

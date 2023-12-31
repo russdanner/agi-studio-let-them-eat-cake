@@ -39,14 +39,15 @@ if(equaln(vRoomInited, valFalse)) {
     assignn(vEgoEdgeTouched, edgeNone)
 
     reset(fCabinetOpen)
+    set.priority(objEgo, 14)
 }
-
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeBottom)) {
         get.posn(objEgo, vEgoX, vEgoY)
         assignn(vEgoX, 51)
         assignn(vEgoY, 133)
+        set.priority(objEgo, 11)
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavWitchHouseD5)   
@@ -86,7 +87,17 @@ if(said("look", "table")) {
     }
 }
 if(said("look", "cabinet")) {
-    print("There's a large cabinet here that is built into the wall.")
+    if(isset(fCabinetOpen)) {
+        if(has(invCake)) {
+            print("There's a large cabinet here that is built into the wall.")
+        }
+        if(!has(invCake)) {
+            print("There's a large cabinet here that is built into the wall. There's a cake on the shelf.")
+        }
+    }
+    if(!isset(fCabinetOpen)) {
+        print("There's a large cabinet here that is built into the wall.")
+    }
 }
 
 if(said("close", "cabinet")) {
@@ -138,6 +149,7 @@ if(said("take", "paper")) {
             get(invPaper)
             erase(objPaper)        
             addn(vCurPoints, 1)
+            set.priority(objEgo, 12)
             print("Ok")
         }
         if(!posn(objEgo, 45, 129, 63, 139)) {

@@ -317,6 +317,7 @@
 #define valXsWolfMunchGraham 13
 #define valXsBewareRandomHoles 14
 #define valXsStoned 15
+#define valXsOutOfAir 16
 
 // vars
 // Engine Vars

@@ -72,7 +72,7 @@ if(said("enter", "pod")) {
         }
         if(has(invBroom)) {
             drop(invBroom)
-            print("As you go to climb into the pod you realize you still have the broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door.")
+            print("As you go to climb into the pod you realize you still have a broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door.")
         }        
     }
     if(!posn(objEgo, 49, 93, 60, 109)) {
@@ -82,6 +82,8 @@ if(said("enter", "pod")) {
 
 if(obj.in.box(objEgo, 151, 140, 155, 150)) {
     get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoX, 10)
+    assignn(vEgoY, 126)
     assignn(vRoomInited, valFalse)
     assignn(vEgoEdgeTouched, edgeNone)
     assignn(vCurrentRoom, picOuterBay)         
@@ -129,6 +131,9 @@ if(isset(fDecompressed)) {
     set(fDead)
 }
 
+if(said("look")) {
+    print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.")
+}
 if(said("look", "room")) {
     print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.")
 }

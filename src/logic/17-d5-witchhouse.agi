@@ -105,6 +105,14 @@ if(isset(fDoAction)) {
     assignn(vCurrentRoom, picDavWitchHouseInside)
 }
 
+if(said("knock")) {
+    if(posn(objEgo, 38, 128, 56, 135)) {
+        print("There is no answer.")
+    }
+    if(!posn(objEgo, 38, 128, 56, 135)) {
+        print("You can't reach it from here.")
+    }
+}
 if(said("look")) {
     print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south.")
 }
@@ -120,13 +128,17 @@ if(said("look", "house")) {
 if(said("lick", "house")) {
     print("You give the house a lick.")
 }
-if(said("knock", "door")) {
-    print("There is no answer.")
-}
-
 if(said("open", "door")) {
     if(posn(objEgo, 38, 128, 56, 135)) {
         end.of.loop(objWitchDoor, fDoAction)
+    }
+    if(!posn(objEgo, 38, 128, 56, 135)) {
+        print("You can't reach it from here.")
+    }
+}
+if(said("knock", "on", "door")) {
+    if(posn(objEgo, 38, 128, 56, 135)) {
+        print("There is no answer.")
     }
     if(!posn(objEgo, 38, 128, 56, 135)) {
         print("You can't reach it from here.")

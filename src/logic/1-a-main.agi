@@ -393,6 +393,10 @@ if(!isset(fGameOver)) {
             set(fRogerDead)
             print("That guy in the wierd space suit zaps you with some kind of laser beam. You are quickly turned to stone. You always dreamed of being immortalzied in a statue. Congratulations you got your wish! Unfortunately you are also now dead.")
         }
+        if(equaln(vDeathReason, valXsOutOfAir)) {
+            set(fRogerDead)
+            print("To your great surprise it turns out you cannot breathe under water. Having depleted the available oxygen in your lungs you drown after a short and awkward struggle.")
+        }
     }    
 }
 

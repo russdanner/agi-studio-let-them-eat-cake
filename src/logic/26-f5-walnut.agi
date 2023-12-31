@@ -100,12 +100,12 @@ if(said("look", "fog")) {
     print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
 }
 if(said("look", "rock")) {
-    print("There's a rock here that looks very sharp and abrasive.")
+    print("There's a rock here that that is very pointed. It has several facets on it. Some of them are rough and others are smooth.")
 }
 if(said("sharpen", "glass")) {
     if(posn(objEgo, 90, 115, 125, 130)) {
         set(fGlassIsSharp)
-        print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock")
+        print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger.")
         addn(vCurPoints, 1)
     }
     if(!posn(objEgo, 90, 115, 125, 130)) {

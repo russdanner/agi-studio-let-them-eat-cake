@@ -131,8 +131,9 @@ if(!obj.in.box(objEgo, 24, 89, 34, 123)) {
 }
 
 if(isset(fLiftRunning)) {
-    stop.motion(objEgo)
-    program.control()
+    // this needs to be looked at
+    // stop.motion(objEgo)
+    // program.control()
 
     if(isset(fLiftGoingDown)) {
         // render down
@@ -153,7 +154,7 @@ if(isset(fLiftRunning)) {
 
     if(equaln(vTimer, 26)) {
         reset(fLiftRunning)
-        player.control()
+        //player.control()
     }
 }
 
