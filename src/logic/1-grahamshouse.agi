@@ -175,6 +175,14 @@ if(said("look", "room")) {
         print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter in the corner.")
     }
 }
+if(said("look", "stove")) {
+    if(has(invTeapot)) {
+        print("The stove is made of cast iron and keeps the room toasty.")
+    }
+    if(!has(invTeapot)) {
+        print("The stove is made of cast iron and keeps the room toasty. There's a teapot on top of the stove.")
+    }
+}
 
 if(said("look", "table")) {
     if(has(invSummons)) {
