@@ -153,7 +153,7 @@ if(said("enter", "pod")) {
 }
 
 if(said("look", "room")) {
-    print("This is Shuttle Bay B. Along the rear wall is a Tram. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.")
+    print("This is Shuttle Bay B. Along the rear wall is a tram. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.")
 }
 if(said("look", "pod")) {
     print("The ship is a well maintained vessel. It is currently fueling. Unlike the typical StarCon shuttles you often find in these bays this is a privately owned and piloted ship. There's a call sign placard on the vessel. It reads: 'Cignus1' You wonder who owns this beauty.")

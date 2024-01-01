@@ -55,8 +55,13 @@ if(said("craftercms")) {
     print("Hell yeah! Got content? Like open source? CrafterCMS.com check it out. Give the project a like on Github or reach out and tell 'em Russ sent ya.")
 }
 
+
 if(!equaln(vCurrentRoom, 0)) {
     call.v(vCurrentRoom)
+}
+
+if(said("anyword")) {
+    print("You can't do that. At least not now.")
 }
 
 if(said("cut", "feather")) {
@@ -457,6 +462,10 @@ if(said("lick", "cake")) {
     if(!has(invCake)) {
         print("If you had cake you could try that.")
     }    
+}
+
+if(said("anyword", "anyword")) {
+    print("You can't do that. At least not now.")
 }
 
 return()
