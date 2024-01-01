@@ -67,7 +67,7 @@
   "18": ["clock"],
   "19": ["inv", "inventory"],
   "20": ["examine", "inspect", "look"],
-  "21": ["aquire", "pick up", "take"],
+  "21": ["aquire", "pick up", "take", "get"],
   "22": ["use"],
   "1002": ["pos", "position"],
   "1003": ["object"],
