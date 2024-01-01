@@ -81,6 +81,27 @@ if(said("look")) {
     print("This is the main control room for the station. It's alive with activity. To the rear wall there is a tram. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.")
 }
 
+if(said("get", "tram")) {    
+    if(isset(fHasFlightPlan)) {
+        if(posn(objEgo, 91, 73, 109, 76)) {
+            erase(objEgo)
+            end.of.loop(objTram, fTramReady) 
+            set(fTramRunning)       
+    
+            load.sound(sndTramGo)
+            sound(sndTramGo, fSoundDone)        
+        }
+        if(!posn(objEgo, 91, 73, 109, 76)) {
+            print("You are not close enough.")
+        }
+    }
+    if(!isset(fHasFlightPlan)) {
+        position(objEgo, 95, 74)
+        set.cel(objTram, 0)
+        draw(objEgo)
+    }
+}
+
 if(said("exit", "tram")) {    
     position(objEgo, 95, 74)
     set.cel(objTram, 0)

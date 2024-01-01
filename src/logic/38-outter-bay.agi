@@ -72,6 +72,12 @@ if(said("look")) {
     print("This is Outer Bay B. Along the rear wall is a Tram. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.")
 }
 
+if(said("get", "tram")) {  
+    set.cel(objTram, 0) 
+    position(objEgo, 55, 50)
+    draw(objEgo)
+}
+
 if(said("exit", "tram")) {  
     set.cel(objTram, 0) 
     position(objEgo, 55, 50)
@@ -87,6 +93,19 @@ if(isset(fTramInboundDone)) {
     set.cel(objTram, 1)
 }
 
+if(said("take", "suit")) {
+    if(posn(objEgo, 28, 100, 50, 103)) {
+        set.view(objEgo, viewRogerSuitA)
+        erase(objHangingSuit1)
+        set(fWearingSuit)
+        addn(vCurrentScore, 1)
+        print("Ok")
+    }
+    if(!posn(objEgo, 28, 100, 50, 103)) {
+        print("You can't reach it.")
+    }
+}
+
 if(said("wear", "suit")) {
     if(posn(objEgo, 28, 100, 50, 103)) {
         set.view(objEgo, viewRogerSuitA)
@@ -98,6 +117,10 @@ if(said("wear", "suit")) {
     if(!posn(objEgo, 28, 100, 50, 103)) {
         print("You can't reach it.")
     }
+}
+
+if(said("remove", "suit")) {
+    print("You don't have time for that.")
 }
 
 if(posn(objEgo, 8, 123, 20, 143)) {
@@ -121,6 +144,9 @@ if(obj.in.box(objEgo, 2, 123, 5, 128)) {
     assignn(vRoomInited, valFalse)
     assignn(vEgoEdgeTouched, edgeNone)
     assignn(vCurrentRoom, picHangerB)     
+}
+if(said("get", "pod")) {
+    print("Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger.")
 }
 if(said("enter", "pod")) {
     print("Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger.")

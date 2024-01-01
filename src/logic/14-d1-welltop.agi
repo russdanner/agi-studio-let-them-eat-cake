@@ -114,9 +114,9 @@ if(said("look", "bucket")) {
 if(said("lower", "bucket")) {
     print("There's no crank here.")
 }
-if(said("take", "bucket")) {
-    print("You don't need it.")
-}
+// if(said("take", "bucket")) {
+//     print("You don't need it.")
+// }
 
 if(said("enter", "bucket")) {
     if(posn(objEgo, 21, 105, 110, 145)) {    
@@ -146,6 +146,28 @@ if(said("exit", "bucket")) {
     }
     if(!isset(fInBucket)){
         print("Say what?")
+    }
+}
+
+if(said("get", "bucket")) {
+    // GET IN and GET OUT are not working properly
+    // this sucks becuase it overlaps with TAKE BUCKET
+    // for the sake of the player let's go this route for now
+    if(!isset(fInBucket)) {
+        if(posn(objEgo, 21, 105, 110, 145)) {    
+            load.view(viewRogerBucket)
+            erase(objBucket)
+            set.view(objEgo, viewRogerBucket)
+            position(objEgo, 37, 145)
+            set.priority(objEgo, 11)
+            stop.cycling(objEgo)
+            set.cel(objEgo, 0)
+            set(fInBucket)
+            addn(vCurPoints, 1)
+        }
+        if(!posn(objEgo, 21, 105, 110, 145)) {
+            print("You are not close enough.")    
+        }        
     }
 }
 

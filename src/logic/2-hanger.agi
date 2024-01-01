@@ -117,6 +117,15 @@ if(said("start", "sweeping")) {
     start.cycling(objEgo)
 }
 
+if(said("get", "pod")) {
+    if(posn(objEgo, 31, 104, 50, 127)) {
+        print("Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking.")
+    }
+    if(!posn(objEgo, 31, 104, 50, 127)) {
+        print("You are too far away.")
+    }
+}
+
 if(said("enter", "pod")) {
     if(posn(objEgo, 31, 104, 50, 127)) {
         print("Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking.")

@@ -165,6 +165,23 @@ if(said("push", "button")) {
     }
 }
 
+if(said("take", "suit")) {
+    if(isset(fWearingSuit)) {
+        print("You are already wearing it.")
+    }
+    if(!isset(fWearingSuit)) {
+        if(posn(objEgo, 35, 100, 44, 105)) {
+            set.view(objEgo, viewRogerSuitA)
+            erase(objHangingSuit2)
+            set(fWearingSuit)
+            print("Ok")
+        }
+        if(!posn(objEgo, 35, 100, 44, 105)) {
+            print("You are not close enough.")
+        }
+    }
+}
+
 if(said("wear", "suit")) {
     if(isset(fWearingSuit)) {
         print("You are already wearing it.")
@@ -202,6 +219,20 @@ if(said("remove", "suit")) {
 }
 
 if(said("enter", "tram")) {
+    if(isset(fWearingSuit)) {
+        print("You can't get in the tram in your spacesuit.")
+    }
+    if(!isset(fWearingSuit)) {
+        if(posn(objEgo, 56, 45, 68, 51)) {
+            erase(objEgo)
+            end.of.loop(objTram, fDoAction)
+        }
+        if(!posn(objEgo, 56, 45, 68, 51)) {
+            print("Get closer.")
+        }
+    }
+}
+if(said("get", "tram")) {
     if(isset(fWearingSuit)) {
         print("You can't get in the tram in your spacesuit.")
     }
