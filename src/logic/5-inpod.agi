@@ -123,42 +123,6 @@ if(said("buckle", "belt")){
     }
 }
 
-if(said("press", "power")) {
-    addn(vCurrentScore, 1)
-    load.view(viewCockpitPush)
-    set.view(objCockpitPush, viewCockpitPush)
-    stop.cycling(objCockpitPush)
-    
-    draw(objCockpitPush)
-
-    position(objCockpitPush, 80, 165)
-    move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)
-}
-
-if(said("push", "autonav")) {
-    if(isset(fPodStart)) { 
-        if(!isset(fPodThrottlePulled)) {
-            print("Nothing happens.")
-        }        
-        if(isset(fPodThrottlePulled)) {
-            addn(vCurrentScore, 1)
-
-            set(fPodAutoNaved)
-            
-            assignn(vTimer, 0)
-            assignn(vClockTicks, 0)
-
-            print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
-        }
-    }
-    if(!sset(fPodStart)) {
-        print("Nothing happens.") 
-    }
-}
-
-if(said("push", "dont")) {
-    print("Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`") 
-}
 
 if(said("push", "throttle")) {
     print("The throttle is topped out. There's no room to push it any further back.") 
@@ -359,6 +323,86 @@ if(said("look", "screen")) {
     if(!isset(fPodStart)) { 
         print("The screen is dark.")
     }
+}
+
+if(said("press", "power")) {
+    addn(vCurrentScore, 1)
+    load.view(viewCockpitPush)
+    set.view(objCockpitPush, viewCockpitPush)
+    stop.cycling(objCockpitPush)
+    
+    draw(objCockpitPush)
+
+    position(objCockpitPush, 80, 165)
+    move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)
+}
+
+if(said("push", "autonav")) {
+    if(isset(fPodStart)) { 
+        if(!isset(fPodThrottlePulled)) {
+            print("Nothing happens.")
+        }        
+        if(isset(fPodThrottlePulled)) {
+            addn(vCurrentScore, 1)
+
+            set(fPodAutoNaved)
+            
+            assignn(vTimer, 0)
+            assignn(vClockTicks, 0)
+
+            print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
+        }
+    }
+    if(!sset(fPodStart)) {
+        print("Nothing happens.") 
+    }
+}
+
+if(said("press", "power", "button")) {
+    addn(vCurrentScore, 1)
+    load.view(viewCockpitPush)
+    set.view(objCockpitPush, viewCockpitPush)
+    stop.cycling(objCockpitPush)
+    
+    draw(objCockpitPush)
+
+    position(objCockpitPush, 80, 165)
+    move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)
+}
+
+if(said("push", "autonav", "button")) {
+    if(isset(fPodStart)) { 
+        if(!isset(fPodThrottlePulled)) {
+            print("Nothing happens.")
+        }        
+        if(isset(fPodThrottlePulled)) {
+            addn(vCurrentScore, 1)
+
+            set(fPodAutoNaved)
+            
+            assignn(vTimer, 0)
+            assignn(vClockTicks, 0)
+
+            print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
+        }
+    }
+    if(!sset(fPodStart)) {
+        print("Nothing happens.") 
+    }
+}
+
+
+if(said("push", "dont", "touch")) {
+    print("Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`") 
+}
+if(said("push", "do", "not", "touch")) {
+    print("Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`") 
+}
+if(said("push", "dont", "touch", "button")) {
+    print("Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`") 
+}
+if(said("push", "do", "not", "touch", "button")) {
+    print("Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`") 
 }
 
 return()
