@@ -194,6 +194,13 @@ if(said("climb", "rope")) {
     reset(fInBucket)
 }
 
+if(said("climb", "wall")) {
+    print("You try and climb the walls of the well but they are much too slippery.")
+}
+if(said("climb", "walls")) {
+    print("You try and climb the walls of the well but they are much too slippery.")
+}
+
 if(said("take", "breath")) {
     print("You take a deep breath.")
 }
@@ -206,7 +213,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         assignn(vEgoEdgeTouched, edgeNone)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picDavWellTopD1)
-        print("You climb out of the bucket and well. In a uncharacteristic moment of thoughtfulness and remembering to 'be kind and rewind' you laboriously return the bucket to it's original location.")     
+        print("You climb out of the bucket and well. In a uncharacteristic moment of thoughtfulness and remembering to 'be kind and rewind' you laboriously return the bucket to its original location.")     
     }
 }
 

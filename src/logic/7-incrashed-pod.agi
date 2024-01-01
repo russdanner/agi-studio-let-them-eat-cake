@@ -47,6 +47,10 @@ if(said("unbuckle", "belt")) {
     reset(fBeltBuckled)
     print("Ok")
 }
+if(said("remove", "belt")) {
+    reset(fBeltBuckled)
+    print("Ok")
+}
 
 if(said("exit", "pod")) {
     if(isset(fBeltBuckled)) {

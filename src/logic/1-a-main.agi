@@ -90,6 +90,15 @@ if(said("make", "quill")) {
     }
 }
 if(said("make", "invitation")) {
+    if(!has(invQuill)) {
+        print("How do you intend to do that?")
+    }
+    if(!has(invInk)) {
+        print("How do you intend to do that?")
+    }
+    if(!has(invPaper)) {
+        print("How do you intend to do that?")
+    }
     if(has(invQuill)) {
         if(has(invInk)) {
             if(has(invPaper)) {

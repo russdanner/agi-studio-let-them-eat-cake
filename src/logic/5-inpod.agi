@@ -248,7 +248,7 @@ if(isset(fPodLaunched)) {
         }    
 
         if(equaln(vClockTicks, 4)) {
-            print("A pit forms in your stomach...  You may be in for some pay back!")
+            print("A pit forms in your stomach... You may be in for some payback!")
         }    
 
         if(equaln(vClockTicks, 5)) {
@@ -258,7 +258,7 @@ if(isset(fPodLaunched)) {
         }    
 
         if(equaln(vClockTicks, 6)) {
-            print("GULP!")
+            print("When the button says not to touch it... you shouldn't touch it. Time and space begin to warp around you. You may be late for your next assignment.")
         }  
 
         if(equaln(vClockTicks, 7)) {

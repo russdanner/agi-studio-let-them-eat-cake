@@ -50,9 +50,6 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 if(said("look")) {
     print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.")
 }
-if(said("look", "room")) {
-    print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.")
-}
 
 if(said("poop")) {
     set(fPooping)
@@ -66,6 +63,9 @@ if(said("poop")) {
     end.of.loop(objEgo, fStillPooping) 
 }
 
+if(said("look", "room")) {
+    print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.")
+}
 if(said("go", "poop")) {
     set(fPooping)
     assignn(vTimer, 0)

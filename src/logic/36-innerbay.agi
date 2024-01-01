@@ -31,11 +31,6 @@ if(equaln(vRoomInited, valFalse)) {
             assignn(vEgoX, 10)
             assignn(vEgoY, 126)
             set(fWearingSuit)
-
-            if(!has(invBroom)) {
-                // debug teleport case
-                get(invBroom)
-            }
         }
     }
 
@@ -166,6 +161,23 @@ if(said("push", "button")) {
         }
         if(!posn(objEgo, 71, 100, 85, 105)) {
             print("Which one?")
+        }
+    }
+}
+
+if(said("wear", "suit")) {
+    if(isset(fWearingSuit)) {
+        print("You are already wearing it.")
+    }
+    if(!isset(fWearingSuit)) {
+        if(posn(objEgo, 35, 100, 44, 105)) {
+            set.view(objEgo, viewRogerSuitA)
+            erase(objHangingSuit2)
+            set(fWearingSuit)
+            print("Ok")
+        }
+        if(!posn(objEgo, 35, 100, 44, 105)) {
+            print("You are not close enough.")
         }
     }
 }

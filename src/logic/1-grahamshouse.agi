@@ -44,7 +44,6 @@ if(equaln(vRoomInited, valFalse)) {
     draw(objCabinDoor)
 
     assignn(vSleeping, valFalse)
-    assignn(vTeaDrank, valFalse)
     assignn(vClockTicks, 0)
     assignn(vRoomInited, valTrue)
 
@@ -75,6 +74,7 @@ if(equaln(vRoomInited, valFalse)) {
         if(equaln(vEgoY, 0)){
             position(objEgo, 100, 130)
             if(!isset(fIsMorning)) {
+                assignn(vTeaDrank, valFalse)
                 print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edward for reasons unknown.")
             }        
         }

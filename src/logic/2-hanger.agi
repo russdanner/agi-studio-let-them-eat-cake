@@ -15,8 +15,6 @@ if(equaln(vRoomInited, valFalse)) {
     drop(invTeaCup)
     drop(invTea)
     
-    // get roger's goods
-    get(invBroom)
 
     unanimate.all()
     assignn(vRoomInited, valTrue)
@@ -41,6 +39,7 @@ if(equaln(vRoomInited, valFalse)) {
             assignn(vEgoY, 100)
             assignn(vSweeping, valTrue)
             set(fWearingSuit)
+            get(invBroom)
         }
     }
 
