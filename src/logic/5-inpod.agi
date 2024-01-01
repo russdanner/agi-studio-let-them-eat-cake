@@ -98,10 +98,9 @@ if(equaln(vRoomInited, valFalse)) {
 
     assignn(vTimer, 0)
     assignn(vClockTicks, 0)
-//set(fWarping)
 }
 if(said("look")) {
-    print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.")
+    print("You are in a standard issue StarCon pod used for short voyages and emergency escapes. In front of you there is a console and a screen.")
 }
 if(said("exit")) {
     print("You shut the door behind you. You cannot get out now unless there is an emergency.")
@@ -161,23 +160,32 @@ if(said("push", "dont")) {
     print("Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`") 
 }
 
+if(said("push", "throttle")) {
+    print("The throttle is topped out. There's no room to push it any further back.") 
+}
+
 if(said("pull", "throttle")) {
-    if(isset(fPodStart)) { 
-        addn(vCurrentScore, 1)
-
-        load.view(viewCockpitPull)
-
-        set.view(objCockpitPush, viewCockpitPull)
-
-        stop.cycling(objCockpitPush)
-
-        draw(objCockpitPush)
-
-        position(objCockpitPush, 100, 180)
-        move.obj(objCockpitPush, 100, 160, 1, fPodThrottlePulled)
+    if(isset(fPodThrottlePulled)) {
+        print("Are you nuts? Do you have any idea what could happen if you mess with the throttle mid-flight? Nothing. It's locked into position.")
     }
-    if(!isset(fPodStart)) {
-        print("You can't. The throttle is locked in its position.") 
+    if(!isset(fPodThrottlePulled)) {
+        if(isset(fPodStart)) { 
+            addn(vCurrentScore, 1)
+    
+            load.view(viewCockpitPull)
+    
+            set.view(objCockpitPush, viewCockpitPull)
+    
+            stop.cycling(objCockpitPush)
+    
+            draw(objCockpitPush)
+    
+            position(objCockpitPush, 100, 180)
+            move.obj(objCockpitPush, 100, 160, 1, fPodThrottlePulled)
+        }
+        if(!isset(fPodStart)) {
+            print("You can't. The throttle is locked in its position.") 
+        }    
     }
 }
 
@@ -252,7 +260,7 @@ if(isset(fPodLaunched)) {
         }    
 
         if(equaln(vClockTicks, 5)) {
-            print("You pick at the bightly colored decal and pull it away from the console. It reveals a hard packard that says 'AUTONAV`")
+            print("You pick at the bightly colored decal and peel it away from the console. It reveals a hard packard that says 'AUTONAV`")
             erase(objDecal)
             set(fWarping)
         }    
