@@ -464,6 +464,7 @@
 #define fStarDone5 104
 #define fWarping 105
 #define fWarpingStarted 106
+#define fRogerStoned 107
 
 #define fInBucket 90
 #define fBucketDown 91

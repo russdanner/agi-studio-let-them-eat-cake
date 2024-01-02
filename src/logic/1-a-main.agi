@@ -450,6 +450,7 @@ if(said("sound", "on")) {
     set(fSysSoundOn)
 }
 if(said("sound", "off")) {
+    stop.sound()
     reset(fSysSoundOn)
 }
 if(said("look", "anyword")) {

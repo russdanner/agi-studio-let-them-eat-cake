@@ -136,6 +136,44 @@ if(said("open", "door")) {
         print("You can't reach it from here.")
     }
 }
+
+// have to enable sound off because of the 3 word checks
+// these comon things need to be built into a better inc stem
+if(said("fastest", "speed")) {
+    assignn(10, 1)
+}
+if(said("fast", "speed")) {
+    assignn(10, 2)
+}
+if(said("normal", "speed")) {
+    assignn(10, 3)
+}
+if(said("slow", "speed")) {
+    assignn(10, 5)
+}
+if(said("sound", "on")) {
+    set(fSysSoundOn)
+}
+if(said("sound", "off")) {
+    stop.sound()
+    reset(fSysSoundOn)
+}
+if(said("look", "anyword")) {
+        print("It's nothing special or important.")
+}
+if(said("lick", "cake")) {
+    if(has(invCake)) {
+        print("Party foul.")
+    }
+    if(!has(invCake)) {
+        print("If you had cake you could try that.")
+    }    
+}
+
+if(said("anyword", "anyword")) {
+    print("You can't do that. At least not now.")
+}
+
 if(said("knock", "on", "door")) {
     if(posn(objEgo, 38, 128, 56, 135)) {
         print("There is no answer.")

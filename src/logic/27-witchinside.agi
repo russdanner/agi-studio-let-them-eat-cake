@@ -86,21 +86,24 @@ if(said("look", "table")) {
         print("There's a large table here.")
     }
 }
-if(said("look", "cabinet")) {
+if(said("look", "wall")) {
+    print("There's a cupboard built into the wall.")
+}
+if(said("look", "cupboard")) {
     if(isset(fCabinetOpen)) {
         if(has(invCake)) {
-            print("There's a large cabinet here that is built into the wall.")
+            print("There's a large cupboard here that is built into the wall.")
         }
         if(!has(invCake)) {
-            print("There's a large cabinet here that is built into the wall. There's a cake on the shelf.")
+            print("There's a large cupboard here that is built into the wall. There's a cake on the shelf.")
         }
     }
     if(!isset(fCabinetOpen)) {
-        print("There's a large cabinet here that is built into the wall.")
+        print("There's a large cupboard here that is built into the wall.")
     }
 }
 
-if(said("close", "cabinet")) {
+if(said("close", "cupboard")) {
     if(posn(objEgo, 34, 89, 51, 92)) {
         set.cel(objWitchCabinet, 0)
     }
@@ -109,7 +112,7 @@ if(said("close", "cabinet")) {
     }
 }
 
-if(said("open", "cabinet")) {
+if(said("open", "cupboard")) {
     if(posn(objEgo, 34, 89, 51, 92)) {
         end.of.loop(objWitchCabinet, fCabinetOpen)
     }
@@ -128,7 +131,7 @@ if(said("take", "cake")) {
                 get(invCake)
                 erase(objCake)
                 addn(vCurPoints, 1)
-                print("You remove the cake from the cabinet and carry it with you.")        
+                print("You remove the cake from the cupboard and carry it with you.")        
             }
             if(!posn(objEgo, 34, 89, 51, 92)) {
                 print("Try as you may you cannot reach it.")

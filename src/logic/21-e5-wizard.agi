@@ -57,18 +57,7 @@ if(equaln(vRoomInited, 0)) {
     set.horizon(50)
 }
 
-if(isset(fGotcha)) {
-    reset(fGotcha)
-    if(!isset(fDead)) { 
-        stop.motion(objEgo)
-        stop.motion(objMonster)
-        stop.cycling(objMonster)
-        load.view(viewRogerStoned)
-        set.view(objEgo, viewRogerStoned)
-        assignn(vDeathReason, valXsStoned)
-        end.of.loop(objEgo, fDead)    
-    }
-}
+
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
     if(equaln(vEgoEdgeTouched, edgeBottom)) {
@@ -111,6 +100,27 @@ if(equaln(vEgoDirection, directionStopped)) {
 }
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
+}
+
+if(isset(fGotcha)) {
+    reset(fGotcha)
+    if(!isset(fDead)) { 
+        
+        //stop.cycling(objMonster)
+        //stop.motion(objEgo)
+        //stop.motion(objMonster)
+        load.view(viewRogerStoned)
+        set.view(objEgo, viewRogerStoned)
+        assignn(vDeathReason, valXsStoned)
+        end.of.loop(objEgo, fRogerStoned)    
+    }
+}
+
+if(isset(fRogerStoned)) {
+    assignn(vEgoDirection, directionStopped)
+    assignn(vDeathReason, valXsStoned)
+    set(fDead)
+    wander(objMonster)
 }
 
 if(said("look")) {
