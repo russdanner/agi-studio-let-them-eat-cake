@@ -69,7 +69,7 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("look")) {
-    print("This is Outer Bay B. Along the rear wall is a Tram. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.")
+    print("This is Outer Bay B. Along the rear wall is a pneumatic transport tube and car. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.")
 }
 
 if(said("get", "tram")) {  
@@ -153,17 +153,17 @@ if(said("enter", "pod")) {
 }
 
 if(said("look", "room")) {
-    print("This is Shuttle Bay B. Along the rear wall is a tram. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.")
+    print("This is Shuttle Bay B. Along the rear wall is a pneumatic transport tube and car. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.")
 }
 if(said("look", "pod")) {
     print("The ship is a well maintained vessel. It is currently fueling. Unlike the typical StarCon shuttles you often find in these bays this is a privately owned and piloted ship. There's a call sign placard on the vessel. It reads: 'Cignus1' You wonder who owns this beauty.")
 }
 if(said("look", "tram")) {
-    print("The tram is used to move about the various areas within the station. A tram car is currently waiting in this location.")
+    print("The pneumatic transport tube is used to move about the various areas within the station. A car is currently waiting in this location.")
 }
 if(said("look", "suit")) {
     if(!isset(fWearingSuit)) {
-        print("A pressure suit hangs on the rack.")
+        print("An EVA pressure suit hangs on the rack.")
     }
     if(isset(fWearingSuit)) {
         print("Mosly you see the fog of your breath on the suit's visor.")

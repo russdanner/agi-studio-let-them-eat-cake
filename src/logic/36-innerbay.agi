@@ -131,7 +131,7 @@ if(said("undress")) {
 }
 
 if(said("look")) {
-    print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a tram.")
+    print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a pneumatic transport tube and car.")
 }
 
 if(said("sleep")) {
@@ -145,7 +145,7 @@ if(said("sleep")) {
 
 if(said("push", "button")) {
     if(isset(fWearingSuit)) {
-        print("You can't go in there wearing your spacesuit. That could get VERY messy.")
+        print("You can't go in there wearing your EVA pressure suit. That could get VERY messy.")
     }
     if(!isset(fWearingSuit)) {
         if(posn(objEgo, 71, 100, 85, 105)) {
@@ -220,7 +220,7 @@ if(said("remove", "suit")) {
 
 if(said("enter", "tram")) {
     if(isset(fWearingSuit)) {
-        print("You can't get in the tram in your spacesuit.")
+        print("You can't get in the pneumatic transport tube car in your EVA pressure suit.")
     }
     if(!isset(fWearingSuit)) {
         if(posn(objEgo, 56, 45, 68, 51)) {
@@ -234,7 +234,7 @@ if(said("enter", "tram")) {
 }
 if(said("get", "tram")) {
     if(isset(fWearingSuit)) {
-        print("You can't get in the tram in your spacesuit.")
+        print("You can't get in the pneumatic transport tube car in your EVA pressure suit.")
     }
     if(!isset(fWearingSuit)) {
         if(posn(objEgo, 56, 45, 68, 51)) {
@@ -248,26 +248,21 @@ if(said("get", "tram")) {
 }
 
 if(isset(fDoAction)) {
-    get.posn(objEgo, vEgoX, vEgoY)
     reset(fDoAction)
+    reset(fTramOutboundDone)
     assignn(vTimer, 0)
-    set(fTramRunning)     
-}
 
-if(isset(fTramRunning)) {
+    set(fTramRunning)     
     load.sound(sndTramGo)
     sound(sndTramGo, fSoundDone)
- 
-    reposition(objTram, 4, 0)
+    ignore.blocks(objTram)    
+    move.obj(objTram, 150, 47, 2, fTramOutboundDone)        
+}
 
-    if(equaln(vTimer, 20)) {
-        reset(fTramRunning)
-        // assignn(vEgoX, 75)
-        // assignn(vEgoY, 148)
-        assignn(vEgoEdgeTouched, edgeNone)
-        assignn(vRoomInited, valFalse)
-        assignn(vCurrentRoom, picControlRoom)    
-    }
+if(isset(fTramOutboundDone)) {
+    assignn(vEgoEdgeTouched, edgeNone)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picControlRoom)    
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -288,9 +283,6 @@ if(said("drop", "broom")) {
             print("Ok")    
         }
     }
-    if(!posn(objEgo, 100, 95, 120, 103)) {
-        print("You can't do that here.")
-    }
 }
 if(said("take", "broom")) {
     if(!has(invBroom)) {
@@ -302,7 +294,7 @@ if(said("take", "broom")) {
 }
 
 if(said("look", "room")) {
-    print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a tram.")
+    print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a pneumatic transport tube and car.")
 }
 if(said("look", "bathroom")) {
     print("'Look' is really not really the verb you would prefer to associate with StarCon bathrooms. It appears to be your standard issue StarCon facilities. There is a button by the door and a small display which indicates that the room is currently unoccupied.")
@@ -311,10 +303,10 @@ if(said("look", "closet")) {
     print("It sure looks comfy... I mean... like the pinnacle of storage solutions.")
 }
 if(said("look", "suit")) {
-    print("Good eye. There is a pressure suit rack here.")
+    print("Good eye. There is a EVA pressure suit rack here.")
 }
 if(said("look", "tram")) {
-    print("The tram is used to move about the various areas within the station. A tram car is currently waiting in this location.")
+    print("The pneumatic transport tube is used to move about the various areas within the station. The car is currently waiting in this location.")
 }
 
 return()

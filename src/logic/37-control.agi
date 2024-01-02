@@ -78,7 +78,7 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("look")) {
-    print("This is the main control room for the station. It's alive with activity. To the rear wall there is a tram. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.")
+    print("This is the main control room for the station. It's alive with activity. To the rear wall there is a pneumatic transport tube and car. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.")
 }
 
 if(said("get", "tram")) {    
@@ -201,29 +201,35 @@ if(isset(fTramInboundDone)) {
 
 if(said("talk", "man")) {
     if(posn(objEgo, 94, 114, 106, 120)) {
-        set(fHasFlightPlan)
-        addn(vCurrentScore, 1)
-        assignn(vTimer, 0)
-        print("Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point.")
+        if(isset(fHasFlightPlan)) {
+            print("You better get moving Roger. I've got a lot on my plate here.")
+        }
+        if(!isset(fHasFlightPlan)) {
+            set(fHasFlightPlan)
+            addn(vCurrentScore, 1)
+            assignn(vTimer, 0)
+            print("Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it.")
+        }
     }
     if(!posn(objEgo, 94, 114, 106, 120)) {
-        if(posn(objEgo, 63, 114, 78, 120)) {
+        // need better control structures from the compiler
+        if(posn(objEgo, 53, 114, 80, 120)) {
             print("Can't you see I am busy here?")
         }
-        if(!posn(objEgo, 63, 114, 78, 120)) { 
+        if(!posn(objEgo, 53, 114, 80, 120)) { 
             print("Who?")
         }
     }
 }
 
 if(said("look", "room")) {
-    print("This is the main control room for the station. It's alive with activity. To the rear wall there is a tram. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.")
+    print("This is the main control room for the station. It's alive with activity. To the rear wall there is a pneumatic transport tube and car. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.")
 }
 if(said("look", "man")) {
     print("Keep your eyes to yourself Roger.")
 }
 if(said("look", "tram")) {
-    print("The tram enables personnel to move about the station. It's destinations are managed by control. #tramIt")
+    print("The pneumatic transport tube enables personnel to move about the station. It's destinations are managed by control. #tramIt")
 }
 
 return()
