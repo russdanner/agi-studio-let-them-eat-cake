@@ -109,7 +109,12 @@ if(said("read", "graffiti")) {
         print("Al-be back.")
     }
     if(equaln(vReadCount, 3)) {
-        addn(vCurrentScore, 1)
+
+        if(!isset(fPointsForReadWall)) {
+            set(fPointsForReadWall)
+            addn(vCurrentScore, 1)
+        }
+        
         print("Look at you siting here reflecting.. Don't hurt yourself. You're about as sharp as a rock.")
     }
     if(equaln(vReadCount, 4)) {

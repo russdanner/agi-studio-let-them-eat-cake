@@ -48,10 +48,17 @@ if(said("help")) {
 
 if(said("snyde")) {
     print("Fint.. fint.. men bare ikke slikke noget.")
-    addn(vCurPoints, 1)    
+
+    if(!isset(fPointsForTrols)) {
+        set(fPointsForTrols)
+        addn(vCurPoints, 1)    
+    }
 }
 if(said("craftercms")) {
-    addn(vCurPoints, 1)    
+    if(!isset(fPointsForCrafter)) {
+        set(fPointsForCrafter)
+        addn(vCurPoints, 1)    
+    }
     print("Hell yeah! Got content? Like open source? CrafterCMS.com check it out. Give the project a like on Github or reach out and tell 'em Russ sent ya.")
 }
 
@@ -458,6 +465,7 @@ if(said("look", "anyword")) {
 }
 if(said("lick", "cake")) {
     if(has(invCake)) {
+        subn(vCurPoints, 2)
         print("Party foul.")
     }
     if(!has(invCake)) {
@@ -466,6 +474,12 @@ if(said("lick", "cake")) {
 }
 
 if(said("anyword", "anyword")) {
+    print("You can't do that. At least not now.")
+}
+if(said("anyword", "anyword", "anyword")) {
+    print("You can't do that. At least not now.")
+}
+if(said("anyword", "anyword", "anyword", "anyword")) {
     print("You can't do that. At least not now.")
 }
 

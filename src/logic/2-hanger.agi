@@ -14,7 +14,6 @@ if(equaln(vRoomInited, valFalse)) {
     drop(invTeapot)
     drop(invTeaCup)
     drop(invTea)
-    
 
     unanimate.all()
     assignn(vRoomInited, valTrue)

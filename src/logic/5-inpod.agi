@@ -112,6 +112,10 @@ if(said("look", "pod")) {
     print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.")
 }
 
+if(said("remove", "belt")) {
+    print("There's no need to do that.")
+}
+
 if(said("buckle", "belt")){
     if(isset(fBeltBuckled)) {
         print("You are already buckled in.")
@@ -326,31 +330,42 @@ if(said("look", "screen")) {
 }
 
 if(said("press", "power")) {
-    addn(vCurrentScore, 1)
-    load.view(viewCockpitPush)
-    set.view(objCockpitPush, viewCockpitPush)
-    stop.cycling(objCockpitPush)
+    if(isset(fPodPowePushed)) {
+        print("The system is already running. Rest assured you've given her all she's got captain!")
+    }
+    if(!isset(fPodPowePushed)) {
+        set(fPodPowePushed)
+        addn(vCurrentScore, 1)
+        load.view(viewCockpitPush)
+        set.view(objCockpitPush, viewCockpitPush)
+        stop.cycling(objCockpitPush)
+        
+        draw(objCockpitPush)
     
-    draw(objCockpitPush)
-
-    position(objCockpitPush, 80, 165)
-    move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)
+        position(objCockpitPush, 80, 165)
+        move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)    
+    }
 }
 
 if(said("push", "autonav")) {
     if(isset(fPodStart)) { 
-        if(!isset(fPodThrottlePulled)) {
-            print("Nothing happens.")
-        }        
-        if(isset(fPodThrottlePulled)) {
-            addn(vCurrentScore, 1)
-
-            set(fPodAutoNaved)
-            
-            assignn(vTimer, 0)
-            assignn(vClockTicks, 0)
-
-            print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
+        if(isset(fPodAutoNaved)) {
+            print("You push the button but it has no effect.")
+        }
+        if(!isset(fPodAutoNaved)) {
+            if(!isset(fPodThrottlePulled)) {
+                print("Nothing happens.")
+            }        
+            if(isset(fPodThrottlePulled)) {
+                addn(vCurrentScore, 1)
+    
+                set(fPodAutoNaved)
+                
+                assignn(vTimer, 0)
+                assignn(vClockTicks, 0)
+    
+                print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
+            }    
         }
     }
     if(!sset(fPodStart)) {
@@ -359,31 +374,41 @@ if(said("push", "autonav")) {
 }
 
 if(said("press", "power", "button")) {
-    addn(vCurrentScore, 1)
-    load.view(viewCockpitPush)
-    set.view(objCockpitPush, viewCockpitPush)
-    stop.cycling(objCockpitPush)
+    if(isset(fPodPoweredUp)) {
+        print("The system is already running. The onboard computer overrides your pood decisons and bad instincts.")
+    }
+    if(!isset(fPodPoweredUp)) {
+        addn(vCurrentScore, 1)
+        load.view(viewCockpitPush)
+        set.view(objCockpitPush, viewCockpitPush)
+        stop.cycling(objCockpitPush)
+        
+        draw(objCockpitPush)
     
-    draw(objCockpitPush)
-
-    position(objCockpitPush, 80, 165)
-    move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)
+        position(objCockpitPush, 80, 165)
+        move.obj(objCockpitPush, 75, 145, 2, fPodPoweredUp)    
+    }
 }
 
 if(said("push", "autonav", "button")) {
     if(isset(fPodStart)) { 
-        if(!isset(fPodThrottlePulled)) {
-            print("Nothing happens.")
-        }        
-        if(isset(fPodThrottlePulled)) {
-            addn(vCurrentScore, 1)
-
-            set(fPodAutoNaved)
-            
-            assignn(vTimer, 0)
-            assignn(vClockTicks, 0)
-
-            print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
+        if(isset(fPodAutoNaved)) {
+            print("You push the button but it has no effect.")
+        }
+        if(!isset(fPodAutoNaved)) {
+            if(!isset(fPodThrottlePulled)) {
+                print("Nothing happens.")
+            }        
+            if(isset(fPodThrottlePulled)) {
+                addn(vCurrentScore, 1)
+    
+                set(fPodAutoNaved)
+                
+                assignn(vTimer, 0)
+                assignn(vClockTicks, 0)
+    
+                print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.") 
+            }    
         }
     }
     if(!sset(fPodStart)) {

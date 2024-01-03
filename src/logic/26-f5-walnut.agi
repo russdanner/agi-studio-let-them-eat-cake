@@ -104,15 +104,20 @@ if(said("look", "rock")) {
 }
 if(said("sharpen", "glass")) {
     if(posn(objEgo, 90, 115, 125, 130)) {
-        set(fGlassIsSharp)
-        print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger.")
-        addn(vCurPoints, 1)
+        if(isset(fGlassIsSharp)) {
+            // should probably kill roger here
+            print("Sheesh Roger... the glass is as sharp as it's going to get.")
+        }
+        if(!isset(fGlassIsSharp)) {
+            set(fGlassIsSharp)
+            addn(vCurPoints, 1)
+            print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger.")    
+        }
     }
     if(!posn(objEgo, 90, 115, 125, 130)) {
         print("How?")
     }
 }
-
 
 return()
 #message 1 "Walnuts"

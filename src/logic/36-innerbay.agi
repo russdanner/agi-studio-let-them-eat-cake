@@ -223,7 +223,11 @@ if(said("remove", "suit")) {
     }
     if(isset(fWearingSuit)) {
         if(posn(objEgo, 35, 100, 50, 105)) {
-            addn(vCurPoints, 1)
+            if(!isset(fPointsForRemoveSuit)) {
+                set(fPointsForRemoveSuit)
+                addn(vCurPoints, 1)
+            }
+
             load.view(viewRoger)
             set.view(objEgo, viewRoger)
             draw(objHangingSuit2)
@@ -296,8 +300,8 @@ if(said("drop", "broom")) {
             print("You don't have one.")
         }
         if(has(invBroom)) {
-            drop(invBroom)
             addn(vCurrentScore, 1)
+            drop(invBroom)
             print("Ok")    
         }
     }

@@ -74,8 +74,12 @@ if(said("close", "trunk")) {
 }
 
 if(said("open", "trunk")) {
-    if(posn(objEgo, 95, 110, 107, 134)) {      
-        addn(vCurPoints, 1)
+    if(posn(objEgo, 95, 110, 107, 134)) { 
+        if(!isset(fPointsForOpenTrunk)) {
+            set(fPointsForOpenTrunk)
+            addn(vCurPoints, 1)
+        } 
+            
         end.of.loop(objTrunk, fTrunkOpen)
         print("You open the trunk to find a small bottle inside.")
     }

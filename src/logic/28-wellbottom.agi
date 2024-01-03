@@ -119,14 +119,23 @@ if(said("swim")) {
         set.view(objEgo, viewRogerSwim)
         reset(fDrowning)
         set(fSwimming)
-        addn(vCurPoints, 1)
+
+        if(!isset(fPointsForSwim)) {
+            set(fPointsForSwim)
+            addn(vCurPoints, 1)
+        }
+
         player.control()
         print("ok")
     } 
 }
 
 if(said("dive")) {
-    addn(vCurPoints, 1)
+    if(!isset(fPointsForDive)) {
+        set(fPointsForDive)
+        addn(vCurPoints, 1)
+    }
+
     get.posn(objEgo, vEgoX, vEgoY)
     assignn(vEgoY, 50)
     assignn(vEgoEdgeTouched, edgeNone)
@@ -161,7 +170,12 @@ if(said("exit", "bucket")) {
     set(fDrowning)
     set.view(objEgo, viewRogerSplash)
     start.cycling(objEgo)
-    addn(vCurPoints, 1)
+
+    if(!isset(fPointsForExitBucket)) {
+        set(fPointsForExitBucket)
+        addn(vCurPoints, 1)
+    }
+
     reset(fInBucket)
 }
 
@@ -206,7 +220,12 @@ if(said("get", "bucket")) {
         set(fDrowning)
         set.view(objEgo, viewRogerSplash)
         start.cycling(objEgo)
-        addn(vCurPoints, 1)
+
+        if(!isset(fPointsForExitBucket)) {
+            set(fPointsForExitBucket)
+            addn(vCurPoints, 1)
+        }
+
         reset(fInBucket)
     }
 }
@@ -225,8 +244,12 @@ if(said("climb", "rope")) {
     position(objEgo, 80, 123)
 
     set.view(objEgo, viewRogerClimbRope)
-    addn(vCurPoints, 1)
-    reset(fInBucket)
+
+    if(!isset(fPointsForClimb)) {
+        set(fPointsForClimb)
+        addn(vCurPoints, 1)
+        reset(fInBucket)    
+    }
 }
 
 if(said("climb", "wall")) {

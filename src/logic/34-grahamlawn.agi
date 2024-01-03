@@ -129,13 +129,18 @@ if(said("look", "room.")) {
 }
 
 if(said("take", "feather")) {
-    get(invFeather) 
-    erase(objFeatherFall)
-    addn(vCurPoints, 1)
-    load.view(viewGrahamAdvHat)
-    set.view(objEgo, viewGrahamAdvHat)
-    set(fReadyForAdventure)
-    print("You pick up the feather. Recalling your dream you put this feather in your cap. You feel ready for a real adventure.")
+    if(has(invFeather)) {
+        print("You have it. It's in your cap!")
+    }
+    if(!has(invFeather)) {
+        get(invFeather) 
+        erase(objFeatherFall)
+        addn(vCurPoints, 1)
+        load.view(viewGrahamAdvHat)
+        set.view(objEgo, viewGrahamAdvHat)
+        set(fReadyForAdventure)
+        print("You pick up the feather. Recalling your dream you put this feather in your cap. You feel ready for a real adventure.")    
+    }
 } 
 return()
 #message 1 "Grahams Lawn"

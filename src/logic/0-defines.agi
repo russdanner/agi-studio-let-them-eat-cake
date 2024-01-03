@@ -465,6 +465,24 @@
 #define fWarping 105
 #define fWarpingStarted 106
 #define fRogerStoned 107
+#define fPodPowePushed 108
+
+
+// some points are given for repeatable events
+// dont allow them to be repeated
+#define fPointsForHatWear 130
+#define fPointsForNoticeRead 131
+#define fPointsForEnterCastle 132
+#define fPointsForWell 133
+#define fPointsForClimb 134
+#define fPointsForSwim 135
+#define fPointsForDive 136
+#define fPointsForExitBucket 137 
+#define fPointsForOpenTrunk 138
+#define fPointsForRemoveSuit 139
+#define fPointsForReadWall 140
+#define fPointsForTrols 141
+#define fPointsForCrafter 142
 
 #define fInBucket 90
 #define fBucketDown 91

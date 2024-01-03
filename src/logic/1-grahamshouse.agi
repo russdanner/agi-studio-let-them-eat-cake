@@ -233,9 +233,13 @@ if(equaln(vSleeping, valTrue)) {
 if(said("wear", "hat")) {
     if(has(invHat)) {
         set(fWearingHat)
-        addn(vCurrentScore, 1)    
         set.view(objEgo, viewGrahamHatNoFeather)
         print("You put on your trusty hat!")
+
+        if(!isset(fPointsForHatWear)) {
+            set(fPointsForHatWear)
+            addn(vCurrentScore, 1)    
+        }
     }
     if(!has(invHat)) {
         print("You don't have it.")
@@ -244,11 +248,16 @@ if(said("wear", "hat")) {
 
 if(said("take", "summons")) {
     if(posn(objEgo, 80, 100, 100, 130)) {
-        print("You take the summons.")
-        set(fHasSummons)
-        get(invSummons)
-        erase(objSummons)
-        addn(vCurrentScore, 1)    
+        if(has(invSummons)) {
+            print("You already have it.")
+        }
+        if(!has(invSummons)) {
+            print("You take the summons.")
+            set(fHasSummons)
+            get(invSummons)
+            erase(objSummons)
+            addn(vCurrentScore, 1)        
+        }
     }
     if(!posn(objEgo, 80, 100, 100, 130)) {
         print("Get closer.")
@@ -257,10 +266,15 @@ if(said("take", "summons")) {
 
 if(said("take", "teapot")) {
     if(posn(objEgo, 104, 93, 123, 112)) {
-        print("You remove the teapot from the stove.")
-        erase(objTeapot)
-        get(invTeapot)
-        addn(vCurrentScore, 1)
+        if(has(invTeapot)) {
+            print("You alread have it.")
+        }
+        if(!has(invTeapot)) {
+            print("You remove the teapot from the stove.")
+            erase(objTeapot)
+            get(invTeapot)
+            addn(vCurrentScore, 1)    
+        }
     }
     if(!posn(objEgo, 104, 93, 123, 112)) {
         print("Get closer.")
