@@ -321,7 +321,22 @@
     { "command": "PriSetcolor", "args": [0] },
     { "command": "DrawAbs", "args": [25, 132, 34, 103] },
     { "command": "DrawAbs", "args": [110, 94, 125, 94, 125, 98, 110, 98, 110, 94] },
-   
+
+    { "command": "DrawAbs", "args": [110, 99, 114, 112] },
+    { "command": "DrawAbs", "args": [109, 99, 113, 112] },
+
+    { "command": "DrawAbs", "args": [60, 100, 58, 114] },
+    { "command": "DrawAbs", "args": [59, 100, 57, 114] },
+    { "command": "DrawAbs", "args": [58, 100, 56, 114] },
+    { "command": "DrawAbs", "args": [57, 100, 55, 114] },
+
+    { "command": "DrawAbs", "args": [59, 114, 57, 134] },
+    { "command": "DrawAbs", "args": [58, 114, 56, 134] },
+    { "command": "DrawAbs", "args": [57, 114, 55, 134] },
+
+    { "command": "DrawAbs", "args": [126, 133, 131, 153] },
+    { "command": "DrawAbs", "args": [125, 133, 130, 153] },
+
     { "command": "End", "args": [] }
   ]
 }

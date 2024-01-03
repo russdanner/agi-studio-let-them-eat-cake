@@ -268,8 +268,20 @@
       ]
     },
     { "command": "DrawAbs", "args": [61, 84, 97, 84, 97, 72, 63, 72, 61, 84] },
-    { "command": "PriSetcolor", "args": [1] },
+    { "command": "PriSetcolor", "args": [0] },
     { "command": "DrawAbs", "args": [99, 91, 102, 108] },
+    { "command": "DrawAbs", "args": [100, 91, 103, 108] },
+
+    { "command": "PicSetColor", "args": [6] },
+    { "command": "DrawAbs", "args": [101, 58, 101, 104] },
+    { "command": "DrawAbs", "args": [100, 56, 100, 98] },
+    { "command": "DrawAbs", "args": [99, 54, 99, 94] },
+    { "command": "PicSetColor", "args": [0] },
+    { "command": "DrawAbs", "args": [99, 91, 102, 108] },
+    { "command": "DrawAbs", "args": [99, 91, 99, 50] },
+    { "command": "DrawAbs", "args": [99, 50, 102, 63, 102, 108] },
+
+
     { "command": "PriSetcolor", "args": [0] },
     { "command": "DrawAbs", "args": [62, 166, 62, 167] },
     { "command": "DrawAbs", "args": [38, 166, 38, 167] },

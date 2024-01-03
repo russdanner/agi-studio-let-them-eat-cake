@@ -316,7 +316,7 @@
     { "command": "DrawAbs", "args": [82, 98, 68, 98, 68, 96] },
     { "command": "PriSetcolor", "args": [1] },
     {
-      "command": "DrawAbs",
+      "command": "xDrawAbs",
       "args": [121, 121, 132, 121, 132, 132, 121, 132, 121, 121]
     },
     { "command": "End", "args": [] }

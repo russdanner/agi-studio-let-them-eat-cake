@@ -73,10 +73,10 @@ if(isset(fCabinetOpen)) {
 }
 
 if(said("look")) {
-    print("You stand in a large open room with access to a small bedroom in the back. The inside of the house is clean and tidy. There's a large oven here and a cage... That's right... A CAGE!? Not cool. Better get out of here.")
+    print("You stand in a large open room with a door to a small bedroom in the back. The inside of the house is clean and tidy. There's a large oven here and a cage... That's right... A CAGE!? Not cool. Better get out of here.")
 }
 if(said("look", "room")) {
-    print("You stand in a large open room with access to a small bedroom in the back. The inside of the house is clean and tidy. There's a large oven here and a cage... That's right... A CAGE!? Not cool. Better get out of here.")
+    print("You stand in a large open room with a door to a small bedroom in the back. The inside of the house is clean and tidy. There's a large oven here and a cage... That's right... A CAGE!? Not cool. Better get out of here.")
 }
 if(said("look", "table")) {
     if(!has(invPaper)) {
@@ -118,6 +118,15 @@ if(said("open", "cupboard")) {
     }
     if(!posn(objEgo, 34, 89, 51, 92)) {
         print("From here? Not happening.")
+    }
+}
+
+if(said("open", "door")) {
+    if(posn(objEgo, 89, 95, 94, 115)) {
+        print("It's locked.")
+    }
+    if(!posn(objEgo, 89, 95, 94, 115)) {
+        print("You can't reach it from here.")
     }
 }
 
