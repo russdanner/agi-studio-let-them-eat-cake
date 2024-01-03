@@ -97,6 +97,26 @@ if(said("look")) {
     print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.")
 }
 
+if(said("sweep")) {
+    if(has(invBroom)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        if(lessn(vEgoX, 75)) {
+            subn(vEgoX, 10)            
+        }
+        if(greatern(vEgoX, 75)) {
+            addn(vEgoX, 10)            
+        }
+        position.v(objEgo, vEgoX, vEgoY)    
+
+        set.view(objEgo, viewRogerSuitBroom)
+        assignn(vSweeping, valTrue)
+        start.cycling(objEgo)    
+    }
+    if(!has(invBroom)) {
+        print("You don't have the proper equipment on hand for that job.")
+    }
+}
+
 if(!equaln(vSweeping, valTrue)){
     if(equaln(vEgoDirection, directionStopped)) {
         stop.cycling(objEgo)
@@ -107,14 +127,37 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }    
 
 if(said("stop", "sweeping")) {
+    get.posn(objEgo, vEgoX, vEgoY)
+    if(lessn(vEgoX, 75)) {
+        subn(vEgoX, 10)            
+    }
+    if(greatern(vEgoX, 75)) {
+        addn(vEgoX, 10)            
+    }
+    position.v(objEgo, vEgoX, vEgoY)    
+    
     set.view(objEgo, viewRogerSuitA)
     assignn(vSweeping, valFalse)
 }
 
 if(said("start", "sweeping")) {
-    set.view(objEgo, viewRogerSuitBroom)
-    assignn(vSweeping, valTrue)
-    start.cycling(objEgo)
+    if(has(invBroom)) {
+        get.posn(objEgo, vEgoX, vEgoY)
+        if(lessn(vEgoX, 75)) {
+            subn(vEgoX, 10)            
+        }
+        if(greatern(vEgoX, 75)) {
+            addn(vEgoX, 10)            
+        }
+        position.v(objEgo, vEgoX, vEgoY)    
+    
+        set.view(objEgo, viewRogerSuitBroom)
+        assignn(vSweeping, valTrue)
+        start.cycling(objEgo)    
+    }
+    if(!has(invBroom)) {
+        print("You don't have the proper equipment on hand for that job.")
+    }
 }
 
 if(said("get", "pod")) {

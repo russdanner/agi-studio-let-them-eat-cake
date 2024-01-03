@@ -143,6 +143,24 @@ if(said("sleep")) {
     }
 }
 
+if(said("sweep")) {
+    if(has(invBroom)) {
+        print("With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed.")
+    }
+    if(!has(invBroom)) {
+        print("You don't have the proper equipment on hand for that.")
+    }
+}
+
+if(said("start", "sweeping")) {
+    if(has(invBroom)) {
+        print("With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed.")
+    }
+    if(!has(invBroom)) {
+        print("You don't have the proper equipment on hand for that.")
+    }
+}
+
 if(said("push", "button")) {
     if(isset(fWearingSuit)) {
         print("You can't go in there wearing your EVA pressure suit. That could get VERY messy.")
@@ -170,13 +188,13 @@ if(said("take", "suit")) {
         print("You are already wearing it.")
     }
     if(!isset(fWearingSuit)) {
-        if(posn(objEgo, 35, 100, 44, 105)) {
+        if(posn(objEgo, 35, 100, 50, 105)) {
             set.view(objEgo, viewRogerSuitA)
             erase(objHangingSuit2)
             set(fWearingSuit)
             print("Ok")
         }
-        if(!posn(objEgo, 35, 100, 44, 105)) {
+        if(!posn(objEgo, 35, 100, 50, 105)) {
             print("You are not close enough.")
         }
     }
@@ -187,13 +205,13 @@ if(said("wear", "suit")) {
         print("You are already wearing it.")
     }
     if(!isset(fWearingSuit)) {
-        if(posn(objEgo, 35, 100, 44, 105)) {
+        if(posn(objEgo, 35, 100, 50, 105)) {
             set.view(objEgo, viewRogerSuitA)
             erase(objHangingSuit2)
             set(fWearingSuit)
             print("Ok")
         }
-        if(!posn(objEgo, 35, 100, 44, 105)) {
+        if(!posn(objEgo, 35, 100, 50, 105)) {
             print("You are not close enough.")
         }
     }
@@ -204,7 +222,7 @@ if(said("remove", "suit")) {
         print("You are not wearing it.")
     }
     if(isset(fWearingSuit)) {
-        if(posn(objEgo, 35, 100, 44, 105)) {
+        if(posn(objEgo, 35, 100, 50, 105)) {
             addn(vCurPoints, 1)
             load.view(viewRoger)
             set.view(objEgo, viewRoger)
@@ -212,7 +230,7 @@ if(said("remove", "suit")) {
             position(objHangingSuit2, 43, 95)
             reset(fWearingSuit)        
         }
-        if(!posn(objEgo, 35, 100, 44, 105)) {
+        if(!posn(objEgo, 35, 100, 50, 105)) {
             print("You are not close enough.")
         }
     }
