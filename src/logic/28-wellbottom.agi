@@ -218,6 +218,7 @@ if(said("get", "bucket")) {
         position(objEgo, 81, 167)
     
         set(fDrowning)
+        set(fSysEgoOnWater)
         set.view(objEgo, viewRogerSplash)
         start.cycling(objEgo)
 
@@ -231,24 +232,30 @@ if(said("get", "bucket")) {
 }
 
 if(said("climb", "rope")) {
-    set.view(objBucket, viewBucket)
+    if(!isset(fInBucket)) {
+        print("You can't reach the rope from here.")
+    }
+    if(isset(fInBucket)) {
 
-    draw(objBucket)
+        set.view(objBucket, viewBucket)
 
-    stop.cycling(objBucket)
+        draw(objBucket)
     
-    position(objBucket, 76, 152)
-    set.cel(objBucket, 0)
+        stop.cycling(objBucket)
+        
+        position(objBucket, 76, 152)
+        set.cel(objBucket, 0)
+        
+        position(objRope2, 81, 180)
+        position(objEgo, 80, 123)
     
-    position(objRope2, 81, 180)
-    position(objEgo, 80, 123)
-
-    set.view(objEgo, viewRogerClimbRope)
-
-    if(!isset(fPointsForClimb)) {
-        set(fPointsForClimb)
-        addn(vCurPoints, 1)
+        set.view(objEgo, viewRogerClimbRope)
         reset(fInBucket)    
+    
+        if(!isset(fPointsForClimb)) {
+            set(fPointsForClimb)
+            addn(vCurPoints, 1)
+        }    
     }
 }
 
