@@ -437,9 +437,10 @@ if(!isset(fGameOver)) {
 }
 
 if(isset(fDeathSoundDone)) {
-    print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. You can only RESTORE or RESTART.")
+    if(have.key()) {
+        print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. Reload to restart.")
+    } 
 }
-
 
 if(said("fastest", "speed")) {
     assignn(10, 1)
