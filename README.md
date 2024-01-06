@@ -1,8 +1,9 @@
 # agi-studio-let-them-eat-cake
+![image](https://github.com/russdanner/agi-studio-let-them-eat-cake/assets/169432/138931cd-4996-4cca-b5ab-39fca5056974)
 
 # A Note From Russ, One Guy From CrafterCMS :)
-This game is a birthday card for the work of some of my childhood heroes. Roberta and Ken Williams, Scott Murphy, Mark Crowe (the two guys from Andromeda), Al Lowe, and many others who contributed to Sierra's adventure games.
-These games had a major impact on my childhood. There is no doubt in my mind that this is true for many others as well. They taught us to solve problems, to laugh at ourselves, to get back up and keep trying when we failed, and to "Save early, Save often." For some, like myself, they inspired us to get into programming.
+This game is a birthday card for the work of some of my childhood heroes. Roberta and Ken Williams, Scott Murphy, Mark Crowe (the two guys from Andromeda), Al Lowe, Josh Mandel, and many others who contributed to Sierra's adventure games.
+These games had a major impact on my childhood. I do no doubt that this is true for many others as well. They taught us to solve problems, to laugh at ourselves, to get back up and keep trying when we failed, and to "Save early, Save often." For some, like myself, they inspired us to get into programming.
 
 Happy 40th to King's Quest!  
 
@@ -10,7 +11,7 @@ Much Love
 -Russ
 
 # Let Them Eat Cake
-Tomorrow Graham must meet with King Edward for reasons unknown. This 'fan game' adventure takes place the night before Graham's quest commissioned by King Edward.
+Tomorrow, Graham must meet with King Edward for reasons unknown. This 'fan game' adventure takes place the night before Graham's quest commissioned by King Edward.
 Graham "goes" on a bit of a silly quest that prepares him for the adventure that lies ahead in the following days.
 
 
