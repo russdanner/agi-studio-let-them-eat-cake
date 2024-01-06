@@ -27,7 +27,7 @@ if(equaln(vRoomInited, 0)) {
         load.view(viewWitch)
         set.view(objMonster, viewWitch)
         draw(objMonster)
-        position(objMonster, 80, 80)        
+        position(objMonster, 80, 30)        
         follow.ego(objMonster, 2, fGotcha)   
 
         load.sound(sndDevMonster)
@@ -49,8 +49,8 @@ if(isset(fGotcha)) {
         assignn(vDeathReason, valXsWitchSnag)
         stop.cycling(objMonster)
         set.cel(objMonster, 0)
-        stop.motion(objMonster)
-        end.of.loop(objMonster, fDead)    
+        end.of.loop(objMonster, fDead)
+        move.obj(objMonster, 170, 20, 2, fDead)    
     }
 }
 
