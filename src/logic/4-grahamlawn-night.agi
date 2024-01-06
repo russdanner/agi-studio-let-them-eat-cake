@@ -35,6 +35,14 @@ if(equaln(vRoomInited, valFalse)) {
         }
     }
 
+    if(isset(fWearingHat)) {
+        set.view(objEgo, viewGrahamHatNoFeather)
+    }
+    if(!isset(fWearingHat)) {
+        set.view(objEgo, viewGrahamNoHat)
+    }
+    set.view(objWolf1, viewWolf)
+
     reset(fSoundDone)
     reset(fDoAction)
     reset(fGotcha)
@@ -47,7 +55,7 @@ if(equaln(vRoomInited, valFalse)) {
     position(objWolf2, 160, 180)
     position(objCabinDoor, 121, 130)
     set.priority(objCabinDoor, 4)
-    set.priority(objEgo, 8)
+    set.priority(objEgo, 11)
 
 }
 
@@ -121,11 +129,49 @@ if(said("look", "room")) {
     print("You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow.")
 }
 
+if(said("wear", "hat")) {
+    if(has(invHat)) {
+        if(isset(fWearingHat)) {
+            print("You are already wearing it.")
+        }
+        if(!isset(fWearingHat)) {
+            set(fWearingHat)
+            set.view(objEgo, viewGrahamHatNoFeather)
+            print("You put on your trusty hat!")
+
+            if(!isset(fPointsForHatWear)) {
+                set(fPointsForHatWear)
+                addn(vCurrentScore, 1)    
+            }
+        }
+    }
+    if(!has(invHat)) {
+        print("You don't have it.")
+    }
+}   
+
+
+if(said("remove", "hat")) {
+    if(has(invHat)) {
+        if(!isset(fWearingHat)) {
+            print("You are not wearing your hat.")
+        }
+        if(isset(fWearingHat)) {
+            reset(fWearingHat)
+            set.view(objEgo, viewGrahamNoHat)
+        }
+    }
+    if(!has(invHat)) {
+        print("You don't have it.")
+    }
+}  
+
 if(said("open", "door")) {
     if(obj.in.box(objEgo, 100, 116, 158, 130)) {
         get.posn(objEgo, vEgoX, vEgoY)
         assignn(vEgoX, 35)
         assignn(vEgoY, 110)
+        reset(fWearingHat)
         assignn(vRoomInited, valFalse)
         assignn(vCurrentRoom, picGrahamsHouseInside)
     }

@@ -1,19 +1,16 @@
 #include "0-defines.aqi"
 
 if(equaln(vRoomInited, valFalse)) {
-    
-    // testing
-    //set(fIsMorning)
-
     unanimate.all()
+    assignn(vRoomInited, valTrue)
 
     load.view(viewGrahamNoHat)
+    load.view(viewGrahamHatNoFeather)
     load.view(viewSummons)
     load.view(viewHat)
     load.view(viewTeapot)
     load.view(viewTeaCup)
     load.view(viewGrahamSleep)
-    load.view(viewGrahamHatNoFeather)
     load.view(viewWindow)
     load.view(viewCabinDoor)
 
@@ -45,8 +42,7 @@ if(equaln(vRoomInited, valFalse)) {
 
     assignn(vSleeping, valFalse)
     assignn(vClockTicks, 0)
-    assignn(vRoomInited, valTrue)
-
+    
     if(isset(fIsMorning)) {
         // switching from roger back to graham
         drop(invBroom)
@@ -79,6 +75,7 @@ if(equaln(vRoomInited, valFalse)) {
             }        
         }
     }
+
     if(!equaln(vEgoX, 0)) {
         position.v(objEgo, vEgoX, vEgoY)
     }
@@ -110,7 +107,6 @@ if(equaln(vRoomInited, valFalse)) {
         position(objEgo, 100,80) 
         print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!")
     }
-
     set.cel(objCabinDoor, 1)
     position(objCabinDoor, 26, 131)
 }
@@ -214,7 +210,6 @@ if(said("open", "door")) {
                 assignn(vRoomInited, valFalse)
                 assignn(vCurrentRoom, picGrahamLawnNight)     
             }
-    
         }
     }
     if(!posn(objEgo, 16, 108, 35, 124)) {
@@ -232,19 +227,39 @@ if(equaln(vSleeping, valTrue)) {
 
 if(said("wear", "hat")) {
     if(has(invHat)) {
-        set(fWearingHat)
-        set.view(objEgo, viewGrahamHatNoFeather)
-        print("You put on your trusty hat!")
+        if(isset(fWearingHat)) {
+            print("You are already wearing it.")
+        }
+        if(!isset(fWearingHat)) {
+            set(fWearingHat)
+            set.view(objEgo, viewGrahamHatNoFeather)
+            print("You put on your trusty hat!")
 
-        if(!isset(fPointsForHatWear)) {
-            set(fPointsForHatWear)
-            addn(vCurrentScore, 1)    
+            if(!isset(fPointsForHatWear)) {
+                set(fPointsForHatWear)
+                addn(vCurrentScore, 1)    
+            }
         }
     }
     if(!has(invHat)) {
         print("You don't have it.")
     }
 }   
+
+if(said("remove", "hat")) {
+    if(has(invHat)) {
+        if(!isset(fWearingHat)) {
+            print("You are not wearing your hat.")
+        }
+        if(isset(fWearingHat)) {
+            reset(fWearingHat)
+            set.view(objEgo, viewGrahamNoHat)
+        }
+    }
+    if(!has(invHat)) {
+        print("You don't have it.")
+    }
+}  
 
 if(said("take", "summons")) {
     if(posn(objEgo, 80, 100, 100, 130)) {

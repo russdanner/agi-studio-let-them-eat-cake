@@ -49,6 +49,13 @@ if(equaln(vRoomInited, valFalse)) {
     reset(fHawkFlightBDone)
     reset(fFeatherFallDone)
 
+    if(!isset(fWearingHat)) {
+        // player can't get this point anymore. Too little. Too late.
+        set(fWearingHat)
+        set(fPointsForHatWear)
+    }
+
+    reset(fReadyForAdventure)
     set.horizon(46) 
 }
 
@@ -64,7 +71,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         print("You feel like you are forgetting something.")    
         if(equaln(vEgoEdgeTouched, edgeLeft)) {
             get.posn(objEgo, vEgoX, vEgoY)
-            assignn(vEgoX, 15)
+            assignn(vEgoX, 5)
             assignn(vEgoDirection, directionRight)
             set.dir(objEgo, vEgoDirection)
             position.v(objEgo, vEgoX, vEgoY)
@@ -73,7 +80,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         if(equaln(vEgoEdgeTouched, edgeRight)) {
             get.posn(objEgo, vEgoX, vEgoY)
             assignn(vEgoX, 150)
-            assignn(vEgoDirection, directionRight)
+            assignn(vEgoDirection, directionLeft)
             set.dir(objEgo, vEgoDirection)
             position.v(objEgo, vEgoX, vEgoY)
             assignn(vEgoEdgeTouched, edgeNone)
@@ -81,7 +88,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         if(equaln(vEgoEdgeTouched, edgeTop)) {
             get.posn(objEgo, vEgoX, vEgoY)
             assignn(vEgoY, 50)
-            assignn(vEgoDirection, directionRight)
+            assignn(vEgoDirection, directionDown)
             set.dir(objEgo, vEgoDirection)
             position.v(objEgo, vEgoX, vEgoY)
             assignn(vEgoEdgeTouched, edgeNone)
@@ -89,7 +96,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
         if(equaln(vEgoEdgeTouched, edgeBottom)) {
             get.posn(objEgo, vEgoX, vEgoY)
             assignn(vEgoY, 150)
-            assignn(vEgoDirection, directionRight)
+            assignn(vEgoDirection, directionUp)
             set.dir(objEgo, vEgoDirection)
             position.v(objEgo, vEgoX, vEgoY)
             assignn(vEgoEdgeTouched, edgeNone)
@@ -124,9 +131,19 @@ if(isset(fHawkFlightBDone)) {
 if(said("look")) {
     print("This is the front lawn of your home.")
 } 
-if(said("look", "room.")) {
+if(said("look", "room")) {
     print("This is the front lawn of your home.")
 }
+
+if(said("open", "door")) {
+    print("No time to waste Graham. You'll be late for your meeting with the king.")
+}
+
+
+if(said("remove", "hat")) {
+    // player will have the hat and is wearing it at this point.
+    print("No way. You love this hat... it stays.")
+} 
 
 if(said("take", "feather")) {
     if(has(invFeather)) {
