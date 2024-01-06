@@ -40,6 +40,10 @@ if(said("exit")) {
     }
 }
 
+if(said("search")) {
+    print("You search the pod in hopes of finding supplies. You find only disappointment.")
+}
+
 if(said("look", "pod")) {
     print("You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment.")
 }

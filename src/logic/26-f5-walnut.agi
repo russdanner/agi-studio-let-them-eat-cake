@@ -102,7 +102,31 @@ if(said("look", "fog")) {
 if(said("look", "rock")) {
     print("There's a rock here that that is very pointed. It has several facets on it. Some of them are rough and others are smooth.")
 }
+if(said("look", "walnut")) {
+    print("The ground is covered with walnuts that have fallen from the tree.")
+}
+if(said("take", "walnut")) {
+    print("You don't need it.")
+}
+
 if(said("sharpen", "glass")) {
+    if(posn(objEgo, 90, 115, 125, 130)) {
+        if(isset(fGlassIsSharp)) {
+            // should probably kill roger here
+            print("Sheesh Roger... the glass is as sharp as it's going to get.")
+        }
+        if(!isset(fGlassIsSharp)) {
+            set(fGlassIsSharp)
+            addn(vCurPoints, 1)
+            print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger.")    
+        }
+    }
+    if(!posn(objEgo, 90, 115, 125, 130)) {
+        print("How?")
+    }
+}
+
+if(said("sharpen", "glass", "rock")) {
     if(posn(objEgo, 90, 115, 125, 130)) {
         if(isset(fGlassIsSharp)) {
             // should probably kill roger here

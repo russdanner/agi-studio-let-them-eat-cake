@@ -101,6 +101,7 @@ if(said("make", "quill")) {
         }
     }
 }
+
 if(said("make", "invitation")) {
     if(!has(invQuill)) {
         print("How do you intend to do that?")
@@ -477,6 +478,23 @@ if(said("lick", "cake")) {
 if(said("anyword", "anyword")) {
     print("You can't do that. At least not now.")
 }
+
+if(said("cut", "feather", "glass")) {
+    if(has(invFeather)) {
+        if(has(invGlass)) {
+            if(isset(fGlassIsSharp)) {
+                drop(invFeather)
+                get(invQuill)
+                addn(vCurPoints, 1)    
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP.")
+            }
+            if(!isset(fGlassIsSharp)) {
+                print("The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying.")
+            }
+        }
+    }
+}
+
 if(said("anyword", "anyword", "anyword")) {
     print("You can't do that. At least not now.")
 }
