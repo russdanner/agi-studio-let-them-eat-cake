@@ -28,10 +28,10 @@
 #define objWatchCButton 3
 #define objWatchTButton 4
 
-#define objMist 15
-#define objMist2 12
-#define objMist3 13
-#define objMist4 14
+#define objMist 14
+#define objMist2 13
+#define objMist3 12
+#define objMist4 11
 
 #define objCockpitThrottle 1
 #define objCockpitButtons1 2
@@ -51,9 +51,9 @@
 #define objPodStars6 15
 #define objWarp 10
 
-#define objCastleFlags 9
-#define objCastleCrocs 10
-#define objCastleDoors 11
+#define objCastleFlags 3
+#define objCastleCrocs 4
+#define objCastleDoors 5
 
 #define objGlassSparkle 1
 #define objWitchDoor 1
