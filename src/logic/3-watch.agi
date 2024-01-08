@@ -118,7 +118,7 @@ if(said("press", "c")) {
 
 if(isset(fBossGiveOrders)) {
     if(equaln(vTimer, 30)) {
-        print("Roger Wilco! Have you been napping in the closet again!? You were due at your next assignment an hour ago. Finish up forthwith and get over to Orbital Station 3 on the double. A Trolsdorian Muccaworm uh... 'explosively decompressed' in the flight deck bathroom. The walls are covered with an unfathomable amount of Monolith Burger Filet-o-Rat polycheese and Tang. Clean it up! StarCon Control already has your flight plan secured. Move it! Commander out.")
+        print("Roger Wilco! Have you been napping in the closet again!? You were due at your next assignment an hour ago. Finish up forthwith and get over to Orbital Station 3 on the double. A Troelsdorian Muccaworm uh... 'explosively decompressed' in the flight deck bathroom. The walls are covered with an unfathomable amount of Monolith Burger Filet-o-Rat polycheese and Tang. Clean it up! StarCon Control already has your flight plan secured. Move it! Commander out.")
     }
 
     if(equaln(vTimer, 255)) {
