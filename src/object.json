@@ -12,7 +12,10 @@
     { "name": "Quil", "startingRoom": 1 },
     { "name": "Feather", "startingRoom": 34 },
     { "name": "Paper", "startingRoom": 1 },
-    { "name": "Invitation", "startingRoom": 1 }
+    { "name": "Invitation", "startingRoom": 1 },
+    { "name": "Keycard", "startingRoom": 5 },
+    { "name": "Coins", "startingRoom": 11 }
+
   ],
-  "maxObjects": 12
+  "maxObjects": 14
 }

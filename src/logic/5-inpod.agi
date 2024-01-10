@@ -105,17 +105,40 @@ if(said("look")) {
 if(said("exit")) {
     print("You shut the door behind you. You cannot get out now unless there is an emergency.")
 }
+if(said("search")) {
+    if(has(invKeycard)) {
+        print("You find nothing of importance.")
+    }
+    if(!has(invKeycard)) {
+        print("You search the pod. Wedged under the seat you find... a keycard.")
+    }
+}
+if(said("look", "keycard")) {
+    if(has(invKeycard)) {
+        print("The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B.H.S.S.'")
+    }
+    if(!has(invKeycard)) {
+        print("What is this keycard that you speak of? You don't have a keycard.")    
+    }
+}
+if(said("take", "keycard")) {
+    if(has(invKeycard)) {
+        print("You already have it.")
+    }
+    if(!has(invKeycard)) {
+        print("Yoink! You can't help but wonder what highly secure area this keycard will permit you to enter.")
+        get(invKeycard)
+    }
+}
 if(said("exit", "pod")) {
     print("You shut the door behind you. You cannot get out now unless there is an emergency.")
 }
 if(said("look", "pod")) {
     print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.")
 }
-
 if(said("remove", "belt")) {
     print("There's no need to do that.")
 }
-
 if(said("buckle", "belt")){
     if(isset(fBeltBuckled)) {
         print("You are already buckled in.")
@@ -126,12 +149,17 @@ if(said("buckle", "belt")){
         print("Good move Roger. Safety third.")
     }
 }
-
-
+if(said("search", "pod")) {
+    if(has(invKeycard)) {
+        print("You find nothing of importance.")
+    }
+    if(!has(invKeycard)) {
+        print("You search the pod. Wedged under the seat you find... a keycard.")
+    }
+}
 if(said("push", "throttle")) {
     print("The throttle is topped out. There's no room to push it any further back.") 
 }
-
 if(said("pull", "throttle")) {
     if(isset(fPodThrottlePulled)) {
         print("Are you nuts? Do you have any idea what could happen if you mess with the throttle mid-flight? Nothing. It's locked into position.")

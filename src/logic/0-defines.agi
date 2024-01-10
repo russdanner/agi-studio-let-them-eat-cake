@@ -176,6 +176,8 @@
 #define invFeather 10
 #define invPaper 11
 #define invInvitation 12
+#define invKeycard 13
+#define invCoins 14
 
 // views
 #define viewGrahamNoHat 0

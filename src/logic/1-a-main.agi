@@ -181,6 +181,14 @@ if(said("look", "broom")) {
         print("You don't have it.")    
     }
 }
+if(said("look", "keycard")) {
+    if(has(invKeycard)) {
+        print("The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B. H. S. S.'")
+    }
+    if(!has(invKeycard)) {
+        print("What is this keycard that you speak of? You don't have a keycard.")    
+    }
+}
 if(said("look", "glass")) {
     if(has(invGlass)) {
         assignn(vInvShowItem, invGlass)

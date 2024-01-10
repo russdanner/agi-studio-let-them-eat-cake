@@ -371,11 +371,16 @@ if(said("take", "tea")) {
             print("Ok")
         }
         if(!equaln(vTeaPoured, valTrue)) {
-            print("The cup is empty")
+            print("The cup is empty.")
         }
     }
     if(!posn(objEgo, 49, 107, 56, 135)) {
-        print("You are not close enough.")
+        if(equaln(vTeaPoured, valTrue)) {
+            print("You are not close enough.")
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("There's tea in the teapot.")
+        }
     }  
 }
 

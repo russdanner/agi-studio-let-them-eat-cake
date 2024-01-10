@@ -41,9 +41,38 @@ if(said("exit")) {
 }
 
 if(said("search")) {
-    print("You search the pod in hopes of finding supplies. You find only disappointment.")
+    if(has(invKeycard)) {
+        print("You search the pod in hopes of finding supplies. You find only disappointment.")
+    }
+    if(!has(invKeycard)) {
+        print("You search the pod. Wedged under the seat you find... a keycard.")
+    }
 }
-
+if(said("search", "pod")) {
+    if(has(invKeycard)) {
+        print("You search the pod in hopes of finding supplies. You find only disappointment.")
+    }
+    if(!has(invKeycard)) {
+        print("You search the pod. Wedged under the seat you find... a keycard.")
+    }
+}
+if(said("look", "keycard")) {
+    if(has(invKeycard)) {
+        print("The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B.H.S.S.'")
+    }
+    if(!has(invKeycard)) {
+        print("What is this keycard that you speak of? You don't have a keycard.")    
+    }
+}
+if(said("take", "keycard")) {
+    if(has(invKeycard)) {
+        print("You already have it.")
+    }
+    if(!has(invKeycard)) {
+        print("Yoink! You can't help but wonder what highly secure area this keycard will permit you to enter.")
+        get(invKeycard)
+    }
+}
 if(said("look", "pod")) {
     print("You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment.")
 }
