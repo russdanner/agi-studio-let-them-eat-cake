@@ -29,7 +29,7 @@ The interpreter was initially written 8+ years ago by r1sc in TypeScript (GPL li
 
 The game source, the tools I've created, and the engine are all open source. Download it. Extend it. Make it better and contribute back.
 
-# Suggestions & Bug Report by
+# Suggestions & Bug Reports by
 * https://www.youtube.com/@LetsPlaySierraGames
 * Markus Louw
 * Fisch Benz
