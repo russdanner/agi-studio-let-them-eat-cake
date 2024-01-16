@@ -174,7 +174,6 @@ if(isset(fLiftRunning)) {
         //reposition(objLift, 0, -1)
         //reposition(objLiftRod, 0, -1)
         //reposition(objEgo, 0, -1)
-        // rebder yo  
         position(objEgo, 33, 75)  
         position(objLift, 21, 92)
         position(objLiftRod, 34, 130)
@@ -207,7 +206,7 @@ if(isset(fTramInboundDone)) {
 
 
 if(said("talk", "man")) {
-    if(posn(objEgo, 94, 114, 106, 120)) {
+    if(posn(objEgo, 94, 114, 116, 125)) {
         if(isset(fHasFlightPlan)) {
             print("You better get moving Roger. I've got a lot on my plate here.")
         }
@@ -218,12 +217,12 @@ if(said("talk", "man")) {
             print("Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it.")
         }
     }
-    if(!posn(objEgo, 94, 114, 106, 120)) {
+    if(!posn(objEgo, 94, 114, 116, 125)) {
         // need better control structures from the compiler
-        if(posn(objEgo, 53, 114, 80, 120)) {
+        if(posn(objEgo, 53, 114, 80, 125)) {
             print("Can't you see I am busy here?")
         }
-        if(!posn(objEgo, 53, 114, 80, 120)) { 
+        if(!posn(objEgo, 53, 114, 80, 125)) { 
             print("Who?")
         }
     }

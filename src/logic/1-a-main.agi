@@ -450,6 +450,12 @@ if(isset(fDeathSoundDone)) {
         print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. Reload to restart.")
     } 
 }
+if(said("loud", "sound")) {
+    assignn(23, 16)
+}
+if(said("normal", "sound")) {
+    assignn(23, 15)
+}
 
 if(said("fastest", "speed")) {
     assignn(10, 1)

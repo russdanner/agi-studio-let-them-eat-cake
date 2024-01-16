@@ -461,6 +461,11 @@ var Agi;
             this.oscillator = this.audioCtx.createOscillator() 
             this.oscillator.connect(this.audioCtx.destination);
 
+            this.gain = this.audioCtx.createGain();
+            this.gain.gain.value = 0.0001;
+            this.oscillator.connect(this.gain);
+            this.gain.connect(this.audioCtx.destination);
+            
             this.flag = flag
             this.data = data;
             this.started = false;
@@ -502,6 +507,7 @@ var Agi;
             if(this.voices.voice1.durationRemaining > 0) { 
                 
                 if(this.soundOn) {
+                    this.gain.gain.setValueAtTime(-0.9 +( (Agi.interpreter.variables[23]-15) * 0.1) , this.audioCtx.currentTime);
                     this.oscillator.frequency.setValueAtTime(this.voices.voice1.frequency, this.audioCtx.currentTime); // value in hertz                 
                 }
 
@@ -521,6 +527,7 @@ var Agi;
             this.playCycle();
         }
         stop() {
+            this.soundOn = false
             this.ended = true;
             window.started = false;
             
@@ -899,6 +906,7 @@ var Agi;
             this.flags[9] = true; // Sound enabled
             this.flags[11] = true; // Logic 0 executed for the first time
             this.flags[5] = true; // Room script executed for the first time
+            this.flags[10] = 3; // default speed 
             this.agi_unanimate_all();
             this.agi_load_logic(0);
             this.cycle();
@@ -1213,6 +1221,7 @@ var Agi;
                     newX = obj.x - xStep;
                 else if (obj.direction == 3 || obj.direction == 2 || obj.direction == 4)
                     newX = obj.x + xStep;
+
                 if (obj.ignoreBlocks == false && newY != obj.y) {
                     for (var xNumber = 0; xNumber < cel.width; xNumber++) {
                         var idx = newY * 160 + (obj.x + xNumber);
@@ -1242,12 +1251,19 @@ var Agi;
                         }
 
                         if (this.priorityBuffer.data[idx] == 0 
-                        || this.priorityBuffer.data[idx] == 1) {
+                        || this.priorityBuffer.data[idx] == 1
+                        || this.priorityBuffer.data[idx+1] == 0 
+                        || this.priorityBuffer.data[idx+1] == 1
+                        || this.priorityBuffer.data[idx-1] == 0 
+                        || this.priorityBuffer.data[idx-1] == 1
+                        ) {
                             if(no == 0) {
+                                //console.log("blocked 1")
                                 newX = obj.x;
                                 newY = obj.y;
                                 obj.direction = 0;
                             }
+
                         //    break;
                         }
                     }
@@ -1281,7 +1297,23 @@ var Agi;
                         }
                     }
 
-                    if (this.priorityBuffer.data[leftIdx] == 0 || this.priorityBuffer.data[rightIdx] == 0 || this.priorityBuffer.data[leftIdx] == 1 || this.priorityBuffer.data[rightIdx] == 1) {
+                    if (this.priorityBuffer.data[leftIdx] == 0 
+                    || this.priorityBuffer.data[rightIdx] == 0 
+                    || this.priorityBuffer.data[leftIdx] == 1 
+                    || this.priorityBuffer.data[rightIdx] == 1
+
+                    || this.priorityBuffer.data[leftIdx+1] == 0 
+                    || this.priorityBuffer.data[rightIdx+1] == 0 
+                    || this.priorityBuffer.data[leftIdx+1] == 1 
+                    || this.priorityBuffer.data[rightIdx+1] == 1                    
+                    
+                    || (this.priorityBuffer.data[leftIdx-1] == 0 && obj.x !=1) 
+                    || this.priorityBuffer.data[rightIdx-1] == 0 
+                    || (this.priorityBuffer.data[leftIdx-1] == 1 && obj.x !=1) 
+                    || this.priorityBuffer.data[rightIdx-1] == 1                    
+
+                    ) {
+                        //console.log("blocked 2 ("+leftIdx+", "+rightIdx+")")
                         newX = obj.x;
                         obj.direction = 0;
                     }
@@ -1788,7 +1820,7 @@ var Agi;
         agi_trace_info(logNo, firstRow, height) {
         }
         agi_set_key(num1, num2, num3) {
-            console.log("set_key "+num1+" "+num2+" "+num3)
+            //console.log("set_key "+num1+" "+num2+" "+num3)
         }
         agi_set_game_id(msg) {
         }
@@ -1983,6 +2015,7 @@ var Agi;
             document.body.appendChild(outterEl);
             outterEl.style.display = "none";
             outterEl.style.width = "auto";
+            outterEl.style.minWidth = "50%";
             outterEl.style.top = "20%";
             outterEl.style.left = "25%";
             outterEl.style.position = "absolute";
@@ -2001,7 +2034,7 @@ var Agi;
             
             var cancelEl = document.createElement("button");
             //cancelEl.style.display = "block";
-            cancelEl.style.width = "65px";
+            cancelEl.style.width = "150px";
             cancelEl.style.padding = "10px";
             cancelEl.style.marginTop = "23px";
             cancelEl.style.marginLeft = "55%";
@@ -2028,10 +2061,12 @@ var Agi;
                 tableRowEl.appendChild(tableCol2El)
 
                 var restEl = document.createElement("button");
-                restEl.style.width = "20%";
+                restEl.style.width = "80px";
                 restEl.style.padding = "10px";
                 restEl.style.marginTop = "23px";
                 restEl.style.marginLeft = "10px";
+                restEl.style.marginRight = "10px";
+
                 restEl.innerHTML = "&nbsp;"
 
                 restEl.gameId = i
@@ -2182,8 +2217,10 @@ var Agi;
             // these args should be passed in as an array but they are not
             var wordGroups = [wg0, wg1, wg2, wg3, wg4, wg5, wg7, wg8, wg9];
             wordGroups = wordGroups.filter(v => v !== undefined);
+            var attempt = false; 
             var said = false;
             if (this.flags[2] == true && this.inputBuffer != "") {
+                attempt =  true                 
                 // The player has entered a command
                 // process input according to the spec
                 var input = this.inputBuffer;
@@ -2201,7 +2238,7 @@ var Agi;
                 }
 
                 //evaluate the input
-                if (wordGroups.length <= inputWords.length) {                    
+                if (wordGroups.length <= inputWords.length) {   
                     for (var j = 0; j < wordGroups.length; j++) {
                         var wgIdx = wordGroups[j]
                         var words = Resources.words[wgIdx];
@@ -2864,8 +2901,11 @@ var Resources;
                 objectName += decrypted
             }
             else {
-               objectNames[objectNames.length] = objectName
-               objectName = "" 
+                if(objectName != "") {
+                    objectNames[objectNames.length] = objectName
+                }
+
+                objectName = "" 
             }
 
             if (decryptionIndex == decryptionKey.length) decryptionIndex = 0;

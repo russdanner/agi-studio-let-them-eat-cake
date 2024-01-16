@@ -81,7 +81,7 @@ if(said("get", "pod")) {
 }
 
 if(said("enter", "pod")) {
-    if(posn(objEgo, 49, 93, 60, 109)) {
+    if(posn(objEgo, 39, 93, 60, 109)) {
         addn(vCurrentScore, 1)
 
         reset(fLaunchAnimationPlayed)
@@ -97,7 +97,7 @@ if(said("enter", "pod")) {
             print("As you go to climb into the pod you realize you still have a broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door.")
         }        
     }
-    if(!posn(objEgo, 49, 93, 60, 109)) {
+    if(!posn(objEgo, 39, 93, 60, 109)) {
         print("You are too far away.")
     }
 }

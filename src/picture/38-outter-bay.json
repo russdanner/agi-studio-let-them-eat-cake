@@ -816,7 +816,8 @@
       { "command": "zDrawAbs", "args": [55, 98, 55, 61] },
       { "command": "DrawAbs", "args": [33, 92, 53, 92] },
       { "command": "DrawAbs", "args": [31, 61, 54, 61] },
-  
+
+      { "command": "PicSetColor", "args": [8] },
       { "command": "DrawAbs", "args": [4, 128, 4, 90, 9, 87, 9, 123] },
       { "command": "PicDisable", "args": [] },
       { "command": "PriSetcolor", "args": [4] },    
@@ -825,13 +826,18 @@
       { "command": "DrawAbs", "args": [7, 125, 7, 88] },
       { "command": "DrawAbs", "args": [8, 124, 8, 88] },
       { "command": "PriDisable", "args": [] },
+      { "command": "PriSetcolor", "args": [10] },    
       { "command": "PicSetColor", "args": [0] },    
       { "command": "DrawAbs", "args": [5, 127, 5, 90] },
       { "command": "DrawAbs", "args": [6, 126, 6, 89] },
       { "command": "DrawAbs", "args": [7, 125, 7, 88] },
       { "command": "DrawAbs", "args": [8, 124, 8, 88] },
-
       { "command": "PicDisable", "args": [] },
+      { "command": "DrawAbs", "args": [1, 127, 1, 90] },
+      { "command": "DrawAbs", "args": [2, 126, 2, 89] },
+      { "command": "DrawAbs", "args": [3, 125, 3, 88] },
+      { "command": "DrawAbs", "args": [4, 124, 4, 88] },
+      
       { "command": "PriSetcolor", "args": [0] },
       { "command": "DrawAbs", "args": [1, 167, 165, 167] },    
       { "command": "DrawAbs", "args": [1, 49, 165, 49] },    
