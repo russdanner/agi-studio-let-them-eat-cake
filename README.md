@@ -28,3 +28,12 @@ The source files are text and JSON files that can be edited by any tool. I've bu
 The interpreter was initially written 8+ years ago by r1sc in TypeScript (GPL license) https://github.com/r1sc/agi.js. It could decode game graphic files and handle picture rendering, view rendering, and state machine mechanics. I've added to it to handle input and dialogues, inventory, sounds, saving games, etc. I've also fixed bugs when I've had to. I was so excited to find someone had started this project. It seemed abandoned, so I picked it up. <3  
 
 The game source, the tools I've created, and the engine are all open source. Download it. Extend it. Make it better and contribute back.
+
+# Suggestions & Bug Reports by
+* https://www.youtube.com/@LetsPlaySierraGames
+* Markus Louw
+* Fisch Benz
+* David Phillips
+* Michael David Bafitis
+* Tyler Drinkard
+* Grant Simpson
