@@ -109,7 +109,7 @@
 #define objPersonG2 14
 
 // pics
-#define picTitle 0
+//#define picTitle 0
 
 #define picGrahamsHouseInside 1
 
@@ -125,7 +125,7 @@
 #define picDavRiverBendA4 10
 #define picDavBowlA5 11
 #define picDavCastleRightB2 12
-#define picDavMistsCx 13
+#define picTrunk 13
 #define picDavWellTopD1 14
 #define picDavLakeD2 15
 #define picDavLakeD4 16
@@ -159,7 +159,10 @@
 #define picStation 40
 #define picBathroom 41
 #define picCredits 42
-#define picTitle 43
+#define picStairs 43
+#define picShop 43
+
+#define picTitle 45
 
 // inventory
 #define invNone 99

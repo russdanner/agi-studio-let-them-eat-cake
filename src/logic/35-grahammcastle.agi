@@ -43,8 +43,14 @@ if(!equaln(vEgoDirection, directionStopped)) {
 
 if(isset(fDoAction)) {
     print("You have won! Good luck on you next adventure and HAPPY 40th BIRTHDAY TO GRAPHIC ADVENTURE GAMES!! Thanks for playing!")
+    display(20, 1, 3)
+    display(23, 1, 4)
+    display(24, 1, 5)
 }
 
 return()
 
 #message 1 "Graham Castle Right"
+#message 3 "Contact ltecgame page via"
+#message 4 "Facebook to be added IN game for win."
+#message 5 "Please share the game on social media!"

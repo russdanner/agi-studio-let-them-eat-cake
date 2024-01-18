@@ -45,7 +45,7 @@ if(equaln(vRoomInited, valFalse)) {
     
     if(isset(fIsMorning)) {
         // switching from roger back to graham
-        drop(invBroom)
+        drop(invKeycard)
         drop(invGlass)
         drop(invCake)
         drop(invInk)

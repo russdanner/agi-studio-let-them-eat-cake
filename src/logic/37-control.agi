@@ -194,6 +194,7 @@ if(isset(fTramReady)) {
 
 if(isset(fTramOutboundDone)) {
     reset(fTramOutboundDone)
+    get.posn(objEgo, vEgoX, vEgoY)
     assignn(vRoomInited, valFalse)
     assignn(vCurrentRoom, picOuterBay)     
 }
