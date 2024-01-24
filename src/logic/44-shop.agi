@@ -1,4 +1,245 @@
 #include "0-defines.aqi"
 
+if(equaln(vRoomInited, valFalse)) {
+
+    unanimate.all()
+    assignn(vRoomInited, valTrue)
+
+    load.view(viewRoger)    
+    load.view(viewBods)
+    load.view(viewCleanup)
+    load.view(viewRepair)
+    load.view(viewPersonL)
+
+    animate.obj(objEgo)
+
+    set.view(objEgo, viewRoger)
+    set.view(objBods, viewBods)
+    set.view(objPlatform2, viewBods)
+    set.view(objShaft2, viewBods)
+    set.view(objHeads, viewBods)
+    set.view(objCleanup, viewCleanup)
+    set.view(objRepair, viewRepair)
+    set.view(objPersonL, viewPersonL)
+
+    set.loop(objBods, 0)
+    set.loop(objPlatform2, 1)
+    set.loop(objShaft2, 2)
+    set.loop(objHeads, 3)
+    set.loop(objRepair, 4)
+    set.loop(objPersonL, 2)
+    set.cel(objBods, 1)
+
+    fix.loop(objBods)
+    fix.loop(objShaft2)
+    fix.loop(objPersonL)
+
+    draw(objEgo)
+    draw(objBods)
+    draw(objHeads)
+    draw(objShaft2)
+    draw(objPlatform2)
+    draw(objCleanup)
+    draw(objRepair)
+    draw(objPersonL)
+
+    set.priority(objShaft2, 4)
+    set.priority(objPlatform2, 6)
+
+    stop.cycling(objBods)
+    stop.cycling(objHeads)
+    stop.cycling(objShaft2)
+    stop.cycling(objPlatform2)
+    stop.cycling(objCleanup)
+    stop.cycling(objPersonL)
+    start.cycling(objRepair)
+
+    assignn(vEgoX, 6)
+    assignn(vEgoY, 146)
+    position.v(objEgo, vEgoX, vEgoY)    
+
+    position(objHeads, 38, 120)
+    position(objBods, 150, 105)    
+    position(objPlatform2, 79, 111)    
+    position(objShaft2, 74, 74)    
+    position(objCleanup, 56, 25)
+    position(objRepair, 36, 108)
+
+    reset(fCleaupDown)
+    reset(fCleaupDone)
+    reset(fBodsReady)
+    reset(fRepairHead1)
+    reset(fRepairHead2)
+    reset(fRepairHead3)
+    reset(fRepairDone)
+
+    move.obj(objBods, 82, 105, 1, fBodsReady)    
+    move.obj(objShaft2, 74, 113, 1, fDoAction)    
+    move.obj(objCleanup, 56, 60, 1, fCleaupDown)    
+}
+
+
+
+if(isset(fCleaupDown)) {
+    // dump the body
+    reset(fCleaupDown)
+    end.of.loop(objCleanup, fCleaupDone)
+    move.obj(objShaft2, 74, 130, 1, fDoAction)    
+    move.obj(objCleanup, 56, 80, 1, fDoAction)    
+}
+
+if(isset(fBodsReady)) {
+    // bodies are ready
+    reset(fBodsReady)
+    start.cycling(objRepair)
+    move.obj(objRepair, 54, 114, 1, fRepairHead1)    
+}
+
+if(isset(fRepairHead1)) {
+    // pick up the head
+    reset(fRepairHead1)
+    set.cel(objHeads, 1)
+    set.loop(objRepair, 2)
+    set.cel(objRepair, 0)
+    fix.loop(objRepair)
+    start.cycling(objRepair)
+    move.obj(objRepair, 78, 110, 1, fRepairHead2)    
+}
+
+if(isset(fRepairHead2)) {
+    // screw the head on
+    reset(fRepairHead2)
+    set.loop(objRepair, 3)
+    set.cel(objRepair, 0)
+    fix.loop(objRepair)
+    start.cycling(objRepair)
+    end.of.loop(objRepair, fRepairHead3)    
+}
+
+if(isset(fRepairHead3)) {
+    // return to controls
+    reset(fRepairHead3)
+
+    set.priority(objPersonL, 11)
+    position(objPersonL, 82, 104)            
+
+    set.cel(objRepair, 0)
+    set.loop(objRepair, 1)
+    start.cycling(objRepair)
+    move.obj(objRepair, 50, 108, 1, fRepairHead4)    
+}
+
+if(isset(fRepairHead4)) {
+    // return to controls
+    reset(fRepairHead4)
+    set.cel(objRepair, 0)
+    start.cycling(objRepair)    
+    move.obj(objRepair, 40, 108, 1, fRepairDone)    
+
+
+    set.cel(objBods, 2)
+
+    set.priority(objPlatform2, 10)
+    set.priority(objShaft2, 5)
+
+    fix.loop(objPlatform2)
+    move.obj(objPlatform2, 79, 20, 1, fRepairSent)
+
+    set.priority(objShaft2, 4)
+    position(objShaft2, 84, 175)            
+    move.obj(objShaft2, 84, 135, 1, fRepairSent2)    
+
+    move.obj(objPersonL, 82, 15, 1, fRepairSent1)
+}
+
+if(isset(fRepairDone)) {
+    // Send repair up
+    reset(fRepairDone)
+
+}
+
+if(isset(fRepairSent)) {
+    reset(fRepairSent)
+}
+
+if(isset(fRepairSent1)) {
+    reset(fRepairSent1)
+}
+if(isset(fRepairSent2)) {
+    // half way up
+    reset(fRepairSent2)
+    set.view(objShaft3, viewBods)
+    set.loop(objShaft3, 2)
+    fix.loop(objShaft3)
+    stop.cycling(objShaft3)
+    draw(objShaft3)
+    set.priority(objShaft3, 8)
+    position(objShaft3, 84, 130)
+    move.obj(objShaft3, 84, 80, 1, fRepairReturn1)        
+}
+
+if(isset(fRepairReturn1)) {
+    // drop of person l and return halfway down
+    reset(fRepairReturn1)
+    erase(objPersonL)
+    move.obj(objPlatform2, 79, 111, 1, fRepairReturn3)        
+    move.obj(objShaft3, 84, 130, 1, fRepairReturn2)        
+}
+
+if(isset(fRepairReturn2)) {
+    // return the rest of the way down 
+    reset(fRepairReturn2)
+    erase(objShaft3)
+    move.obj(objShaft2, 84, 170, 1, fRepairReturn3)        
+    assignn(vClockTicks, 0)
+    assignn(vBdMsgCount, 3)    
+}
+
+
+if(isset(fRepairReturn3)) {
+    // return the rest of the way down 
+    addn(vTimer, 1) 
+
+    if(greatern(vTimer, 30)) {
+        addn(vBdMsgCount, 1)
+        assignn(vTimer, 0)
+    }
+    
+    if(greatern(vBdMsgCount, 6)) {
+        assignn(vBdMsgCount, 3)
+    }
+
+    display.v(10, 10, vBdMsgCount)
+}
+
+if(equaln(vEgoDirection, directionStopped)) {
+    stop.cycling(objEgo)
+}
+if(!equaln(vEgoDirection, directionStopped)) {
+    start.cycling(objEgo)
+}
+
+if(said("look")) {
+    print("Lab")
+}
+
+// if(obj.in.box(objEgo, 10, 158, 30, 162)) {
+//     assignn(vEgoX, 100)
+//     assignn(vEgoY, 105)
+//     stop.cycling(objEgo)
+//     assignn(vRoomInited, valFalse)
+//     assignn(vCurrentRoom, picDavTrunkF0)   
+//     assignn(vEgoEdgeTouched, edgeNone)
+// }
+
+
+if(said("look", "room")) {
+    print("The Lab")
+}
+
 return()
-#message 1 "Not Used 13"
+#message 1 "Lab"
+#message 3 "Incomming transmission"
+#message 4 "Markus Louw: My best to Sierra"
+#message 5 "Marco Giglio: Happy birthday!" 
+#message 6 "Russ Danner: Thank you Roberta, Ken, and team!!" 

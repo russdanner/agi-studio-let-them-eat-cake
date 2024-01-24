@@ -240,7 +240,7 @@ if(isset(fPodLaunched)) {
 
     if(!isset(fPodAutoNaved)){
         if(equaln(vClockTicks, 3)) {
-            print("There's only so much fuel on thes pods. You should probably engage some form of navigation...")
+            print("There's only so much fuel on these pods. You should probably engage some form of navigation...")
             assignn(vTimer, 0)
             assignn(vClockTicks, 0)
         }    

@@ -185,7 +185,7 @@ if(said("look", "table")) {
         print("It's a sturdy table.")
     }
     if(!has(invSummons)) {
-        print("There is a study table here. The summons you received from the King today lays on the table.")
+        print("There is a sturdy table here. The summons you received from the King today lays on the table.")
     }
 }
 
@@ -310,10 +310,10 @@ if(said("take", "hat")) {
 }
 
 if(said("take", "teacup")) {
-    if(posn(objEgo, 49, 107, 56, 135)) {
+    if(posn(objEgo, 40, 100, 60, 140)) {
         erase(objTeaCup)
         if(equaln(vTeaPoured, valTrue)) {
-            print("You pick up the teacup full of hot clover tea and carry it with you.")
+            print("You pick up the tetakeacup full of hot clover tea and carry it with you.")
             get(invTea)
         }
         if(!equaln(vTeaPoured, valTrue)) {
@@ -321,7 +321,7 @@ if(said("take", "teacup")) {
             get(invTeaCup)            
         }
     }
-    if(!posn(objEgo, 49, 107, 56, 135)) {
+    if(!posn(objEgo, 40, 100, 60, 140)) {
         print("It is not within your reach.")
     }
 }

@@ -37,16 +37,6 @@ if(equaln(vRoomInited, valFalse)) {
     assignn(vReadCount, 0)
 }
 
-if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    if(equaln(vEgoEdgeTouched, edgeRight)) {
-        get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoX, 15)
-        assignn(vEgoEdgeTouched, edgeNone)
-        assignn(vRoomInited, valFalse)
-        assignn(vCurrentRoom, picInnerBay)     
-    }    
-}
-
 if(said("look")) {
     print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.")
 }

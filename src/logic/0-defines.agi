@@ -108,6 +108,18 @@
 #define objPersonG1 13
 #define objPersonG2 14
 
+#define objTrunkDoor 1
+
+#define objBods 1
+#define objPlatform2 2
+#define objShaft2 3
+#define objHeads 4
+#define objRepair 5
+#define objCleanup 6
+#define objPersonL 7
+#define objShaft3 8
+
+
 // pics
 //#define picTitle 0
 
@@ -125,7 +137,7 @@
 #define picDavRiverBendA4 10
 #define picDavBowlA5 11
 #define picDavCastleRightB2 12
-#define picTrunk 13
+#define picDavTrunkF0 13
 #define picDavWellTopD1 14
 #define picDavLakeD2 15
 #define picDavLakeD4 16
@@ -160,7 +172,7 @@
 #define picBathroom 41
 #define picCredits 42
 #define picStairs 43
-#define picShop 43
+#define picShop 44
 
 #define picTitle 45
 
@@ -276,6 +288,13 @@
 #define viewRogerStoned 100
 #define viewGrahamFightCloud 101
 #define viewWorldWarp 102
+#define viewBods 103
+#define viewRepair 105
+#define viewCleanup 106
+#define viewPersonL 108
+
+
+#define viewTrunkDoor 107
 
 // objects
 #define viewObjPot 69
@@ -367,6 +386,7 @@
 
 #define vReadCount 36
 #define vAlJoke 35
+#define vBdMsgCount 35
 
 // flags
 
@@ -471,6 +491,22 @@
 #define fWarpingStarted 106
 #define fRogerStoned 107
 #define fPodPowePushed 108
+
+#define fCleaupDown 100
+#define fCleaupDone 101
+#define fBodsReady 102
+#define fRepairHead1 103
+#define fRepairHead2 104
+#define fRepairHead3 105
+#define fRepairHead4 106
+#define fRepairDone 107
+#define fRepairSent 108
+#define fRepairSent1 109
+#define fRepairSent2 110
+#define fRepairReturn1 111
+#define fRepairReturn2 112
+#define fRepairReturn3 113
+#define fRepairReturn4 114
 
 
 // some points are given for repeatable events
