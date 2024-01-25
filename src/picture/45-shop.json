@@ -1,6 +1,16 @@
 {
   "vectorCommands": [
+    { "command": "PicSetColor", "args": [4] },
+    {
+      "command": "DrawAbs",
+      "args": [35,22,  124,22,  124,40,  35,40,  35,22]
+    },
     { "command": "PicSetColor", "args": [0] },
+    {
+      "command": "DrawFill",
+      "args": [37,25]
+    },
+
     {
       "command": "DrawAbs",
       "args": [6, 157, 6, 13, 152, 13, 152, 157, 7, 157]

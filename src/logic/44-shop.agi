@@ -192,7 +192,10 @@ if(isset(fRepairReturn2)) {
     erase(objShaft3)
     move.obj(objShaft2, 84, 170, 1, fRepairReturn3)        
     assignn(vClockTicks, 0)
-    assignn(vBdMsgCount, 3)    
+
+    assignn(vBdMsgCount, 4)    
+    assignn(vBdMsgCount2, 5)    
+
 }
 
 
@@ -201,15 +204,25 @@ if(isset(fRepairReturn3)) {
     addn(vTimer, 1) 
 
     if(greatern(vTimer, 30)) {
-        addn(vBdMsgCount, 1)
+        addn(vBdMsgCount, 2)
+        addn(vBdMsgCount2, 2)
+
         assignn(vTimer, 0)
     }
     
-    if(greatern(vBdMsgCount, 6)) {
-        assignn(vBdMsgCount, 3)
+    if(greatern(vBdMsgCount, 10)) {
+        assignn(vBdMsgCount, 4)    
+        assignn(vBdMsgCount2, 5)    
     }
 
-    display.v(10, 10, vBdMsgCount)
+    assignn(vBdMsgRow, 3)
+    assignn(vBdMsgCol, 9)
+    display.v(vBdMsgRow, vBdMsgCol, vBdMsgCount)
+
+    assignn(vBdMsgRow2, 4)
+    assignn(vBdMsgCol2, 9)
+    display.v(vBdMsgRow2, vBdMsgCol2, vBdMsgCount2)
+
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -238,8 +251,16 @@ if(said("look", "room")) {
 }
 
 return()
-#message 1 "Lab"
-#message 3 "Incomming transmission"
-#message 4 "Markus Louw: My best to Sierra"
-#message 5 "Marco Giglio: Happy birthday!" 
-#message 6 "Russ Danner: Thank you Roberta, Ken, and team!!" 
+#message 1  "Lab"
+
+#message 4  "Incomming transmission"
+#message 5  "   "
+
+#message 6  "Markus Louw"
+#message 7  "My best to Sierra!"
+
+#message 8  "Marco Giglio"
+#message 9  "Happy birthday!" 
+
+#message 10  "Russ Danner"
+#message 11 "Thank you Berta & Ken!" 

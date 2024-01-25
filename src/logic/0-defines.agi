@@ -387,6 +387,11 @@
 #define vReadCount 36
 #define vAlJoke 35
 #define vBdMsgCount 35
+#define vBdMsgRow 36
+#define vBdMsgCol 37
+#define vBdMsgCount2 38
+#define vBdMsgRow2 39
+#define vBdMsgCol2 40
 
 // flags
 
