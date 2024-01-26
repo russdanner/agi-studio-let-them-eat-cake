@@ -487,6 +487,16 @@
     { "command": "PicDisable", "args": [] },
     { "command": "PriSetcolor", "args": [1] },
     { "command": "DrawXCorner", "args": [159, 154, 55, 167] },
+    { "command": "PriSetcolor", "args": [1] },
+
+    { "command": "PriSetcolor", "args": [0] },
+    { "command": "DrawAbs", "args": [5,125,  100,125,   100,160,   5,160,  5,125] },
+    { "command": "DrawAbs", "args": [49,159,  60,125] },
+    { "command": "DrawAbs", "args": [5,132,  10,127] },
+   
+    
+
+
     { "command": "End", "args": [] }
   ]
 }

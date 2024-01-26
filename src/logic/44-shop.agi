@@ -10,7 +10,7 @@ if(equaln(vRoomInited, valFalse)) {
     load.view(viewCleanup)
     load.view(viewRepair)
     load.view(viewPersonL)
-
+    
     animate.obj(objEgo)
 
     set.view(objEgo, viewRoger)
@@ -43,8 +43,12 @@ if(equaln(vRoomInited, valFalse)) {
     draw(objRepair)
     draw(objPersonL)
 
+    set.priority(objEgo, 11)
+    observe.objs(objEgo)
     set.priority(objShaft2, 4)
     set.priority(objPlatform2, 6)
+    set.priority(objHeads, 10)
+    set.priority(objRepair, 9)
 
     stop.cycling(objBods)
     stop.cycling(objHeads)
@@ -58,7 +62,7 @@ if(equaln(vRoomInited, valFalse)) {
     assignn(vEgoY, 146)
     position.v(objEgo, vEgoX, vEgoY)    
 
-    position(objHeads, 38, 120)
+    position(objHeads, 38, 121)
     position(objBods, 150, 105)    
     position(objPlatform2, 79, 111)    
     position(objShaft2, 74, 74)    
@@ -72,6 +76,7 @@ if(equaln(vRoomInited, valFalse)) {
     reset(fRepairHead2)
     reset(fRepairHead3)
     reset(fRepairDone)
+    reset(fMiB)
 
     move.obj(objBods, 82, 105, 1, fBodsReady)    
     move.obj(objShaft2, 74, 113, 1, fDoAction)    
@@ -173,13 +178,13 @@ if(isset(fRepairSent2)) {
     fix.loop(objShaft3)
     stop.cycling(objShaft3)
     draw(objShaft3)
-    set.priority(objShaft3, 8)
+    set.priority(objShaft3, 7)
     position(objShaft3, 84, 130)
     move.obj(objShaft3, 84, 80, 1, fRepairReturn1)        
 }
 
 if(isset(fRepairReturn1)) {
-    // drop of person l and return halfway down
+    // drop off person l and return halfway down
     reset(fRepairReturn1)
     erase(objPersonL)
     move.obj(objPlatform2, 79, 111, 1, fRepairReturn3)        
@@ -190,7 +195,7 @@ if(isset(fRepairReturn2)) {
     // return the rest of the way down 
     reset(fRepairReturn2)
     erase(objShaft3)
-    move.obj(objShaft2, 84, 170, 1, fRepairReturn3)        
+    move.obj(objShaft2, 84, 168, 1, fRepairReturn3)        
     assignn(vClockTicks, 0)
 
     assignn(vBdMsgCount, 4)    
@@ -201,16 +206,22 @@ if(isset(fRepairReturn2)) {
 
 if(isset(fRepairReturn3)) {
     // return the rest of the way down 
+    erase(objShaft2)
     addn(vTimer, 1) 
 
     if(greatern(vTimer, 30)) {
         addn(vBdMsgCount, 2)
         addn(vBdMsgCount2, 2)
 
+        if(!isset(fMiBOnce)) {
+            set(fMiBOnce)
+            set(fMiB)
+        }
+
         assignn(vTimer, 0)
     }
     
-    if(greatern(vBdMsgCount, 10)) {
+    if(greatern(vBdMsgCount, 12)) {
         assignn(vBdMsgCount, 4)    
         assignn(vBdMsgCount2, 5)    
     }
@@ -223,6 +234,27 @@ if(isset(fRepairReturn3)) {
     assignn(vBdMsgCol2, 9)
     display.v(vBdMsgRow2, vBdMsgCol2, vBdMsgCount2)
 
+}
+
+if(isset(fMiB)) {
+    reset(fMiB)
+    load.view(viewPersonM)    
+    animate.obj(objPersonM)
+    set.view(objPersonM, viewPersonM)
+    draw(objPersonM)
+    position(objPersonM, 20, 155)
+    follow.ego(objPersonM, 1, fGotcha)
+}
+
+if(isset(fGotcha)) {
+    // roger get's flashed
+    assignn(vEgoX, 100)
+    assignn(vEgoY, 110)
+    stop.cycling(objEgo)
+    reset(fDoAction)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picDavTrunkF0)   
+    assignn(vEgoEdgeTouched, edgeNone)
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -262,5 +294,9 @@ return()
 #message 8  "Marco Giglio"
 #message 9  "Happy birthday!" 
 
-#message 10  "Russ Danner"
-#message 11 "Thank you Berta & Ken!" 
+#message 10 "Andrea Tanguay"
+#message 11 "Long live adventures!"
+
+#message 12  "Russ Danner"
+#message 13  "Thank you Berta & Ken!" 
+
