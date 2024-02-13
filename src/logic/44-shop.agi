@@ -199,7 +199,6 @@ if(isset(fRepairReturn2)) {
 
     assignn(vBdMsgCount, 4)    
     assignn(vBdMsgCount2, 5)    
-
 }
 
 if(isset(fRepairReturn3)) {
@@ -207,21 +206,20 @@ if(isset(fRepairReturn3)) {
     erase(objShaft2)
     addn(vTimer, 1) 
 
-    if(greatern(vTimer, 30)) {
+    if(greatern(vTimer, 40)) {
+        assignn(vTimer, 0)
         addn(vBdMsgCount, 2)
         addn(vBdMsgCount2, 2)
+    }
+    
+    if(greatern(vBdMsgCount, 12)) {
+        assignn(vBdMsgCount, 6)    
+        assignn(vBdMsgCount2, 7)
 
         if(!isset(fMiBOnce)) {
             set(fMiBOnce)
             set(fMiB)
         }
-
-        assignn(vTimer, 0)
-    }
-    
-    if(greatern(vBdMsgCount, 12)) {
-        assignn(vBdMsgCount, 4)    
-        assignn(vBdMsgCount2, 5)    
     }
 
     assignn(vBdMsgRow, 3)
@@ -231,8 +229,8 @@ if(isset(fRepairReturn3)) {
     assignn(vBdMsgRow2, 4)
     assignn(vBdMsgCol2, 9)
     display.v(vBdMsgRow2, vBdMsgCol2, vBdMsgCount2)
-
 }
+
 
 if(isset(fMiB)) {
     reset(fMiB)
@@ -252,8 +250,7 @@ if(isset(fGotcha)) {
     
     normal.motion(objPersonM)
     stop.motion(objPersonM)
-    
-//    start.cycling(objPersonM)
+
     get.posn(objEgo, vEgoX, vEgoY)
 
     if(greatern(vEgoX, 25)) {
@@ -273,14 +270,14 @@ if(isset(fGotcha)) {
 if(isset(fRogerFlashed)) {
     // Roger appears back outside the lab        
     reset(fRogerFlashed)
-    // assignn(vEgoX, 100)
-    // assignn(vEgoY, 110)
+    assignn(vEgoX, 100)
+    assignn(vEgoY, 110)
 
-    // stop.cycling(objEgo)
-    // reset(fDoAction)
-    // assignn(vRoomInited, valFalse)
-    // assignn(vCurrentRoom, picDavTrunkF0)   
-    // assignn(vEgoEdgeTouched, edgeNone)
+    stop.cycling(objEgo)
+    reset(fDoAction)
+    assignn(vRoomInited, valFalse)
+    assignn(vCurrentRoom, picDavTrunkF0)   
+    assignn(vEgoEdgeTouched, edgeNone)
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
