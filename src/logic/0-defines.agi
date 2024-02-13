@@ -294,6 +294,7 @@
 #define viewCleanup 106
 #define viewPersonL 108
 #define viewPersonM 109
+#define viewPersonMFlash 110
 
 
 #define viewTrunkDoor 107
@@ -516,6 +517,7 @@
 #define fRepairReturn4 114
 #define fMiB 115
 #define fMiBOnce 116
+#define fRogerFlashed 117
 
 
 // some points are given for repeatable events

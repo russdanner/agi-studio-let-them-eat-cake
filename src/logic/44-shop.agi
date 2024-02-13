@@ -43,8 +43,9 @@ if(equaln(vRoomInited, valFalse)) {
     draw(objRepair)
     draw(objPersonL)
 
-    set.priority(objEgo, 11)
     observe.objs(objEgo)
+
+    set.priority(objEgo, 11)
     set.priority(objShaft2, 4)
     set.priority(objPlatform2, 6)
     set.priority(objHeads, 10)
@@ -60,6 +61,7 @@ if(equaln(vRoomInited, valFalse)) {
 
     assignn(vEgoX, 6)
     assignn(vEgoY, 146)
+
     position.v(objEgo, vEgoX, vEgoY)    
 
     position(objHeads, 38, 121)
@@ -82,8 +84,6 @@ if(equaln(vRoomInited, valFalse)) {
     move.obj(objShaft2, 74, 113, 1, fDoAction)    
     move.obj(objCleanup, 56, 60, 1, fCleaupDown)    
 }
-
-
 
 if(isset(fCleaupDown)) {
     // dump the body
@@ -160,7 +160,6 @@ if(isset(fRepairHead4)) {
 if(isset(fRepairDone)) {
     // Send repair up
     reset(fRepairDone)
-
 }
 
 if(isset(fRepairSent)) {
@@ -203,7 +202,6 @@ if(isset(fRepairReturn2)) {
 
 }
 
-
 if(isset(fRepairReturn3)) {
     // return the rest of the way down 
     erase(objShaft2)
@@ -242,19 +240,47 @@ if(isset(fMiB)) {
     animate.obj(objPersonM)
     set.view(objPersonM, viewPersonM)
     draw(objPersonM)
-    position(objPersonM, 20, 155)
+    position(objPersonM, 30, 155)
     follow.ego(objPersonM, 1, fGotcha)
 }
 
 if(isset(fGotcha)) {
     // roger get's flashed
-    assignn(vEgoX, 100)
-    assignn(vEgoY, 110)
-    stop.cycling(objEgo)
-    reset(fDoAction)
-    assignn(vRoomInited, valFalse)
-    assignn(vCurrentRoom, picDavTrunkF0)   
-    assignn(vEgoEdgeTouched, edgeNone)
+    reset(fGotcha)
+    load.view(viewPersonMFlash)    
+    set.view(objPersonM, viewPersonMFlash)
+    
+    normal.motion(objPersonM)
+    stop.motion(objPersonM)
+    
+//    start.cycling(objPersonM)
+    get.posn(objEgo, vEgoX, vEgoY)
+
+    if(greatern(vEgoX, 25)) {
+        subn(vEgoX, 15)
+        set.loop(objPersonM, 0)
+    }
+    if(!greatern(vEgoX, 25)) {
+        subn(vEgoX, 5)
+        set.loop(objPersonM, 1)
+    }
+
+    reposition.to.v(objPersonM, vEgoX, vEgoY)
+
+    end.of.loop(objPersonM, fRogerFlashed)
+}
+
+if(isset(fRogerFlashed)) {
+    // Roger appears back outside the lab        
+    reset(fRogerFlashed)
+    // assignn(vEgoX, 100)
+    // assignn(vEgoY, 110)
+
+    // stop.cycling(objEgo)
+    // reset(fDoAction)
+    // assignn(vRoomInited, valFalse)
+    // assignn(vCurrentRoom, picDavTrunkF0)   
+    // assignn(vEgoEdgeTouched, edgeNone)
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
