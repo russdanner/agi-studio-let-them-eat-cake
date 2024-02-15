@@ -63,7 +63,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 if(said("look")) {
     print("You are at the very bottom of the well. The walls are rough cut and the floor is full bits and bobs that people have thrown down the well over the ages. A large trunk lays up against the wall to the east. There's a small opening in the wall to the west.")
 }
-
+up
 if(said("close", "trunk")) {
     if(posn(objEgo, 95, 110, 107, 134)) {      
         set.cel(objTrunk, 0)
@@ -116,7 +116,7 @@ if(said("look", "hole")) {
     print("It's a hole that leads to a cave.")
 }
 if(said("look", "cave")) {
-    print("Wow.. It looks like a COLOSSAL CAVE. That's different game Roger. Go check it out.")
+    print("Wow.. It looks like a COLOSSAL CAVE. That's different game Roger. Go check it out. You don't have the time or oxygen required for cave splunking right now.")
 }
 if(said("look", "trunk")) {
     print("The large trunk looks old but sturdy. It's clear that it has been here for some time.")

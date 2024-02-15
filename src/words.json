@@ -25,7 +25,6 @@
     "through",
     "to",
     "under",
-    "up",
     "will",
     "with",
     "you"
@@ -198,6 +197,7 @@
   "2108":["walnut", "walnuts", "nut", "nuts"], 
   "2109":["keycard", "card"],
   "2110":["loud"],
+  "2110":["slot"],
 
   "3012": ["craftercms"]
 }

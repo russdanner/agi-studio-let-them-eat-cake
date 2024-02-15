@@ -9,7 +9,7 @@
     { "name": "Glass", "startingRoom": 1 },
     { "name": "Cake", "startingRoom": 27 },
     { "name": "Ink", "startingRoom": 29 },
-    { "name": "Quil", "startingRoom": 1 },
+    { "name": "Quill", "startingRoom": 1 },
     { "name": "Feather", "startingRoom": 34 },
     { "name": "Paper", "startingRoom": 1 },
     { "name": "Invitation", "startingRoom": 1 },

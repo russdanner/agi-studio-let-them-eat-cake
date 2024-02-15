@@ -212,7 +212,7 @@ if(isset(fRepairReturn3)) {
         addn(vBdMsgCount2, 2)
     }
     
-    if(greatern(vBdMsgCount, 12)) {
+    if(greatern(vBdMsgCount, 14)) {
         assignn(vBdMsgCount, 6)    
         assignn(vBdMsgCount2, 7)
 
@@ -272,6 +272,8 @@ if(isset(fRogerFlashed)) {
     reset(fRogerFlashed)
     assignn(vEgoX, 100)
     assignn(vEgoY, 110)
+    reset(fEyesOpen)
+    set(fFlashed)
 
     stop.cycling(objEgo)
     reset(fDoAction)
@@ -320,6 +322,9 @@ return()
 #message 10 "Andrea Tanguay"
 #message 11 "Long live adventures!"
 
-#message 12  "Russ Danner"
-#message 13  "Thank you Berta & Ken!" 
+#message 12  "Liz Cook: 40 years &"
+#message 13  "the hat still fits!" 
+
+#message 14  "Russ Danner"
+#message 15  "Thank you Berta & Ken!" 
 

@@ -149,6 +149,26 @@ if(said("buckle", "belt")){
         print("Good move Roger. Safety third.")
     }
 }
+if(said("buckle", "up")){
+    if(isset(fBeltBuckled)) {
+        print("You are already buckled in.")
+    }
+    if(!isset(fBeltBuckled)) {
+        set(fBeltBuckled)
+        addn(vCurrentScore, 1)
+        print("Good move Roger. Safety third.")
+    }
+}
+if(said("wear", "belt")){
+    if(isset(fBeltBuckled)) {
+        print("You are already buckled in.")
+    }
+    if(!isset(fBeltBuckled)) {
+        set(fBeltBuckled)
+        addn(vCurrentScore, 1)
+        print("Good move Roger. Safety third.")
+    }
+}
 if(said("search", "pod")) {
     if(has(invKeycard)) {
         print("You find nothing of importance.")

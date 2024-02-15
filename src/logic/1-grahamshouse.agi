@@ -55,8 +55,9 @@ if(equaln(vRoomInited, valFalse)) {
         drop(invInvitation)
 
         drop(invTea)
-        get(invTeaCup)
-        get(invTeapot)
+        // drop these, they are not important anymore
+        //get(invTeaCup)
+        //get(invTeapot)
 
         if(isset(fHasHat)) {
             get(invHat)
@@ -182,10 +183,20 @@ if(said("look", "stove")) {
 
 if(said("look", "table")) {
     if(has(invSummons)) {
-        print("It's a sturdy table.")
+        if(!has(invTeaCup)) {
+            print("There is a sturdy table here. A teacup sits on table")
+        }
+        if(has(invTeaCup)) {
+            print("There is a sturdy table here.")
+        }
     }
     if(!has(invSummons)) {
-        print("There is a sturdy table here. The summons you received from the King today lays on the table.")
+        if(!has(invTeaCup)) {
+            print("There is a sturdy table here. The summons you received from the King today lays on one side of the table and a teacup sits on the opposite side.")
+        }
+        if(has(invTeaCup)) {
+            print("There is a sturdy table here. The summons you received from the King today lays on the table.")
+        }
     }
 }
 

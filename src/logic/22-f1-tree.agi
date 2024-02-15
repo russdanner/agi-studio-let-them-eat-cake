@@ -27,8 +27,10 @@ if(equaln(vRoomInited, 0)) {
         }
     }
 
-    position(objMist, 1, 40)
-    position(objMist2, 43, 40)
+    if(!isset(fEyesOpen)) {
+        position(objMist, 1, 40)
+        position(objMist2, 43, 40)    
+    }
 
     position.v(objEgo, vEgoX, vEgoY)
     assignn(vEgoEdgeTouched, edgeNone)
@@ -36,21 +38,31 @@ if(equaln(vRoomInited, 0)) {
 }
 
 if(!equaln(vEgoEdgeTouched, edgeNone)) {
+    
     if(equaln(vEgoEdgeTouched, edgeTop)) {
-        print("You're a bit foggy here. You decide to turn back.")
-        get.posn(objEgo, vEgoX, vEgoY)
-        assignn(vEgoY, 55)
-        assignn(vEgoDirection, directionDown)
-        set.dir(objEgo, vEgoDirection)
-        position.v(objEgo, vEgoX, vEgoY)
-        assignn(vEgoEdgeTouched, edgeNone)
+        if(!isset(fEyesOpen)) {
+            print("You're a bit foggy here. You decide to turn back.")
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoY, 55)
+            assignn(vEgoDirection, directionDown)
+            set.dir(objEgo, vEgoDirection)
+            position.v(objEgo, vEgoX, vEgoY)
+            assignn(vEgoEdgeTouched, edgeNone)    
+        }
+        if(isset(fEyesOpen)) {
+            get.posn(objEgo, vEgoX, vEgoY)
+            assignn(vEgoY, 150)
+            assignn(vRoomInited, valFalse)
+            assignn(vEgoEdgeTouched, edgeNone)
+            assignn(vCurrentRoom, picDavTrunkF0)  
+        }
     }
 
     if(equaln(vEgoEdgeTouched, edgeLeft)) {
         get.posn(objEgo, vEgoX, vEgoY)
         assignn(vEgoX, 150)
-
         assignn(vRoomInited, valFalse)
+        assignn(vEgoEdgeTouched, edgeNone)
         assignn(vCurrentRoom, picDavWolfE1)     
     }
 
@@ -80,10 +92,20 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("look")) {
-    print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east.")
+    if(isset(fEyesOpen)) {
+        print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the east.")
+    }
+    if(!isset(fEyesOpen)) {
+        print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east.")
+    }
 }
 if(said("look", "room")) {
-    print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east.")
+    if(isset(fEyesOpen)) {
+        print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the east.")
+    }
+    if(!isset(fEyesOpen)) {
+        print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east.")
+    }
 }
 if(said("look", "fog")) {
     print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")

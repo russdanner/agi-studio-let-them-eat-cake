@@ -18,6 +18,10 @@ if(equaln(vRoomInited, valFalse)) {
     set.view(objMist3, viewMist)
     set.view(objMist4, viewMist)
 
+    if(!isset(fEyesOpen)) {
+        set.loop(objTrunkDoor, 1)
+    }
+
     draw(objEgo)
     draw(objTrunkDoor)
     draw(objMist)
@@ -28,14 +32,16 @@ if(equaln(vRoomInited, valFalse)) {
     position(objTrunkDoor, 100, 93)
     set.horizon(50) 
 
+    assignn(vEgoY, 155)
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
             assignn(vEgoX, 140)
-            assignn(vEgoY, 130)
         }
     }
 
+    assignn(vEgoEdgeTouched, edgeNone)
     position.v(objEgo, vEgoX, vEgoY)    
+    
     position(objMist, 1, 47)
     position(objMist2, 43, 47)
     position(objMist3, 85, 47)
@@ -120,21 +126,39 @@ if(said("knock")) {
 
 
 if(said("look", "door")) {
-    print("The door is made of wood and looks extremely sturdy. Theres a small slot in the door")
+    if(isset(fEyesOpen)) {
+        print("The door is made of wood and looks extremely sturdy. Theres a small slot in the door")
+    }
+    if(!isset(fEyesOpen)) {
+        print("The door is made of wood and looks extremely sturdy.")
+    }
 }
 if(said("look", "room")) {
     print("There's a hillside here with a door built into the side of it. There is a thick fog to the north the east and the west.")
+}
+if(said("look", "slot")) {
+    if(isset(fEyesOpen)) {
+        print("On the door you find a panel with a small slot. A faint blinking red glow is emitted from somewhere inside the slot. You wonder what it could be for.")
+    }
+    if(!isset(fEyesOpen)) {
+        print("what slot? There's no slot here.")
+    }
 }
 if(said("look", "fog")) {
     print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
 }
 if(said("insert", "keycard")) {
-    if(posn(objEgo, 95, 96, 118, 102)) {
-        end.of.loop(objTrunkDoor, fDoAction)
+    if(isset(fEyesOpen)) {
+        if(posn(objEgo, 95, 96, 118, 102)) {
+            end.of.loop(objTrunkDoor, fDoAction)
+        }
+        if(!posn(objEgo, 95, 96, 118, 102)) {
+            print("You can't reach it from here.")
+        }        
     }
-    if(!posn(objEgo, 95, 96, 118, 102)) {
-        print("You can't reach it from here.")
-    }    
+    if(!isset(fEyesOpen)) {
+        print("You can't do that.")
+    }
 }
 
 return()

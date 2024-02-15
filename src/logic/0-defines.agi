@@ -119,7 +119,7 @@
 #define objPersonL 7
 #define objShaft3 8
 #define objPersonM 9
-
+#define objFGM 1
 
 // pics
 //#define picTitle 0
@@ -295,6 +295,7 @@
 #define viewPersonL 108
 #define viewPersonM 109
 #define viewPersonMFlash 110
+#define viewFGM 111
 
 
 #define viewTrunkDoor 107
@@ -438,6 +439,8 @@
 #define fHasHat 87
 #define fWearingHat 88
 #define fIsMorning 89
+#define fEyesOpen 119
+#define fFlashed 120
 
 // Screen specific. Assume these can be reset by anyone 
 // These should be 90 and up
@@ -518,7 +521,6 @@
 #define fMiB 115
 #define fMiBOnce 116
 #define fRogerFlashed 117
-
 
 // some points are given for repeatable events
 // dont allow them to be repeated

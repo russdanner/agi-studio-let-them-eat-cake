@@ -24,7 +24,7 @@ if(!isset(fGameInited)) {
 if(equaln(vCurrentRoom, 0)) {  
     assignn(vRoomInited, valFalse)
     // picTitle
-    assignn(vCurrentRoom, picShop)
+    assignn(vCurrentRoom, picTitle)
 }
 
 if(said("inv")) {
@@ -301,7 +301,7 @@ if(isset(fShowInvItem)) {
     }
     if(equaln(vInvShowItem, invBroom)) {
         assignn(vInvView, viewObjBroom)
-        print("This is a standard issue StarCon broom. One of the many tools in your janitorial arsenal.")
+        print("This is a standard issue StarCon broom. You love a good broom! It's a key component of any janitorial arsenal. The code `IBA` is stamped into the handle of the broom.")
     }
     if(equaln(vInvShowItem, invCake)) {
         assignn(vInvView, viewObjCake)

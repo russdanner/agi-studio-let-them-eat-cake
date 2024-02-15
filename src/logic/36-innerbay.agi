@@ -322,7 +322,7 @@ if(said("look", "bathroom")) {
     print("'Look' is really not really the verb you would prefer to associate with StarCon bathrooms. It appears to be your standard issue StarCon facilities. There is a button by the door and a small display which indicates that the room is currently unoccupied.")
 }
 if(said("look", "closet")) {
-    print("It sure looks comfy... I mean... like the pinnacle of storage solutions.")
+    print("This is a janitorial supply closet. It sure looks comfy... I mean... like the pinnacle of janitorial supply storage solutions.")
 }
 if(said("look", "suit")) {
     print("Good eye. There is a EVA pressure suit rack here.")
