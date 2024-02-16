@@ -55,9 +55,8 @@ if(equaln(vRoomInited, valFalse)) {
         drop(invInvitation)
 
         drop(invTea)
-        // drop these, they are not important anymore
-        //get(invTeaCup)
-        //get(invTeapot)
+        get(invTeaCup)
+        get(invTeapot)
 
         if(isset(fHasHat)) {
             get(invHat)
@@ -66,7 +65,8 @@ if(equaln(vRoomInited, valFalse)) {
             get(invSummons)
         }        
     }
-
+    
+    position.v(objEgo, vEgoX, vEgoY)
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
             position(objEgo, 100, 130)
@@ -77,25 +77,25 @@ if(equaln(vRoomInited, valFalse)) {
         }
     }
 
-    if(!equaln(vEgoX, 0)) {
-        position.v(objEgo, vEgoX, vEgoY)
-    }
-
     position(objWindow, 90, 58)
 
     if(!has(invHat)) {
         position(objHat, 130, 125)
     }
-    if(!has(invTeapot)) {
-        position(objTeapot, 110, 87)
-    }
-    if(!has(invTea)) {
-        if(!has(invTeaCup)) {
-            position(objTeaCup, 55, 105)
-        }
-    }
+
     if(!has(invSummons)) {
         position(objSummons, 80, 105)
+    }
+
+    if(!isset(fIsMorning)) {
+        if(!has(invTeapot)) {
+            position(objTeapot, 110, 87)
+        }
+        if(!has(invTea)) {
+            if(!has(invTeaCup)) {
+                position(objTeaCup, 55, 105)
+            }
+        }
     }
 
     set.priority(objSummons, 15)
@@ -321,7 +321,7 @@ if(said("take", "hat")) {
 }
 
 if(said("take", "teacup")) {
-    if(posn(objEgo, 40, 100, 60, 140)) {
+    if(posn(objEgo, 40, 107, 56, 135)) {
         erase(objTeaCup)
         if(equaln(vTeaPoured, valTrue)) {
             print("You pick up the tetakeacup full of hot clover tea and carry it with you.")
@@ -332,18 +332,18 @@ if(said("take", "teacup")) {
             get(invTeaCup)            
         }
     }
-    if(!posn(objEgo, 40, 100, 60, 140)) {
+    if(!posn(objEgo, 40, 107, 56, 135)) {
         print("It is not within your reach.")
     }
 }
 
 if(said("drop", "teacup")) {
-    if(posn(objEgo, 49, 107, 56, 135)) {
+    if(posn(objEgo, 40, 107, 56, 135)) {
         print("You place the teacup on the table.")
         draw(objTeaCup)
         drop(invTeaCup)
     }
-    if(!posn(objEgo, 49, 107, 56, 135)) {
+    if(!posn(objEgo, 40, 107, 56, 135)) {
         print("Get closer.")
     }
 }
@@ -358,12 +358,12 @@ if(said("pour", "tea")) {
                 print("the teapot is empty.")
             }
             if(!equaln(vTeaPoured, valTrue)) {
-                if(posn(objEgo, 49, 107, 56, 135)) {
+                if(posn(objEgo, 40, 107, 56, 135)) {
                     print("You pour a cup of hot tea.")
                     assignn(vTeaPoured, valTrue)
                     addn(vCurrentScore, 1)
                 }
-                if(!posn(objEgo, 49, 107, 56, 135)) {
+                if(!posn(objEgo, 40, 107, 56, 135)) {
                     print("You should get closer.")
                 }
             }
@@ -375,7 +375,7 @@ if(said("pour", "tea")) {
 }
 
 if(said("take", "tea")) {
-    if(posn(objEgo, 49, 107, 56, 135)) {
+    if(posn(objEgo, 40, 107, 56, 135)) {
         if(equaln(vTeaPoured, valTrue)) {
             get(invTea)        
             erase(objTeaCup)
@@ -385,7 +385,7 @@ if(said("take", "tea")) {
             print("The cup is empty.")
         }
     }
-    if(!posn(objEgo, 49, 107, 56, 135)) {
+    if(!posn(objEgo, 40, 107, 56, 135)) {
         if(equaln(vTeaPoured, valTrue)) {
             print("You are not close enough.")
         }

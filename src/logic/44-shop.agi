@@ -77,6 +77,12 @@ if(equaln(vRoomInited, valFalse)) {
     reset(fRepairHead1)
     reset(fRepairHead2)
     reset(fRepairHead3)
+    reset(fRepairHead4)    
+    reset(fRepairSent)
+    reset(fRepairSent1)
+    reset(fRepairSent2)
+    reset(fRepairReturn1)
+    reset(fRepairReturn2)
     reset(fRepairDone)
     reset(fMiB)
 
@@ -197,8 +203,8 @@ if(isset(fRepairReturn2)) {
     move.obj(objShaft2, 84, 168, 1, fRepairReturn3)        
     assignn(vClockTicks, 0)
 
-    assignn(vBdMsgCount, 4)    
-    assignn(vBdMsgCount2, 5)    
+    assignn(vBdMsgCount, 6)    
+    assignn(vBdMsgCount2, 7)    
 }
 
 if(isset(fRepairReturn3)) {
@@ -212,9 +218,9 @@ if(isset(fRepairReturn3)) {
         addn(vBdMsgCount2, 2)
     }
     
-    if(greatern(vBdMsgCount, 14)) {
-        assignn(vBdMsgCount, 6)    
-        assignn(vBdMsgCount2, 7)
+    if(greatern(vBdMsgCount, 16)) {
+        assignn(vBdMsgCount, 8)    
+        assignn(vBdMsgCount2, 9)
 
         if(!isset(fMiBOnce)) {
             set(fMiBOnce)
@@ -230,7 +236,6 @@ if(isset(fRepairReturn3)) {
     assignn(vBdMsgCol2, 9)
     display.v(vBdMsgRow2, vBdMsgCol2, vBdMsgCount2)
 }
-
 
 if(isset(fMiB)) {
     reset(fMiB)
@@ -280,6 +285,8 @@ if(isset(fRogerFlashed)) {
     assignn(vRoomInited, valFalse)
     assignn(vCurrentRoom, picDavTrunkF0)   
     assignn(vEgoEdgeTouched, edgeNone)
+    print("A large man dressed in a black suit appears out of nowhere. He pulls a small pen like device from his pocket and clicks a button. In a flash of bright light you find yourself outside. You could swear you knew what was behind this door but you just can't remember.")
+    drop(invKeycard)
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
@@ -290,41 +297,35 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("look")) {
-    print("Lab")
+    print("You have found your way into some kind of lab where adventurers are made. There's an engineer here busy at work.")
 }
 
-// if(obj.in.box(objEgo, 10, 158, 30, 162)) {
-//     assignn(vEgoX, 100)
-//     assignn(vEgoY, 105)
-//     stop.cycling(objEgo)
-//     assignn(vRoomInited, valFalse)
-//     assignn(vCurrentRoom, picDavTrunkF0)   
-//     assignn(vEgoEdgeTouched, edgeNone)
-// }
-
-
 if(said("look", "room")) {
-    print("The Lab")
+    print("You have found your way into some kind of lab where adventurers are made. There's an engineer here busy at work.")
+}
+if(said("talk", "man")) {
+    print("You startle the engineer and he immediately calls out for 'SECURITY!!!'")
+    set(fMiB)
 }
 
 return()
 #message 1  "Lab"
 
-#message 4  "Incomming transmission"
-#message 5  "   "
+#message 6  "Incomming transmission"
+#message 7  "   "
 
-#message 6  "Markus Louw"
-#message 7  "My best to Sierra!"
+#message 8  "Markus Louw:"
+#message 9  "My best to Sierra!"
 
-#message 8  "Marco Giglio"
-#message 9  "Happy birthday!" 
+#message 10  "Marco Giglio:"
+#message 11  "Happy birthday!" 
 
-#message 10 "Andrea Tanguay"
-#message 11 "Long live adventures!"
+#message 12 "Andrea Tanguay:"
+#message 13 "Long live adventures!"
 
-#message 12  "Liz Cook: 40 years &"
-#message 13  "the hat still fits!" 
+#message 14  "Liz Cook: 40 years &"
+#message 15  "the hat still fits!" 
 
-#message 14  "Russ Danner"
-#message 15  "Thank you Berta & Ken!" 
+#message 16  "Russ Danner: Thank you"
+#message 17  "Roberta & Ken!" 
 

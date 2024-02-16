@@ -439,8 +439,8 @@
 #define fHasHat 87
 #define fWearingHat 88
 #define fIsMorning 89
-#define fEyesOpen 119
-#define fFlashed 120
+#define fEyesOpen 150
+#define fFlashed 151
 
 // Screen specific. Assume these can be reset by anyone 
 // These should be 90 and up
@@ -545,7 +545,6 @@
 #define fWatchHasBeeped 92
 #define fBossGiveOrders 95
 #define fWearingSuit 96
-
 
 // consts  
 #define valTrue 1
