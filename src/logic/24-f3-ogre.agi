@@ -12,6 +12,8 @@ if(equaln(vRoomInited, valFalse)) {
 
     draw(objEgo)
 
+    reset(fGotcha)
+
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)){
             assignn(vEgoX, 100)

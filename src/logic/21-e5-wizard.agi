@@ -41,6 +41,7 @@ if(equaln(vRoomInited, 0)) {
     random(1, 100, vDiceRoll) 
 
     reset(fGotcha)
+    
     if(lessn(vDiceRoll, vEnemyChance)) {
         load.view(viewWizard)
         set.view(objMonster, viewWizard)

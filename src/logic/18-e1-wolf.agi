@@ -41,6 +41,8 @@ if(equaln(vRoomInited, valFalse)) {
     // add wider range to reduce instances of encounter
     random(1, 100, vDiceRoll) 
 
+    reset(fGotcha)
+
     if(lessn(vDiceRoll, vEnemyChance)) {
         load.view(viewWolf)
         set.view(objMonster, viewWolf)
