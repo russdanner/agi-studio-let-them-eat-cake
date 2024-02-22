@@ -253,6 +253,10 @@ if(said("look", "commode")) {
 if(said("look", "sink")) {
     print("The sink appears to be broken. Gross.")
 }
+if(said("wash", "hands")) {
+    print("The sink appears to be broken. Gross.")    
+}
+
 if(said("look", "mirror")) {
     print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. if the ladies don't find you handsome they should atleast find you handy. You thread that needle pretty well.")
 }

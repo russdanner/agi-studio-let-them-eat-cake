@@ -14,11 +14,39 @@ if(equaln(vRoomInited, valFalse)) {
     draw(objEgo)
 
     position.v(objEgo, vEgoX, vEgoY)    
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            position(objEgo, 20, 157)   
+            // position(objEgo, 120, 55)   
+        }
+    }
+}
+
+
+if(isset(fSysEgoOnWater)) {
+    // and by on water, we mean fall to your death
+    
+    load.view(viewRogerFall)
+    set.view(objEgo, viewRogerFall)
+    start.cycling(objEgo)   
+    stop.motion(objEgo)
+    get.posn(objEgo, vEgoX, vEgoY)
+    assignn(vEgoY, 135)
+    move.obj.v(objEgo, vEgoX, vEgoY, 6, fRogerSplat)
+}
+
+if(isset(fRogerSplat)) {
+    stop.motion(objEgo)
+    stop.cycling(objEgo)
+    assignn(vEgoDirection, directionStopped)
+    assignn(vDeathReason, valXsFall)
+    set(fDead)
 }
 
 if(equaln(vEgoDirection, directionStopped)) {
     stop.cycling(objEgo)
 }
+
 if(!equaln(vEgoDirection, directionStopped)) {
     start.cycling(objEgo)
 }
@@ -44,6 +72,24 @@ if(obj.in.box(objEgo, 150, 23, 160, 35)) {
     assignn(vCurrentRoom, picShop)   
     assignn(vEgoEdgeTouched, edgeNone)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

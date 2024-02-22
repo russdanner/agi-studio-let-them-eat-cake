@@ -296,6 +296,7 @@
 #define viewPersonM 109
 #define viewPersonMFlash 110
 #define viewFGM 111
+#define viewRogerFall 112
 
 
 #define viewTrunkDoor 107
@@ -346,6 +347,7 @@
 #define valXsBewareRandomHoles 14
 #define valXsStoned 15
 #define valXsOutOfAir 16
+#define valXsFall 17
 
 // vars
 // Engine Vars
@@ -521,6 +523,7 @@
 #define fMiB 115
 #define fMiBOnce 116
 #define fRogerFlashed 117
+#define fRogerSplat 118
 
 // some points are given for repeatable events
 // dont allow them to be repeated

@@ -285,7 +285,7 @@ if(isset(fRogerFlashed)) {
     assignn(vRoomInited, valFalse)
     assignn(vCurrentRoom, picDavTrunkF0)   
     assignn(vEgoEdgeTouched, edgeNone)
-    print("A large man dressed in a black suit appears out of nowhere. He pulls a small pen like device from his pocket and clicks a button. In a flash of bright light you find yourself outside. You could swear you knew what was behind this door but you just can't remember.")
+    print("A large man dressed in a black suit appears out of nowhere. He pulls a small pen like device from his pocket and clicks a button on it. In a flash of bright light you find yourself outside. You could swear you knew what was behind this door but you just can't remember what it was.")
     drop(invKeycard)
 }
 

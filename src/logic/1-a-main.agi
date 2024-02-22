@@ -427,6 +427,10 @@ if(!isset(fGameOver)) {
             set(fRogerDead)
             print("To your great surprise it turns out you cannot breathe under water. Having depleted the available oxygen in your lungs you drown after a short and awkward struggle.")
         }
+        if(equaln(vDeathReason, valXsFall)) {
+            set(fRogerDead)
+            print("You trip and fall from the stairs. Fortunately you are able to arrest the fall. Unfortunately you do so with your face. You really have to be more careful Roger.")
+        }
     }    
 }
 
