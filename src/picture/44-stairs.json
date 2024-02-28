@@ -207,8 +207,6 @@
     { "command": "DrawAbs", "args": [74, 111, 77, 108] },
     { "command": "DrawAbs", "args": [108, 80, 114, 73] },
     { "command": "DrawAbs", "args": [140, 48, 145, 41] },
-    { "command": "PriSetcolor", "args": [2] },
-    { "command": "DrawAbs", "args": [159, 31, 47, 143] },
     { "command": "PriSetcolor", "args": [0] },
     { "command": "DrawAbs", "args": [45, 138, 45, 135, 56, 132, 56, 132] },
     { "command": "End", "args": [] }
