@@ -39,3 +39,5 @@ The game source, the tools I've created, and the engine are all open source. Dow
 * Grant Simpson
 * Marco Giglio
 * arunciblespoon
+* Lance Ewing
+* Doomlazer
