@@ -1,0 +1,160 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View10);
+    load.view(View11);
+    load.view(View24);
+    load.view(View25);
+    animate.obj(ego);
+    set.view(ego, View11);
+    set.view(o9, View10);
+    draw(ego);
+    draw(o9);
+    stop.cycling(ego);
+    stop.cycling(o9);
+    set.cel(o9, 7);
+    position(o9, 20, 140);
+    set.priority(o9, 6);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 13;
+            v31 = 140;
+        }
+    }
+    reset(f93);
+    position.v(ego, v30, v31);
+    edgeEgoHit = NOT_HIT;
+    load.view(View74);
+    animate.obj(o1);
+    start.cycling(o1);
+    set.view(o1, View74);
+    draw(o1);
+}
+if (!has(i6)) {
+    random(1, 125, v37);
+    if (v37 == 40) {
+        position(o1, 32, 147);
+        draw(o1);
+    }
+    if (v37 != 40) {
+        erase(o1);
+    }
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (edgeEgoHit == BOTTOM_EDGE) {
+        get.posn(ego, v30, v31);
+        v31 = 55;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 10;
+    }
+    if (edgeEgoHit == LEFT_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 150;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 24;
+    }
+}
+if (isset(onWater)) {
+    if (!isset(f93)) {
+        set(f93);
+        stop.motion(ego);
+        set.view(ego, View24);
+        v29 = 7;
+        move.obj(ego, 25, 50, 2, f86);
+    }
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 228
+    print("The defining element of the setting is a crashed pod. The area is "
+          "lush and green. It feels alien and familiar all at once. The air is "
+          "breathable and amazingly clean. A river winds off to the east. "
+          "There's a base or fortress of some sort in the distance.");
+}
+if (said(2030)) {
+    [ WARNING DC02: Invalid word (2030) at position 238
+    if (isset(onWater)) {
+        print("The water is too fast here.");
+    }
+    if (!isset(onWater)) {
+        print("This may come as a surprise to you but you need to be IN the "
+              "water in order to go swimming.");
+    }
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 263
+    [ WARNING DC02: Invalid word (1015) at position 265
+    print("The defining element of the setting is a crashed pod. The area is "
+          "lush and green. It feels alien and familiar all at once. The air is "
+          "breathable and amazingly clean. A river winds off to the east. "
+          "There's a base or fortress of some sort in the distance.");
+}
+if (said(21, 2067)) {
+    [ WARNING DC02: Invalid word (21) at position 275
+    [ WARNING DC02: Invalid word (2067) at position 277
+    if (!has(i6)) {
+        if (posn(ego, 28, 142, 37, 145)) {
+            get(i6);
+            currentScore  += 1;
+            print("A small piece of highly reflective safety glass has broken "
+                  "away from the shield as it is known to do. You pick it up "
+                  "and carry it with you.");
+        }
+        if (!posn(ego, 28, 142, 37, 145)) {
+            print("You are not close enough.");
+        }
+    }
+}
+if (said(20, 2015)) {
+    [ WARNING DC02: Invalid word (20) at position 322
+    [ WARNING DC02: Invalid word (2015) at position 324
+    print("It WAS a pod. It's now a pile of twisted parts and wreckage that has "
+          "been thoroughly plowed into the ground. Your handiwork so-to-speak.");
+}
+if (said(20, 2094)) {
+    [ WARNING DC02: Invalid word (20) at position 334
+    [ WARNING DC02: Invalid word (2094) at position 336
+    print("The river is flowing off to the east and looks to have a strong "
+          "current.");
+}
+if (said(20, 2095)) {
+    [ WARNING DC02: Invalid word (20) at position 346
+    [ WARNING DC02: Invalid word (2095) at position 348
+    print("There's a base of fortress of some kind off in the distance. You "
+          "wonder how to get over there. Maybe there's someone there that could "
+          "help you out.");
+}
+if (said(2093, 2015)) {
+    [ WARNING DC02: Invalid word (2093) at position 358
+    [ WARNING DC02: Invalid word (2015) at position 360
+    print("You search the debris from the crash. You find nothing useful except "
+          "a small piece of glass.");
+}
+if (said(20, 2102)) {
+    [ WARNING DC02: Invalid word (20) at position 370
+    [ WARNING DC02: Invalid word (2102) at position 372
+    print("You search the debris from the crash. You find nothing useful except "
+          "a small piece of glass.");
+}
+return();
+
+[ Messages
+#message 1 "The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance."
+#message 2 "The water is too fast here."
+#message 3 "This may come as a surprise to you but you need to be IN the water in order to go swimming."
+#message 4 "The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance."
+#message 5 "A small piece of highly reflective safety glass has broken away from the shield as it is known to do. You pick it up and carry it with you."
+#message 6 "You are not close enough."
+#message 7 "It WAS a pod. It's now a pile of twisted parts and wreckage that has been thoroughly plowed into the ground. Your handiwork so-to-speak."
+#message 8 "The river is flowing off to the east and looks to have a strong current."
+#message 9 "There's a base of fortress of some kind off in the distance. You wonder how to get over there. Maybe there's someone there that could help you out."
+#message 10 "You search the debris from the crash. You find nothing useful except a small piece of glass."
+#message 11 "You search the debris from the crash. You find nothing useful except a small piece of glass."
+#message 12 "Crash si"

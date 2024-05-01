@@ -1,0 +1,170 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View0);
+    load.view(View20);
+    load.view(View47);
+    load.view(View49);
+    animate.obj(ego);
+    animate.obj(o6);
+    animate.obj(o7);
+    animate.obj(o8);
+    set.view(o6, View47);
+    set.view(o7, View47);
+    set.view(o8, View49);
+    draw(o6);
+    draw(o7);
+    draw(o8);
+    draw(ego);
+    stop.cycling(o6);
+    stop.cycling(o7);
+    stop.cycling(o8);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 119;
+            v31 = 126;
+        }
+    }
+    if (isset(f88)) {
+        set.view(ego, View20);
+    }
+    if (!isset(f88)) {
+        set.view(ego, View0);
+    }
+    set.view(o6, View47);
+    reset(f83);
+    reset(f95);
+    reset(f90);
+    reset(f97);
+    edgeEgoHit = NOT_HIT;
+    position.v(ego, v30, v31);
+    position(o6, 15, 40);
+    position(o7, 160, 180);
+    position(o8, 121, 130);
+    set.priority(o8, 4);
+    set.priority(ego, 11);
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (!isset(f86)) {
+    if (!obj.in.box(ego, 100, 116, 158, 130)) {
+        if (!isset(f91)) {
+            set(f91);
+            load.sound(Sound6);
+            sound(Sound6, f83);
+        }
+    }
+    if (isset(f83)) {
+        if (!isset(f95)) {
+            set(f95);
+        }
+    }
+    if (isset(f95)) {
+        reset(f83);
+        start.cycling(o6);
+        follow.ego(o6, 3, f90);
+        start.cycling(o7);
+        follow.ego(o7, 3, f97);
+    }
+    if (isset(f90)) {
+        erase(ego);
+        set(f86);
+        v29 = 13;
+        load.view(View101);
+        set.view(o6, View101);
+        start.cycling(o6);
+        start.cycling(o7);
+        wander(o6);
+        wander(o7);
+    }
+    if (isset(f97)) {
+        erase(ego);
+        set(f86);
+        v29 = 13;
+        load.view(View101);
+        set.view(o7, View101);
+        start.cycling(o6);
+        start.cycling(o7);
+        wander(o6);
+        wander(o7);
+    }
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 270
+    print("You are standing outside your house. It is dark out here. The "
+          "landscape is cast in pale moonlight and shadow.");
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 280
+    [ WARNING DC02: Invalid word (1015) at position 282
+    print("You are standing outside your house. It is dark out here. The "
+          "landscape is cast in pale moonlight and shadow.");
+}
+if (said(2017, 2004)) {
+    [ WARNING DC02: Invalid word (2017) at position 292
+    [ WARNING DC02: Invalid word (2004) at position 294
+    if (has(i1)) {
+        if (isset(f88)) {
+            print("You are already wearing it.");
+        }
+        if (!isset(f88)) {
+            set(f88);
+            set.view(ego, View20);
+            print("You put on your trusty hat!");
+            if (!isset(f130)) {
+                set(f130);
+                currentScore  += 1;
+            }
+        }
+    }
+    if (!has(i1)) {
+        print("You don't have it.");
+    }
+}
+if (said(2043, 2004)) {
+    [ WARNING DC02: Invalid word (2043) at position 351
+    [ WARNING DC02: Invalid word (2004) at position 353
+    if (has(i1)) {
+        if (!isset(f88)) {
+            print("You are not wearing your hat.");
+        }
+        if (isset(f88)) {
+            reset(f88);
+            set.view(ego, View0);
+        }
+    }
+    if (!has(i1)) {
+        print("You don't have it.");
+    }
+}
+if (said(2031, 2033)) {
+    [ WARNING DC02: Invalid word (2031) at position 396
+    [ WARNING DC02: Invalid word (2033) at position 398
+    if (obj.in.box(ego, 100, 116, 158, 130)) {
+        get.posn(ego, v30, v31);
+        v30 = 35;
+        v31 = 110;
+        reset(f88);
+        v34 = 0;
+        currentRoom = 1;
+    }
+    if (!obj.in.box(ego, 100, 116, 158, 130)) {
+        print("You are not close enough.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow."
+#message 2 "You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow."
+#message 3 "You are already wearing it."
+#message 4 "You put on your trusty hat!"
+#message 5 "You don't have it."
+#message 6 "You are not wearing your hat."
+#message 7 "You don't have it."
+#message 8 "You are not close enough."
+#message 9 "Grahams Lawn Nig"

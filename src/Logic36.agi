@@ -1,0 +1,371 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View11);
+    load.view(View12);
+    load.view(View40);
+    load.view(View43);
+    load.view(View41);
+    load.view(View42);
+    animate.obj(ego);
+    set.view(o10, View43);
+    set.view(o5, View40);
+    set.view(o6, View12);
+    set.view(o7, View12);
+    set.view(o8, View41);
+    set.view(o9, View41);
+    set.view(o11, View42);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 10;
+            v31 = 126;
+            set(f96);
+        }
+    }
+    if (isset(f96)) {
+        set.view(ego, View12);
+    }
+    if (!isset(f96)) {
+        set.view(ego, View11);
+        draw(o7);
+        position(o7, 43, 95);
+    }
+    draw(ego);
+    draw(o5);
+    draw(o10);
+    draw(o6);
+    draw(o8);
+    draw(o9);
+    draw(o11);
+    stop.cycling(o5);
+    stop.cycling(o10);
+    stop.cycling(o6);
+    stop.cycling(o7);
+    stop.cycling(o8);
+    stop.cycling(o9);
+    stop.cycling(o11);
+    set.loop(o9, 1);
+    set.loop(o6, 2);
+    set.loop(o7, 2);
+    position(o5, 100, 101);
+    position(o10, 55, 47);
+    position(o8, 60, 98);
+    position(o9, 67, 98);
+    position(o6, 35, 95);
+    position(o11, 6, 131);
+    set.priority(ego, 13);
+    edgeEgoHit = NOT_HIT;
+    position.v(ego, v30, v31);
+    reset(f95);
+}
+v42  += 1;
+if (obj.in.box(ego, 100, 95, 113, 110)) {
+    end.of.loop(o5, f102);
+    if (!isset(f102)) {
+        load.sound(Sound5);
+        sound(Sound5, f83);
+    }
+}
+if (!obj.in.box(ego, 100, 95, 113, 110)) {
+    if (isset(f102)) {
+        set.cel(o5, 0);
+        load.sound(Sound5);
+        sound(Sound5, f83);
+        reset(f102);
+        reset(f99);
+    }
+}
+if (posn(ego, 8, 123, 20, 128)) {
+    end.of.loop(o11, f99);
+    if (!isset(f99)) {
+        load.sound(Sound5);
+        sound(Sound5, f83);
+    }
+    reset(f99);
+}
+if (posn(ego, 21, 123, 25, 128)) {
+    set.cel(o11, 0);
+    if (isset(f99)) {
+        load.sound(Sound5);
+        sound(Sound5, f83);
+    }
+    reset(f99);
+}
+if (obj.in.box(ego, 2, 123, 5, 128)) {
+    get.posn(ego, v30, v31);
+    v30 = 146;
+    v31 = 141;
+    v34 = 0;
+    edgeEgoHit = NOT_HIT;
+    currentRoom = 2;
+}
+if (said(2050)) {
+    [ WARNING DC02: Invalid word (2050) at position 312
+    print("I'll get naked if you get naked. You go first.");
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 322
+    print("This is Inner Bay A of the station. There are currently no ships in "
+          "this bay and it is sealed and pressurized. Along the rear wall you "
+          "see a bathroom a closet and a pneumatic transport tube and car.");
+}
+if (said(2010)) {
+    [ WARNING DC02: Invalid word (2010) at position 332
+    if (posn(ego, 100, 95, 120, 103)) {
+        print("You have to admit this closet looks like a perfect place for a "
+              "nap. You also have to admit that you had a similar thought "
+              "earlier today. Given that you are running behind you decide with "
+              "a degree of sadness NOT to take another nap.");
+    }
+    if (!posn(ego, 100, 95, 120, 103)) {
+        print("You can't do that here. Perhaps a comfy janitorial closet would "
+              "be a more suitable.");
+    }
+}
+if (said(2016)) {
+    [ WARNING DC02: Invalid word (2016) at position 365
+    if (has(i5)) {
+        print("With this broom?! ROGER! This is a polished floor not some "
+              "crummy hanger deck. You know better. Ace janitor indeed.");
+    }
+    if (!has(i5)) {
+        print("You don't have the proper equipment on hand for that.");
+    }
+}
+if (said(2012, 2016)) {
+    [ WARNING DC02: Invalid word (2012) at position 390
+    [ WARNING DC02: Invalid word (2016) at position 392
+    if (has(i5)) {
+        print("With this broom?! ROGER! This is a polished floor not some "
+              "crummy hanger deck. You know better. Ace janitor indeed.");
+    }
+    if (!has(i5)) {
+        print("You don't have the proper equipment on hand for that.");
+    }
+}
+if (said(2018, 2021)) {
+    [ WARNING DC02: Invalid word (2018) at position 417
+    [ WARNING DC02: Invalid word (2021) at position 419
+    if (isset(f96)) {
+        print("You can't go in there wearing your EVA pressure suit. That could "
+              "get VERY messy.");
+    }
+    if (!isset(f96)) {
+        if (posn(ego, 71, 100, 85, 105)) {
+            load.sound(Sound5);
+            sound(Sound5, f83);
+            get.posn(ego, v30, v31);
+            v30 = 75;
+            v31 = 148;
+            edgeEgoHit = NOT_HIT;
+            v34 = 0;
+            currentRoom = 41;
+        }
+        if (!posn(ego, 71, 100, 85, 105)) {
+            print("Which one?");
+        }
+    }
+}
+if (said(21, 2045)) {
+    [ WARNING DC02: Invalid word (21) at position 489
+    [ WARNING DC02: Invalid word (2045) at position 491
+    if (isset(f96)) {
+        print("You are already wearing it.");
+    }
+    if (!isset(f96)) {
+        if (posn(ego, 35, 100, 50, 105)) {
+            set.view(ego, View12);
+            erase(o7);
+            set(f96);
+            print("Ok");
+        }
+        if (!posn(ego, 35, 100, 50, 105)) {
+            print("You are not close enough.");
+        }
+    }
+}
+if (said(2017, 2045)) {
+    [ WARNING DC02: Invalid word (2017) at position 546
+    [ WARNING DC02: Invalid word (2045) at position 548
+    if (isset(f96)) {
+        print("You are already wearing it.");
+    }
+    if (!isset(f96)) {
+        if (posn(ego, 35, 100, 50, 105)) {
+            set.view(ego, View12);
+            erase(o7);
+            set(f96);
+            print("Ok");
+        }
+        if (!posn(ego, 35, 100, 50, 105)) {
+            print("You are not close enough.");
+        }
+    }
+}
+if (said(2043, 2045)) {
+    [ WARNING DC02: Invalid word (2043) at position 603
+    [ WARNING DC02: Invalid word (2045) at position 605
+    if (!isset(f96)) {
+        print("You are not wearing it.");
+    }
+    if (isset(f96)) {
+        if (posn(ego, 35, 100, 50, 105)) {
+            if (!isset(f139)) {
+                set(f139);
+                currentScore  += 1;
+            }
+            load.view(View11);
+            set.view(ego, View11);
+            draw(o7);
+            position(o7, 43, 95);
+            reset(f96);
+        }
+        if (!posn(ego, 35, 100, 50, 105)) {
+            print("You are not close enough.");
+        }
+    }
+}
+if (said(2014, 2052)) {
+    [ WARNING DC02: Invalid word (2014) at position 676
+    [ WARNING DC02: Invalid word (2052) at position 678
+    if (isset(f96)) {
+        print("You can't get in the pneumatic transport tube car in your EVA "
+              "pressure suit.");
+    }
+    if (!isset(f96)) {
+        if (posn(ego, 56, 45, 68, 51)) {
+            erase(ego);
+            end.of.loop(o10, f95);
+        }
+        if (!posn(ego, 56, 45, 68, 51)) {
+            print("Get closer.");
+        }
+    }
+}
+if (said(21, 2052)) {
+    [ WARNING DC02: Invalid word (21) at position 729
+    [ WARNING DC02: Invalid word (2052) at position 731
+    if (isset(f96)) {
+        print("You can't get in the pneumatic transport tube car in your EVA "
+              "pressure suit.");
+    }
+    if (!isset(f96)) {
+        if (posn(ego, 56, 45, 68, 51)) {
+            erase(ego);
+            end.of.loop(o10, f95);
+        }
+        if (!posn(ego, 56, 45, 68, 51)) {
+            print("Get closer.");
+        }
+    }
+}
+if (isset(f95)) {
+    reset(f95);
+    reset(f91);
+    v42 = 0;
+    set(f97);
+    load.sound(Sound3);
+    sound(Sound3, f83);
+    ignore.blocks(o10);
+    move.obj(o10, 150, 47, 2, f91);
+}
+if (isset(f91)) {
+    edgeEgoHit = NOT_HIT;
+    v34 = 0;
+    currentRoom = 37;
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (said(1016, 2051)) {
+    [ WARNING DC02: Invalid word (1016) at position 844
+    [ WARNING DC02: Invalid word (2051) at position 846
+    if (posn(ego, 100, 95, 120, 103)) {
+        if (!has(i5)) {
+            print("You don't have one.");
+        }
+        if (has(i5)) {
+            currentScore  += 1;
+            drop(i5);
+            print("Ok");
+        }
+    }
+}
+if (said(21, 2051)) {
+    [ WARNING DC02: Invalid word (21) at position 886
+    [ WARNING DC02: Invalid word (2051) at position 888
+    if (!has(i5)) {
+        get(i5);
+        currentScore -= 1;
+        print("Ok");
+    }
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 910
+    [ WARNING DC02: Invalid word (1015) at position 912
+    print("This is Inner Bay A of the station. There are currently no ships in "
+          "this bay and it is sealed and pressurized. Along the rear wall you "
+          "see a bathroom a closet and a pneumatic transport tube and car.");
+}
+if (said(20, 2037)) {
+    [ WARNING DC02: Invalid word (20) at position 922
+    [ WARNING DC02: Invalid word (2037) at position 924
+    print("'Look' is really not really the verb you would prefer to associate "
+          "with StarCon bathrooms. It appears to be your standard issue StarCon "
+          "facilities. There is a button by the door and a small display which "
+          "indicates that the room is currently unoccupied.");
+}
+if (said(20, 2090)) {
+    [ WARNING DC02: Invalid word (20) at position 934
+    [ WARNING DC02: Invalid word (2090) at position 936
+    print("It sure looks comfy... I mean... like the pinnacle of storage "
+          "solutions.");
+}
+if (said(20, 2045)) {
+    [ WARNING DC02: Invalid word (20) at position 946
+    [ WARNING DC02: Invalid word (2045) at position 948
+    print("Good eye. There is a EVA pressure suit rack here.");
+}
+if (said(20, 2052)) {
+    [ WARNING DC02: Invalid word (20) at position 958
+    [ WARNING DC02: Invalid word (2052) at position 960
+    print("The pneumatic transport tube is used to move about the various areas "
+          "within the station. The car is currently waiting in this location.");
+}
+return();
+
+[ Messages
+#message 1 "I'll get naked if you get naked. You go first."
+#message 2 "This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a pneumatic transport tube and car."
+#message 3 "You have to admit this closet looks like a perfect place for a nap. You also have to admit that you had a similar thought earlier today. Given that you are running behind you decide with a degree of sadness NOT to take another nap."
+#message 4 "You can't do that here. Perhaps a comfy janitorial closet would be a more suitable."
+#message 5 "With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed."
+#message 6 "You don't have the proper equipment on hand for that."
+#message 7 "With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed."
+#message 8 "You don't have the proper equipment on hand for that."
+#message 9 "You can't go in there wearing your EVA pressure suit. That could get VERY messy."
+#message 10 "Which one?"
+#message 11 "You are already wearing it."
+#message 12 "Ok"
+#message 13 "You are not close enough."
+#message 14 "You are already wearing it."
+#message 15 "Ok"
+#message 16 "You are not close enough."
+#message 17 "You are not wearing it."
+#message 18 "You are not close enough."
+#message 19 "You can't get in the pneumatic transport tube car in your EVA pressure suit."
+#message 20 "Get closer."
+#message 21 "You can't get in the pneumatic transport tube car in your EVA pressure suit."
+#message 22 "Get closer."
+#message 23 "You don't have one."
+#message 24 "Ok"
+#message 25 "Ok"
+#message 26 "This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a pneumatic transport tube and car."
+#message 27 "'Look' is really not really the verb you would prefer to associate with StarCon bathrooms. It appears to be your standard issue StarCon facilities. There is a button by the door and a small display which indicates that the room is currently unoccupied."
+#message 28 "It sure looks comfy... I mean... like the pinnacle of storage solutions."
+#message 29 "Good eye. There is a EVA pressure suit rack here."
+#message 30 "The pneumatic transport tube is used to move about the various areas within the station. The car is currently waiting in this location."
+#message 31 "Inner B"

@@ -1,0 +1,195 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View11);
+    load.view(View43);
+    load.view(View12);
+    load.view(View36);
+    load.view(View71);
+    animate.obj(ego);
+    set.view(ego, View11);
+    set.view(o10, View43);
+    set.view(o6, View12);
+    set.view(o11, View36);
+    set.view(o5, View71);
+    draw(o10);
+    draw(o6);
+    draw(o11);
+    draw(o5);
+    stop.cycling(o10);
+    stop.cycling(o6);
+    stop.cycling(o11);
+    stop.cycling(o5);
+    if (v30 == 10) {
+        if (v31 == 126) {
+            set.view(ego, View12);
+            draw(ego);
+            position(o10, 55, 47);
+            set.priority(o10, 4);
+            position.v(ego, v30, v31);
+        }
+    }
+    if (v31 != 126) {
+        set.cel(o10, 4);
+        set.loop(o6, 2);
+        position(o6, 35, 95);
+        set(f97);
+        set.priority(o10, 4);
+        position(o10, 5, 47);
+        move.obj(o10, 55, 47, 2, f93);
+        load.sound(Sound4);
+        sound(Sound4, f83);
+    }
+    position(o11, 5, 129);
+    set.priority(o5, 15);
+    position(o5, 85, 118);
+    v42 = 0;
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 162
+    print("This is Outer Bay B. Along the rear wall is a pneumatic transport "
+          "tube and car. The bay is currently pressurized. A large ship sits in "
+          "the middle of the bay. A door exits the bay to the left.");
+}
+if (said(21, 2052)) {
+    [ WARNING DC02: Invalid word (21) at position 172
+    [ WARNING DC02: Invalid word (2052) at position 174
+    set.cel(o10, 0);
+    position(ego, 55, 50);
+    draw(ego);
+}
+if (said(2029, 2052)) {
+    [ WARNING DC02: Invalid word (2029) at position 191
+    [ WARNING DC02: Invalid word (2052) at position 193
+    set.cel(o10, 0);
+    position(ego, 55, 50);
+    draw(ego);
+}
+if (said(2014, 2052)) {
+    [ WARNING DC02: Invalid word (2014) at position 210
+    [ WARNING DC02: Invalid word (2052) at position 212
+    print("You pod is fueled and waiting... Better get out to the hanger.");
+}
+if (isset(f93)) {
+    reset(f93);
+    set.cel(o10, 1);
+}
+if (said(21, 2045)) {
+    [ WARNING DC02: Invalid word (21) at position 233
+    [ WARNING DC02: Invalid word (2045) at position 235
+    if (posn(ego, 28, 100, 50, 103)) {
+        set.view(ego, View12);
+        erase(o6);
+        set(f96);
+        currentScore  += 1;
+        print("Ok");
+    }
+    if (!posn(ego, 28, 100, 50, 103)) {
+        print("You can't reach it.");
+    }
+}
+if (said(2017, 2045)) {
+    [ WARNING DC02: Invalid word (2017) at position 278
+    [ WARNING DC02: Invalid word (2045) at position 280
+    if (posn(ego, 28, 100, 50, 103)) {
+        set.view(ego, View12);
+        erase(o6);
+        set(f96);
+        currentScore  += 1;
+        print("Ok");
+    }
+    if (!posn(ego, 28, 100, 50, 103)) {
+        print("You can't reach it.");
+    }
+}
+if (said(2043, 2045)) {
+    [ WARNING DC02: Invalid word (2043) at position 323
+    [ WARNING DC02: Invalid word (2045) at position 325
+    print("You don't have time for that.");
+}
+if (posn(ego, 8, 123, 20, 143)) {
+    end.of.loop(o11, f95);
+    load.sound(Sound5);
+    sound(Sound5, f83);
+}
+if (obj.in.box(ego, 21, 123, 25, 128)) {
+    set.cel(o11, 0);
+    load.sound(Sound5);
+    sound(Sound5, f83);
+}
+if (obj.in.box(ego, 2, 123, 5, 128)) {
+    get.posn(ego, v30, v31);
+    v30 = 146;
+    v31 = 141;
+    v34 = 0;
+    edgeEgoHit = NOT_HIT;
+    currentRoom = 39;
+}
+if (said(21, 2015)) {
+    [ WARNING DC02: Invalid word (21) at position 400
+    [ WARNING DC02: Invalid word (2015) at position 402
+    print("Not a chance Roger. This ship is not StarCon property. Your pod "
+          "awaits you in the hanger.");
+}
+if (said(2014, 2015)) {
+    [ WARNING DC02: Invalid word (2014) at position 412
+    [ WARNING DC02: Invalid word (2015) at position 414
+    print("Not a chance Roger. This ship is not StarCon property. Your pod "
+          "awaits you in the hanger.");
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 424
+    [ WARNING DC02: Invalid word (1015) at position 426
+    print("This is Shuttle Bay B. Along the rear wall is a pneumatic transport "
+          "tube and car. The bay is currently pressurized. A large ship sits in "
+          "the middle of the bay. A door exits the bay to the left.");
+}
+if (said(20, 2015)) {
+    [ WARNING DC02: Invalid word (20) at position 436
+    [ WARNING DC02: Invalid word (2015) at position 438
+    print("The ship is a well maintained vessel. It is currently fueling. "
+          "Unlike the typical StarCon shuttles you often find in these bays "
+          "this is a privately owned and piloted ship. There's a call sign "
+          "placard on the vessel. It reads: 'Cignus1' You wonder who owns this "
+          "beauty.");
+}
+if (said(20, 2052)) {
+    [ WARNING DC02: Invalid word (20) at position 448
+    [ WARNING DC02: Invalid word (2052) at position 450
+    print("The pneumatic transport tube is used to move about the various areas "
+          "within the station. A car is currently waiting in this location.");
+}
+if (said(20, 2045)) {
+    [ WARNING DC02: Invalid word (20) at position 460
+    [ WARNING DC02: Invalid word (2045) at position 462
+    if (!isset(f96)) {
+        print("An EVA pressure suit hangs on the rack.");
+    }
+    if (isset(f96)) {
+        print("Mosly you see the fog of your breath on the suit's visor.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "This is Outer Bay B. Along the rear wall is a pneumatic transport tube and car. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left."
+#message 2 "You pod is fueled and waiting... Better get out to the hanger."
+#message 3 "Ok"
+#message 4 "You can't reach it."
+#message 5 "Ok"
+#message 6 "You can't reach it."
+#message 7 "You don't have time for that."
+#message 8 "Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger."
+#message 9 "Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger."
+#message 10 "This is Shuttle Bay B. Along the rear wall is a pneumatic transport tube and car. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left."
+#message 11 "The ship is a well maintained vessel. It is currently fueling. Unlike the typical StarCon shuttles you often find in these bays this is a privately owned and piloted ship. There's a call sign placard on the vessel. It reads: 'Cignus1' You wonder who owns this beauty."
+#message 12 "The pneumatic transport tube is used to move about the various areas within the station. A car is currently waiting in this location."
+#message 13 "An EVA pressure suit hangs on the rack."
+#message 14 "Mosly you see the fog of your breath on the suit's visor."
+#message 15 "OutterB"

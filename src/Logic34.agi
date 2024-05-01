@@ -1,0 +1,154 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View49);
+    load.view(View20);
+    load.view(View60);
+    load.view(View61);
+    animate.obj(ego);
+    animate.obj(o7);
+    animate.obj(o9);
+    animate.obj(o8);
+    set.view(ego, View20);
+    set.view(o7, View60);
+    set.view(o9, View61);
+    set.view(o8, View49);
+    draw(o7);
+    draw(o9);
+    draw(o8);
+    draw(ego);
+    stop.cycling(o8);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 119;
+            v31 = 126;
+        }
+    }
+    edgeEgoHit = NOT_HIT;
+    position.v(ego, v30, v31);
+    set.priority(o8, 4);
+    position(o8, 121, 130);
+    set.priority(o7, 10);
+    position(o7, 160, 70);
+    move.obj(o7, 40, 40, 2, f95);
+    reset(f95);
+    reset(f96);
+    reset(f97);
+    if (!isset(f88)) {
+        set(f88);
+        set(f130);
+    }
+    reset(f93);
+    set.horizon(46);
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (isset(f93)) {
+        get.posn(ego, v30, v31);
+        v30 = 0;
+        v31 = 0;
+        v34 = 0;
+        currentRoom = 35;
+    }
+    if (!isset(f93)) {
+        print("You feel like you are forgetting something.");
+        if (edgeEgoHit == LEFT_EDGE) {
+            get.posn(ego, v30, v31);
+            v30 = 5;
+            egoDir = RIGHT;
+            set.dir(ego, egoDir);
+            position.v(ego, v30, v31);
+            edgeEgoHit = NOT_HIT;
+        }
+        if (edgeEgoHit == RIGHT_EDGE) {
+            get.posn(ego, v30, v31);
+            v30 = 150;
+            egoDir = LEFT;
+            set.dir(ego, egoDir);
+            position.v(ego, v30, v31);
+            edgeEgoHit = NOT_HIT;
+        }
+        if (edgeEgoHit == TOP_EDGE) {
+            get.posn(ego, v30, v31);
+            v31 = 50;
+            egoDir = DOWN;
+            set.dir(ego, egoDir);
+            position.v(ego, v30, v31);
+            edgeEgoHit = NOT_HIT;
+        }
+        if (edgeEgoHit == BOTTOM_EDGE) {
+            get.posn(ego, v30, v31);
+            v31 = 150;
+            egoDir = UP;
+            set.dir(ego, egoDir);
+            position.v(ego, v30, v31);
+            edgeEgoHit = NOT_HIT;
+        }
+    }
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (isset(f95)) {
+    reset(f95);
+    position(o9, 40, 40);
+    move.obj(o7, 0, 40, 1, f96);
+    move.obj(o9, 40, 105, 1, f97);
+}
+if (isset(f97)) {
+    reset(f97);
+    stop.cycling(o9);
+}
+if (isset(f96)) {
+    erase(o7);
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 332
+    print("This is the front lawn of your home.");
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 342
+    [ WARNING DC02: Invalid word (1015) at position 344
+    print("This is the front lawn of your home.");
+}
+if (said(2031, 2033)) {
+    [ WARNING DC02: Invalid word (2031) at position 354
+    [ WARNING DC02: Invalid word (2033) at position 356
+    print("No time to waste Graham. You'll be late for your meeting with the "
+          "king.");
+}
+if (said(2043, 2004)) {
+    [ WARNING DC02: Invalid word (2043) at position 366
+    [ WARNING DC02: Invalid word (2004) at position 368
+    print("No way. You love this hat... it stays.");
+}
+if (said(21, 2071)) {
+    [ WARNING DC02: Invalid word (21) at position 378
+    [ WARNING DC02: Invalid word (2071) at position 380
+    if (has(i10)) {
+        print("You have it. It's in your cap!");
+    }
+    if (!has(i10)) {
+        get(i10);
+        erase(o9);
+        currentScore  += 1;
+        load.view(View78);
+        set.view(ego, View78);
+        set(f93);
+        print("You pick up the feather. Recalling your dream you put this "
+              "feather in your cap. You feel ready for a real adventure.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You feel like you are forgetting something."
+#message 2 "This is the front lawn of your home."
+#message 3 "This is the front lawn of your home."
+#message 4 "No time to waste Graham. You'll be late for your meeting with the king."
+#message 5 "No way. You love this hat... it stays."
+#message 6 "You have it. It's in your cap!"
+#message 7 "You pick up the feather. Recalling your dream you put this feather in your cap. You feel ready for a real adventure."
+#message 8 "Grahams La"

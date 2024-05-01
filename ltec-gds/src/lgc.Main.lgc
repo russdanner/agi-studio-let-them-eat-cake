@@ -1,0 +1,598 @@
+[*********************************************************************
+[
+[ lgc.Main
+[
+[ This logic runs in every interpreter cycle and calls other logics 
+[ as needed.
+[
+[
+[ To better manage variables and flags, they are grouped into 
+[ reserved, global, local, and dynamic:
+[
+[ reserved = reserved by the interpreter 
+[     v0 - v26
+[     f0 - f16, f20
+[     s0, s1
+[
+[ global = usable and accessible by all logics
+[     v27 - v219
+[     f17 - f18, f21 - f219
+[     s2 - s11
+[
+[ local = usable and accessible by single room
+[     v220 - v239
+[     f220 - f239
+[     s12 - s19
+[
+[ dynamic = usable and accesible by a non-room logic
+[     v240 - v255
+[     f240 - f255
+[     s20 - s23
+[
+[ Local and dynamic variables/flags are reset whenever a new room is
+[ loaded.
+[
+[*********************************************************************
+
+[***************************************
+[ Global
+[***************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ ERROR CHECK
+[***************************************
+
+[ if one of the few trappable errors in AGI is encountered, the game
+[ is probably not able to continue; make an announcement to the player
+[ and quit
+if (errorNumber > 0) {
+  call(lgc.Error); 
+}
+[ check for start trace - remove this if you are not including
+[ debug features in your game
+if (startTrace) {
+  reset(startTrace);
+  set(enableTrace);
+  trace.on();
+}
+
+[***************************************
+[ GAME START
+[***************************************
+if (currentRoom == 0) {
+  [ when the game starts, the current room is zero, so all the
+  [ setup/initialization code goes here
+  [
+  [ restarting a game also sets currentRoom to zero, and also
+  [ requires some setup/initialization steps; begin with the
+  [ steps that are common to both
+  
+  [ default ego parameters
+  egoStepSize = 1;
+  egoStepTime = 1;
+  egoCycleTime = 1;
+  
+  [ set the max score value for the game
+  maxScore = MAX_SCORE_VALUE;
+  
+  [ set speed to normal (delay=2/20ths of a second)
+  animationInterval = NORMAL_SPEED;
+
+[ debug mode is disabled by default; if you want it enabled
+[ automatically at start of game, uncomment this line:
+[set(debugging);
+
+  [ now continue with specific steps depending on whether 
+  [ this is a restart, or the original game beginning
+  if (gameRestarted) {
+    [ steps needed specifically for a restart
+    disable.item(cDummy);
+    set(enableMenu);
+    
+    [ make sure the display area below the main game
+    [ picture is cleared
+    clear.lines(22, 24, BLACK);
+    
+    [ debug mode is disabled by default (remove these
+    [ lines before distributing your game if you are
+    [ not including debug mode)
+    if (!debugging) {
+      disable.item(cDebugHelp);
+      disable.item(cShowEgo);
+      disable.item(cShowPriority);
+      disable.item(cShowMem);
+      disable.item(cObjInfo);
+      disable.item(cXY);
+      disable.item(cGimme);      
+    }
+    
+    [ now go to first room (skip Intro)
+    [new.room(rm.Entrance);
+  } else {
+    [ if room is 0, and not restarting, it means
+    [ this is very beginning
+    
+    [ script size is 50 by default; that is usually adequate
+    [ however, if you wish use a different value (larger for
+    [ more complicated rooms that have lots of script entries,
+    [ or smaller if you want to conserve a (tiny) amount of
+    [ memory, set the script size before doing anything else)
+    [ script.size(50);
+
+    [ next build the game menu (again, before doing anything
+    [ else to keep room.0 memory block as small as possible)
+    set.menu("AGI");
+    set.menu.item("About      ", cAbout);
+    set.menu.item("Help   <F1>", cHelp);
+    set.menu("File");
+    set.menu.item("Save     <F5>", cSave);
+    set.menu.item("Restore  <F7>", cRestore);
+    set.menu.item("-------------", cDummy);
+    set.menu.item("Restart  <F9>", cRestart);
+    set.menu.item("Quit  <Alt-Z>", cQuit);
+    set.menu("Action");
+    set.menu.item("See Object  <F4>", cShowObj);
+    set.menu.item("Inventory  <Tab>", cStatus);
+    set.menu("Special");
+    set.menu.item("Sound On/Off      <F2>", cToggleSound);
+    [ if you are not planning on supporting CGA/RGB mode you 
+    [ can removethe toggle monitor menu item
+    if (machineType == PC && monitorType < 2) {
+      [ cga display can toggle monitor
+      set.menu.item("Color/BW      <Ctrl R>", cToggleMonitor);
+    }
+    set.menu.item("Clock On/Off      <F6>", cClock);
+    set.menu.item("Joystick      <Ctrl J>", cInitJoy);
+    set.menu.item("Pause            <Esc>", cPause);
+    set.menu("Speed");
+    set.menu.item("Normal ", cNormal);
+    set.menu.item("Slow   ", cSlow);
+    set.menu.item("Fast   ", cFast);
+    set.menu.item("Fastest", cFastest);
+    [ set up debug menu - remove this menu and its menu
+    [ items before distributing your game if you don't 
+    [ want to include the debug mode
+    set.menu("Debug");
+    set.menu.item("Debug Help        ", cDebugHelp);
+    set.menu.item("Ego Info   <Alt-E>", cShowEgo);
+    set.menu.item("Pri Screen <Alt-P>", cShowPriority);
+    set.menu.item("Memory     <Alt-M>", cShowMem);
+    set.menu.item("Obj Info   <Alt-I>", cObjInfo);
+    set.menu.item("Coords     <Alt-X>", cXY);
+    set.menu.item("Get All           ", cGimme);
+
+    [ submit the menu (which makes it ready to use)
+    submit.menu();
+    [ disable the separator lines
+    disable.item(cDummy);
+    
+    [ debug mode is disabled by default (remove these
+    [ lines before distributing your game if you are
+    [ not including debug mode)
+    if (!debugging) {
+      disable.item(cDebugHelp);
+      disable.item(cShowEgo);
+      disable.item(cShowPriority);
+      disable.item(cShowMem);
+      disable.item(cObjInfo);
+      disable.item(cXY);
+      disable.item(cGimme);      
+    }
+    
+    [ this logic sets up the game; assigns key controllers, 
+    [ configures the screen and other startup activities
+    call(lgc.Init);
+    
+    [ disable game functions at start; they will be re-enabled
+    [ after title screen is done
+    set(disableGameFunctions);
+    
+    [ start the game with the title(introduction) screen
+    new.room(rm.Title); 
+  }
+}
+
+[***************************************
+[ NEW ROOM
+[***************************************
+if (newRoom) {
+  [ Note: Everything other than logic 0 is discarded
+  [ from memory when new.room is executed
+
+  [ Load game specific functions logic into memory
+  load.logics(lgc.GameFunctions);
+
+  [ load the joystick logic (if you are not intending to support
+  [ the joystick you can remove this) 
+  load.logics(lgc.Joystick);
+  
+  [ load debug logic into memory (remove this line if
+  [ you don't want to include debug mode)
+  load.logics(lgc.Debug);
+
+  [ always animate ego object when starting a new room
+  animate.obj(ego);
+  [ load and set view (for more complex games, this will probably
+  [ need to be moved into each room's logic)
+  load.view.v(currentEgoView);
+  set.view.v(ego, currentEgoView);
+  
+  [ force clock value to update, if time is visible
+  statusSeconds = 255; 
+}
+
+[***************************************
+[ EVERY CYCLE
+[***************************************
+
+[************************
+[ DEATH CHECK
+[************************ 
+[ (usually happens a lot in AGI games...)
+if (deathType > 0) {
+  if (deathType != 255) {
+    [ first cycle since player died. disable some menu items
+    [ and load the death logic into memory as it will handle
+    [ player input from now on.
+    disable.item(cSave);
+    disable.item(cPause);
+    disable.item(cShowObj);
+    disable.item(cClock);
+    disable.item(cInitJoy);
+    disable.item(cNormal);
+    disable.item(cFastest);
+    disable.item(cFast);
+    disable.item(cSlow);
+
+    [ load the death handler logic 
+    load.logics(lgc.Death);
+  }
+    
+  [ call the death handler, where you update the screen
+  [ and display a message to player about how ego died
+  [ it also handles all player input while player is dead
+  call(lgc.Death);
+  
+  [ don't process any other commands after setting up the
+  [ new room
+  return();
+}
+
+[************************
+[ CHECK CONTROLLER INPUT
+[************************ 
+
+[ these controllers are only checked if game functions are active
+if (!disableGameFunctions) {
+  [ first check for joystick input (if you are not intending to support
+  [ the joystick you can remove this) 
+  call(lgc.Joystick);
+
+  [ MENU ACTIVATION
+  if (controller(cMenu)) {
+    menu.input();
+  }
+
+  [ TOGGLE MONITOR (MSDOS CGA displays only)
+  if (controller(cToggleMonitor)) {
+    toggle.monitor();
+  }
+
+  [ SAVE GAME
+  if ((controller(cSave) || 
+       said("save", "game") || 
+       said("save"))) {
+    save.game();
+  }
+
+  [ RESTORE GAME
+  if ((controller(cRestore) || 
+       said("restore", "game") || 
+       said("restore"))) {
+    restore.game();
+  }
+
+  [ RESTART GAME
+  if ((controller(cRestart) || 
+       said("restart", "game") || 
+       said("restart"))) {
+    restart.game();
+  }
+
+  [ SHOW HElP SCREEN
+  if ((controller(cHelp) || 
+       said("help"))) {
+    call(lgc.GameHelp);
+  }
+
+  [ ECHO INPUT LINE (draws previous input on input line)
+  if (controller(cEchoLine)) {
+    echo.line();
+  }
+
+  [ CLEAR INPUT LINE
+  if (controller(cCancelLine)) {
+    cancel.line();
+  }
+
+  [ INITIALIZE JOYSTICK
+  if (controller(cInitJoy)) {
+    init.joy();
+  }
+
+  [ PAUSE GAME
+  if ((controller(cPause) || 
+       said("pause", "game") || 
+       said("pause"))) {
+    pause();
+  }
+
+  [ SHOW INVENTORY ITEMS
+  if ((controller(cStatus) || 
+       said("inventory"))) {
+    status();
+  }
+
+  [ EXAMINE INVENTORY ITEMS
+  if ((controller(cShowObj) || 
+       said("look", "inventory"))) {
+    [ enable section of inventory items
+    set(enableItemSelect);
+    [ show inventory screen
+    status();
+    
+    [ player has chosen an object (value of SelectedItem)
+    [ note: SelectedItem is set to 255 if ESC is pressed 
+    [in the inventory screen
+    if (selectedItem > 0 && selectedItem != 255) {
+      if (selectedItem == 1) {
+        show.obj(1);
+      }
+      [ NOTE: If you have several objects, it is easier to give
+      [ them consecutive view numbers. Then you can do the
+      [ following (view numbers start at 220 for this
+      [ example):
+      [   v255 = selectedItem; v255 += 219;
+      [   show.obj.v(v255);
+      [ If you do this, you don't have to have separate statements for each
+      [ object.
+    }
+      
+    [ disable selection of inventory items
+    reset(enableItemSelect);
+  }
+
+  [ QUIT GAME
+  if ((controller(cQuit) || 
+       said("quit", "game") || 
+       said("quit"))) {
+    stop.sound();
+    quit(0);
+  }
+
+  [ SHOW GAME ABOUT MSG
+  if (controller(cAbout)) {
+    print(gameAboutMsg);
+  }
+}
+  
+[ these controllers always checked in each cycle
+
+[ ACTIVATE DEBUG MODE(remove these lines 
+[ before distributing your game if you are
+[ not including debug mode)
+if ((said("debug") || controller(cDebug))) {
+  [ if not in debug mode yet
+  if (!debugging) {
+    [ activate it
+    set(debugging);
+    [ display the game-about message
+    print(gameVersionMsg);
+    [ and interpreter version
+    version();
+    [ enable debug menu items
+    enable.item(cDebugHelp);
+    enable.item(cShowEgo);
+    enable.item(cShowPriority);
+    enable.item(cShowMem);
+    enable.item(cObjInfo);
+    enable.item(cXY);
+    enable.item(cGimme);
+  }
+}
+[ SPEED CHANGES
+if ((controller(cFastest) || 
+     said("fastest") || 
+     said("fastest", "speed"))) {
+  [ no delay between interpreter cycles
+  animationInterval = FASTEST_SPEED;
+}
+if ((controller(cFast) || 
+     said("fast") || 
+     said("fast", "speed"))) {
+  [ 1/20th of a second delay between interpreter cycles
+  animationInterval = FAST_SPEED;
+}
+if ((controller(cNormal) || 
+     said("normal") || 
+     said("normal", "speed"))) {
+  [ 2/20ths of a second delay between interpreter cycles
+  animationInterval = NORMAL_SPEED;
+}
+if ((controller(cSlow) || 
+     said("slow") || 
+     said("slow", "speed"))) {
+  [ 4/20ths of a second delay between interpreter cycles
+  animationInterval = SLOW_SPEED;
+}
+
+[ VOLUME UP
+[ remember that sound controls only have an effect on non-PC systems
+if (controller(cCrescendo) && attenuation > 0) {
+  --attenuation;   [ to increase volume
+                   [ lower sound attenuation variable
+}
+
+[ VOLUME DOWN
+if (controller(cDecrescendo) && attenuation < 15) {
+  ++attenuation;   [ to decrease volume
+                   [ raise sound attenuation variable
+}
+
+[ SOUND ON/OFF
+if (controller(cToggleSound)) {
+  toggle(soundOn);
+}
+
+[ TOGGLE CLOCK DISPLAY
+if ((said("clock") || controller(cClock))) {
+  toggle(clockOn);
+  if (!clockOn) {
+    [ remove clock text from status line
+    status.line.on();
+  } else {
+    [ make sure clock gets updated this cycle
+    statusSeconds = 255;
+  }
+}
+
+[***************************************
+[ NON-CONTROLLER CHECKS
+[***************************************
+
+[ if this is first cycle since restore game executed
+if (isset(gameRestored)) {
+  [ make sure input area is cleared
+  clear.lines(23, 24, 0);
+}
+
+[ if clock display is needed
+if (clockOn && !disableGameFunctions) {
+  [ update the displayed clock whenever
+  [ the second value changes
+  if (statusSeconds != elapsedSeconds) {
+    [ need to set correct color values
+    set.text.attribute(BLACK, WHITE);
+    [ update the clock
+    display(0, 18, " %v13:%v12|2:%v11|2 ");
+    [ restore default colors
+    set.text.attribute(WHITE, BLACK);
+    [ update the stored seconds value
+    statusSeconds = elapsedSeconds;
+  }
+}
+
+[ get ego's current position
+get.posn(ego, egoX, egoY); 
+
+[ AGI doesn't automatically stop cycling objects
+[ when they stop moving; it has to be done manually
+
+[ if forcing ego to cycle (which takes precedence over
+[ neverAnimateEgo flag)
+if (!isset(cycleEgoAtRest)) {
+  if (egoDir == STOPPED) {
+    [ stop cycling if ego is not moving
+    stop.cycling(ego);
+  } else {
+    [ check to see if ego has stopped moving
+    if (egoDir == oldEgoDir && 
+        egoX == oldEgoX && 
+        egoY == oldEgoY) {
+      [ ego hasn't moved or changed direction since last cycle
+      stop.cycling(ego);
+    } else {
+      [ ego is moving compared to last cycle; enable cycling
+     start.cycling(ego);
+    }
+  }
+}
+[ save ego motion data to compare in next cycle
+oldEgoX = egoX;
+oldEgoY = egoY;
+oldEgoDir = egoDir;
+
+[ ROOM SPECIFIC CODE
+[ IMPORTANT: This is not done automatically by the interpreter 
+[ so it has to be called manually by logic 0.
+call.v(currentRoom);
+
+[ if debugging is active                
+if (debugging) {
+  [ call the debugging logic
+  call(lgc.Debug);
+}
+
+[ run generic game functions (that apply to all rooms) only if
+[ they are not disabled
+if (!disableGameFunctions) {
+  call(lgc.GameFunctions); 
+}
+  
+[ check player input for unknown words
+if (haveInput && !haveMatch && unknownWordNum > 0) {
+  reset(haveInput);
+  [ copy word to a string
+  if (unknownWordNum == 1) {
+    word.to.string(unknownWord, w1);
+  }
+  if (unknownWordNum == 2) {
+    word.to.string(unknownWord, w2);
+  }
+  if (unknownWordNum == 3) {
+    word.to.string(unknownWord, w3);
+  }
+  if (unknownWordNum == 4) {
+    word.to.string(unknownWord, w4);
+  }
+  if (unknownWordNum == 5) {
+    word.to.string(unknownWord, w5);
+  }
+  if (unknownWordNum == 6) {
+    word.to.string(unknownWord, w6);
+  }
+  if (unknownWordNum == 7) {
+    word.to.string(unknownWord, w7);
+  }
+  if (unknownWordNum == 8) {
+    word.to.string(unknownWord, w8);
+  }
+  if (unknownWordNum == 9) {
+    word.to.string(unknownWord, w9);
+  }
+  if (unknownWordNum == 10) {
+    word.to.string(unknownWord, w10);
+  }
+  [ choose a random unknown word response
+  random(1, 3, work);
+  print.v(work);
+}
+  
+[ finally, if there is input that hasn't 
+[ been recognized yet
+if (haveInput && !haveMatch)  
+  {
+  [ generic message for unrecognized input
+  print("I don't understand your request.");
+  reset(haveInput);
+}
+
+[ save clock values for comparison purposes
+oldSeconds = elapsedSeconds;
+oldMinutes = elapsedMinutes;
+oldHours = elapsedHours;
+oldDays = elapsedDays;
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "I don't understand \"%s1\""
+#message 2 "\"%s1\" is not in my vocabulary."
+#message 3 "What is \"%s1\""

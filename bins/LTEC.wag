@@ -1,0 +1,776 @@
+#
+# WinAGI Game Property File
+#
+
+[General]
+   WinAGIVersion = 2.3
+   GameID = LTEC
+   Interpreter = 2.917
+   ResDir = src
+   CodePage = 437
+   Description = "40th Anniversary of KQI Fan Game"
+   Author = "One Guy From CrafterCMS: Russ Danner"
+   About = ""
+   GameVersion = 6
+   LastEdit = "5/1/2024 1:22:41 AM"
+   PlatformType = 2
+   Platform = "C:\Program Files\ScummVM\scummvm.exe"
+   DOSExec = ""
+   PlatformOpts = ""
+   UseResNames = True
+   UseLE = False
+   SierraSyntax = False
+   PowerPack = False
+   SourceFileExt = .agi
+
+[::BEGIN Logics::]
+
+[Logic0]
+   ID = Logic0
+   CRC32 = &H30D76FDD
+   CompCRC32 = &HCE06F8C3
+   Description = ""
+   IsRoom = False
+
+[Logic1]
+   ID = Main
+   Description = ""
+   CRC32 = &H56A3D3D9
+   CompCRC32 = &H0
+   IsRoom = True
+[::END Logics::]
+
+[::BEGIN Pictures::]
+
+[Picture0]
+   ID = Picture0
+   BkgdImg = ""
+   Description = ""
+
+[Picture1]
+   ID = Picture1
+   BkgdImg = ""
+   Description = ""
+
+[Picture2]
+   ID = Picture2
+   BkgdImg = ""
+   Description = ""
+
+[Picture3]
+   ID = Picture3
+   BkgdImg = ""
+   Description = ""
+
+[Picture4]
+   ID = Picture4
+   BkgdImg = ""
+   Description = ""
+
+[Picture5]
+   ID = Picture5
+   BkgdImg = ""
+   Description = ""
+
+[Picture6]
+   ID = Picture6
+   BkgdImg = ""
+   Description = ""
+
+[Picture7]
+   ID = Picture7
+   BkgdImg = ""
+   Description = ""
+
+[Picture8]
+   ID = Picture8
+   BkgdImg = ""
+   Description = ""
+
+[Picture9]
+   ID = Picture9
+   BkgdImg = ""
+   Description = ""
+
+[Picture10]
+   ID = Picture10
+   BkgdImg = ""
+   Description = ""
+
+[Picture11]
+   ID = Picture11
+   BkgdImg = ""
+   Description = ""
+
+[Picture12]
+   ID = Picture12
+   BkgdImg = ""
+   Description = ""
+
+[Picture13]
+   ID = Picture13
+   BkgdImg = ""
+   Description = ""
+
+[Picture14]
+   ID = Picture14
+   BkgdImg = ""
+   Description = ""
+
+[Picture15]
+   ID = Picture15
+   BkgdImg = ""
+   Description = ""
+
+[Picture16]
+   ID = Picture16
+   BkgdImg = ""
+   Description = ""
+
+[Picture17]
+   ID = Picture17
+   BkgdImg = ""
+   Description = ""
+
+[Picture18]
+   ID = Picture18
+   BkgdImg = ""
+   Description = ""
+
+[Picture19]
+   ID = Picture19
+   BkgdImg = ""
+   Description = ""
+
+[Picture20]
+   ID = Picture20
+   BkgdImg = ""
+   Description = ""
+
+[Picture21]
+   ID = Picture21
+   BkgdImg = ""
+   Description = ""
+
+[Picture22]
+   ID = Picture22
+   BkgdImg = ""
+   Description = ""
+
+[Picture23]
+   ID = Picture23
+   BkgdImg = ""
+   Description = ""
+
+[Picture24]
+   ID = Picture24
+   BkgdImg = ""
+   Description = ""
+
+[Picture25]
+   ID = Picture25
+   BkgdImg = ""
+   Description = ""
+
+[Picture26]
+   ID = Picture26
+   BkgdImg = ""
+   Description = ""
+
+[Picture27]
+   ID = Picture27
+   BkgdImg = ""
+   Description = ""
+
+[Picture28]
+   ID = Picture28
+   BkgdImg = ""
+   Description = ""
+
+[Picture29]
+   ID = Picture29
+   BkgdImg = ""
+   Description = ""
+
+[Picture30]
+   ID = Picture30
+   BkgdImg = ""
+   Description = ""
+
+[Picture31]
+   ID = Picture31
+   BkgdImg = ""
+   Description = ""
+
+[Picture32]
+   ID = Picture32
+   BkgdImg = ""
+   Description = ""
+
+[Picture33]
+   ID = Picture33
+   BkgdImg = ""
+   Description = ""
+
+[Picture34]
+   ID = Picture34
+   BkgdImg = ""
+   Description = ""
+
+[Picture35]
+   ID = Picture35
+   BkgdImg = ""
+   Description = ""
+
+[Picture36]
+   ID = Picture36
+   BkgdImg = ""
+   Description = ""
+
+[Picture37]
+   ID = Picture37
+   BkgdImg = ""
+   Description = ""
+
+[Picture38]
+   ID = Picture38
+   BkgdImg = ""
+   Description = ""
+
+[Picture39]
+   ID = Picture39
+   BkgdImg = ""
+   Description = ""
+
+[Picture40]
+   ID = Picture40
+   BkgdImg = ""
+   Description = ""
+
+[Picture41]
+   ID = Picture41
+   BkgdImg = ""
+   Description = ""
+
+[Picture42]
+   ID = Picture42
+   BkgdImg = ""
+   Description = ""
+
+[Picture43]
+   ID = Picture43
+   BkgdImg = ""
+   Description = ""
+[::END Pictures::]
+
+[::BEGIN Sounds::]
+
+[Sound0]
+   ID = Sound0
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound1]
+   ID = Sound1
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound2]
+   ID = Sound2
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound3]
+   ID = Sound3
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound4]
+   ID = Sound4
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound5]
+   ID = Sound5
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound6]
+   ID = Sound6
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound7]
+   ID = Sound7
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound8]
+   ID = Sound8
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound9]
+   ID = Sound9
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound10]
+   ID = Sound10
+   Key = 0
+   TPQN = 16
+   Description = ""
+
+[Sound11]
+   ID = Sound11
+   Key = 0
+   TPQN = 16
+   Description = ""
+[::END Sounds::]
+
+[::BEGIN Views::]
+
+[View0]
+   ID = View0
+   Description = ""
+
+[View1]
+   ID = View1
+   Description = ""
+
+[View2]
+   ID = View2
+   Description = ""
+
+[View3]
+   ID = View3
+   Description = ""
+
+[View4]
+   ID = View4
+   Description = ""
+
+[View5]
+   ID = View5
+   Description = ""
+
+[View6]
+   ID = View6
+   Description = ""
+
+[View7]
+   ID = View7
+   Description = ""
+
+[View8]
+   ID = View8
+   Description = ""
+
+[View9]
+   ID = View9
+   Description = ""
+
+[View10]
+   ID = View10
+   Description = ""
+
+[View11]
+   ID = View11
+   Description = ""
+
+[View12]
+   ID = View12
+   Description = ""
+
+[View13]
+   ID = View13
+   Description = ""
+
+[View14]
+   ID = View14
+   Description = ""
+
+[View15]
+   ID = View15
+   Description = ""
+
+[View16]
+   ID = View16
+   Description = ""
+
+[View17]
+   ID = View17
+   Description = ""
+
+[View18]
+   ID = View18
+   Description = ""
+
+[View19]
+   ID = View19
+   Description = ""
+
+[View20]
+   ID = View20
+   Description = ""
+
+[View21]
+   ID = View21
+   Description = ""
+
+[View22]
+   ID = View22
+   Description = ""
+
+[View23]
+   ID = View23
+   Description = ""
+
+[View24]
+   ID = View24
+   Description = ""
+
+[View25]
+   ID = View25
+   Description = ""
+
+[View26]
+   ID = View26
+   Description = ""
+
+[View27]
+   ID = View27
+   Description = ""
+
+[View28]
+   ID = View28
+   Description = ""
+
+[View29]
+   ID = View29
+   Description = ""
+
+[View30]
+   ID = View30
+   Description = ""
+
+[View31]
+   ID = View31
+   Description = ""
+
+[View32]
+   ID = View32
+   Description = ""
+
+[View33]
+   ID = View33
+   Description = ""
+
+[View34]
+   ID = View34
+   Description = ""
+
+[View35]
+   ID = View35
+   Description = ""
+
+[View36]
+   ID = View36
+   Description = ""
+
+[View37]
+   ID = View37
+   Description = ""
+
+[View38]
+   ID = View38
+   Description = ""
+
+[View39]
+   ID = View39
+   Description = ""
+
+[View40]
+   ID = View40
+   Description = ""
+
+[View41]
+   ID = View41
+   Description = ""
+
+[View42]
+   ID = View42
+   Description = ""
+
+[View43]
+   ID = View43
+   Description = ""
+
+[View44]
+   ID = View44
+   Description = ""
+
+[View45]
+   ID = View45
+   Description = ""
+
+[View46]
+   ID = View46
+   Description = ""
+
+[View47]
+   ID = View47
+   Description = ""
+
+[View48]
+   ID = View48
+   Description = ""
+
+[View49]
+   ID = View49
+   Description = ""
+
+[View50]
+   ID = View50
+   Description = ""
+
+[View51]
+   ID = View51
+   Description = ""
+
+[View52]
+   ID = View52
+   Description = ""
+
+[View53]
+   ID = View53
+   Description = ""
+
+[View54]
+   ID = View54
+   Description = ""
+
+[View55]
+   ID = View55
+   Description = ""
+
+[View56]
+   ID = View56
+   Description = ""
+
+[View57]
+   ID = View57
+   Description = ""
+
+[View58]
+   ID = View58
+   Description = ""
+
+[View59]
+   ID = View59
+   Description = ""
+
+[View60]
+   ID = View60
+   Description = ""
+
+[View61]
+   ID = View61
+   Description = ""
+
+[View62]
+   ID = View62
+   Description = ""
+
+[View63]
+   ID = View63
+   Description = ""
+
+[View64]
+   ID = View64
+   Description = ""
+
+[View65]
+   ID = View65
+   Description = ""
+
+[View66]
+   ID = View66
+   Description = ""
+
+[View67]
+   ID = View67
+   Description = ""
+
+[View68]
+   ID = View68
+   Description = ""
+
+[View69]
+   ID = View69
+   Description = ""
+
+[View70]
+   ID = View70
+   Description = ""
+
+[View71]
+   ID = View71
+   Description = ""
+
+[View72]
+   ID = View72
+   Description = ""
+
+[View73]
+   ID = View73
+   Description = ""
+
+[View74]
+   ID = View74
+   Description = ""
+
+[View75]
+   ID = View75
+   Description = ""
+
+[View76]
+   ID = View76
+   Description = ""
+
+[View77]
+   ID = View77
+   Description = ""
+
+[View78]
+   ID = View78
+   Description = ""
+
+[View79]
+   ID = View79
+   Description = ""
+
+[View80]
+   ID = View80
+   Description = ""
+
+[View81]
+   ID = View81
+   Description = ""
+
+[View82]
+   ID = View82
+   Description = ""
+
+[View83]
+   ID = View83
+   Description = ""
+
+[View84]
+   ID = View84
+   Description = ""
+
+[View85]
+   ID = View85
+   Description = ""
+
+[View86]
+   ID = View86
+   Description = ""
+
+[View87]
+   ID = View87
+   Description = ""
+
+[View88]
+   ID = View88
+   Description = ""
+
+[View89]
+   ID = View89
+   Description = ""
+
+[View90]
+   ID = View90
+   Description = ""
+
+[View91]
+   ID = View91
+   Description = ""
+
+[View92]
+   ID = View92
+   Description = ""
+
+[View93]
+   ID = View93
+   Description = ""
+
+[View94]
+   ID = View94
+   Description = ""
+
+[View95]
+   ID = View95
+   Description = ""
+
+[View96]
+   ID = View96
+   Description = ""
+
+[View97]
+   ID = View97
+   Description = ""
+
+[View98]
+   ID = View98
+   Description = ""
+
+[View99]
+   ID = View99
+   Description = ""
+
+[View100]
+   ID = View100
+   Description = ""
+
+[View101]
+   ID = View101
+   Description = ""
+
+[View102]
+   ID = View102
+   Description = ""
+
+[View103]
+   ID = View103
+   Description = ""
+[::END Views::]
+
+[Palette]
+   Color0 = &H00000000
+   Color1 = &H00AA0000
+   Color2 = &H0000AA00
+   Color3 = &H00AAAA00
+   Color4 = &H000000AA
+   Color5 = &H00AA00AA
+   Color6 = &H000055AA
+   Color7 = &H00AAAAAA
+   Color8 = &H00555555
+   Color9 = &H00FF5555
+   Color10 = &H0055FF00
+   Color11 = &H00FFFF55
+   Color12 = &H005555FF
+   Color13 = &H00FF55FF
+   Color14 = &H0055FFFF
+   Color15 = &H00FFFFFF

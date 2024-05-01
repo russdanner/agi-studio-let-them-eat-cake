@@ -1,0 +1,131 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View11);
+    load.view(View52);
+    load.view(View53);
+    load.view(View55);
+    load.view(View56);
+    load.view(View57);
+    load.view(View54);
+    load.view(View58);
+    load.view(View77);
+    load.view(View76);
+    load.view(View97);
+    load.view(View98);
+    animate.obj(ego);
+    set.view(ego, View11);
+    set.view(o1, View52);
+    set.view(o2, View53);
+    set.view(o3, View55);
+    set.view(o4, View56);
+    set.view(o5, View57);
+    set.view(o6, View54);
+    set.view(o7, View58);
+    set.view(o12, View76);
+    set.view(o13, View97);
+    set.view(o14, View98);
+    set.view(o8, View77);
+    set.view(o9, View77);
+    set.view(o10, View77);
+    set.view(o11, View77);
+    draw(ego);
+    draw(o1);
+    draw(o2);
+    draw(o3);
+    draw(o4);
+    draw(o5);
+    draw(o6);
+    draw(o7);
+    draw(o12);
+    draw(o13);
+    draw(o14);
+    draw(o8);
+    draw(o9);
+    draw(o10);
+    draw(o11);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 100;
+            v31 = 100;
+        }
+    }
+    position(o1, 50, 100);
+    position(o2, 50, 130);
+    position(o3, 60, 100);
+    position(o4, 60, 130);
+    position(o5, 80, 100);
+    position(o6, 80, 130);
+    position(o12, 50, 80);
+    position(o13, 90, 130);
+    position(o14, 100, 130);
+    stop.cycling(o3);
+    wander(o4);
+    wander(o1);
+    wander(o2);
+    wander(o5);
+    wander(o6);
+    wander(o12);
+    wander(o13);
+    wander(o14);
+    position(o7, 96, 89);
+    set.priority(o7, 4);
+    position.v(ego, v30, v31);
+    stop.cycling(o8);
+    stop.cycling(o9);
+    stop.cycling(o10);
+    set.cel(o8, 1);
+    set.cel(o9, 1);
+    set.cel(o10, 1);
+    position(o8, 33, 83);
+    position(o9, 140, 92);
+    position(o10, 26, 89);
+    v42 = 0;
+    set.horizon(43);
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (edgeEgoHit == RIGHT_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 15;
+        v31 = 120;
+        v34 = 0;
+        currentRoom = 31;
+    }
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+v42  += 1;
+if (v42 == 20) {
+    print("You walk into what looks like a huge party for KING Graham. He's "
+          "surrounded by friends and love ones.");
+}
+if (v42 == 100) {
+    set.cel(o11, 0);
+    set.priority(o11, 15);
+    stop.cycling(o11);
+    position(o11, 60, 100);
+    load.sound(Sound7);
+    sound(Sound7, f83);
+}
+if (v42 == 235) {
+    print("... THE KING!! Oh My ...");
+}
+if (v42 == 255) {
+    set(f89);
+    reset(f88);
+    get.posn(ego, v30, v31);
+    v30 = 15;
+    v31 = 120;
+    v34 = 0;
+    currentRoom = 1;
+}
+return();
+
+[ Messages
+#message 1 "You walk into what looks like a huge party for KING Graham. He's surrounded by friends and love ones."
+#message 2 "... THE KING!! Oh My ..."
+#message 3 "Throne ro"

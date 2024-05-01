@@ -1,0 +1,129 @@
+[*********************************************************************
+[
+[ lgc.GameFunctions
+[
+[ You should use this logic to perform any game specific functions, 
+[ such as counting down timers, etc and processing player input 
+[ related to the game (such as examining/using inventory items) and 
+[ any other things that are required in several rooms that you don't
+[ want to duplicate in each room.
+[
+[ This logic is called from logic 0, on every cycle, unless 
+[ disableGameFunctions is set.
+[
+[ Sierra did not use a separate logic for all this - they just did it
+[ all from logic 0. I find it is neater this way, as you can keep your
+[ game specific processing separate from other system-related things
+[ (although these may require some modification for your game). Also,
+[ this makes logic 0 easier to manage.
+[
+[*********************************************************************
+
+#define entryDelay v240
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ if a new room was visited for first time
+if (!egoExplored){
+[ && currentRoom != rm.Entrance) {
+  [ if ego has been in the room long enough, award one score point for
+  [ exploration
+  if (elapsedSeconds != oldSeconds) {
+    [ increment delay counter until ~2 seconds has passed
+    entryDelay += 1;
+    if (entryDelay == 2) {
+      print("You have explored a new room in this world! Good job!");
+      currentScore += 1;
+      set(egoExplored);
+      entryDelay = 0;
+    }
+  }
+}
+  
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+[ if player has provided input and match not yet found (regardless
+[ of any unknown words)
+[ do said tests
+if (haveInput && !haveMatch) {
+  [ put all generic said tests (those that apply in all rooms) here
+  
+  [ if player says any dirty words
+  if ((said("bad word", "rol") || 
+       said("anyword", "bad word", "rol") || 
+       said("anyword", "anyword", "bad word", "rol") || 
+       said("anyword", "anyword", "anyword", "bad word", "rol") || 
+       said("anyword", "anyword", "anyword", "anyword", "bad word", "rol") || 
+       said("anyword", "anyword", "anyword", "anyword", "anyword", "bad word", "rol"))) {
+    ++badWordCount;
+    if (badWordCount == 1) {
+      [ first warning
+      print("I am going to tell on you!");
+    }
+    if (badWordCount == 2) {
+      [second warning
+      print("Don't say anymore words like that!");
+    }
+    if (badWordCount == 3) {
+      [ no more warnings
+      print("Don't say I didn't warn you.");
+      quit(1);
+    }
+  }
+  
+  [ look cube
+  if (said("look", "cube")) {
+    if (has("strange colored cube")) {
+      show.obj(1);
+    } else {
+      print("You don't have it.");
+    }
+  }
+    
+  [ drop cube
+  if (said("drop", "cube")) {
+    if (has("strange colored cube")) {
+      print("The cube is too interesting; you decide to keep it.");
+    } else {
+      print("You don't have it.");
+    }
+  }
+    
+  [ anything cube
+  if ((said("anyword", "cube") || 
+      said("cube", "rol") ||
+      said("anyword", "anyword", "cube"))) {
+    print("There's no need to do anything with the cube.");
+  }
+  
+  [ look anything
+  if ((said("look", "anyword") || said("look", "anyword", "rol"))) {
+    print("What? Where?");
+  }
+  
+  [ get anything
+  if ((said("get", "anyword") || said("get", "anyword", "rol"))) {
+    print("You can't get that here!");
+  }
+  
+  [ use anything
+  if ((said("use", "anyword") || said("use", "anyword", "rol"))) {
+    print("What do you want me to do with it?");
+  }
+}
+  
+:done
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

@@ -1,0 +1,267 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View34);
+    load.view(View24);
+    load.view(View25);
+    load.view(View51);
+    load.view(View33);
+    load.view(View35);
+    animate.obj(ego);
+    animate.obj(o5);
+    set.view(o5, View35);
+    set.view(o6, View35);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            reset(f96);
+            reset(f91);
+            set.view(ego, View34);
+            draw(ego);
+            draw(o5);
+            draw(o6);
+            position(ego, 76, 0);
+            position(o5, 81, 0);
+            move.obj(o5, 81, 120, 3, f96);
+            move.obj(ego, 76, 147, 3, f95);
+            stop.cycling(ego);
+            set(f90);
+        }
+    }
+    if (v31 != 0) {
+        edgeEgoHit = NOT_HIT;
+        set.view(ego, View25);
+        set.view(o4, View33);
+        draw(ego);
+        draw(o5);
+        draw(o6);
+        draw(o4);
+        stop.cycling(o4);
+        position(o5, 81, 120);
+        position(o6, 81, 180);
+        position(o4, 76, 152);
+        set.cel(o4, 0);
+        position(ego, 81, 167);
+        reset(f90);
+    }
+    set.horizon(0);
+}
+if (isset(f96)) {
+    reset(f96);
+    position(o6, 81, 152);
+    end.of.loop(ego, f85);
+    return();
+}
+if (isset(onWater)) {
+    if (!isset(f94)) {
+        set(f93);
+    }
+}
+if (isset(f90)) {
+    if (egoDir != STOPPED) {
+        if (egoDir == LEFT) {
+            get.posn(ego, v30, v31);
+            v30  += 1;
+            egoDir = STOPPED;
+            position.v(ego, v30, v31);
+        }
+        if (egoDir == RIGHT) {
+            get.posn(ego, v30, v31);
+            v30 -= 1;
+            egoDir = STOPPED;
+            position.v(ego, v30, v31);
+        }
+        if (egoDir == UP) {
+            get.posn(ego, v30, v31);
+            v31  += 1;
+            egoDir = STOPPED;
+            position.v(ego, v30, v31);
+        }
+        if (egoDir == DOWN) {
+            get.posn(ego, v30, v31);
+            v31 -= 1;
+            egoDir = STOPPED;
+            position.v(ego, v30, v31);
+        }
+    }
+}
+if (said(2030)) {
+    [ WARNING DC02: Invalid word (2030) at position 270
+    if (isset(f93)) {
+        set.view(ego, View25);
+        reset(f93);
+        set(f94);
+        if (!isset(f135)) {
+            set(f135);
+            currentScore  += 1;
+        }
+        player.control();
+        print("ok");
+    }
+}
+if (said(2036)) {
+    [ WARNING DC02: Invalid word (2036) at position 306
+    if (!isset(f136)) {
+        set(f136);
+        currentScore  += 1;
+    }
+    get.posn(ego, v30, v31);
+    v31 = 50;
+    edgeEgoHit = NOT_HIT;
+    v34 = 0;
+    currentRoom = 29;
+}
+if (said(2058)) {
+    [ WARNING DC02: Invalid word (2058) at position 342
+    print("Climb what?");
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 352
+    print("You are at the bottom of the ancient well.");
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 362
+    [ WARNING DC02: Invalid word (1015) at position 364
+    print("You are at the bottom of the ancient well.");
+}
+if (said(2029, 2035)) {
+    [ WARNING DC02: Invalid word (2029) at position 374
+    [ WARNING DC02: Invalid word (2035) at position 376
+    set.view(o4, View33);
+    draw(o4);
+    stop.cycling(o4);
+    position(o4, 76, 152);
+    set.cel(o4, 0);
+    position(o6, 81, 180);
+    position(ego, 81, 167);
+    set(f93);
+    set.view(ego, View24);
+    start.cycling(ego);
+    if (!isset(f137)) {
+        set(f137);
+        currentScore  += 1;
+    }
+    reset(f90);
+}
+if (said(2014, 2035)) {
+    [ WARNING DC02: Invalid word (2014) at position 427
+    [ WARNING DC02: Invalid word (2035) at position 429
+    erase(o4);
+    set.view(ego, View34);
+    position(o6, 81, 180);
+    position(ego, 76, 181);
+    stop.cycling(ego);
+    set(f90);
+}
+if (said(21, 2035)) {
+    [ WARNING DC02: Invalid word (21) at position 454
+    [ WARNING DC02: Invalid word (2035) at position 456
+    if (isset(onWater)) {
+        erase(o4);
+        set.view(ego, View34);
+        position(o6, 81, 180);
+        position(ego, 76, 181);
+        stop.cycling(ego);
+        set(f90);
+    }
+    if (!isset(onWater)) {
+        set.view(o4, View33);
+        draw(o4);
+        stop.cycling(o4);
+        position(o4, 76, 152);
+        set.cel(o4, 0);
+        position(o6, 81, 180);
+        position(ego, 81, 167);
+        set(f93);
+        set(onWater);
+        set.view(ego, View24);
+        start.cycling(ego);
+        if (!isset(f137)) {
+            set(f137);
+            currentScore  += 1;
+        }
+        reset(f90);
+    }
+}
+if (said(2058, 2078)) {
+    [ WARNING DC02: Invalid word (2058) at position 539
+    [ WARNING DC02: Invalid word (2078) at position 541
+    if (!isset(f90)) {
+        print("You can't reach the rope from here.");
+    }
+    if (isset(f90)) {
+        set.view(o4, View33);
+        draw(o4);
+        stop.cycling(o4);
+        position(o4, 76, 152);
+        set.cel(o4, 0);
+        position(o6, 81, 180);
+        position(ego, 80, 123);
+        set.view(ego, View51);
+        reset(f90);
+        if (!isset(f134)) {
+            set(f134);
+            currentScore  += 1;
+        }
+    }
+}
+if (said(2058, 2039)) {
+    [ WARNING DC02: Invalid word (2058) at position 603
+    [ WARNING DC02: Invalid word (2039) at position 605
+    print("You try and climb the walls of the well but they are much too "
+          "slippery.");
+}
+if (said(2058, 2039)) {
+    [ WARNING DC02: Invalid word (2058) at position 615
+    [ WARNING DC02: Invalid word (2039) at position 617
+    print("You try and climb the walls of the well but they are much too "
+          "slippery.");
+}
+if (said(21, 2103)) {
+    [ WARNING DC02: Invalid word (21) at position 627
+    [ WARNING DC02: Invalid word (2103) at position 629
+    print("You take a deep breath.");
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (edgeEgoHit == TOP_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 42;
+        v31 = 109;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 14;
+        print("You climb out of the bucket and well. In a uncharacteristic "
+              "moment of thoughtfulness and remembering to 'be kind and rewind' "
+              "you laboriously return the bucket to its original location.");
+    }
+}
+if (said(20, 2094)) {
+    [ WARNING DC02: Invalid word (20) at position 675
+    [ WARNING DC02: Invalid word (2094) at position 677
+    print("It's water. Wet. Hydrated. Liquid even.");
+}
+if (said(20, 2078)) {
+    [ WARNING DC02: Invalid word (20) at position 687
+    [ WARNING DC02: Invalid word (2078) at position 689
+    print("The rope reaches up to the top of the well.");
+}
+if (said(20, 2035)) {
+    [ WARNING DC02: Invalid word (20) at position 699
+    [ WARNING DC02: Invalid word (2035) at position 701
+    print("You gotta admit that it is a nice bucket.");
+}
+return();
+
+[ Messages
+#message 1 "ok"
+#message 2 "Climb what?"
+#message 3 "You are at the bottom of the ancient well."
+#message 4 "You are at the bottom of the ancient well."
+#message 5 "You can't reach the rope from here."
+#message 6 "You try and climb the walls of the well but they are much too slippery."
+#message 7 "You try and climb the walls of the well but they are much too slippery."
+#message 8 "You take a deep breath."
+#message 9 "You climb out of the bucket and well. In a uncharacteristic moment of thoughtfulness and remembering to 'be kind and rewind' you laboriously return the bucket to its original location."
+#message 10 "It's water. Wet. Hydrated. Liquid even."
+#message 11 "The rope reaches up to the top of the well."
+#message 12 "You gotta admit that it is a nice bucket."
+#message 13 "Well Bott"

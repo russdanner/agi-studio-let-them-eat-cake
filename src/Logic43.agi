@@ -1,0 +1,128 @@
+if (v34 == 0) {
+    v34 = 1;
+    load.sound(Sound1);
+    sound(Sound1, f83);
+    load.view(View68);
+    set.view(o7, View68);
+    stop.cycling(o7);
+    draw(o7);
+    position(o7, 100, 0);
+    v30 = 100;
+    v31 = 165;
+    move.obj.v(o7, v30, v31, currentScore, enableTrace);
+    set.view(o8, View68);
+    stop.cycling(o8);
+    draw(o8);
+    set.cel(o8, 1);
+    position(o8, 3, 165);
+    v71 = 12;
+    v72 = 4;
+    v73 = 5;
+    v74 = 6;
+    v75 = 7;
+    v76 = 8;
+    v77 = 9;
+    v78 = 10;
+    v79 = 11;
+    v80 = 20;
+    v81 = 21;
+    v82 = 22;
+    v83 = 23;
+    v84 = 25;
+    v85 = 26;
+    v86 = 27;
+    v87 = 28;
+    display(23, 9, "let-them-eat-cake.com");
+    display(24, 8, "One Guy from CrafterCMS");
+}
+if (!posn(o7, 90, 160, 110, 165)) {
+    random(90, 110, v30);
+    move.obj.v(o7, v30, v31, currentScore, f96);
+}
+if (v80 > 6) {
+    animationInterval = 2;
+    display.v(v80, v71, v72);
+    if (v81 < 19) {
+        display.v(v81, v71, v73);
+    }
+    if (v82 < 19) {
+        display.v(v82, v71, v74);
+    }
+    if (v83 < 19) {
+        display.v(v83, v71, v75);
+    }
+    if (v84 < 19) {
+        display.v(v84, v71, v76);
+    }
+    if (v85 < 19) {
+        display.v(v85, v71, v77);
+    }
+    if (v86 < 19) {
+        display.v(v86, v71, v78);
+    }
+    if (v87 < 19) {
+        display.v(v87, v71, v79);
+    }
+}
+if (v80 <= 5) {
+    if (isset(f95)) {
+        display(11, 12, "Let Them Eat Cake");
+        display(13, 14, "Version 1.1");
+    }
+    if (!isset(f95)) {
+        display(6, 12, "A heartfelt thanks");
+        display(7, 12, "to the heroes &");
+        display(8, 12, "fans of Sierra.");
+        display(10, 12, "Early adventure");
+        display(11, 12, "games amazed us,");
+        display(12, 12, "taught us to solve");
+        display(13, 12, "problems and to");
+        display(14, 12, "be resilient.");
+    }
+}
+if (v80 > 5) {
+    v80 -= 1;
+    v81 -= 1;
+    v82 -= 1;
+    v83 -= 1;
+    v84 -= 1;
+    v85 -= 1;
+    v86 -= 1;
+}
+v42  += 1;
+if (v42 == 100) {
+    set(f95);
+}
+if (isset(f83)) {
+    display(17, 12, "Press Any Key");
+    display(18, 14, "to Contin");
+}
+if (have.key()) {
+    stop.sound();
+    animationInterval = 2;
+    clear.lines(23, 24, BLACK);
+    get.posn(ego, v30, v31);
+    v30 = 0;
+    v31 = 0;
+    edgeEgoHit = NOT_HIT;
+    v34 = 0;
+    currentRoom = 1;
+}
+return();
+
+[ Messages
+#message 1 "Title"
+#message 2 "let-them-eat-cake.com"
+#message 3 "One Guy from CrafterCMS"
+#message 4 "A heartfelt thanks"
+#message 5 "to the heroes &"
+#message 6 "fans of Sierra."
+#message 7 "Early adventure"
+#message 8 "games amazed us,"
+#message 9 "taught us to solve"
+#message 10 "problems and to"
+#message 11 "be resilient."
+#message 12 "Let Them Eat Cake"
+#message 13 "Version 1.1"
+#message 14 "Press Any Key"
+#message 15 "to Contin"

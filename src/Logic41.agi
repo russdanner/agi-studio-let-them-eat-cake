@@ -1,0 +1,284 @@
+if (v34 == 0) {
+    v34 = 1;
+    unanimate.all();
+    load.view(View11);
+    load.view(View36);
+    animate.obj(ego);
+    set.view(ego, View11);
+    set.view(o4, View36);
+    draw(ego);
+    draw(o4);
+    stop.cycling(o4);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 75;
+            v31 = 148;
+        }
+    }
+    edgeEgoHit = NOT_HIT;
+    position(o4, 52, 132);
+    set.priority(o4, 4);
+    position.v(ego, v30, v31);
+    reset(f90);
+    reset(f95);
+    reset(f91);
+    v36 = 0;
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (edgeEgoHit == RIGHT_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 15;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 36;
+    }
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 110
+    print("This room looks much better than it smells. There's a door to the "
+          "left which appears to be locked. A single commode sits in the middle "
+          "of the room. There's a sink and mirror to the right. The walls are "
+          "covered in colorful messages scrawled in a variety of alien "
+          "languages.");
+}
+if (said(2037)) {
+    [ WARNING DC02: Invalid word (2037) at position 120
+    set(f90);
+    v42 = 0;
+    load.view(View37);
+    set.view(ego, View37);
+    set.cel(ego, 0);
+    position(ego, 73, 126);
+    start.cycling(o3);
+    egoDir = *v73;
+    return();
+    put(i255, elapsedDays);
+    [ WARNING DC14: Expected block end does not align with calculated block end at position 149
+}
+++v224;
+v255 -= 17;
+return();
+if (has(i5)) {
+    print("Nah. This place is beyond hope.");
+}
+if (!has(i5)) {
+    print("You don't have the proper equipment on hand for that.");
+}
+if (said(2012, 2016)) {
+    [ WARNING DC02: Invalid word (2012) at position 177
+    [ WARNING DC02: Invalid word (2016) at position 179
+    if (has(i5)) {
+        print("Nah. This place is beyond hope.");
+    }
+    if (!has(i5)) {
+        print("You don't have the proper equipment on hand for that.");
+    }
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 204
+    [ WARNING DC02: Invalid word (1015) at position 206
+    print("This room looks much better than it smells. There's a door to the "
+          "left which appears to be locked. A single commode sits in the middle "
+          "of the room. There's a sink and mirror to the right. The walls are "
+          "covered in colorful messages scrawled in a variety of alien "
+          "languages.");
+}
+if (said(2066, 2037)) {
+    [ WARNING DC02: Invalid word (2066) at position 216
+    [ WARNING DC02: Invalid word (2037) at position 218
+    set(f90);
+    v42 = 0;
+    load.view(View37);
+    set.view(ego, View37);
+    set.cel(ego, 0);
+    position(ego, 73, 126);
+    start.cycling(o3);
+    egoDir = *v73;
+    return();
+    put(i255, elapsedDays);
+    [ WARNING DC14: Expected block end does not align with calculated block end at position 247
+}
+--machineType;
+return();
+v255 -= 2;
+return();
+print("The walls are cover in graffiti... err... wisdom captured in a variety "
+      "of alien languages.");
+if (said(2038, 2039)) {
+    [ WARNING DC02: Invalid word (2038) at position 262
+    [ WARNING DC02: Invalid word (2039) at position 264
+    v36  += 1;
+    if (v36 == 1) {
+        print("Use the force. Except here. Don't force anything in here.");
+    }
+    if (v36 == 2) {
+        print("Al-be back.");
+    }
+    if (v36 == 3) {
+        if (!isset(f140)) {
+            set(f140);
+            currentScore  += 1;
+        }
+        print("Look at you siting here reflecting.. Don't hurt yourself. You're "
+              "about as sharp as a rock.");
+    }
+    if (v36 == 4) {
+        print("Pull on paper for StarCon career application");
+    }
+    if (v36 == 5) {
+        print("N.S.P. yo!");
+    }
+    if (v36 == 6) {
+        print("Ken sent me");
+    }
+    if (v36 == 7) {
+        print("You're in the Smell Room. There is an enormous 'oyster' here. "
+              "Your nose should be tightly closed.");
+        v36 = 1;
+    }
+}
+if (isset(f90)) {
+    v42  += 1;
+    if (v42 == 10) {
+        set.loop(ego, 1);
+        set.cel(ego, 0);
+        end.of.loop(ego, f95);
+    }
+    if (v42 == 20) {
+        set.loop(ego, 0);
+        set.cel(ego, 0);
+        end.of.loop(ego, f95);
+    }
+    if (v42 == 50) {
+        set.loop(ego, 1);
+        set.cel(ego, 0);
+        end.of.loop(ego, f95);
+    }
+    if (v42 == 90) {
+        position(ego, 73, 126);
+        animationInterval = 2;
+        player.control();
+        set.view(ego, View11);
+        set.loop(ego, 0);
+        set.cel(ego, 0);
+        reset(f90);
+        reset(f95);
+        print("Whew! You feel relieved. It turns out you are as good at making "
+              "clogs as you are at clearing them.");
+    }
+}
+if (said(2042, 2040)) {
+    [ WARNING DC02: Invalid word (2042) at position 440
+    [ WARNING DC02: Invalid word (2040) at position 442
+    load.view(View38);
+    load.view(View39);
+    set.view(o3, View38);
+    set.view(o2, View39);
+    draw(o3);
+    draw(o2);
+    position(o2, 71, 126);
+    position(o3, 48, 150);
+    end.of.loop(o3, f95);
+    set(f91);
+    v42 = 0;
+}
+if (isset(f91)) {
+    v42  += 1;
+    if (v42 > 30) {
+        add.to.pic(View38, 0, 0, 47, 146, 6, 14);
+    }
+    if (v42 > 35) {
+        add.to.pic(View38, 0, 0, 47, 144, 6, 14);
+    }
+    if (v42 > 40) {
+        add.to.pic(View38, 0, 0, 47, 142, 6, 14);
+    }
+    if (v42 > 45) {
+        add.to.pic(View38, 0, 0, 47, 140, 6, 14);
+    }
+    if (v42 > 50) {
+        set(f86);
+        v29 = 6;
+        reset(f91);
+    }
+}
+if (isset(f86)) {
+    add.to.pic(View38, 0, 0, 47, 146, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 144, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 142, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 140, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 138, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 136, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 134, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 132, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 130, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 128, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 126, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 124, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 122, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 120, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 118, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 116, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 114, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 112, 6, 14);
+    add.to.pic(View38, 0, 0, 47, 110, 6, 14);
+}
+if (obj.in.box(ego, 68, 149, 84, 151)) {
+    get.posn(ego, v30, v31);
+    v30 = 73;
+    v31 = 100;
+    v34 = 0;
+    edgeEgoHit = NOT_HIT;
+    currentRoom = 36;
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (said(20, 2033)) {
+    [ WARNING DC02: Invalid word (20) at position 769
+    [ WARNING DC02: Invalid word (2033) at position 771
+    print("To your surprise it is as it appears... a door. The door is locked.");
+}
+if (said(20, 2040)) {
+    [ WARNING DC02: Invalid word (20) at position 781
+    [ WARNING DC02: Invalid word (2040) at position 783
+    print("A worthy adversary indeed. Clean it is not.");
+}
+if (said(20, 2091)) {
+    [ WARNING DC02: Invalid word (20) at position 793
+    [ WARNING DC02: Invalid word (2091) at position 795
+    print("The sink appears to be broken. Gross.");
+}
+if (said(20, 2092)) {
+    [ WARNING DC02: Invalid word (20) at position 805
+    [ WARNING DC02: Invalid word (2092) at position 807
+    print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. if "
+          "the ladies don't find you handsome they should atleast find you "
+          "handy. You thread that needle pretty well.");
+}
+return();
+
+[ Messages
+#message 1 "This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages."
+#message 2 "Nah. This place is beyond hope."
+#message 3 "You don't have the proper equipment on hand for that."
+#message 4 "Nah. This place is beyond hope."
+#message 5 "You don't have the proper equipment on hand for that."
+#message 6 "This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages."
+#message 7 "The walls are cover in graffiti... err... wisdom captured in a variety of alien languages."
+#message 8 "Use the force. Except here. Don't force anything in here."
+#message 9 "Al-be back."
+#message 10 "Look at you siting here reflecting.. Don't hurt yourself. You're about as sharp as a rock."
+#message 11 "Pull on paper for StarCon career application"
+#message 12 "N.S.P. yo!"
+#message 13 "Ken sent me"
+#message 14 "You're in the Smell Room. There is an enormous 'oyster' here. Your nose should be tightly closed."
+#message 15 "Whew! You feel relieved. It turns out you are as good at making clogs as you are at clearing them."
+#message 16 "To your surprise it is as it appears... a door. The door is locked."
+#message 17 "A worthy adversary indeed. Clean it is not."
+#message 18 "The sink appears to be broken. Gross."
+#message 19 "Hey buddy! That's you. Roger Wilco. Your mother always told ya.. if the ladies don't find you handsome they should atleast find you handy. You thread that needle pretty well."
+#message 20 "Bathro"

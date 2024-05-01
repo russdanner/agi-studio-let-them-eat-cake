@@ -1,0 +1,186 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View11);
+    load.view(View12);
+    load.view(View17);
+    load.view(View16);
+    animate.obj(ego);
+    set.view(o10, View16);
+    set.view(o11, View17);
+    start.cycling(ego);
+    stop.cycling(o11);
+    stop.cycling(o10);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            set(f96);
+        }
+    }
+    v30 = 150;
+    v31 = 144;
+    if (isset(f96)) {
+        set.view(ego, View12);
+    }
+    if (!isset(f96)) {
+        set.view(ego, View11);
+    }
+    draw(ego);
+    draw(o11);
+    draw(o10);
+    set.priority(o10, 12);
+    position(o11, 55, 109);
+    position(o10, 60, 100);
+    set.horizon(73);
+    position.v(ego, v30, v31);
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 123
+    print("You are standing in a large hanger bay. The hanger door is open to "
+          "the coldness of space. A shuttle sits in the middle of the bay.");
+}
+if (said(21, 2015)) {
+    [ WARNING DC02: Invalid word (21) at position 133
+    [ WARNING DC02: Invalid word (2015) at position 135
+    if (posn(ego, 49, 93, 60, 109)) {
+        currentScore  += 1;
+        reset(f93);
+        v34 = 0;
+        currentRoom = 5;
+        if (!has(i5)) {
+            print("You climb into the pod and shut the door.");
+        }
+        if (has(i5)) {
+            drop(i5);
+            print("As you go to climb into the pod you realize you still have a "
+                  "broom with you. Since you are in a hurry you discard the "
+                  "broom here. You'll catch some grief for that. Broomless you "
+                  "now climb into the pod and shut the door.");
+        }
+    }
+    if (!posn(ego, 49, 93, 60, 109)) {
+        print("You are too far away.");
+    }
+}
+if (said(2014, 2015)) {
+    [ WARNING DC02: Invalid word (2014) at position 196
+    [ WARNING DC02: Invalid word (2015) at position 198
+    if (posn(ego, 49, 93, 60, 109)) {
+        currentScore  += 1;
+        reset(f93);
+        v34 = 0;
+        currentRoom = 5;
+        if (!has(i5)) {
+            print("You climb into the pod and shut the door.");
+        }
+        if (has(i5)) {
+            drop(i5);
+            print("As you go to climb into the pod you realize you still have a "
+                  "broom with you. Since you are in a hurry you discard the "
+                  "broom here. You'll catch some grief for that. Broomless you "
+                  "now climb into the pod and shut the door.");
+        }
+    }
+    if (!posn(ego, 49, 93, 60, 109)) {
+        print("You are too far away.");
+    }
+}
+if (obj.in.box(ego, 151, 140, 155, 150)) {
+    get.posn(ego, v30, v31);
+    v30 = 10;
+    v31 = 126;
+    v34 = 0;
+    edgeEgoHit = NOT_HIT;
+    currentRoom = 38;
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (edgeEgoHit == TOP_EDGE) {
+        stop.cycling(ego);
+        set.view(ego, View12);
+        set.priority(ego, 4);
+        move.obj(ego, 100, 40, 1, f93);
+        v29 = 4;
+        set(f86);
+    }
+}
+if (isset(f93)) {
+    erase(ego);
+}
+if (!isset(f96)) {
+    if (!isset(f90)) {
+        get.posn(ego, v30, v31);
+        v30 = 100;
+        reset(f91);
+        reset(f94);
+        move.obj.v(ego, v30, v31, previousRoom, f90);
+    }
+}
+if (isset(f90)) {
+    if (!isset(f94)) {
+        set(f94);
+        stop.motion(ego);
+        load.view(View70);
+        set.view(ego, View70);
+        end.of.loop(ego, f91);
+    }
+}
+if (isset(f91)) {
+    erase(ego);
+    v29 = 3;
+    set(f86);
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 399
+    print("You are standing in a large hanger bay. The hanger door is open to "
+          "the coldness of space. A shuttle sits in the middle of the bay.");
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 409
+    [ WARNING DC02: Invalid word (1015) at position 411
+    print("You are standing in a large hanger bay. The hanger door is open to "
+          "the coldness of space. A shuttle sits in the middle of the bay.");
+}
+if (said(20, 2087)) {
+    [ WARNING DC02: Invalid word (20) at position 421
+    [ WARNING DC02: Invalid word (2087) at position 423
+    print("The panel is used to operate hanger bay equipment. It's meant to be "
+          "operated by personnel assigned to flight operations which does not "
+          "include janitorial staff.");
+}
+if (said(20, 2088)) {
+    [ WARNING DC02: Invalid word (20) at position 433
+    [ WARNING DC02: Invalid word (2088) at position 435
+    print("Ah space... 'It's beautiful and big. Really big. You just won't "
+          "believe how vastly hugely mind-bogglingly big it is.'");
+}
+if (said(20, 2015)) {
+    [ WARNING DC02: Invalid word (20) at position 445
+    [ WARNING DC02: Invalid word (2015) at position 447
+    print("Ain't she cute? It's a standard issue StarCon shuttle pod used for "
+          "short trips between stations and bases. In the extremely rare and "
+          "unlikely event of an emergency including but not limited to a "
+          "hostile encounter with a crew of marauding aliens it can be used as "
+          "an escape vehicle. That'll never happen. 'Anywho'.. She's all fueled "
+          "up and ready to go.");
+}
+return();
+
+[ Messages
+#message 1 "You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay."
+#message 2 "You climb into the pod and shut the door."
+#message 3 "As you go to climb into the pod you realize you still have a broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door."
+#message 4 "You are too far away."
+#message 5 "You climb into the pod and shut the door."
+#message 6 "As you go to climb into the pod you realize you still have a broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door."
+#message 7 "You are too far away."
+#message 8 "You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay."
+#message 9 "You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay."
+#message 10 "The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff."
+#message 11 "Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'"
+#message 12 "Ain't she cute? It's a standard issue StarCon shuttle pod used for short trips between stations and bases. In the extremely rare and unlikely event of an emergency including but not limited to a hostile encounter with a crew of marauding aliens it can be used as an escape vehicle. That'll never happen. 'Anywho'.. She's all fueled up and ready to go."
+#message 13 "Hanger Bay"

@@ -1,0 +1,189 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View18);
+    set.view(o1, View18);
+    stop.cycling(o1);
+    draw(o1);
+    set.cel(o1, 1);
+    position(o1, 106, 130);
+    set(f94);
+    print("After a skull-jarring landing you peer through the shattered viewing "
+          "port out on to a lush green landscape. It feels alien and familiar "
+          "all at once. You're in a fine mess now.");
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 38
+    print("You are in what was once a standard issue StarCon pod used from "
+          "small voyages and emergency escape scenarios. None of which seem to "
+          "accurately describe your current situation. Through the cracked "
+          "shield you see a lush green environment.");
+}
+if (said(2029)) {
+    [ WARNING DC02: Invalid word (2029) at position 48
+    if (isset(f94)) {
+        print("Oooof that's gonna leave a mark. Your seatbelt is still buckled.");
+    }
+    if (!isset(f94)) {
+        v30 = 0;
+        v31 = 0;
+        v34 = 0;
+        currentRoom = 8;
+        print("You climb out of the pod and discard your pressure suit.");
+    }
+}
+if (said(2093)) {
+    [ WARNING DC02: Invalid word (2093) at position 85
+    if (has(i13)) {
+        print("You search the pod in hopes of finding supplies. You find only "
+              "disappointment.");
+    }
+    if (!has(i13)) {
+        print("You search the pod. Wedged under the seat you find... a keycard.");
+    }
+}
+if (said(2093, 2015)) {
+    [ WARNING DC02: Invalid word (2093) at position 110
+    [ WARNING DC02: Invalid word (2015) at position 112
+    if (has(i13)) {
+        print("You search the pod in hopes of finding supplies. You find only "
+              "disappointment.");
+    }
+    if (!has(i13)) {
+        print("You search the pod. Wedged under the seat you find... a keycard.");
+    }
+}
+if (said(20, 2109)) {
+    [ WARNING DC02: Invalid word (20) at position 137
+    [ WARNING DC02: Invalid word (2109) at position 139
+    if (has(i13)) {
+        print("The keycard is a flat rectangular piece of synthetic material. "
+              "Written in tiny letters is 'B.H.S.S.'");
+    }
+    if (!has(i13)) {
+        print("What is this keycard that you speak of? You don't have a "
+              "keycard.");
+    }
+}
+if (said(21, 2109)) {
+    [ WARNING DC02: Invalid word (21) at position 164
+    [ WARNING DC02: Invalid word (2109) at position 166
+    if (has(i13)) {
+        print("You already have it.");
+    }
+    if (!has(i13)) {
+        print("Yoink! You can't help but wonder what highly secure area this "
+              "keycard will permit you to enter.");
+        get(i13);
+    }
+}
+if (said(20, 2015)) {
+    [ WARNING DC02: Invalid word (20) at position 193
+    [ WARNING DC02: Invalid word (2015) at position 195
+    print("You are in what was once a standard issue StarCon pod used from "
+          "small voyages and emergency escape scenarios. None of which seem to "
+          "accurately describe your current situation. Through the cracked "
+          "shield you see a lush green environment.");
+}
+if (said(2082, 2081)) {
+    [ WARNING DC02: Invalid word (2082) at position 205
+    [ WARNING DC02: Invalid word (2081) at position 207
+    reset(f94);
+    print("Ok");
+}
+if (said(2043, 2081)) {
+    [ WARNING DC02: Invalid word (2043) at position 219
+    [ WARNING DC02: Invalid word (2081) at position 221
+    reset(f94);
+    print("Ok");
+}
+if (said(2029, 2015)) {
+    [ WARNING DC02: Invalid word (2029) at position 233
+    [ WARNING DC02: Invalid word (2015) at position 235
+    if (isset(f94)) {
+        print("Oooof that's gonna leave a mark. Your seatbelt is still buckled.");
+    }
+    if (!isset(f94)) {
+        v30 = 0;
+        v31 = 0;
+        v34 = 0;
+        currentRoom = 8;
+        print("You climb out of the pod and discard your pressure suit.");
+    }
+}
+if (said(21, 2015)) {
+    [ WARNING DC02: Invalid word (21) at position 272
+    [ WARNING DC02: Invalid word (2015) at position 274
+    if (isset(f94)) {
+        print("Oooof that's gonna leave a mark. Your seatbelt is still buckled.");
+    }
+    if (!isset(f94)) {
+        v30 = 0;
+        v31 = 0;
+        v34 = 0;
+        currentRoom = 8;
+        print("You climb out of the pod and discard your pressure suit.");
+    }
+}
+if (said(20, 2027)) {
+    [ WARNING DC02: Invalid word (20) at position 311
+    [ WARNING DC02: Invalid word (2027) at position 313
+    print("What was once a console is now a twisted mess of broken buttons and "
+          "wires.");
+}
+if (said(20, 2024)) {
+    [ WARNING DC02: Invalid word (20) at position 323
+    [ WARNING DC02: Invalid word (2024) at position 325
+    print("She's locked in the on position but you are definately not going "
+          "anywhere.");
+}
+if (said(2023, 2024)) {
+    [ WARNING DC02: Invalid word (2023) at position 335
+    [ WARNING DC02: Invalid word (2024) at position 337
+    print("All of a sudden... nothing happens!");
+}
+if (said(2018, 2019)) {
+    [ WARNING DC02: Invalid word (2018) at position 347
+    [ WARNING DC02: Invalid word (2019) at position 349
+    print("Nothing happens");
+}
+if (said(20, 2021)) {
+    [ WARNING DC02: Invalid word (20) at position 359
+    [ WARNING DC02: Invalid word (2021) at position 361
+    print("The buttons are of no use at this point.");
+}
+if (said(2093, 2015)) {
+    [ WARNING DC02: Invalid word (2093) at position 371
+    [ WARNING DC02: Invalid word (2015) at position 373
+    print("You search the pod in hopes of finding supplies. You find only "
+          "disappointment.");
+}
+return();
+
+[ Messages
+#message 1 "After a skull-jarring landing you peer through the shattered viewing port out on to a lush green landscape. It feels alien and familiar all at once. You're in a fine mess now."
+#message 2 "You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment."
+#message 3 "Oooof that's gonna leave a mark. Your seatbelt is still buckled."
+#message 4 "You climb out of the pod and discard your pressure suit."
+#message 5 "You search the pod in hopes of finding supplies. You find only disappointment."
+#message 6 "You search the pod. Wedged under the seat you find... a keycard."
+#message 7 "You search the pod in hopes of finding supplies. You find only disappointment."
+#message 8 "You search the pod. Wedged under the seat you find... a keycard."
+#message 9 "The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B.H.S.S.'"
+#message 10 "What is this keycard that you speak of? You don't have a keycard."
+#message 11 "You already have it."
+#message 12 "Yoink! You can't help but wonder what highly secure area this keycard will permit you to enter."
+#message 13 "You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment."
+#message 14 "Ok"
+#message 15 "Ok"
+#message 16 "Oooof that's gonna leave a mark. Your seatbelt is still buckled."
+#message 17 "You climb out of the pod and discard your pressure suit."
+#message 18 "Oooof that's gonna leave a mark. Your seatbelt is still buckled."
+#message 19 "You climb out of the pod and discard your pressure suit."
+#message 20 "What was once a console is now a twisted mess of broken buttons and wires."
+#message 21 "She's locked in the on position but you are definately not going anywhere."
+#message 22 "All of a sudden... nothing happens!"
+#message 23 "Nothing happens"
+#message 24 "The buttons are of no use at this point."
+#message 25 "You search the pod in hopes of finding supplies. You find only disappointment."
+#message 26 "In Crashed P"

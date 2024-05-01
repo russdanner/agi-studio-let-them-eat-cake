@@ -1,0 +1,145 @@
+[*********************************************************************
+[
+[ lgc.Death
+[
+[ The death handler! This logic is run when ego dies, or otherwise
+[ ends the game. It handles the limited input that is allowed while
+[ ego is dead.
+[
+[ The deathType variable is used to track ego's death state:
+[
+[ 0: not dead
+[ 1: deathtype1
+[ 2: deathtype2
+[  etc.
+[ 255: death sequence complete
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ if deathType = 255, the death message has already been displayed
+[ if it's any other value, it determines how ego has died
+if (deathType != 255) { 
+  [ re-allow input
+  accept.input();
+  [ clear the input line
+  cancel.line();
+  [ no more player control
+  program.control();
+  
+  [ clear lines below the graphics display
+  clear.lines(22, 24, 0);
+  
+  [ start a timer to provide a delay before displaying a
+  [ 'thanks for playing' message
+  deathTimer = 25;
+
+  [ add message and code to deal with all the different
+  [ ways that ego can die
+  if (deathType == 1) {
+    print("You are now dead.");
+  }
+
+  [ add messages for other death types here
+  if (deathType == 2) {
+    print("You are dead by a different method.");
+  }
+  [ etc.
+
+  [ set deathType to 255 so the death message 
+  [ doesn't get shown again
+  deathType = 255;
+}
+
+[ decrement timer
+if (deathTimer > 0) {
+  --deathTimer;
+}
+  
+[ after a delay, show ending message to player
+if (deathTimer == 1) {
+  print("Thank you for playing this game. Better luck next time!");
+}
+
+[ menu access is allowed, to restart or restore
+if (controller(cMenu)) {
+  menu.input();
+}
+
+[ looking at help screen is allowed
+if ((controller(cHelp) || said("help"))) {
+  call(lgc.GameHelp);
+}
+
+[ restoring game is allowed
+if ((controller(cRestore) || 
+     said("restore", "game") || 
+     said("restore"))) {
+  restore.game();
+}
+
+[ restarting game is allowed
+if ((controller(cRestart) || 
+     said("restart", "game") || 
+     said("restart"))) {
+  restart.game();
+}
+
+[ looking at inventory is allowed
+if ((controller(cStatus) || 
+     said("inventory"))) {
+  status();
+}
+
+[ quitting is allowed
+if ((controller(cQuit) || 
+     said("quit"))) {
+  quit(0);
+}
+
+[ toggling monitor (if in CGA mode) is allowed
+if (controller(cToggleMonitor)) {
+  toggle.monitor();
+}
+
+[ showing 'about' message is allowed
+if (controller(cAbout)) {
+  print(gameAboutMsg);
+}
+
+[ toggling sound is allowed
+if (controller(cToggleSound)) {
+  toggle(soundOn);
+}
+
+[ allow user to enable/use debug mode
+if ((said("debug") || controller(cDebug))) {
+  if (!debugging) {
+    set(debugging);
+  }
+}
+if (debugging) {
+  call(lgc.Debug);
+}
+
+[ if player tries to input anything else
+if (haveInput && !haveMatch) {
+  [ it's not allowed
+  set(haveMatch);
+  print("You are dead! You can only restore, restart, quit the game"
+        " or view your inventory.");
+}
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

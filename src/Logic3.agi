@@ -1,0 +1,197 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View21);
+    load.view(View46);
+    animate.obj(o13);
+    set.view(o12, View21);
+    set.view(o13, View21);
+    set.view(o1, View46);
+    set.view(o2, View46);
+    set.view(o3, View46);
+    set.view(o4, View46);
+    set.loop(o13, 1);
+    start.cycling(o13);
+    draw(o13);
+    draw(o12);
+    draw(o1);
+    draw(o2);
+    draw(o3);
+    draw(o4);
+    set.loop(o2, 1);
+    set.loop(o3, 1);
+    set.loop(o4, 1);
+    set.cel(o2, 1);
+    set.cel(o3, 1);
+    set.cel(o4, 1);
+    set.cel(o1, 1);
+    stop.cycling(o1);
+    stop.cycling(o2);
+    stop.cycling(o3);
+    stop.cycling(o4);
+    position(o1, 108, 61);
+    position(o2, 55, 114);
+    position(o3, 75, 114);
+    position(o4, 95, 114);
+    set.priority(o1, 15);
+    set.priority(o2, 15);
+    set.priority(o3, 15);
+    set.priority(o4, 15);
+    if (isset(f92)) {
+        if (v39 == 0) {
+            start.cycling(o1);
+        }
+    }
+    v42 = 0;
+    reset(f91);
+    reset(f95);
+    reset(f95);
+}
+v42  += 1;
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 143
+    print("This is your StarCon communication device. It's built into the "
+          "pressure suit. It has 3 buttons on it A C and T. There's also a "
+          "incoming message indicator on the right side of the screen.");
+}
+if (said(2029)) {
+    [ WARNING DC02: Invalid word (2029) at position 153
+    v34 = 0;
+    currentRoom = 2;
+}
+if (said(20, 2046)) {
+    [ WARNING DC02: Invalid word (20) at position 167
+    [ WARNING DC02: Invalid word (2046) at position 169
+    print("This is your StarCon communication device. It's built into the "
+          "pressure suit. It has 3 buttons on it A C and T. There's also a "
+          "incoming message indicator on the right side of the screen.");
+}
+if (said(20, 2048)) {
+    [ WARNING DC02: Invalid word (20) at position 179
+    [ WARNING DC02: Invalid word (2048) at position 181
+    print("This is the very handy StarCon Communications app. You can use it to "
+          "talk with the crew or theoretically your friends if you had any.");
+}
+if (said(2018, 2048)) {
+    [ WARNING DC02: Invalid word (2018) at position 191
+    [ WARNING DC02: Invalid word (2048) at position 193
+    if (isset(f92)) {
+        if (v39 == 0) {
+            currentScore  += 1;
+            stop.cycling(o1);
+            set.cel(o1, 1);
+            position(o12, 57, 83);
+            set.cel(o2, 1);
+            set.cel(o4, 1);
+            set.cel(o3, 0);
+            set.loop(o12, 0);
+            v39 = 1;
+            position(o12, 57, 83);
+            position(o13, 72, 78);
+            set.priority(o13, 15);
+            set(f95);
+            v42 = 0;
+        }
+        if (v39 == 0) {
+            print("You have no new incoming messages.");
+        }
+    }
+    if (!isset(f92)) {
+        print("You have no incoming messages at this time.");
+    }
+}
+if (isset(f95)) {
+    if (v42 == 30) {
+        print("Roger Wilco! Have you been napping in the closet again!? You "
+              "were due at your next assignment an hour ago. Finish up "
+              "forthwith and get over to Orbital Station 3 on the double. A "
+              "Troelsdorian Muccaworm uh... 'explosively decompressed' in the "
+              "flight deck bathroom. The walls are covered with an unfathomable "
+              "amount of Monolith Burger Filet-o-Rat polycheese and Tang. Clean "
+              "it up! StarCon Control already has your flight plan secured. "
+              "Move it! Commander out.");
+    }
+    if (v42 == 255) {
+        reset(f95);
+        position(o12, 0, 0);
+        set.priority(o13, 1);
+        set.cel(o3, 1);
+    }
+}
+if (said(20, 2049)) {
+    [ WARNING DC02: Invalid word (20) at position 309
+    [ WARNING DC02: Invalid word (2049) at position 311
+    print("This is your time and temperature app.");
+}
+if (said(2018, 2049)) {
+    [ WARNING DC02: Invalid word (2018) at position 321
+    [ WARNING DC02: Invalid word (2049) at position 323
+    position(o12, 57, 83);
+    set.cel(o2, 1);
+    set.cel(o3, 1);
+    set.cel(o4, 0);
+    set.loop(o12, 3);
+}
+if (said(20, 2047)) {
+    [ WARNING DC02: Invalid word (20) at position 347
+    [ WARNING DC02: Invalid word (2047) at position 349
+    print("This app is the Al Lowe's CyberJoke 9000 joke machine. You Love this "
+          "guy even though you Har Har Hardly know him!");
+}
+if (said(2018, 2047)) {
+    [ WARNING DC02: Invalid word (2018) at position 359
+    [ WARNING DC02: Invalid word (2047) at position 361
+    position(o12, 57, 83);
+    set.cel(o3, 1);
+    set.cel(o4, 1);
+    set.cel(o2, 0);
+    set.loop(o12, 4);
+    v42 = 0;
+    set(f91);
+}
+if (isset(f91)) {
+    if (v42 == 30) {
+        random(1, 5, v35);
+        reset(f91);
+        set.cel(o2, 1);
+        if (v35 == 1) {
+            print("Working at the unemployment office must be tense knowing "
+                  "that if you get fired you still have to come in the next "
+                  "day! Find more jokes on the galactiWeb at AlLowe.com");
+        }
+        if (v35 == 2) {
+            print("I phoned the Tinnitus Help Line but there was no answer. It "
+                  "just kept ringing and ringing! Find more jokes on the "
+                  "galactiWeb at AlLowe.com");
+        }
+        if (v35 == 3) {
+            print("I shot a man with my paintball gun just to watch him dye. "
+                  "Find more jokes on the galactiWeb at AlLowe.com");
+        }
+        if (v35 == 4) {
+            print("If buckazoids don't grow on trees then why do banks have "
+                  "branches? Find more jokes on the galactiWeb at AlLowe.com");
+        }
+        if (v35 == 5) {
+            print("I'm pining for a good tree pun. I wish they were more "
+                  "poplar. Find more jokes on the galactiWeb at AlLowe.com");
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also a incoming message indicator on the right side of the screen."
+#message 2 "This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also a incoming message indicator on the right side of the screen."
+#message 3 "This is the very handy StarCon Communications app. You can use it to talk with the crew or theoretically your friends if you had any."
+#message 4 "You have no new incoming messages."
+#message 5 "You have no incoming messages at this time."
+#message 6 "Roger Wilco! Have you been napping in the closet again!? You were due at your next assignment an hour ago. Finish up forthwith and get over to Orbital Station 3 on the double. A Troelsdorian Muccaworm uh... 'explosively decompressed' in the flight deck bathroom. The walls are covered with an unfathomable amount of Monolith Burger Filet-o-Rat polycheese and Tang. Clean it up! StarCon Control already has your flight plan secured. Move it! Commander out."
+#message 7 "This is your time and temperature app."
+#message 8 "This app is the Al Lowe's CyberJoke 9000 joke machine. You Love this guy even though you Har Har Hardly know him!"
+#message 9 "Working at the unemployment office must be tense knowing that if you get fired you still have to come in the next day! Find more jokes on the galactiWeb at AlLowe.com"
+#message 10 "I phoned the Tinnitus Help Line but there was no answer. It just kept ringing and ringing! Find more jokes on the galactiWeb at AlLowe.com"
+#message 11 "I shot a man with my paintball gun just to watch him dye. Find more jokes on the galactiWeb at AlLowe.com"
+#message 12 "If buckazoids don't grow on trees then why do banks have branches? Find more jokes on the galactiWeb at AlLowe.com"
+#message 13 "I'm pining for a good tree pun. I wish they were more poplar. Find more jokes on the galactiWeb at AlLowe.com"
+#message 14 "Wat"

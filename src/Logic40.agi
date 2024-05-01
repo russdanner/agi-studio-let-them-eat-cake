@@ -1,0 +1,30 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View10);
+    animate.obj(o5);
+    set.view(o5, View10);
+    draw(o5);
+    stop.cycling(o5);
+    set.cel(o5, 5);
+    v43 = 0;
+    position(o5, 35, 100);
+    reset(f95);
+    load.sound(Sound10);
+    sound(Sound10, f83);
+}
+reposition(o5, previousRoom, currentScore);
+v43  += 1;
+if (v43 == 24) {
+    set(f95);
+}
+if (isset(f95)) {
+    set(f93);
+    v34 = 0;
+    currentRoom = 5;
+    erase(o5);
+}
+return();
+
+[ Messages
+#message 1 "Stati"

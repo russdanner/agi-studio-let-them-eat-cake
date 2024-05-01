@@ -1,0 +1,64 @@
+[*********************************************************************
+[ 
+[ lgc.RoomInit
+[ 
+[ This logic is called by room logics when they are executed for the
+[ first time after a new.room() command is encountered. It takes care 
+[ of the common items that are done for all rooms.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ HGC mode doesn't display an input line 
+if (monitorType != MONO) {
+  [ but on other displays, always clear the input line
+  [ and all lines below (removes ego's coords if shown) {
+  clear.lines(22, 24, 0);
+  [ the accept.input command will redraw the input
+  [ prompt and cursor
+  accept.input();
+}
+
+[ animate and reset the ego object
+[ (if your game is complicated, you might need
+[ to move this to each individual room, and 
+[ customize as needed)
+animate.obj(ego);
+step.size(ego, egoStepSize);
+step.time(ego, egoStepTime);
+cycle.time(ego, egoCycleTime);
+[ save current ego position
+get.posn(ego, egoX, egoY);
+observe.blocks(ego);
+observe.objs(ego);
+observe.horizon(ego);
+
+[ reset/restore any global variables/flags that
+[ need to be reset whenever a new room is encountered
+reset(musicDone);
+reset(soundDone);
+
+[ reset all local and dynamic variables/flags
+work = 255;
+:loop1
+reset.v(work);  [reset all local flags 
+*work = 0;      [reset all local variables
+--work;
+[ continue until below 220
+if (work > 219) {
+  goto(loop1);
+}
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

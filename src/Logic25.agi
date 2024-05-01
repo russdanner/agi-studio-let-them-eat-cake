@@ -1,0 +1,68 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View11);
+    animate.obj(ego);
+    set.view(ego, View11);
+    draw(ego);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 100;
+            v31 = 110;
+        }
+    }
+    position.v(ego, v30, v31);
+    edgeEgoHit = NOT_HIT;
+    set.horizon(50);
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (edgeEgoHit == BOTTOM_EDGE) {
+        get.posn(ego, v30, v31);
+        v31 = 55;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 26;
+    }
+    if (edgeEgoHit == LEFT_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 150;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 20;
+    }
+    if (edgeEgoHit == TOP_EDGE) {
+        get.posn(ego, v30, v31);
+        v31 = 150;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 24;
+    }
+    if (edgeEgoHit == RIGHT_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 5;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 10;
+    }
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 175
+    print("This is a lightly wooded area with rocky outcroppings.");
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 185
+    [ WARNING DC02: Invalid word (1015) at position 187
+    print("This is a lightly wooded area with rocky outcroppings.");
+}
+return();
+
+[ Messages
+#message 1 "This is a lightly wooded area with rocky outcroppings."
+#message 2 "This is a lightly wooded area with rocky outcroppings."
+#message 3 "Dwa"

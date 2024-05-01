@@ -1,0 +1,131 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    v35 = 0;
+    reset(f79);
+    load.view(View11);
+    load.view(View29);
+    animate.obj(ego);
+    set.view(ego, View11);
+    set.view(o14, View29);
+    set.view(o13, View29);
+    set.view(o12, View29);
+    set.view(o11, View29);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o12);
+    stop.cycling(o11);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o12);
+    draw(o11);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 140;
+            v31 = 70;
+        }
+    }
+    position(o14, 1, 43);
+    position(o13, 43, 43);
+    position(o12, 85, 43);
+    position(o11, 127, 43);
+    reset(f95);
+    edgeEgoHit = NOT_HIT;
+    position.v(ego, v30, v31);
+    set.horizon(50);
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (edgeEgoHit == BOTTOM_EDGE) {
+        get.posn(ego, v30, v31);
+        v31 = 55;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 21;
+    }
+    if (edgeEgoHit == TOP_EDGE) {
+        print("You're a bit foggy here. You decide to turn back.");
+        get.posn(ego, v30, v31);
+        v31 = 55;
+        egoDir = DOWN;
+        set.dir(ego, egoDir);
+        position.v(ego, v30, v31);
+        edgeEgoHit = NOT_HIT;
+    }
+    if (edgeEgoHit == RIGHT_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 5;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 25;
+    }
+    if (edgeEgoHit == LEFT_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 150;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 16;
+    }
+}
+if (isset(f95)) {
+    reset(f95);
+    set.loop(ego, 1);
+    set.cel(ego, 0);
+    animationInterval = 3;
+    v29 = 14;
+    end.of.loop(ego, f86);
+}
+if (!isset(f79)) {
+    if (egoDir == STOPPED) {
+        stop.cycling(ego);
+    }
+    if (egoDir != STOPPED) {
+        start.cycling(ego);
+    }
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 264
+    print("The area is heavily wooded. A large rock dominates the area.");
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 274
+    [ WARNING DC02: Invalid word (1015) at position 276
+    print("The area is heavily wooded. A large rock dominates the area.");
+}
+if (said(20, 2096)) {
+    [ WARNING DC02: Invalid word (20) at position 286
+    [ WARNING DC02: Invalid word (2096) at position 288
+    print("There's a thick fog here. It almost feels as much mental as it is "
+          "physical. The more you look into it the more lost you feel.");
+}
+if (said(20, 2100)) {
+    [ WARNING DC02: Invalid word (20) at position 298
+    [ WARNING DC02: Invalid word (2100) at position 300
+    print("There's a large rock here. A large hole can be seen at the base of "
+          "the rock.");
+}
+if (said(20, 2065)) {
+    [ WARNING DC02: Invalid word (20) at position 310
+    [ WARNING DC02: Invalid word (2065) at position 312
+    if (posn(ego, 88, 128, 104, 140)) {
+        set(f79);
+        load.view(View64);
+        set.view(ego, View64);
+        position(ego, 97, 138);
+        animationInterval = 3;
+        end.of.loop(ego, f95);
+    }
+    if (!posn(ego, 88, 128, 104, 140)) {
+        print("You can't see much from here.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You're a bit foggy here. You decide to turn back."
+#message 2 "The area is heavily wooded. A large rock dominates the area."
+#message 3 "The area is heavily wooded. A large rock dominates the area."
+#message 4 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 5 "There's a large rock here. A large hole can be seen at the base of the rock."
+#message 6 "You can't see much from here."
+#message 7 "Ro"

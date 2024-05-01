@@ -1,0 +1,124 @@
+[********************************************************************
+[
+[ rm.Title
+[
+[ This is an example of an intro screen, with scrolling credits and
+[ a theme song.
+[
+[********************************************************************
+
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[#define creditLine1                  o1
+[#define creditLine2                  o2
+
+[#define linePtr                    v220
+[#define xPos                       v221
+[#define yPos                       v222
+[#define objDir                     v223
+[#define speed                      v224
+#define tmpVal                     v225
+#define musicDelay                 v226
+
+[#define LP_DESIGNED                   0
+[#define LP_PROGRAMMED                 1
+[#define LP_GRAPHICS                   2
+[#define LP_BY                         3
+[#define LP_AND                        4
+[#define LP_NAME                       5
+[#define LP_GAP                        6
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+assignn(currentRoom, picTitle);
+
+
+if (newRoom) {
+  [ load, draw, discard the picture for the current room
+  load.pic(currentRoom);
+  draw.pic(currentRoom);
+  discard.pic(currentRoom);
+  
+  [ skip basic room initialization for title; all 
+  [ initialization will be done in this logic
+  [call(lgc.RoomInit);
+  
+  [ add room-specific initialization here
+  
+  [ set horizon to just above scroll window
+  set.horizon(55);
+  
+  [ disable player control and input
+  status.line.off();
+  prevent.input();
+  program.control();
+  
+   load.view(viewTitleFeather);
+   set.view(objTitleFeather, viewTitleFeather);
+   stop.cycling(objTitleFeather);
+   draw(objTitleFeather);
+   position(objTitleFeather, 100, 0);  
+   
+    [ by message
+    display(23, 9, m2);
+    display(24, 8, m3);
+}  
+
+
+
+
+
+
+
+  
+[ restart theme music if the intro screen is still showing
+[ and end was reached
+if (musicDone) {
+  [ reset the flag
+  reset(musicDone);
+  
+  [ start a timer to set a short delay before restarting music
+  musicDelay = 1;
+}
+  
+[ if music interlude is active
+if (musicDelay  > 0) {
+  [ increment interlude delay counter
+  musicDelay += 1;
+  
+  [ after 36 cycles
+  if (musicDelay == 36) {
+    [ reset timer
+    musicDelay = 0;
+    
+    [ play it again sam
+    sound(m.theme, musicDone);
+  }
+}
+  
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+[ no input during title sequence
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+[ check for a keypress or joystick button
+if ((have.key() || controller(keyJoyBtn1))) {
+  [ allow menu use
+  set(enableMenu);
+  [ game functions are no longer disabled
+  reset(disableGameFunctions);
+  [ begin game in starting room
+  [new.room(rm.Entrance); [ ##LE001##
+}
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

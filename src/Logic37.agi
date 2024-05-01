@@ -1,0 +1,236 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View11);
+    load.view(View43);
+    load.view(View44);
+    animate.obj(ego);
+    animate.obj(o2);
+    animate.obj(o3);
+    animate.obj(o4);
+    set.view(ego, View11);
+    set.view(o10, View43);
+    set.view(o1, View44);
+    set.view(o2, View44);
+    set.view(o3, View44);
+    set.view(o4, View44);
+    draw(o10);
+    draw(o1);
+    draw(o2);
+    draw(o3);
+    draw(o4);
+    stop.cycling(o10);
+    stop.cycling(o1);
+    stop.cycling(o2);
+    set.loop(o2, 1);
+    set.cel(o2, 0);
+    set.loop(o3, 2);
+    set.loop(o4, 3);
+    position(o1, 21, 92);
+    position(o2, 34, 130);
+    position(o3, 70, 110);
+    position(o4, 100, 110);
+    set.priority(o10, 4);
+    set.priority(o1, 4);
+    set.priority(o2, 4);
+    set.priority(o3, 4);
+    set.priority(o4, 4);
+    block(68, 90, 78, 112);
+    block(98, 90, 108, 112);
+    set(f99);
+    reset(f100);
+    reset(f92);
+    reset(f97);
+    reset(f93);
+    reset(f91);
+    reset(f101);
+    ignore.blocks(o10);
+    position(o10, 5, 72);
+    move.obj(o10, 95, 72, 2, f93);
+    load.sound(Sound4);
+    sound(Sound4, f83);
+}
+v42  += 1;
+if (!isset(f98)) {
+    if (egoDir == STOPPED) {
+        stop.cycling(ego);
+    }
+    if (egoDir != STOPPED) {
+        start.cycling(ego);
+    }
+}
+if (isset(f98)) {
+    egoDir = STOPPED;
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 188
+    print("This is the main control room for the station. It's alive with "
+          "activity. To the rear wall there is a pneumatic transport tube and "
+          "car. The StarCon Control personnel sit on the first level "
+          "coordinating flight activities and tram movements within the "
+          "station.");
+}
+if (said(21, 2052)) {
+    [ WARNING DC02: Invalid word (21) at position 198
+    [ WARNING DC02: Invalid word (2052) at position 200
+    if (isset(f101)) {
+        if (posn(ego, 91, 73, 109, 76)) {
+            erase(ego);
+            end.of.loop(o10, f92);
+            set(f97);
+            load.sound(Sound3);
+            sound(Sound3, f83);
+        }
+        if (!posn(ego, 91, 73, 109, 76)) {
+            print("You are not close enough.");
+        }
+    }
+    if (!isset(f101)) {
+        position(ego, 95, 74);
+        set.cel(o10, 0);
+        draw(ego);
+    }
+}
+if (said(2029, 2052)) {
+    [ WARNING DC02: Invalid word (2029) at position 265
+    [ WARNING DC02: Invalid word (2052) at position 267
+    position(ego, 95, 74);
+    set.cel(o10, 0);
+    draw(ego);
+}
+if (said(2014, 2052)) {
+    [ WARNING DC02: Invalid word (2014) at position 284
+    [ WARNING DC02: Invalid word (2052) at position 286
+    if (isset(f101)) {
+        if (posn(ego, 91, 73, 109, 76)) {
+            erase(ego);
+            end.of.loop(o10, f92);
+            set(f97);
+            load.sound(Sound3);
+            sound(Sound3, f83);
+        }
+        if (!posn(ego, 91, 73, 109, 76)) {
+            print("You are not close enough.");
+        }
+    }
+    if (!isset(f101)) {
+        print("You better speak with control first.");
+    }
+}
+if (obj.in.box(ego, 24, 86, 34, 89)) {
+    if (!isset(f100)) {
+        set(f100);
+        set(f98);
+        set(f99);
+        v42 = 0;
+        egoDir = STOPPED;
+    }
+}
+if (obj.in.box(ego, 24, 114, 34, 123)) {
+    if (!isset(f100)) {
+        set(f100);
+        set(f98);
+        v42 = 0;
+        reset(f99);
+    }
+}
+if (!obj.in.box(ego, 24, 86, 34, 123)) {
+    reset(f100);
+    reset(f98);
+}
+if (isset(f98)) {
+    if (isset(f99)) {
+        reposition(o1, currentRoom, previousRoom);
+        reposition(o2, currentRoom, previousRoom);
+        reposition(ego, currentRoom, previousRoom);
+    }
+    if (!isset(f99)) {
+        position(ego, 33, 75);
+        position(o1, 21, 92);
+        position(o2, 34, 130);
+    }
+    if (v42 == 26) {
+        reset(f98);
+    }
+}
+if (isset(f92)) {
+    if (isset(f101)) {
+        reset(f92);
+        move.obj(o10, 160, 72, 2, f91);
+    }
+}
+if (isset(f91)) {
+    reset(f91);
+    v34 = 0;
+    currentRoom = 38;
+}
+if (isset(f93)) {
+    reset(f93);
+    position(o10, 94, 72);
+    set.cel(o10, 1);
+}
+if (said(2053, 2054)) {
+    [ WARNING DC02: Invalid word (2053) at position 515
+    [ WARNING DC02: Invalid word (2054) at position 517
+    if (posn(ego, 94, 114, 106, 120)) {
+        if (isset(f101)) {
+            print("You better get moving Roger. I've got a lot on my plate "
+                  "here.");
+        }
+        if (!isset(f101)) {
+            set(f101);
+            currentScore  += 1;
+            v42 = 0;
+            print("Hey Roger. I'm sending you over to Hanger B for departure "
+                  "and transit to Orbital Station 3 per the Commander. A pod "
+                  "has been prepared and is standing by. Before you go... You "
+                  "know.. Swapping out my cave ball whistle for a Labion terror "
+                  "beast mating whistle was not funny... I mean... just look at "
+                  "these marks! I'll get you back for that at some point... "
+                  "Better watch it.");
+        }
+    }
+    if (!posn(ego, 94, 114, 106, 120)) {
+        if (posn(ego, 53, 114, 80, 120)) {
+            print("Can't you see I am busy here?");
+        }
+        if (!posn(ego, 53, 114, 80, 120)) {
+            print("Who?");
+        }
+    }
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 596
+    [ WARNING DC02: Invalid word (1015) at position 598
+    print("This is the main control room for the station. It's alive with "
+          "activity. To the rear wall there is a pneumatic transport tube and "
+          "car. The StarCon Control personnel sit on the first level "
+          "coordinating flight activities and tram movements within the "
+          "station.");
+}
+if (said(20, 2054)) {
+    [ WARNING DC02: Invalid word (20) at position 608
+    [ WARNING DC02: Invalid word (2054) at position 610
+    print("Keep your eyes to yourself Roger.");
+}
+if (said(20, 2052)) {
+    [ WARNING DC02: Invalid word (20) at position 620
+    [ WARNING DC02: Invalid word (2052) at position 622
+    print("The pneumatic transport tube enables personnel to move about the "
+          "station. It's destinations are managed by control. #tramIt");
+}
+return();
+
+[ Messages
+#message 1 "This is the main control room for the station. It's alive with activity. To the rear wall there is a pneumatic transport tube and car. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station."
+#message 2 "You are not close enough."
+#message 3 "You are not close enough."
+#message 4 "You better speak with control first."
+#message 5 "You better get moving Roger. I've got a lot on my plate here."
+#message 6 "Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it."
+#message 7 "Can't you see I am busy here?"
+#message 8 "Who?"
+#message 9 "This is the main control room for the station. It's alive with activity. To the rear wall there is a pneumatic transport tube and car. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station."
+#message 10 "Keep your eyes to yourself Roger."
+#message 11 "The pneumatic transport tube enables personnel to move about the station. It's destinations are managed by control. #tramIt"
+#message 12 "Control Ro"

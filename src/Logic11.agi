@@ -1,0 +1,156 @@
+if (v34 == 0) {
+    unanimate.all();
+    v34 = 1;
+    load.view(View11);
+    load.view(View24);
+    load.view(View25);
+    load.view(View29);
+    load.view(View60);
+    load.view(View61);
+    animate.obj(ego);
+    animate.obj(o7);
+    animate.obj(o9);
+    set.view(ego, View11);
+    set.view(o14, View29);
+    set.view(o13, View29);
+    set.view(o12, View29);
+    set.view(o11, View29);
+    set.view(o7, View60);
+    set.view(o9, View61);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o12);
+    stop.cycling(o11);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o12);
+    draw(o11);
+    draw(o7);
+    draw(o9);
+    if (v30 == 0) {
+        if (v31 == 0) {
+            v30 = 140;
+            v31 = 70;
+        }
+    }
+    position(o14, 1, 166);
+    position(o13, 43, 166);
+    position(o12, 85, 166);
+    position(o11, 127, 166);
+    reset(f95);
+    reset(f96);
+    reset(f97);
+    edgeEgoHit = NOT_HIT;
+    position.v(ego, v30, v31);
+    set.horizon(50);
+    if (!has(i10)) {
+        if (!has(i9)) {
+            if (has(i7)) {
+                if (has(i8)) {
+                    set.priority(o7, 10);
+                    position(o7, 160, 70);
+                    move.obj(o7, 40, 40, 2, f95);
+                }
+            }
+        }
+    }
+}
+if (isset(f95)) {
+    reset(f95);
+    position(o9, 40, 40);
+    move.obj(o7, 0, 40, 1, f96);
+    move.obj(o9, 40, 105, 1, f97);
+}
+if (isset(f97)) {
+    reset(f97);
+    stop.cycling(o9);
+}
+if (isset(f96)) {
+    erase(o7);
+}
+if (egoDir == STOPPED) {
+    stop.cycling(ego);
+}
+if (egoDir != STOPPED) {
+    start.cycling(ego);
+}
+if (edgeEgoHit != NOT_HIT) {
+    if (edgeEgoHit == BOTTOM_EDGE) {
+        print("You're a bit foggy here. You decide to turn back.");
+        get.posn(ego, v30, v31);
+        v31 = 155;
+        egoDir = UP;
+        set.dir(ego, egoDir);
+        position.v(ego, v30, v31);
+        edgeEgoHit = NOT_HIT;
+    }
+    if (edgeEgoHit == TOP_EDGE) {
+        get.posn(ego, v30, v31);
+        v31 = 150;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 10;
+    }
+    if (edgeEgoHit == RIGHT_EDGE) {
+        print("You're a bit foggy here. You decide to turn back.");
+        get.posn(ego, v30, v31);
+        v30 = 150;
+        egoDir = LEFT;
+        set.dir(ego, egoDir);
+        position.v(ego, v30, v31);
+        edgeEgoHit = NOT_HIT;
+    }
+    if (edgeEgoHit == LEFT_EDGE) {
+        get.posn(ego, v30, v31);
+        v30 = 150;
+        edgeEgoHit = NOT_HIT;
+        v34 = 0;
+        currentRoom = 26;
+    }
+}
+if (said(20)) {
+    [ WARNING DC02: Invalid word (20) at position 342
+    print("This is a forrested and rocky area. A think fog has developed to the "
+          "south and the east.");
+}
+if (said(20, 1015)) {
+    [ WARNING DC02: Invalid word (20) at position 352
+    [ WARNING DC02: Invalid word (1015) at position 354
+    print("This is a forrested and rocky area. A think fog has developed to the "
+          "south and the east.");
+}
+if (said(20, 2096)) {
+    [ WARNING DC02: Invalid word (20) at position 364
+    [ WARNING DC02: Invalid word (2096) at position 366
+    print("There's a thick fog here. It almost feels as much mental as it is "
+          "physical. The more you look into it the more lost you feel.");
+}
+if (said(21, 2071)) {
+    [ WARNING DC02: Invalid word (21) at position 376
+    [ WARNING DC02: Invalid word (2071) at position 378
+    if (!has(i10)) {
+        if (!has(i9)) {
+            if (posn(ego, 40, 101, 52, 107)) {
+                get(i10);
+                print("You reach down and pick up the fallen feather.");
+                currentScore  += 1;
+                erase(o9);
+            }
+            if (!posn(ego, 40, 101, 52, 107)) {
+                print("You can't reach it from here.");
+            }
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You're a bit foggy here. You decide to turn back."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "This is a forrested and rocky area. A think fog has developed to the south and the east."
+#message 4 "This is a forrested and rocky area. A think fog has developed to the south and the east."
+#message 5 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 6 "You reach down and pick up the fallen feather."
+#message 7 "You can't reach it from here."
+#message 8 "Bo"

@@ -1,0 +1,158 @@
+[*********************************************************************
+[
+[ rm.Outside
+[
+[ An example room with an automatic door and sound effects.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+#define oDoor                        o1
+
+#define fDoorOpen                  f220
+#define fDoorMoved                 f221
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+  [ load, draw and discard the picture resource for the current room
+  load.pic(currentRoom);
+  draw.pic(currentRoom);
+  discard.pic(currentRoom);
+  
+  [ do basic room initialization
+  call(lgc.RoomInit);
+  
+  [ add room-specific initialization here
+  
+  [ default horizon is 36; adjust it as needed
+  set.horizon(91);
+  
+  [ load views needed in the room
+  load.view(2);
+  
+  [ load sound effects
+  load.sound(s.DoorClose);
+  load.sound(s.DoorOpen);
+    
+  [ draw the door
+  animate.obj(oDoor);
+  set.view(oDoor, 2);
+  [ allow ego to pass over the threshold
+  ignore.objs(oDoor);
+  [ this allows the door to be placed on the horizon line
+  ignore.horizon(oDoor);
+  position(oDoor, 64, 91);
+  if (previousRoom == rm.Entrance) {
+    [ if coming from the entrance, show the door open
+    set.cel(oDoor, 5);
+    set(fDoorOpen);
+  } else {
+    [ if coming from somewhere else, show door closed
+    set.cel(oDoor, 0);
+    reset(fDoorOpen);
+  }
+  draw(oDoor);
+  [ when not moving, door doesn't need to be updated (to work 
+  [ correctly, stop.update must be called AFTER draw)
+  stop.update(oDoor);
+  
+  [ set ego parameters, if different from lgc.RoomInit
+  
+  [ AGI will automatically position ego on the opposite
+  [ edge when entering a new room, but if you want to manually
+  [ position ego, do that here, before drawing ego
+  
+  [ add ego to the room
+  draw(ego);
+  
+  [ display the picture on screen
+  show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ if ego is near the door and it's closed
+if (obj.in.box(ego, 64, 80, 92, 102) && !fDoorOpen) {
+  [ open it
+  set(fDoorOpen);
+  start.update(oDoor);
+  end.of.loop(oDoor, fDoorMoved);
+  [ play sound effect
+  sound(s.DoorOpen, soundDone);
+}
+
+[ if NOT near door and it's open
+if (!obj.in.box(ego, 64, 80, 92, 102) && fDoorOpen) {
+  [ close it
+  reset(fDoorOpen);
+  start.update(oDoor);
+  reverse.loop(oDoor, fDoorMoved);
+  [ play sound effect
+  sound(s.DoorClose, soundDone);
+}
+  
+[ if door has finished opening/closing
+if (fDoorMoved) {
+  [ reset the flag
+  reset(fDoorMoved);
+  [ door doesn't need to be updated anymore
+  stop.update(oDoor);
+}
+  
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+[ if player has provided input and match not yet found,
+[ do said tests
+if (haveInput && !haveMatch) {
+  [ look
+  if (said("look")) {
+    print("You see nothing of interest.");
+  }
+  
+  [ look door
+  if (said("look", "door")) {
+    print("It looks like a very sturdy wooden door.");
+  }
+  
+  [ open door
+  if (said("open", "door")) {
+    [ is ego close enough?
+    if (!center.posn(ego, 72, 88, 83, 99)) {
+      print("You are not close enough.");
+    } else {
+      print("The door opens automatically when you approach it.");
+    }
+  }
+    
+  [ look fence
+  if (said("look", "fence")) {
+    print("It is a tall white picket fence. Too tall to climb.");
+  }
+    
+  [ climb fence
+  if (said("climb", "fence")) {
+    print("It is too tall. Besides, there's nothing on the other side anyway.");
+  }
+}
+  
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+if (edgeEgoHit == TOP_EDGE) {
+  new.room(rm.Entrance);  [ ##LE001##
+}
+
+:done
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

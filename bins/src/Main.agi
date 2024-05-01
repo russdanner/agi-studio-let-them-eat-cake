@@ -1,0 +1,525 @@
+#include "0-defines.aqi"
+
+load.pic(0)
+draw.pic(0)
+show.pic()
+
+
+if(!isset(fGameInited)) {
+    set(fGameInited)   
+    reset(fGameOver)
+
+    assignn(vMaxPoints, 40)
+    assignn(vCurPoints, 0)  
+
+    assignn(vGameCycleDelay, 2)
+    assignn(vEnemyChance, 65)
+    assignn(vFeatherChance, 90)
+        
+    reset(fShowInvItem)
+    reset(fWaitForCloseInv)
+    assignn(vInvShowItem, invNone)
+}
+
+if(equaln(vCurrentRoom, 0)) {  
+    assignn(vRoomInited, valFalse)
+    // picTitle
+    assignn(vCurrentRoom, picTitle)
+}
+
+if(said("inv")) {
+    status()
+}
+
+if(said("save")) {
+    save_game()
+}
+
+if(said("restart")) {
+    restart_game()
+}
+
+if(said("restore")) {
+    restore_game()
+}
+if(said("help")) {
+    print("Use the arrow keys to move around. Type simple commands like LOOK ROOM or TAKE COINS to explore and act. You can SAVE and RESTORE progress.")
+}
+
+if(said("snyde")) {
+    print("Fint.. fint.. men bare ikke slikke noget.")
+
+    if(!isset(fPointsForTrols)) {
+        set(fPointsForTrols)
+        addn(vCurPoints, 1)    
+    }
+}
+if(said("craftercms")) {
+    if(!isset(fPointsForCrafter)) {
+        set(fPointsForCrafter)
+        addn(vCurPoints, 1)    
+    }
+    print("Hell yeah! Got content? Like open source? CrafterCMS.com check it out. Give the project a like on Github or reach out and tell 'em Russ sent ya.")
+}
+
+
+if(!equaln(vCurrentRoom, 0)) {
+    call.v(vCurrentRoom)
+}
+
+if(said("anyword")) {
+    print("You can't do that. At least not now.")
+}
+
+if(said("cut", "feather")) {
+    if(has(invFeather)) {
+        if(has(invGlass)) {
+            if(isset(fGlassIsSharp)) {
+                drop(invFeather)
+                get(invQuill)
+                addn(vCurPoints, 1)    
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP.")
+            }
+            if(!isset(fGlassIsSharp)) {
+                print("The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying.")
+            }
+        }
+    }
+}
+if(said("make", "quill")) {
+    if(has(invFeather)) {
+        if(has(invGlass)) {
+            if(isset(fGlassIsSharp)) {
+                drop(invFeather)
+                get(invQuill)
+                addn(vCurPoints, 1)    
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP.")
+            }
+            if(!isset(fGlassIsSharp)) {
+                print("The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying.")
+            }
+        }
+    }
+}
+
+if(said("make", "invitation")) {
+    if(!has(invQuill)) {
+        print("How do you intend to do that?")
+    }
+    if(!has(invInk)) {
+        print("How do you intend to do that?")
+    }
+    if(!has(invPaper)) {
+        print("How do you intend to do that?")
+    }
+    if(has(invQuill)) {
+        if(has(invInk)) {
+            if(has(invPaper)) {
+                drop(invPaper)
+                get(invInvitation)
+                addn(vCurPoints, 1)
+                print("Dipping the quill into the ink you cleverly pen an invitation to the castle.")     
+            }
+        }
+    }
+}
+
+reset(fShowInvItem)
+assignn(vInvShowItem, invNone)
+
+if(said("look", "pot")) {
+    if(has(invTeapot)) {
+        assignn(vInvShowItem, invTeapot)
+        set(fShowInvItem)    
+    }
+    if(!has(invTeapot)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "hat")) {
+    if(has(invHat)) {
+        assignn(vInvShowItem, invHat)
+        set(fShowInvItem)
+    }
+    if(!has(invHat)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "summons")) {
+    if(has(invSummons)) {
+        assignn(vInvShowItem, invSummons)
+        set(fShowInvItem)
+    }
+    if(!has(invSummons)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "tea")) {
+    if(has(invTea)) {
+        assignn(vInvShowItem, invTea)
+        set(fShowInvItem)
+    }
+    if(!has(invTea)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "cup")) {
+    if(has(invTeaCup)) {
+        assignn(vInvShowItem, invTeaCup)
+        set(fShowInvItem)
+    }
+    if(!has(invTeaCup)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "broom")) {
+    if(has(invBroom)) {
+        assignn(vInvShowItem, invBroom)
+        set(fShowInvItem)
+    }
+    if(!has(invBroom)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "keycard")) {
+    if(has(invKeycard)) {
+        print("The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B. H. S. S.'")
+    }
+    if(!has(invKeycard)) {
+        print("What is this keycard that you speak of? You don't have a keycard.")    
+    }
+}
+if(said("look", "glass")) {
+    if(has(invGlass)) {
+        assignn(vInvShowItem, invGlass)
+        set(fShowInvItem)
+    }
+    if(!has(invGlass)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "cake")) {
+    if(has(invCake)) {
+        assignn(vInvShowItem, invCake)
+        set(fShowInvItem)
+    }
+    if(!has(invCake)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "ink")) {
+    if(has(invInk)) {
+        assignn(vInvShowItem, invInk)
+        set(fShowInvItem)
+    }
+    if(!has(invInk)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "quill")) {
+    if(has(invQuill)) {
+        assignn(vInvShowItem, invQuill)
+        set(fShowInvItem)
+    }
+    if(!has(invQuill)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "feather")) {
+    if(has(invFeather)) {
+        assignn(vInvShowItem, invFeather)
+        set(fShowInvItem)
+    }
+    if(!has(invFeather)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "paper")) {
+    if(has(invPaper)) {
+        assignn(vInvShowItem, invPaper)
+        set(fShowInvItem)
+    }
+    if(!has(invPaper)) {
+        print("You don't have it.")    
+    }
+}
+if(said("look", "invitation")) {
+    if(has(invInvitation)) {
+        assignn(vInvShowItem, invInvitation)
+        set(fShowInvItem)
+    }
+    if(!has(invInvitation)) {
+        print("You don't have it.")    
+    }
+}
+
+if(isset(fShowInvItem)) {
+    if(equaln(vInvShowItem, invTeapot)) {
+        assignn(vInvView, viewObjPot)
+        if(equaln(vTeaPoured, valTrue)) {
+            print("This is a simple empty blue teapot")
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("This is a simple blue teapot full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+        }
+    }
+    if(equaln(vInvShowItem, invHat)) {
+        assignn(vInvView, viewObjHat)
+        print("Your trusty hat! Wow. You love this hat. It's triangular and blue.")
+    }
+    if(equaln(vInvShowItem, invSummons)) {
+        assignn(vInvView, viewObjSummons)
+        print("This ornate parchment is a summons from the king that demands an audience with you first thing in the morning")
+    }
+    if(equaln(vInvShowItem, invTea)) {
+        assignn(vInvView, viewObjTea)
+        if(equaln(vTeaPoured, valTrue)) {
+            if(equaln(vTeaDrank, valTrue)) {
+                print("Closer inspection of the cup reveals that it is indeed... a cup.")
+            }
+            if(!equaln(vTeaDrank, valTrue)) {
+                print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+            }
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("Yep. It's a cup alright.")
+        }
+    }
+    if(equaln(vInvShowItem, invTeaCup)) {
+        assignn(vInvView, viewObjTeaCup)
+        if(equaln(vTeaPoured, valTrue)) {
+            if(equaln(vTeaDrank, valTrue)) {
+                print("Closer inspection of the cup reveals that it is indeed... a cup.")
+            }
+            if(!equaln(vTeaDrank, valTrue)) {
+                print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.")
+            }
+        }
+        if(!equaln(vTeaPoured, valTrue)) {
+            print("Yep. This is a cup alright.")
+        }
+    }
+    if(equaln(vInvShowItem, invBroom)) {
+        assignn(vInvView, viewObjBroom)
+        print("This is a standard issue StarCon broom. You love a good broom! It's a key component of any janitorial arsenal. The code `IBA` is stamped into the handle of the broom.")
+    }
+    if(equaln(vInvShowItem, invCake)) {
+        assignn(vInvView, viewObjCake)
+        print("This is a delicious looking birthday cake.")
+    }
+    if(equaln(vInvShowItem, invInk)) {
+        assignn(vInvView, viewObjInk)
+        print("This is an old bottle full of black fluid. The label on the bottle says Ink.")
+    }
+    if(equaln(vInvShowItem, invQuill)) {
+        assignn(vInvView, viewObjQuill)
+        print("This is a feather you have sharpened into a quill -- an ancient implement of writing.")
+    }
+    if(equaln(vInvShowItem, invFeather)) {
+        assignn(vInvView, viewObjFeather)
+        print("This is a beautiful red feather.")
+    }
+    if(equaln(vInvShowItem, invPaper)) {
+        assignn(vInvView, viewObjPaper)
+        print("This is a blank piece of paper.")
+    }
+}
+if(isset(fShowInvItem)) {
+    reset(fShowInvItem)
+    reset(fWaitForCloseInv)
+    assignn(vKeyPressed, 0)
+
+    if(equaln(vInvShowItem, invGlass)) {
+        assignn(vInvView, viewObjGlass)
+        if(isset(fGlassIsSharp)) {
+            print("This is a piece of highly reflective view shield glass from the pod. You have crafted a sharp knife like edge on it.")
+        }
+        if(!isset(fGlassIsSharp)) {
+            print("This is a piece of highly reflective view shield glass from the pod. Due to its special design there are no sharp edges.")
+        }
+    }
+    if(equaln(vInvShowItem, invInvitation)) {
+        assignn(vInvView, viewObjInvitation)
+        print("This is a forged invitation to the castle.")
+    }
+
+    load.view.v(vInvView)
+
+    set.view.v(objInv, vInvView)
+
+    stop.cycling(objInv)
+    draw(objInv)
+    set.priorty(objInv, 15)
+    position(objInv, 65, 155)
+    set(fWaitForCloseInv)            
+}
+if(isset(fWaitForCloseInv)) {
+    if(greatern(vKeyPressed, 0)) {
+        reset(fWaitForCloseInv)
+         erase(objInv)
+    }
+}
+
+if(!isset(fGameOver)) {
+
+    if(isset(fDead)) {
+        if(equaln(vDeathReason, valXsGeneric)) {
+            set(fRogerDead)
+            print("You are dead.")    
+        }
+        if(equaln(vDeathReason, valXsOversleep)) {
+            set(fGrahamDead)
+            print("You fall asleep and oversleep.")
+        }
+        if(equaln(vDeathReason, valXsNoSuitExplode)) {
+            set(fRogerDead)
+            print("Surgeon General's Warning: Exposing yourself to the vacuum of space is hazardous to your health.")
+        }
+        if(equaln(vDeathReason, valXsSpaceWalk)) {
+            set(fRogerDead)
+            print("You step off the deck and into the vaccuum of space. We're not sure where you are going but we know you'll be a popsicle when you arrive.")
+        }
+        if(equaln(vDeathReason, valXsFuelFoot)) {
+            set(fRogerDead)
+            print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and separate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space.")
+        }
+        if(equaln(vDeathReason, valXsFlushola)) {
+            set(fRogerDead)
+            print("Unbelievable! The toilet begins to overflow. Where's a janitor when you need one?! As the room fills with 'WATER' you frantically search for a plunger but find only that you are trapped. How embarrassing.")
+        }
+        if(equaln(vDeathReason, valXsFastWater)) {
+            set(fRogerDead)
+            print("Oh no! The water here is too fast to swim. You are overcome by the current and rapids. You are quickly 'flushed' down river. An end fit for a janitor.")
+        }
+        if(equaln(vDeathReason, valXsOgreMunch)) {
+            set(fRogerDead)
+            print("What the ORAT was that? You've just become a snack for a local species of ogre with a serious case of the munchies. He dusts you like bundt cake.")
+        }
+        if(equaln(vDeathReason, valXsDrown)) {
+            set(fRogerDead)
+            print("You eventually become tired from struggling. Completely exhausted you slip below the water's surface and drown.")
+        }
+        if(equaln(vDeathReason, valXsSafteyThird)) {
+            set(fRogerDead)
+            print("StarCon requires all passengers to buckle up for a reason. That reason is sudden and violent deceleration. You have just become up close and personal with this concept... and the pod's shield.")
+        }
+        if(equaln(vDeathReason, valXsWolfMunch)) {
+            set(fRogerDead)
+            print("You would rather outrun a Sarien spider droid. Whatever that was it sure was fast. You're wolf chow.")
+        }
+        if(equaln(vDeathReason, valXsWolfMunchGraham)) {
+            set(fGrahamDead)
+            print("Graham you know it's dangerous outside at night. You're wolf chow.")
+        }
+        if(equaln(vDeathReason, valXsWitchSnag)) {
+            set(fRogerDead)
+            print("What you assume is one of the ugliest members of Vohaul's monkey troops swoops down and snatches you up.")
+        }
+        if(equaln(vDeathReason, valXsBewareRandomHoles)) {
+            set(fRogerDead)
+            print("Whatever lives in that hole made speedy work of cleaning your bones. You really should mind your own business.")
+        }
+        if(equaln(vDeathReason, valXsStoned)) {
+            set(fRogerDead)
+            print("That guy in the wierd space suit zaps you with some kind of laser beam. You are quickly turned to stone. You always dreamed of being immortalzied in a statue. Congratulations you got your wish! Unfortunately you are also now dead.")
+        }
+        if(equaln(vDeathReason, valXsOutOfAir)) {
+            set(fRogerDead)
+            print("To your great surprise it turns out you cannot breathe under water. Having depleted the available oxygen in your lungs you drown after a short and awkward struggle.")
+        }
+        if(equaln(vDeathReason, valXsFall)) {
+            set(fRogerDead)
+            print("You trip and fall from the stairs. Fortunately you are able to arrest the fall. Unfortunately you do so with your face. You really have to be more careful Roger.")
+        }
+    }    
+}
+
+if(!isset(fGameOver)) {
+    if(isset(fRogerDead)) {
+        reset(fRogerDead)        
+        load.sound(sndRogerDead)
+        sound(sndRogerDead, fDeathSoundDone)
+        set(fGameOver)
+    }
+    if(isset(fGrahamDead)) {
+        reset(fGrahamDead)
+        load.sound(sndGrahamDead)
+        sound(sndGrahamDead, fDeathSoundDone)
+        set(fGameOver)
+    }    
+}
+
+if(isset(fDeathSoundDone)) {
+    if(have.key()) {
+        print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. Reload to restart.")
+    } 
+}
+if(said("loud", "sound")) {
+    assignn(23, 16)
+}
+if(said("normal", "sound")) {
+    assignn(23, 15)
+}
+
+if(said("fastest", "speed")) {
+    assignn(10, 1)
+}
+if(said("fast", "speed")) {
+    assignn(10, 2)
+}
+if(said("normal", "speed")) {
+    assignn(10, 3)
+}
+if(said("slow", "speed")) {
+    assignn(10, 5)
+}
+if(said("sound", "on")) {
+    set(fSysSoundOn)
+}
+if(said("sound", "off")) {
+    stop.sound()
+    reset(fSysSoundOn)
+}
+if(said("look", "anyword")) {
+        print("It's nothing special or important.")
+}
+if(said("lick", "cake")) {
+    if(has(invCake)) {
+        subn(vCurPoints, 2)
+        print("Party foul.")
+    }
+    if(!has(invCake)) {
+        print("If you had cake you could try that.")
+    }    
+}
+
+if(said("anyword", "anyword")) {
+    print("You can't do that. At least not now.")
+}
+
+if(said("cut", "feather", "glass")) {
+    if(has(invFeather)) {
+        if(has(invGlass)) {
+            if(isset(fGlassIsSharp)) {
+                drop(invFeather)
+                get(invQuill)
+                addn(vCurPoints, 1)    
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP.")
+            }
+            if(!isset(fGlassIsSharp)) {
+                print("The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying.")
+            }
+        }
+    }
+}
+
+if(said("anyword", "anyword", "anyword")) {
+    print("You can't do that. At least not now.")
+}
+if(said("anyword", "anyword", "anyword", "anyword")) {
+    print("You can't do that. At least not now.")
+}
+
+return()
+
+#message 1 "Main Loop"

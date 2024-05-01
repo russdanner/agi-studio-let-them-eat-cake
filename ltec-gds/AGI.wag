@@ -1,0 +1,221 @@
+#
+# WinAGI Game Property File
+#
+[General]
+   WinAGIVersion = 2.3
+   GameID = AGI
+   Interpreter = 2.917
+   LastEdit = "5/1/2024 2:00:00 PM"
+   Description = "Fan Game"
+   GameVersion = 6
+   About = "AGI Game by <author>"
+   ResDir = src
+   UseResNames = True
+   Author = "One Guy From CrafterCMS"
+   UseLE = False
+   PlatformType = 1
+   Platform = "C:\Program Files (x86)\DOSBox-0.74-3\DOSBox.exe"
+   DOSExec = AGI.exe
+   PlatformOpts = ""
+   CodePage = 437
+   SierraSyntax = False
+   PowerPack = False
+   SourceFileExt = LGC
+
+[Palette]
+   Color0 = &H00000000
+   Color1 = &H00AA0000
+   Color2 = &H0000AA00
+   Color3 = &H00AAAA00
+   Color4 = &H000000AA
+   Color5 = &H00AA00AA
+   Color6 = &H000055AA
+   Color7 = &H00AAAAAA
+   Color8 = &H00555555
+   Color9 = &H00FF5555
+   Color10 = &H0055FF00
+   Color11 = &H00FFFF55
+   Color12 = &H005555FF
+   Color13 = &H00FF55FF
+   Color14 = &H0055FFFF
+   Color15 = &H00FFFFFF
+   
+[WORDS.TOK]
+   Description = ""
+
+[OBJECT]
+   Description = ""
+
+[::BEGIN Logics::]
+[Logic0]
+   CompCRC32 = &H61FCC6D9
+   CRC32 = &H61FCC6D9
+   ID = lgc.Main
+   IsRoom = False
+   Size = 1735
+   Description = "This logic runs in every interpreter cycle and calls other logics as needed."
+
+[Logic90]
+   CompCRC32 = &HFBD23190
+   CRC32 = &HFBD23190
+   ID = lgc.GameFunctions
+   IsRoom = False
+   Size = 641
+   Description = "Game-specific functions\n\nYou should use this logic to perform any game specific functions, such as counting down timers, etc and processing player input related to the game (such as examining/using inventory items) and any other things that are required in several rooms that you don't want to duplicate in each room. \n\nThis logic is called from logic 0, on every cycle, unless disableGameFunctions is set.\n\nSierra did not use a separate logic for all this - they just did it all from logic 0. I find it is neater this way, as you can keep your game specific processing separate from other system-related things (although these may require some modification for your game). Also, this makes logic 0 easier to manage."
+
+[Logic91]
+   CompCRC32 = &HD8644111
+   CRC32 = &HD8644111
+   IsRoom = False
+   ID = lgc.Init
+   Size = 162
+   Description = "Initialization\n\nThis logic should only be called once, when the game first starts. See the 'Keyboard Controller' topic in the Help file for details on key assignments."
+
+[Logic92]
+   ID = lgc.RoomInit
+   Description = "Room Initialization\n\nThis logic is called by room logics when they are executed for the first time when a new.room() command is encountered. It takes care of the common items that are done for all rooms."
+   CRC32 = &H8D9F29
+   CompCRC32 = &H8D9F29
+   IsRoom = False
+   Size = 64
+
+[Logic93]
+   ID = lgc.GameHelp
+   Description = "Help Screen\n\nThis screen also demonstrates the use of extended characters in text mode."
+   CRC32 = &H568062BC
+   CompCRC32 = &H568062BC
+   IsRoom = False
+   Size = 1360
+
+[Logic94]
+   ID = lgc.DebugHelp
+   Description = "Debug mode help screen\n\nDisplays a help screen with typical debug mode commands."
+   CRC32 = &HD69C979C
+   CompCRC32 = &HD69C979C
+   IsRoom = False
+   Size = 1077
+
+[Logic95]
+   ID = lgc.Death
+   Description = "Death handler\n\nThis logic is run when the player dies. The death message displayed depends on the value of certain.death."
+   CRC32 = &HDFDFFD8F
+   CompCRC32 = &HDFDFFD8F
+   IsRoom = False
+   Size = 409
+
+[Logic96]
+   ID = lgc.TraceInfo
+   Description = "Tracer Info\n\nThis logic includes the text of agi commands so the trace window will display the command text instead of just numbers."
+   CRC32 = &H3B45B854
+   CompCRC32 = &H3B45B854
+   IsRoom = False
+   Size = 2617
+
+[Logic97]
+   CompCRC32 = &HCCEC84C6
+   CRC32 = &HCCEC84C6
+   ID = lgc.Joystick
+   IsRoom = False
+   Size = 46
+   Description = "Joystick support\n\nIf you intend to support a joystick, use this logic to handle joystick input."
+
+[Logic98]
+   CompCRC32 = &HC2D6E10E
+   CRC32 = &HC2D6E10E
+   ID = lgc.Error
+   IsRoom = False
+   Size = 813
+   Description = "Error Handler\n\nWhen AGI traps an error, this logic will display information on the error and then quit AGI."
+
+[Logic99]
+   CompCRC32 = &H4B850E0F
+   CRC32 = &H4B850E0F
+   ID = lgc.Debug
+   IsRoom = False
+   Size = 1137
+   Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
+
+[Logic100]
+   CompCRC32 = &HF833253
+   CRC32 = &HF833253
+   ID = rm.Title
+   IsRoom = True
+   Size = 345
+   Description = "Opening/intro\n\nThis is an example of an intro screen, with scrolling credits and a theme song."
+
+[Logic43]
+   ID = rm.ltectitle
+   Description = ""
+   CRC32 = &H62D751CD
+   CompCRC32 = &H62D751CD
+   IsRoom = False
+[::END Logics::]
+
+[::BEGIN Pictures::]
+
+[Picture43]
+   ID = Picture43
+   Description = ""
+   BkgdImg = ""
+[::END Pictures::]
+
+[::BEGIN Sounds::]
+
+[Sound0]
+   ID = m.theme
+   Description = ""
+   Key = 0
+   TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound1]
+   ID = s.DoorOpen
+   Description = ""
+   Key = 0
+   TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound2]
+   ID = s.DoorClose
+   Description = ""
+   Key = 0
+   TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+[::END Sounds::]
+
+[::BEGIN Views::]
+
+[View0]
+   ID = grahamNoHat
+   Description = ""
+[::END Views::]
