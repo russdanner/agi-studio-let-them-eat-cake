@@ -17,6 +17,9 @@ if (newRoom) {
   load.pic(currentRoom);
   draw.pic(currentRoom);
   discard.pic(currentRoom);
+
+  [ do basic room initialization
+  call(lgc.RoomInit);
   
   load.view(vw.GrahamNoHat);
   [load.view(vw.GrahamHatNoFeather);
@@ -28,40 +31,37 @@ if (newRoom) {
   [load.view(vw.Window);
   [load.view(vw.CabinDoor);
 
-  animate.obj(objEgo);
+  animate.obj(ego);
+  animate.obj(objHat);
   animate.obj(objTeapot);
-
+  animate.obj(objTeaCup);    
+  animate.obj(objSummons);    
+  
   set.view(ego, vw.GrahamNoHat);
-  set.view(objSummons, vw.Summons);
   set.view(objHat, vw.Hat);
   set.view(objTeapot, vw.Teapot);
   set.view(objTeaCup, vw.TeaCup);
+  set.view(objSummons, vw.Summons);
+  
   [set.view(objGrahamSleep, viewGrahamSleep)
   [set.view(objWindow, viewWindow)
   [set.view(objCabinDoor, viewCabinDoor)
 
-    stop.cycling(objSummons);
-    stop.cycling(objHat);
-    stop.cycling(objTeaCup);
-[    stop.cycling(objWindow)
-[    stop.cycling(objCabinDoor)
+  stop.cycling(objHat);
+  stop.cycling(objTeaCup);
+  stop.cycling(objSummons);
 
-    draw(objEgo);
-    draw(objSummons);
-    draw(objHat);
-    draw(objTeapot);
-    draw(objTeaCup);
- [   draw(objWindow)
-  [  draw(objCabinDoor)
+[   stop.cycling(objWindow)
+[   stop.cycling(objCabinDoor)
 
-    assignn(vSleeping, valFalse);
-    assignn(vClockTicks, 0);
+  [set.loop(objSummons, 0);
+  [fix.loop(objSummons);
+  [set.loop(objHat, 0);
+  [fix.loop(objHat);
+  [set.loop(objTeaCup, 0);
+  [fix.loop(objTeaCup);
+ 
 
-    
-  [ do basic room initialization
-  call(lgc.RoomInit);
-  
-  [ add room-specific initialization here
   [ position(objWindow, 90, 58)
 
   [if(!has("Hat")) {
@@ -71,12 +71,18 @@ if (newRoom) {
   [if(!has("Summons")) {
     position(objSummons, 80, 105);
   [}
+  
+  position(objTeapot, 110, 87);
+  position(objTeaCup, 55, 105);
 
-  set.priority(objSummons, 15);
   set.priority(objHat, 15);
-  set.priority(objTeapot, 16);
+  set.priority(objTeapot, 15);
   set.priority(objTeaCup, 15);
+  set.priority(objSummons, 15);
 
+  assignn(vSleeping, valFalse);
+  assignn(vClockTicks, 0);
+  
   [if(isset(fIsMorning)) {
   [      set.cel(objWindow, 1)
   [      position(objEgo, 100,80) 
@@ -85,12 +91,14 @@ if (newRoom) {
   [  set.cel(objCabinDoor, 1)
   [  position(objCabinDoor, 26, 131)
 
-  
-  [ set ego parameters, if different from lgc.RoomInit
-  
-  [ AGI will automatically position ego on the opposite
-  [ edge when entering a new room, but if you want to manually
-  [ position ego, do that here, before drawing ego
+  draw(ego);
+  draw(objHat);
+  draw(objTeapot);
+  draw(objTeaCup);
+  draw(objSummons);
+
+  [ draw(objWindow)
+  [ draw(objCabinDoor)
   
   [ The next 6 lines need only be in the first room of the game 
   if ((previousRoom == rm.Title || previousRoom == 0)) {
@@ -98,13 +106,12 @@ if (newRoom) {
     position(ego, 74, 150);
     [ turn status line on during normal game play
     status.line.on();
+     animationInterval = NORMAL_SPEED;
   }
-  
-  [ add ego to the room
-  draw(ego);
   
   [ display the picture on screen
   show.pic();
+
 }
 
 [***************************************

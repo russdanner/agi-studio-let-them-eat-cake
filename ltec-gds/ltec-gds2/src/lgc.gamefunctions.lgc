@@ -31,20 +31,20 @@
 [***************************************
 
 [ if a new room was visited for first time
-if (!egoExplored && currentRoom != rm.Entrance) {
-  [ if ego has been in the room long enough, award one score point for
-  [ exploration
-  if (elapsedSeconds != oldSeconds) {
-    [ increment delay counter until ~2 seconds has passed
-    entryDelay += 1;
-    if (entryDelay == 2) {
-      print("You have explored a new room in this world! Good job!");
-      currentScore += 1;
-      set(egoExplored);
-      entryDelay = 0;
-    }
-  }
-}
+[if (!egoExplored && currentRoom != rm.Entrance) {
+[  [ if ego has been in the room long enough, award one score point for
+[  [ exploration
+[  if (elapsedSeconds != oldSeconds) {
+[    [ increment delay counter until ~2 seconds has passed
+[    entryDelay += 1;
+[    if (entryDelay == 2) {
+[      print("You have explored a new room in this world! Good job!");
+[      currentScore += 1;
+[      set(egoExplored);
+[      entryDelay = 0;
+[    }
+[  }
+[}
   
 [***************************************
 [ PROCESS PLAYER INPUT

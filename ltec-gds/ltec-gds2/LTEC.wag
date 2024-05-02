@@ -96,8 +96,8 @@
    Size = 82
 
 [Logic90]
-   CompCRC32 = &H5E9462F3
-   CRC32 = &H5E9462F3
+   CompCRC32 = &HE986A54
+   CRC32 = &HE986A54
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
@@ -176,8 +176,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &H69CB9748
-   CRC32 = &H69CB9748
+   CompCRC32 = &HC5F7EA62
+   CRC32 = &HC5F7EA62
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -186,8 +186,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &HC2BC6632
-   CompCRC32 = &HC2BC6632
+   CRC32 = &H5CBD0DD8
+   CompCRC32 = &H5CBD0DD8
    IsRoom = True
 [::END Logics::]
 

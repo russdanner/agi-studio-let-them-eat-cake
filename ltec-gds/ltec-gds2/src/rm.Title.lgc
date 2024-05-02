@@ -13,12 +13,8 @@
 #define hat                      o1
 #define feather                  o2
 
-#define linePtr                    v220
-#define xPos                       v221
-#define yPos                       v222
 #define objDir                     v223
 #define speed                      v224
-#define tmpVal                     v225
 #define musicDelay                 v226
 
 [***************************************
