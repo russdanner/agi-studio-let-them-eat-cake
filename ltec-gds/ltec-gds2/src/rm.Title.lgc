@@ -109,7 +109,7 @@ if (newRoom) {
   draw(feather);
   
   [ ensure pointer is reset
-  [linePtr = 0;
+  [`linePtr = 0;
   
   [ no ego used in this room
   
