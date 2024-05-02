@@ -1,0 +1,158 @@
+[*********************************************************************
+[ 
+[ rm.GrahamHouse
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+  [ load, draw and discard the picture resource for the current room
+  load.pic(currentRoom);
+  draw.pic(currentRoom);
+  discard.pic(currentRoom);
+  
+  load.view(vw.GrahamNoHat);
+  [load.view(vw.GrahamHatNoFeather);
+  load.view(vw.Summons);
+  load.view(vw.Hat);
+  load.view(vw.Teapot);
+  load.view(vw.TeaCup);
+  [load.view(vw.GrahamSleep);
+  [load.view(vw.Window);
+  [load.view(vw.CabinDoor);
+
+  animate.obj(objEgo);
+  animate.obj(objTeapot);
+
+  set.view(ego, vw.GrahamNoHat);
+  set.view(objSummons, vw.Summons);
+  set.view(objHat, vw.Hat);
+  set.view(objTeapot, vw.Teapot);
+  set.view(objTeaCup, vw.TeaCup);
+  [set.view(objGrahamSleep, viewGrahamSleep)
+  [set.view(objWindow, viewWindow)
+  [set.view(objCabinDoor, viewCabinDoor)
+
+    stop.cycling(objSummons);
+    stop.cycling(objHat);
+    stop.cycling(objTeaCup);
+[    stop.cycling(objWindow)
+[    stop.cycling(objCabinDoor)
+
+    draw(objEgo);
+    draw(objSummons);
+    draw(objHat);
+    draw(objTeapot);
+    draw(objTeaCup);
+ [   draw(objWindow)
+  [  draw(objCabinDoor)
+
+    assignn(vSleeping, valFalse);
+    assignn(vClockTicks, 0);
+
+    
+  [ do basic room initialization
+  call(lgc.RoomInit);
+  
+  [ add room-specific initialization here
+  [ position(objWindow, 90, 58)
+
+  [if(!has("Hat")) {
+    position(objHat, 130, 125);
+  [}
+
+  [if(!has("Summons")) {
+    position(objSummons, 80, 105);
+  [}
+
+  set.priority(objSummons, 15);
+  set.priority(objHat, 15);
+  set.priority(objTeapot, 16);
+  set.priority(objTeaCup, 15);
+
+  [if(isset(fIsMorning)) {
+  [      set.cel(objWindow, 1)
+  [      position(objEgo, 100,80) 
+  [      print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!")
+  [}
+  [  set.cel(objCabinDoor, 1)
+  [  position(objCabinDoor, 26, 131)
+
+  
+  [ set ego parameters, if different from lgc.RoomInit
+  
+  [ AGI will automatically position ego on the opposite
+  [ edge when entering a new room, but if you want to manually
+  [ position ego, do that here, before drawing ego
+  
+  [ The next 6 lines need only be in the first room of the game 
+  if ((previousRoom == rm.Title || previousRoom == 0)) {
+    [ when starting or restarting need to position ego
+    position(ego, 74, 150);
+    [ turn status line on during normal game play
+    status.line.on();
+  }
+  
+  [ add ego to the room
+  draw(ego);
+  
+  [ display the picture on screen
+  show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ add room specific statements here
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+[ if player has provided input and match not yet found,
+[ do said tests
+if (haveInput && !haveMatch) {  
+  [ look
+  if (said("look")) {
+    print("This is an empty room.");
+  }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+
+if (edgeEgoHit == TOP_EDGE) {
+  [ move to room above
+  new.room(rm.NorthRoom);  [ ##LE001##
+}
+
+if (edgeEgoHit == RIGHT_EDGE) {
+  [ move to room on the right
+  new.room(rm.EastRoom);  [ ##LE002##
+}
+
+if (edgeEgoHit == BOTTOM_EDGE) {
+  [ move to room below
+  new.room(rm.Outside);  [ ##LE003##
+}
+
+if (edgeEgoHit == LEFT_EDGE) {
+  [ move to room on the left
+  new.room(rm.WestRoom); [ ##LE004##
+}
+
+:done
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

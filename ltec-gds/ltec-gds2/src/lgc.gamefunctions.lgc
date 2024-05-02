@@ -81,20 +81,20 @@ if (haveInput && !haveMatch) {
   
   [ look cube
   if (said("look", "cube")) {
-    if (has("strange colored cube")) {
-      show.obj(vw.Inv.TestItem);
-    } else {
-      print("You don't have it.");
-    }
+    [if (has("strange colored cube")) {
+    [  show.obj(vw.Inv.TestItem);
+    [} else {
+    [  print("You don't have it.");
+    [}
   }
     
   [ drop cube
   if (said("drop", "cube")) {
-    if (has("strange colored cube")) {
-      print("The cube is too interesting; you decide to keep it.");
-    } else {
-      print("You don't have it.");
-    }
+    [if (has("strange colored cube")) {
+    [  print("The cube is too interesting; you decide to keep it.");
+    [} else {
+    [  print("You don't have it.");
+    [}
   }
     
   [ anything cube

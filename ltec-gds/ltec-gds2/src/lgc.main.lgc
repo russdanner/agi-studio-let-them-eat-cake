@@ -108,7 +108,7 @@ if (currentRoom == 0) {
     }
     
     [ now go to first room (skip Intro)
-    new.room(rm.Entrance);
+    new.room(rm.GrahamHouse);
   } else {
     [ if room is 0, and not restarting, it means
     [ this is very beginning

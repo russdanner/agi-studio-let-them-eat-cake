@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/2/2024 1:53:14 AM"
+   LastEdit = "5/2/2024 3:21:18 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -48,8 +48,8 @@
 
 [::BEGIN Logics::]
 [Logic0]
-   CompCRC32 = &HD241FA7E
-   CRC32 = &HD241FA7E
+   CompCRC32 = &H89EEAF64
+   CRC32 = &H89EEAF64
    ID = lgc.Main
    IsRoom = False
    Size = 1735
@@ -74,8 +74,8 @@
 [Logic3]
    ID = rm.WestRoom
    Description = "An example room."
-   CRC32 = &H1F35C026
-   CompCRC32 = &H1F35C026
+   CRC32 = &HEEEBE9AF
+   CompCRC32 = &HEEEBE9AF
    IsRoom = True
    Size = 921
 
@@ -96,8 +96,8 @@
    Size = 82
 
 [Logic90]
-   CompCRC32 = &HAD097136
-   CRC32 = &HAD097136
+   CompCRC32 = &H5E9462F3
+   CRC32 = &H5E9462F3
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
@@ -176,12 +176,19 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &H6BBE0231
-   CRC32 = &HA89B5893
+   CompCRC32 = &H69CB9748
+   CRC32 = &H69CB9748
    ID = rm.Title
    IsRoom = True
    Size = 345
    Description = "Opening/intro\n\nThis is an example of an intro screen, with scrolling credits and a theme song."
+
+[Logic6]
+   ID = rm.GrahamHouse
+   Description = ""
+   CRC32 = &HC2BC6632
+   CompCRC32 = &HC2BC6632
+   IsRoom = True
 [::END Logics::]
 
 [::BEGIN Pictures::]
@@ -217,6 +224,11 @@
 
 [Picture100]
    ID = pic.Introduction
+   Description = ""
+   BkgdImg = ""
+
+[Picture6]
+   ID = pic.GrahamHouse
    Description = ""
    BkgdImg = ""
 [::END Pictures::]
@@ -310,5 +322,25 @@
 
 [View68]
    ID = vw.titleFeatherHat
+   Description = ""
+
+[View4]
+   ID = vw.GrahamNoHat
+   Description = ""
+
+[View5]
+   ID = vw.Summons
+   Description = ""
+
+[View6]
+   ID = vw.Hat
+   Description = ""
+
+[View7]
+   ID = vw.TeaPot
+   Description = ""
+
+[View8]
+   ID = vw.TeaCup
    Description = ""
 [::END Views::]

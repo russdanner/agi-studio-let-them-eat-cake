@@ -1,0 +1,100 @@
+[*********************************************************************
+[ 
+[ rm.Entrance
+[ 
+[ An example room with several exits.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+  [ load, draw and discard the picture resource for the current room
+  load.pic(currentRoom);
+  draw.pic(currentRoom);
+  discard.pic(currentRoom);
+  
+  [ do basic room initialization
+  call(lgc.RoomInit);
+  
+  [ add room-specific initialization here
+  
+  [ default horizon is 36; adjust it as needed
+  set.horizon(120);  
+  
+  [ set ego parameters, if different from lgc.RoomInit
+  
+  [ AGI will automatically position ego on the opposite
+  [ edge when entering a new room, but if you want to manually
+  [ position ego, do that here, before drawing ego
+  
+  [ The next 6 lines need only be in the first room of the game 
+  if ((previousRoom == rm.Title || previousRoom == 0)) {
+    [ when starting or restarting need to position ego
+    position(ego, 74, 150);
+    [ turn status line on during normal game play
+    status.line.on();
+  }
+  
+  [ add ego to the room
+  draw(ego);
+  
+  [ display the picture on screen
+  show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ add room specific statements here
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+[ if player has provided input and match not yet found,
+[ do said tests
+if (haveInput && !haveMatch) {  
+  [ look
+  if (said("look")) {
+    print("This is an empty room.");
+  }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+
+if (edgeEgoHit == TOP_EDGE) {
+  [ move to room above
+  new.room(rm.NorthRoom);  [ ##LE001##
+}
+
+if (edgeEgoHit == RIGHT_EDGE) {
+  [ move to room on the right
+  new.room(rm.EastRoom);  [ ##LE002##
+}
+
+if (edgeEgoHit == BOTTOM_EDGE) {
+  [ move to room below
+  new.room(rm.Outside);  [ ##LE003##
+}
+
+if (edgeEgoHit == LEFT_EDGE) {
+  [ move to room on the left
+  new.room(rm.WestRoom); [ ##LE004##
+}
+
+:done
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

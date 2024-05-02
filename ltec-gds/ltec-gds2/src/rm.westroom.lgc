@@ -148,7 +148,7 @@ if (haveInput && !haveMatch) {
       if (posn(ego, 68, 132, 93, 151)) {
         print("You carefully pick up the cube, and put it in your oversized pocket.");
         [ add it to player inventory
-        get("strange colored cube");
+        [get("strange colored cube");
         [ remove it from the table
         erase(oTestItem);
         vTestItemRm = 0;
