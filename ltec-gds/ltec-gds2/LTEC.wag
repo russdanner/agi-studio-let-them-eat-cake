@@ -186,8 +186,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H5CBD0DD8
-   CompCRC32 = &H5CBD0DD8
+   CRC32 = &H45CE8C0A
+   CompCRC32 = &H45CE8C0A
    IsRoom = True
 [::END Logics::]
 
@@ -342,5 +342,13 @@
 
 [View8]
    ID = vw.TeaCup
+   Description = ""
+
+[View59]
+   ID = vw.GrahamHouseWindow
+   Description = ""
+
+[View49]
+   ID = vw.GrahamHouseDoor
    Description = ""
 [::END Views::]

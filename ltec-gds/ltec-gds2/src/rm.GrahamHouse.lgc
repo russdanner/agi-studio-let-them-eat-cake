@@ -22,47 +22,43 @@ if (newRoom) {
   call(lgc.RoomInit);
   
   load.view(vw.GrahamNoHat);
-  [load.view(vw.GrahamHatNoFeather);
   load.view(vw.Summons);
   load.view(vw.Hat);
   load.view(vw.Teapot);
   load.view(vw.TeaCup);
+  load.view(vw.GrahamHouseWindow);
+  load.view(vw.GrahamHouseDoor);
   [load.view(vw.GrahamSleep);
-  [load.view(vw.Window);
-  [load.view(vw.CabinDoor);
-
+  [load.view(vw.GrahamHatNoFeather);
+  
   animate.obj(ego);
   animate.obj(objHat);
   animate.obj(objTeapot);
   animate.obj(objTeaCup);    
   animate.obj(objSummons);    
+  animate.obj(objWindow);    
+  animate.obj(objCabinDoor);    
   
   set.view(ego, vw.GrahamNoHat);
   set.view(objHat, vw.Hat);
   set.view(objTeapot, vw.Teapot);
   set.view(objTeaCup, vw.TeaCup);
   set.view(objSummons, vw.Summons);
+  set.view(objWindow, vw.GrahamHouseWindow);
+  set.view(objCabinDoor, vw.GrahamHouseDoor);
   
   [set.view(objGrahamSleep, viewGrahamSleep)
-  [set.view(objWindow, viewWindow)
-  [set.view(objCabinDoor, viewCabinDoor)
 
   stop.cycling(objHat);
   stop.cycling(objTeaCup);
   stop.cycling(objSummons);
+  stop.cycling(objWindow);
+  stop.cycling(objCabinDoor);
 
-[   stop.cycling(objWindow)
-[   stop.cycling(objCabinDoor)
-
-  [set.loop(objSummons, 0);
-  [fix.loop(objSummons);
-  [set.loop(objHat, 0);
-  [fix.loop(objHat);
-  [set.loop(objTeaCup, 0);
-  [fix.loop(objTeaCup);
- 
-
-  [ position(objWindow, 90, 58)
+  set.cel(objCabinDoor, 1);
+  position(objCabinDoor, 26, 131);
+      
+  position(objWindow, 90, 58);
 
   [if(!has("Hat")) {
     position(objHat, 130, 125);
@@ -83,22 +79,15 @@ if (newRoom) {
   assignn(vSleeping, valFalse);
   assignn(vClockTicks, 0);
   
-  [if(isset(fIsMorning)) {
-  [      set.cel(objWindow, 1)
-  [      position(objEgo, 100,80) 
-  [      print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!")
-  [}
-  [  set.cel(objCabinDoor, 1)
-  [  position(objCabinDoor, 26, 131)
-
+  position.v(objEgo, vEgoX, vEgoY);
+  
   draw(ego);
   draw(objHat);
   draw(objTeapot);
   draw(objTeaCup);
   draw(objSummons);
-
-  [ draw(objWindow)
-  [ draw(objCabinDoor)
+  draw(objWindow);
+  draw(objCabinDoor);
   
   [ The next 6 lines need only be in the first room of the game 
   if ((previousRoom == rm.Title || previousRoom == 0)) {
@@ -119,6 +108,18 @@ if (newRoom) {
 [***************************************
 
 [ add room specific statements here
+if(!isset(fKingMessageDisplayed)) {
+  print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edward for reasons unknown.");
+  set(fKingMessageDisplayed);
+}        
+  
+  [if(isset(fIsMorning)) {
+  [      set.cel(objWindow, 1)
+  [      position(objEgo, 100,80) 
+  [      print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!")
+  [}
+  [  set.cel(objCabinDoor, 1)
+  [  position(objCabinDoor, 26, 131)
 
 [***************************************
 [ PROCESS PLAYER INPUT
