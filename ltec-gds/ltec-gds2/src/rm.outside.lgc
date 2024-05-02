@@ -32,7 +32,7 @@ if (newRoom) {
   set.horizon(91);
   
   [ load views needed in the room
-  load.view(2);
+  load.view(vw.Door);
   
   [ load sound effects
   load.sound(s.DoorClose);
@@ -40,7 +40,7 @@ if (newRoom) {
     
   [ draw the door
   animate.obj(oDoor);
-  set.view(oDoor, 2);
+  set.view(oDoor, vw.Door);
   [ allow ego to pass over the threshold
   ignore.objs(oDoor);
   [ this allows the door to be placed on the horizon line

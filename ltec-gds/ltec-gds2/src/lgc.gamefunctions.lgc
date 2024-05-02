@@ -31,8 +31,7 @@
 [***************************************
 
 [ if a new room was visited for first time
-if (!egoExplored){
-[ && currentRoom != rm.Entrance) {
+if (!egoExplored && currentRoom != rm.Entrance) {
   [ if ego has been in the room long enough, award one score point for
   [ exploration
   if (elapsedSeconds != oldSeconds) {
@@ -83,7 +82,7 @@ if (haveInput && !haveMatch) {
   [ look cube
   if (said("look", "cube")) {
     if (has("strange colored cube")) {
-      show.obj(1);
+      show.obj(vw.Inv.TestItem);
     } else {
       print("You don't have it.");
     }

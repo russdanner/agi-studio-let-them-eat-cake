@@ -1,0 +1,289 @@
+[********************************************************************
+[
+[ rm.Title
+[
+[ This is an example of an intro screen, with scrolling credits and
+[ a theme song.
+[
+[********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+#define hat                      o1
+#define feather                  o2
+
+#define linePtr                    v220
+#define xPos                       v221
+#define yPos                       v222
+#define objDir                     v223
+#define speed                      v224
+#define tmpVal                     v225
+#define musicDelay                 v226
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+  [ load, draw, discard the picture for the current room
+  load.pic(currentRoom);
+  draw.pic(currentRoom);
+  discard.pic(currentRoom);
+
+  
+  [ skip basic room initialization for title; all 
+  [ initialization will be done in this logic
+  [call(lgc.RoomInit);
+
+  [ add room-specific initialization here
+  speed = 2; 
+  objDir = DOWN;
+  assignn(vEgoX, 150);
+  assignn(vEgoY, 0);
+  
+  [ hard to undertand text vars
+  reset(fDoAction);
+  
+  [ message
+  assignn(v71, 12); 
+  assignn(v72, 4);
+  assignn(v73, 5);
+  assignn(v74, 6);
+  assignn(v75, 7);
+  assignn(v76, 8);
+  assignn(v77, 9);
+  assignn(v78, 10);
+  assignn(v79, 11);
+
+  [ message y coords
+  assignn(v80, 20); 
+  assignn(v81, 21);  
+  assignn(v82, 22);   
+  assignn(v83, 23);  
+  assignn(v84, 25);  
+  assignn(v85, 26);  
+  assignn(v86, 27);  
+  assignn(v87, 28);  
+      
+  [ set horizon to just above scroll window
+  set.horizon(0);
+  
+  [ disable player control and input
+  status.line.off();
+  prevent.input();
+  program.control();
+  
+  [ initialize the feather element that hints at the win
+  load.view(vw.titleFeatherHat);
+  animate.obj(hat);
+  animate.obj(feather);
+  cycle.time(hat, speed);
+  cycle.time(feather, speed);
+  
+  stop.cycling(feather);
+  stop.cycling(hat);
+
+  [ ignore other objects; otherwise
+  [ reposition.to.v command will 'shuffle'
+  [ the objects to avoid collisions
+  ignore.objs(hat);
+  ignore.objs(feather);
+  
+  [ object 1 is the hat
+  set.view(hat, vw.titleFeatherHat);
+  set.loop(hat, 0);
+  fix.loop(hat);
+  set.cel(hat, 1);
+  position(hat, 3, 165);
+  
+  [ second object is the feather
+  set.view(feather, vw.titleFeatherHat);
+  set.loop(feather, 0);
+  set.cel(feather, 0);
+  fix.loop(feather);
+  position.v(feather, vEgoX, vEgoY);
+  
+  draw(hat);
+
+  set.dir(feather, objDir);
+  draw(feather);
+  
+  [ ensure pointer is reset
+  [linePtr = 0;
+  
+  [ no ego used in this room
+  
+  [ show the picture on screen
+  show.pic(); 
+   
+  [ display game title above scroll window
+  [ you can use a view for this instead of text, if desired
+  [display(3, 10, "Intro/Opening screen");
+  
+  [ display game version below scroll window
+  [display(21, 9, gameVersionMsg);
+  
+  [ load the theme song
+  load.sound(m.theme);
+  [ and begin playing
+  sound(m.theme, musicDone);
+  
+  [ make sure keybuffer is empty
+  lastChar = 0;
+
+  [ Display by message
+  display(23, 9, m2);
+  display(24, 8, m3);
+
+}
+
+[ horrible message scrolling code
+if(greatern(v80, 6)) {
+    assignn(vGameCycleDelay, 10);
+    display.v(v80, v71, v72);    
+
+    if(lessn(v81, 19)) {
+        display.v(v81, v71, v73);    
+    }
+    if(lessn(v82, 19)) {
+        display.v(v82, v71, v74);    
+    }
+    if(lessn(v83, 19)) {
+        display.v(v83, v71, v75);    
+    }
+    if(lessn(v84, 19)) {
+        display.v(v84, v71, v76);    
+    }
+    if(lessn(v85, 19)) {
+        display.v(v85, v71, v77);    
+    }
+    if(lessn(v86, 19)) {
+        display.v(v86, v71, v78);    
+    }
+    if(lessn(v87, 19)) {
+        display.v(v87, v71, v79);    
+    }
+}
+
+[ clear the old lines
+display(15, 12, m16); 
+display(16, 12, m16); 
+display(17, 12, m16); 
+display(18, 12, m16);
+display(19, 12, m16); 
+display(20, 12, m16); 
+ 
+if(!greatern(v80, 5)) {
+    if(isset(fDoAction)) {
+        [ show the game title
+        display(11, 12, m12);    
+        display(13, 14, m13);
+    }
+    if(!isset(fDoAction)) {
+      [ scroll the message
+        display(6, 12, m4);    
+        display(7, 12, m5);    
+        display(8, 12, m6);    
+        display(10, 12, m7);    
+        display(11, 12, m8);    
+        display(12, 12, m9);    
+        display(13, 12, m10);    
+        display(14, 12, m11);    
+    }    
+}
+
+if(greatern(v80, 5)) { 
+    subn(v80, 1);
+    subn(v81, 1);
+    subn(v82, 1);
+    subn(v83, 1);
+    subn(v84, 1);
+    subn(v85, 1);
+    subn(v86, 1);
+}
+
+addn(vTimer, 1);
+
+if(equaln(vTimer, 100)) {
+    set(fDoAction);
+}
+
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+
+  
+[ restart theme music if the intro screen is still showing
+[ and end was reached
+if (musicDone) {
+  [ reset the flag
+  reset(musicDone);
+  display(17, 12, m14);     
+  display(18, 14, m15);    
+
+  [ start a timer to set a short delay before restarting music
+  musicDelay = 1;
+}
+  
+[ if music interlude is active
+if (musicDelay  > 0) {
+  [ increment interlude delay counter
+  musicDelay += 1;
+  
+  [ after 36 cycles
+  if (musicDelay == 36) {
+    [ reset timer
+    musicDelay = 0;
+    
+    [ play it again sam
+    sound(m.theme, musicDone);
+  }
+}
+  
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+[ no input during title sequence
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+[ check for a keypress or joystick button
+if ((have.key() || controller(keyJoyBtn1))) {
+  [ allow menu use
+  set(enableMenu);
+  [ game functions are no longer disabled
+  reset(disableGameFunctions);
+  [ begin game in starting room
+  new.room(rm.Entrance); [ ##LE001##
+}
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+
+#message 1 "Title"
+#message 2 "let-them-eat-cake.com"
+
+#message 3 "One Guy from CrafterCMS"
+#message 4 "A heartfelt thanks"
+#message 5 "to the heroes &"
+#message 6 "fans of Sierra."
+
+#message 7 "Early adventure"
+#message 8 "games amazed us,"
+#message 9 "taught us to solve"
+#message 10 "problems and to"
+#message 11 "be resilient."
+
+#message 12 "Let Them Eat Cake"
+#message 13 "Version 1.6"
+
+#message 14 "Press Any Key"
+#message 15 "to Continue"
+
+#message 16 "                  "

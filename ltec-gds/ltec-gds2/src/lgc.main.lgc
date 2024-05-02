@@ -35,10 +35,6 @@
 [*********************************************************************
 
 [***************************************
-[ Global
-[***************************************
-
-[***************************************
 [ LOCAL DEFINES
 [***************************************
 [ none
@@ -112,7 +108,7 @@ if (currentRoom == 0) {
     }
     
     [ now go to first room (skip Intro)
-    [new.room(rm.Entrance);
+    new.room(rm.Entrance);
   } else {
     [ if room is 0, and not restarting, it means
     [ this is very beginning
@@ -351,7 +347,7 @@ if (!disableGameFunctions) {
     [in the inventory screen
     if (selectedItem > 0 && selectedItem != 255) {
       if (selectedItem == 1) {
-        show.obj(1);
+        show.obj(vw.Inv.TestItem);
       }
       [ NOTE: If you have several objects, it is easier to give
       [ them consecutive view numbers. Then you can do the

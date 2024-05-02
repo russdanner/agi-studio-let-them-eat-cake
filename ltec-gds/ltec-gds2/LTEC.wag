@@ -3,15 +3,15 @@
 #
 [General]
    WinAGIVersion = 2.3
-   GameID = AGI
+   GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/1/2024 2:00:00 PM"
-   Description = "Fan Game"
-   GameVersion = 6
+   LastEdit = "5/1/2024 10:32:25 PM"
+   Description = "WinAGI v2 Template Game"
+   GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
    ResDir = src
    UseResNames = True
-   Author = "One Guy From CrafterCMS"
+   Author = ""
    UseLE = False
    PlatformType = 1
    Platform = "C:\Program Files (x86)\DOSBox-0.74-3\DOSBox.exe"
@@ -48,16 +48,56 @@
 
 [::BEGIN Logics::]
 [Logic0]
-   CompCRC32 = &H61FCC6D9
-   CRC32 = &H61FCC6D9
+   CompCRC32 = &HD241FA7E
+   CRC32 = &HD241FA7E
    ID = lgc.Main
    IsRoom = False
    Size = 1735
    Description = "This logic runs in every interpreter cycle and calls other logics as needed."
 
+[Logic1]
+   CompCRC32 = &H5029E08E
+   CRC32 = &H5029E08E
+   ID = rm.Entrance
+   IsRoom = True
+   Size = 122
+   Description = "An example room with several exits."
+
+[Logic2]
+   ID = rm.Outside
+   Description = "An example room with an automatic door and sound effects."
+   CRC32 = &HC61A99CF
+   CompCRC32 = &HC61A99CF
+   IsRoom = True
+   Size = 494
+
+[Logic3]
+   ID = rm.WestRoom
+   Description = "An example room."
+   CRC32 = &H1F35C026
+   CompCRC32 = &H1F35C026
+   IsRoom = True
+   Size = 921
+
+[Logic4]
+   ID = rm.NorthRoom
+   Description = "An example room."
+   CRC32 = &HC8AEEF31
+   CompCRC32 = &HC8AEEF31
+   IsRoom = True
+   Size = 82
+
+[Logic5]
+   ID = rm.EastRoom
+   Description = "An example room."
+   CRC32 = &H1C0825AF
+   CompCRC32 = &H1C0825AF
+   IsRoom = True
+   Size = 82
+
 [Logic90]
-   CompCRC32 = &HFBD23190
-   CRC32 = &HFBD23190
+   CompCRC32 = &HAD097136
+   CRC32 = &HAD097136
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
@@ -128,44 +168,69 @@
    Description = "Error Handler\n\nWhen AGI traps an error, this logic will display information on the error and then quit AGI."
 
 [Logic99]
-   CompCRC32 = &H4B850E0F
-   CRC32 = &H4B850E0F
+   CompCRC32 = &H54F239D5
+   CRC32 = &H54F239D5
    ID = lgc.Debug
    IsRoom = False
    Size = 1137
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &HF833253
-   CRC32 = &HF833253
+   CompCRC32 = &H6BBE0231
+   CRC32 = &H6BBE0231
    ID = rm.Title
    IsRoom = True
    Size = 345
    Description = "Opening/intro\n\nThis is an example of an intro screen, with scrolling credits and a theme song."
-
-[Logic43]
-   ID = rm.ltectitle
-   Description = ""
-   CRC32 = &H62D751CD
-   CompCRC32 = &H62D751CD
-   IsRoom = False
 [::END Logics::]
 
 [::BEGIN Pictures::]
+[Picture1]
+   ID = pic.Entrance
+   Description = ""
+   BkgdImg = ""
+   Size = 251
 
-[Picture43]
-   ID = Picture43
+[Picture2]
+   ID = pic.Outside
+   Description = ""
+   BkgdImg = ""
+   Size = 954
+
+[Picture3]
+   ID = pic.WestRoom
+   Description = ""
+   BkgdImg = ""
+   Size = 165
+
+[Picture4]
+   ID = pic.NorthRoom
+   Description = ""
+   BkgdImg = ""
+   Size = 125
+
+[Picture5]
+   ID = pic.EastRoom
+   Description = ""
+   BkgdImg = ""
+   Size = 169
+
+[Picture100]
+   ID = pic.Introduction
    Description = ""
    BkgdImg = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
-
 [Sound0]
-   ID = m.theme
-   Description = ""
+   ID = m.Theme
+   Description = "A theme song that can be played while title screen is shown."
    Key = 0
-   TPQN = 16
+   TPQN = 4
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = False
    Inst0 = 80
    Inst1 = 80
    Inst2 = 80
@@ -173,14 +238,11 @@
    Mute1 = False
    Mute2 = False
    Mute3 = False
-   Visible0 = True
-   Visible1 = True
-   Visible2 = True
-   Visible3 = True
+   Size = 1586
 
 [Sound1]
-   ID = s.DoorOpen
-   Description = ""
+   ID = s.DoorClose
+   Description = "A simple sound effect for an automatic opening door."
    Key = 0
    TPQN = 16
    Inst0 = 80
@@ -194,10 +256,11 @@
    Visible1 = True
    Visible2 = True
    Visible3 = True
+   Size = 31
 
 [Sound2]
-   ID = s.DoorClose
-   Description = ""
+   ID = s.DoorOpen
+   Description = "A simple sound effect for an automatic closing door."
    Key = 0
    TPQN = 16
    Inst0 = 80
@@ -211,11 +274,41 @@
    Visible1 = True
    Visible2 = True
    Visible3 = True
+   Size = 31
 [::END Sounds::]
 
 [::BEGIN Views::]
-
 [View0]
-   ID = grahamNoHat
+   ID = vw.Ego
+   Description = "This is the default ego view"
+   Size = 2854
+
+[View1]
+   ID = vw.EgoDead
+   Description = "Contains two different versions of Ego after dying. Add others to show additional ways Ego might die"
+   Size = 224
+
+[View2]
+   ID = vw.Door
+   Description = ""
+   Size = 4926
+
+[View218]
+   ID = vw.OpeningCredits
+   Description = "Example of startup credits that fade in and fade out. Used on the introduction page."
+   Size = 3451
+
+[View220]
+   ID = vw.Inv.TestItem
+   Description = "Inventory view of a sample item that includes a border."
+   Size = 286
+
+[View3]
+   ID = vw.WestRoomArt
+   Description = "it's handy to keep cels and loops that are added to a room's picture in one view"
+   Size = 168
+
+[View68]
+   ID = vw.titleFeatherHat
    Description = ""
 [::END Views::]

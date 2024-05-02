@@ -32,10 +32,10 @@ if (newRoom) {
   [ set.horizon(36);
   
   [ load view used in the room
-  load.view(3);
+  load.view(vw.WestRoomArt);
   
   [ put a table in middle of room, include a control box
-  add.to.pic(3, 0, 0, 67, 149, 0, 0);
+  add.to.pic(vw.WestRoomArt, 0, 0, 67, 149, 0, 0);
   
   
   [ if ego has not picked up the strange item, put it on 
@@ -49,7 +49,7 @@ if (newRoom) {
   if (vTestItemRm == 3) {
     [ put it on the table
     animate.obj(oTestItem);
-    set.view(oTestItem, 3);
+    set.view(oTestItem, vw.WestRoomArt);
     set.loop(oTestItem, 0);
     set.cel(oTestItem, 1);
     position(oTestItem, 74, 136);

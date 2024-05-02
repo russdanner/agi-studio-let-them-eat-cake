@@ -57,8 +57,8 @@ if (controller(cShowEgo)) {
 
 [ force ego to die
 if (said("die")) {
-  load.view(4);
-  set.view(ego, 4);
+  load.view(vw.EgoDead);
+  set.view(ego, vw.EgoDead);
   program.control();
   stop.motion(ego);
   deathType = 1;
