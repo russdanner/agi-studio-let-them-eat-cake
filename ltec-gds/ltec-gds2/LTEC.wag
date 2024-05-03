@@ -79,14 +79,6 @@
    IsRoom = True
    Size = 921
 
-[Logic4]
-   ID = rm.NorthRoom
-   Description = "An example room."
-   CRC32 = &HC8AEEF31
-   CompCRC32 = &HC8AEEF31
-   IsRoom = True
-   Size = 82
-
 [Logic5]
    ID = rm.EastRoom
    Description = "An example room."
@@ -186,8 +178,22 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &HF77E9181
-   CompCRC32 = &HF77E9181
+   CRC32 = &HEF962E8D
+   CompCRC32 = &HEF962E8D
+   IsRoom = True
+
+[Logic203]
+   ID = rm.NorthRoom
+   Description = "An example room."
+   CRC32 = &HC8AEEF31
+   CompCRC32 = &HC8AEEF31
+   IsRoom = True
+
+[Logic4]
+   ID = rm.GrahamLawnNight
+   Description = ""
+   CRC32 = &H76DFC28
+   CompCRC32 = &H76DFC28
    IsRoom = True
 [::END Logics::]
 
@@ -210,12 +216,6 @@
    BkgdImg = ""
    Size = 165
 
-[Picture4]
-   ID = pic.NorthRoom
-   Description = ""
-   BkgdImg = ""
-   Size = 125
-
 [Picture5]
    ID = pic.EastRoom
    Description = ""
@@ -229,6 +229,16 @@
 
 [Picture6]
    ID = pic.GrahamHouse
+   Description = ""
+   BkgdImg = ""
+
+[Picture204]
+   ID = pic.NorthRoom
+   Description = ""
+   BkgdImg = ""
+
+[Picture4]
+   ID = pic.GrahamLawnNight
    Description = ""
    BkgdImg = ""
 [::END Pictures::]
@@ -305,11 +315,6 @@
    Description = ""
    Size = 4926
 
-[View218]
-   ID = vw.OpeningCredits
-   Description = "Example of startup credits that fade in and fade out. Used on the introduction page."
-   Size = 3451
-
 [View220]
    ID = vw.Inv.TestItem
    Description = "Inventory view of a sample item that includes a border."
@@ -354,5 +359,17 @@
 
 [View20]
    ID = vw.GrahamHatNoFeather
+   Description = ""
+
+[View105]
+   ID = vw.GrahamSleep
+   Description = ""
+
+[View47]
+   ID = vw.Wolf
+   Description = ""
+
+[View101]
+   ID = vw.GrahamFightCloud
    Description = ""
 [::END Views::]

@@ -1,0 +1,214 @@
+[*********************************************************************
+[
+[ rm.GrahamLawnNight
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    [ the horizon defines the upper limit of ego's movement
+    [set.horizon(0);
+    
+    [ add additional room initialization here
+    load.view(vw.GrahamNoHat);
+    load.view(vw.GrahamHatNoFeather);
+    load.view(vw.Wolf);
+    load.view(vw.GrahamHouseDoor);
+
+    animate.obj(ego);
+    animate.obj(objWolf1);
+    animate.obj(objWolf2);
+    animate.obj(objCabinDoor);
+
+    set.view(objWolf1, vw.Wolf);
+    set.view(objWolf2, vw.Wolf);
+    set.view(objCabinDoor, vw.GrahamHouseDoor);
+
+    stop.cycling(objWolf1);
+    stop.cycling(objWolf2);
+    stop.cycling(objCabinDoor);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 119);
+            assignn(vEgoY, 126);
+        }
+    }
+
+    if(isset(fWearingHat)) {
+        set.view(ego, vw.GrahamHatNoFeather);
+    }
+    else {
+        set.view(ego, vw.GrahamNoHat);
+    }
+    
+    reset(fSoundDone);
+    reset(fDoAction);
+    reset(fGotcha);
+    reset(fGotcha2);
+
+    position.v(objEgo, vEgoX, vEgoY);
+
+    position(objWolf1, 15, 40);
+    position(objWolf2, 160, 180);
+    position(objCabinDoor, 121, 130);
+    set.priority(objCabinDoor, 4);
+    set.priority(objEgo, 11);   
+
+    draw(objWolf1);
+    draw(objWolf2);
+    draw(objCabinDoor);
+    draw(objEgo);
+        
+    [ display the picture on screen
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(!isset(fDead)) { 
+    if(!obj.in.box(objEgo, 100, 116, 158, 130)) {
+        if(!isset(fRunForIt)) {
+            set(fRunForIt);
+            [load.sound(sndDevMonster);
+            [sound(sndDevMonster, fSoundDone);    
+            set(fDoAction);
+        }
+    }
+
+    [if(isset(fSoundDone)) {
+        [if(!isset(fDoAction)) {
+            set(fDoAction);
+        [}
+    [}
+
+    if(isset(fDoAction)) {
+        reset(fSoundDone);
+        start.cycling(objWolf1);
+        follow.ego(objWolf1, 3, fGotcha);
+
+        start.cycling(objWolf2);
+        follow.ego(objWolf2, 3, fGotcha2);
+    }
+
+    if(isset(fGotcha)) {
+        erase(objEgo);
+
+        set(fDead); 
+        assignn(vDeathReason, valXsWolfMunchGraham);
+        load.view(vw.GrahamFightCloud);
+
+        set.view(objWolf1, vw.GrahamFightCloud);
+        
+        start.cycling(objWolf1);
+        start.cycling(objWolf2);
+        wander(objWolf1);         
+        wander(objWolf2);         
+    }
+    if(isset(fGotcha2)) {
+        erase(objEgo);
+
+        set(fDead); 
+        assignn(vDeathReason, valXsWolfMunchGraham);
+        load.view(vw.GrahamFightCloud);
+
+        set.view(objWolf2, vw.GrahamFightCloud);
+        
+        start.cycling(objWolf1);
+        start.cycling(objWolf2);
+        wander(objWolf1);        
+        wander(objWolf2);         
+    }
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow.");
+    }
+    if(said("look", "room")) {
+        print("You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow.");
+    }
+    
+    if(said("wear", "hat")) {
+        if(has("Hat")) {
+            if(isset(fWearingHat)) {
+                print("You are already wearing it.");
+            }
+            if(!isset(fWearingHat)) {
+                set(fWearingHat);
+                set.view(objEgo, vw.GrahamHatNoFeather);
+                print("You put on your trusty hat!");
+    
+                if(!isset(fPointsForHatWear)) {
+                    set(fPointsForHatWear);
+                    addn(vCurrentScore, 1);    
+                }
+            }
+        }
+        if(!has("Hat")) {
+            print("You don't have it.");
+        }
+    }   
+    
+    
+    if(said("remove", "hat")) {
+        if(has("Hat")) {
+            if(!isset(fWearingHat)) {
+                print("You are not wearing your hat.");
+            }
+            if(isset(fWearingHat)) {
+                reset(fWearingHat);
+                set.view(objEgo, vw.GrahamNoHat);
+            }
+        }
+        if(!has("Hat")) {
+            print("You don't have it.");
+        }
+    }  
+    
+    if(said("open", "door")) {
+        if(obj.in.box(objEgo, 100, 116, 158, 130)) {
+            get.posn(objEgo, vEgoX, vEgoY);
+            assignn(vEgoX, 35);
+            assignn(vEgoY, 110);
+            reset(fWearingHat);
+            assignn(vRoomInited, valFalse);
+            new.room(rm.GrahamHouse);
+        }
+        if(!obj.in.box(objEgo, 100, 116, 158, 130)) {
+            print("You are not close enough.");
+        }
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

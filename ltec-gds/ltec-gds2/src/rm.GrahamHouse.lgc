@@ -29,7 +29,7 @@ if (newRoom) {
   load.view(vw.GrahamHouseWindow);
   load.view(vw.GrahamHouseDoor);
   load.view(vw.GrahamHatNoFeather);
-  [load.view(vw.GrahamSleep);
+  load.view(vw.GrahamSleep);
   
   animate.obj(ego);
   animate.obj(objHat);
@@ -46,8 +46,7 @@ if (newRoom) {
   set.view(objSummons, vw.Summons);
   set.view(objWindow, vw.GrahamHouseWindow);
   set.view(objCabinDoor, vw.GrahamHouseDoor);
-  
-  [set.view(objGrahamSleep, viewGrahamSleep)
+  set.view(objGrahamSleep, viewGrahamSleep);
 
   stop.cycling(objHat);
   stop.cycling(objTeaCup);
@@ -221,14 +220,14 @@ if (haveInput && !haveMatch) {
                     assignn(vEgoX, 119);
                     assignn(vEgoY, 126);
                     assignn(vRoomInited, valFalse);
-                    assignn(vCurrentRoom, picGrahamLawn);     
+                    new.room(picGrahamLawn);     
                 }
                 if(!isset(fIsMorning)) {
                     get.posn(objEgo, vEgoX, vEgoY);
                     assignn(vEgoX, 119);
                     assignn(vEgoY, 126);
                     assignn(vRoomInited, valFalse);
-                    assignn(vCurrentRoom, picGrahamLawnNight);     
+                    new.room(picGrahamLawnNight);     
                 }
             }
         }
