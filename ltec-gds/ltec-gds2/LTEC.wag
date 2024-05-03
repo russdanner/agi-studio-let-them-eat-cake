@@ -55,38 +55,6 @@
    Size = 1735
    Description = "This logic runs in every interpreter cycle and calls other logics as needed."
 
-[Logic1]
-   CompCRC32 = &H5029E08E
-   CRC32 = &H5029E08E
-   ID = rm.Entrance
-   IsRoom = True
-   Size = 122
-   Description = "An example room with several exits."
-
-[Logic2]
-   ID = rm.Outside
-   Description = "An example room with an automatic door and sound effects."
-   CRC32 = &HC61A99CF
-   CompCRC32 = &HC61A99CF
-   IsRoom = True
-   Size = 494
-
-[Logic3]
-   ID = rm.WestRoom
-   Description = "An example room."
-   CRC32 = &HEEEBE9AF
-   CompCRC32 = &HEEEBE9AF
-   IsRoom = True
-   Size = 921
-
-[Logic5]
-   ID = rm.EastRoom
-   Description = "An example room."
-   CRC32 = &H1C0825AF
-   CompCRC32 = &H1C0825AF
-   IsRoom = True
-   Size = 82
-
 [Logic90]
    CompCRC32 = &HC1628B6
    CRC32 = &HC1628B6
@@ -195,33 +163,37 @@
    CRC32 = &HE9B106FD
    CompCRC32 = &HE9B106FD
    IsRoom = True
+
+[Logic201]
+   ID = rm.Entrance
+   Description = "An example room with several exits."
+   CRC32 = &H5029E08E
+   CompCRC32 = &H5029E08E
+   IsRoom = True
+
+[Logic202]
+   ID = rm.Outside
+   Description = "An example room with an automatic door and sound effects."
+   CRC32 = &HC61A99CF
+   CompCRC32 = &HC61A99CF
+   IsRoom = True
+
+[Logic204]
+   ID = rm.WestRoom
+   Description = "An example room."
+   CRC32 = &HEEEBE9AF
+   CompCRC32 = &HEEEBE9AF
+   IsRoom = True
+
+[Logic205]
+   ID = rm.EastRoom
+   Description = "An example room."
+   CRC32 = &H1C0825AF
+   CompCRC32 = &H1C0825AF
+   IsRoom = True
 [::END Logics::]
 
 [::BEGIN Pictures::]
-[Picture1]
-   ID = pic.Entrance
-   Description = ""
-   BkgdImg = ""
-   Size = 251
-
-[Picture2]
-   ID = pic.Outside
-   Description = ""
-   BkgdImg = ""
-   Size = 954
-
-[Picture3]
-   ID = pic.WestRoom
-   Description = ""
-   BkgdImg = ""
-   Size = 165
-
-[Picture5]
-   ID = pic.EastRoom
-   Description = ""
-   BkgdImg = ""
-   Size = 169
-
 [Picture100]
    ID = pic.Introduction
    Description = ""
@@ -232,13 +204,33 @@
    Description = ""
    BkgdImg = ""
 
-[Picture204]
+[Picture4]
+   ID = pic.GrahamLawnNight
+   Description = ""
+   BkgdImg = ""
+
+[Picture201]
+   ID = pic.Entrance
+   Description = ""
+   BkgdImg = ""
+
+[Picture202]
+   ID = pic.Outside
+   Description = ""
+   BkgdImg = ""
+
+[Picture203]
    ID = pic.NorthRoom
    Description = ""
    BkgdImg = ""
 
-[Picture4]
-   ID = pic.GrahamLawnNight
+[Picture204]
+   ID = pic.WestRoom
+   Description = ""
+   BkgdImg = ""
+
+[Picture205]
+   ID = pic.EastRoom
    Description = ""
    BkgdImg = ""
 [::END Pictures::]
