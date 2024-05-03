@@ -392,7 +392,7 @@
 #define vDiceRoll                    v37
 #define vEnemyChance                 v50
 #define vFeatherChance               v51
-#define vTeaPoured                   v35
+#define vTeaPoured                  v235
 #define vTeaDrank                    v36
 #define vSleeping                    v37
 #define vGotOutOfPod                 v38

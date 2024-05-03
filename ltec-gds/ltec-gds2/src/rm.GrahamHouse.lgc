@@ -28,8 +28,8 @@ if (newRoom) {
   load.view(vw.TeaCup);
   load.view(vw.GrahamHouseWindow);
   load.view(vw.GrahamHouseDoor);
+  load.view(vw.GrahamHatNoFeather);
   [load.view(vw.GrahamSleep);
-  [load.view(vw.GrahamHatNoFeather);
   
   animate.obj(ego);
   animate.obj(objHat);
@@ -64,9 +64,9 @@ if (newRoom) {
     position(objHat, 130, 125);
   }
 
-  [if(!has("Summons")) {
+  if(!has("Summons")) {
     position(objSummons, 80, 105);
-  [}
+  }
   
   position(objTeapot, 110, 87);
   position(objTeaCup, 55, 105);
@@ -273,7 +273,7 @@ if (haveInput && !haveMatch) {
             }
             if(isset(fWearingHat)) {
                 reset(fWearingHat);
-                set.view(objEgo, viewGrahamNoHat);
+                set.view(objEgo, vw.GrahamHatNoFeather);
             }
         }
         if(!has("Hat")) {
@@ -418,29 +418,47 @@ if (haveInput && !haveMatch) {
     }    
 }
 
-[***************************************
-[ CHECK FOR AN EXIT CONDITION
-[***************************************
 
-if (edgeEgoHit == TOP_EDGE) {
-  [ move to room above
-  new.room(rm.NorthRoom);  [ ##LE001##
+if(equaln(vSleeping, valTrue)) {
+    if(equaln(vClockTicks, 1)) {
+        print("Time passes...");
+    }
+
+    if(equaln(vClockTicks, 2)) {
+        print("More time passes...");
+    }
+
+    if(equaln(vClockTicks, 3)) {
+        print("What on earth was in that tea?!?");
+    }
+
+    if(equaln(vClockTicks, 4)) {
+        assignn(vEgoX, 0);
+        assignn(vEgoY, 0);
+        assignn(vRoomInited, valFalse);
+        assignn(vCurrentRoom, picHanger);
+    }
 }
 
-if (edgeEgoHit == RIGHT_EDGE) {
-  [ move to room on the right
-  new.room(rm.EastRoom);  [ ##LE002##
+if(equaln(vClockTicks, 20)) {
+    print("It sure is getting late");
+}
+if(equaln(vClockTicks, 40)) {
+    print("If you don't get to sleep you'll be a real mess in the morning.");
+}
+if(equaln(vClockTicks, 60)) {
+    [DEAD: OVERSLEPT
+    assignn(vDeathReason, valXsOversleep);
+    set(fDead);
 }
 
-if (edgeEgoHit == BOTTOM_EDGE) {
-  [ move to room below
-  new.room(rm.Outside);  [ ##LE003##
+[ at some point replace this mechanism with the built in clock
+if(equaln(vTimer, 100)) {
+    assignn(vTimer, 0);
+    addn(vClockTicks, 1); 
 }
 
-if (edgeEgoHit == LEFT_EDGE) {
-  [ move to room on the left
-  new.room(rm.WestRoom); [ ##LE004##
-}
+addn(vTimer, 1); 
 
 :done
 return();

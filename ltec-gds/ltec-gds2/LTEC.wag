@@ -138,8 +138,8 @@
 [Logic95]
    ID = lgc.Death
    Description = "Death handler\n\nThis logic is run when the player dies. The death message displayed depends on the value of certain.death."
-   CRC32 = &HDFDFFD8F
-   CompCRC32 = &HDFDFFD8F
+   CRC32 = &HB5B6137
+   CompCRC32 = &HB5B6137
    IsRoom = False
    Size = 409
 
@@ -186,8 +186,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H864F96BD
-   CompCRC32 = &H864F96BD
+   CRC32 = &HF77E9181
+   CompCRC32 = &HF77E9181
    IsRoom = True
 [::END Logics::]
 
@@ -350,5 +350,9 @@
 
 [View49]
    ID = vw.GrahamHouseDoor
+   Description = ""
+
+[View20]
+   ID = vw.GrahamHatNoFeather
    Description = ""
 [::END Views::]
