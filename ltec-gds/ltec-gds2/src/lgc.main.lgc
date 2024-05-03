@@ -230,8 +230,8 @@ if (newRoom) {
 [ DEATH CHECK
 [************************ 
 [ (usually happens a lot in AGI games...)
-if (deathType > 0) {
-  if (deathType != 255) {
+if (isset(fDead)) {
+[  if (deathType != 255) {
     [ first cycle since player died. disable some menu items
     [ and load the death logic into memory as it will handle
     [ player input from now on.
@@ -247,7 +247,7 @@ if (deathType > 0) {
 
     [ load the death handler logic 
     load.logics(lgc.Death);
-  }
+ [ }
     
   [ call the death handler, where you update the screen
   [ and display a message to player about how ego died

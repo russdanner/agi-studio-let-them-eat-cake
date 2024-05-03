@@ -95,47 +95,28 @@ if(!isset(fDead)) {
 
     [if(isset(fSoundDone)) {
         [if(!isset(fDoAction)) {
-            set(fDoAction);
+        [    set(fDoAction);
         [}
     [}
 
     if(isset(fDoAction)) {
         reset(fSoundDone);
+        reset(fDoAction);
         start.cycling(objWolf1);
         follow.ego(objWolf1, 3, fGotcha);
 
         start.cycling(objWolf2);
-        follow.ego(objWolf2, 3, fGotcha2);
+        follow.ego(objWolf2, 3, fGotcha);
     }
 
     if(isset(fGotcha)) {
-
-        erase(objEgo);
-
+        erase(objWolf1);
+        erase(objWolf2);
+        
         set(fDead); 
         assignn(vDeathReason, valXsWolfMunchGraham);
         load.view(vw.GrahamFightCloud);
-
-        set.view(objWolf1, vw.GrahamFightCloud);
-        
-        start.cycling(objWolf1);
-        start.cycling(objWolf2);
-        wander(objWolf1);         
-        wander(objWolf2);         
-    }
-    if(isset(fGotcha2)) {
-        erase(objEgo);
-
-        set(fDead); 
-        assignn(vDeathReason, valXsWolfMunchGraham);
-        load.view(vw.GrahamFightCloud);
-
-        set.view(objWolf2, vw.GrahamFightCloud);
-        
-        start.cycling(objWolf1);
-        start.cycling(objWolf2);
-        wander(objWolf1);        
-        wander(objWolf2);         
+        set.view(ego, vw.GrahamFightCloud);        
     }
 }
 

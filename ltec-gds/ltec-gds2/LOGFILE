@@ -11,3 +11,19 @@ Error: 3 Value: 20
 Room 6
 Input line: pour tea
 Error: 11 Value: 50
+
+Room 4
+Input line: set flag 97
+Unknown word: 97
+
+Room 4
+Input line: restore
+Error: 11 Value: 50
+
+Room 4
+Input line: restore
+Error: 11 Value: 50
+
+Room 4
+Input line: restore
+Error: 11 Value: 50

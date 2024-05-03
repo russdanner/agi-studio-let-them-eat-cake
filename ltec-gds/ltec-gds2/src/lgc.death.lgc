@@ -27,6 +27,8 @@
 
 if(!isset(fGameOver)) {
     if(isset(fDead)) {
+        reset(fDead);
+         
         if(equaln(vDeathReason, valXsGeneric)) {
             set(fRogerDead);
             print("You are dead.");    
@@ -99,24 +101,26 @@ if(!isset(fGameOver)) {
 }
 
 if(!isset(fGameOver)) {
+    set(fGameOver);
+
     if(isset(fRogerDead)) {
         reset(fRogerDead);        
-        load.sound(sndRogerDead);
-        sound(sndRogerDead, fDeathSoundDone);
-        set(fGameOver);
+        [load.sound(sndRogerDead);
+        [sound(sndRogerDead, fDeathSoundDone);
+        set(fDeathSoundDone);
     }
+    
     if(isset(fGrahamDead)) {
         reset(fGrahamDead);
-        load.sound(sndGrahamDead);
-        sound(sndGrahamDead, fDeathSoundDone);
-        set(fGameOver);
+        [load.sound(sndGrahamDead);
+        [sound(sndGrahamDead, fDeathSoundDone);
+        set(fDeathSoundDone);
     }    
 }
 
 if(isset(fDeathSoundDone)) {
-    if(have.key()) {
-        print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. Reload to restart.");
-    } 
+    reset(fDeathSoundDone);
+    print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. Reload to restart.");
 }
 
 

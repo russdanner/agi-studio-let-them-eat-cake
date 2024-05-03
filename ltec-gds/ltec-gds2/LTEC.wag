@@ -48,8 +48,8 @@
 
 [::BEGIN Logics::]
 [Logic0]
-   CompCRC32 = &H89EEAF64
-   CRC32 = &H89EEAF64
+   CompCRC32 = &H46388F4D
+   CRC32 = &H46388F4D
    ID = lgc.Main
    IsRoom = False
    Size = 1735
@@ -98,8 +98,8 @@
 [Logic95]
    ID = lgc.Death
    Description = "Death handler\n\nThis logic is run when the player dies. The death message displayed depends on the value of certain.death."
-   CRC32 = &HB5B6137
-   CompCRC32 = &HB5B6137
+   CRC32 = &H786A3FD8
+   CompCRC32 = &H786A3FD8
    IsRoom = False
    Size = 409
 
@@ -160,8 +160,8 @@
 [Logic4]
    ID = rm.GrahamLawnNight
    Description = ""
-   CRC32 = &HE9B106FD
-   CompCRC32 = &HE9B106FD
+   CRC32 = &H44432C7F
+   CompCRC32 = &H44432C7F
    IsRoom = True
 
 [Logic201]
