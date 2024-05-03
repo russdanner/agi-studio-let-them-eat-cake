@@ -29,7 +29,6 @@ if (newRoom) {
   load.view(vw.GrahamHouseWindow);
   load.view(vw.GrahamHouseDoor);
   load.view(vw.GrahamHatNoFeather);
-  load.view(vw.GrahamSleep);
   
   animate.obj(ego);
   animate.obj(objHat);
@@ -46,7 +45,6 @@ if (newRoom) {
   set.view(objSummons, vw.Summons);
   set.view(objWindow, vw.GrahamHouseWindow);
   set.view(objCabinDoor, vw.GrahamHouseDoor);
-  set.view(objGrahamSleep, viewGrahamSleep);
 
   stop.cycling(objHat);
   stop.cycling(objTeaCup);
@@ -55,8 +53,7 @@ if (newRoom) {
   stop.cycling(objCabinDoor);
 
   set.cel(objCabinDoor, 1);
-  position(objCabinDoor, 26, 131);
-      
+  position(objCabinDoor, 26, 131);      
   position(objWindow, 90, 58);
 
   if(!has("Hat")) {
@@ -87,7 +84,8 @@ if (newRoom) {
   draw(objSummons);
   draw(objWindow);
   draw(objCabinDoor);
-  
+
+      
   [ The next 6 lines need only be in the first room of the game 
   if ((previousRoom == rm.Title || previousRoom == 0)) {
     [ when starting or restarting need to position ego
@@ -106,7 +104,8 @@ if (newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-[ add room specific statements here
+
+
 if(!isset(fKingMessageDisplayed)) {
   print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edward for reasons unknown.");
   set(fKingMessageDisplayed);
@@ -234,14 +233,6 @@ if (haveInput && !haveMatch) {
         if(!posn(objEgo, 16, 108, 35, 124)) {
             print("You can't do that from here.");
         }
-    }
-    
-    if(equaln(vSleeping, valTrue)) {
-        erase(objEgo);
-        stop.cycling(objGrahamSleep);
-        draw(objGrahamSleep);
-        position(objGrahamSleep, 110, 82);
-        set.priority(objGrahamSleep, 15);
     }
     
     if(said("wear", "hat")) {
@@ -419,24 +410,37 @@ if (haveInput && !haveMatch) {
 
 
 if(equaln(vSleeping, valTrue)) {
-    if(equaln(vClockTicks, 1)) {
-        print("Time passes...");
+  if(equaln(vTimer, 0)) {
+    if(equaln(vClockTicks, 0)) {
+      erase(objEgo);
+      load.view(vw.GrahamSleep);
+      set.view(objGrahamSleep, vw.GrahamSleep);
+      animate.obj(objGrahamSleep);  
+      position(objGrahamSleep, 110, 82);
+      set.priority(objGrahamSleep, 15);
+      draw(objGrahamSleep);
     }
-
+  
+    if(equaln(vClockTicks, 1)) {
+      print("Time passes...");
+    }
+  
     if(equaln(vClockTicks, 2)) {
-        print("More time passes...");
+      print("More time passes...");
     }
 
     if(equaln(vClockTicks, 3)) {
-        print("What on earth was in that tea?!?");
+      print("What on earth was in that tea?!?");
     }
 
     if(equaln(vClockTicks, 4)) {
-        assignn(vEgoX, 0);
-        assignn(vEgoY, 0);
-        assignn(vRoomInited, valFalse);
-        assignn(vCurrentRoom, picHanger);
-    }
+      assignn(vEgoX, 0);
+      assignn(vEgoY, 0);
+      assignn(vRoomInited, valFalse);
+      assignn(vCurrentRoom, picHanger);
+      print("space!");
+    } 
+  }
 }
 
 if(equaln(vClockTicks, 20)) {
@@ -451,17 +455,12 @@ if(equaln(vClockTicks, 60)) {
     set(fDead);
 }
 
-[ at some point replace this mechanism with the built in clock
-if(equaln(vTimer, 100)) {
-    assignn(vTimer, 0);
-    addn(vClockTicks, 1); 
-}
 
-addn(vTimer, 1); 
+
+
 
 :done
 return();
 
-[***************************************
 [ DECLARED MESSAGES
 [***************************************

@@ -225,6 +225,8 @@ if (newRoom) {
 [***************************************
 [ EVERY CYCLE
 [***************************************
+[ add room specific statements here
+
 
 [************************
 [ DEATH CHECK
@@ -482,6 +484,14 @@ if (clockOn && !disableGameFunctions) {
     statusSeconds = elapsedSeconds;
   }
 }
+
+addn(vTimer, 1); 
+
+if(greatern(vTimer, 100)) {
+    assignn(vTimer, 0);
+    addn(vClockTicks, 1); 
+}
+display(1,1,"Timer: %v242 %v243");
 
 [ get ego's current position
 get.posn(ego, egoX, egoY); 

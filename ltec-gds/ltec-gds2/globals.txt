@@ -386,8 +386,8 @@
 #define vInvShowItem                 v32
 #define vInvView                     v33
 #define vRoomInited                  v34
-#define vTimer                       v42
-#define vClockTicks                  v43
+#define vTimer                      v242
+#define vClockTicks                 v243
 #define vActionCount                 v35
 #define vDiceRoll                    v37
 #define vEnemyChance                 v50

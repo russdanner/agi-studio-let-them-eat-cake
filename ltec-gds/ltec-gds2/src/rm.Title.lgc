@@ -32,7 +32,7 @@ if (newRoom) {
   [call(lgc.RoomInit);
 
   [ add room-specific initialization here
-  speed = 2; 
+  [speed = 2; 
   objDir = DOWN;
   assignn(vEgoX, 150);
   assignn(vEgoY, 0);
@@ -73,8 +73,8 @@ if (newRoom) {
   load.view(vw.titleFeatherHat);
   animate.obj(hat);
   animate.obj(feather);
-  cycle.time(hat, speed);
-  cycle.time(feather, speed);
+  [cycle.time(hat, speed);
+  [cycle.time(feather, speed);
   
   stop.cycling(feather);
   stop.cycling(hat);
@@ -104,20 +104,8 @@ if (newRoom) {
   set.dir(feather, objDir);
   draw(feather);
   
-  [ ensure pointer is reset
-  [`linePtr = 0;
-  
-  [ no ego used in this room
-  
   [ show the picture on screen
   show.pic(); 
-   
-  [ display game title above scroll window
-  [ you can use a view for this instead of text, if desired
-  [display(3, 10, "Intro/Opening screen");
-  
-  [ display game version below scroll window
-  [display(21, 9, gameVersionMsg);
   
   [ load the theme song
   load.sound(m.theme);
@@ -162,12 +150,12 @@ if(greatern(v80, 6)) {
 }
 
 [ clear the old lines
-display(15, 12, m16); 
-display(16, 12, m16); 
-display(17, 12, m16); 
-display(18, 12, m16);
-display(19, 12, m16); 
-display(20, 12, m16); 
+[display(15, 12, m16); 
+[display(16, 12, m16); 
+[display(17, 12, m16); 
+[display(18, 12, m16);
+[display(19, 12, m16); 
+[display(20, 12, m16); 
  
 if(!greatern(v80, 5)) {
     if(isset(fDoAction)) {
@@ -266,20 +254,20 @@ return();
 #message 2 "let-them-eat-cake.com"
 
 #message 3 "One Guy from CrafterCMS"
-#message 4 "A heartfelt thanks"
-#message 5 "to the heroes &"
-#message 6 "fans of Sierra."
+#message 4 "A heartfelt thanks "
+#message 5 "to the heroes &    "
+#message 6 "fans of Sierra.    "
 
-#message 7 "Early adventure"
-#message 8 "games amazed us,"
-#message 9 "taught us to solve"
-#message 10 "problems and to"
-#message 11 "be resilient."
+#message 7 "Early adventure    "
+#message 8 "games amazed us,   "
+#message 9 "taught us to solve "
+#message 10 "problems and to   "
+#message 11 "be resilient.     "
 
-#message 12 "Let Them Eat Cake"
-#message 13 "Version 1.6"
+#message 12 "Let Them Eat Cake "
+#message 13 "Version 1.6       "
 
-#message 14 "Press Any Key"
-#message 15 "to Continue"
+#message 14 "Press Any Key     "
+#message 15 "to Continue       "
 
 #message 16 "                  "
