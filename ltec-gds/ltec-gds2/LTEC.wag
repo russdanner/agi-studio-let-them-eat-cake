@@ -300,37 +300,13 @@
 [::END Sounds::]
 
 [::BEGIN Views::]
-[View0]
-   ID = vw.Ego
-   Description = "This is the default ego view"
-   Size = 2854
-
-[View1]
-   ID = vw.EgoDead
-   Description = "Contains two different versions of Ego after dying. Add others to show additional ways Ego might die"
-   Size = 224
-
-[View2]
-   ID = vw.Door
-   Description = ""
-   Size = 4926
-
 [View220]
    ID = vw.Inv.TestItem
    Description = "Inventory view of a sample item that includes a border."
    Size = 286
 
-[View3]
-   ID = vw.WestRoomArt
-   Description = "it's handy to keep cels and loops that are added to a room's picture in one view"
-   Size = 168
-
 [View68]
    ID = vw.titleFeatherHat
-   Description = ""
-
-[View4]
-   ID = vw.GrahamNoHat
    Description = ""
 
 [View5]
@@ -355,10 +331,6 @@
 
 [View49]
    ID = vw.GrahamHouseDoor
-   Description = ""
-
-[View20]
-   ID = vw.GrahamHatNoFeather
    Description = ""
 
 [View105]
@@ -431,5 +403,29 @@
 
 [View96]
    ID = vw.InvAdventureHat
+   Description = ""
+
+[View201]
+   ID = vw.EgoDead
+   Description = "Contains two different versions of Ego after dying. Add others to show additional ways Ego might die"
+
+[View202]
+   ID = vw.Door
+   Description = ""
+
+[View203]
+   ID = vw.WestRoomArt
+   Description = "it's handy to keep cels and loops that are added to a room's picture in one view"
+
+[View200]
+   ID = vw.Ego
+   Description = "This is the default ego view"
+
+[View0]
+   ID = vw.GrahamNoHat
+   Description = ""
+
+[View1]
+   ID = vw.GrahamHatNoFeather
    Description = ""
 [::END Views::]
