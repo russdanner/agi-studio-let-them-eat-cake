@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/2/2024 3:21:18 AM"
+   LastEdit = "5/2/2024 12:40:27 PM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -186,8 +186,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H45CE8C0A
-   CompCRC32 = &H45CE8C0A
+   CRC32 = &H864F96BD
+   CompCRC32 = &H864F96BD
    IsRoom = True
 [::END Logics::]
 

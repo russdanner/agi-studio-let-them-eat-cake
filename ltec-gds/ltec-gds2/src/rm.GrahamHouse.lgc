@@ -60,9 +60,9 @@ if (newRoom) {
       
   position(objWindow, 90, 58);
 
-  [if(!has("Hat")) {
+  if(!has("Hat")) {
     position(objHat, 130, 125);
-  [}
+  }
 
   [if(!has("Summons")) {
     position(objSummons, 80, 105);
@@ -128,10 +128,294 @@ if(!isset(fKingMessageDisplayed)) {
 [ if player has provided input and match not yet found,
 [ do said tests
 if (haveInput && !haveMatch) {  
-  [ look
-  if (said("look")) {
-    print("This is an empty room.");
-  }
+    if(said("look")) {
+        if(!has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter with a hat on it in the corner.");
+        }
+        if(has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter in the corner.");
+        }
+    }
+    
+    if(said("sleep")) {
+        if(posn(objEgo, 75, 30, 115, 85)) {
+            if(!equaln(vTeaDrank, valTrue)) {
+                print("You are a bit on edge about the summons you received from the king. You can't sleep.");
+            }
+            if(equaln(vTeaDrank, valTrue)) {
+                assignn(vSleeping, valTrue);
+                assignn(vTimer, 0);
+                assignn(vClockTicks, 0);
+                addn(vCurrentScore, 1);    
+                print("Having taken the tea you climb into bed and doze off.");
+            }
+        }
+        if(!posn(objEgo, 75, 30, 115, 85)) {
+            print("You're not close enough.");
+        }
+    }
+    
+    if(said("go", "sleep")) {
+        if(posn(objEgo, 75, 30, 115, 85)) {
+            if(!equaln(vTeaDrank, valTrue)) {
+                print("You are a bit on edge about the summons you received from the king. You can't sleep.");
+            }
+            if(equaln(vTeaDrank, valTrue)) {
+                assignn(vSleeping, valTrue);
+                assignn(vTimer, 0);
+                assignn(vClockTicks, 0);
+                addn(vCurrentScore, 1)  ;  
+                print("Having taken the tea you climb into bed and doze off.");
+            }
+        }
+        if(!posn(objEgo, 75, 30, 115, 85)) {
+            print("You're not close enough.");
+        }
+    }
+    
+    if(said("look", "room")) {
+        if(!has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter with a hat on it in the corner.");
+        }
+        if(has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter in the corner.");
+        }
+    }
+    if(said("look", "stove")) {
+        if(has("Teapot")) {
+            print("The stove is made of cast iron and keeps the room toasty.");
+        }
+        if(!has("Teapot")) {
+            print("The stove is made of cast iron and keeps the room toasty. There's a teapot on top of the stove.");
+        }
+    }
+    
+    if(said("look", "table")) {
+        if(has("Summons")) {
+            if(!has("Teacup")) {
+                print("There is a sturdy table here. A teacup sits on table");
+            }
+            if(has("Teacup")) {
+                print("There is a sturdy table here.");
+            }
+        }
+        if(!has("Summons")) {
+            if(!has("Teacup")) {
+                print("There is a sturdy table here. The summons you received from the King today lays on one side of the table and a teacup sits on the opposite side.");
+            }
+            if(has("Teacup")) {
+                print("There is a sturdy table here. The summons you received from the King today lays on the table.");
+            }
+        }
+    }
+    
+    if(said("open", "door")) {
+        if(posn(objEgo, 16, 108, 35, 124)) {
+            if(!has("Hat")) {
+                print("You would never leave the house without your hat.");
+            }
+            if(has("Hat")) {
+                if(isset(fIsMorning)) {
+                    addn(vCurrentScore, 1);    
+                    get.posn(objEgo, vEgoX, vEgoY);
+                    assignn(vEgoX, 119);
+                    assignn(vEgoY, 126);
+                    assignn(vRoomInited, valFalse);
+                    assignn(vCurrentRoom, picGrahamLawn);     
+                }
+                if(!isset(fIsMorning)) {
+                    get.posn(objEgo, vEgoX, vEgoY);
+                    assignn(vEgoX, 119);
+                    assignn(vEgoY, 126);
+                    assignn(vRoomInited, valFalse);
+                    assignn(vCurrentRoom, picGrahamLawnNight);     
+                }
+            }
+        }
+        if(!posn(objEgo, 16, 108, 35, 124)) {
+            print("You can't do that from here.");
+        }
+    }
+    
+    if(equaln(vSleeping, valTrue)) {
+        erase(objEgo);
+        stop.cycling(objGrahamSleep);
+        draw(objGrahamSleep);
+        position(objGrahamSleep, 110, 82);
+        set.priority(objGrahamSleep, 15);
+    }
+    
+    if(said("wear", "hat")) {
+        if(has("Hat")) {
+            if(isset(fWearingHat)) {
+                print("You are already wearing it.");
+            }
+            if(!isset(fWearingHat)) {
+                set(fWearingHat);
+                set.view(objEgo, viewGrahamHatNoFeather);
+                print("You put on your trusty hat!");
+    
+                if(!isset(fPointsForHatWear)) {
+                    set(fPointsForHatWear);
+                    addn(vCurrentScore, 1);    
+                }
+            }
+        }
+        if(!has("Hat")) {
+            print("You don't have it.");
+        }
+    }   
+    
+    if(said("remove", "hat")) {
+        if(has("Hat")) {
+            if(!isset(fWearingHat)) {
+                print("You are not wearing your hat.");
+            }
+            if(isset(fWearingHat)) {
+                reset(fWearingHat);
+                set.view(objEgo, viewGrahamNoHat);
+            }
+        }
+        if(!has("Hat")) {
+            print("You don't have it.");
+        }
+    }  
+    
+    if(said("take", "summons")) {
+        if(posn(objEgo, 80, 100, 100, 130)) {
+            if(has("Summons")) {
+                print("You already have it.");
+            }
+            if(!has("Summons")) {
+                print("You take the summons.");
+                set(fHasSummons);
+                get("Summons");
+                erase(objSummons);
+                addn(vCurrentScore, 1);        
+            }
+        }
+        if(!posn(objEgo, 80, 100, 100, 130)) {
+            print("Get closer.");
+        }
+    }
+    
+    if(said("take", "teapot")) {
+        if(posn(objEgo, 104, 93, 123, 112)) {
+            if(has("Teapot")) {
+                print("You alread have it.");
+            }
+            if(!has("Teapot")) {
+                print("You remove the teapot from the stove.");
+                erase(objTeapot);
+                get("Teapot");
+                addn(vCurrentScore, 1);
+            }
+        }
+        if(!posn(objEgo, 104, 93, 123, 112)) {
+            print("Get closer.");
+        }
+    }
+    
+    if(said("take", "hat")) {
+        if(posn(objEgo, 117, 131, 129, 150)) {
+            print("You pocket your hat.");
+            set(fHasHat);
+            erase(objHat);
+            get("Hat");
+            addn(vCurrentScore, 1);
+        }
+        if(!posn(objEgo, 117, 131, 129, 150)) {
+            print("You cannot reach it.");
+        }
+    }
+    
+    if(said("take", "teacup")) {
+        if(posn(objEgo, 40, 107, 56, 135)) {
+            erase(objTeaCup);
+            if(equaln(vTeaPoured, valTrue)) {
+                print("You pick up the tetakeacup full of hot clover tea and carry it with you.");
+                get("Tea");
+            }
+            if(!equaln(vTeaPoured, valTrue)) {
+                print("You pick up the teacup and carry it with you.");
+                get("Teacup");            
+            }
+        }
+        if(!posn(objEgo, 40, 107, 56, 135)) {
+            print("It is not within your reach.");
+        }
+    }
+    
+    if(said("drop", "teacup")) {
+        if(posn(objEgo, 40, 107, 56, 135)) {
+            print("You place the teacup on the table.");
+            draw(objTeaCup);
+            drop("Teacup");
+        }
+        if(!posn(objEgo, 40, 107, 56, 135)) {
+            print("Get closer.");
+        }
+    }
+    
+    if(said("pour", "tea")) {
+        if(has("Teapot")) {
+            if(has("Teacup")) {
+                print("The tea is hot. Put the cup on the table.");
+            }
+            if(!has("Teacup")) {
+                if(equaln(vTeaPoured, valTrue)) {
+                    print("the teapot is empty.");
+                }
+                if(!equaln(vTeaPoured, valTrue)) {
+                    if(posn(objEgo, 40, 107, 56, 135)) {
+                        print("You pour a cup of hot tea.");
+                        assignn(vTeaPoured, valTrue);
+                        addn(vCurrentScore, 1);
+                    }
+                    if(!posn(objEgo, 40, 107, 56, 135)) {
+                        print("You should get closer.");
+                    }
+                }
+            }
+        }
+        if(!has("Teapot")) {
+            print("You can't do that from here.");
+        }
+    }
+    
+    if(said("take", "tea")) {
+        if(posn(objEgo, 40, 107, 56, 135)) {
+            if(equaln(vTeaPoured, valTrue)) {
+                get("Tea");
+                erase(objTeaCup);
+                print("Ok");
+            }
+            if(!equaln(vTeaPoured, valTrue)) {
+                print("The cup is empty.");
+            }
+        }
+        if(!posn(objEgo, 40, 107, 56, 135)) {
+            if(equaln(vTeaPoured, valTrue)) {
+                print("You are not close enough.");
+            }
+            if(!equaln(vTeaPoured, valTrue)) {
+                print("There's tea in the teapot.");
+            }
+        }  
+    }
+    
+    if(said("drink", "tea")) {
+        if(!has("Tea")) {
+            print("You don't have it.");
+        }
+        if(has("Tea")) {
+            print("You drink the tea. In a few minutes you begin to feel much more relaxed.");
+            assignn(vTeaDrank, valTrue);
+            drop("Tea");
+            get("Teacup");
+            addn(vCurrentScore, 1); 
+        }
+    }    
 }
 
 [***************************************
