@@ -109,6 +109,7 @@ if(!isset(fDead)) {
     }
 
     if(isset(fGotcha)) {
+
         erase(objEgo);
 
         set(fDead); 

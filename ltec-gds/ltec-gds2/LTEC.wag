@@ -88,8 +88,8 @@
    Size = 82
 
 [Logic90]
-   CompCRC32 = &HE986A54
-   CRC32 = &HE986A54
+   CompCRC32 = &HC1628B6
+   CRC32 = &HC1628B6
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
@@ -192,8 +192,8 @@
 [Logic4]
    ID = rm.GrahamLawnNight
    Description = ""
-   CRC32 = &H76DFC28
-   CompCRC32 = &H76DFC28
+   CRC32 = &HE9B106FD
+   CompCRC32 = &HE9B106FD
    IsRoom = True
 [::END Logics::]
 
@@ -371,5 +371,65 @@
 
 [View101]
    ID = vw.GrahamFightCloud
+   Description = ""
+
+[View69]
+   ID = vw.InvPot
+   Description = "A Pot is a pot is a pot"
+
+[View89]
+   ID = vw.InvGlassSharp
+   Description = ""
+
+[View83]
+   ID = vw.InvSummons
+   Description = ""
+
+[View84]
+   ID = vw.InvTeacup
+   Description = ""
+
+[View85]
+   ID = vw.InvTea
+   Description = ""
+
+[View86]
+   ID = vw.InvHat
+   Description = ""
+
+[View87]
+   ID = vm.InvBroom
+   Description = ""
+
+[View88]
+   ID = vm.InvGlass
+   Description = ""
+
+[View90]
+   ID = vw.InvCake
+   Description = ""
+
+[View91]
+   ID = vw.InvFeather
+   Description = ""
+
+[View92]
+   ID = vw.InvQuill
+   Description = ""
+
+[View93]
+   ID = vw.InvInk
+   Description = ""
+
+[View94]
+   ID = vw.InvPaper
+   Description = ""
+
+[View95]
+   ID = vw.InvInvitation
+   Description = ""
+
+[View96]
+   ID = vw.InvAdventureHat
    Description = ""
 [::END Views::]
