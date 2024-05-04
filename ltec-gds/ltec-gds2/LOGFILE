@@ -35,3 +35,15 @@ Unknown word: val
 Room 2
 Input line: sweep
 Error: 3 Value: 6
+
+Room 2
+Input line: stop sweeping
+Error: 11 Value: 50
+
+Room 2
+Input line: stop sweeping
+Error: 11 Value: 50
+
+Room 2
+Input line: restore
+Error: 11 Value: 50

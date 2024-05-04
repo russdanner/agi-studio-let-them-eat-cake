@@ -62,18 +62,18 @@ if(newRoom) {
     reset(fGotcha);
     reset(fGotcha2);
 
-    position.v(objEgo, vEgoX, vEgoY);
+    position.v(ego, vEgoX, vEgoY);
 
     position(objWolf1, 15, 40);
     position(objWolf2, 160, 180);
     position(objCabinDoor, 121, 130);
     set.priority(objCabinDoor, 4);
-    set.priority(objEgo, 11);   
+    set.priority(ego, 11);   
 
     draw(objWolf1);
     draw(objWolf2);
     draw(objCabinDoor);
-    draw(objEgo);
+    draw(ego);
         
     [ display the picture on screen
     show.pic();
@@ -84,7 +84,7 @@ if(newRoom) {
 [***************************************
 
 if(!isset(fDead)) { 
-    if(!obj.in.box(objEgo, 100, 116, 158, 130)) {
+    if(!obj.in.box(ego, 100, 116, 158, 130)) {
         if(!isset(fRunForIt)) {
             set(fRunForIt);
             [load.sound(sndDevMonster);
@@ -138,7 +138,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
             }
             if(!isset(fWearingHat)) {
                 set(fWearingHat);
-                set.view(objEgo, vw.GrahamHatNoFeather);
+                set.view(ego, vw.GrahamHatNoFeather);
                 print("You put on your trusty hat!");
     
                 if(!isset(fPointsForHatWear)) {
@@ -160,7 +160,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
             }
             if(isset(fWearingHat)) {
                 reset(fWearingHat);
-                set.view(objEgo, vw.GrahamNoHat);
+                set.view(ego, vw.GrahamNoHat);
             }
         }
         if(!has("Hat")) {
@@ -169,15 +169,15 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     }  
     
     if(said("open", "door")) {
-        if(obj.in.box(objEgo, 100, 116, 158, 130)) {
-            get.posn(objEgo, vEgoX, vEgoY);
+        if(obj.in.box(ego, 100, 116, 158, 130)) {
+            get.posn(ego, vEgoX, vEgoY);
             assignn(vEgoX, 35);
             assignn(vEgoY, 110);
             reset(fWearingHat);
             assignn(vRoomInited, valFalse);
             new.room(rm.GrahamHouse);
         }
-        if(!obj.in.box(objEgo, 100, 116, 158, 130)) {
+        if(!obj.in.box(ego, 100, 116, 158, 130)) {
             print("You are not close enough.");
         }
     }

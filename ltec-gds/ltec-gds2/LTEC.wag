@@ -56,8 +56,8 @@
    Description = "This logic runs in every interpreter cycle and calls other logics as needed."
 
 [Logic90]
-   CompCRC32 = &HC1628B6
-   CRC32 = &HC1628B6
+   CompCRC32 = &HEE43671B
+   CRC32 = &HEE43671B
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &H7121984E
-   CRC32 = &H7121984E
+   CompCRC32 = &H788B0F9D
+   CRC32 = &H788B0F9D
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H1CBA723B
-   CompCRC32 = &H1CBA723B
+   CRC32 = &H8DD8EF55
+   CompCRC32 = &H8DD8EF55
    IsRoom = True
 
 [Logic203]
@@ -160,8 +160,8 @@
 [Logic4]
    ID = rm.GrahamLawnNight
    Description = ""
-   CRC32 = &H44432C7F
-   CompCRC32 = &H44432C7F
+   CRC32 = &H24ADA292
+   CompCRC32 = &H24ADA292
    IsRoom = True
 
 [Logic201]
@@ -193,10 +193,17 @@
    IsRoom = True
 
 [Logic2]
-   ID = rm.OuterHanger
+   ID = rm.InnerHanger
    Description = ""
-   CRC32 = &HA81EF93E
-   CompCRC32 = &HA81EF93E
+   CRC32 = &HD3A97BA0
+   CompCRC32 = &HD3A97BA0
+   IsRoom = True
+
+[Logic3]
+   ID = rm.Watch
+   Description = ""
+   CRC32 = &HA1C6C39C
+   CompCRC32 = &HA1C6C39C
    IsRoom = True
 [::END Logics::]
 
@@ -242,7 +249,12 @@
    BkgdImg = ""
 
 [Picture2]
-   ID = pic.OuterHanger
+   ID = pic.InnerHanger
+   Description = ""
+   BkgdImg = ""
+
+[Picture3]
+   ID = pic.Watch
    Description = ""
    BkgdImg = ""
 [::END Pictures::]
@@ -322,11 +334,11 @@
    Description = ""
 
 [View7]
-   ID = vw.TeaPot
+   ID = vw.Teapot
    Description = ""
 
 [View8]
-   ID = vw.TeaCup
+   ID = vw.Teacup
    Description = ""
 
 [View59]
@@ -350,7 +362,7 @@
    Description = ""
 
 [View69]
-   ID = vw.InvPot
+   ID = vw.InvTeapot
    Description = "A Pot is a pot is a pot"
 
 [View89]
@@ -374,11 +386,11 @@
    Description = ""
 
 [View87]
-   ID = vm.InvBroom
+   ID = vw.InvBroom
    Description = ""
 
 [View88]
-   ID = vm.InvGlass
+   ID = vw.InvGlass
    Description = ""
 
 [View90]

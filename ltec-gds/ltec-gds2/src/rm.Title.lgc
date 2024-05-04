@@ -123,9 +123,9 @@ if (newRoom) {
 
 [ float the feather
 if(!posn(feather, 90, 160, 110, 165)){
-    random(110, 125, v251);
-    addn(v252, 4);
-    move.obj.v(feather, v251, v252, v254, fUndoAction);  
+    random(110, 125, vTempVar1);
+    addn(vTempVar1, 4);
+    move.obj.v(feather, vTempVar1, vTempVar1, v254, fUndoAction);  
 }
 
 [ horrible message scrolling code
