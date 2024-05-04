@@ -244,8 +244,8 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &HB767F25A
-   CompCRC32 = &HB767F25A
+   CRC32 = &H4E96775
+   CompCRC32 = &H4E96775
    IsRoom = True
 [::END Logics::]
 
@@ -586,5 +586,21 @@
 
 [View17]
    ID = vw.PodPlatform
+   Description = ""
+
+[View18]
+   ID = vw.CockpitThrottle
+   Description = ""
+
+[View19]
+   ID = vw.CockpitButtons
+   Description = ""
+
+[View72]
+   ID = vw.Decal
+   Description = ""
+
+[View73]
+   ID = vw.Star
    Description = ""
 [::END Views::]

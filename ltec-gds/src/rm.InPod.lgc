@@ -22,14 +22,114 @@ if(newRoom) {
     discard.pic(currentRoom);
     
     call(lgc.RoomInit);
-    [ the horizon defines the upper limit of ego's movement
-    set.horizon(0);
+    assignn(vRoomInited, valTrue);
     
-    [ add additional room initialization here
+    unanimate.all();
+    animate.obj(objPodStars1);
+    animate.obj(objPodStars2);
+    animate.obj(objPodStars3);
+    animate.obj(objPodStars4);
+    animate.obj(objPodStars5);
+    animate.obj(objPodStars6);
+    animate.obj(objCockpitThrottle);
+    animate.obj(objDecal);
+    animate.obj(objCockpitButtons1);
+    animate.obj(objCockpitButtons2);
+    animate.obj(objCockpitButtons3);
+    animate.obj(objCockpitButtons4);
+    animate.obj(objCockpitScreen1);
+
+    load.view(vw.CockpitThrottle);
+    load.view(vw.Decal);
+    load.view(vw.Star);
+
+    set.view(objPodStars1, vw.Star);
+    set.view(objPodStars2, vw.Star);
+    set.view(objPodStars3, vw.Star);
+    set.view(objPodStars4, vw.Star);
+    set.view(objPodStars5, vw.Star);
+    set.view(objPodStars6, vw.Star);
+    set.view(objCockpitThrottle, vw.CockpitThrottle);
+    set.view(objDecal, vw.Decal);
     
-    [ load ego view, animate and draw ego
-    [ this is sometimes handled in logic 0
-    [ instead of in each individual logic
+    stop.cycling(objCockpitThrottle);
+    stop.cycling(objDecal);
+    stop.cycling(objPodStars1);
+    stop.cycling(objPodStars2);
+    stop.cycling(objPodStars3);
+    stop.cycling(objPodStars4);
+    stop.cycling(objPodStars5);
+    stop.cycling(objPodStars6);
+    
+    position(objDecal, 119, 124);    
+    position(objCockpitThrottle, 106, 128);
+
+    if(!isset(fLaunchAnimationPlayed)) {
+        reset(fBeltBuckled);
+        reset(fPodPoweredUp);
+        reset(fPodThrottlePulled);
+        reset(fPodAutoNavPressed);
+        reset(fBeltBuckled);
+        reset(fPodStart);
+        reset(fPodLaunched);
+        reset(fPodAutoNaved);
+        reset(fWarping);
+        reset(fWarpingStarted);
+    }
+    if(isset(fLaunchAnimationPlayed)) {
+        position(objCockpitThrottle,  106, 130);
+        
+        load.view(vw.CockpitButtons);
+        
+        set.view(objCockpitButtons1, vw.CockpitButtons);
+        set.view(objCockpitButtons2, vw.CockpitButtons);
+        set.view(objCockpitButtons3, vw.CockpitButtons);
+        set.view(objCockpitButtons4, vw.CockpitButtons);
+        set.view(objCockpitScreen1, vw.CockpitButtons);
+    
+        stop.cycling(objCockpitButtons1);
+        stop.cycling(objCockpitButtons2);
+        stop.cycling(objCockpitButtons3);
+        stop.cycling(objCockpitButtons4);
+        stop.cycling(objCockpitScreen1);
+    
+        set.cel(objCockpitButtons2, 1);
+        set.cel(objCockpitButtons3, 2);
+        set.cel(objCockpitButtons4, 4);
+        set.cel(objCockpitScreen1, 3);
+    
+        position(objCockpitButtons1, 32, 128);
+        position(objCockpitButtons2, 46, 110);
+        position(objCockpitButtons3, 47, 127);
+        position(objCockpitButtons4, 126, 127);    
+        position(objCockpitScreen1, 73, 92);   
+
+        draw(objCockpitButtons1);
+        draw(objCockpitButtons2);
+        draw(objCockpitButtons3);
+        draw(objCockpitButtons4);
+        draw(objCockpitScreen1);
+
+    }
+
+    position(objPodStars1, 65, 40);
+    position(objPodStars2, 85, 40);
+    position(objPodStars3, 65, 50);
+    position(objPodStars4, 85, 50);
+    position(objPodStars5, 65, 60);
+    position(objPodStars6, 35, 70);
+
+    draw(objCockpitThrottle);
+    draw(objDecal);
+    draw(objPodStars1);
+    draw(objPodStars2);
+    draw(objPodStars3);
+    draw(objPodStars4);
+    draw(objPodStars5);
+    draw(objPodStars6);
+
+    assignn(vTimer, 0);
+    assignn(vClockTicks, 0);
     
     [ display the picture on screen
     show.pic();
