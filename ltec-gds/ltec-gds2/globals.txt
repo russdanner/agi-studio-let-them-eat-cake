@@ -214,7 +214,7 @@
 #define vSleeping                    v37
 #define vGotOutOfPod                 v38
 #define vHasOrders                   v39
-#define vCleanedUp                   v40
+#define vCleanedUp                  v140
 #define vSweeping                   v141
 #define vSplat1Cleaned              v144
 #define vSplat2Cleaned              v145

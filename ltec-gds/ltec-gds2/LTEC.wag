@@ -195,15 +195,15 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &HD3A97BA0
-   CompCRC32 = &HD3A97BA0
+   CRC32 = &HD02A9A37
+   CompCRC32 = &HD02A9A37
    IsRoom = True
 
 [Logic3]
    ID = rm.Watch
    Description = ""
-   CRC32 = &HA1C6C39C
-   CompCRC32 = &HA1C6C39C
+   CRC32 = &H61E2988A
+   CompCRC32 = &H61E2988A
    IsRoom = True
 [::END Logics::]
 
@@ -467,5 +467,13 @@
 
 [View70]
    ID = vw.RogerExplode
+   Description = ""
+
+[View21]
+   ID = vw.WatchBoss
+   Description = ""
+
+[View46]
+   ID = vw.WatchLights
    Description = ""
 [::END Views::]

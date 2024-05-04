@@ -215,14 +215,25 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     if(said("look")) {
         print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.");
     }        
-
 }
 
-[if(!equaln(vSweeping, valTrue)){
-[    if(equaln(vEgoDirection, directionStopped)) {
-[        stop.cycling(ego);
-[    }
-[}
+if(equaln(vCleanedUp, valTrue)) {
+    if(greatern(vTimer, 99)) {
+        if(!isset(fWatchHasBeeped)) {
+            set(fWatchHasBeeped);
+            [sound(sndWatchBeep, fSoundDone);
+            print("A long beep is emitted from the watch on your arm.");    
+        }
+    }
+ 
+    if(!equaln(vHasOrders, valTrue)) {
+        addn(vTimer, 1);
+    }
+}
+else {
+display(3,1,"X");
+}
+
 
 if(posn(ego, 85, 139, 105, 151)) {
     if(equaln(vSplat1Cleaned, valFalse)) {
@@ -234,11 +245,8 @@ if(posn(ego, 85, 139, 105, 151)) {
         else {
           addn(vCurrentScore, 1);
           assignn(vSplat1Cleaned, valTrue);
+          assignn(vCleanedUp, valTrue);
           erase(objHangerSplat1);
-
-          if(equaln(vSplat2Cleaned, valTrue)) {
-            assignn(vCleanedUp, valTrue);
-          }
         }    
     }
 }
@@ -252,12 +260,9 @@ if(posn(ego, 36, 80, 48, 95)) {
         }    
         else {
             assignn(vSplat2Cleaned, valTrue);
+            assignn(vCleanedUp, valTrue);
             addn(vCurrentScore, 1);
             erase(objHangerSplat2);
-
-            if(equaln(vSplat1Cleaned, valTrue)) {
-                assignn(vCleanedUp, valTrue);
-            }
         }    
     }
 }
@@ -285,23 +290,9 @@ if(obj.in.box(ego, 151, 140, 155, 150)) {
     }
 }
 
-if(equaln(vCleanedUp, valTrue)) {
-    if(equaln(vTimer, 100)) {
-        if(!isset(fWatchHasBeeped)) {
-            set(fWatchHasBeeped);
-            [sound(sndWatchBeep, fSoundDone);
-
-            print("A long beep is emitted from the watch on your arm.");    
-        }
-    }
- 
-    if(!equaln(vHasOrders, valTrue)) {
-        addn(vTimer, 1);
-    }
-}
 
 [if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    if(edgeEgoHit == LEFT_EDGE) {
+    if(edgeEgoHit == TOP_EDGE) {
         stop.cycling(ego);
         set.view(ego, vw.RogerspacesuitA);
         set.priority(ego, 4);

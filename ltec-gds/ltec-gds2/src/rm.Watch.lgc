@@ -24,12 +24,73 @@ if(newRoom) {
     [ the horizon defines the upper limit of ego's movement
     set.horizon(0);
     
-    [ add additional room initialization here
+    // debugging scenario: Get your orders with this flag high
+    // set(fWatchHasBeeped)
+
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+    load.view(vw.WatchBoss);
+    load.view(vw.WatchLights);
+
+    animate.obj(objWatchBoss);
+    animate.obj(objWatchBossSpeech);
+    animate.obj(objWatchPower);
+    animate.obj(objWatchAButton);
+    animate.obj(objWatchCButton);
+    animate.obj(objWatchTButton);
+
+    set.view(objWatchBoss, vw.WatchBoss);
+    set.view(objWatchBossSpeech, vw.WatchBoss);
     
-    [ load ego view, animate and draw ego
-    [ this is sometimes handled in logic 0
-    [ instead of in each individual logic
-    
+    set.view(objWatchPower, vw.WatchLights);
+    set.view(objWatchAButton, vw.WatchLights);
+    set.view(objWatchCButton, vw.WatchLights);
+    set.view(objWatchTButton, vw.WatchLights);
+
+    set.loop(objWatchBossSpeech, 1);
+    start.cycling(objWatchBossSpeech);
+
+    set.loop(objWatchAButton, 1);
+    set.loop(objWatchCButton, 1);
+    set.loop(objWatchTButton, 1);
+    set.cel(objWatchAButton, 1);
+    set.cel(objWatchCButton, 1);
+    set.cel(objWatchTButton, 1);
+    set.cel(objWatchPower, 1);
+
+    stop.cycling(objWatchPower);
+    stop.cycling(objWatchAButton);
+    stop.cycling(objWatchCButton);
+    stop.cycling(objWatchTButton);
+
+    position(objWatchPower, 108, 61);
+    position(objWatchAButton, 55, 114);
+    position(objWatchCButton, 75, 114);
+    position(objWatchTButton, 95, 114);
+
+    set.priority(objWatchPower, 15);
+    set.priority(objWatchAButton, 15);
+    set.priority(objWatchCButton, 15);
+    set.priority(objWatchTButton, 15);
+
+    draw(objWatchBossSpeech);
+    draw(objWatchBoss);
+    draw(objWatchPower);
+    draw(objWatchAButton);
+    draw(objWatchCButton);
+    draw(objWatchTButton);
+
+    if(isset(fWatchHasBeeped)) {
+        if(equaln(vHasOrders, valFalse)) {
+            start.cycling(objWatchPower);
+        }
+    }
+
+    assignn(vTimer, 0);
+    reset(fDoJoke);
+    reset(fBossGiveOrders);
+    reset(fDoAction);
+
     [ display the picture on screen
     show.pic();
 }
@@ -45,11 +106,120 @@ if(newRoom) {
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    [ place said tests here
     if(said("look")) {
-        print("You see nothing of interest.");
+        print("This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also a incoming message indicator on the right side of the screen.");
+    }
+    
+    if(said("exit")) {
+        assignn(vRoomInited, valFalse);
+        new.room(rm.InnerHanger);
+    }
+    
+    if(said("look", "watch")) {
+        print("This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also a incoming message indicator on the right side of the screen.");
+    }
+    
+    if(said("look", "c")) {
+        print("This is the very handy StarCon Communications app. You can use it to talk with the crew or theoretically your friends if you had any.");
+    }
+    
+    if(said("press", "c")) {
+        if(isset(fWatchHasBeeped)) {
+            if(equaln(vHasOrders, valFalse)) {
+                addn(currentScore, 1);
+                stop.cycling(objWatchPower);
+                set.cel(objWatchPower, 1);
+            
+                position(objWatchBoss, 57, 83);
+                set.cel(objWatchAButton, 1);
+                set.cel(objWatchTButton, 1);
+             
+                set.cel(objWatchCButton, 0);            
+                set.loop(objWatchBoss, 0);            
+    
+                assignn(vHasOrders, valTrue);
+                position(objWatchBoss, 57, 83);
+                position(objWatchBossSpeech, 72, 78);
+                set.priority(objWatchBossSpeech, 15);
+    
+                set(fBossGiveOrders);
+                assignn(vTimer, 0);
+            }
+            
+            if(equaln(vHasOrders, valFalse)) {
+                print("You have no new incoming messages.");
+            }
+        }
+        if(!isset(fWatchHasBeeped)) {
+            print("You have no incoming messages at this time.");
+        }
+    }
+    
+    
+    if(said("look", "t")) {
+        print("This is your time and temperature app.");
+    }
+    
+    if(said("press", "t")) {
+        position(objWatchBoss, 57, 83);
+        set.cel(objWatchAButton, 1);
+        set.cel(objWatchCButton, 1);
+     
+        set.cel(objWatchTButton, 0);
+        set.loop(objWatchBoss, 3);
+    }
+    
+    if(said("look", "a")) {
+        print("This app is the Al Lowe's CyberJoke 9000 joke machine. You Love this guy even though you Har Har Hardly know him!");
+    }
+    
+    if(said("press", "a")) {
+        position(objWatchBoss, 57, 83);
+        set.cel(objWatchCButton, 1);
+        set.cel(objWatchTButton, 1);
+     
+        set.cel(objWatchAButton, 0);
+        set.loop(objWatchBoss, 4);
+        assignn(vTimer, 0);
+        set(fDoJoke);
+    }    
+}
+
+if(isset(fBossGiveOrders)) {
+    if(equaln(vTimer, 30)) {
+        print("Roger Wilco! Have you been napping in the closet again!? You were due at your next assignment an hour ago. Finish up forthwith and get over to Orbital Station 3 on the double. A Troelsdorian Muccaworm uh... 'explosively decompressed' in the flight deck bathroom. The walls are covered with an unfathomable amount of Monolith Burger Filet-o-Rat polycheese and Tang. Clean it up! StarCon Control already has your flight plan secured. Move it! Commander out.");
     }
 
+    if(equaln(vTimer, 100)) {
+        reset(fBossGiveOrders);
+        position(objWatchBoss, 0, 0);
+        set.priority(objWatchBossSpeech, 1);
+        set.cel(objWatchCButton, 1);
+    }
+}
+
+if(isset(fDoJoke)) {
+    if(equaln(vTimer, 30)) {
+        random(1, 5, vAlJoke);
+        reset(fDoJoke);
+        set.cel(objWatchAButton, 1);
+
+        if(equaln(vAlJoke, 1)) {
+            print("Working at the unemployment office must be tense knowing that if you get fired you still have to come in the next day! Find more jokes on the galactiWeb at AlLowe.com");
+        }
+        if(equaln(vAlJoke, 2)) {
+            print("I phoned the Tinnitus Help Line but there was no answer. It just kept ringing and ringing! Find more jokes on the galactiWeb at AlLowe.com");
+        }
+        if(equaln(vAlJoke, 3)) {
+            print("I shot a man with my paintball gun just to watch him dye. Find more jokes on the galactiWeb at AlLowe.com");
+        }
+        if(equaln(vAlJoke, 4)) {
+            print("If buckazoids don't grow on trees then why do banks have branches? Find more jokes on the galactiWeb at AlLowe.com");
+        }
+        if(equaln(vAlJoke, 5)) {
+            print("I'm pining for a good tree pun. I wish they were more poplar. Find more jokes on the galactiWeb at AlLowe.com");
+        }        
+    } 
 }
 
 [***************************************
