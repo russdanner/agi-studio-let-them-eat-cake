@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &HD1ACC8F2
-   CRC32 = &HD1ACC8F2
+   CompCRC32 = &H6EF30FD1
+   CRC32 = &H6EF30FD1
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -226,6 +226,27 @@
    CRC32 = &H7F85D72
    CompCRC32 = &H7F85D72
    IsRoom = True
+
+[Logic38]
+   ID = rm.OuterBay
+   Description = ""
+   CRC32 = &H9F130507
+   CompCRC32 = &H9F130507
+   IsRoom = True
+
+[Logic39]
+   ID = rm.OuterHanger
+   Description = ""
+   CRC32 = &H6A39E28D
+   CompCRC32 = &H6A39E28D
+   IsRoom = True
+
+[Logic5]
+   ID = rm.InPod
+   Description = ""
+   CRC32 = &HB767F25A
+   CompCRC32 = &HB767F25A
+   IsRoom = True
 [::END Logics::]
 
 [::BEGIN Pictures::]
@@ -293,6 +314,20 @@
    ID = pic.ControlRoom
    Description = ""
    BkgdImg = ""
+
+[Picture38]
+   ID = pic.OuterBay
+   Description = ""
+   BkgdImg = ""
+
+[Picture39]
+   ID = pic.OuterHanger
+   Description = ""
+   BkgdImg = ""
+
+[Picture5]
+   ID = pic.InPod
+   Description = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -543,5 +578,13 @@
 
 [View39]
    ID = vw.Overflow
+   Description = ""
+
+[View16]
+   ID = vw.Pod
+   Description = ""
+
+[View17]
+   ID = vw.PodPlatform
    Description = ""
 [::END Views::]

@@ -248,7 +248,7 @@ if ((have.key() || controller(keyJoyBtn1))) {
   reset(disableGameFunctions);
   [ begin game in starting room
   [new.room(rm.GrahamHouse); [ ##LE001##
-  new.room(rm.ControlRoom);
+  new.room(rm.InPod);
 }
 
 return();

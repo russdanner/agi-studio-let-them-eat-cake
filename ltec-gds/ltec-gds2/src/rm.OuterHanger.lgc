@@ -20,330 +20,156 @@ if(newRoom) {
     load.pic(currentRoom);
     draw.pic(currentRoom);
     discard.pic(currentRoom);
-    
-    [ we're roger now. Drop Grahams inventory
-    drop("Summons");
-    drop("Hat");
-    drop("Teapot");
-    drop("Teacup");
-    drop("Tea");
-
+    call(lgc.RoomInit);
+      
     unanimate.all();
     assignn(vRoomInited, valTrue);
 
-    [load.sound(sndWatchBeep);
-
-    load.view(vw.Roger);
-    load.view(vw.RogerSpacesuitBroom);
+    load.view(vw.Roger);    
     load.view(vw.RogerSpacesuitA);
-    load.view(vw.Splat);
-    load.view(vw.BigShuttle);
+    load.view(vw.PodPlatform);
+    load.view(vw.Pod);
 
-    animate.obj(objEgo);
-    animate.obj(objHangerSplat1);
-    animate.obj(objHangerSplat2);
-    animate.obj(objBigShuttle);
+    animate.obj(ego);
+    animate.obj(objPod);
+    animate.obj(objPodPlatform);
 
-    set.view(objHangerSplat1, vw.Splat);
-    set.view(objHangerSplat2, vw.Splat);
-    set.view(objBigShuttle, vw.BigShuttle);
+    set.view(objPod, vw.Pod);
+    set.view(objPodPlatform, vw.PodPlatform);
+
+    start.cycling(ego);
+    stop.cycling(objPodPlatform);
+    stop.cycling(objPod);
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
-            assignn(vEgoX, 20);
-            assignn(vEgoY, 100);
-            assignn(vSweeping, valTrue);
             set(fWearingSuit);
-            get("Broom");
-
-            assignn(vSplat1Cleaned, valFalse);
-            assignn(vSplat2Cleaned, valFalse);
-            assignn(vHasOrders, valFalse);
-            assignn(vCleanedUp, valFalse);
-
-            position(objHangerSplat1, 100, 150);
-            position(objHangerSplat2, 40, 90);  
-        
-            print("What is going on here?! Your dreams get more and more wild. You find yourself in a castle fortress unlike anything you have ever seen. Your suit of armor seems to be made of some kind of magical cloth. The stars are so close and bright that you could almost reach out and touch them. HOW STRANGE?!? And.. you're a janitor... Seriously?! Wow! That Daventry clover tea really packs a punch. The longer your dream continues the more familiar the situation feels.");
         }
     }
+
+    assignn(vEgoX, 150);
+    assignn(vEgoY, 144);
 
     if(isset(fWearingSuit)) {
-        if(equaln(vSweeping, valTrue)) {
-            [set.view(objEgo, vw.RogerSpacesuitBroom);
-            set.view(objEgo, vw.RogerSpacesuitA);
-        }
-        if(equaln(vSweeping, valFalse)) {
-            set.view(objEgo, vw.RogerSpacesuitA);
-        }    
+        set.view(ego, vw.RogerSpacesuitA);
     }
-    if(!isset(fWearingSuit)) {
-        set.view(objEgo, vw.Roger);
+    else {
+        set.view(ego, vw.Roger);
     }
 
-    start.cycling(objEgo);
-
-    stop.cycling(objHangerSplat1);
-    stop.cycling(objHangerSplat2);
-    stop.cycling(objBigShuttle);
-
-    position(objBigShuttle, 50, 120);
-    position.v(ego, vEgoX, vEgoY);
-
-    set.priority(objBigShuttle, 9);
-    set.priority(objHangerSplat1, 4);
-    set.priority(objHangerSplat2, 4);
-
-    draw(objHangerSplat1);
-    draw(objHangerSplat2);
-    draw(objBigShuttle);
-    draw(objEgo);
-
-    assignn(vTimer, 0);
-
+    set.priority(objPod, 12);
+    position(objPodPlatform, 55, 109);
+    position(objPod, 60, 100);
     set.horizon(73); 
 
-    reset(fAdrift);
-    reset(fDecompressed);
+    position.v(ego, vEgoX, vEgoY);    
+
+    draw(ego);
+    draw(objPodPlatform);
+    draw(objPod);
     
     [ display the picture on screen
     show.pic();
 }
 
 [***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ add other room specific statements here
+
+
+[***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    if(said("sweep")) {
-        if(has("Broom")) {
-            get.posn(objEgo, vEgoX, vEgoY);
-            if(lessn(vEgoX, 75)) {
-                subn(vEgoX, 10);            
-            }
-            if(greatern(vEgoX, 75)) {
-                addn(vEgoX, 10);            
-            }
-            
-            position.v(objEgo, vEgoX, vEgoY);    
+    if(said("look")) {
+        print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.");
+    }
+
+    if((said("enter", "pod") || said("get", "pod"))) {
+        if(posn(ego, 39, 93, 60, 109)) {
+            addn(currentScore, 1);
+            reset(fLaunchAnimationPlayed);
     
-            set.view(objEgo, vw.RogerSpacesuitBroom);
-            assignn(vSweeping, valTrue);
-            start.cycling(objEgo);    
-        }
-        if(!has("Broom")) {
-            print("You don't have the proper equipment on hand for that job.");
-        }
-    }
-
-    if(said("stop", "sweeping")) {
-        get.posn(objEgo, vEgoX, vEgoY);
-        if(lessn(vEgoX, 75)) {
-            subn(vEgoX, 10);            
-        }
-        if(greatern(vEgoX, 75)) {
-            addn(vEgoX, 10);            
-        }
-        position.v(objEgo, vEgoX, vEgoY);    
-        
-        set.view(objEgo, vw.RogerSpacesuitA);
-        assignn(vSweeping, valFalse);
-    }
-
-    if(said("start", "sweeping")) {
-        if(has("Broom")) {
-            get.posn(objEgo, vEgoX, vEgoY);
-            if(lessn(vEgoX, 75)) {
-                subn(vEgoX, 10);            
+            if(!has("Broom")) {
+                print("You climb into the pod and shut the door.");
             }
-            if(greatern(vEgoX, 75)) {
-                addn(vEgoX, 10);            
-            }
-            
-            position.v(objEgo, vEgoX, vEgoY);    
-        
-            set.view(objEgo, viewRogerSuitBroom);
-            assignn(vSweeping, valTrue);
-            start.cycling(objEgo);    
-        }
-        if(!has("Broom")) {
-            print("You don't have the proper equipment on hand for that job.");
-        }
-    }
+            else {
+                drop("Broom");
+                print("As you go to climb into the pod you realize you still have a broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door.");
+            }        
 
-    if(said("get", "pod")) {
-        if(posn(objEgo, 31, 104, 50, 127)) {
-            print("Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking.");
-        }
-        if(!posn(objEgo, 31, 104, 50, 127)) {
-            print("You are too far away.");
-        }
-    }
-
-    if(said("enter", "pod")) {
-        if(posn(objEgo, 31, 104, 50, 127)) {
-            print("Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking.");
-        }
-        if(!posn(objEgo, 31, 104, 50, 127)) {
-            print("You are too far away.");
-        }
-    }
-
-    [if(said("look")) {
-        if(said("look", "watch")) {
-            get.posn(objEgo, vEgoX, vEgoY);
             assignn(vRoomInited, valFalse);
-            print("WATCH");
-            [assignn(vCurrentRoom, picWatch);
+            new.room(rm.InPod);    
         }
-
-        if(said("look", "panel")) {
-            print("The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.");
-        }
-        if(said("look", "space")) {
-            print("Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'");
-        }
-        if(said("look", "pod")) {
-            print("Yep that's a shuttle alright. Always coming and going. You can't count the number of times you've had to clean up after the space-sick scum that frequent these shuttles. Speaking of shuttle related messes you wonder if this craft is the one that left puddles of fuel on the deck.");
-        }
-        if(said("look", "spill")) {
-            if(equaln(vCleanedUp, valFalse)) {
-                print("What a mess. There's fuel on the deck. It needs to be cleaned up.");
-            }
-            if(equaln(vCleanedUp, valTrue)) {
-                print("A spill?! Not on your watch! Roger Wilco. Ace Janitor.");
-            }
-        }
-
-        if(said("look")) {
-            print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.");
-        }        
-    [}
-}
-
-if(!equaln(vSweeping, valTrue)){
-    if(equaln(vEgoDirection, directionStopped)) {
-        stop.cycling(objEgo);
-    }
-}
-if(!equaln(vEgoDirection, directionStopped)) {
-    start.cycling(objEgo);
-}    
-
-if(posn(objEgo, 85, 139, 105, 151)) {
-    if(!equaln(vSplat1Cleaned, valTrue)) {
-        if(equaln(vSweeping, valFalse)) {
-            [ DEAD: Fuel foot
-            assignn(vDeathReason,  valXsFuelFoot);
-            set(fDead);
-        }    
-        if(equaln(vSweeping, valTrue)) {
-            addn(vCurrentScore, 1);
-            assignn(vSplat1Cleaned, valTrue);
-            erase(objHangerSplat1);
-
-            if(equaln(vSplat2Cleaned, valTrue)) {
-                assignn(vCleanedUp, valTrue);
-            }
-        }    
-    }
-}
-
-if(posn(objEgo, 36, 80, 48, 95)) {
-    if(!equaln(vSplat2Cleaned, valTrue)) {
-        if(equaln(vSweeping, valFalse)) {
-            [ DEAD: Fuel foot
-            assignn(vDeathReason, valXsFuelFoot);
-            set(fDead);
-        }    
-        
-        if(equaln(vSweeping, valTrue)) {
-            assignn(vSplat2Cleaned, valTrue);
-            addn(vCurrentScore, 1);
-            erase(objHangerSplat2);
-
-            if(equaln(vSplat1Cleaned, valTrue)) {
-                assignn(vCleanedUp, valTrue);
-            }
-        }    
-    }
-}
-
-if(obj.in.box(objEgo, 151, 140, 155, 150)) {
-    if(equaln(vHasOrders, valTrue)) {
-        assignn(vSweeping, valFalse);
-
-        get.posn(objEgo, vEgoX, vEgoY);
-        assignn(vEgoX, 10);
-        assignn(vEgoY, 126);
-        assignn(vRoomInited, valFalse);
-        assignn(vEgoEdgeTouched, edgeNone);
-        assignn(vCurrentRoom, picInnerBay);         
-    }
-    if(equaln(vHasOrders, valFalse)) {
-        print("Look at that deck!! You better keep cleaning.");
-        get.posn(objEgo, vEgoX, vEgoY);
-        assignn(vEgoX, 146);
-        assignn(vEgoDirection, directionLeft);
-        set.dir(objEgo, vEgoDirection);
-        position.v(objEgo, vEgoX, vEgoY);
-        assignn(vEgoEdgeTouched, edgeNone);
-    }
-}
-
-if(equaln(vCleanedUp, valTrue)) {
-    if(equaln(vTimer, 100)) {
-        if(!isset(fWatchHasBeeped)) {
-            set(fWatchHasBeeped);
-            [sound(sndWatchBeep, fSoundDone);
-
-            print("A long beep is emitted from the watch on your arm.");    
+        if(!posn(ego, 39, 93, 60, 109)) {
+            print("You are too far away.");
         }
     }
- 
-    if(!equaln(vHasOrders, valTrue)) {
-        addn(vTimer, 1);
+    
+    if(said("look", "room")) {
+        print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.");
     }
+    if(said("look", "panel")) {
+        print("The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.");
+    }
+    if(said("look", "space")) {
+        print("Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'");
+    }
+    if(said("look", "pod")) {
+        print("Ain't she cute? It's a standard issue StarCon shuttle pod used for short trips between stations and bases. In the extremely rare and unlikely event of an emergency including but not limited to a hostile encounter with a crew of marauding aliens it can be used as an escape vehicle. That'll never happen. 'Anywho'.. She's all fueled up and ready to go.");
+    }
+    
 }
 
-if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    if(equaln(vEgoEdgeTouched, edgeTop)) {
-        stop.cycling(objEgo);
-        set.view(objEgo, vw.RogerspacesuitA);
-        set.priority(objEgo, 4);
-        move.obj(objEgo, 100, 40, 1, fAdrift);
-        [ DEAD: ADRIFT 
-        assignn(vDeathReason, valXsSpaceWalk);
-        set(fDead);
-    }
+if(obj.in.box(ego, 151, 140, 155, 150)) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 10);
+    assignn(vEgoY, 126);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.OuterBay);         
 }
+
+if(edgeEgoHit == TOP_EDGE) {
+    stop.cycling(ego);
+    set.view(ego, vw.RogerspacesuitA);
+    set.priority(ego, 4);
+    move.obj(ego, 100, 40, 1, fAdrift);
+    [ DEAD: ADRIFT 
+    assignn(vDeathReason, valXsSpaceWalk);
+    set(fDead);
+}
+
+
 if(isset(fAdrift)) {
-    erase(objEgo);
+    erase(ego);
 }
 
 if(!isset(fWearingSuit)) {
     if(!isset(fDecompressing)) {
         [ DEAD: DECOMP
-        get.posn(objEgo, vEgoX, vEgoY);
+        get.posn(ego, vEgoX, vEgoY);
         assignn(vEgoX, 100);
         reset(fDecompressed);
         reset(fDecompressOnce);
-        assignn(v252, 1);
-        move.obj.v(objEgo, vEgoX, vEgoY, v252, fDecompressing);
+        assignn(vTempVar1, 1);
+        move.obj.v(ego, vEgoX, vEgoY, vTempVar1, fDecompressing);
     }
 }
 
 if(isset(fDecompressing)) {
     if(!isset(fDecompressOnce)) {
         set(fDecompressOnce);
-        stop.motion(objEgo);
+        stop.motion(ego);
         load.view(vw.RogerExplode);
-        set.view(objEgo, vw.RogerExplode);
-        end.of.loop(objEgo, fDecompressed);     
+        set.view(ego, vw.RogerExplode);
+        end.of.loop(ego, fDecompressed);     
     }
 }
 
 if(isset(fDecompressed)) {
-    erase(objEgo);
+    erase(ego);
     assignn(vDeathReason, valXsNoSuitExplode);    
     set(fDead);
 }
@@ -358,3 +184,4 @@ return();
 [***************************************
 [ DECLARED MESSAGES
 [***************************************
+#message 1 "You see nothing of interest." 
