@@ -437,8 +437,7 @@ if(equaln(vSleeping, valTrue)) {
       assignn(vEgoX, 0);
       assignn(vEgoY, 0);
       assignn(vRoomInited, valFalse);
-      assignn(vCurrentRoom, picHanger);
-      print("space!");
+      new.room(rm.OuterHanger);
     } 
   }
 }
@@ -456,10 +455,6 @@ if(equaln(vTimer, 0)) {
       set(fDead);
   }
 }
-
-
-
-
 
 :done
 return();

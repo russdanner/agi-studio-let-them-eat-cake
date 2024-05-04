@@ -492,11 +492,10 @@ if(greatern(vTimer, 100)) {
     addn(vClockTicks, 1); 
 }
 display(1, 1, "Timer: %v242 %v243  ");
-display(2, 1, "X Y: %v30 %v253     ");
+display(2, 1, "X Y: %v38 %v39      ");
 
 [ get ego's current position
 get.posn(ego, egoX, egoY); 
-get.posn(ego, vEgoX, vEgoY); 
 
 [ AGI doesn't automatically stop cycling objects
 [ when they stop moving; it has to be done manually

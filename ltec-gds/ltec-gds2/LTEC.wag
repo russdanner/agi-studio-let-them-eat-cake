@@ -48,8 +48,8 @@
 
 [::BEGIN Logics::]
 [Logic0]
-   CompCRC32 = &HEAEAA3FC
-   CRC32 = &HEAEAA3FC
+   CompCRC32 = &HC4260E0B
+   CRC32 = &HC4260E0B
    ID = lgc.Main
    IsRoom = False
    Size = 1735
@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H8A63792B
-   CompCRC32 = &H8A63792B
+   CRC32 = &H1CBA723B
+   CompCRC32 = &H1CBA723B
    IsRoom = True
 
 [Logic203]
@@ -191,6 +191,13 @@
    CRC32 = &H1C0825AF
    CompCRC32 = &H1C0825AF
    IsRoom = True
+
+[Logic2]
+   ID = rm.OuterHanger
+   Description = ""
+   CRC32 = &HA81EF93E
+   CompCRC32 = &HA81EF93E
+   IsRoom = True
 [::END Logics::]
 
 [::BEGIN Pictures::]
@@ -231,6 +238,11 @@
 
 [Picture205]
    ID = pic.EastRoom
+   Description = ""
+   BkgdImg = ""
+
+[Picture2]
+   ID = pic.OuterHanger
    Description = ""
    BkgdImg = ""
 [::END Pictures::]
@@ -419,5 +431,29 @@
 
 [View1]
    ID = vw.GrahamHatNoFeather
+   Description = ""
+
+[View158]
+   ID = vw.Splat
+   Description = ""
+
+[View151]
+   ID = vw.RogerSpacesuitBroom
+   Description = ""
+
+[View152]
+   ID = vw.BigShuttle
+   Description = ""
+
+[View12]
+   ID = vw.RogerSpacesuitA
+   Description = ""
+
+[View11]
+   ID = vw.Roger
+   Description = ""
+
+[View70]
+   ID = vw.RogerExplode
    Description = ""
 [::END Views::]
