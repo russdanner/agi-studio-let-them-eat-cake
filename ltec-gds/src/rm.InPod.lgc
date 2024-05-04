@@ -325,7 +325,9 @@ if(isset(fPodLaunched)) {
         new.room(rm.Station);           
     }
 
-    if(isset(fLaunchAnimationPlayed)) {        
+    if(isset(fLaunchAnimationPlayed)) {
+        leaveWindow = true;       
+        
         if(!isset(fWarping)) {
             if(!isset(fStarDone1)) {
                 move.obj(objPodStars1, 20, 75, 2, fStarDone1);

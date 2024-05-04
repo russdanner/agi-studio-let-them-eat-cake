@@ -21,16 +21,18 @@ if(newRoom) {
     draw.pic(currentRoom);
     discard.pic(currentRoom);
     
-    [ the horizon defines the upper limit of ego's movement
-    set.horizon(0);
-    
-    [ add additional room initialization here
-    
-    [ load ego view, animate and draw ego
-    [ this is sometimes handled in logic 0
-    [ instead of in each individual logic
-    
-    [ display the picture on screen
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+    assignn(vActionCount, 1);
+
+    load.view(vw.CrashingPod);
+
+    animate.obj(objCrashingPod);
+
+    set.view(objCrashingPod, vw.CrashingPod);
+
+    draw(objCrashingPod);
+
     show.pic();
 }
 
@@ -38,7 +40,31 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-[ add other room specific statements here
+if(lessn(vActionCount, 60)) {
+    if(lessn(vActionCount, 10)) {
+        assignn(vTempVar1, 2);
+        assignn(vTempVar2, 15);
+        reposition(objCrashingPod, vTempVar1, vTempVar2);
+    }
+
+    addn(vActionCount, 1);
+}
+
+if(equaln(vActionCount, 8)) {
+    stop.cycling(objCrashingPod);
+}
+
+if(equaln(vActionCount, 50)) {
+
+    if(!isset(fBeltBuckled)) {
+        assignn(vDeathReason, valXsSafteyThird);    
+        set(fDead);    
+    }
+    else {
+        assignn(vRoomInited, valFalse);
+        new.room(rm.InPodCrash);         
+    }    
+}
 
 
 [***************************************

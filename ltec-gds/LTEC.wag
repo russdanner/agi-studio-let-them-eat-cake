@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/4/2024 2:07:24 PM"
+   LastEdit = "5/4/2024 7:05:23 PM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -244,15 +244,15 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &H21711B5A
-   CompCRC32 = &H21711B5A
+   CRC32 = &HBA69652C
+   CompCRC32 = &HBA69652C
    IsRoom = True
 
 [Logic8]
    ID = rm.DavCrashSiteA3
    Description = ""
-   CRC32 = &H401AE615
-   CompCRC32 = &H401AE615
+   CRC32 = &HD4FBDE07
+   CompCRC32 = &HD4FBDE07
    IsRoom = True
 
 [Logic40]
@@ -260,6 +260,13 @@
    Description = ""
    CRC32 = &HEEBE32EA
    CompCRC32 = &HEEBE32EA
+   IsRoom = True
+
+[Logic7]
+   ID = rm.InPodCrash
+   Description = ""
+   CRC32 = &HCE36A0D8
+   CompCRC32 = &HCE36A0D8
    IsRoom = True
 [::END Logics::]
 
@@ -342,6 +349,7 @@
 [Picture5]
    ID = pic.InPod
    Description = ""
+   BkgdImg = ""
 
 [Picture8]
    ID = pic.DavCrashSiteA3
@@ -350,6 +358,11 @@
 
 [Picture40]
    ID = pic.Station
+   Description = ""
+   BkgdImg = ""
+
+[Picture7]
+   ID = pic.InPodCrash
    Description = ""
    BkgdImg = ""
 [::END Pictures::]
