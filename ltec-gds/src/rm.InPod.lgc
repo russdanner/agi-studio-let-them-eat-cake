@@ -390,6 +390,7 @@ if(isset(fPodLaunched)) {
 
         if(equaln(vClockTicks, 7)) {
             assignn(vRoomInited, valFalse);
+            reset(fCrashed);
             new.room(rm.DavCrashSiteA3);       
         }  
     }

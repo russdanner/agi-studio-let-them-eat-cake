@@ -244,15 +244,15 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &HBA69652C
-   CompCRC32 = &HBA69652C
+   CRC32 = &HD3E0EF8
+   CompCRC32 = &HD3E0EF8
    IsRoom = True
 
 [Logic8]
    ID = rm.DavCrashSiteA3
    Description = ""
-   CRC32 = &HD4FBDE07
-   CompCRC32 = &HD4FBDE07
+   CRC32 = &H5FC00EB9
+   CompCRC32 = &H5FC00EB9
    IsRoom = True
 
 [Logic40]
@@ -265,8 +265,22 @@
 [Logic7]
    ID = rm.InPodCrash
    Description = ""
-   CRC32 = &HCE36A0D8
-   CompCRC32 = &HCE36A0D8
+   CRC32 = &HA92AF493
+   CompCRC32 = &HA92AF493
+   IsRoom = True
+
+[Logic10]
+   ID = rm.DavRiverBendA4
+   Description = ""
+   CRC32 = &HCDFB3680
+   CompCRC32 = &HCDFB3680
+   IsRoom = True
+
+[Logic24]
+   ID = rm.DavOgreF3
+   Description = ""
+   CRC32 = &H35082FB4
+   CompCRC32 = &H35082FB4
    IsRoom = True
 [::END Logics::]
 
@@ -365,6 +379,14 @@
    ID = pic.InPodCrash
    Description = ""
    BkgdImg = ""
+
+[Picture10]
+   ID = pic.DavRiverBendA4
+   Description = ""
+
+[Picture24]
+   ID = pic.DavOgreF3
+   Description = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -655,5 +677,25 @@
 
 [View10]
    ID = vw.CrashingPod
+   Description = ""
+
+[View24]
+   ID = vw.RogerSplash
+   Description = ""
+
+[View25]
+   ID = vw.RogerSwim
+   Description = ""
+
+[View74]
+   ID = vw.GlassSparkle
+   Description = ""
+
+[View66]
+   ID = vw.Ogre
+   Description = ""
+
+[View67]
+   ID = vw.OgreMunch
    Description = ""
 [::END Views::]

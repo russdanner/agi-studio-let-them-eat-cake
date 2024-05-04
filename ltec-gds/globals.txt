@@ -349,3 +349,4 @@
 #define fKingMessageDisplayed       f200
 #define vTempVar1                   v251
 #define vTempVar2                   v252
+#define fCrashed                    f200

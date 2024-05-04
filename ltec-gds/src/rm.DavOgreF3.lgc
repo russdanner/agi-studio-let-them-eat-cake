@@ -1,0 +1,143 @@
+[*********************************************************************
+[
+[ rm.DavOgreF3
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+
+    animate.obj(ego);
+
+    set.view(ego, vw.Roger);
+
+    draw(ego);
+
+    reset(fGotcha);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 100);
+            assignn(vEgoY, 100);
+        }
+    }
+
+    position.v(ego, vEgoX, vEgoY);
+    set.horizon(55);
+
+    random(1, 100, vDiceRoll); 
+    if(lessn(vDiceRoll, 50)) {
+        if(!isset(fGotcha)) {
+            load.view(vw.Ogre);
+            animate.obj(objMonster);
+            set.view(objMonster, vw.Ogre);
+            draw(objMonster);
+            position(objMonster, 80, 80);        
+            follow.ego(objMonster, 2, fGotcha);    
+
+            [load.sound(sndDevMonster);
+            [sound(sndDevMonster, fSoundDone)        
+        }
+    }
+    
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(isset(fGotcha)) {
+    reset(fGotcha);
+    if(!isset(fDead)) { 
+        erase(ego);
+        load.view(vw.OgreMunch);
+        set.view(objMonster, vw.OgreMunch);
+        normal.motion(objMonster);
+        assignn(vDeathReason, valXsOgreMunch);
+        stop.cycling(objMonster);
+        set.cel(objMonster, 0);
+        stop.motion(objMonster);
+        end.of.loop(objMonster, fDead);    
+    }
+}
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(vRoomInited, valFalse);
+    [assignn(vCurrentRoom, picDavBowlA5)     
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 15);
+    assignn(vTempVar1, RIGHT);
+    set.dir(ego, vTempVar1);
+    position.v(ego, vEgoX, vEgoY);
+}
+
+if(edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 150);
+    assignn(vRoomInited, valFalse);
+    [new.room(pic.DavDaggerF2);   
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(vRoomInited, valFalse);
+    new.room(pic.DavCrashSiteA3);  
+}
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("The river winds off to the east into a mist which grow thicker to the east");
+    }
+    if(said("look", "room")) {
+        print("The river winds off to the east into a mist which grow thicker to the east");
+    }
+    if(said("look", "water")) {
+        print("The river is flowing off to the east and looks to have a strong current.");
+    }
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

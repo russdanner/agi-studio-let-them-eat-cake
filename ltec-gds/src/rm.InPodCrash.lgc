@@ -40,7 +40,7 @@ if(newRoom) {
    
     [ display the picture on screen
     show.pic();
-    shake.screen(10);
+    shake.screen(5);
     print("After a skull-jarring landing you peer through the shattered viewing port out on to a lush green landscape. It feels alien and familiar all at once. You're in a fine mess now.");
 
 }
@@ -105,6 +105,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
             assignn(vEgoX, 0);
             assignn(vEgoY, 0);        
             assignn(vRoomInited, valFalse);
+            set(fCrashed);
             new.room(rm.DavCrashSiteA3); 
             print("You climb out of the pod and discard your pressure suit.");
         }
