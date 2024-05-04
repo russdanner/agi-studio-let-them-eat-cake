@@ -203,8 +203,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
                 assignn(vEgoX, 75);
                 assignn(vEgoY, 148);
                 assignn(vRoomInited, valFalse);
-                print("bathroom");
-                [(vCurrentRoom, picBathroom);
+                new.room(rm.Bathroom);
             }
             else {
                 print("Which one?");
@@ -356,8 +355,7 @@ if(isset(fDoAction)) {
 
 if(isset(fTramOutboundDone)) {
     assignn(vRoomInited, valFalse);
-    print("Control");
-    [new.room(pic.ControlRoom);    
+    new.room(rm.ControlRoom);  
 }
 
 [***************************************

@@ -209,8 +209,22 @@
 [Logic36]
    ID = rm.InnerBay
    Description = ""
-   CRC32 = &H86EC562B
-   CompCRC32 = &H86EC562B
+   CRC32 = &H2038A023
+   CompCRC32 = &H2038A023
+   IsRoom = True
+
+[Logic41]
+   ID = rm.Bathroom
+   Description = ""
+   CRC32 = &H2D60C1CD
+   CompCRC32 = &H2D60C1CD
+   IsRoom = True
+
+[Logic37]
+   ID = rm.ControlRoom
+   Description = ""
+   CRC32 = &H7F85D72
+   CompCRC32 = &H7F85D72
    IsRoom = True
 [::END Logics::]
 
@@ -269,6 +283,15 @@
    ID = pic.InnerBay
    Description = ""
    BkgdImg = ""
+
+[Picture41]
+   ID = pic.Bathroom
+   Description = ""
+   BkgdImg = ""
+
+[Picture37]
+   ID = pic.ControlRoom
+   Description = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
