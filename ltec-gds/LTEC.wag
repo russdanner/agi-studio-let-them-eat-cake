@@ -258,8 +258,8 @@
 [Logic40]
    ID = rm.Station
    Description = ""
-   CRC32 = &H7A573FE0
-   CompCRC32 = &H7A573FE0
+   CRC32 = &HEEBE32EA
+   CompCRC32 = &HEEBE32EA
    IsRoom = True
 [::END Logics::]
 
@@ -638,5 +638,9 @@
 
 [View102]
    ID = vw.WorldWarp
+   Description = ""
+
+[View10]
+   ID = vw.CrashingPod
    Description = ""
 [::END Views::]

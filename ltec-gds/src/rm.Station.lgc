@@ -21,14 +21,27 @@ if(newRoom) {
     draw.pic(currentRoom);
     discard.pic(currentRoom);
     
-    [ the horizon defines the upper limit of ego's movement
-    set.horizon(0);
-    
-    [ add additional room initialization here
-    
-    [ load ego view, animate and draw ego
-    [ this is sometimes handled in logic 0
-    [ instead of in each individual logic
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.CrashingPod);
+
+    animate.obj(objShip);
+
+    set.view(objShip, vw.CrashingPod);
+
+    stop.cycling(objShip);
+    set.cel(objShip, 5);
+
+    assignn(vClockTicks, 0);
+    position(objShip, 35, 100);
+
+    draw(objShip);
+
+    reset(fDoAction);
+
+    [load.sound(sndSQTheme)
+    [sound(sndSQTheme, fSoundDone)    
     
     [ display the picture on screen
     show.pic();
@@ -38,18 +51,20 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-[ add other room specific statements here
+assignn(vTempVar1, 1);
+assignn(vTempVar2, 3);
+reposition(objShip, vTempVar1, vTempVar2);
+addn(vClockTicks, 1);
 
+if(equaln(vClockTicks, 24)) {
+    set(fDoAction);
+}
 
-[***************************************
-[ PROCESS PLAYER INPUT
-[***************************************
-if (haveInput && !haveMatch && unknownWordNum == 0) {
-    [ place said tests here
-    if(said("look")) {
-        print("You see nothing of interest.");
-    }
-
+if(isset(fDoAction)) {
+    set(fLaunchAnimationPlayed);
+    assignn(vRoomInited, valFalse);
+    erase(objShip);     
+    new.room(rm.InPod);
 }
 
 [***************************************
