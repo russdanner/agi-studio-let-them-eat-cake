@@ -216,8 +216,8 @@
 [Logic41]
    ID = rm.Bathroom
    Description = ""
-   CRC32 = &H2D60C1CD
-   CompCRC32 = &H2D60C1CD
+   CRC32 = &H24E37231
+   CompCRC32 = &H24E37231
    IsRoom = True
 
 [Logic37]
@@ -526,5 +526,21 @@
 
 [View42]
    ID = vw.HangerDoorLeft
+   Description = ""
+
+[View36]
+   ID = vw.LockedDoor
+   Description = ""
+
+[View37]
+   ID = vw.RogerPotty
+   Description = ""
+
+[View38]
+   ID = vw.Waterfill
+   Description = ""
+
+[View39]
+   ID = vw.Overflow
    Description = ""
 [::END Views::]
