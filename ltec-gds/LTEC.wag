@@ -244,8 +244,22 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &H4E96775
-   CompCRC32 = &H4E96775
+   CRC32 = &H21711B5A
+   CompCRC32 = &H21711B5A
+   IsRoom = True
+
+[Logic8]
+   ID = rm.DavCrashSiteA3
+   Description = ""
+   CRC32 = &H401AE615
+   CompCRC32 = &H401AE615
+   IsRoom = True
+
+[Logic40]
+   ID = rm.Station
+   Description = ""
+   CRC32 = &H7A573FE0
+   CompCRC32 = &H7A573FE0
    IsRoom = True
 [::END Logics::]
 
@@ -328,6 +342,16 @@
 [Picture5]
    ID = pic.InPod
    Description = ""
+
+[Picture8]
+   ID = pic.DavCrashSiteA3
+   Description = ""
+   BkgdImg = ""
+
+[Picture40]
+   ID = pic.Station
+   Description = ""
+   BkgdImg = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -602,5 +626,17 @@
 
 [View73]
    ID = vw.Star
+   Description = ""
+
+[View23]
+   ID = vw.CockpitPull
+   Description = ""
+
+[View22]
+   ID = vw.CockpitPush
+   Description = ""
+
+[View102]
+   ID = vw.WorldWarp
    Description = ""
 [::END Views::]
