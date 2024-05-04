@@ -443,16 +443,18 @@ if(equaln(vSleeping, valTrue)) {
   }
 }
 
-if(equaln(vClockTicks, 20)) {
+if(equaln(vTimer, 0)) {
+  if(equaln(vClockTicks, 20)) {
     print("It sure is getting late");
-}
-if(equaln(vClockTicks, 40)) {
+  }
+  if(equaln(vClockTicks, 40)) {
     print("If you don't get to sleep you'll be a real mess in the morning.");
-}
-if(equaln(vClockTicks, 60)) {
-    [DEAD: OVERSLEPT
-    assignn(vDeathReason, valXsOversleep);
-    set(fDead);
+  }
+  if(equaln(vClockTicks, 60)) {
+      [DEAD: OVERSLEPT
+      assignn(vDeathReason, valXsOversleep);
+      set(fDead);
+  }
 }
 
 

@@ -48,8 +48,8 @@
 
 [::BEGIN Logics::]
 [Logic0]
-   CompCRC32 = &HEE9685D8
-   CRC32 = &HEE9685D8
+   CompCRC32 = &HEAEAA3FC
+   CRC32 = &HEAEAA3FC
    ID = lgc.Main
    IsRoom = False
    Size = 1735
@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &H592115FB
-   CRC32 = &H592115FB
+   CompCRC32 = &H7121984E
+   CRC32 = &H7121984E
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H4AB4782B
-   CompCRC32 = &H4AB4782B
+   CRC32 = &H8A63792B
+   CompCRC32 = &H8A63792B
    IsRoom = True
 
 [Logic203]

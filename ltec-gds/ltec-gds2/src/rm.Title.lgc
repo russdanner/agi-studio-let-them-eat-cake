@@ -25,8 +25,8 @@ if (newRoom) {
   load.pic(currentRoom);
   draw.pic(currentRoom);
   discard.pic(currentRoom);
-
-  
+  animationInterval = NORMAL_SPEED;
+   
   [ skip basic room initialization for title; all 
   [ initialization will be done in this logic
   [call(lgc.RoomInit);
@@ -98,10 +98,11 @@ if (newRoom) {
   set.cel(feather, 0);
   fix.loop(feather);
   position.v(feather, vEgoX, vEgoY);
-  
-  draw(hat);
+  ignore.horizon(feather);
+  ignore.blocks(feather);
+  move.obj(feather, 120, 165, 4, f254);
 
-  set.dir(feather, objDir);
+  draw(hat);
   draw(feather);
   
   [ show the picture on screen
@@ -118,7 +119,13 @@ if (newRoom) {
   [ Display by message
   display(23, 9, m2);
   display(24, 8, m3);
+}
 
+[ float the feather
+if(!posn(feather, 90, 160, 110, 165)){
+    random(110, 125, v251);
+    addn(v252, 4);
+    move.obj.v(feather, v251, v252, v254, fUndoAction);  
 }
 
 [ horrible message scrolling code
@@ -186,7 +193,6 @@ if(greatern(v80, 5)) {
     subn(v86, 1);
 }
 
-addn(vTimer, 1);
 
 if(equaln(vTimer, 100)) {
     set(fDoAction);

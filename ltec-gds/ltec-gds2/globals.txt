@@ -382,7 +382,7 @@
 #define vKeyPressed                  v19
 #define vDeathReason                 v29
 #define vEgoX                        v30
-#define vEgoY                        v31
+#define vEgoY                       v253
 #define vInvShowItem                 v32
 #define vInvView                     v33
 #define vRoomInited                  v34
