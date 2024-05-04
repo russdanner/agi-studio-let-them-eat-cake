@@ -81,7 +81,6 @@ if(newRoom) {
     draw(objWatchTButton);
 
     if(isset(fWatchHasBeeped)) {
-            print("beep %v139");
         if(equaln(vHasOrders, valFalse)) {
             start.cycling(objWatchPower);
         }

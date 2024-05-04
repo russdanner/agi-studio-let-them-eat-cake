@@ -263,7 +263,7 @@ if(posn(ego, 36, 80, 48, 95)) {
     }
 }
 
-if(obj.in.box(ego, 151, 140, 155, 150)) {
+if(obj.in.box(ego, 145, 135, 160, 160)) {
     if(equaln(vHasOrders, valTrue)) {
         assignn(vSweeping, valFalse);
 
@@ -271,33 +271,29 @@ if(obj.in.box(ego, 151, 140, 155, 150)) {
         assignn(vEgoX, 10);
         assignn(vEgoY, 126);
         assignn(vRoomInited, valFalse);
-        [assignn(vEgoEdgeTouched, edgeNone);
-        print("InnerBay");
-        [assignn(vCurrentRoom, picInnerBay);         
+        new.room(rm.InnerBay);         
     }
-    if(equaln(vHasOrders, valFalse)) {
+    else {
         print("Look at that deck!! You better keep cleaning.");
         get.posn(ego, vEgoX, vEgoY);
         assignn(vEgoX, 146);
         assignn(vTempVar1, LEFT);
         set.dir(ego, vTempVar1);
         position.v(ego, vEgoX, vEgoY);
-        [assignn(vEgoEdgeTouched, edgeNone);
     }
 }
 
 
-[if(!equaln(vEgoEdgeTouched, edgeNone)) {
-    if(edgeEgoHit == TOP_EDGE) {
-        stop.cycling(ego);
-        set.view(ego, vw.RogerspacesuitA);
-        set.priority(ego, 4);
-        move.obj(ego, 100, 40, 1, fAdrift);
-        [ DEAD: ADRIFT 
-        assignn(vDeathReason, valXsSpaceWalk);
-        set(fDead);
-    }
-[}
+if(edgeEgoHit == TOP_EDGE) {
+    stop.cycling(ego);
+    set.view(ego, vw.RogerspacesuitA);
+    set.priority(ego, 4);
+    move.obj(ego, 100, 40, 1, fAdrift);
+    [ DEAD: ADRIFT 
+    assignn(vDeathReason, valXsSpaceWalk);
+    set(fDead);
+}
+
 if(isset(fAdrift)) {
     erase(ego);
 }

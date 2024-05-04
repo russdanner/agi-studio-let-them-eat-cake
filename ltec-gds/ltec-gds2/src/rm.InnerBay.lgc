@@ -1,0 +1,373 @@
+[*********************************************************************
+[
+[ rm.InnerBay
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+
+    load.view(vw.Roger);
+    load.view(vw.RogerSpacesuitA);
+    load.view(vw.Closet);
+    load.view(vw.Tram);
+    load.view(vw.BathroomDoor);
+    load.view(vw.HangerDoorLeft);
+
+    animate.obj(ego);
+    animate.obj(objCloset);
+    animate.obj(objTram);
+    animate.obj(objHangingSuit1);
+    animate.obj(objBathroomDoor);
+    animate.obj(objBathroomDoor1);
+    animate.obj(objHangerDoorLeft);
+    
+    set.view(objTram, vw.Tram);
+    set.view(objCloset, vw.Closet);
+    set.view(objHangingSuit1, vw.RogerSpacesuitA);
+    set.view(objHangingSuit2, vw.RogerSpacesuitA);
+    set.view(objBathroomDoor, vw.BathroomDoor);
+    set.view(objBathroomDoor1, vw.BathroomDoor);
+    set.view(objHangerDoorLeft, vw.HangerDoorLeft);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)){
+            assignn(vEgoX, 10);
+            assignn(vEgoY, 126);
+            set(fWearingSuit);
+        }
+    }
+
+    if(isset(fWearingSuit)) {
+        set.view(ego, vw.RogerSpacesuitA);
+    }
+    if(!isset(fWearingSuit)) {
+        set.view(ego, vw.Roger);
+        draw(objHangingSuit2);
+        position(objHangingSuit2, 43, 95);    
+    }
+    
+    stop.cycling(objCloset);
+    stop.cycling(objTram);
+    stop.cycling(objHangingSuit1);
+    stop.cycling(objHangingSuit2);
+    stop.cycling(objBathroomDoor);
+    stop.cycling(objBathroomDoor1);
+    stop.cycling(objHangerDoorLeft);
+
+    set.loop(objBathroomDoor1, 1);
+    set.loop(objHangingSuit1, 2);
+    set.loop(objHangingSuit2, 2);
+
+    position(objCloset, 100, 101);
+    position(objTram, 55, 47);
+    position(objBathroomDoor, 60, 98);
+    position(objBathroomDoor1, 67, 98);
+    position(objHangingSuit1, 35, 95);
+    position(objHangerDoorLeft, 6, 131);
+   
+    set.priority(ego, 13);
+
+    position.v(ego, vEgoX, vEgoY);
+
+    reset(fDoAction);
+
+    draw(ego);
+    draw(objCloset);
+    draw(objTram);
+    draw(objHangingSuit1);
+    draw(objBathroomDoor);
+    draw(objBathroomDoor1);
+    draw(objHangerDoorLeft);
+    
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(obj.in.box(ego, 100, 95, 113, 110)) {
+    end.of.loop(objCloset, fDoor2Open);
+    if(!isset(fDoor2Open)) {
+        [load.sound(sndSpaceDoor);
+        [sound(sndSpaceDoor, fSoundDone);        
+    }
+}
+
+if(!obj.in.box(ego, 100, 95, 113, 110)) {
+    if(isset(fDoor2Open)) {
+        set.cel(objCloset, 0);
+        [load.sound(sndSpaceDoor);
+        [sound(sndSpaceDoor, fSoundDone);    
+        reset(fDoor2Open);
+        reset(fDoorOpen);
+    }
+}
+
+if(posn(ego, 8, 123, 20, 128)) {
+    end.of.loop(objHangerDoorLeft, fDoorOpen);
+
+    if(!isset(fDoorOpen)) {
+        [load.sound(sndSpaceDoor)
+        [sound(sndSpaceDoor, fSoundDone)        
+    }
+    reset(fDoorOpen);
+}
+
+if(posn(ego, 21, 123, 25, 128)) {
+    set.cel(objHangerDoorLeft, 0);
+    //end.of.loop(objHangerDoorLeft, 99)
+    if(isset(fDoorOpen)) {
+        [load.sound(sndSpaceDoor)
+        [sound(sndSpaceDoor, fSoundDone);        
+    }
+    reset(fDoorOpen);
+}
+
+if(obj.in.box(ego, 2, 123, 5, 128)) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 146);
+    assignn(vEgoY, 141);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.InnerHanger);     
+}
+
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("undress")) {
+        print("I'll get naked if you get naked. You go first.");
+    }
+    
+    if(said("look")) {
+        print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a pneumatic transport tube and car.");
+    }
+    
+    if(said("sleep")) {
+        if(posn(ego, 100, 95, 120, 103)) {
+            print("You have to admit this closet looks like a perfect place for a nap. You also have to admit that you had a similar thought earlier today. Given that you are running behind you decide with a degree of sadness NOT to take another nap.");
+        }
+        if(!posn(ego, 100, 95, 120, 103)) {
+            print("You can't do that here. Perhaps a comfy janitorial closet would be a more suitable.");
+        }
+    }
+    
+    if(said("sweep")) {
+        if(has("Broom")) {
+            print("With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed.");
+        }
+        if(!has("Broom")) {
+            print("You don't have the proper equipment on hand for that.");
+        }
+    }
+    
+    if(said("start", "sweeping")) {
+        if(has("Broom")) {
+            print("With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed.");
+        }
+        if(!has("Broom")) {
+            print("You don't have the proper equipment on hand for that.");
+        }
+    }
+    
+    if(said("push", "button")) {
+        if(isset(fWearingSuit)) {
+            print("You can't go in there wearing your EVA pressure suit. That could get VERY messy.");
+        }
+        if(!isset(fWearingSuit)) {
+            if(posn(ego, 71, 100, 85, 105)) {
+                [load.sound(sndSpaceDoor);
+                [sound(sndSpaceDoor, fSoundDone);    
+            
+                get.posn(ego, vEgoX, vEgoY);
+                assignn(vEgoX, 75);
+                assignn(vEgoY, 148);
+                assignn(vRoomInited, valFalse);
+                print("bathroom");
+                [(vCurrentRoom, picBathroom);
+            }
+            else {
+                print("Which one?");
+            }
+        }
+    }
+    
+    if(said("take", "suit")) {
+        if(isset(fWearingSuit)) {
+            print("You are already wearing it.");
+        }
+        else {
+            if(posn(ego, 35, 100, 50, 105)) {
+                set.view(ego, vw.RogerSpacesuitA);
+                erase(objHangingSuit2);
+                set(fWearingSuit);
+                print("Ok");
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+    }
+    
+    if(said("wear", "suit")) {
+        if(isset(fWearingSuit)) {
+            print("You are already wearing it.");
+        }
+        else {
+            if(posn(ego, 35, 100, 50, 105)) {
+                set.view(ego, vw.RogerSpacesuitA);
+                erase(objHangingSuit2);
+                set(fWearingSuit);
+                print("Ok");
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+    }
+    
+    if(said("remove", "suit")) {
+        if(!isset(fWearingSuit)) {
+            print("You are not wearing it.");
+        }
+        if(isset(fWearingSuit)) {
+            if(posn(ego, 35, 100, 50, 105)) {
+                if(!isset(fPointsForRemoveSuit)) {
+                    set(fPointsForRemoveSuit);
+                    addn(currentScore, 1);
+                }
+    
+                load.view(vw.Roger);
+                set.view(ego, vw.Roger);
+                draw(objHangingSuit2);
+                position(objHangingSuit2, 43, 95);
+                reset(fWearingSuit);        
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+    }
+    
+    if(said("enter", "tram")) {
+        if(isset(fWearingSuit)) {
+            print("You can't get in the pneumatic transport tube car in your EVA pressure suit.");
+        }
+        else {
+            if(posn(ego, 56, 45, 68, 51)) {
+                erase(ego);
+                end.of.loop(objTram, fDoAction);
+            }
+            else {
+                print("Get closer.");
+            }
+        }
+    }
+
+    if(said("get", "tram")) {
+        if(isset(fWearingSuit)) {
+            print("You can't get in the pneumatic transport tube car in your EVA pressure suit.");
+        }
+        else {
+            if(posn(ego, 56, 45, 68, 51)) {
+                erase(ego);
+                end.of.loop(objTram, fDoAction);
+            }
+            else {
+                print("Get closer.");
+            }
+        }
+    }
+
+    if(said("drop", "broom")) {
+        if(posn(ego, 100, 95, 120, 103)) {
+            if(!has("Broom")) {
+                print("You don't have one.");
+            }
+            else {
+                addn(currentScore, 1);
+                drop("Broom");
+                print("Ok");    
+            }
+        }
+    }
+    
+    if(said("take", "broom")) {
+        if(!has("Broom")) {
+            get("Broom");
+            subn(currentScore, 1);
+            print("Ok");
+        }
+    }
+
+    if(said("look", "room")) {
+        print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a pneumatic transport tube and car.");
+    }
+
+    if(said("look", "bathroom")) {
+        print("'Look' is really not really the verb you would prefer to associate with StarCon bathrooms. It appears to be your standard issue StarCon facilities. There is a button by the door and a small display which indicates that the room is currently unoccupied.");
+    }
+
+    if(said("look", "closet")) {
+        print("This is a janitorial supply closet. It sure looks comfy... I mean... like the pinnacle of janitorial supply storage solutions.");
+    }
+
+    if(said("look", "suit")) {
+        print("Good eye. There is a EVA pressure suit rack here.");
+    }
+
+    if(said("look", "tram")) {
+        print("The pneumatic transport tube is used to move about the various areas within the station. The car is currently waiting in this location.");
+    }
+}
+
+
+if(isset(fDoAction)) {
+    reset(fDoAction);
+    reset(fTramOutboundDone);
+    assignn(vTimer, 0);
+
+    set(fTramRunning);     
+    [ load.sound(sndTramGo);
+    [ sound(sndTramGo, fSoundDone);
+    ignore.blocks(objTram);    
+    move.obj(objTram, 150, 47, 2, fTramOutboundDone);        
+}
+
+if(isset(fTramOutboundDone)) {
+    assignn(vRoomInited, valFalse);
+    print("Control");
+    [new.room(pic.ControlRoom);    
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

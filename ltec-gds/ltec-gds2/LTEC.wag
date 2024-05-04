@@ -195,15 +195,22 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &HBD1F97CD
-   CompCRC32 = &HBD1F97CD
+   CRC32 = &HAE4768EF
+   CompCRC32 = &HAE4768EF
    IsRoom = True
 
 [Logic3]
    ID = rm.Watch
    Description = ""
-   CRC32 = &HDDCDDEE3
-   CompCRC32 = &HDDCDDEE3
+   CRC32 = &H8F0F8606
+   CompCRC32 = &H8F0F8606
+   IsRoom = True
+
+[Logic36]
+   ID = rm.InnerBay
+   Description = ""
+   CRC32 = &H86EC562B
+   CompCRC32 = &H86EC562B
    IsRoom = True
 [::END Logics::]
 
@@ -255,6 +262,11 @@
 
 [Picture3]
    ID = pic.Watch
+   Description = ""
+   BkgdImg = ""
+
+[Picture36]
+   ID = pic.InnerBay
    Description = ""
    BkgdImg = ""
 [::END Pictures::]
@@ -475,5 +487,21 @@
 
 [View46]
    ID = vw.WatchLights
+   Description = ""
+
+[View43]
+   ID = vw.Tram
+   Description = ""
+
+[View40]
+   ID = vw.Closet
+   Description = ""
+
+[View41]
+   ID = vw.BathroomDoor
+   Description = ""
+
+[View42]
+   ID = vw.HangerDoorLeft
    Description = ""
 [::END Views::]
