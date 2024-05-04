@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/3/2024 4:06:14 AM"
+   LastEdit = "5/4/2024 2:07:24 PM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &H788B0F9D
-   CRC32 = &H788B0F9D
+   CompCRC32 = &HD1ACC8F2
+   CRC32 = &HD1ACC8F2
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -209,8 +209,8 @@
 [Logic36]
    ID = rm.InnerBay
    Description = ""
-   CRC32 = &H2038A023
-   CompCRC32 = &H2038A023
+   CRC32 = &H191555A5
+   CompCRC32 = &H191555A5
    IsRoom = True
 
 [Logic41]
@@ -292,6 +292,7 @@
 [Picture37]
    ID = pic.ControlRoom
    Description = ""
+   BkgdImg = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]

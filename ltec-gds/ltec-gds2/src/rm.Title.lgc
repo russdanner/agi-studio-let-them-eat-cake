@@ -247,7 +247,8 @@ if ((have.key() || controller(keyJoyBtn1))) {
   [ game functions are no longer disabled
   reset(disableGameFunctions);
   [ begin game in starting room
-  new.room(rm.GrahamHouse); [ ##LE001##
+  [new.room(rm.GrahamHouse); [ ##LE001##
+  new.room(rm.ControlRoom);
 }
 
 return();

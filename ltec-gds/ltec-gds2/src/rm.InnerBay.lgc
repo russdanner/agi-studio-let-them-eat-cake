@@ -171,17 +171,8 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
             print("You can't do that here. Perhaps a comfy janitorial closet would be a more suitable.");
         }
     }
-    
-    if(said("sweep")) {
-        if(has("Broom")) {
-            print("With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed.");
-        }
-        if(!has("Broom")) {
-            print("You don't have the proper equipment on hand for that.");
-        }
-    }
-    
-    if(said("start", "sweeping")) {
+        
+    if((said("sweep") || said("start", "sweeping"))) {
         if(has("Broom")) {
             print("With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed.");
         }
@@ -211,7 +202,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         }
     }
     
-    if(said("take", "suit")) {
+    if((said("wear", "suit") || said("take", "suit"))) {
         if(isset(fWearingSuit)) {
             print("You are already wearing it.");
         }
@@ -227,24 +218,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
             }
         }
     }
-    
-    if(said("wear", "suit")) {
-        if(isset(fWearingSuit)) {
-            print("You are already wearing it.");
-        }
-        else {
-            if(posn(ego, 35, 100, 50, 105)) {
-                set.view(ego, vw.RogerSpacesuitA);
-                erase(objHangingSuit2);
-                set(fWearingSuit);
-                print("Ok");
-            }
-            else {
-                print("You are not close enough.");
-            }
-        }
-    }
-    
+        
     if(said("remove", "suit")) {
         if(!isset(fWearingSuit)) {
             print("You are not wearing it.");
@@ -268,22 +242,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         }
     }
     
-    if(said("enter", "tram")) {
-        if(isset(fWearingSuit)) {
-            print("You can't get in the pneumatic transport tube car in your EVA pressure suit.");
-        }
-        else {
-            if(posn(ego, 56, 45, 68, 51)) {
-                erase(ego);
-                end.of.loop(objTram, fDoAction);
-            }
-            else {
-                print("Get closer.");
-            }
-        }
-    }
-
-    if(said("get", "tram")) {
+    if((said("enter", "tram") || said("get", "tram"))) {
         if(isset(fWearingSuit)) {
             print("You can't get in the pneumatic transport tube car in your EVA pressure suit.");
         }
@@ -350,7 +309,7 @@ if(isset(fDoAction)) {
     [ load.sound(sndTramGo);
     [ sound(sndTramGo, fSoundDone);
     ignore.blocks(objTram);    
-    move.obj(objTram, 150, 47, 2, fTramOutboundDone);        
+    move.obj(objTram, 110, 47, 2, fTramOutboundDone);        
 }
 
 if(isset(fTramOutboundDone)) {
@@ -368,4 +327,3 @@ return();
 [***************************************
 [ DECLARED MESSAGES
 [***************************************
-#message 1 "You see nothing of interest." 

@@ -55,3 +55,19 @@ Error: 11 Value: 50
 Room 41
 Input line: flush toilet
 Error: 11 Value: 50
+
+Room 36
+Input line: enter tram
+Error: 1 Value: 40
+
+Room 36
+Input line: enter tram
+Error: 1 Value: 40
+
+Room 36
+Input line: enter tram
+Error: 1 Value: 43
+
+Room 36
+Input line: enter tram
+Error: 1 Value: 41
