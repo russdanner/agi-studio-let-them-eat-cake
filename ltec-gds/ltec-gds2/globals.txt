@@ -213,7 +213,7 @@
 #define vTeaDrank                    v36
 #define vSleeping                    v37
 #define vGotOutOfPod                 v38
-#define vHasOrders                   v39
+#define vHasOrders                  v139
 #define vCleanedUp                  v140
 #define vSweeping                   v141
 #define vSplat1Cleaned              v144
@@ -341,8 +341,8 @@
 #define fInBucket                    f90
 #define fBucketDown                  f91
 #define fDoJoke                      f91
-#define fWatchHasBeeped              f92
-#define fBossGiveOrders              f95
+#define fWatchHasBeeped             f192
+#define fBossGiveOrders             f195
 #define fWearingSuit                 f96
 #define valTrue                        1
 #define valFalse                       0

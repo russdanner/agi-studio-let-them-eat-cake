@@ -64,8 +64,8 @@
    Description = "Game-specific functions\n\nYou should use this logic to perform any game specific functions, such as counting down timers, etc and processing player input related to the game (such as examining/using inventory items) and any other things that are required in several rooms that you don't want to duplicate in each room. \n\nThis logic is called from logic 0, on every cycle, unless disableGameFunctions is set.\n\nSierra did not use a separate logic for all this - they just did it all from logic 0. I find it is neater this way, as you can keep your game specific processing separate from other system-related things (although these may require some modification for your game). Also, this makes logic 0 easier to manage."
 
 [Logic91]
-   CompCRC32 = &HD8644111
-   CRC32 = &HD8644111
+   CompCRC32 = &HC3F8E171
+   CRC32 = &HC3F8E171
    IsRoom = False
    ID = lgc.Init
    Size = 162
@@ -195,15 +195,15 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &HD02A9A37
-   CompCRC32 = &HD02A9A37
+   CRC32 = &HBD1F97CD
+   CompCRC32 = &HBD1F97CD
    IsRoom = True
 
 [Logic3]
    ID = rm.Watch
    Description = ""
-   CRC32 = &H61E2988A
-   CompCRC32 = &H61E2988A
+   CRC32 = &HDDCDDEE3
+   CompCRC32 = &HDDCDDEE3
    IsRoom = True
 [::END Logics::]
 

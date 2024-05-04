@@ -230,10 +230,6 @@ if(equaln(vCleanedUp, valTrue)) {
         addn(vTimer, 1);
     }
 }
-else {
-display(3,1,"X");
-}
-
 
 if(posn(ego, 85, 139, 105, 151)) {
     if(equaln(vSplat1Cleaned, valFalse)) {

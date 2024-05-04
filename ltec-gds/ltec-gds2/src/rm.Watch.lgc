@@ -81,6 +81,7 @@ if(newRoom) {
     draw(objWatchTButton);
 
     if(isset(fWatchHasBeeped)) {
+            print("beep %v139");
         if(equaln(vHasOrders, valFalse)) {
             start.cycling(objWatchPower);
         }
@@ -145,12 +146,11 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
                 set(fBossGiveOrders);
                 assignn(vTimer, 0);
             }
-            
-            if(equaln(vHasOrders, valFalse)) {
+            else {
                 print("You have no new incoming messages.");
             }
         }
-        if(!isset(fWatchHasBeeped)) {
+        else {
             print("You have no incoming messages at this time.");
         }
     }

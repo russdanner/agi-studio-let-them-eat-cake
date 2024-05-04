@@ -77,6 +77,8 @@ configure.screen(1, 22, 0);
 set.string(inputPrompt, ">");
 set.cursor.char(cursor);
 
+assignn(vHasOrders, valFalse);
+
 return();
 
 [***************************************
