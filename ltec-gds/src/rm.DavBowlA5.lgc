@@ -1,0 +1,65 @@
+[*********************************************************************
+[
+[ rm.DavBowlA5
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    [ the horizon defines the upper limit of ego's movement
+    set.horizon(0);
+    
+    [ add additional room initialization here
+    
+    [ load ego view, animate and draw ego
+    [ this is sometimes handled in logic 0
+    [ instead of in each individual logic
+    
+    [ display the picture on screen
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ add other room specific statements here
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    [ place said tests here
+    if(said("look")) {
+        print("You see nothing of interest.");
+    }
+
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

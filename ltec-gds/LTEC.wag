@@ -272,15 +272,29 @@
 [Logic10]
    ID = rm.DavRiverBendA4
    Description = ""
-   CRC32 = &HCDFB3680
-   CompCRC32 = &HCDFB3680
+   CRC32 = &H82276D25
+   CompCRC32 = &H82276D25
    IsRoom = True
 
 [Logic24]
    ID = rm.DavOgreF3
    Description = ""
-   CRC32 = &H35082FB4
-   CompCRC32 = &H35082FB4
+   CRC32 = &H254E286C
+   CompCRC32 = &H254E286C
+   IsRoom = True
+
+[Logic11]
+   ID = rm.DavBowlA5
+   Description = ""
+   CRC32 = &H17E9A096
+   CompCRC32 = &H17E9A096
+   IsRoom = True
+
+[Logic25]
+   ID = rm.DavDwarfF4
+   Description = ""
+   CRC32 = &H38CA19A
+   CompCRC32 = &H38CA19A
    IsRoom = True
 [::END Logics::]
 
@@ -386,6 +400,15 @@
 
 [Picture24]
    ID = pic.DavOgreF3
+   Description = ""
+
+[Picture25]
+   ID = pic.DavDwarfF4
+   Description = ""
+   BkgdImg = ""
+
+[Picture11]
+   ID = pic.DavBowlA5
    Description = ""
 [::END Pictures::]
 

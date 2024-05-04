@@ -85,15 +85,14 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 55);
     assignn(vRoomInited, valFalse);
-    [assignn(vCurrentRoom, picDavBowlA5)     
+    new.room(rm.DavBowlA5);     
 }
 
 if(edgeEgoHit == LEFT_EDGE) {
     print("You're a bit foggy here. You decide to turn back.");
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 15);
-    assignn(vTempVar1, RIGHT);
-    set.dir(ego, vTempVar1);
+    assignn(egoDir, RIGHT);
     position.v(ego, vEgoX, vEgoY);
 }
 
@@ -101,7 +100,8 @@ if(edgeEgoHit == TOP_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 150);
     assignn(vRoomInited, valFalse);
-    [new.room(pic.DavDaggerF2);   
+    [new.room(pic.DavDaggerF2);
+    print("dagger room");   
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
