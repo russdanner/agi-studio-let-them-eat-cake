@@ -16,6 +16,8 @@
 #define objDir                     v223
 #define speed                      v224
 #define musicDelay                 v226
+#define vRate v232
+#define vFeatherLocation v233
 
 [***************************************
 [ FIRST CYCLE ONLY
@@ -26,6 +28,8 @@ if (newRoom) {
   draw.pic(currentRoom);
   discard.pic(currentRoom);
   animationInterval = NORMAL_SPEED;
+  vRate = NORMAL_SPEED;
+  vFeatherLocation = 30;
    
   [ skip basic room initialization for title; all 
   [ initialization will be done in this logic
@@ -34,6 +38,7 @@ if (newRoom) {
   [ add room-specific initialization here
   [speed = 2; 
   objDir = DOWN;
+  
   assignn(vEgoX, 150);
   assignn(vEgoY, 0);
   
@@ -98,9 +103,9 @@ if (newRoom) {
   set.cel(feather, 0);
   fix.loop(feather);
   position.v(feather, vEgoX, vEgoY);
-  ignore.horizon(feather);
+
   ignore.blocks(feather);
-  move.obj(feather, 120, 165, 4, f254);
+  ignore.horizon(feather);
 
   draw(hat);
   draw(feather);
@@ -116,95 +121,41 @@ if (newRoom) {
   [ make sure keybuffer is empty
   lastChar = 0;
 
+  [ Display game title
+  display(10, 12, m12);     
+  display(12, 14, m13);    
+  
   [ Display by message
   display(23, 9, m2);
   display(24, 8, m3);
+  
 }
 
-[ float the feather
-if(!posn(feather, 90, 160, 110, 165)){
+[ float the feather down
+if(lessn(vFeatherLocation, 175)){
     random(110, 125, vTempVar1);
-    addn(vTempVar1, 4);
-    move.obj.v(feather, vTempVar1, vTempVar1, v254, fUndoAction);  
+    addn(vFeatherLocation, 2);
+    move.obj.v(feather, vTempVar1, vFeatherLocation, vRate, fUndoAction);  
 }
 
-[ horrible message scrolling code
-if(greatern(v80, 6)) {
-    assignn(vGameCycleDelay, 10);
-    display.v(v80, v71, v72);    
-
-    if(lessn(v81, 19)) {
-        display.v(v81, v71, v73);    
-    }
-    if(lessn(v82, 19)) {
-        display.v(v82, v71, v74);    
-    }
-    if(lessn(v83, 19)) {
-        display.v(v83, v71, v75);    
-    }
-    if(lessn(v84, 19)) {
-        display.v(v84, v71, v76);    
-    }
-    if(lessn(v85, 19)) {
-        display.v(v85, v71, v77);    
-    }
-    if(lessn(v86, 19)) {
-        display.v(v86, v71, v78);    
-    }
-    if(lessn(v87, 19)) {
-        display.v(v87, v71, v79);    
-    }
+if(vClockTicks == 0 && vTimer == 60) {
+  display(10, 12, m4);     
+  display(11, 14, m5);    
+  display(12, 14, m6);    
 }
 
-[ clear the old lines
-[display(15, 12, m16); 
-[display(16, 12, m16); 
-[display(17, 12, m16); 
-[display(18, 12, m16);
-[display(19, 12, m16); 
-[display(20, 12, m16); 
- 
-if(!greatern(v80, 5)) {
-    if(isset(fDoAction)) {
-        [ show the game title
-        display(11, 12, m12);    
-        display(13, 14, m13);
-    }
-    if(!isset(fDoAction)) {
-      [ scroll the message
-        display(6, 12, m4);    
-        display(7, 12, m5);    
-        display(8, 12, m6);    
-        display(10, 12, m7);    
-        display(11, 12, m8);    
-        display(12, 12, m9);    
-        display(13, 12, m10);    
-        display(14, 12, m11);    
-    }    
+if(vClockTicks == 1 && vTimer == 60) {
+  display(10, 12, m7);     
+  display(11, 11, m8);    
+  display(12, 11, m9);    
+  display(13, 11, m10);    
+  display(14, 11, m11);    
 }
-
-if(greatern(v80, 5)) { 
-    subn(v80, 1);
-    subn(v81, 1);
-    subn(v82, 1);
-    subn(v83, 1);
-    subn(v84, 1);
-    subn(v85, 1);
-    subn(v86, 1);
-}
-
-
-if(equaln(vTimer, 100)) {
-    set(fDoAction);
-}
-
 
 [***************************************
 [ NON-INPUT CODE 
 [***************************************
 
-
-  
 [ restart theme music if the intro screen is still showing
 [ and end was reached
 if (musicDone) {
@@ -259,22 +210,20 @@ return();
 
 #message 1 "Title"
 #message 2 "let-them-eat-cake.com"
-
 #message 3 "One Guy from CrafterCMS"
-#message 4 "A heartfelt thanks "
-#message 5 "to the heroes &    "
-#message 6 "fans of Sierra.    "
 
-#message 7 "Early adventure    "
-#message 8 "games amazed us,   "
-#message 9 "taught us to solve "
-#message 10 "problems and to   "
-#message 11 "be resilient.     "
+#message 4 "A heartfelt thanks"
+#message 5 "to the heroes &"
+#message 6 "fans of Sierra."
 
-#message 12 "Let Them Eat Cake "
-#message 13 "Version 1.6       "
+#message 7 "Early adventure   "
+#message 8 "games amazed us,"
+#message 9 "taught us to solve"
+#message 10 "problems and to"
+#message 11 "be resilient."
 
-#message 14 "Press Any Key     "
-#message 15 "to Continue       "
+#message 12 "Let Them Eat Cake"
+#message 13 "Version 1.7"
 
-#message 16 "                  "
+#message 14 "Press Any Key"
+#message 15 "to Continue"

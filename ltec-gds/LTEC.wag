@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &HCA2BBDC4
-   CRC32 = &HCA2BBDC4
+   CompCRC32 = &H34B3D4D6
+   CRC32 = &H34B3D4D6
    ID = rm.Title
    IsRoom = True
    Size = 345
