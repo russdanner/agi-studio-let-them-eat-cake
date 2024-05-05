@@ -111,6 +111,7 @@ if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 15);
     assignn(vRoomInited, valFalse);
+    new.room(rm.DavCastleRightB2); 
 }
 
 

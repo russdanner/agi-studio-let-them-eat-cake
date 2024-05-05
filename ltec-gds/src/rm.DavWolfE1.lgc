@@ -51,28 +51,28 @@ if(newRoom) {
         }
     }
 
-    position(objMist, 1, 47);
-    position(objMist2, 43, 47);
-    position(objMist3, 85, 47);
-    position(objMist4, 127, 47);
+    [position(objMist, 1, 47);
+    [position(objMist2, 43, 47);
+    [position(objMist3, 85, 47);
+    [position(objMist4, 127, 47);
 
-    // add wider range to reduce instances of encounter
-    random(1, 100, vDiceRoll);
+    [ add wider range to reduce instances of encounter
+    [random(1, 100, vDiceRoll);
 
-    reset(fGotcha);
+    [reset(fGotcha);
 
-    if(lessn(vDiceRoll, 50)) {
-        load.view(vw.Wolf);
-        set.view(objMonster, vw.Wolf);
-        draw(objMonster);
-        position(objMonster, 80, 80);        
-        follow.ego(objMonster, 2, fGotcha);
+    [if(lessn(vDiceRoll, 50)) {
+        [load.view(vw.Wolf);
+        [set.view(objMonster, vw.Wolf);
+        [draw(objMonster);
+        [position(objMonster, 80, 80);        
+        [follow.ego(objMonster, 2, fGotcha);
  
         [ load.sound(sndDevMonster);
         [ sound(sndDevMonster, fSoundDone);    
-    }
+    [}
     
-    reset(fGotcha);
+    [reset(fGotcha);
 
     position.v(ego, vEgoX, vEgoY);
 

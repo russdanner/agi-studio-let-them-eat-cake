@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavRockE4
+[ rm.DavLakeFGMD4
 [
 [ 
 [
@@ -22,22 +22,26 @@ if(newRoom) {
     discard.pic(currentRoom);
     
     unanimate.all();
-    assignn(vRoomInited, valTrue);
-    
+    assignn(vRoomInited, 1);
     load.view(vw.Roger);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);    
     load.view(vw.Mist);
-
+    load.view(vw.FGM);
+    
     animate.obj(ego);
     animate.obj(objMist);
     animate.obj(objMist2);
     animate.obj(objMist3);
     animate.obj(objMist4);
+    animate.obj(objFGM);
 
     set.view(ego, vw.Roger);
     set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
+    set.view(objFGM, vw.FGM);
 
     stop.cycling(objMist);
     stop.cycling(objMist2);
@@ -56,10 +60,21 @@ if(newRoom) {
     [position(objMist3, 85, 43);
     [position(objMist4, 127, 43);
 
-    reset(fDoAction);
-    
+    if(has("Invitation")) {
+        if(!isset(fEyesOpen)) {
+            if(!isset(fFlashed)) {
+                position(objFGM, 141, 154);
+                follow.ego(objFGM, 1, fGotcha);    
+            }
+        }
+    }
+
+    reset(fSwimming);
+    reset(fDrowning);
+    reset(fGotcha);
+
     position.v(ego, vEgoX, vEgoY);
-    
+
     set.horizon(50);
 
     draw(ego);
@@ -67,7 +82,9 @@ if(newRoom) {
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
+    draw(objFGM);
 
+    
     show.pic();
 }
 
@@ -79,7 +96,7 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 55);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavWizardE5);             
+    [MR1: new.room(rm.DavWitchHouseD5);             
 }   
 
 if(edgeEgoHit == TOP_EDGE) {
@@ -93,59 +110,35 @@ if(edgeEgoHit == TOP_EDGE) {
 if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 5);
-    new.room(rm.DavDwarfF4);     
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavRockE4);     
 }    
 
 if(edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 150);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavLakeFGMD4);
+    assignn(vEgoX, 15);
+    assignn(egoDir, RIGHT);
+    position.v(ego, vEgoX, vEgoY);
+}
+    
+if(isset(fGotcha)) {
+    reset(fGotcha);
+    erase(objFGM);
+    set(fEyesOpen);
+    print("A strange female alien dressed in beautiful shimmering robes catches up to you. In a voice that can only be described as song she says 'Traveler though you are asleep by may spell your eyes are opened.' A wave of energy errupts from a gadget she is carrying and blasts right into you. With a 'poof' she disappears. Based on your past experience with sudden and unexpected encounters of the 'energy burst' kind you assume firstly that you have been hit with a laser and secondly that your body is now as chard as the surface of Ortega. Contrary to your expectations of cause and effect you find you have no injuries at all. What in Fester Blatz World o Wonders was that all about?!");
 }
 
-if(isset(fDoAction)) {
-    reset(fDoAction);
-    set.loop(ego, 1);
-    set.cel(ego, 0);
-    assignn(vGameCycleDelay, 3);
-    assignn(vDeathReason, valXsBewareRandomHoles);
-    end.of.loop(ego, fDead);
-}
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
+    [ place said tests here
     if(said("look")) {
-        print("The area is heavily wooded. A large rock dominates the area.");
+        print("You see nothing of interest.");
     }
-    
-    if(said("look", "room")) {
-        print("The area is heavily wooded. A large rock dominates the area.");
-    }
-    
-    if(said("look", "fog")) {
-        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
-    }
-    
-    if(said("look", "rock")) {
-        print("There's a large rock here. A large hole can be seen at the base of the rock.");
-    }
-    
-    if(said("look", "hole")) {
-        if(posn(ego, 88, 128, 104, 140)) {
-            set(fProgramControl);
-            load.view(vw.RogerEaten);
-            set.view(ego, vw.RogerEaten);
-        
-            position(ego, 97, 138);
-            assignn(vGameCycleDelay, 3);
-            end.of.loop(ego, fDoAction);
-        }
-        else {
-            print("You can't see much from here.");        
-        }
-    }
+
 }
 
 [***************************************
@@ -158,3 +151,4 @@ return();
 [***************************************
 [ DECLARED MESSAGES
 [***************************************
+#message 1 "You see nothing of interest." 

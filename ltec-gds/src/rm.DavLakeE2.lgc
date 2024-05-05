@@ -54,10 +54,10 @@ if(newRoom) {
         }
     }
     
-    position(objMist, 1, 166);
-    position(objMist2, 43, 166);
-    position(objMist3, 85, 166);
-    position(objMist4, 127, 166);
+    [position(objMist, 1, 166);
+    [position(objMist2, 43, 166);
+    [position(objMist3, 85, 166);
+    [position(objMist4, 127, 166);
 
     position.v(ego, vEgoX, vEgoY);
 

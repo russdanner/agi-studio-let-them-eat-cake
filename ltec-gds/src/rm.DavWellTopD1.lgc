@@ -55,11 +55,11 @@ if(newRoom) {
         }
     }
 
-    position(objMist, 1, 47);
-    position(objMist2, 43, 47);
-    position(objMist3, 85, 47);
-    position(objMist4, 127, 47);
-    position(objBucket, 38, 120);
+    [position(objMist, 1, 47);
+    [position(objMist2, 43, 47);
+    [position(objMist3, 85, 47);
+    [position(objMist4, 127, 47);
+    [position(objBucket, 38, 120);
 
     reset(fInBucket);
     reset(fDoAction);
