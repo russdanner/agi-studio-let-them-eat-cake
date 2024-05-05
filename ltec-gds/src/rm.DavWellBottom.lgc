@@ -1,0 +1,309 @@
+[*********************************************************************
+[
+[ rm.DavWellBottom
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.RogerBucket);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);
+    load.view(vw.RogerClimbRope);
+    load.view(vw.Bucket);
+    load.view(vw.Rope);
+    
+    animate.obj(ego);
+    animate.obj(objRope);
+
+    set.view(objRope, vw.Rope);   
+    set.view(objRope2, vw.Rope);  
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            reset(fUndoAction);
+            reset(fBucketDown);
+
+            set.view(ego, vw.RogerBucket);
+
+            draw(ego);
+            draw(objRope);
+            draw(objRope2);
+
+            position(ego, 76, 0);
+            position(objRope, 81, 0);
+            move.obj(objRope, 81, 120, 3, fUndoAction);
+            move.obj(ego, 76, 147, 3, fDoAction);
+            
+            stop.cycling(ego); 
+            
+            set(fInBucket);
+        }
+    }
+    if(!equaln(vEgoY, 0)) {
+        set.view(ego, vw.RogerSwim);
+        set.view(objBucket, vw.Bucket);
+
+        draw(ego);
+        draw(objRope);
+        draw(objRope2);
+        draw(objBucket);
+
+        stop.cycling(objBucket);
+
+        position(objRope, 81, 120);
+        position(objRope2, 81, 180);
+        position(objBucket, 76, 152);
+        set.cel(objBucket, 0);        
+
+        position(ego, 81, 167);
+        reset(fInBucket);
+    }
+
+    set.horizon(0);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(isset(fUndoAction)) {
+    reset(fUndoAction);
+    position(objRope2, 81, 152);
+    end.of.loop(ego, f188);
+    normal.motion(ego);
+    [ dont let the bucket move
+    [ block(74, 146, 78, 148)
+    [ observe.blocks(objEgo)
+}
+
+if(isset(fSysEgoOnWater)) {
+    if(!isset(fSwimming)) {
+        set(fDrowning);
+    }
+}
+
+if(edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 42);
+    assignn(vEgoY, 109);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWellTopD1);
+    print("You climb out of the bucket and well. In a uncharacteristic moment of thoughtfulness and remembering to 'be kind and rewind' you laboriously return the bucket to its original location.");
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("swim")) {
+        if(isset(fDrowning)) {
+            set.view(ego, vw.RogerSwim);
+            reset(fDrowning);
+            set(fSwimming);
+    
+            if(!isset(fPointsForSwim)) {
+                set(fPointsForSwim);
+                addn(currentScore, 1);
+            }
+    
+            player.control();
+            
+            print("ok");
+        } 
+    }
+    
+    if(said("dive")) {
+        if(!isset(fPointsForDive)) {
+            set(fPointsForDive);
+            addn(currentScore, 1);
+        }
+    
+        get.posn(ego, vEgoX, vEgoY);
+        assignn(vEgoY, 50);
+        assignn(vRoomInited, valFalse);
+        [MR1: new.room(rm.DavWellDive);   
+    }
+    
+    if(said("climb")) {
+        print("Climb what?");
+    }
+    
+    if((said("look", "room") || said("look"))) {
+        print("You are at the bottom of the ancient well.");
+    }
+    
+    if(said("exit", "bucket")) {
+        set.view(objBucket, vw.Bucket);
+    
+        draw(objBucket);
+    
+        stop.cycling(objBucket);
+        
+        position(objBucket, 76, 152);
+        set.cel(objBucket, 0);
+        
+        position(objRope2, 81, 180);
+        position(ego, 81, 167);
+    
+        set(fDrowning);
+        
+        set.view(ego, vw.RogerSplash);
+        
+        start.cycling(ego);
+    
+        if(!isset(fPointsForExitBucket)) {
+            set(fPointsForExitBucket);
+            
+            addn(currentScore, 1);
+        }
+    
+        reset(fInBucket);
+    }
+    
+    if(said("enter", "bucket")) {
+        erase(objBucket);
+        
+        set.view(ego, vw.RogerBucket);
+    
+        position(objRope2, 81, 180);
+        position(ego, 76, 181);
+    
+        stop.cycling(ego);
+                
+        set(fInBucket);
+    }
+    
+    if(said("get", "bucket")) {
+        [ GET IN and GET OUT are not working properly
+        [ this sucks becuase it overlaps with TAKE BUCKET
+        [ for the sake of the player let's go this route for now
+        if(isset(fSysEgoOnWater)) {
+            erase(objBucket);
+            
+            set.view(ego, vw.RogerBucket);
+        
+            position(objRope2, 81, 180);
+            position(ego, 76, 181);
+        
+            stop.cycling(ego);
+                    
+            set(fInBucket);      
+        }
+        else {
+            set.view(objBucket, vw.Bucket);
+    
+            draw(objBucket);
+        
+            stop.cycling(objBucket);
+            
+            position(objBucket, 76, 152);
+            
+            set.cel(objBucket, 0);
+            
+            position(objRope2, 81, 180);
+            position(ego, 81, 167);
+        
+            set(fDrowning);
+            
+            set(fSysEgoOnWater);
+            
+            set.view(ego, vw.RogerSplash);
+            
+            start.cycling(ego);
+    
+            if(!isset(fPointsForExitBucket)) {
+                set(fPointsForExitBucket);
+                
+                addn(currentScore, 1);
+            }
+    
+            reset(fInBucket);
+        }
+    }
+    
+    if(said("climb", "rope")) {
+        if(!isset(fInBucket)) {
+            print("You can't reach the rope from here.");
+        }
+        
+        if(isset(fInBucket)) {
+    
+            set.view(objBucket, vw.Bucket);
+    
+            draw(objBucket);
+        
+            stop.cycling(objBucket);
+            
+            position(objBucket, 76, 152);
+            set.cel(objBucket, 0);
+            
+            position(objRope2, 81, 180);
+            position(ego, 80, 123);
+        
+            set.view(ego, vw.RogerClimbRope);
+            reset(fInBucket);    
+        
+            if(!isset(fPointsForClimb)) {
+                set(fPointsForClimb);
+                addn(currentScore, 1);
+            }    
+        }
+    }
+    
+    if(said("climb", "wall")) {
+        print("You try and climb the walls of the well but they are much too slippery.");
+    }
+    
+    if(said("climb", "walls")) {
+        print("You try and climb the walls of the well but they are much too slippery.");
+    }
+    
+    if(said("take", "breath")) {
+        print("You take a deep breath.");
+    }
+
+    if(said("look", "water")) {
+        print("It's water. Wet. Hydrated. Liquid even.");
+    }
+    if(said("look", "rope")) {
+        print("The rope reaches up to the top of the well.");
+    }
+
+    if(said("look", "bucket")) {
+        print("You gotta admit that it is a nice bucket.");
+    }    
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION    
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

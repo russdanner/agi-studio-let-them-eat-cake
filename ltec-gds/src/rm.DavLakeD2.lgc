@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavWitchHouseD5
+[ rm.DavLakeD2
 [
 [ 
 [
@@ -20,62 +20,52 @@ if(newRoom) {
     load.pic(currentRoom);
     draw.pic(currentRoom);
     discard.pic(currentRoom);
-
+    
     unanimate.all();
     assignn(vRoomInited, 1);
 
     load.view(vw.Roger);
     load.view(vw.RogerSwim);
     load.view(vw.Mist);
-    load.view(vw.WitchDoor);
-
-    animate.obj(ego);
-    animate.obj(objMist);
-    animate.obj(objMist2);
-    animate.obj(objMist3);
-    animate.obj(objMist4);
-    animate.obj(objWitchDoor);
    
     set.view(ego, vw.Roger);
     set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
-    set.view(objWitchDoor, vw.WitchDoor);
 
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist3);
+    animate.obj(objMist4);
+    
     stop.cycling(objMist);
     stop.cycling(objMist2);
     stop.cycling(objMist3);
     stop.cycling(objMist4);
-    stop.cycling(objWitchDoor);
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
-            assignn(vEgoX, 140);
-            assignn(vEgoY, 130);
+            assignn(vEgoX, 50);
+            assignn(vEgoY, 140);
         }
     }
-
-    reset(fDoAction);
-
+    
     position(objMist, 1, 166);
     position(objMist2, 43, 166);
     position(objMist3, 85, 166);
     position(objMist4, 127, 166);
-    position(objWitchDoor, 45, 129);
 
     position.v(ego, vEgoX, vEgoY);
+
+    set.horizon(40);
 
     draw(ego);
     draw(objMist);
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
-    draw(objWitchDoor);
-
-    set.horizon(50);
-
-    set.priority(objWitchDoor, 10);    
 
     show.pic();
 }
@@ -84,27 +74,12 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-if(edgeEgoHit == BOTTOM_EDGE) {
-    print("You're a bit foggy here. You decide to turn back.");
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 155);
-    assignn(egoDir, UP);
-    position.v(ego, vEgoX, vEgoY);
-}   
-
 if(edgeEgoHit == TOP_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 150);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavLakeD4);   
+    new.room(rm.DavWellTopD1);   
 }
-
-if(edgeEgoHit == RIGHT_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 5);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavWizardE5);     
-}    
 
 if(edgeEgoHit == LEFT_EDGE) {
     print("You're a bit foggy here. You decide to turn back.");
@@ -114,51 +89,49 @@ if(edgeEgoHit == LEFT_EDGE) {
     position.v(ego, vEgoX, vEgoY);
 }
 
-if(isset(fDoAction)) {
+if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 50);
-    assignn(vEgoY, 150);
+    assignn(vEgoX, 5);
+    assignn(vEgoY, 100);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavWitchHouseInside);
+    new.room(rm.DavLakeE2);     
 }
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 155);
+    assignn(egoDir, UP);
+    position.v(ego, vEgoX, vEgoY);
+}   
 
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    if(said("knock")) {
-        if(posn(ego, 38, 128, 56, 135)) {
-            print("There is no answer.");
-        }
-        else {
-            print("You can't reach it from here.");
+    if(said("swim")) {
+        if(isset(fSysEgoOnWater)) {
+            if(isset(fDrowning)) {
+                set.view(ego, vw.RogerSwim);
+                reset(fDrowning);
+                set(fSwimming);
+                player.control();
+                print("ok");
+           } 
         }
     }
-
-    if((said("look", "room")|| said("room"))) {
-        print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south.");
+    
+    if((said("look", "room") || said("look"))) {
+        print("There's a large beautiful lake that goes off to the east here and a thick fog to the south and west.");
     }
 
     if(said("look", "fog")) {
         print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
     }
 
-    if(said("look", "house")) {
-        print("You are not quite sure what to make of it. It's a house made out of candy. It looks... sticky. As a janitor sticky bothers you.");
-    }
-    
-    if(said("lick", "house")) {
-        print("You give the house a lick. It looks better than it tastes.");
-    }
-    
-    if(said("open", "door")) {
-        if(posn(ego, 38, 128, 56, 135)) {
-            end.of.loop(objWitchDoor, fDoAction);
-        }
-        else {
-            print("You can't reach it from here.");
-        }
+    if(said("look", "water")) {
+        print("The lake is calm and beautiful.");
     }
 }
 

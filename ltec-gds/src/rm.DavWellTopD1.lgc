@@ -110,7 +110,7 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 50);
     assignn(vRoomInited, valFalse);
-    [MR1: new.room(rm.DavLakeD2);     
+    new.room(rm.DavLakeD2);     
 }
 
 if(isset(fInBucket)) {
@@ -123,7 +123,7 @@ if(isset(fDoAction)) {
     assignn(vEgoX, 0);
     assignn(vEgoY, 0);
     assignn(vRoomInited, valFalse);
-    [MR1: new.room(rm.DavWellBottom);   
+    new.room(rm.DavWellBottom);   
 }
 
 [***************************************

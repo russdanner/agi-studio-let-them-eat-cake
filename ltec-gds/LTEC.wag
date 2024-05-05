@@ -370,8 +370,8 @@
 [Logic17]
    ID = rm.DavWitchHouseD5
    Description = ""
-   CRC32 = &H2ACA8C15
-   CompCRC32 = &H2ACA8C15
+   CRC32 = &H90FCFD5F
+   CompCRC32 = &H90FCFD5F
    IsRoom = True
 
 [Logic32]
@@ -398,8 +398,29 @@
 [Logic14]
    ID = rm.DavWellTopD1
    Description = ""
-   CRC32 = &H83F4AC12
-   CompCRC32 = &H83F4AC12
+   CRC32 = &H4F989689
+   CompCRC32 = &H4F989689
+   IsRoom = True
+
+[Logic27]
+   ID = rm.DavWitchHouseInside
+   Description = ""
+   CRC32 = &H66D68B53
+   CompCRC32 = &H66D68B53
+   IsRoom = True
+
+[Logic28]
+   ID = rm.DavWellBottom
+   Description = ""
+   CRC32 = &H725EDED4
+   CompCRC32 = &H725EDED4
+   IsRoom = True
+
+[Logic15]
+   ID = rm.DavLakeD2
+   Description = ""
+   CRC32 = &H8DDC981F
+   CompCRC32 = &H8DDC981F
    IsRoom = True
 [::END Logics::]
 
@@ -581,6 +602,18 @@
    ID = pic.DavWellTopD1
    Description = ""
    BkgdImg = ""
+
+[Picture27]
+   ID = pic.DavWitchHouseInside
+   Description = ""
+
+[Picture28]
+   ID = pic.DavInWellBottom
+   Description = ""
+
+[Picture15]
+   ID = pic.DavLakeD2
+   Description = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -999,5 +1032,25 @@
 
 [View33]
    ID = vw.Bucket
+   Description = ""
+
+[View32]
+   ID = vw.Cake
+   Description = ""
+
+[View79]
+   ID = vw.Paper
+   Description = ""
+
+[View31]
+   ID = vw.WitchCabinet
+   Description = ""
+
+[View35]
+   ID = vw.Rope
+   Description = ""
+
+[View51]
+   ID = vw.RogerClimbRope
    Description = ""
 [::END Views::]
