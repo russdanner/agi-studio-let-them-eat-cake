@@ -77,7 +77,6 @@ if(edgeEgoHit == TOP_EDGE) {
     new.room(rm.DavWellBottom);     
 }
 
-
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
@@ -149,10 +148,8 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
 [ CHECK FOR AN EXIT CONDITION
 [***************************************
 :exit
-
 return();
 
 [***************************************
 [ DECLARED MESSAGES
 [***************************************
-#message 1 "You see nothing of interest." 

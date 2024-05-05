@@ -26,7 +26,13 @@ if(newRoom) {
 
     load.view(vw.Roger);
     load.view(vw.Mist);
-   
+
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist3);
+    animate.obj(objMist4);
+       
     set.view(ego, vw.Roger);
     set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);

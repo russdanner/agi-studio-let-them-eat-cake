@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &H6EF30FD1
-   CRC32 = &H6EF30FD1
+   CompCRC32 = &HD74607F6
+   CRC32 = &HD74607F6
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -223,15 +223,15 @@
 [Logic37]
    ID = rm.ControlRoom
    Description = ""
-   CRC32 = &H7F85D72
-   CompCRC32 = &H7F85D72
+   CRC32 = &H92204B1B
+   CompCRC32 = &H92204B1B
    IsRoom = True
 
 [Logic38]
    ID = rm.OuterBay
    Description = ""
-   CRC32 = &H9F130507
-   CompCRC32 = &H9F130507
+   CRC32 = &H770640AF
+   CompCRC32 = &H770640AF
    IsRoom = True
 
 [Logic39]
@@ -307,15 +307,15 @@
 [Logic26]
    ID = rm.DavWalnutF5
    Description = ""
-   CRC32 = &H8DD3E66B
-   CompCRC32 = &H8DD3E66B
+   CRC32 = &H227EBBA6
+   CompCRC32 = &H227EBBA6
    IsRoom = True
 
 [Logic20]
    ID = rm.DavRockE4
    Description = ""
-   CRC32 = &H50813042
-   CompCRC32 = &H50813042
+   CRC32 = &H9B8216CB
+   CompCRC32 = &H9B8216CB
    IsRoom = True
 
 [Logic22]
@@ -426,8 +426,8 @@
 [Logic29]
    ID = rm.DavWellDive
    Description = ""
-   CRC32 = &HA24B1055
-   CompCRC32 = &HA24B1055
+   CRC32 = &H228766BC
+   CompCRC32 = &H228766BC
    IsRoom = True
 [::END Logics::]
 
@@ -598,7 +598,7 @@
    BkgdImg = ""
 
 [Picture17]
-   ID = pic.DavInWitchHouseD5
+   ID = pic.DavWitchHouseD5
    Description = ""
    BkgdImg = ""
 
@@ -1087,5 +1087,13 @@
 
 [View75]
    ID = vw.Trunk
+   Description = ""
+
+[View44]
+   ID = vw.Lift
+   Description = ""
+
+[View71]
+   ID = vw.Plate
    Description = ""
 [::END Views::]

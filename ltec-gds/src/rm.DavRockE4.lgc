@@ -24,8 +24,7 @@ if(newRoom) {
     unanimate.all();
     assignn(vRoomInited, 1);
     assignn(vActionCount, 0);
-    reset(fProgramControl);
-
+    
     load.view(vw.Roger);
     load.view(vw.Mist);
 
@@ -160,4 +159,3 @@ return();
 [***************************************
 [ DECLARED MESSAGES
 [***************************************
-#message 1 "You see nothing of interest." 

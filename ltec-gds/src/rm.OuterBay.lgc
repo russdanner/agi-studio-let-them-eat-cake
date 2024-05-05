@@ -20,17 +20,69 @@ if(newRoom) {
     load.pic(currentRoom);
     draw.pic(currentRoom);
     discard.pic(currentRoom);
+
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+    load.view(vw.Tram);
+    load.view(vw.RogerSpacesuitA);
+    load.view(vw.LockedDoor);
+    load.view(vw.Plate);
+ 
+    animate.obj(ego);
+    animate.obj(objTram);
+    animate.obj(objHangingSuit1);
+    animate.obj(objHangerDoorLeft);
+    animate.obj(objPlate);
+
+    set.view(ego, vw.Roger);
+    set.view(objTram, vw.Tram);
+    set.view(objHangingSuit1, vw.RogerSpacesuitA);
+    set.view(objHangerDoorLeft, vw.LockedDoor);
+    set.view(objPlate, vw.Plate);
+
+    stop.cycling(objTram);
+    stop.cycling(objHangingSuit1);
+    stop.cycling(objHangerDoorLeft);
+    stop.cycling(objPlate);
+
+    if(equaln(vEgoX, 10)) {
+        if(equaln(vEgoY, 126)) {
+            [ returned or debug teleport
+            set.view(ego, vw.RogerSpacesuitA);
+            draw(ego);
+            position(objTram, 55, 47);
+            set.priority(objTram, 4);
+            position.v(ego, vEgoX, vEgoY);
+        }
+    }
     
-    [ the horizon defines the upper limit of ego's movement
-    set.horizon(0);
-    
-    [ add additional room initialization here
-    
-    [ load ego view, animate and draw ego
-    [ this is sometimes handled in logic 0
-    [ instead of in each individual logic
-    
-    [ display the picture on screen
+    if(!equaln(vEgoY, 126)) {
+        [ sent into the room via tram 
+        set.cel(objTram, 4);
+        set.loop(objHangingSuit1, 2);
+        position(objHangingSuit1, 35, 95);
+
+        set(fTramRunning);
+        set.priority(objTram, 4);
+        position(objTram, 5, 47);
+        move.obj(objTram, 55, 47, 2, fTramInboundDone);        
+        
+        [load.sound(sndTramStop);
+        [sound(sndTramStop, fSoundDone);    
+    }
+
+    position(objHangerDoorLeft, 5, 129);
+    set.priority(objPlate, 15);
+    position(objPlate, 85, 118);
+    assignn(vTimer, 0);
+
+    draw(objTram);
+    draw(objHangingSuit1);
+    draw(objHangerDoorLeft);
+    draw(objPlate);
+
     show.pic();
 }
 
@@ -38,18 +90,95 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-[ add other room specific statements here
+if(isset(fTramInboundDone)) {
+    reset(fTramInboundDone);
+    set.cel(objTram, 1);
+}
+
+if(posn(ego, 8, 123, 20, 143)) {
+    end.of.loop(objHangerDoorLeft, fDoAction);
+    [load.sound(sndSpaceDoor)
+    [sound(sndSpaceDoor, fSoundDone)    
+}
+
+if(obj.in.box(ego, 21, 123, 25, 128)) {
+    set.cel(objHangerDoorLeft, 0);
+    end.of.loop(objHangerDoorLeft, f99);
+    [load.sound(sndSpaceDoor)
+    [sound(sndSpaceDoor, fSoundDone)    
+}
+
+if(obj.in.box(ego, 2, 123, 5, 128)) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 146);
+    assignn(vEgoY, 141);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.OuterHanger);     
+}
+
 
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    [ place said tests here
-    if(said("look")) {
-        print("You see nothing of interest.");
+    if((said("look","room") || said("look"))) {
+        print("This is Outer Bay B. Along the rear wall is a pneumatic transport tube and car. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left.");
     }
 
+    if((said("get", "pod") || said("enter", "pod"))) {
+        print("Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger.");
+    }
+
+    if(said("look", "pod")) {
+        print("The ship is a well maintained vessel. It is currently fueling. Unlike the typical StarCon shuttles you often find in these bays this is a privately owned and piloted ship. There's a call sign placard on the vessel. It reads: 'Cignus1' You wonder who owns this beauty.");
+    }
+    
+    if(said("look", "tram")) {
+        print("The pneumatic transport tube is used to move about the various areas within the station. A car is currently waiting in this location.");
+    }
+
+    if(said("look", "suit")) {
+        if(!isset(fWearingSuit)) {
+            print("An EVA pressure suit hangs on the rack.");
+        }
+        else {
+            print("Mosly you see the fog of your breath on the suit's visor.");
+        }
+    }
+    
+        if(said("remove", "suit")) {
+        print("You don't have time for that.");
+    }
+
+    if((said("take", "suit") || said("wear", "suit"))) {
+        if(posn(ego, 28, 100, 50, 103)) {
+            set.view(ego, vw.RogerSpacesuitA);
+            erase(objHangingSuit1);
+            set(fWearingSuit);
+            addn(currentScore, 1);
+            print("Ok");
+        }
+        else {
+            print("You can't reach it.");
+        }
+    }
+    
+    if(said("get", "tram")) {  
+        set.cel(objTram, 0); 
+        position(ego, 55, 50);
+        draw(ego);
+    }
+    
+    if(said("exit", "tram")) {  
+        set.cel(objTram, 0);
+        position(ego, 55, 50);
+        draw(ego);
+    }
+    
+    if(said("enter", "tram")) {
+        print("You pod is fueled and waiting... Better get out to the hanger.");
+    }
 }
 
 [***************************************
@@ -62,4 +191,3 @@ return();
 [***************************************
 [ DECLARED MESSAGES
 [***************************************
-#message 1 "You see nothing of interest." 
