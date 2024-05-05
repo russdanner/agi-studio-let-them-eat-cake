@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavTreeF1
+[ rm.DavCastleRightB2
 [
 [ 
 [
@@ -22,41 +22,51 @@ if(newRoom) {
     discard.pic(currentRoom);
     
     unanimate.all();
-    assignn(vRoomInited, 1);
+    assignn(vRoomInited, valTrue);
 
     load.view(vw.Roger);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);
+    load.view(vw.CastleFlags);
+    load.view(vw.CastleCrocs);
     load.view(vw.Mist);
 
     animate.obj(ego);
-    animate.obj(objMist);
-    animate.obj(objMist2);
+    animate.obj(objCastleFlags);
+    animate.obj(objCastleCrocs);
 
     set.view(ego, vw.Roger);
+    set.view(objCastleFlags, vw.CastleFlags);
+    set.view(objCastleCrocs, vw.CastleCrocs);
     set.view(objMist, vw.Mist);
-    set.view(objMist2, vw.Mist);
-
+    
     stop.cycling(objMist);
-    stop.cycling(objMist2);
+
+    object.on.water(objCastleCrocs);
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
-            assignn(vEgoX, 15);
+            assignn(vEgoX, 140);
             assignn(vEgoY, 130);
         }
     }
 
-    if(!isset(fEyesOpen)) {
-        position(objMist, 1, 40);
-        position(objMist2, 43, 40);    
-    }
+    stop.cycling(ego);
+
+    position(objMist, 80, 40);
+    position(objCastleFlags, 5, 20);
+    position(objCastleCrocs, 50, 165);
+    
+    wander(objCastleCrocs);    
 
     position.v(ego, vEgoX, vEgoY);
 
-    set.horizon(50);
-
     draw(ego);
+    draw(objCastleFlags);
+    draw(objCastleCrocs);
     draw(objMist);
-    draw(objMist2);
+
+    set.horizon(40);
 
     show.pic();
 }
@@ -66,26 +76,18 @@ if(newRoom) {
 [***************************************
 
 if(edgeEgoHit == TOP_EDGE) {
-    if(!isset(fEyesOpen)) {
-        print("You're a bit foggy here. You decide to turn back.");
-        get.posn(ego, vEgoX, vEgoY);
-        assignn(vEgoY, 55);
-        assignn(egoDir, DOWN);
-        position.v(ego, vEgoX, vEgoY);
-    }
-    else {
-        get.posn(ego, vEgoX, vEgoY);
-        assignn(vEgoY, 150);
-        assignn(vRoomInited, valFalse);
-        [MR1 new.room(rm.DavTrunkF0)  
-    }
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 45);
+    assignn(egoDir, DOWN);
+    position.v(ego, vEgoX, vEgoY);
 }
 
 if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 150);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavWolfE1);     
+    new.room(rm.DavCastleLeftA2);     
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
@@ -96,35 +98,16 @@ if(edgeEgoHit == RIGHT_EDGE) {
     position.v(ego, vEgoX, vEgoY);
 }
 
-if(edgeEgoHit == BOTTOM_EDGE) {
-    assignn(vEgoY, 62);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavDaggerF2);     
-}
-
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
-if (haveInput && !haveMatch && unknownWordNum == 0) {    
-    if((said("look", "room") || said("look"))) {    
-        if(isset(fEyesOpen)) {
-            print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the east.");
-        }
-        else {
-            print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east.");
-        }
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if((said("look", "room") || said("look"))) {
+        print("You are at the east end of a castle. There is a thick fog to the north and east.");
     }
-    
+
     if(said("look", "fog")) {
         print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
-    }
-    
-    if(said("look", "tree")) {
-        print("What a beautiful tree.");
-    }
-    
-    if(said("climb", "tree")) {
-        print("Good idea. On second thought.. bad idea. Given your situation you decide NOT to climb the tree.");
     }
 }
 

@@ -77,8 +77,6 @@ if(edgeEgoHit == RIGHT_EDGE) {
     new.room(rm.DavRiverBendA4);     
 }
 
-
-
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************

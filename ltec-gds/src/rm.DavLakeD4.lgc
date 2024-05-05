@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavLakeE2
+[ rm.DavLakeD4
 [
 [ 
 [
@@ -22,25 +22,27 @@ if(newRoom) {
     discard.pic(currentRoom);
     
     unanimate.all();
-    
     assignn(vRoomInited, 1);
 
     load.view(vw.Roger);
     load.view(vw.RogerSplash);
-    load.view(vw.RogerSwim);
+    load.view(vw.RogerSwim);    
     load.view(vw.Mist);
-
+    load.view(vw.FGM);
+    
     animate.obj(ego);
     animate.obj(objMist);
     animate.obj(objMist2);
     animate.obj(objMist3);
     animate.obj(objMist4);
+    animate.obj(objFGM);
 
-    set.view(ego, vw.Roger);
+    set.view(ego    , vw.Roger);
     set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
+    set.view(objFGM, vw.FGM);
 
     stop.cycling(objMist);
     stop.cycling(objMist2);
@@ -49,25 +51,39 @@ if(newRoom) {
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
-            assignn(vEgoX, 100);
-            assignn(vEgoY, 100);
+            assignn(vEgoX, 140);
+            assignn(vEgoY, 70);
         }
     }
-    
-    position(objMist, 1, 166);
-    position(objMist2, 43, 166);
-    position(objMist3, 85, 166);
-    position(objMist4, 127, 166);
+
+    position(objMist, 1, 43);
+    position(objMist2, 43, 43);
+    position(objMist3, 85, 43);
+    position(objMist4, 127, 43);
+
+    if(has("Invitation")) {
+        if(!isset(fEyesOpen)) {
+            if(!isset(fFlashed)) {
+                position(objFGM, 141, 154);
+                follow.ego(objFGM, 1, fGotcha);    
+            }
+        }
+    }
+
+    reset(fSwimming);
+    reset(fDrowning);
+    reset(fGotcha);
 
     position.v(ego, vEgoX, vEgoY);
+
+    set.horizon(50);
 
     draw(ego);
     draw(objMist);
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
-    
-    set.horizon(40);
+    draw(objFGM);
     
     show.pic();
 }
@@ -76,75 +92,53 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-if(edgeEgoHit == TOP_EDGE) {
-    assignn(vEgoY, 150);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavWolfE1);   
-}
-
-if(edgeEgoHit == LEFT_EDGE) {
+if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 150);
+    assignn(vEgoY, 55);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavLakeE2);     
+    [MR1: new.room(rm.DavWitchHouseD5);             
+}   
+
+if(edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(egoDir, DOWN);
+    position.v(ego, vEgoX, vEgoY);
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 5);
-    assignn(vEgoY, 100);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavDaggerF2);     
-}
+    new.room(rm.DavRockE4);     
+}    
 
-if(edgeEgoHit == BOTTOM_EDGE) {
+if(edgeEgoHit == LEFT_EDGE) {
     print("You're a bit foggy here. You decide to turn back.");
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 155);
-    assignn(egoDir, UP);
+    assignn(vEgoX, 15);
+    assignn(egoDir, RIGHT);
     position.v(ego, vEgoX, vEgoY);
 }
+    
+if(isset(fGotcha)) {
+    reset(fGotcha);
+    erase(objFGM);
+    set(fEyesOpen);
+    print("A strange female alien dressed in beautiful shimmering robes catches up to you. In a voice that can only be described as song she says 'Traveler though you are asleep by may spell your eyes are opened.' A wave of energy errupts from a gadget she is carrying and blasts right into you. With a 'poof' she disappears. Based on your past experience with sudden and unexpected encounters of the 'energy burst' kind you assume firstly that you have been hit with a laser and secondly that your body is now as chard as the surface of Ortega. Contrary to your expectations of cause and effect you find you have no injuries at all. What in Fester Blatz World o Wonders was that all about?!");
+}
 
-if(isset(fSysEgoOnWater)) {
-    if(!isset(fSwimming)) {
-        if(!isset(fDrowning)) {
-            set.view(ego, vw.RogerSplash);
-            set(fDrowning);
-        }
-    }    
-}
-else {
-    set.view(ego, vw.Roger);
-    reset(fSwimming);
-    reset(fDrowning);
-}
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    if(said("swim")) {
-        if(isset(fSysEgoOnWater)) {
-            if(isset(fDrowning)) {
-                set.view(ego, vw.RogerSwim);
-                reset(fDrowning);
-                set(fSwimming);
-                player.control();
-                print("ok");
-           } 
-        }
-    }
-    
-    if((said("look", "room") || said("look"))) {
-        print("There's a large beautiful lake that goes off to the west here and a thick fog to the south.");
-    }
-    if(said("look", "fog")) {
-        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    [ place said tests here
+    if(said("look")) {
+        print("You see nothing of interest.");
     }
 
-    if(said("look", "water")) {
-        print("The lake is calm and beautiful.");
-    }
 }
 
 [***************************************

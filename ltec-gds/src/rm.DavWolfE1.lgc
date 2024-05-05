@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavWizardE5
+[ rm.DavWolfE1
 [
 [ 
 [
@@ -20,24 +20,24 @@ if(newRoom) {
     load.pic(currentRoom);
     draw.pic(currentRoom);
     discard.pic(currentRoom);
-    
+
     unanimate.all();
-    assignn(vRoomInited, 1);
+    assignn(vRoomInited, valTrue);
 
     load.view(vw.Roger);
     load.view(vw.Mist);
-   
-    set.view(ego, vw.Roger);
-    set.view(objMist, vw.Mist);
-    set.view(objMist2, vw.Mist);
-    set.view(objMist3, vw.Mist);
-    set.view(objMist4, vw.Mist);
 
     animate.obj(ego);
     animate.obj(objMist);
     animate.obj(objMist2);
     animate.obj(objMist3);
     animate.obj(objMist4);
+
+    set.view(ego, vw.Roger);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+    set.view(objMist3, vw.Mist);
+    set.view(objMist4, vw.Mist);
 
     stop.cycling(objMist);
     stop.cycling(objMist2);
@@ -47,30 +47,32 @@ if(newRoom) {
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
             assignn(vEgoX, 100);
-            assignn(vEgoY, 110);
+            assignn(vEgoY, 100);
         }
     }
 
-    position(objMist, 1, 166);
-    position(objMist2, 43, 166);
-    position(objMist3, 85, 166);
-    position(objMist4, 127, 166);
+    position(objMist, 1, 47);
+    position(objMist2, 43, 47);
+    position(objMist3, 85, 47);
+    position(objMist4, 127, 47);
 
-    random(1, 100, vDiceRoll); 
+    // add wider range to reduce instances of encounter
+    random(1, 100, vDiceRoll);
 
     reset(fGotcha);
-    
-    if(lessn(vDiceRoll, 50)) {
-        load.view(vw.Wizard);
-        set.view(objMonster, vw.Wizard);
-        animate.obj(objMonster);
-        draw(objMonster);
-        position(objMonster, 15, 50);        
-        follow.ego(objMonster, 2, fGotcha);  
 
-        [load.sound(sndDevMonster)
-        [sound(sndDevMonster, fSoundDone)    
+    if(lessn(vDiceRoll, 50)) {
+        load.view(vw.Wolf);
+        set.view(objMonster, vw.Wolf);
+        draw(objMonster);
+        position(objMonster, 80, 80);        
+        follow.ego(objMonster, 2, fGotcha);
+ 
+        [ load.sound(sndDevMonster);
+        [ sound(sndDevMonster, fSoundDone);    
     }
+    
+    reset(fGotcha);
 
     position.v(ego, vEgoX, vEgoY);
 
@@ -89,52 +91,50 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-if(edgeEgoHit == BOTTOM_EDGE) {
+if(edgeEgoHit == TOP_EDGE) {
     print("You're a bit foggy here. You decide to turn back.");
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 155);
-    assignn(egoDir, UP);
+    assignn(vEgoY, 55);
+    assignn(vEgoDirection, DOWN);
     position.v(ego, vEgoX, vEgoY);
-}   
-
-if(edgeEgoHit == TOP_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 150);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavRockE4);   
 }
-
-if(edgeEgoHit == RIGHT_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 5);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavWalnutF5);     
-}    
 
 if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 150);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavWitchHouseD5);     
+    [MR1: new.room(rm.DavWellTopD1);     
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(vEgoY, 100);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavTreeF1);     
+}
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 50);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavLakeE2);     
 }
 
 if(isset(fGotcha)) {
     reset(fGotcha);
-    if(!isset(fDead)) {         
-        [stop.cycling(objMonster);
-        [stop.motion(objEgo);
-        [stop.motion(objMonster);
-        load.view(vw.RogerStoned);
-        set.view(ego, vw.RogerStoned);
-        end.of.loop(ego, fRogerStoned);  
+    
+    if(!isset(fDead)) { 
+        erase(ego);
+        load.view(vw.FightCloud);
+        set.view(objMonster, vw.FightCloud);
+        normal.motion(objMonster);
+        assignn(vDeathReason, valXsWolfMunch);
+        stop.cycling(objMonster);
+        set.cel(objMonster, 0);
+        stop.motion(objMonster);
+        end.of.loop(objMonster, fDead);            
     }
-}
-
-if(isset(fRogerStoned)) {
-    assignn(egoDir, STOPPED);
-    assignn(vDeathReason, valXsStoned);
-    set(fDead);
-    wander(objMonster);
 }
 
 
@@ -143,7 +143,7 @@ if(isset(fRogerStoned)) {
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
     if((said("look", "room") || said("look"))) {
-        print("You are at the edge of a thick forest. A clearing sits aside of the wooded area. There's a thick fog to the south.");
+        print("The area is covered by bushes and thick brush. There is a thick fog to the north.");
     }
 
     if(said("look", "fog")) {

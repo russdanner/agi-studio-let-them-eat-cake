@@ -286,15 +286,15 @@
 [Logic11]
    ID = rm.DavBowlA5
    Description = ""
-   CRC32 = &HEDCE433C
-   CompCRC32 = &HEDCE433C
+   CRC32 = &HBEEF7C38
+   CompCRC32 = &HBEEF7C38
    IsRoom = True
 
 [Logic25]
    ID = rm.DavDwarfF4
    Description = ""
-   CRC32 = &H6C415DB7
-   CompCRC32 = &H6C415DB7
+   CRC32 = &H792C4E58
+   CompCRC32 = &H792C4E58
    IsRoom = True
 
 [Logic23]
@@ -314,36 +314,64 @@
 [Logic20]
    ID = rm.DavRockE4
    Description = ""
-   CRC32 = &HF21361D6
-   CompCRC32 = &HF21361D6
+   CRC32 = &H50813042
+   CompCRC32 = &H50813042
    IsRoom = True
 
 [Logic22]
    ID = rm.DavTreeF1
    Description = ""
-   CRC32 = &H348179BD
-   CompCRC32 = &H348179BD
+   CRC32 = &H9FC816EA
+   CompCRC32 = &H9FC816EA
    IsRoom = True
 
 [Logic19]
    ID = rm.DavLakeE2
    Description = ""
-   CRC32 = &H1FF96695
-   CompCRC32 = &H1FF96695
+   CRC32 = &H2717CE97
+   CompCRC32 = &H2717CE97
    IsRoom = True
 
 [Logic9]
    ID = rm.DavCastleLeftA2
    Description = ""
-   CRC32 = &HF0DB2164
-   CompCRC32 = &HF0DB2164
+   CRC32 = &H26175691
+   CompCRC32 = &H26175691
    IsRoom = True
 
 [Logic21]
    ID = rm.DavWizardE5
    Description = ""
-   CRC32 = &H257E5176
-   CompCRC32 = &H257E5176
+   CRC32 = &H77F783BE
+   CompCRC32 = &H77F783BE
+   IsRoom = True
+
+[Logic16]
+   ID = rm.DavLakeD4
+   Description = ""
+   CRC32 = &H3AB45AC7
+   CompCRC32 = &H3AB45AC7
+   IsRoom = True
+
+[Logic18]
+   ID = rm.DavWolfE1
+   Description = ""
+   CRC32 = &HEFB7491A
+   CompCRC32 = &HEFB7491A
+   IsRoom = True
+
+[Logic12]
+   ID = rm.DavCastleRightB2
+   Description = ""
+   CRC32 = &H267CB185
+   CompCRC32 = &H267CB185
+   IsRoom = True
+
+[Logic17]
+   ID = rm.DavWitchHouseD5
+   Description = ""
+   CRC32 = &H2ACA8C15
+   CompCRC32 = &H2ACA8C15
    IsRoom = True
 [::END Logics::]
 
@@ -490,6 +518,22 @@
 
 [Picture21]
    ID = pic.DavWizardE5
+   Description = ""
+
+[Picture16]
+   ID = pic.DavLakeD4
+   Description = ""
+
+[Picture18]
+   ID = pic.DavWolfE1
+   Description = ""
+
+[Picture12]
+   ID = pic.DavCastleRightB2
+   Description = ""
+
+[Picture17]
+   ID = pic.DavInWitchHouseD5
    Description = ""
 [::END Pictures::]
 
@@ -845,5 +889,17 @@
 
 [View100]
    ID = vw.RogerStoned
+   Description = ""
+
+[View111]
+   ID = vw.FGM
+   Description = ""
+
+[View48]
+   ID = vw.FightCloud
+   Description = ""
+
+[View30]
+   ID = vw.WitchDoor
    Description = ""
 [::END Views::]

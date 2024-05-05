@@ -102,7 +102,7 @@ if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 150);
     assignn(vRoomInited, valFalse);
-    [MR1 new.room(rm.DavLakeD4);
+    new.room(rm.DavLakeD4);
 }
 
 if(isset(fDoAction)) {
