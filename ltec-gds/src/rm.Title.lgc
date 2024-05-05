@@ -109,9 +109,9 @@ if (newRoom) {
   show.pic(); 
   
   [ load the theme song
-  load.sound(m.theme);
+  load.sound(snd.Theme);
   [ and begin playing
-  sound(m.theme, musicDone);
+  sound(snd.Theme, musicDone);
   
   [ make sure keybuffer is empty
   lastChar = 0;
