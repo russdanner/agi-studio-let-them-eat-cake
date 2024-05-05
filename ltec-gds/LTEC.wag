@@ -98,8 +98,8 @@
 [Logic95]
    ID = lgc.Death
    Description = "Death handler\n\nThis logic is run when the player dies. The death message displayed depends on the value of certain.death."
-   CRC32 = &H786A3FD8
-   CompCRC32 = &H786A3FD8
+   CRC32 = &H25E626E6
+   CompCRC32 = &H25E626E6
    IsRoom = False
    Size = 409
 

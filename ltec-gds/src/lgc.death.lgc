@@ -105,15 +105,15 @@ if(!isset(fGameOver)) {
 
     if(isset(fRogerDead)) {
         reset(fRogerDead);        
-        [load.sound(sndRogerDead);
-        [sound(sndRogerDead, fDeathSoundDone);
+        load.sound(snd.RogerDead);
+        sound(snd.RogerDead, fDeathSoundDone);
         set(fDeathSoundDone);
     }
     
     if(isset(fGrahamDead)) {
         reset(fGrahamDead);
-        [load.sound(sndGrahamDead);
-        [sound(sndGrahamDead, fDeathSoundDone);
+        load.sound(snd.GrahamDead);
+        sound(snd.GrahamDead, fDeathSoundDone);
         set(fDeathSoundDone);
     }    
 }
