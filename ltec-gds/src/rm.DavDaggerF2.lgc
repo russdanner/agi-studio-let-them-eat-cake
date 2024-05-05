@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavDwarfF4
+[ rm.DavDaggerF2
 [
 [ 
 [
@@ -19,8 +19,8 @@ if(newRoom) {
     [ load, draw and discard the picture for the current room
     load.pic(currentRoom);
     draw.pic(currentRoom);
-    discard.pic(currentRoom);
-    
+    discard.pic(currentRoom); 
+
     unanimate.all();
     assignn(vRoomInited, 1);
 
@@ -33,15 +33,32 @@ if(newRoom) {
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
             assignn(vEgoX, 100);
-            assignn(vEgoY, 110);
+            assignn(vEgoY, 100);
         }
     }
 
+    // add wider range to reduce instances of encounter
+    random(1, 100, vDiceRoll); 
+
+    reset(fGotcha);
+    if(lessn(vDiceRoll, 50)) {
+        load.view(vw.Witch);
+        set.view(objMonster, vw.Witch);
+        draw(objMonster);
+        position(objMonster, 80, 30);        
+        follow.ego(objMonster, 2, fGotcha);   
+
+        [load.sound(sndDevMonster)
+        [sound(sndDevMonster, fSoundDone)            
+    }
+
     position.v(ego, vEgoX, vEgoY);
-    set.horizon(50);
+
+    set.horizon(40);
 
     draw(ego);
-
+    
+    [ display the picture on screen
     show.pic();
 }
 
@@ -49,46 +66,57 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-if(edgeEgoHit == BOTTOM_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 55);
+if(isset(fGotcha)) {
+    reset(fGotcha);
+    if(!isset(fDead)) { 
+        erase(ego);
+        load.view(vw.WitchKill);
+        set.view(objMonster,  vw.WitchKill);
+        normal.motion(objMonster);
+        assignn(vDeathReason, valXsWitchSnag);
+        stop.cycling(objMonster);
+        set.cel(objMonster, 0);
+        end.of.loop(objMonster, fDead);
+        move.obj(objMonster, 170, 20, 2, fDead);    
+    }
+}
+
+if(edgeEgoHit == TOP_EDGE) {
+    assignn(vEgoY, 160);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavWalnutF5);     
+    [new.room(rm.DavTreeF1);     
 }
 
 if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 150);
+    assignn(vEgoY, 50);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavRockE4);     
+    [new.room(rm.DavLakeE2);  
 }
 
-if(edgeEgoHit == TOP_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 150);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavOgreF3);    
-}
-    
 if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 5);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavRiverBendA4);     
+    [new.room(rm.DavCastleLeftA2);     
 }
 
-
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 60);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavOgreF3);     
+}
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
     if(said("look")) {
-        print("This is a lightly wooded area with rocky outcroppings.");
+        print("This is an open clearing. There's nothing particularly noteworthy here.");
     }
-    
     if(said("look", "room")) {
-        print("This is a lightly wooded area with rocky outcroppings.");
+        print("This is an open clearing. There's nothing particularly noteworthy here.");
     }
 }
 

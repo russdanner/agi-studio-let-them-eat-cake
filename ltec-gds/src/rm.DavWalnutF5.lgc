@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavBowlA5
+[ rm.DavWalnutF5
 [
 [ 
 [
@@ -26,25 +26,12 @@ if(newRoom) {
 
     load.view(vw.Roger);
     load.view(vw.Mist);
-    load.view(vw.Hawk);
-    load.view(vw.FeatherFall);
-
-    animate.obj(ego);
-    animate.obj(objHawk);
-    animate.obj(objFeatherFall);
-    animate.obj(objMist);
-    animate.obj(objMist2);
-    animate.obj(objMist3);
-    animate.obj(objMist4);
-
+   
     set.view(ego, vw.Roger);
     set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
-    set.view(objHawk, vw.Hawk);
-    set.view(objFeatherFall, vw.FeatherFall);
-
 
     stop.cycling(objMist);
     stop.cycling(objMist2);
@@ -53,8 +40,8 @@ if(newRoom) {
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
-            assignn(vEgoX, 140);
-            assignn(vEgoY, 70);
+            assignn(vEgoX, 100);
+            assignn(vEgoY, 110);
         }
     }
 
@@ -63,58 +50,22 @@ if(newRoom) {
     position(objMist3, 85, 166);
     position(objMist4, 127, 166);
 
-    reset(fHawkFlightADone);
-    reset(fHawkFlightBDone);
-    reset(fFeatherFallDone);
-
     position.v(ego, vEgoX, vEgoY);
 
     set.horizon(50);
-
-    if(!has("Feather")) {
-        if(!has("Quill")) {
-            if(has("Cake")) {
-                if(has("Ink")) {
-                    set.priority(objHawk, 10);    
-                    position(objHawk, 160, 70);
-                    move.obj(objHawk, 40, 40, 2, fHawkFlightADone);                
-                }
-            }
-        }
-    }
 
     draw(ego);
     draw(objMist);
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
-    draw(objHawk);
-    draw(objFeatherFall);
-        
-    [ display the picture on screen
+
     show.pic();
 }
 
 [***************************************
 [ NON-INPUT CODE 
 [***************************************
-
-if(isset(fHawkFlightADone)) {
-    reset(fHawkFlightADone);
-    position(objFeatherFall, 40, 40);
-    move.obj(objHawk, 0, 40, 1, fHawkFlightBDone);
-    move.obj(objFeatherFall, 40, 105, 1, fFeatherFallDone);
-}
-
-if(isset(fFeatherFallDone)) {
-    reset(fFeatherFallDone);
-    stop.cycling(objFeatherFall);
-}
-
-if(isset(fHawkFlightBDone)) {
-    erase(objHawk);
-}
-
 
 if(edgeEgoHit == BOTTOM_EDGE) {
     print("You're a bit foggy here. You decide to turn back.");
@@ -128,54 +79,61 @@ if(edgeEgoHit == TOP_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 150);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavRiverBendA4);     
+    new.room(rm.DavDwarfF4);   
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
-    print("You're a bit foggy here. You decide to turn back.");
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 150);
-    assignn(egoDir, LEFT);
-    position.v(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavBowlA5);     
 }    
 
 if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 150);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavWalnutF5);    
+    [new.room(rm.DavWizardE5);     
 }
-
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    if(said("look")) {
-        print("This is a forrested and rocky area. A think fog has developed to the south and the east.");
-    }
-    
-    if(said("look", "room")) {
-        print("This is a forrested and rocky area. A think fog has developed to the south and the east.");
+    if((said("look") || said("look", "room"))) {
+        print("The ground is covered in walnuts. They have fallen from a beautiful walnut tree that towers into the sky. A pointy rock juts up from the ground by the tree. A thick fog rolls in from the south. ");
     }
     
     if(said("look", "fog")) {
         print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
     }
     
-    if(said("take", "feather")) {
-        if(!has("Feather")) {
-            if(!has("Quill")) {
-                if(posn(ego, 40, 101, 52, 107)) {
-                    get("Feather");
-                    print("You reach down and pick up the fallen feather.");
-                    addn(currentScore, 1);    
-                    erase(objFeatherFall);     
-                }
-                else {
-                    print("You can't reach it from here.");
-                }
+    if(said("look", "rock")) {
+        print("There's a rock here that that is very pointed. It has several facets on it. Some of them are rough and others are smooth.");
+    }
+    
+    if(said("look", "walnut")) {
+        print("The ground is covered with walnuts that have fallen from the tree.");
+    }
+
+    if(said("take", "walnut")) {
+        print("You don't need it.");
+    }
+
+    if((said("sharpen", "glass") || said("sharpen", "glass", "rock"))) {
+        if(posn(ego, 90, 115, 125, 130)) {
+            if(isset(fGlassIsSharp)) {
+                [ Should probably kill roger here
+                print("Sheesh Roger... the glass is as sharp as it's going to get.");
             }
+            else {
+                set(fGlassIsSharp);
+                addn(currentScore, 1);
+                print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger.");    
+            }
+        }
+        else {
+            print("How?");
         }
     }
 }

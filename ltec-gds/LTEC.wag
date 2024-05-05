@@ -279,22 +279,43 @@
 [Logic24]
    ID = rm.DavOgreF3
    Description = ""
-   CRC32 = &H254E286C
-   CompCRC32 = &H254E286C
+   CRC32 = &HCC0A93B0
+   CompCRC32 = &HCC0A93B0
    IsRoom = True
 
 [Logic11]
    ID = rm.DavBowlA5
    Description = ""
-   CRC32 = &H17E9A096
-   CompCRC32 = &H17E9A096
+   CRC32 = &HEDCE433C
+   CompCRC32 = &HEDCE433C
    IsRoom = True
 
 [Logic25]
    ID = rm.DavDwarfF4
    Description = ""
-   CRC32 = &H38CA19A
-   CompCRC32 = &H38CA19A
+   CRC32 = &H6C415DB7
+   CompCRC32 = &H6C415DB7
+   IsRoom = True
+
+[Logic23]
+   ID = rm.DavDaggerF2
+   Description = ""
+   CRC32 = &H1F0038AB
+   CompCRC32 = &H1F0038AB
+   IsRoom = True
+
+[Logic26]
+   ID = rm.DavWalnutF5
+   Description = ""
+   CRC32 = &H711674FC
+   CompCRC32 = &H711674FC
+   IsRoom = True
+
+[Logic20]
+   ID = rm.DavRockE4
+   Description = ""
+   CRC32 = &HB0DEBFCF
+   CompCRC32 = &HB0DEBFCF
    IsRoom = True
 [::END Logics::]
 
@@ -410,6 +431,21 @@
 [Picture11]
    ID = pic.DavBowlA5
    Description = ""
+
+[Picture23]
+   ID = pic.DavDaggerF2
+   Description = ""
+   BkgdImg = ""
+
+[Picture26]
+   ID = pic.DavWalnutF5
+   Description = ""
+   BkgdImg = ""
+
+[Picture20]
+   ID = pic.DavRockE4
+   Description = ""
+   BkgdImg = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -720,5 +756,29 @@
 
 [View67]
    ID = vw.OgreMunch
+   Description = ""
+
+[View29]
+   ID = vw.Mist
+   Description = ""
+
+[View60]
+   ID = vw.Hawk
+   Description = ""
+
+[View61]
+   ID = vw.FeatherFall
+   Description = ""
+
+[View80]
+   ID = vw.Witch
+   Description = ""
+
+[View81]
+   ID = vw.WitchKill
+   Description = ""
+
+[View64]
+   ID = vw.RogerEaten
    Description = ""
 [::END Views::]

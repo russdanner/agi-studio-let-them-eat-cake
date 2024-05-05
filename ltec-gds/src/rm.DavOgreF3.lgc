@@ -100,8 +100,7 @@ if(edgeEgoHit == TOP_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 150);
     assignn(vRoomInited, valFalse);
-    [new.room(pic.DavDaggerF2);
-    print("dagger room");   
+    new.room(rm.DavDaggerF2);
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
