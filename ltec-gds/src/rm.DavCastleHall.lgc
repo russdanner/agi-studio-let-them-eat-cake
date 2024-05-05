@@ -1,0 +1,89 @@
+[*********************************************************************
+[
+[ rm.DavCastleHall
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+
+    animate.obj(ego);
+
+    set.view(ego, vw.Roger);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 100);
+            assignn(vEgoY, 100);
+        }
+    }
+
+    position.v(ego, vEgoX, vEgoY);
+
+    set.horizon(43);
+
+    draw(ego);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 73);
+    assignn(vEgoY, 160);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavCastleCorner);  
+}    
+
+if(obj.in.box(ego, 10, 166, 160, 168)) {
+    reset(fDoAction);
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 110);
+    assignn(vEgoY, 123);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavCastleLeftA2);     
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if((said("look", "room") || said("look"))) {
+        print("You are in large ornate hallway. You can hear music and laughter further down the hall.");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

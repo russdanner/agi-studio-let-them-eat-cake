@@ -1,0 +1,225 @@
+[*********************************************************************
+[
+[ rm.DavWellTopD1
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+    load.view(vw.Bucket);
+
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist3);
+    animate.obj(objMist4);
+    animate.obj(objBucket);
+
+    set.view(ego, vw.Roger);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+    set.view(objMist3, vw.Mist);
+    set.view(objMist4, vw.Mist);
+    set.view(objBucket, vw.Bucket);
+    
+    stop.cycling(objMist);
+    stop.cycling(objMist2);
+    stop.cycling(objMist3);
+    stop.cycling(objMist4);
+    stop.cycling(objBucket);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 100);
+            assignn(vEgoY, 100);
+        }
+    }
+
+    position(objMist, 1, 47);
+    position(objMist2, 43, 47);
+    position(objMist3, 85, 47);
+    position(objMist4, 127, 47);
+    position(objBucket, 38, 120);
+
+    reset(fInBucket);
+    reset(fDoAction);
+
+    position.v(ego, vEgoX, vEgoY);
+    
+    set.horizon(50);
+
+    draw(ego);
+    draw(objMist);
+    draw(objMist2);
+    draw(objMist3);
+    draw(objMist4);
+    draw(objBucket);
+    
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(egoDir, DOWN);
+    position.v(ego, vEgoX, vEgoY);
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 15);
+    assignn(egoDir, RIGHT);
+    position.v(ego, vEgoX, vEgoY);
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(vEgoY, 100);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWolfE1);     
+}
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 50);
+    assignn(vRoomInited, valFalse);
+    [MR1: new.room(rm.DavLakeD2);     
+}
+
+if(isset(fInBucket)) {
+    end.of.loop(ego, fDoAction);    
+}
+
+if(isset(fDoAction)) {
+    assignn(egoDir, STOPPED);
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 0);
+    assignn(vEgoY, 0);
+    assignn(vRoomInited, valFalse);
+    [MR1: new.room(rm.DavWellBottom);   
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if((said("look", "room") || said("look"))) {
+        print("There's an ancient well here. There's a thick fog to the north and west.");
+    }
+    
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+    
+    if(said("look", "well")) {
+        print("The ancient well reaches deep into the earth. There's a bucket at the top of the well.");
+    }
+    
+    if(said("look", "bucket")) {
+        print("The bucket is old but looks sturdy and watertight.");
+    }
+    
+    if(said("lower", "bucket")) {
+        print("There's no crank here.");
+    }
+
+    if(said("enter", "bucket")) {
+        if(posn(ego, 21, 105, 110, 145)) {    
+            load.view(vw.RogerBucket);
+            erase(objBucket);
+            set.view(ego, vw.RogerBucket);
+            position(ego, 37, 145);
+            set.priority(ego, 11);
+            stop.cycling(ego);
+            set.cel(ego, 0);
+            set(fInBucket);
+    
+            if(!isset(fPointsForWell)) {
+                set(fPointsForWell);
+                addn(currentScore, 1);
+            }
+        }
+        else {
+            print("You are not close enough.");    
+        }    
+    }
+    
+    if(said("exit", "bucket")) {
+        if(isset(fInBucket)) {
+            set.view(ego, vw.Roger);
+            set.view(objBucket, vw.Bucket);
+            draw(objBucket);
+            stop.cycling(objBucket);
+            position(ego, 42, 110);
+            position(objBucket, 38, 120);
+        }
+        else {
+            print("Say what?");
+        }
+    }
+    
+    if(said("get", "bucket")) {
+        [ GET IN and GET OUT are not working properly
+        [ this sucks becuase it overlaps with TAKE BUCKET
+        [for the sake of the player let's go this route for now
+        if(!isset(fInBucket)) {
+            if(posn(ego, 21, 105, 110, 145)) {    
+                load.view(vw.RogerBucket);
+                erase(objBucket);
+                set.view(ego, vw.RogerBucket);
+                position(ego, 37, 145);
+                set.priority(ego, 11);
+                stop.cycling(ego);
+                set.cel(ego, 0);
+                set(fInBucket);
+    
+                if(!isset(fPointsForWell)) {
+                    set(fPointsForWell);
+                    addn(currentScore, 1);
+                }
+            }
+            else {
+                print("You are not close enough.");    
+            }        
+        }
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

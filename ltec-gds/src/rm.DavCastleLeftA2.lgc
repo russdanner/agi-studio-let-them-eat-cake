@@ -168,7 +168,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         assignn(vEgoX, 75);
         assignn(vEgoY, 163);
         assignn(vRoomInited, valFalse);
-        [MR1 new.room(rm.DavCastleHall);
+        new.room(rm.DavCastleHall);
     }
 }
 

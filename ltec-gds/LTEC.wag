@@ -335,8 +335,8 @@
 [Logic9]
    ID = rm.DavCastleLeftA2
    Description = ""
-   CRC32 = &H26175691
-   CompCRC32 = &H26175691
+   CRC32 = &HD37A4FEC
+   CompCRC32 = &HD37A4FEC
    IsRoom = True
 
 [Logic21]
@@ -356,8 +356,8 @@
 [Logic18]
    ID = rm.DavWolfE1
    Description = ""
-   CRC32 = &HEFB7491A
-   CompCRC32 = &HEFB7491A
+   CRC32 = &H45E6AA27
+   CompCRC32 = &H45E6AA27
    IsRoom = True
 
 [Logic12]
@@ -372,6 +372,34 @@
    Description = ""
    CRC32 = &H2ACA8C15
    CompCRC32 = &H2ACA8C15
+   IsRoom = True
+
+[Logic32]
+   ID = rm.DavCastleHall
+   Description = ""
+   CRC32 = &HAA008A9
+   CompCRC32 = &HAA008A9
+   IsRoom = True
+
+[Logic31]
+   ID = rm.DavCastleCorner
+   Description = ""
+   CRC32 = &H1C8689AF
+   CompCRC32 = &H1C8689AF
+   IsRoom = True
+
+[Logic30]
+   ID = rm.DavCastleThrone
+   Description = ""
+   CRC32 = &H5045C175
+   CompCRC32 = &H5045C175
+   IsRoom = True
+
+[Logic14]
+   ID = rm.DavWellTopD1
+   Description = ""
+   CRC32 = &H83F4AC12
+   CompCRC32 = &H83F4AC12
    IsRoom = True
 [::END Logics::]
 
@@ -535,6 +563,24 @@
 [Picture17]
    ID = pic.DavInWitchHouseD5
    Description = ""
+
+[Picture32]
+   ID = pic.DavCastleHall
+   Description = ""
+   BkgdImg = ""
+
+[Picture31]
+   ID = pic.DavCastleCorner
+   Description = ""
+
+[Picture30]
+   ID = pic.DavCastleThrone
+   Description = ""
+
+[Picture14]
+   ID = pic.DavWellTopD1
+   Description = ""
+   BkgdImg = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -901,5 +947,57 @@
 
 [View30]
    ID = vw.WitchDoor
+   Description = ""
+
+[View77]
+   ID = vw.HBD
+   Description = ""
+
+[View52]
+   ID = vw.PersonA
+   Description = ""
+
+[View53]
+   ID = vw.PersonB
+   Description = ""
+
+[View55]
+   ID = vw.GrahamKing
+   Description = ""
+
+[View56]
+   ID = vw.Rosella
+   Description = ""
+
+[View57]
+   ID = vw.Alexander
+   Description = ""
+
+[View54]
+   ID = vw.Valanice
+   Description = ""
+
+[View58]
+   ID = vw.Crowd
+   Description = ""
+
+[View76]
+   ID = vw.Person3
+   Description = ""
+
+[View97]
+   ID = vw.PersonG1
+   Description = ""
+
+[View98]
+   ID = vw.PersonG2
+   Description = ""
+
+[View34]
+   ID = vw.RogerBucket
+   Description = ""
+
+[View33]
+   ID = vw.Bucket
    Description = ""
 [::END Views::]

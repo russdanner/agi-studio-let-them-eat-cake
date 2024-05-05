@@ -1,0 +1,190 @@
+[*********************************************************************
+[
+[ rm.DavCastleThrone
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, 1);
+
+    load.view(vw.Roger);
+    load.view(vw.PersonA);
+    load.view(vw.PersonB);
+    load.view(vw.GrahamKing);
+    load.view(vw.Rosella);
+    load.view(vw.Alexander);
+    load.view(vw.Valanice);
+    load.view(vw.Crowd);
+    load.view(vw.HBD);
+    load.view(vw.Person3);
+    load.view(vw.PersonG1);
+    load.view(vw.PersonG2);
+
+    animate.obj(ego);
+    animate.obj(objPersonA);
+    animate.obj(objPersonB);
+    animate.obj(objKingGraham);
+    animate.obj(objRosella);
+    animate.obj(objAlexander);
+    animate.obj(objValanice);
+    animate.obj(objCrowd);
+    animate.obj(objPerson3);
+    animate.obj(objPersonG1);
+    animate.obj(objPersonG2);
+    animate.obj(objParty1);
+    animate.obj(objParty2);
+    animate.obj(objParty3);
+    animate.obj(objParty4);
+
+    set.view(ego, vw.Roger);
+    set.view(objPersonA, vw.PersonA);
+    set.view(objPersonB, vw.PersonB);
+    set.view(objKingGraham, vw.GrahamKing);
+    set.view(objRosella, vw.Rosella);
+    set.view(objAlexander, vw.Alexander);
+    set.view(objValanice, vw.Valanice);
+    set.view(objCrowd, vw.Crowd);
+    set.view(objPerson3, vw.Person3);
+    set.view(objPersonG1, vw.PersonG1);
+    set.view(objPersonG2, vw.PersonG2);
+    set.view(objParty1, vw.HBD);
+    set.view(objParty2, vw.HBD);
+    set.view(objParty3, vw.HBD);
+    set.view(objParty4, vw.HBD);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 100);
+            assignn(vEgoY, 100);
+        }
+    }
+
+    position(objPersonA, 50, 100);
+    position(objPersonB, 50, 130);
+    position(objKingGraham, 60, 100);
+    position(objRosella,    60, 130);
+    position(objAlexander, 80, 100);
+    position(objValanice,  80, 130);
+    position(objPerson3, 50, 80);
+    position(objPersonG1,  90, 130);
+    position(objPersonG2,  100, 130);
+
+    stop.cycling(objKingGraham);
+
+    wander(objRosella);
+    wander(objPersonA);
+    wander(objPersonB);
+    wander(objAlexander);
+    wander(objValanice);
+    wander(objPerson3);
+    wander(objPersonG1);
+    wander(objPersonG2);
+
+    position(objCrowd, 96, 89);
+    set.priority(objCrowd, 4);
+
+    position.v(ego, vEgoX, vEgoY);
+
+    stop.cycling(objParty1);
+    stop.cycling(objParty2);
+    stop.cycling(objParty3);
+
+    set.cel(objParty1, 1);
+    set.cel(objParty2, 1);
+    set.cel(objParty3, 1);
+
+    position(objParty1, 33, 83);
+    position(objParty2, 140, 92);
+    position(objParty3, 26, 89);
+
+    assignn(vTimer, 0);
+    
+    set.horizon(43);
+
+    draw(ego);
+    draw(objPersonA);
+    draw(objPersonB);
+    draw(objKingGraham);
+    draw(objRosella);
+    draw(objAlexander);
+    draw(objValanice);
+    draw(objCrowd);
+    draw(objPerson3);
+    draw(objPersonG1);
+    draw(objPersonG2);
+    draw(objParty1);
+    draw(objParty2);
+    draw(objParty3);
+    draw(objParty4);
+    
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(equaln(vTimer, 20)) {
+    print("You walk into what looks like a huge party for KING Graham. He's surrounded by friends and love ones.");
+}
+
+if(equaln(vTimer, 100)) {
+    set.cel(objParty4, 0);
+    set.priority(objParty4, 15);
+    stop.cycling(objParty4);
+    position(objParty4, 60, 100);
+
+    [load.sound(sndHappyBirthday)
+    [sound(sndHappyBirthday, fSoundDone)  
+}
+
+if(equaln(vTimer, 235)) {
+    print("... THE KING!! Oh My ...");
+}
+
+if(equaln(vTimer, 255)) {
+    set(fIsMorning);
+    reset(fWearingHat);
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 15);
+    assignn(vEgoY, 120);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.GrahamHouse);  
+}
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 
