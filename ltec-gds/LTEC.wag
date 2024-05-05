@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/4/2024 7:05:23 PM"
+   LastEdit = "5/5/2024 7:02:27 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -412,8 +412,8 @@
 [Logic28]
    ID = rm.DavWellBottom
    Description = ""
-   CRC32 = &H725EDED4
-   CompCRC32 = &H725EDED4
+   CRC32 = &HBBDB6ED8
+   CompCRC32 = &HBBDB6ED8
    IsRoom = True
 
 [Logic15]
@@ -421,6 +421,13 @@
    Description = ""
    CRC32 = &H8DDC981F
    CompCRC32 = &H8DDC981F
+   IsRoom = True
+
+[Logic29]
+   ID = rm.DavWellDive
+   Description = ""
+   CRC32 = &HA24B1055
+   CompCRC32 = &HA24B1055
    IsRoom = True
 [::END Logics::]
 
@@ -523,10 +530,12 @@
 [Picture10]
    ID = pic.DavRiverBendA4
    Description = ""
+   BkgdImg = ""
 
 [Picture24]
    ID = pic.DavOgreF3
    Description = ""
+   BkgdImg = ""
 
 [Picture25]
    ID = pic.DavDwarfF4
@@ -536,6 +545,7 @@
 [Picture11]
    ID = pic.DavBowlA5
    Description = ""
+   BkgdImg = ""
 
 [Picture23]
    ID = pic.DavDaggerF2
@@ -555,10 +565,12 @@
 [Picture22]
    ID = pic.DavTreeF1
    Description = ""
+   BkgdImg = ""
 
 [Picture19]
    ID = pic.DavLakeE2
    Description = ""
+   BkgdImg = ""
 
 [Picture9]
    ID = pic.DavCastleLeftA2
@@ -568,22 +580,27 @@
 [Picture21]
    ID = pic.DavWizardE5
    Description = ""
+   BkgdImg = ""
 
 [Picture16]
    ID = pic.DavLakeD4
    Description = ""
+   BkgdImg = ""
 
 [Picture18]
    ID = pic.DavWolfE1
    Description = ""
+   BkgdImg = ""
 
 [Picture12]
    ID = pic.DavCastleRightB2
    Description = ""
+   BkgdImg = ""
 
 [Picture17]
    ID = pic.DavInWitchHouseD5
    Description = ""
+   BkgdImg = ""
 
 [Picture32]
    ID = pic.DavCastleHall
@@ -593,10 +610,12 @@
 [Picture31]
    ID = pic.DavCastleCorner
    Description = ""
+   BkgdImg = ""
 
 [Picture30]
    ID = pic.DavCastleThrone
    Description = ""
+   BkgdImg = ""
 
 [Picture14]
    ID = pic.DavWellTopD1
@@ -606,14 +625,22 @@
 [Picture27]
    ID = pic.DavWitchHouseInside
    Description = ""
+   BkgdImg = ""
 
 [Picture28]
-   ID = pic.DavInWellBottom
+   ID = pic.DavWellBottom
    Description = ""
+   BkgdImg = ""
 
 [Picture15]
    ID = pic.DavLakeD2
    Description = ""
+   BkgdImg = ""
+
+[Picture29]
+   ID = pic.DavInWellDive
+   Description = ""
+   BkgdImg = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -1052,5 +1079,13 @@
 
 [View51]
    ID = vw.RogerClimbRope
+   Description = ""
+
+[View50]
+   ID = vw.RogerDive
+   Description = ""
+
+[View75]
+   ID = vw.Trunk
    Description = ""
 [::END Views::]
