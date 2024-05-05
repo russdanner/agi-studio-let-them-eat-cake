@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavWalnutF5
+[ rm.DavWizardE5
 [
 [ 
 [
@@ -22,7 +22,7 @@ if(newRoom) {
     discard.pic(currentRoom);
     
     unanimate.all();
-    assignn(vRoomInited, valTrue);
+    assignn(vRoomInited, 1);
 
     load.view(vw.Roger);
     load.view(vw.Mist);
@@ -32,6 +32,12 @@ if(newRoom) {
     set.view(objMist2, vw.Mist);
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
+
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist3);
+    animate.obj(objMist4);
 
     stop.cycling(objMist);
     stop.cycling(objMist2);
@@ -50,15 +56,31 @@ if(newRoom) {
     position(objMist3, 85, 166);
     position(objMist4, 127, 166);
 
-    position.v(ego, vEgoX, vEgoY);
+    random(1, 100, vDiceRoll); 
 
-    set.horizon(50);
+    reset(fGotcha);
+    
+    if(lessn(vDiceRoll, 50)) {
+        load.view(vw.Wizard);
+        set.view(objMonster, vw.Wizard);
+        animate.obj(objMonster);
+        draw(objMonster);
+        position(objMonster, 15, 50);        
+        follow.ego(objMonster, 2, fGotcha);  
+
+        [load.sound(sndDevMonster)
+        [sound(sndDevMonster, fSoundDone)    
+    }
+
+    position.v(ego, vEgoX, vEgoY);
 
     draw(ego);
     draw(objMist);
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
+
+    set.horizon(50);
 
     show.pic();
 }
@@ -79,62 +101,53 @@ if(edgeEgoHit == TOP_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 150);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavDwarfF4);   
+    new.room(rm.DavRockE4);   
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 5);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavBowlA5);     
+    new.room(rm.DavWalnutF5);     
 }    
 
 if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 150);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavWizardE5);     
+    [MR1 new.room(rm.DavWitchHouseD5);     
 }
+
+if(isset(fGotcha)) {
+    reset(fGotcha);
+    if(!isset(fDead)) {         
+        [stop.cycling(objMonster);
+        [stop.motion(objEgo);
+        [stop.motion(objMonster);
+        load.view(vw.RogerStoned);
+        set.view(ego, vw.RogerStoned);
+        end.of.loop(ego, fRogerStoned);  
+    }
+}
+
+if(isset(fRogerStoned)) {
+    assignn(egoDir, STOPPED);
+    assignn(vDeathReason, valXsStoned);
+    set(fDead);
+    wander(objMonster);
+}
+
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    if((said("look") || said("look", "room"))) {
-        print("The ground is covered in walnuts. They have fallen from a beautiful walnut tree that towers into the sky. A pointy rock juts up from the ground by the tree. A thick fog rolls in from the south. ");
+    if((said("look", "room") || said("look"))) {
+        print("You are at the edge of a thick forest. A clearing sits aside of the wooded area. There's a thick fog to the south.");
     }
-    
+
     if(said("look", "fog")) {
         print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
-    }
-    
-    if(said("look", "rock")) {
-        print("There's a rock here that that is very pointed. It has several facets on it. Some of them are rough and others are smooth.");
-    }
-    
-    if(said("look", "walnut")) {
-        print("The ground is covered with walnuts that have fallen from the tree.");
-    }
-
-    if(said("take", "walnut")) {
-        print("You don't need it.");
-    }
-
-    if((said("sharpen", "glass") || said("sharpen", "glass", "rock"))) {
-        if(posn(ego, 90, 115, 125, 130)) {
-            if(isset(fGlassIsSharp)) {
-                [ Should probably kill roger here
-                print("Sheesh Roger... the glass is as sharp as it's going to get.");
-            }
-            else {
-                set(fGlassIsSharp);
-                addn(currentScore, 1);
-                print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger.");    
-            }
-        }
-        else {
-            print("How?");
-        }
     }
 }
 

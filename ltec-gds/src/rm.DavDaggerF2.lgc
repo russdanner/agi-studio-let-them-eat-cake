@@ -84,21 +84,21 @@ if(isset(fGotcha)) {
 if(edgeEgoHit == TOP_EDGE) {
     assignn(vEgoY, 160);
     assignn(vRoomInited, valFalse);
-    [new.room(rm.DavTreeF1);     
+    new.room(rm.DavTreeF1);     
 }
 
 if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 50);
     assignn(vRoomInited, valFalse);
-    [new.room(rm.DavLakeE2);  
+    new.room(rm.DavLakeE2);  
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 5);
     assignn(vRoomInited, valFalse);
-    [new.room(rm.DavCastleLeftA2);     
+    new.room(rm.DavCastleLeftA2);     
 }
 
 if(edgeEgoHit == BOTTOM_EDGE) {

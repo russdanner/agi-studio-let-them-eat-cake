@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavWalnutF5
+[ rm.DavLakeE2
 [
 [ 
 [
@@ -22,11 +22,20 @@ if(newRoom) {
     discard.pic(currentRoom);
     
     unanimate.all();
-    assignn(vRoomInited, valTrue);
+    
+    assignn(vRoomInited, 1);
 
     load.view(vw.Roger);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);
     load.view(vw.Mist);
-   
+
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist3);
+    animate.obj(objMist4);
+
     set.view(ego, vw.Roger);
     set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);
@@ -41,10 +50,10 @@ if(newRoom) {
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
             assignn(vEgoX, 100);
-            assignn(vEgoY, 110);
+            assignn(vEgoY, 100);
         }
     }
-
+    
     position(objMist, 1, 166);
     position(objMist2, 43, 166);
     position(objMist3, 85, 166);
@@ -52,14 +61,14 @@ if(newRoom) {
 
     position.v(ego, vEgoX, vEgoY);
 
-    set.horizon(50);
-
     draw(ego);
     draw(objMist);
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
-
+    
+    set.horizon(40);
+    
     show.pic();
 }
 
@@ -67,74 +76,74 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
+if(edgeEgoHit == TOP_EDGE) {
+    assignn(vEgoY, 150);
+    assignn(vRoomInited, valFalse);
+    [MR1 new.room(rm.DavWolfE1);   
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavLakeE2);     
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(vEgoY, 100);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavDaggerF2);     
+}
+
 if(edgeEgoHit == BOTTOM_EDGE) {
     print("You're a bit foggy here. You decide to turn back.");
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 155);
     assignn(egoDir, UP);
     position.v(ego, vEgoX, vEgoY);
-}   
-
-if(edgeEgoHit == TOP_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 150);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavDwarfF4);   
 }
 
-if(edgeEgoHit == RIGHT_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 5);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavBowlA5);     
-}    
-
-if(edgeEgoHit == LEFT_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 150);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavWizardE5);     
+if(isset(fSysEgoOnWater)) {
+    if(!isset(fSwimming)) {
+        if(!isset(fDrowning)) {
+            set.view(ego, vw.RogerSplash);
+            set(fDrowning);
+        }
+    }    
+}
+else {
+    set.view(ego, vw.Roger);
+    reset(fSwimming);
+    reset(fDrowning);
 }
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    if((said("look") || said("look", "room"))) {
-        print("The ground is covered in walnuts. They have fallen from a beautiful walnut tree that towers into the sky. A pointy rock juts up from the ground by the tree. A thick fog rolls in from the south. ");
+    if(said("swim")) {
+        if(isset(fSysEgoOnWater)) {
+            if(isset(fDrowning)) {
+                set.view(ego, vw.RogerSwim);
+                reset(fDrowning);
+                set(fSwimming);
+                player.control();
+                print("ok");
+           } 
+        }
     }
     
+    if((said("look", "room") || said("look"))) {
+        print("There's a large beautiful lake that goes off to the west here and a thick fog to the south.");
+    }
     if(said("look", "fog")) {
         print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
     }
-    
-    if(said("look", "rock")) {
-        print("There's a rock here that that is very pointed. It has several facets on it. Some of them are rough and others are smooth.");
-    }
-    
-    if(said("look", "walnut")) {
-        print("The ground is covered with walnuts that have fallen from the tree.");
-    }
 
-    if(said("take", "walnut")) {
-        print("You don't need it.");
-    }
-
-    if((said("sharpen", "glass") || said("sharpen", "glass", "rock"))) {
-        if(posn(ego, 90, 115, 125, 130)) {
-            if(isset(fGlassIsSharp)) {
-                [ Should probably kill roger here
-                print("Sheesh Roger... the glass is as sharp as it's going to get.");
-            }
-            else {
-                set(fGlassIsSharp);
-                addn(currentScore, 1);
-                print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger.");    
-            }
-        }
-        else {
-            print("How?");
-        }
+    if(said("look", "water")) {
+        print("The lake is calm and beautiful.");
     }
 }
 

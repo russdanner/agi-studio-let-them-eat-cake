@@ -1,0 +1,141 @@
+[*********************************************************************
+[
+[ rm.DavTreeF1
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, 1);
+
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+
+    set.view(ego, vw.Roger);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+
+    stop.cycling(objMist);
+    stop.cycling(objMist2);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 15);
+            assignn(vEgoY, 130);
+        }
+    }
+
+    if(!isset(fEyesOpen)) {
+        position(objMist, 1, 40);
+        position(objMist2, 43, 40);    
+    }
+
+    position.v(ego, vEgoX, vEgoY);
+
+    set.horizon(50);
+
+    draw(ego);
+    draw(objMist);
+    draw(objMist2);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(edgeEgoHit == TOP_EDGE) {
+    if(!isset(fEyesOpen)) {
+        print("You're a bit foggy here. You decide to turn back.");
+        get.posn(ego, vEgoX, vEgoY);
+        assignn(vEgoY, 55);
+        assignn(egoDir, DOWN);
+        position.v(ego, vEgoX, vEgoY);
+    }
+    else {
+        get.posn(ego, vEgoX, vEgoY);
+        assignn(vEgoY, 150);
+        assignn(vRoomInited, valFalse);
+        [new.room(rm.DavTrunkF0)  
+    }
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(vRoomInited, valFalse);
+    [new.room(rm.DavWolfE1);     
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(egoDir, LEFT);
+    position.v(ego, vEgoX, vEgoY);
+}
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    assignn(vEgoY, 62);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavDaggerF2);     
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {    
+    if((said("look", "room") || said("look"))) {    
+        if(isset(fEyesOpen)) {
+            print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the east.");
+        }
+        else {
+            print("This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east.");
+        }
+    }
+    
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+    
+    if(said("look", "tree")) {
+        print("What a beautiful tree.");
+    }
+    
+    if(said("climb", "tree")) {
+        print("Good idea. On second thought.. bad idea. Given your situation you decide NOT to climb the tree.");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 
