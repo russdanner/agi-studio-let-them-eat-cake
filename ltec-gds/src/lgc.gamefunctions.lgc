@@ -79,244 +79,153 @@ if (haveInput && !haveMatch) {
     }
   }
   
-    reset(fShowInvItem);
-    assignn(vInvShowItem, 0);
     
-    if(said("look", "pot")) {
+  if(said("look", "pot")) {
         if(has("Teapot")) {
-            assignn(vInvShowItem, vw.InvTeapot);
-            set(fShowInvItem);    
+            show.obj(vw.InvTeapot);
         }
-        if(!has("Teapot")) {
+        else {
             print("You don't have it.");    
         }
     }
+    
     if(said("look", "hat")) {
-        if(has("Hat")) {
-            assignn(vInvShowItem, vw.InvHat);
-            set(fShowInvItem);
+        if(has("Hat") && !fReadyForAdventure) {
+            show.obj(vw.InvHat);
         }
-        if(!has("Hat")) {
-            print("You don't have it.");    
+        else {
+            if(has("Hat") && fReadyForAdventure) {
+                show.obj(vw.InvAdventureHat);
+            }
+            else {
+                print("You don't have it.");
+            }    
         }
     }
+    
     if(said("look", "summons")) {
         if(has("Summons")) {
-            assignn(vInvShowItem, vw.InvSummons);
-            set(fShowInvItem);
+            show.obj(vw.InvSummons);
         }
-        if(!has("Summons")) {
+        else {
             print("You don't have it.");    
         }
     }
+    
     if(said("look", "tea")) {
         if(has("Tea")) {
-            assignn(vInvShowItem, vw.InvTea);
-            set(fShowInvItem);
+            show.obj(vw.InvTea);
         }
-        if(!has("Tea")) {
+        else {
             print("You don't have it.");    
         }
     }
+    
     if(said("look", "cup")) {
         if(has("Teacup")) {
-            assignn(vInvShowItem, vw.InvTeacup);
-            set(fShowInvItem);
+            show.obj(vw.InvTeacup);
         }
-        if(!has("Teacup")) {
-            print("You don't have it.");    
+        else {
+            if(has("Tea")) {
+                show.obj(vw.InvTea);
+            }
+            else {
+                print("You don't have it.");    
+            }
         }
     }
+    
     if(said("look", "broom")) {
         if(has("Broom")) {
-            assignn(vInvShowItem, vw.InvBroom);
-            set(fShowInvItem);
+            show.obj(vw.InvBroom);
         }
-        if(!has("Broom")) {
+        else {
             print("You don't have it.");  
         }
     }
+    
     if(said("look", "keycard")) {
         if(has("Keycard")) {
             print("The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B. H. S. S.'");
         }
-        if(!has("Keycard")) {
+        else {
             print("What is this keycard that you speak of? You don't have a keycard.");    
         }
     }
+    
     if(said("look", "glass")) {
-        if(has("Glass")) {
-            assignn(vInvShowItem, vw.InvGlass);
-            set(fShowInvItem);
+        if(has("Glass") && !fGlassIsSharp) {
+            show.obj(vw.InvGlass);
         }
-        if(!has("Glass")) {
-            print("You don't have it.");    
+        else {
+            if(has("Glass") && fGlassIsSharp) {
+                show.obj(vw.InvGlassSharp);
+            }
+            else {
+                print("You don't have it.");    
+            }
         }
     }
+    
     if(said("look", "cake")) {
         if(has("Cake")) {
-            assignn(vInvShowItem, vw.InvCake);
-            set(fShowInvItem);
+            show.obj(vw.InvCake);
         }
-        if(!has("Cake")) {
+        else {
             print("You don't have it.");    
         }
     }
+    
     if(said("look", "ink")) {
         if(has("Ink")) {
-            assignn(vInvShowItem, vw.InvInk);
-            set(fShowInvItem);
+            show.obj(vw.InvInk);
         }
-        if(!has("Ink")) {
+        else {
             print("You don't have it.");    
         }
     }
+    
     if(said("look", "quill")) {
         if(has("Quill")) {
-            assignn(vInvShowItem, vw.InvQuill);
-            set(fShowInvItem);
+            show.obj(vw.InvQuill);
         }
-        if(!has("Quill")) {
+        else {
             print("You don't have it.");    
         }
     }
+    
     if(said("look", "feather")) {
         if(has("Feather")) {
-            assignn(vInvShowItem, vw.InvFeather);
-            set(fShowInvItem);
+            show.obj(vw.InvFeather);
         }
-        if(!has("Feather")) {
-            print("You don't have it.");    
+        else {
+            if(has("Quill")) {
+                show.obj(vw.InvQuill);
+            }
+            else {
+                print("You don't have it.");    
+            }
         }
     }
+    
     if(said("look", "paper")) {
         if(has("Paper")) {
-            assignn(vInvShowItem, vw.InvPaper);
-            set(fShowInvItem);
+            show.obj(vw.InvPaper);
         }
-        if(!has("Paper")) {
+        else {
             print("You don't have it.");    
-        }
+        }        
     }
+    
     if(said("look", "invitation")) {
         if(has("Invitation")) {
-            assignn(vInvShowItem, vw.InvInvitation);
-            set(fShowInvItem);
+            show.obj(vw.InvInvitation);
         }
-        if(!has("Invitation")) {
+        else {
             print("You don't have it.");    
         }
     }
     
-    if(isset(fShowInvItem)) {
-        if(equaln(vInvShowItem, vw.InvTeapot)) {
-            assignn(vInvView, vw.InvTeapot);
-            if(equaln(vTeaPoured, valTrue)) {
-                print("This is a simple empty blue teapot");
-            }
-            if(!equaln(vTeaPoured, valTrue)) {
-                print("This is a simple blue teapot full of a hot fragrant tea made from the wild clover from the lands of Daventry.");
-            }
-        }
-        if(equaln(vInvShowItem, vw.InvHat)) {
-            assignn(vInvView, vw.InvHat);
-            print("Your trusty hat! Wow. You love this hat. It's triangular and blue.");
-        }
-        if(equaln(vInvShowItem, vw.InvSummons)) {
-            assignn(vInvView, vw.InvSummons);
-            print("This ornate parchment is a summons from the king that demands an audience with you first thing in the morning");
-        }
-        if(equaln(vInvShowItem, vw.InvTea)) {
-            assignn(vInvView, vw.InvTea);
-            if(equaln(vTeaPoured, valTrue)) {
-                if(equaln(vTeaDrank, valTrue)) {
-                    print("Closer inspection of the cup reveals that it is indeed... a cup.");
-                }
-                if(!equaln(vTeaDrank, valTrue)) {
-                    print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.");
-                }
-            }
-            if(!equaln(vTeaPoured, valTrue)) {
-                print("Yep. It's a cup alright.");
-            }
-        }
-        if(equaln(vInvShowItem, vw.InvTeacup)) {
-            assignn(vInvView, vw.InvTeacup);
-            if(equaln(vTeaPoured, valTrue)) {
-                if(equaln(vTeaDrank, valTrue)) {
-                    print("Closer inspection of the cup reveals that it is indeed... a cup.");
-                }
-                if(!equaln(vTeaDrank, valTrue)) {
-                    print("The cup is full of a hot fragrant tea made from the wild clover from the lands of Daventry.");
-                }
-            }
-            if(!equaln(vTeaPoured, valTrue)) {
-                print("Yep. This is a cup alright.");
-            }
-        }
-        if(equaln(vInvShowItem, vw.InvBroom)) {
-            assignn(vInvView, vw.InvBroom);
-            print("This is a standard issue StarCon broom. You love a good broom! It's a key component of any janitorial arsenal. The code `IBA` is stamped into the handle of the broom.");
-        }
-        if(equaln(vInvShowItem, vw.InvCake)) {
-            assignn(vInvView, vw.InvCake);
-            print("This is a delicious looking birthday cake.");
-        }
-        if(equaln(vInvShowItem, vw.InvInk)) {
-            assignn(vInvView, vw.InvInk);
-            print("This is an old bottle full of black fluid. The label on the bottle says Ink.");
-        }
-        if(equaln(vInvShowItem, vw.InvQuill)) {
-            assignn(vInvView, vw.InvQuill);
-            print("This is a feather you have sharpened into a quill -- an ancient implement of writing.");
-        }
-        if(equaln(vInvShowItem, vw.InvFeather)) {
-            assignn(vInvView, vw.InvFeather);
-            print("This is a beautiful red feather.");
-        }
-        if(equaln(vInvShowItem, vw.InvPaper)) {
-            assignn(vInvView, vw.InvPaper);
-            print("This is a blank piece of paper.");
-        }
-    }
-    if(isset(fShowInvItem)) {
-        reset(fShowInvItem);
-        reset(fWaitForCloseInv);
-        assignn(vKeyPressed, 0);
-    
-        if(equaln(vInvShowItem, vw.InvGlass)) {
-            assignn(vInvView, vw.InvGlass);
-            if(isset(fGlassIsSharp)) {
-                print("This is a piece of highly reflective view shield glass from the pod. You have crafted a sharp knife like edge on it.");
-            }
-            if(!isset(fGlassIsSharp)) {
-                print("This is a piece of highly reflective view shield glass from the pod. Due to its special design there are no sharp edges.");
-            }
-        }
-        if(equaln(vInvShowItem, vw.InvInvitation)) {
-            assignn(vInvView, vw.InvInvitation);
-            print("This is a forged invitation to the castle.");
-        }
-    
-        load.view.v(vInvView);
-    
-        set.view.v(objInv, vInvView);
-    
-        stop.cycling(objInv);
-        draw(objInv);
-        set.priority(objInv, 15);
-        position(objInv, 65, 155);
-        set(fWaitForCloseInv);            
-    }
-    if(isset(fWaitForCloseInv)) {
-        if(greatern(vKeyPressed, 0)) {
-            reset(fWaitForCloseInv);
-             erase(objInv);
-        }
-    }
-  
- 
-  
   [ look anything
   if ((said("look", "anyword") || said("look", "anyword", "rol"))) {
     print("What? Where?");

@@ -83,3 +83,7 @@ Error: 3 Value: 10
 Room 8
 Input line: exit
 Error: 3 Value: 10
+
+Room 6
+Input line: show obj
+Unknown word: obj

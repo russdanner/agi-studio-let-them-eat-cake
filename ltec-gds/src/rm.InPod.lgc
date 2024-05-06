@@ -223,9 +223,9 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         
                 stop.cycling(objCockpitPush);
         
+                position(objCockpitPush, 100, 180);
                 draw(objCockpitPush);
         
-                position(objCockpitPush, 100, 180);
                 move.obj(objCockpitPush, 100, 160, 1, fPodThrottlePulled);
             }
 

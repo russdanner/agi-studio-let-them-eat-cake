@@ -56,8 +56,8 @@
    Description = "This logic runs in every interpreter cycle and calls other logics as needed."
 
 [Logic90]
-   CompCRC32 = &HEE43671B
-   CRC32 = &HEE43671B
+   CompCRC32 = &H32E1AA5B
+   CRC32 = &H32E1AA5B
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
@@ -244,8 +244,8 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &HD3E0EF8
-   CompCRC32 = &HD3E0EF8
+   CRC32 = &HA2138BFE
+   CompCRC32 = &HA2138BFE
    IsRoom = True
 
 [Logic8]
@@ -641,6 +641,10 @@
    ID = pic.DavInWellDive
    Description = ""
    BkgdImg = ""
+
+[Picture34]
+   ID = pic.GrahamLawnDay
+   Description = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -869,7 +873,7 @@
 
 [View86]
    ID = vw.InvHat
-   Description = ""
+   Description = "Your trusty hat! Wow. You love this hat. It's triangular and blue."
 
 [View87]
    ID = vw.InvBroom
