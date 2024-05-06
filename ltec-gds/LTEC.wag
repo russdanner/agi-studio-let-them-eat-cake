@@ -195,15 +195,15 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &H6837A750
-   CompCRC32 = &H6837A750
+   CRC32 = &HAAF684C0
+   CompCRC32 = &HAAF684C0
    IsRoom = True
 
 [Logic3]
    ID = rm.Watch
    Description = ""
-   CRC32 = &H8F0F8606
-   CompCRC32 = &H8F0F8606
+   CRC32 = &H296D90CA
+   CompCRC32 = &H91AE9714
    IsRoom = True
 
 [Logic36]
@@ -809,7 +809,7 @@
    ID = snd.WatchBeep
    Description = ""
    Key = 0
-   TPQN = 4
+   TPQN = 16
    Inst0 = 80
    Inst1 = 80
    Inst2 = 80

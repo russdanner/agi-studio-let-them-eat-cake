@@ -119,76 +119,45 @@ if(newRoom) {
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    if(said("sweep")) {
-        if(has("Broom")) {
-            get.posn(ego, vEgoX, vEgoY);
-            if(lessn(vEgoX, 75)) {
-                subn(vEgoX, 10);            
-            }
-            if(greatern(vEgoX, 75)) {
-                addn(vEgoX, 10);            
-            }
-            
-            position.v(ego, vEgoX, vEgoY);    
-    
-            set.view(ego, vw.RogerSpacesuitBroom);
-            assignn(vSweeping, valTrue);
-            start.cycling(ego);    
-        }
-        if(!has("Broom")) {
-            print("You don't have the proper equipment on hand for that job.");
-        }
-    }
-
     if(said("stop", "sweeping")) {
-        get.posn(ego, vEgoX, vEgoY);
-        if(lessn(vEgoX, 75)) {
-            subn(vEgoX, 10);            
-        }
-        if(greatern(vEgoX, 75)) {
-            addn(vEgoX, 10);            
-        }
-        position.v(ego, vEgoX, vEgoY);    
+        [get.posn(ego, vEgoX, vEgoY);
+        [if(lessn(vEgoX, 75)) {
+        [    subn(vEgoX, 10);            
+        [}
+        [if(greatern(vEgoX, 75)) {
+        [    addn(vEgoX, 10);            
+        [}
+        [position.v(ego, vEgoX, vEgoY);    
         
         set.view(ego, vw.RogerSpacesuitA);
         assignn(vSweeping, valFalse);
     }
 
-    if(said("start", "sweeping")) {
+    if((said("start", "sweeping") || said("sweep"))) {
         if(has("Broom")) {
-            get.posn(ego, vEgoX, vEgoY);
-            if(lessn(vEgoX, 75)) {
-                subn(vEgoX, 10);            
-            }
-            if(greatern(vEgoX, 75)) {
-                addn(vEgoX, 10);            
-            }
-            
-            position.v(ego, vEgoX, vEgoY);    
+            [get.posn(ego, vEgoX, vEgoY);
+            [if(lessn(vEgoX, 75)) {
+            [    subn(vEgoX, 10);            
+            [}
+            [if(greatern(vEgoX, 75)) {
+            [    addn(vEgoX, 10);            
+            [}           
+            [position.v(ego, vEgoX, vEgoY);    
         
             set.view(ego, vw.RogerSpacesuitBroom);
             assignn(vSweeping, valTrue);
             start.cycling(ego);    
         }
-        if(!has("Broom")) {
+        else {
             print("You don't have the proper equipment on hand for that job.");
         }
     }
 
-    if(said("get", "pod")) {
+    if((said("get", "pod") || said("enter", "pod"))) {
         if(posn(ego, 31, 104, 50, 127)) {
             print("Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking.");
         }
-        if(!posn(ego, 31, 104, 50, 127)) {
-            print("You are too far away.");
-        }
-    }
-
-    if(said("enter", "pod")) {
-        if(posn(ego, 31, 104, 50, 127)) {
-            print("Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking.");
-        }
-        if(!posn(ego, 31, 104, 50, 127)) {
+        else {
             print("You are too far away.");
         }
     }
@@ -202,22 +171,25 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     if(said("look", "panel")) {
         print("The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.");
     }
+
     if(said("look", "space")) {
         print("Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'");
     }
+
     if(said("look", "pod")) {
         print("Yep that's a shuttle alright. Always coming and going. You can't count the number of times you've had to clean up after the space-sick scum that frequent these shuttles. Speaking of shuttle related messes you wonder if this craft is the one that left puddles of fuel on the deck.");
     }
+
     if(said("look", "spill")) {
         if(equaln(vCleanedUp, valFalse)) {
             print("What a mess. There's fuel on the deck. It needs to be cleaned up.");
         }
-        if(equaln(vCleanedUp, valTrue)) {
-            print("A spill?! Not on your watch! Roger Wilco. Ace Janitor.");
+        else {
+            print("A spill?! Not on your watch! Roger Wilco. Ace Janitor!");
         }
     }
 
-    if(said("look")) {
+    if((said("look", "room") || said("look"))) {
         print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.");
     }        
 }
@@ -281,12 +253,13 @@ if(obj.in.box(ego, 145, 135, 160, 160)) {
     else {
         print("Look at that deck!! You better keep cleaning.");
         get.posn(ego, vEgoX, vEgoY);
-        assignn(vEgoX, 146);
+        assignn(vEgoX, 140);
         assignn(egoDir, LEFT);
+        erase(ego);
         position.v(ego, vEgoX, vEgoY);
+        draw(ego);
     }
 }
-
 
 if(edgeEgoHit == TOP_EDGE) {
     stop.cycling(ego);

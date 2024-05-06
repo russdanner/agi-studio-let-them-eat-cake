@@ -87,3 +87,7 @@ Error: 3 Value: 10
 Room 6
 Input line: show obj
 Unknown word: obj
+
+Room 2
+Input line: stop sweeping
+Error: 11 Value: 50
