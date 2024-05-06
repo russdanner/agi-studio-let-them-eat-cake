@@ -47,7 +47,7 @@ if(newRoom) {
     stop.cycling(objHangerDoorLeft);
     stop.cycling(objPlate);
 
-    if(equaln(vEgoX, 10)) {
+    if(equaln(vEgoX, 15)) {
         if(equaln(vEgoY, 126)) {
             [ returned or debug teleport
             set.view(ego, vw.RogerSpacesuitA);
@@ -98,7 +98,7 @@ if(isset(fTramInboundDone)) {
 }
 
 [ hanger door
-if(posn(ego, 2, 120, 24, 140)) {
+if(posn(ego, 2, 120, 24, 128)) {
     if(!isset(fDoorOpen)) {
         [end.of.loop(objHangerDoorLeft, fDoorOpen);
         set(fDoorOpen);

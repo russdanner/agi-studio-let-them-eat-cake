@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/6/2024 2:33:29 AM"
+   LastEdit = "5/6/2024 5:39:41 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -98,8 +98,8 @@
 [Logic95]
    ID = lgc.Death
    Description = "Death handler\n\nThis logic is run when the player dies. The death message displayed depends on the value of certain.death."
-   CRC32 = &H25E626E6
-   CompCRC32 = &H25E626E6
+   CRC32 = &H7B9071DA
+   CompCRC32 = &H7B9071DA
    IsRoom = False
    Size = 409
 
@@ -195,8 +195,8 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &HE07E34D2
-   CompCRC32 = &HE07E34D2
+   CRC32 = &H5BCC7838
+   CompCRC32 = &H5BCC7838
    IsRoom = True
 
 [Logic3]
@@ -230,22 +230,22 @@
 [Logic38]
    ID = rm.OuterBay
    Description = ""
-   CRC32 = &H735A0D68
-   CompCRC32 = &H735A0D68
+   CRC32 = &H971BCB37
+   CompCRC32 = &H971BCB37
    IsRoom = True
 
 [Logic39]
    ID = rm.OuterHanger
    Description = ""
-   CRC32 = &HF9B98DAD
-   CompCRC32 = &HF9B98DAD
+   CRC32 = &H49E8729
+   CompCRC32 = &H49E8729
    IsRoom = True
 
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &HA2138BFE
-   CompCRC32 = &HA2138BFE
+   CRC32 = &H3C2E80CA
+   CompCRC32 = &H3C2E80CA
    IsRoom = True
 
 [Logic8]
@@ -258,8 +258,8 @@
 [Logic40]
    ID = rm.Station
    Description = ""
-   CRC32 = &HEEBE32EA
-   CompCRC32 = &HEEBE32EA
+   CRC32 = &H92348248
+   CompCRC32 = &H92348248
    IsRoom = True
 
 [Logic7]

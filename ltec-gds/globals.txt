@@ -350,3 +350,4 @@
 #define vTempVar1                   v251
 #define vTempVar2                   v252
 #define fCrashed                    f200
+#define valXsNoFuel                   18

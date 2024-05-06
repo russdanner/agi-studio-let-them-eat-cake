@@ -97,6 +97,10 @@ if(!isset(fGameOver)) {
             set(fRogerDead);
             print("You trip and fall from the stairs. Fortunately you are able to arrest the fall. Unfortunately you do so with your face. You really have to be more careful Roger.");
         }
+        if(equaln(vDeathReason, valXsNoFuel)) {
+            set(fRogerDead);   
+            print("Your fuel has run out. Without thrust you can no longer chart a course. We're not sure where you are going but we know you'll be a popsicle when you arrive.");
+        }
     }    
 }
 

@@ -40,8 +40,8 @@ if(newRoom) {
 
     reset(fDoAction);
 
-    [load.sound(sndSQTheme)
-    [sound(sndSQTheme, fSoundDone)    
+    load.sound(snd.SpaceTravel);
+    sound(snd.SpaceTravel, fSoundDone);    
     
     [ display the picture on screen
     show.pic();
