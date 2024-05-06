@@ -209,8 +209,8 @@
 [Logic36]
    ID = rm.InnerBay
    Description = ""
-   CRC32 = &H6DB339FE
-   CompCRC32 = &H6DB339FE
+   CRC32 = &HE62CD9AF
+   CompCRC32 = &HE62CD9AF
    IsRoom = True
 
 [Logic41]
@@ -223,22 +223,22 @@
 [Logic37]
    ID = rm.ControlRoom
    Description = ""
-   CRC32 = &H92204B1B
-   CompCRC32 = &H92204B1B
+   CRC32 = &HD36EDB8F
+   CompCRC32 = &HD36EDB8F
    IsRoom = True
 
 [Logic38]
    ID = rm.OuterBay
    Description = ""
-   CRC32 = &H770640AF
-   CompCRC32 = &H770640AF
+   CRC32 = &H735A0D68
+   CompCRC32 = &H735A0D68
    IsRoom = True
 
 [Logic39]
    ID = rm.OuterHanger
    Description = ""
-   CRC32 = &H6A39E28D
-   CompCRC32 = &H6A39E28D
+   CRC32 = &HF9B98DAD
+   CompCRC32 = &HF9B98DAD
    IsRoom = True
 
 [Logic5]

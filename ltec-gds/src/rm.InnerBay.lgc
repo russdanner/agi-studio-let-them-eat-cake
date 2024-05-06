@@ -57,10 +57,10 @@ if(newRoom) {
     if(isset(fWearingSuit)) {
         set.view(ego, vw.RogerSpacesuitA);
     }
-    if(!isset(fWearingSuit)) {
+    else {
         set.view(ego, vw.Roger);
-        draw(objHangingSuit2);
         position(objHangingSuit2, 43, 95);    
+        draw(objHangingSuit2);
     }
     
     stop.cycling(objCloset);
@@ -263,7 +263,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         }
     }
 
-    if(said("drop", "broom")) {
+    if((said("drop", "broom") || said("put", "broom"))) {
         if(posn(ego, 100, 95, 120, 103)) {
             if(!has("Broom")) {
                 print("You don't have one.");

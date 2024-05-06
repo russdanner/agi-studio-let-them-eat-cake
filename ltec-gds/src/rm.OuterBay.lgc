@@ -69,8 +69,8 @@ if(newRoom) {
         position(objTram, 5, 47);
         move.obj(objTram, 55, 47, 2, fTramInboundDone);        
         
-        [load.sound(sndTramStop);
-        [sound(sndTramStop, fSoundDone);    
+        load.sound(snd.tube);
+        sound(snd.tube, fSoundDone);    
     }
 
     position(objHangerDoorLeft, 5, 129);
@@ -83,6 +83,8 @@ if(newRoom) {
     draw(objHangerDoorLeft);
     draw(objPlate);
 
+    reset(fDoorOpen);
+    
     show.pic();
 }
 
@@ -95,22 +97,30 @@ if(isset(fTramInboundDone)) {
     set.cel(objTram, 1);
 }
 
-if(posn(ego, 8, 123, 20, 143)) {
-    end.of.loop(objHangerDoorLeft, fDoAction);
-    [load.sound(sndSpaceDoor)
-    [sound(sndSpaceDoor, fSoundDone)    
+[ hanger door
+if(posn(ego, 2, 120, 24, 140)) {
+    if(!isset(fDoorOpen)) {
+        [end.of.loop(objHangerDoorLeft, fDoorOpen);
+        set(fDoorOpen);
+        set.cel(objHangerDoorLeft, 4);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, fSoundDone);        
+    }
+}
+else {
+    if(isset(fDoorOpen)) {
+        set.cel(objHangerDoorLeft, 0);
+        [end.of.loop(objHangerDoorLeft, f99);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, fSoundDone);
+        reset(fDoorOpen);        
+    }
 }
 
-if(obj.in.box(ego, 21, 123, 25, 128)) {
-    set.cel(objHangerDoorLeft, 0);
-    end.of.loop(objHangerDoorLeft, f99);
-    [load.sound(sndSpaceDoor)
-    [sound(sndSpaceDoor, fSoundDone)    
-}
-
-if(obj.in.box(ego, 2, 123, 5, 128)) {
+[ Hitbox to exit out to the hanger
+if(posn(ego, 2, 120, 14, 130)) {
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 146);
+    assignn(vEgoX, 140);
     assignn(vEgoY, 141);
     assignn(vRoomInited, valFalse);
     new.room(rm.OuterHanger);     

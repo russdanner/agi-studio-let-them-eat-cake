@@ -20,7 +20,6 @@ if(newRoom) {
     load.pic(currentRoom);
     draw.pic(currentRoom);
     discard.pic(currentRoom);
-    call(lgc.RoomInit);
       
     unanimate.all();
     assignn(vRoomInited, valTrue);
