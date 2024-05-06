@@ -91,3 +91,11 @@ Unknown word: obj
 Room 2
 Input line: stop sweeping
 Error: 11 Value: 50
+
+Room 2
+Input line: restore
+Error: 9 Value: 9
+
+Room 36
+Input line: restore
+Error: 8 Value: 11

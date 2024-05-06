@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/6/2024 12:30:09 AM"
+   LastEdit = "5/6/2024 2:33:29 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -195,29 +195,29 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &HAAF684C0
-   CompCRC32 = &HAAF684C0
+   CRC32 = &HE07E34D2
+   CompCRC32 = &HE07E34D2
    IsRoom = True
 
 [Logic3]
    ID = rm.Watch
    Description = ""
-   CRC32 = &H296D90CA
-   CompCRC32 = &H91AE9714
+   CRC32 = &H3DA5B362
+   CompCRC32 = &H3DA5B362
    IsRoom = True
 
 [Logic36]
    ID = rm.InnerBay
    Description = ""
-   CRC32 = &H191555A5
-   CompCRC32 = &H191555A5
+   CRC32 = &H6DB339FE
+   CompCRC32 = &H6DB339FE
    IsRoom = True
 
 [Logic41]
    ID = rm.Bathroom
    Description = ""
-   CRC32 = &H24E37231
-   CompCRC32 = &H24E37231
+   CRC32 = &HC7BD4FFA
+   CompCRC32 = &HC7BD4FFA
    IsRoom = True
 
 [Logic37]
@@ -810,6 +810,23 @@
    Description = ""
    Key = 0
    TPQN = 16
+   Inst0 = 80
+   Inst1 = 80
+   Inst2 = 80
+   Mute0 = False
+   Mute1 = False
+   Mute2 = False
+   Mute3 = False
+   Visible0 = True
+   Visible1 = True
+   Visible2 = True
+   Visible3 = True
+
+[Sound10]
+   ID = snd.SpaceDoor
+   Description = ""
+   Key = 0
+   TPQN = 4
    Inst0 = 80
    Inst1 = 80
    Inst2 = 80

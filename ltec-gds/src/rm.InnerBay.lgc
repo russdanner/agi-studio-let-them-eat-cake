@@ -81,21 +81,25 @@ if(newRoom) {
     position(objBathroomDoor1, 67, 98);
     position(objHangingSuit1, 35, 95);
     position(objHangerDoorLeft, 6, 131);
-   
-    set.priority(ego, 13);
-
     position.v(ego, vEgoX, vEgoY);
-
+   
+    set.cel(objBathroomDoor, 0);
+    set.loop(objBathroomDoor, 0);
+    set.cel(objBathroomDoor1, 0);
+    set.loop(objBathroomDoor1, 1);
+    set.priority(ego, 13);
+    
+    reset(fDoorOpen);
+    reset(fDoor2Open);
     reset(fDoAction);
 
     draw(ego);
     draw(objCloset);
     draw(objTram);
     draw(objHangingSuit1);
-    draw(objBathroomDoor);
     draw(objBathroomDoor1);
+    draw(objBathroomDoor);
     draw(objHangerDoorLeft);
-    
     show.pic();
 }
 
@@ -103,53 +107,52 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-if(obj.in.box(ego, 100, 95, 113, 110)) {
-    end.of.loop(objCloset, fDoor2Open);
+[ janitor closet
+if(posn(ego, 100, 95, 108, 115)) {
     if(!isset(fDoor2Open)) {
-        [load.sound(sndSpaceDoor);
-        [sound(sndSpaceDoor, fSoundDone);        
+        end.of.loop(objCloset, fDoor2Open);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, fSoundDone);
+        set(fDoor2Open);        
     }
 }
-
-if(!obj.in.box(ego, 100, 95, 113, 110)) {
+else {
     if(isset(fDoor2Open)) {
         set.cel(objCloset, 0);
-        [load.sound(sndSpaceDoor);
-        [sound(sndSpaceDoor, fSoundDone);    
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, fSoundDone);    
         reset(fDoor2Open);
-        reset(fDoorOpen);
     }
 }
 
-if(posn(ego, 8, 123, 20, 128)) {
-    end.of.loop(objHangerDoorLeft, fDoorOpen);
-
+[ hanger door
+if(posn(ego, 2, 120, 24, 128)) {
     if(!isset(fDoorOpen)) {
-        [load.sound(sndSpaceDoor)
-        [sound(sndSpaceDoor, fSoundDone)        
+        [end.of.loop(objHangerDoorLeft, fDoorOpen);
+        set(fDoorOpen);
+        set.cel(objHangerDoorLeft, 4);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, fSoundDone);        
     }
-    reset(fDoorOpen);
 }
-
-if(posn(ego, 21, 123, 25, 128)) {
-    set.cel(objHangerDoorLeft, 0);
-    //end.of.loop(objHangerDoorLeft, 99)
+else {
     if(isset(fDoorOpen)) {
-        [load.sound(sndSpaceDoor)
-        [sound(sndSpaceDoor, fSoundDone);        
+        set.cel(objHangerDoorLeft, 0);
+        [end.of.loop(objHangerDoorLeft, f99);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, fSoundDone);
+        reset(fDoorOpen);        
     }
-    reset(fDoorOpen);
 }
 
-if(obj.in.box(ego, 2, 123, 5, 128)) {
+[ Hitbox to exit out to the hanger
+if(posn(ego, 2, 120, 14, 130)) {
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 146);
+    assignn(vEgoX, 140);
     assignn(vEgoY, 141);
     assignn(vRoomInited, valFalse);
     new.room(rm.InnerHanger);     
 }
-
-
 
 [***************************************
 [ PROCESS PLAYER INPUT
@@ -185,11 +188,11 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         if(isset(fWearingSuit)) {
             print("You can't go in there wearing your EVA pressure suit. That could get VERY messy.");
         }
-        if(!isset(fWearingSuit)) {
+        else {
             if(posn(ego, 71, 100, 85, 105)) {
-                [load.sound(sndSpaceDoor);
-                [sound(sndSpaceDoor, fSoundDone);    
-            
+                load.sound(snd.SpaceDoor);
+                sound(snd.SpaceDoor, fSoundDone);    
+        
                 get.posn(ego, vEgoX, vEgoY);
                 assignn(vEgoX, 75);
                 assignn(vEgoY, 148);
@@ -223,7 +226,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         if(!isset(fWearingSuit)) {
             print("You are not wearing it.");
         }
-        if(isset(fWearingSuit)) {
+        else {
             if(posn(ego, 35, 100, 50, 105)) {
                 if(!isset(fPointsForRemoveSuit)) {
                     set(fPointsForRemoveSuit);
@@ -232,15 +235,18 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     
                 load.view(vw.Roger);
                 set.view(ego, vw.Roger);
-                draw(objHangingSuit2);
+                
+                animate.obj(objHangingSuit2);
+                stop.cycling(objHangingSuit2);
                 position(objHangingSuit2, 43, 95);
+                draw(objHangingSuit2);
                 reset(fWearingSuit);        
             }
             else {
                 print("You are not close enough.");
             }
         }
-    }
+                                    }
     
     if((said("enter", "tram") || said("get", "tram"))) {
         if(isset(fWearingSuit)) {
@@ -306,8 +312,8 @@ if(isset(fDoAction)) {
     assignn(vTimer, 0);
 
     set(fTramRunning);     
-    [ load.sound(sndTramGo);
-    [ sound(sndTramGo, fSoundDone);
+    load.sound(snd.Tube);
+    sound(snd.Tube, fSoundDone);
     ignore.blocks(objTram);    
     move.obj(objTram, 110, 47, 2, fTramOutboundDone);        
 }

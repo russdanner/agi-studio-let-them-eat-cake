@@ -42,7 +42,7 @@ if(newRoom) {
         }
     }
 
-    position(objLockedDoor, 52, 132);
+    position(objLockedDoor, 51, 133);
     set.priority(objLockedDoor, 4);
 
     position.v(ego, vEgoX, vEgoY);
@@ -62,7 +62,96 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-[ add other room specific statements here
+if(isset(fFlushing)) {
+    addn(vTimer, 1);
+    [sheesh I need a goto so I can build routines
+    if(greatern(vTimer, 30)) {
+        add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
+    }
+    if(greatern(vTimer, 35)) {
+        add.to.pic(vw.Waterfill, 0, 0, 47, 144, 6, 14);
+    }    
+    if(greatern(vTimer, 40)) {
+        add.to.pic(vw.Waterfill, 0, 0, 47, 142, 6, 14);
+    }    
+    if(greatern(vTimer, 45)) {
+        add.to.pic(vw.Waterfill, 0, 0, 47, 140, 6, 14);
+    }
+    
+    if(greatern(vTimer, 50)) {
+        set(fDead);
+        assignn(vDeathReason, valXsFlushola);
+        reset(fFlushing);
+    }
+}
+
+if(isset(fDead)) {
+    [ fill the room w water and leave it
+    add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 144, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 142, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 140, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 138, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 136, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 134, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 132, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 130, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 128, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 126, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 124, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 122, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 120, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 118, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 116, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 114, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 112, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 110, 6, 14);
+}
+
+if(isset(fPooping)) {
+    
+    if(equaln(vTimer, 10)) {
+        set.loop(ego, 1); 
+        set.cel(ego, 0);
+        reset(fStillPooping);
+        end.of.loop(ego, fStillPooping);
+    }
+    
+    if(equaln(vTimer, 20)) {
+        set.loop(ego, 0); 
+        set.cel(ego, 0);
+        reset(fStillPooping);
+        end.of.loop(ego, fStillPooping); 
+    }
+    
+    if(equaln(vTimer, 50)) {
+        set.loop(ego, 1); 
+        set.cel(ego, 0);
+        reset(fStillPooping);
+        end.of.loop(ego, fStillPooping);
+    }
+    
+    if(equaln(vTimer, 90)) {
+        position(ego, 73, 126);
+        player.control();
+        set.view(ego, vw.Roger);
+        set.loop(ego, 0); 
+        set.cel(ego, 0); 
+        reset(fPooping);
+        reset(fStillPooping);
+
+        print("Whew! You feel relieved. It turns out you are as good at making clogs as you are at clearing them.");
+    }
+}
+
+[ hitbox to leave bathroom
+if(obj.in.box(ego, 68, 149, 84, 151)) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 73);
+    assignn(vEgoY, 100);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.InnerBay);     
+}
 
 
 [***************************************
@@ -81,7 +170,6 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         set.cel(ego, 0);
         position(ego, 73, 126);
         start.cycling(ego);
-        assignn(vGameCycleDelay, 6);
         end.of.loop(ego, fStillPooping); 
     }
     
@@ -204,61 +292,6 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     if(said("look", "mirror")) {
         print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. if the ladies don't find you handsome they should atleast find you handy. You thread that needle pretty well.");
     }    
-}
-
-
-if(isset(fFlushing)) {
-    addn(vTimer, 1);
-    [sheesh I need a goto so I can build routines
-    if(greatern(vTimer, 30)) {
-        add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
-    }
-    if(greatern(vTimer, 35)) {
-        add.to.pic(vw.Waterfill, 0, 0, 47, 144, 6, 14);
-    }    
-    if(greatern(vTimer, 40)) {
-        add.to.pic(vw.Waterfill, 0, 0, 47, 142, 6, 14);
-    }    
-    if(greatern(vTimer, 45)) {
-        add.to.pic(vw.Waterfill, 0, 0, 47, 140, 6, 14);
-    }
-    
-    if(greatern(vTimer, 50)) {
-        set(fDead);
-        assignn(vDeathReason, valXsFlushola);
-        reset(fFlushing);
-    }
-}
-
-if(isset(fDead)) {
-    [ fill the room w water and leave it
-    add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 144, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 142, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 140, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 138, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 136, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 134, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 132, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 130, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 128, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 126, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 124, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 122, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 120, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 118, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 116, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 114, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 112, 6, 14);
-    add.to.pic(vw.Waterfill, 0, 0, 47, 110, 6, 14);
-}
-
-if(obj.in.box(ego, 68, 149, 84, 151)) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 73);
-    assignn(vEgoY, 100);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.InnerBay);     
 }
 
 [***************************************

@@ -120,30 +120,12 @@ if(newRoom) {
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
     if(said("stop", "sweeping")) {
-        [get.posn(ego, vEgoX, vEgoY);
-        [if(lessn(vEgoX, 75)) {
-        [    subn(vEgoX, 10);            
-        [}
-        [if(greatern(vEgoX, 75)) {
-        [    addn(vEgoX, 10);            
-        [}
-        [position.v(ego, vEgoX, vEgoY);    
-        
         set.view(ego, vw.RogerSpacesuitA);
         assignn(vSweeping, valFalse);
     }
 
     if((said("start", "sweeping") || said("sweep"))) {
         if(has("Broom")) {
-            [get.posn(ego, vEgoX, vEgoY);
-            [if(lessn(vEgoX, 75)) {
-            [    subn(vEgoX, 10);            
-            [}
-            [if(greatern(vEgoX, 75)) {
-            [    addn(vEgoX, 10);            
-            [}           
-            [position.v(ego, vEgoX, vEgoY);    
-        
             set.view(ego, vw.RogerSpacesuitBroom);
             assignn(vSweeping, valTrue);
             start.cycling(ego);    
@@ -245,7 +227,7 @@ if(obj.in.box(ego, 145, 135, 160, 160)) {
         assignn(vSweeping, valFalse);
 
         get.posn(ego, vEgoX, vEgoY);
-        assignn(vEgoX, 10);
+        assignn(vEgoX, 15);
         assignn(vEgoY, 126);
         assignn(vRoomInited, valFalse);
         new.room(rm.InnerBay);         
