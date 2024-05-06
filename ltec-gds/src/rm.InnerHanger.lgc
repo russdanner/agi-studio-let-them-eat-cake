@@ -31,7 +31,7 @@ if(newRoom) {
     unanimate.all();
     assignn(vRoomInited, valTrue);
 
-    [load.sound(sndWatchBeep);
+    load.sound(snd.WatchBeep);
 
     load.view(vw.Roger);
     load.view(vw.RogerSpacesuitBroom);
@@ -70,14 +70,13 @@ if(newRoom) {
 
     if(isset(fWearingSuit)) {
         if(equaln(vSweeping, valTrue)) {
-            [set.view(objEgo, vw.RogerSpacesuitBroom);
-            set.view(ego, vw.RogerSpacesuitA);
+            set.view(ego, vw.RogerSpacesuitBroom);
         }
-        if(equaln(vSweeping, valFalse)) {
+        else {
             set.view(ego, vw.RogerSpacesuitA);
         }    
     }
-    if(!isset(fWearingSuit)) {
+    else {
         set.view(ego, vw.Roger);
     }
 
@@ -94,8 +93,14 @@ if(newRoom) {
     set.priority(objHangerSplat1, 4);
     set.priority(objHangerSplat2, 4);
 
-    draw(objHangerSplat1);
-    draw(objHangerSplat2);
+    if(equaln(vSplat1Cleaned, valFalse)) {
+        draw(objHangerSplat1);
+    }
+
+    if(equaln(vSplat2Cleaned, valFalse)) {
+        draw(objHangerSplat2);
+    }
+    
     draw(objBigShuttle);
     draw(ego);
 
@@ -221,7 +226,7 @@ if(equaln(vCleanedUp, valTrue)) {
     if(greatern(vTimer, 99)) {
         if(!isset(fWatchHasBeeped)) {
             set(fWatchHasBeeped);
-            [sound(sndWatchBeep, fSoundDone);
+            sound(snd.WatchBeep, fSoundDone);
             print("A long beep is emitted from the watch on your arm.");    
         }
     }
@@ -277,8 +282,7 @@ if(obj.in.box(ego, 145, 135, 160, 160)) {
         print("Look at that deck!! You better keep cleaning.");
         get.posn(ego, vEgoX, vEgoY);
         assignn(vEgoX, 146);
-        assignn(vTempVar1, LEFT);
-        set.dir(ego, vTempVar1);
+        assignn(egoDir, LEFT);
         position.v(ego, vEgoX, vEgoY);
     }
 }
