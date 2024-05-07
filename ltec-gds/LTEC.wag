@@ -244,15 +244,15 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &H3C2E80CA
-   CompCRC32 = &H3C2E80CA
+   CRC32 = &H9A65F98C
+   CompCRC32 = &H9A65F98C
    IsRoom = True
 
 [Logic8]
    ID = rm.DavCrashSiteA3
    Description = ""
-   CRC32 = &H5FC00EB9
-   CompCRC32 = &H5FC00EB9
+   CRC32 = &HA24919DC
+   CompCRC32 = &HA24919DC
    IsRoom = True
 
 [Logic40]

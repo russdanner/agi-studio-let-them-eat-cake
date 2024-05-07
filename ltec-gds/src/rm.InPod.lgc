@@ -29,8 +29,6 @@ if(newRoom) {
     animate.obj(objPodStars2);
     animate.obj(objPodStars3);
     animate.obj(objPodStars4);
-    animate.obj(objPodStars5);
-    animate.obj(objPodStars6);
     animate.obj(objCockpitThrottle);
     animate.obj(objDecal);
     animate.obj(objCockpitButtons1);
@@ -56,7 +54,7 @@ if(newRoom) {
     stop.cycling(objPodStars1);
     stop.cycling(objPodStars2);
     stop.cycling(objPodStars3);
-    stop.cycling(objPodStars4);
+    stop.cycling(objPodStars4);    
     
     position(objDecal, 119, 124);    
     position(objCockpitThrottle, 106, 128);
@@ -242,11 +240,13 @@ if(isset(fWarping)) {
         set.view(objWarp, vw.WorldWarp);
         set.priority(objWarp, 4);
         start.cycling(objWarp);
+        stop.motion(objWarp);
+
 
         erase(objPodStars2);
         erase(objPodStars3);
         erase(objPodStars4);    
-        position(objWarp, 9, 92);
+        position(objWarp, 9, 84);
         draw(objWarp);
     }
 }

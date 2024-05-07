@@ -31,6 +31,7 @@ if(newRoom) {
     load.view(vw.CrashingPod);
 
     animate.obj(ego);
+    animate.obj(objCrashingPod);
     animate.obj(objGlassSparkle);
 
     set.view(ego, vw.Roger);
@@ -42,23 +43,29 @@ if(newRoom) {
             assignn(vEgoX, 13);
             assignn(vEgoY, 140);
             stop.cycling(ego);
+            assignn(egoDir, STOPPED);
+            observe.blocks(ego);
+            position.v(ego, vEgoX, vEgoY);
+            
             stop.cycling(objCrashingPod);
             set.cel(objCrashingPod, 7);
             position(objCrashingPod, 20, 140);
-            set.priority(objCrashingPod, 6);
+            set.priority(objCrashingPod, 13);
+            block(15, 128, 38, 146);
+            
+            draw(ego);
         }
+    }
+    else {
+        position(objCrashingPod, 1, 1);
     }
 
     reset(fDrowning);
+    
     assignn(vActionCount, 1);
-
-    position.v(ego, vEgoX, vEgoY);
-    start.cycling(objGlassSparkle);
-
-    draw(ego);
-    draw(objGlassSparkle);
+    
     draw(objCrashingPod);
-
+    
     show.pic();
 }
 
@@ -70,10 +77,12 @@ if(!fCrashed) {
     if(lessn(vActionCount, 60)) {
         if(lessn(vActionCount, 10)) {
             assignn(vTempVar1, 2);
-            assignn(vTempVar2, 15);
+            assignn(vTempVar2, 10);
+            erase(objCrashingPod);
             reposition(objCrashingPod, vTempVar1, vTempVar2);
-        }
-    
+            draw(objCrashingPod);
+        }                
+
         addn(vActionCount, 1);
     }
     
@@ -98,10 +107,11 @@ if(!has("Glass")) {
     random(1, 125, vDiceRoll);
 
     if(equaln(vDiceRoll, 40)) {
-        position(objGlassSparkle, 32, 147);
+        position(objGlassSparkle, 32, 148);
+        start.cycling(objGlassSparkle);
         draw(objGlassSparkle);
     }
-    if(!equaln(vDiceRoll, 40)) {
+    else {
         erase(objGlassSparkle);
     }
 }
@@ -153,7 +163,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     
     if(said("take", "glass")) {
         if(!has("Glass")) {
-            if(posn(ego, 28, 142, 37, 145)) {    
+            if(posn(ego, 28, 138, 37, 150)) {    
                 get("Glass");
                 addn(currentScore, 1);    
                 print("A small piece of highly reflective safety glass has broken away from the shield as it is known to do. You pick it up and carry it with you.");
