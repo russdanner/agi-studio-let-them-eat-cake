@@ -1,6 +1,6 @@
 [*********************************************************************
 [
-[ rm.DavRockE4
+[ rm.DavBigLakeLeftD2
 [
 [ 
 [
@@ -10,7 +10,7 @@
 [ LOCAL DEFINES
 [***************************************
 
-#define objHole o7
+[ add local defines here
 
 [***************************************
 [ FIRST CYCLE ONLY
@@ -22,45 +22,49 @@ if(newRoom) {
     discard.pic(currentRoom);
     
     unanimate.all();
-    assignn(vRoomInited, valTrue);
-    
+    assignn(vRoomInited, 1);
+
     load.view(vw.Roger);
+    load.view(vw.RogerSwim);
     load.view(vw.Mist);
+   
+    set.view(ego, vw.Roger);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+    set.view(objMist3, vw.Mist);
+    set.view(objMist4, vw.Mist);
 
     animate.obj(ego);
     animate.obj(objMist);
     animate.obj(objMist2);
+    animate.obj(objMist3);
     animate.obj(objMist4);
-
-    set.view(ego, vw.Roger);
-    set.view(objMist, vw.Mist);
-    set.view(objMist2, vw.Mist);
-    set.view(objMist4, vw.Mist);
-
+    
     stop.cycling(objMist);
     stop.cycling(objMist2);
+    stop.cycling(objMist3);
     stop.cycling(objMist4);
 
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
-            assignn(vEgoX, 140);
-            assignn(vEgoY, 70);
+            assignn(vEgoX, 50);
+            assignn(vEgoY, 140);
         }
     }
-
-    position(objMist, 1, 43);
-    position(objMist2, 63, 43);
-    position(objMist4, 120, 43);
-
-    reset(fDoAction);
     
+    position(objMist, 1, 166);
+    position(objMist2, 43, 166);
+    position(objMist3, 84, 166);
+    position(objMist4, 120, 166);
+
     position.v(ego, vEgoX, vEgoY);
-    
-    set.horizon(50);
+
+    set.horizon(40);
 
     draw(ego);
     draw(objMist);
     draw(objMist2);
+    draw(objMist3);
     draw(objMist4);
 
     show.pic();
@@ -70,77 +74,85 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-if(edgeEgoHit == BOTTOM_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 55);
-    assignn(vRoomInited, valFalse);
-    new.room(rm.DavWizardE5);             
-}   
-
 if(edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWellTopD1);   
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
     print("You're a bit foggy here. You decide to turn back.");
     get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoY, 55);
-    assignn(egoDir, DOWN);
+    assignn(vEgoX, 15);
+    assignn(egoDir, RIGHT);
     erase(ego);
     position.v(ego, vEgoX, vEgoY);
     draw(ego);
+
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 5);
-    new.room(rm.DavDwarfF4);     
-}    
-
-if(edgeEgoHit == LEFT_EDGE) {
-    get.posn(ego, vEgoX, vEgoY);
-    assignn(vEgoX, 150);
+    assignn(vEgoY, 100);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavLakeFGMD4);
+    new.room(rm.DavBigLakeRightE2);     
 }
 
-if(isset(fDoAction)) {
-    reset(fDoAction);
-    set.loop(objHole , 1);
-    set.cel(objHole, 0);
-    assignn(vDeathReason, valXsBewareRandomHoles);
-    end.of.loop(objHole, fDead);
+if(edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 155);
+    assignn(egoDir, UP);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}   
+
+[in the lake
+if(isset(fSysEgoOnWater)) {
+    if(!isset(fSwimming)) {
+        if(!isset(fDrowning)) {
+            set(fDrowning);
+            set.view(ego, vw.RogerSplash);
+        }
+    }
 }
+else {
+    if((isset(fSwimming) || isset(fDrowning))) {
+        set.view(ego, vw.Roger);
+        reset(fSwimming);
+        reset(fDrowning);
+        normal.motion(ego);    
+    }
+}  
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    if(said("look")) {
-        print("The area is heavily wooded. A large rock dominates the area.");
+    if(said("swim")) {
+        if(isset(fSysEgoOnWater)) {
+            if(isset(fDrowning)) {
+                set.view(ego, vw.RogerSwim);
+                reset(fDrowning);
+                set(fSwimming);
+                print("ok");
+           } 
+        }
     }
     
-    if(said("look", "room")) {
-        print("The area is heavily wooded. A large rock dominates the area.");
+    if((said("look", "room") || said("look"))) {
+        print("There's a large beautiful lake that goes off to the east here and a thick fog to the south and west.");
     }
-    
+
     if(said("look", "fog")) {
         print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
     }
-    
-    if(said("look", "rock")) {
-        print("There's a large rock here. A large hole can be seen at the base of the rock.");
-    }
-    
-    if(said("look", "hole")) {
-        if(posn(ego, 88, 128, 104, 140)) {
-            erase(ego);
-            load.view(vw.RogerEaten);
-            set.view(objHole, vw.RogerEaten);
-            position(objHole, 97, 138);
-            animate.obj(objHole);
-            draw(objHole);
-            end.of.loop(objHole , fDoAction);
-        }
-        else {
-            print("You can't see much from here.");        
-        }
+
+    if(said("look", "water")) {
+        print("The lake is calm and beautiful.");
     }
 }
 
@@ -154,3 +166,4 @@ return();
 [***************************************
 [ DECLARED MESSAGES
 [***************************************
+#message 1 "You see nothing of interest." 

@@ -45,7 +45,6 @@ if(newRoom) {
     set.view(objHawk, vw.Hawk);
     set.view(objFeatherFall, vw.FeatherFall);
 
-
     stop.cycling(objMist);
     stop.cycling(objMist2);
     stop.cycling(objMist3);
@@ -60,8 +59,8 @@ if(newRoom) {
 
     position(objMist, 1, 166);
     position(objMist2, 43, 166);
-    position(objMist3, 85, 166);
-    position(objMist4, 127, 166);
+    position(objMist3, 84, 166);
+    position(objMist4, 120, 166);
 
     reset(fHawkFlightADone);
     reset(fHawkFlightBDone);
@@ -71,15 +70,14 @@ if(newRoom) {
 
     set.horizon(50);
 
-    if(!has("Feather")) {
-        if(!has("Quill")) {
-            if(has("Cake")) {
-                if(has("Ink")) {
-                    set.priority(objHawk, 10);    
-                    position(objHawk, 160, 70);
-                    move.obj(objHawk, 40, 40, 2, fHawkFlightADone);                
-                }
-            }
+    if(!has("Feather") && !has("Quill")) {
+        if(has("Cake") && has("Ink")) {
+            set.priority(objHawk, 10);    
+            position(objHawk, 160, 70);
+
+            draw(objHawk);
+
+            move.obj(objHawk, 40, 40, 2, fHawkFlightADone);                
         }
     }
 
@@ -88,8 +86,6 @@ if(newRoom) {
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
-    draw(objHawk);
-    draw(objFeatherFall);
         
     [ display the picture on screen
     show.pic();
@@ -102,6 +98,8 @@ if(newRoom) {
 if(isset(fHawkFlightADone)) {
     reset(fHawkFlightADone);
     position(objFeatherFall, 40, 40);
+    draw(objFeatherFall);
+
     move.obj(objHawk, 0, 40, 1, fHawkFlightBDone);
     move.obj(objFeatherFall, 40, 105, 1, fFeatherFallDone);
 }
@@ -120,7 +118,9 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 155);
     assignn(egoDir, UP);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }   
 
 if(edgeEgoHit == TOP_EDGE) {
@@ -135,7 +135,9 @@ if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 150);
     assignn(egoDir, LEFT);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }    
 
 if(edgeEgoHit == LEFT_EDGE) {

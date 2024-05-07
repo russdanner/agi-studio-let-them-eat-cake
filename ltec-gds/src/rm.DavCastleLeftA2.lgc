@@ -97,7 +97,9 @@ if(edgeEgoHit == TOP_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 45);
     assignn(egoDir, DOWN);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }
 
 if(edgeEgoHit == LEFT_EDGE) {

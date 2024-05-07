@@ -44,22 +44,25 @@ if(newRoom) {
             assignn(vEgoY, 140);
             stop.cycling(ego);
             assignn(egoDir, STOPPED);
-            observe.blocks(ego);
-            position.v(ego, vEgoX, vEgoY);
-            
-            stop.cycling(objCrashingPod);
-            set.cel(objCrashingPod, 7);
-            position(objCrashingPod, 20, 140);
-            set.priority(objCrashingPod, 13);
-            block(15, 128, 38, 146);
-            
-            draw(ego);
         }
+    }
+
+    if(fCrashed) {
+        observe.blocks(ego);
+        position.v(ego, vEgoX, vEgoY);
+        
+        stop.cycling(objCrashingPod);
+        set.cel(objCrashingPod, 7);
+        position(objCrashingPod, 20, 140);
+        set.priority(objCrashingPod, 13);
+        block(15, 128, 38, 146);
+        
+        draw(ego);
     }
     else {
         position(objCrashingPod, 1, 1);
     }
-
+    
     reset(fDrowning);
     
     assignn(vActionCount, 1);

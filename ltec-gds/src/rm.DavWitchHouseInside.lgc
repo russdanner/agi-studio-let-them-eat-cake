@@ -30,16 +30,15 @@ if(newRoom) {
     load.view(vw.Paper);
 
     animate.obj(ego);
-
-    set.view(ego, vw.Roger);
-    set.view(objWitchCabinet, vw.WitchCabinet);
-    set.view(objPaper, vw.Paper);
+    animate.obj(objPaper);
+    animate.obj(objWitchCabinet);
     
-    stop.cycling(objWitchCabinet);
+    set.view(ego, vw.Roger);
+    set.view(objPaper, vw.Paper);
+    set.view(objWitchCabinet, vw.WitchCabinet);
 
-    draw(ego);
-    draw(objWitchCabinet);
-    draw(objPaper);
+    stop.cycling(objPaper);
+    stop.cycling(objWitchCabinet);
     
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
@@ -60,6 +59,10 @@ if(newRoom) {
     reset(fCabinetOpen);
     
     set.priority(ego, 14);
+
+    draw(ego);
+    draw(objWitchCabinet);
+    draw(objPaper);
     
     show.pic();
 }
@@ -81,10 +84,11 @@ if(isset(fCabinetOpen)) {
     if(!has("Cake")) {
         load.view(vw.Cake); 
         set.view(objCake, vw.Cake);
-        draw(objCake);
+        animate.obj(objCake);
         set.cel(objCake, 0);
         position(objCake, 35, 69);
         set.priority(objCake, 10);
+        draw(objCake);
     }
 }
 

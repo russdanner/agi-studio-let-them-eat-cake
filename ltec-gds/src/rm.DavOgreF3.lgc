@@ -30,8 +30,6 @@ if(newRoom) {
 
     set.view(ego, vw.Roger);
 
-    draw(ego);
-
     reset(fGotcha);
 
     if(equaln(vEgoX, 0)) {
@@ -42,6 +40,8 @@ if(newRoom) {
     }
 
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+
     set.horizon(55);
 
     random(1, 100, vDiceRoll); 
@@ -50,12 +50,12 @@ if(newRoom) {
             load.view(vw.Ogre);
             animate.obj(objMonster);
             set.view(objMonster, vw.Ogre);
-            draw(objMonster);
             position(objMonster, 80, 80);        
-            follow.ego(objMonster, 2, fGotcha);    
+            draw(objMonster);
+            follow.ego(objMonster, 8, fGotcha);    
 
-            [load.sound(sndDevMonster);
-            [sound(sndDevMonster, fSoundDone)        
+            load.sound(snd.MonsterAlert);
+            sound(snd.MonsterAlert, fSoundDone);        
         }
     }
     
@@ -85,7 +85,7 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 55);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavBowlA5);     
+    new.room(rm.DavDwarfF4);     
 }
 
 if(edgeEgoHit == LEFT_EDGE) {
@@ -93,7 +93,9 @@ if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 15);
     assignn(egoDir, RIGHT);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }
 
 if(edgeEgoHit == TOP_EDGE) {

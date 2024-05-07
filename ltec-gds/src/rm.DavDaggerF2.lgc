@@ -37,19 +37,20 @@ if(newRoom) {
         }
     }
 
-    // add wider range to reduce instances of encounter
     random(1, 100, vDiceRoll); 
 
     reset(fGotcha);
     if(lessn(vDiceRoll, 50)) {
         load.view(vw.Witch);
+        animate.obj(objMonster);
         set.view(objMonster, vw.Witch);
-        draw(objMonster);
         position(objMonster, 80, 30);        
-        follow.ego(objMonster, 2, fGotcha);   
+        draw(objMonster);
 
-        [load.sound(sndDevMonster)
-        [sound(sndDevMonster, fSoundDone)            
+        follow.ego(objMonster, 8, fGotcha);   
+
+        load.sound(snd.MonsterAlert);
+        sound(snd.MonsterAlert, fSoundDone);            
     }
 
     position.v(ego, vEgoX, vEgoY);
@@ -91,7 +92,7 @@ if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 50);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavLakeE2);  
+    new.room(rm.DavBigLakeRightE2);  
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {

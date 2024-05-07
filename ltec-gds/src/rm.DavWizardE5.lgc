@@ -53,8 +53,8 @@ if(newRoom) {
 
     position(objMist, 1, 166);
     position(objMist2, 43, 166);
-    position(objMist3, 85, 166);
-    position(objMist4, 127, 166);
+    position(objMist3, 84, 166);
+    position(objMist4, 120, 166);
 
     random(1, 100, vDiceRoll); 
 
@@ -94,7 +94,9 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 155);
     assignn(egoDir, UP);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }   
 
 if(edgeEgoHit == TOP_EDGE) {

@@ -51,29 +51,28 @@ if(newRoom) {
         }
     }
 
-    [position(objMist, 1, 47);
-    [position(objMist2, 43, 47);
-    [position(objMist3, 85, 47);
-    [position(objMist4, 127, 47);
+    position(objMist, 1, 13);
+    position(objMist2, 43, 13);
+    position(objMist3, 84, 13);
+    position(objMist4, 120, 13);
 
     [ add wider range to reduce instances of encounter
-    [random(1, 100, vDiceRoll);
+    reset(fGotcha);
 
-    [reset(fGotcha);
+    random(1, 100, vDiceRoll);
 
-    [if(lessn(vDiceRoll, 50)) {
-        [load.view(vw.Wolf);
-        [set.view(objMonster, vw.Wolf);
-        [draw(objMonster);
-        [position(objMonster, 80, 80);        
-        [follow.ego(objMonster, 2, fGotcha);
+    if(lessn(vDiceRoll, 50)) {
+        load.view(vw.Wolf);
+        set.view(objMonster, vw.Wolf);
+        animate.obj(objMonster);
+        position(objMonster, 80, 80);
+        draw(objMonster);        
+        follow.ego(objMonster, 8, fGotcha);
  
-        [ load.sound(sndDevMonster);
-        [ sound(sndDevMonster, fSoundDone);    
-    [}
+        load.sound(snd.MonsterAlert);
+        sound(snd.MonsterAlert, fSoundDone);    
+    }
     
-    [reset(fGotcha);
-
     position.v(ego, vEgoX, vEgoY);
 
     draw(ego);
@@ -96,7 +95,9 @@ if(edgeEgoHit == TOP_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 55);
     assignn(vEgoDirection, DOWN);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }
 
 if(edgeEgoHit == LEFT_EDGE) {
@@ -106,7 +107,7 @@ if(edgeEgoHit == LEFT_EDGE) {
     new.room(rm.DavWellTopD1);     
 }
 
-if(edgeEgoHit == LEFT_EDGE) {
+if(edgeEgoHit == RIGHT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 5);
     assignn(vEgoY, 100);
@@ -118,7 +119,7 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 50);
     assignn(vRoomInited, valFalse);
-    new.room(rm.DavLakeE2);     
+    new.room(rm.DavBigLakeRightE2);     
 }
 
 if(isset(fGotcha)) {

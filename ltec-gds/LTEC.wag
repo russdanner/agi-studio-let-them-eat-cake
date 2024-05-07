@@ -251,15 +251,15 @@
 [Logic8]
    ID = rm.DavCrashSiteA3
    Description = ""
-   CRC32 = &HA24919DC
-   CompCRC32 = &HA24919DC
+   CRC32 = &H1EA06C9B
+   CompCRC32 = &H1EA06C9B
    IsRoom = True
 
 [Logic40]
    ID = rm.Station
    Description = ""
-   CRC32 = &H92348248
-   CompCRC32 = &H92348248
+   CRC32 = &HBF3B6E0D
+   CompCRC32 = &HBF3B6E0D
    IsRoom = True
 
 [Logic7]
@@ -272,22 +272,22 @@
 [Logic10]
    ID = rm.DavRiverBendA4
    Description = ""
-   CRC32 = &H82276D25
-   CompCRC32 = &H82276D25
+   CRC32 = &H64277582
+   CompCRC32 = &H64277582
    IsRoom = True
 
 [Logic24]
    ID = rm.DavOgreF3
    Description = ""
-   CRC32 = &HCC0A93B0
-   CompCRC32 = &HCC0A93B0
+   CRC32 = &HFC049149
+   CompCRC32 = &HFC049149
    IsRoom = True
 
 [Logic11]
    ID = rm.DavBowlA5
    Description = ""
-   CRC32 = &HBEEF7C38
-   CompCRC32 = &HBEEF7C38
+   CRC32 = &HCD8FD738
+   CompCRC32 = &HCD8FD738
    IsRoom = True
 
 [Logic25]
@@ -300,78 +300,78 @@
 [Logic23]
    ID = rm.DavDaggerF2
    Description = ""
-   CRC32 = &HD141D471
-   CompCRC32 = &HD141D471
+   CRC32 = &H83763690
+   CompCRC32 = &H83763690
    IsRoom = True
 
 [Logic26]
    ID = rm.DavWalnutF5
    Description = ""
-   CRC32 = &H227EBBA6
-   CompCRC32 = &H227EBBA6
+   CRC32 = &H4085F14
+   CompCRC32 = &H4085F14
    IsRoom = True
 
 [Logic20]
    ID = rm.DavRockE4
    Description = ""
-   CRC32 = &HCD7D26BA
-   CompCRC32 = &HCD7D26BA
+   CRC32 = &H84E63550
+   CompCRC32 = &H84E63550
    IsRoom = True
 
 [Logic22]
    ID = rm.DavTreeF1
    Description = ""
-   CRC32 = &H9FC816EA
-   CompCRC32 = &H9FC816EA
+   CRC32 = &HD8B9599E
+   CompCRC32 = &HD8B9599E
    IsRoom = True
 
 [Logic19]
-   ID = rm.DavLakeE2
+   ID = rm.DavBigLakeRightE2
    Description = ""
-   CRC32 = &H57F662DC
-   CompCRC32 = &H57F662DC
+   CRC32 = &HFD5266B4
+   CompCRC32 = &HFD5266B4
    IsRoom = True
 
 [Logic9]
    ID = rm.DavCastleLeftA2
    Description = ""
-   CRC32 = &H18F4B321
-   CompCRC32 = &H18F4B321
+   CRC32 = &HE371F32F
+   CompCRC32 = &HE371F32F
    IsRoom = True
 
 [Logic21]
    ID = rm.DavWizardE5
    Description = ""
-   CRC32 = &H77F783BE
-   CompCRC32 = &H77F783BE
+   CRC32 = &H485DCDCB
+   CompCRC32 = &H485DCDCB
    IsRoom = True
 
 [Logic16]
    ID = rm.DavLakeFGMD4
    Description = ""
-   CRC32 = &HC42B020F
-   CompCRC32 = &HC42B020F
+   CRC32 = &H45AE38A4
+   CompCRC32 = &H45AE38A4
    IsRoom = True
 
 [Logic18]
    ID = rm.DavWolfE1
    Description = ""
-   CRC32 = &H618CB98
-   CompCRC32 = &H618CB98
+   CRC32 = &H4972D54B
+   CompCRC32 = &H4972D54B
    IsRoom = True
 
 [Logic12]
    ID = rm.DavCastleRightB2
    Description = ""
-   CRC32 = &H267CB185
-   CompCRC32 = &H267CB185
+   CRC32 = &H302118E4
+   CompCRC32 = &H302118E4
    IsRoom = True
 
 [Logic17]
    ID = rm.DavWitchHouseD5
    Description = ""
-   CRC32 = &H98842567
-   CompCRC32 = &H98842567
+   CRC32 = &HDD9DE7D5
+   CompCRC32 = &HDD9DE7D5
    IsRoom = True
 
 [Logic32]
@@ -398,15 +398,15 @@
 [Logic14]
    ID = rm.DavWellTopD1
    Description = ""
-   CRC32 = &H2368984D
-   CompCRC32 = &H2368984D
+   CRC32 = &H1CF47B78
+   CompCRC32 = &H1CF47B78
    IsRoom = True
 
 [Logic27]
    ID = rm.DavWitchHouseInside
    Description = ""
-   CRC32 = &H66D68B53
-   CompCRC32 = &H66D68B53
+   CRC32 = &HCDBCEE43
+   CompCRC32 = &HCDBCEE43
    IsRoom = True
 
 [Logic28]
@@ -417,10 +417,10 @@
    IsRoom = True
 
 [Logic15]
-   ID = rm.DavLakeD2
+   ID = rm.DavBigLakeLeftD2
    Description = ""
-   CRC32 = &H8DDC981F
-   CompCRC32 = &H8DDC981F
+   CRC32 = &H6FB93904
+   CompCRC32 = &H6FB93904
    IsRoom = True
 
 [Logic29]

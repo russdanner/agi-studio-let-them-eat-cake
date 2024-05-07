@@ -27,21 +27,18 @@ if(newRoom) {
     load.view(vw.RogerSplash);
     load.view(vw.RogerSwim);    
     load.view(vw.Mist);
-    load.view(vw.FGM);
     
     animate.obj(ego);
     animate.obj(objMist);
     animate.obj(objMist2);
     animate.obj(objMist3);
     animate.obj(objMist4);
-    animate.obj(objFGM);
 
     set.view(ego, vw.Roger);
     set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
-    set.view(objFGM, vw.FGM);
 
     stop.cycling(objMist);
     stop.cycling(objMist2);
@@ -55,18 +52,18 @@ if(newRoom) {
         }
     }
 
-    [position(objMist, 1, 43);
-    [position(objMist2, 43, 43);
-    [position(objMist3, 85, 43);
-    [position(objMist4, 127, 43);
+	position(objMist, 1, 13);
+     position(objMist2, 35, 13);
+     position(objMist3, 70, 13);
+     position(objMist4, 118, 13);
 
-    if(has("Invitation")) {
-        if(!isset(fEyesOpen)) {
-            if(!isset(fFlashed)) {
-                position(objFGM, 141, 154);
-                follow.ego(objFGM, 1, fGotcha);    
-            }
-        }
+    if(has("Invitation") && !isset(fEyesOpen) && !isset(fFlashed)) {
+        load.view(vw.FGM);
+        animate.obj(objFGM);
+        set.view(objFGM, vw.FGM);
+        position(objFGM, 139, 61);
+        draw(objFGM);
+        follow.ego(objFGM, 1, fGotcha);    
     }
 
     reset(fSwimming);
@@ -75,16 +72,14 @@ if(newRoom) {
 
     position.v(ego, vEgoX, vEgoY);
 
-    set.horizon(50);
+    set.horizon(43);
 
     draw(ego);
     draw(objMist);
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
-    draw(objFGM);
 
-    
     show.pic();
 }
 
@@ -96,7 +91,7 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 55);
     assignn(vRoomInited, valFalse);
-    [MR1: new.room(rm.DavWitchHouseD5);             
+    new.room(rm.DavWitchHouseD5);             
 }   
 
 if(edgeEgoHit == TOP_EDGE) {
@@ -104,7 +99,9 @@ if(edgeEgoHit == TOP_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 55);
     assignn(egoDir, DOWN);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }
 
 if(edgeEgoHit == RIGHT_EDGE) {
@@ -119,7 +116,9 @@ if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 15);
     assignn(egoDir, RIGHT);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }
     
 if(isset(fGotcha)) {
@@ -129,16 +128,50 @@ if(isset(fGotcha)) {
     print("A strange female alien dressed in beautiful shimmering robes catches up to you. In a voice that can only be described as song she says 'Traveler though you are asleep by may spell your eyes are opened.' A wave of energy errupts from a gadget she is carrying and blasts right into you. With a 'poof' she disappears. Based on your past experience with sudden and unexpected encounters of the 'energy burst' kind you assume firstly that you have been hit with a laser and secondly that your body is now as chard as the surface of Ortega. Contrary to your expectations of cause and effect you find you have no injuries at all. What in Fester Blatz World o Wonders was that all about?!");
 }
 
+[in the lake
+if(isset(fSysEgoOnWater)) {
+    if(!isset(fSwimming)) {
+        if(!isset(fDrowning)) {
+            set(fDrowning);
+            set.view(ego, vw.RogerSplash);
+        }
+    }
+}
+else {
+    if((isset(fSwimming) || isset(fDrowning))) {
+        set.view(ego, vw.Roger);
+        reset(fSwimming);
+        reset(fDrowning);
+        normal.motion(ego);    
+    }
+}        
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    [ place said tests here
-    if(said("look")) {
-        print("You see nothing of interest.");
+    if(said("swim")) {
+        if(isset(fSysEgoOnWater)) {
+            if(isset(fDrowning)) {
+                set.view(ego, vw.RogerSwim);
+                reset(fDrowning);
+                set(fSwimming);
+                print("ok");
+           } 
+        }
     }
 
+    if((said("look", "room") || said("look"))) {
+        print("There's a beautiful lake here and a thick fog to the north and west.");
+    }
+
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+    
+    if(said("look", "water")) {
+        print("The lake is calm and beautiful.");
+    }
 }
 
 [***************************************

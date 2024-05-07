@@ -57,13 +57,13 @@ reposition(objShip, vTempVar1, vTempVar2);
 addn(vClockTicks, 1);
 
 if(equaln(vClockTicks, 24)) {
+    erase(objShip);
     set(fDoAction);
 }
 
-if(isset(fDoAction)) {
+if(isset(fDoAction) && isset(fSoundDone)) {
     set(fLaunchAnimationPlayed);
-    assignn(vRoomInited, valFalse);
-    erase(objShip);     
+    assignn(vRoomInited, valFalse);     
     new.room(rm.InPod);
 }
 

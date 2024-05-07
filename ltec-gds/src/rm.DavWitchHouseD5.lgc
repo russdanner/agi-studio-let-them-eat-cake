@@ -42,6 +42,7 @@ if(newRoom) {
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
     set.view(objWitchDoor, vw.WitchDoor);
+    set.cel(objWitchDoor, 0);
 
     stop.cycling(objMist);
     stop.cycling(objMist2);
@@ -60,13 +61,15 @@ if(newRoom) {
 
     position(objMist, 1, 166);
     position(objMist2, 43, 166);
-    position(objMist3, 85, 166);
-    position(objMist4, 127, 166);
+    position(objMist3, 84, 166);
+    position(objMist4, 120, 166);
     position(objWitchDoor, 45, 129);
 
     position.v(ego, vEgoX, vEgoY);
 
-    draw(ego);
+    set.priority(objWitchDoor, 10);    
+
+    draw(ego);    
     draw(objMist);
     draw(objMist2);
     draw(objMist3);
@@ -74,9 +77,6 @@ if(newRoom) {
     draw(objWitchDoor);
 
     set.horizon(50);
-
-    set.priority(objWitchDoor, 10);    
-
     show.pic();
 }
 
@@ -89,7 +89,9 @@ if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoY, 155);
     assignn(egoDir, UP);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }   
 
 if(edgeEgoHit == TOP_EDGE) {
@@ -111,7 +113,9 @@ if(edgeEgoHit == LEFT_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
     assignn(vEgoX, 15);
     assignn(egoDir, RIGHT);
+    erase(ego);
     position.v(ego, vEgoX, vEgoY);
+    draw(ego);
 }
 
 if(isset(fDoAction)) {
