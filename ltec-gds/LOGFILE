@@ -111,3 +111,15 @@ Error: 9 Value: 9
 Room 16
 Input line: restore
 Error: 20 Value: 1
+
+Room 9
+Input line: move.obj
+Unknown word: move
+
+Room 9
+Input line: move object
+Unknown word: move
+
+Room 4
+Input line: open door
+Error: 11 Value: 50

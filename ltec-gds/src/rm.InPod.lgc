@@ -106,6 +106,15 @@ if(newRoom) {
         draw(objCockpitScreen1);
     }
 
+    ignore.horizon(objPodStars1);
+    ignore.blocks(objPodStars1);
+    ignore.horizon(objPodStars2);
+    ignore.blocks(objPodStars2);
+    ignore.horizon(objPodStars3);
+    ignore.blocks(objPodStars3);
+    ignore.horizon(objPodStars4);
+    ignore.blocks(objPodStars4);
+    
     position(objPodStars1, 65, 40);
     position(objPodStars2, 85, 40);
     position(objPodStars3, 65, 50);

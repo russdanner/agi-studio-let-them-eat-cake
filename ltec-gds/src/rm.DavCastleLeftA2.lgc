@@ -67,7 +67,9 @@ if(newRoom) {
 
     position(objMist, 1, 40);
     position(objMist2, 30, 40);
-    position(objCastleFlags, 115, 10);
+    ignore.horizon(objCastleFlags);
+    ignore.blocks(objCastleFlags);
+    position(objCastleFlags, 115, 20);
     position(objCastleCrocs, 50, 165);
     position(objCastleDoors, 104, 120);
     position.v(ego, vEgoX, vEgoY);
@@ -91,6 +93,14 @@ if(newRoom) {
 [***************************************
 [ NON-INPUT CODE 
 [***************************************
+
+if(isset(fDoAction)) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 75);
+    assignn(vEgoY, 163);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavCastleHall);
+}
 
 if(edgeEgoHit == TOP_EDGE) {
     print("You're a bit foggy here. You decide to turn back.");
@@ -121,6 +131,25 @@ if(edgeEgoHit == RIGHT_EDGE) {
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("open", "door")) {
+        if(posn(ego, 97, 122, 121, 125)) {
+            if(has("Invitation") && has("Cake")) {
+                if(!isset(fPointsForEnterCastle)) {
+                    set(fPointsForEnterCastle);
+                    addn(currentScore, 1);    
+                }
+                
+                end.of.loop(objCastleDoors, fDoAction);
+            }
+            else {
+                print("The doors are locked. On the door is a notice.");
+            }    
+        }
+        else {
+            print("You need to be closer.");
+        }
+    }
+
     if((said("look", "room") || said("look"))) {
         print("You find yourself at the west end of a great castle. There's a large staircase and door here that leads into the castle.");
     }
@@ -144,34 +173,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     }
     
     if(said("look", "fog")) {
-        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
-    }
-    
-    if(said("open", "door")) {
-        if(posn(ego, 97, 122, 121, 125)) {
-            if(has("Invitation") && has("Cake")) {
-                if(!isset(fPointsForEnterCastle)) {
-                    set(fPointsForEnterCastle);
-                    addn(currentScore, 1);    
-                }
-                
-                end.of.loop(objCastleDoors, fDoAction);
-            }
-            else {
-                print("The doors are locked. On the door is a notice.");
-            }    
-        }
-        else {
-            print("You need to be closer.");
-        }
-    }
-    
-    if(isset(fDoAction)) {
-        get.posn(ego, vEgoX, vEgoY);
-        assignn(vEgoX, 75);
-        assignn(vEgoY, 163);
-        assignn(vRoomInited, valFalse);
-        new.room(rm.DavCastleHall);
+        print("There's a 'think' fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
     }
 }
 

@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/6/2024 5:39:41 AM"
+   LastEdit = "5/7/2024 6:39:11 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &HB3F9737D
-   CompCRC32 = &HB3F9737D
+   CRC32 = &HBA0EAD1D
+   CompCRC32 = &HBA0EAD1D
    IsRoom = True
 
 [Logic203]
@@ -160,8 +160,8 @@
 [Logic4]
    ID = rm.GrahamLawnNight
    Description = ""
-   CRC32 = &H24ADA292
-   CompCRC32 = &H24ADA292
+   CRC32 = &H96ACD6CC
+   CompCRC32 = &H96ACD6CC
    IsRoom = True
 
 [Logic201]
@@ -244,8 +244,8 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &H9A65F98C
-   CompCRC32 = &H9A65F98C
+   CRC32 = &H83DCD90E
+   CompCRC32 = &H83DCD90E
    IsRoom = True
 
 [Logic8]
@@ -265,8 +265,8 @@
 [Logic7]
    ID = rm.InPodCrash
    Description = ""
-   CRC32 = &HA92AF493
-   CompCRC32 = &HA92AF493
+   CRC32 = &H7A6E2C2A
+   CompCRC32 = &H7A6E2C2A
    IsRoom = True
 
 [Logic10]
@@ -286,8 +286,8 @@
 [Logic11]
    ID = rm.DavBowlA5
    Description = ""
-   CRC32 = &H268BCFB8
-   CompCRC32 = &H268BCFB8
+   CRC32 = &H2B857519
+   CompCRC32 = &H2B857519
    IsRoom = True
 
 [Logic25]
@@ -335,8 +335,8 @@
 [Logic9]
    ID = rm.DavCastleLeftA2
    Description = ""
-   CRC32 = &HC724D0F4
-   CompCRC32 = &HC724D0F4
+   CRC32 = &HF7C3B1D4
+   CompCRC32 = &HF7C3B1D4
    IsRoom = True
 
 [Logic21]
@@ -363,8 +363,8 @@
 [Logic12]
    ID = rm.DavCastleRightB2
    Description = ""
-   CRC32 = &H302118E4
-   CompCRC32 = &H302118E4
+   CRC32 = &H1C372792
+   CompCRC32 = &H1C372792
    IsRoom = True
 
 [Logic17]
@@ -391,8 +391,8 @@
 [Logic30]
    ID = rm.DavCastleThrone
    Description = ""
-   CRC32 = &H17330D91
-   CompCRC32 = &H17330D91
+   CRC32 = &HED4FCCDF
+   CompCRC32 = &HED4FCCDF
    IsRoom = True
 
 [Logic14]
@@ -442,6 +442,13 @@
    Description = ""
    CRC32 = &H8F3EC4A5
    CompCRC32 = &H8F3EC4A5
+   IsRoom = True
+
+[Logic118]
+   ID = rm.GrahamHouseMorning
+   Description = ""
+   CRC32 = &HFCF0A375
+   CompCRC32 = &HFCF0A375
    IsRoom = True
 [::END Logics::]
 
@@ -665,6 +672,11 @@
    ID = pic.GrahamCastle
    Description = ""
    BkgdImg = ""
+
+[Picture118]
+   ID = pic.GrahamHouseMorning
+   Description = ""
+   BkgdImg = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -862,7 +874,7 @@
    ID = snd.HBD
    Description = ""
    Key = 0
-   TPQN = 4
+   TPQN = 16
    Inst0 = 80
    Inst1 = 80
    Inst2 = 80

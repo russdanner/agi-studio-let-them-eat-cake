@@ -154,15 +154,15 @@ if(edgeEgoHit == LEFT_EDGE) {
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
     if(said("look")) {
-        print("This is a forrested and rocky area. A think fog has developed to the south and the east.");
+        print("This is a forrested and rocky area. A 'think' fog has developed to the south and the east.");
     }
     
     if(said("look", "room")) {
-        print("This is a forrested and rocky area. A think fog has developed to the south and the east.");
+        print("This is a forrested and rocky area. A 'think' fog has developed to the south and the east.");
     }
     
     if(said("look", "fog")) {
-        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+        print("There's a 'think' fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
     }
     
     if(said("take", "feather")) {

@@ -168,7 +168,7 @@ if(equaln(vClockTicks, 3) && equaln(vTimer, 80)) {
     assignn(vEgoX, 15);
     assignn(vEgoY, 120);
     assignn(vRoomInited, valFalse);
-    new.room(rm.GrahamHouse);  
+    new.room(rm.GrahamHouseMorning);  
 }
 
 
