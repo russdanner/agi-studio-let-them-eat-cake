@@ -1,0 +1,197 @@
+[*********************************************************************
+[
+[ rm.GrahamLawnDay
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.GrahamHouseDoor);
+    load.view(vw.GrahamHatNoFeather);
+    load.view(vw.Hawk);
+    load.view(vw.FeatherFall);
+
+    animate.obj(ego);
+    animate.obj(objHawk);
+    animate.obj(objFeatherFall);
+    animate.obj(objCabinDoor);
+
+    set.view(ego, vw.GrahamHatNoFeather);
+    set.view(objHawk, vw.Hawk);
+    set.view(objFeatherFall, vw.FeatherFall);
+    set.view(objCabinDoor, vw.GrahamHouseDoor);
+    
+    stop.cycling(objCabinDoor);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 119);
+            assignn(vEgoY, 126);
+        }
+    }
+
+    position.v(ego, vEgoX, vEgoY);
+
+    set.priority(objCabinDoor, 4);
+    position(objCabinDoor, 121, 130);
+
+    set.priority(objHawk, 10);  
+    position(objHawk, 160, 70);
+    move.obj(objHawk, 40, 40, 2, fHawkFlightADone);
+
+    reset(fHawkFlightADone);
+    reset(fHawkFlightBDone);
+    reset(fFeatherFallDone);
+
+    if(!isset(fWearingHat)) {
+        [ player can't get this point anymore. Too little. Too late.
+        set(fWearingHat);
+        set(fPointsForHatWear);
+    }
+
+    reset(fReadyForAdventure);
+    set.horizon(46);
+
+    draw(objHawk);
+    draw(objFeatherFall);
+    draw(objCabinDoor);
+    draw(ego);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if((edgeEgoHit == BOTTOM_EDGE || edgeEgoHit == TOP_EDGE || edgeEgoHit == LEFT_EDGE || edgeEgoHit == RIGHT_EDGE) && isset(fReadyForAdventure)) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 0);
+    assignn(vEgoY, 0);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.GrahamCastle);         
+}
+else {
+    if(edgeEgoHit == BOTTOM_EDGE) {
+        get.posn(ego, vEgoX, vEgoY);
+        assignn(vEgoY, 150);
+        assignn(egoDir, UP);
+        print("You feel like you are forgetting something.");
+        erase(ego);
+        position.v(ego, vEgoX, vEgoY);
+        draw(ego);
+
+    }
+
+    if(edgeEgoHit == TOP_EDGE) {
+        get.posn(ego, vEgoX, vEgoY);
+        assignn(vEgoY, 50);
+        assignn(egoDir, DOWN);
+        print("You feel like you are forgetting something.");
+        erase(ego);
+        position.v(ego, vEgoX, vEgoY);
+        draw(ego);
+
+    }
+
+    if(edgeEgoHit == LEFT_EDGE) {
+        get.posn(ego, vEgoX, vEgoY);
+        assignn(vEgoX, 15);
+        assignn(egoDir, RIGHT);
+        print("You feel like you are forgetting something.");
+        erase(ego);
+        position.v(ego, vEgoX, vEgoY);
+        draw(ego);
+
+    }
+
+    if(edgeEgoHit == RIGHT_EDGE) {
+        get.posn(ego, vEgoX, vEgoY);
+        assignn(vEgoX, 150);
+        assignn(egoDir, LEFT);
+        print("You feel like you are forgetting something.");
+        erase(ego);
+        position.v(ego, vEgoX, vEgoY);
+        draw(ego);
+
+    }    
+}
+
+if(isset(fHawkFlightADone)) {
+    reset(fHawkFlightADone);
+    position(objFeatherFall, 40, 40);
+    move.obj(objHawk, 0, 40, 1, fHawkFlightBDone);
+    move.obj(objFeatherFall, 40, 105, 1, fFeatherFallDone);
+}
+
+if(isset(fFeatherFallDone)) {
+    reset(fFeatherFallDone);
+    stop.cycling(objFeatherFall);
+}
+
+if(isset(fHawkFlightBDone)) {
+    erase(objHawk);
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+
+    if(said("look", "room")) {
+        print("This is the front lawn of your home.");
+    }
+    
+    if(said("open", "door")) {
+        print("No time to waste Graham. You'll be late for your meeting with the king.");
+    }
+    
+    if(said("remove", "hat")) {
+        [ player will have the hat and is wearing it at this point.
+        print("No way. You love this hat... it stays.");
+    } 
+    
+    if(said("take", "feather")) {
+        if(has("Feather")) {
+            print("You have it. It's in your cap!");
+        }
+        else {
+            get("Feather"); 
+            erase(objFeatherFall);
+            addn(currentScore, 1);
+            load.view(vw.GrahamAdvHat);
+            set.view(ego, vw.GrahamAdvHat);
+            set(fReadyForAdventure);
+            print("You pick up the feather. Recalling your dream you put this feather in your cap. You feel ready for a real adventure.");    
+        }
+    }
+
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

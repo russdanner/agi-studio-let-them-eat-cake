@@ -67,7 +67,7 @@ if(newRoom) {
 
     position(objMist, 1, 40);
     position(objMist2, 30, 40);
-    position(objCastleFlags, 115, 20);
+    position(objCastleFlags, 115, 10);
     position(objCastleCrocs, 50, 165);
     position(objCastleDoors, 104, 120);
     position.v(ego, vEgoX, vEgoY);

@@ -52,7 +52,7 @@ if(newRoom) {
         }
     }
 
-	position(objMist, 1, 13);
+    position(objMist, 1, 13);
      position(objMist2, 35, 13);
      position(objMist3, 70, 13);
      position(objMist4, 118, 13);
@@ -63,7 +63,7 @@ if(newRoom) {
         set.view(objFGM, vw.FGM);
         position(objFGM, 139, 61);
         draw(objFGM);
-        follow.ego(objFGM, 1, fGotcha);    
+        follow.ego(objFGM, 2, fGotcha);    
     }
 
     reset(fSwimming);
@@ -86,6 +86,18 @@ if(newRoom) {
 [***************************************
 [ NON-INPUT CODE 
 [***************************************
+
+if(isset(fGotcha)) {
+    reset(fGotcha);
+    set(fEyesOpen);
+    print("A strange female alien dressed in beautiful shimmering robes catches up to you. In a voice that can only be described as song she says:");
+    print("\"Traveler though you are asleep, by my spell, your eyes are now opened.\"");
+    print("A wave of energy errupts from a gadget she is carrying and blasts right into you. With a 'poof' she disappears.");
+    erase(objFGM);
+    print("Based on your past experience with sudden and unexpected encounters of the \"energy burst\" variety, you assume firstly that you have been hit with a laser and secondly that your body is now as chard as the surface of Ortega.");
+    print("Contrary to your expectations of cause and effect you find you have no injuries at all. What in Fester Blatz World o Wonders was that all about?!");
+
+}
 
 if(edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, vEgoX, vEgoY);
@@ -121,12 +133,7 @@ if(edgeEgoHit == LEFT_EDGE) {
     draw(ego);
 }
     
-if(isset(fGotcha)) {
-    reset(fGotcha);
-    erase(objFGM);
-    set(fEyesOpen);
-    print("A strange female alien dressed in beautiful shimmering robes catches up to you. In a voice that can only be described as song she says 'Traveler though you are asleep by may spell your eyes are opened.' A wave of energy errupts from a gadget she is carrying and blasts right into you. With a 'poof' she disappears. Based on your past experience with sudden and unexpected encounters of the 'energy burst' kind you assume firstly that you have been hit with a laser and secondly that your body is now as chard as the surface of Ortega. Contrary to your expectations of cause and effect you find you have no injuries at all. What in Fester Blatz World o Wonders was that all about?!");
-}
+
 
 [in the lake
 if(isset(fSysEgoOnWater)) {

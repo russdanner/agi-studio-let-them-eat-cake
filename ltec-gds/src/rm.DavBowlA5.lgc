@@ -26,12 +26,8 @@ if(newRoom) {
 
     load.view(vw.Roger);
     load.view(vw.Mist);
-    load.view(vw.Hawk);
-    load.view(vw.FeatherFall);
 
     animate.obj(ego);
-    animate.obj(objHawk);
-    animate.obj(objFeatherFall);
     animate.obj(objMist);
     animate.obj(objMist2);
     animate.obj(objMist3);
@@ -42,8 +38,6 @@ if(newRoom) {
     set.view(objMist2, vw.Mist);
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
-    set.view(objHawk, vw.Hawk);
-    set.view(objFeatherFall, vw.FeatherFall);
 
     stop.cycling(objMist);
     stop.cycling(objMist2);
@@ -70,22 +64,29 @@ if(newRoom) {
 
     set.horizon(50);
 
-    if(!has("Feather") && !has("Quill")) {
-        if(has("Cake") && has("Ink")) {
-            set.priority(objHawk, 10);    
-            position(objHawk, 160, 70);
-
-            draw(objHawk);
-
-            move.obj(objHawk, 40, 40, 2, fHawkFlightADone);                
-        }
-    }
-
     draw(ego);
     draw(objMist);
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);
+
+    if(!has("Feather") && !has("Quill")) {
+        if(has("Cake") && has("Ink")) {
+
+            load.view(vw.Hawk);
+            load.view(vw.FeatherFall);
+            set.view(objHawk, vw.Hawk);
+            set.view(objFeatherFall, vw.FeatherFall);
+            animate.obj(objHawk);
+            animate.obj(objFeatherFall);
+            set.priority(objHawk, 15);    
+            position(objHawk, 159, 70);
+            ignore.blocks(objHawk);
+            draw(objHawk);
+            
+            move.obj(objHawk, 46, 76, 2, fHawkFlightADone);                
+        }
+    }
         
     [ display the picture on screen
     show.pic();
@@ -97,10 +98,10 @@ if(newRoom) {
 
 if(isset(fHawkFlightADone)) {
     reset(fHawkFlightADone);
-    position(objFeatherFall, 40, 40);
+    position(objFeatherFall, 46, 76);
     draw(objFeatherFall);
 
-    move.obj(objHawk, 0, 40, 1, fHawkFlightBDone);
+    move.obj(objHawk, 1, 76, 1, fHawkFlightBDone);
     move.obj(objFeatherFall, 40, 105, 1, fFeatherFallDone);
 }
 
@@ -110,7 +111,7 @@ if(isset(fFeatherFallDone)) {
 }
 
 if(isset(fHawkFlightBDone)) {
-    erase(objHawk);
+   erase(objHawk);
 }
 
 if(edgeEgoHit == BOTTOM_EDGE) {

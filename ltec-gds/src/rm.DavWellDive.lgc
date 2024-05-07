@@ -28,6 +28,7 @@ if(newRoom) {
     load.view(vw.Trunk);
 
     animate.obj(ego);
+    animate.obj(objTrunk);
 
     set.view(ego, vw.RogerDive);
     set.view(objTrunk, vw.Trunk);
@@ -42,7 +43,6 @@ if(newRoom) {
     }
 
     position(objTrunk, 105, 130);
-
     position.v(ego, vEgoX, vEgoY);
 
     set.horizon(30);  

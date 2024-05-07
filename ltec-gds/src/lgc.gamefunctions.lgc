@@ -241,6 +241,37 @@ if (haveInput && !haveMatch) {
     print("What do you want me to do with it?");
   }
 }
+
+
+if((said("make", "quill") || said("cut", "feather"))) {
+    if(has("Feather")) {
+        if(has("Glass")) {
+            if(isset(fGlassIsSharp)) {
+                drop("Feather");
+                get("Quill");
+                addn(currentScore, 1);    
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP.");
+            }
+            if(!isset(fGlassIsSharp)) {
+                print("The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying.");
+            }
+        }
+    }
+}
+
+if(said("make", "invitation")) {
+    if((!has("Quill") || !has("Ink") || !has("Paper"))) {
+        print("How do you intend to do that?");
+    }
+    
+    if(has("Quill") && has("Ink") && has("Paper")) {
+        drop("Paper");
+        get("Invitation");
+        addn(currentScore, 1);
+        print("Dipping the quill into the ink you cleverly forge an invitation to the castle.");                         
+    }
+}
+
   
 :done
 return();

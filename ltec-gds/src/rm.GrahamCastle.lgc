@@ -1,0 +1,86 @@
+[*********************************************************************
+[
+[ rm.GrahamCastle
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.CastleFlags);
+    load.view(vw.GrahamAdvHat);
+
+    animate.obj(ego);
+    animate.obj(objCastleFlags);
+
+    set.view(ego, vw.GrahamAdvHat);
+    set.view(objCastleFlags, vw.CastleFlags);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 150);
+            assignn(vEgoY, 109);
+        }
+    }
+
+    addn(currentScore, 2);  
+
+    reset(fDoAction);
+
+    position(objCastleFlags, 5, 20);
+    position.v(ego, vEgoX, vEgoY);
+
+    draw(ego);
+    draw(objCastleFlags);
+
+    move.obj(ego, 116, 112, 1, fDoAction);
+    
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(isset(fDoAction)) {
+    print("You have won! Good luck on you next adventure and HAPPY 40th BIRTHDAY TO GRAPHIC ADVENTURE GAMES!! Thanks for playing!");
+    display(20, 1, m3);
+    display(23, 1, m4);
+    display(24, 1, m5);
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 3 "Contact ltecgame page via"
+#message 4 "Facebook to be added IN game for win."
+#message 5 "Please share the game on social media!" 

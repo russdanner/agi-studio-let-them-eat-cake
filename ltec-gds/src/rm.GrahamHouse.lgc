@@ -56,6 +56,28 @@ if (newRoom) {
   position(objCabinDoor, 26, 131);      
   position(objWindow, 90, 58);
 
+    if(isset(fIsMorning)) {
+        [switching from roger back to graham
+        drop("Keycard");
+        drop("Glass");
+        drop("Cake");
+        drop("Ink");
+        drop("Quill");
+        drop("Invitation");
+    
+        drop("Tea");
+        get("Teacup");
+        get("Teapot");
+    
+        if(isset(fHasHat)) {
+            get("Hat");
+        }        
+        if(isset(fHasSummons)) {
+            get("Summons");
+        }        
+    }
+    
+    
   if(!has("Hat")) {
     position(objHat, 130, 125);
   }
@@ -63,6 +85,7 @@ if (newRoom) {
   if(!has("Summons")) {
     position(objSummons, 80, 105);
   }
+  
   
   position(objTeapot, 110, 87);
   position(objTeaCup, 55, 105);
@@ -76,15 +99,6 @@ if (newRoom) {
   assignn(vClockTicks, 0);
   
   position.v(ego, vEgoX, vEgoY);
-  
-  draw(ego);
-  draw(objHat);
-  draw(objTeapot);
-  draw(objTeaCup);
-  draw(objSummons);
-  draw(objWindow);
-  draw(objCabinDoor);
-
       
   [ The next 6 lines need only be in the first room of the game 
   if ((previousRoom == rm.Title || previousRoom == 0)) {
@@ -95,6 +109,20 @@ if (newRoom) {
      animationInterval = NORMAL_SPEED;
   }
   
+    if(isset(fIsMorning)) {
+        set.cel(objWindow, 1);
+        position(ego, 100,80);
+        print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!");
+    }
+
+  draw(ego);
+  draw(objHat);
+  draw(objTeapot);
+  draw(objTeaCup);
+  draw(objSummons);
+  draw(objWindow);
+  draw(objCabinDoor);
+
   [ display the picture on screen
   show.pic();
 
@@ -110,14 +138,6 @@ if(!isset(fKingMessageDisplayed)) {
   print("It is getting late and you should go to bed but you cannot sleep. Earlier today you received a summons to appear at the castle to meet with King Edward for reasons unknown.");
   set(fKingMessageDisplayed);
 }        
-  
-  [if(isset(fIsMorning)) {
-  [      set.cel(objWindow, 1)
-  [      position(objEgo, 100,80) 
-  [      print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!")
-  [}
-  [  set.cel(objCabinDoor, 1)
-  [  position(objCabinDoor, 26, 131)
 
 [***************************************
 [ PROCESS PLAYER INPUT
@@ -219,9 +239,9 @@ if (haveInput && !haveMatch) {
                     assignn(vEgoX, 119);
                     assignn(vEgoY, 126);
                     assignn(vRoomInited, valFalse);
-                    [new.room(rm.GrahamLawn);     
+                    new.room(rm.GrahamLawnDay);     
                 }
-                if(!isset(fIsMorning)) {
+                else {
                     get.posn(ego, vEgoX, vEgoY);
                     assignn(vEgoX, 119);
                     assignn(vEgoY, 126);
@@ -230,7 +250,7 @@ if (haveInput && !haveMatch) {
                 }
             }
         }
-        if(!posn(ego, 16, 108, 35, 124)) {
+        else {
             print("You can't do that from here.");
         }
     }
@@ -240,7 +260,7 @@ if (haveInput && !haveMatch) {
             if(isset(fWearingHat)) {
                 print("You are already wearing it.");
             }
-            if(!isset(fWearingHat)) {
+            else {
                 set(fWearingHat);
                 set.view(ego, vw.GrahamHatNoFeather);
                 print("You put on your trusty hat!");
@@ -251,7 +271,7 @@ if (haveInput && !haveMatch) {
                 }
             }
         }
-        if(!has("Hat")) {
+        else {
             print("You don't have it.");
         }
     }   
@@ -261,12 +281,12 @@ if (haveInput && !haveMatch) {
             if(!isset(fWearingHat)) {
                 print("You are not wearing your hat.");
             }
-            if(isset(fWearingHat)) {
+            else {
                 reset(fWearingHat);
                 set.view(ego, vw.GrahamHatNoFeather);
             }
         }
-        if(!has("Hat")) {
+        else {
             print("You don't have it.");
         }
     }  
@@ -276,7 +296,7 @@ if (haveInput && !haveMatch) {
             if(has("Summons")) {
                 print("You already have it.");
             }
-            if(!has("Summons")) {
+            else {
                 print("You take the summons.");
                 set(fHasSummons);
                 get("Summons");
@@ -284,7 +304,7 @@ if (haveInput && !haveMatch) {
                 addn(vCurrentScore, 1);        
             }
         }
-        if(!posn(ego, 80, 100, 100, 130)) {
+        else {
             print("Get closer.");
         }
     }
@@ -294,14 +314,14 @@ if (haveInput && !haveMatch) {
             if(has("Teapot")) {
                 print("You alread have it.");
             }
-            if(!has("Teapot")) {
+            else {
                 print("You remove the teapot from the stove.");
                 erase(objTeapot);
                 get("Teapot");
                 addn(vCurrentScore, 1);
             }
         }
-        if(!posn(ego, 104, 93, 123, 112)) {
+        else {
             print("Get closer.");
         }
     }
@@ -314,7 +334,7 @@ if (haveInput && !haveMatch) {
             get("Hat");
             addn(vCurrentScore, 1);
         }
-        if(!posn(ego, 117, 131, 129, 150)) {
+        else {
             print("You cannot reach it.");
         }
     }
@@ -326,12 +346,12 @@ if (haveInput && !haveMatch) {
                 print("You pick up the tetakeacup full of hot clover tea and carry it with you.");
                 get("Tea");
             }
-            if(!equaln(vTeaPoured, valTrue)) {
+            else {
                 print("You pick up the teacup and carry it with you.");
                 get("Teacup");            
             }
         }
-        if(!posn(ego, 40, 107, 56, 135)) {
+        else {
             print("It is not within your reach.");
         }
     }
@@ -342,7 +362,7 @@ if (haveInput && !haveMatch) {
             draw(objTeaCup);
             drop("Teacup");
         }
-        if(!posn(ego, 40, 107, 56, 135)) {
+        else {
             print("Get closer.");
         }
     }
@@ -352,23 +372,23 @@ if (haveInput && !haveMatch) {
             if(has("Teacup")) {
                 print("The tea is hot. Put the cup on the table.");
             }
-            if(!has("Teacup")) {
+            else {
                 if(equaln(vTeaPoured, valTrue)) {
                     print("the teapot is empty.");
                 }
-                if(!equaln(vTeaPoured, valTrue)) {
+                else {
                     if(posn(ego, 40, 107, 56, 135)) {
                         print("You pour a cup of hot tea.");
                         assignn(vTeaPoured, valTrue);
                         addn(vCurrentScore, 1);
                     }
-                    if(!posn(ego, 40, 107, 56, 135)) {
+                    else {
                         print("You should get closer.");
                     }
                 }
             }
         }
-        if(!has("Teapot")) {
+        else {
             print("You can't do that from here.");
         }
     }
@@ -380,15 +400,15 @@ if (haveInput && !haveMatch) {
                 erase(objTeaCup);
                 print("Ok");
             }
-            if(!equaln(vTeaPoured, valTrue)) {
+            else {
                 print("The cup is empty.");
             }
         }
-        if(!posn(ego, 40, 107, 56, 135)) {
+        else {
             if(equaln(vTeaPoured, valTrue)) {
                 print("You are not close enough.");
             }
-            if(!equaln(vTeaPoured, valTrue)) {
+            else {
                 print("There's tea in the teapot.");
             }
         }  
@@ -398,7 +418,7 @@ if (haveInput && !haveMatch) {
         if(!has("Tea")) {
             print("You don't have it.");
         }
-        if(has("Tea")) {
+        else {
             print("You drink the tea. In a few minutes you begin to feel much more relaxed.");
             assignn(vTeaDrank, valTrue);
             drop("Tea");
@@ -407,7 +427,6 @@ if (haveInput && !haveMatch) {
         }
     }    
 }
-
 
 if(equaln(vSleeping, valTrue)) {
   if(equaln(vTimer, 0)) {

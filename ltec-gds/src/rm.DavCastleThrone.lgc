@@ -115,6 +115,7 @@ if(newRoom) {
     position(objParty3, 26, 89);
 
     assignn(vTimer, 0);
+    assignn(vClockTicks, 0);
     
     set.horizon(43);
 
@@ -132,7 +133,7 @@ if(newRoom) {
     draw(objParty1);
     draw(objParty2);
     draw(objParty3);
-    draw(objParty4);
+ 
     
     show.pic();
 }
@@ -141,25 +142,26 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-if(equaln(vTimer, 20)) {
+if(equaln(vClockTicks, 0) && equaln(vTimer, 20)) {
     print("You walk into what looks like a huge party for KING Graham. He's surrounded by friends and love ones.");
 }
 
-if(equaln(vTimer, 100)) {
+if(equaln(vClockTicks, 1) && equaln(vTimer, 0)) {
     set.cel(objParty4, 0);
     set.priority(objParty4, 15);
     stop.cycling(objParty4);
     position(objParty4, 60, 100);
-
-    [load.sound(sndHappyBirthday)
-    [sound(sndHappyBirthday, fSoundDone)  
+    draw(objParty4);
+   
+    load.sound(snd.HBD);
+    sound(snd.HBD, fSoundDone);  
 }
 
-if(equaln(vTimer, 235)) {
+if(equaln(vClockTicks, 3) && equaln(vTimer, 25)) {
     print("... THE KING!! Oh My ...");
 }
 
-if(equaln(vTimer, 255)) {
+if(equaln(vClockTicks, 3) && equaln(vTimer, 80)) {
     set(fIsMorning);
     reset(fWearingHat);
     get.posn(ego, vEgoX, vEgoY);
@@ -173,9 +175,9 @@ if(equaln(vTimer, 255)) {
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
-if (haveInput && !haveMatch && unknownWordNum == 0) {
-
-}
+[if (haveInput && !haveMatch && unknownWordNum == 0) {
+[
+[}
 
 [***************************************
 [ CHECK FOR AN EXIT CONDITION
