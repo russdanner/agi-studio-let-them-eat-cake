@@ -56,6 +56,10 @@ if(newRoom) {
     position(objMist4, 120, 43);
     position(objBucket, 38, 120);
 
+    if(previousRoom == rm.DavWellBottom) {
+        position(ego, 43, 109);
+    }
+
     reset(fInBucket);
     reset(fDoAction);
 
