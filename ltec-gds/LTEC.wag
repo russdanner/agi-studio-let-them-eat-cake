@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/7/2024 10:44:55 PM"
+   LastEdit = "5/8/2024 11:01:01 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -450,6 +450,27 @@
    CRC32 = &HFCF0A375
    CompCRC32 = &HFCF0A375
    IsRoom = True
+
+[Logic119]
+   ID = rm.DavHillsideDoor
+   Description = ""
+   CRC32 = &H38155652
+   CompCRC32 = &H38155652
+   IsRoom = True
+
+[Logic120]
+   ID = rm.DavLabStairs
+   Description = ""
+   CRC32 = &H4B42D591
+   CompCRC32 = &H4B42D591
+   IsRoom = True
+
+[Logic121]
+   ID = rm.DavLab
+   Description = ""
+   CRC32 = &HDBD08721
+   CompCRC32 = &HDBD08721
+   IsRoom = True
 [::END Logics::]
 
 [::BEGIN Pictures::]
@@ -677,6 +698,18 @@
    ID = pic.GrahamHouseMorning
    Description = ""
    BkgdImg = ""
+
+[Picture119]
+   ID = pic.DavHillsideDoor
+   Description = ""
+
+[Picture120]
+   ID = pic.DavLabStairs
+   Description = ""
+
+[Picture121]
+   ID = pic.DavLab
+   Description = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
