@@ -21,14 +21,22 @@ if(newRoom) {
     draw.pic(currentRoom);
     discard.pic(currentRoom);
     
-    [ the horizon defines the upper limit of ego's movement
-    set.horizon(0);
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
     
-    [ add additional room initialization here
+    load.view(vw.Roger);    
+    animate.obj(ego);
+    set.view(ego, vw.Roger);
     
-    [ load ego view, animate and draw ego
-    [ this is sometimes handled in logic 0
-    [ instead of in each individual logic
+    position.v(ego, vEgoX, vEgoY);
+        
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            position(ego, 20, 157);   
+        }
+    }
+    
+    draw(ego);
     
     [ display the picture on screen
     show.pic();
@@ -38,18 +46,52 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-[ add other room specific statements here
+if(isset(fSysEgoOnWater)) {
+    // and by on water, we mean fall to your death
+    
+    load.view(vw.RogerFall);
+    set.view(ego, vw.RogerFall);
+    start.cycling(ego);   
+    stop.motion(ego);
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 135);
+    assignn(vTempVar1, 6);
+    move.obj.v(ego, vEgoX, vEgoY, vTempVar1, fRogerSplat);
+}
+
+if(isset(fRogerSplat)) {
+    reset(fRogerSplat);
+    stop.motion(ego);
+    stop.cycling(ego);
+    assignn(egoDir, STOPPED);
+    assignn(vDeathReason, valXsFall);
+    set(fDead);
+}
+
+if(obj.in.box(ego, 10, 158, 30, 162)) {
+    assignn(vEgoX, 100);
+    assignn(vEgoY, 105);
+    stop.cycling(ego);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavHillsideDoor);
+}
+
+if(obj.in.box(ego, 145, 23, 159, 37)) {
+    assignn(vEgoX, 100);
+    assignn(vEgoY, 105);
+    stop.cycling(ego);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavLab);   
+}
 
 
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
 if (haveInput && !haveMatch && unknownWordNum == 0) {
-    [ place said tests here
     if(said("look")) {
-        print("You see nothing of interest.");
-    }
-
+        print("You find yourself inside the hill. There's a long stairwell here that ascends to the right.");
+    }    
 }
 
 [***************************************
@@ -62,4 +104,3 @@ return();
 [***************************************
 [ DECLARED MESSAGES
 [***************************************
-#message 1 "You see nothing of interest." 

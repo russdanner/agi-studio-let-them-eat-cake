@@ -79,7 +79,7 @@ if(edgeEgoHit == TOP_EDGE) {
         get.posn(ego, vEgoX, vEgoY);
         assignn(vEgoY, 150);
         assignn(vRoomInited, valFalse);
-        [MR1 new.room(rm.DavTrunkF0)  
+        new.room(rm.DavHillsideDoor);  
     }
 }
 

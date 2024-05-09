@@ -123,3 +123,7 @@ Unknown word: move
 Room 4
 Input line: open door
 Error: 11 Value: 50
+
+Room 120
+Input line: insert card
+Error: 11 Value: 50

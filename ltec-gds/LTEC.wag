@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/8/2024 11:01:01 AM"
+   LastEdit = "5/9/2024 4:19:19 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -321,8 +321,8 @@
 [Logic22]
    ID = rm.DavTreeF1
    Description = ""
-   CRC32 = &HD8B9599E
-   CompCRC32 = &HD8B9599E
+   CRC32 = &H4961665A
+   CompCRC32 = &H4961665A
    IsRoom = True
 
 [Logic19]
@@ -433,8 +433,8 @@
 [Logic34]
    ID = rm.GrahamLawnDay
    Description = ""
-   CRC32 = &H9B5D31DA
-   CompCRC32 = &H9B5D31DA
+   CRC32 = &HF95DBF30
+   CompCRC32 = &HF95DBF30
    IsRoom = True
 
 [Logic115]
@@ -454,22 +454,22 @@
 [Logic119]
    ID = rm.DavHillsideDoor
    Description = ""
-   CRC32 = &H38155652
-   CompCRC32 = &H38155652
+   CRC32 = &HB6DC60FC
+   CompCRC32 = &HB6DC60FC
    IsRoom = True
 
 [Logic120]
    ID = rm.DavLabStairs
    Description = ""
-   CRC32 = &H4B42D591
-   CompCRC32 = &H4B42D591
+   CRC32 = &HA576F8AB
+   CompCRC32 = &HA576F8AB
    IsRoom = True
 
 [Logic121]
    ID = rm.DavLab
    Description = ""
-   CRC32 = &HDBD08721
-   CompCRC32 = &HDBD08721
+   CRC32 = &H6DBC5964
+   CompCRC32 = &H6DBC5964
    IsRoom = True
 [::END Logics::]
 
@@ -702,14 +702,17 @@
 [Picture119]
    ID = pic.DavHillsideDoor
    Description = ""
+   BkgdImg = ""
 
 [Picture120]
    ID = pic.DavLabStairs
    Description = ""
+   BkgdImg = ""
 
 [Picture121]
    ID = pic.DavLab
    Description = ""
+   BkgdImg = ""
 [::END Pictures::]
 
 [::BEGIN Sounds::]
@@ -1067,10 +1070,6 @@
    ID = vw.RogerSpacesuitA
    Description = ""
 
-[View11]
-   ID = vw.Roger
-   Description = ""
-
 [View70]
    ID = vw.RogerExplode
    Description = ""
@@ -1321,5 +1320,45 @@
 
 [View78]
    ID = vw.GrahamAdvHat
+   Description = ""
+
+[View159]
+   ID = vw.HillDoor
+   Description = ""
+
+[View160]
+   ID = vw.LarryDump
+   Description = ""
+
+[View161]
+   ID = vw.EgoParts
+   Description = ""
+
+[View162]
+   ID = vw.SierraWorker
+   Description = ""
+
+[View163]
+   ID = vw.RogerFall
+   Description = ""
+
+[View11]
+   ID = vw.Roger
+   Description = ""
+
+[View164]
+   ID = vw.MIB
+   Description = ""
+
+[View165]
+   ID = vw.MIBFlash
+   Description = ""
+
+[View132]
+   ID = vw.Roger1
+   Description = ""
+
+[View166]
+   ID = vw.PersonL
    Description = ""
 [::END Views::]

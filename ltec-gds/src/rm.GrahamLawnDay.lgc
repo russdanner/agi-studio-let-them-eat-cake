@@ -51,9 +51,12 @@ if(newRoom) {
     set.priority(objCabinDoor, 4);
     position(objCabinDoor, 121, 130);
 
-    set.priority(objHawk, 10);  
-    position(objHawk, 160, 70);
-    move.obj(objHawk, 40, 40, 2, fHawkFlightADone);
+    set.priority(objHawk, 13); 
+    ignore.blocks(objHawk); 
+    position(objHawk, 98, 76);
+    draw(objHawk);
+
+    move.obj(objHawk, 40, 76, 2, fHawkFlightADone);
 
     reset(fHawkFlightADone);
     reset(fHawkFlightBDone);
@@ -68,8 +71,6 @@ if(newRoom) {
     reset(fReadyForAdventure);
     set.horizon(46);
 
-    draw(objHawk);
-    draw(objFeatherFall);
     draw(objCabinDoor);
     draw(ego);
 
@@ -135,8 +136,10 @@ else {
 
 if(isset(fHawkFlightADone)) {
     reset(fHawkFlightADone);
-    position(objFeatherFall, 40, 40);
-    move.obj(objHawk, 0, 40, 1, fHawkFlightBDone);
+    position(objFeatherFall, 40, 76);
+    draw(objFeatherFall);
+
+    move.obj(objHawk, 1, 76, 1, fHawkFlightBDone);
     move.obj(objFeatherFall, 40, 105, 1, fFeatherFallDone);
 }
 
