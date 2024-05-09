@@ -491,8 +491,8 @@ if(greatern(vTimer, 100)) {
     assignn(vTimer, 0);
     addn(vClockTicks, 1); 
 }
-display(1, 1, "Timer: %v242 %v243  ");
-display(2, 1, "X Y: %v38 %v39      ");
+[display(1, 1, "Timer: %v242 %v243  ");
+[display(2, 1, "X Y: %v38 %v39      ");
 
 [ get ego's current position
 get.posn(ego, egoX, egoY); 

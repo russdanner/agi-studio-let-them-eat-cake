@@ -99,7 +99,7 @@ if(newRoom) {
 
     position(objCrowd, 96, 89);
     set.priority(objCrowd, 4);
-
+    set.loop(objCrowd, 0);
     position.v(ego, vEgoX, vEgoY);
 
     stop.cycling(objParty1);

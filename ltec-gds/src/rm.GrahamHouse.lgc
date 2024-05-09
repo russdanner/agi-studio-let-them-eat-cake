@@ -157,16 +157,6 @@ if(!isset(fKingMessageDisplayed)) {
 
 if(equaln(vSleeping, valTrue)) {
   if(equaln(vTimer, 0)) {
-    if(equaln(vClockTicks, 0)) {
-      erase(ego);
-      load.view(vw.GrahamSleep);
-      set.view(objGrahamSleep, vw.GrahamSleep);
-      animate.obj(objGrahamSleep);  
-      position(objGrahamSleep, 110, 82);
-      set.priority(objGrahamSleep, 15);
-      draw(objGrahamSleep);
-    }
-  
     if(equaln(vClockTicks, 1)) {
       print("Time passes...");
     }
@@ -229,6 +219,15 @@ if (haveInput && !haveMatch) {
                 assignn(vClockTicks, 0);
                 addn(vCurrentScore, 1);    
                 print("Having taken the tea you climb into bed and doze off.");
+
+                 erase(ego);
+                  load.view(vw.GrahamSleep);
+                  set.view(objGrahamSleep, vw.GrahamSleep);
+                  animate.obj(objGrahamSleep);  
+                  position(objGrahamSleep, 110, 82);
+                  set.priority(objGrahamSleep, 15);
+                  draw(objGrahamSleep);
+
             }
         }
         if(!posn(ego, 75, 30, 115, 85)) {

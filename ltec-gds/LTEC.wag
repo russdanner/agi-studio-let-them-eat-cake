@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/9/2024 4:19:19 AM"
+   LastEdit = "5/9/2024 6:11:16 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -48,8 +48,8 @@
 
 [::BEGIN Logics::]
 [Logic0]
-   CompCRC32 = &HC4260E0B
-   CRC32 = &HC4260E0B
+   CompCRC32 = &H3BC99333
+   CRC32 = &H3BC99333
    ID = lgc.Main
    IsRoom = False
    Size = 1735
@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &HBA0EAD1D
-   CompCRC32 = &HBA0EAD1D
+   CRC32 = &H1C5E725E
+   CompCRC32 = &H1C5E725E
    IsRoom = True
 
 [Logic203]
@@ -391,8 +391,8 @@
 [Logic30]
    ID = rm.DavCastleThrone
    Description = ""
-   CRC32 = &HED4FCCDF
-   CompCRC32 = &HED4FCCDF
+   CRC32 = &H95505D81
+   CompCRC32 = &H95505D81
    IsRoom = True
 
 [Logic14]
