@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/9/2024 6:11:16 AM"
+   LastEdit = "5/9/2024 6:18:46 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -468,8 +468,8 @@
 [Logic121]
    ID = rm.DavLab
    Description = ""
-   CRC32 = &H6DBC5964
-   CompCRC32 = &H6DBC5964
+   CRC32 = &H60244043
+   CompCRC32 = &H60244043
    IsRoom = True
 [::END Logics::]
 

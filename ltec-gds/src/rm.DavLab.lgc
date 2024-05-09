@@ -279,7 +279,7 @@ if(isset(fRepairReturn3)) {
     }
 
     if(equaln(vClockTicks, 6)) {
-        display(4, 9, "Lance Ewig &  SCI   ");
+        display(4, 9, "Lance Ewing & SCI   ");
         display(5, 9, "programming.com:HBD!");
     }
 
