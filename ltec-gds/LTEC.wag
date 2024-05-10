@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/9/2024 6:18:46 AM"
+   LastEdit = "5/10/2024 8:45:50 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -808,7 +808,7 @@
    ID = snd.RogerDead
    Description = ""
    Key = 0
-   TPQN = 4
+   TPQN = 16
    Inst0 = 80
    Inst1 = 80
    Inst2 = 80
