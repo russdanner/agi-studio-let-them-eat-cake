@@ -68,8 +68,8 @@ if(newRoom) {
         position(objMonster, 15, 50);        
         follow.ego(objMonster, 2, fGotcha);  
 
-        [load.sound(sndDevMonster)
-        [sound(sndDevMonster, fSoundDone)    
+        load.sound(snd.MonsterAlert);
+        sound(snd.MonsterAlert, fSoundDone);    
     }
 
     position.v(ego, vEgoX, vEgoY);

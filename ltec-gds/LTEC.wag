@@ -216,8 +216,8 @@
 [Logic41]
    ID = rm.Bathroom
    Description = ""
-   CRC32 = &HC7BD4FFA
-   CompCRC32 = &HC7BD4FFA
+   CRC32 = &HAA9574DF
+   CompCRC32 = &HAA9574DF
    IsRoom = True
 
 [Logic37]
@@ -342,8 +342,8 @@
 [Logic21]
    ID = rm.DavWizardE5
    Description = ""
-   CRC32 = &H485DCDCB
-   CompCRC32 = &H485DCDCB
+   CRC32 = &H333FFC1C
+   CompCRC32 = &H333FFC1C
    IsRoom = True
 
 [Logic16]
