@@ -230,8 +230,8 @@
 [Logic38]
    ID = rm.OuterBay
    Description = ""
-   CRC32 = &H971BCB37
-   CompCRC32 = &H971BCB37
+   CRC32 = &HC770BF97
+   CompCRC32 = &HC770BF97
    IsRoom = True
 
 [Logic39]
@@ -370,8 +370,8 @@
 [Logic17]
    ID = rm.DavWitchHouseD5
    Description = ""
-   CRC32 = &HDD9DE7D5
-   CompCRC32 = &HDD9DE7D5
+   CRC32 = &H192E6489
+   CompCRC32 = &H192E6489
    IsRoom = True
 
 [Logic32]
@@ -454,8 +454,8 @@
 [Logic119]
    ID = rm.DavHillsideDoor
    Description = ""
-   CRC32 = &HB6DC60FC
-   CompCRC32 = &HB6DC60FC
+   CRC32 = &H8118C4F6
+   CompCRC32 = &H8118C4F6
    IsRoom = True
 
 [Logic120]

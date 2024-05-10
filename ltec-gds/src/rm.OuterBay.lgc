@@ -141,7 +141,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     }
 
     if(said("look", "pod")) {
-        print("The ship is a well maintained vessel. It is currently fueling. Unlike the typical StarCon shuttles you often find in these bays this is a privately owned and piloted ship. There's a call sign placard on the vessel. It reads: 'Cignus1' You wonder who owns this beauty.");
+        print("The ship is a well maintained vessel. It is currently fueling. Unlike the typical StarCon shuttles you often find in these bays this is a privately owned and piloted ship. There's a call sign placard on the vessel. It reads: 'Cygnus1' You wonder who owns this beauty.");
     }
     
     if(said("look", "tram")) {

@@ -140,7 +140,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         }
     }
 
-    if((said("look", "room")|| said("room"))) {
+    if((said("look", "room") || said("look"))) {
         print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south.");
     }
 

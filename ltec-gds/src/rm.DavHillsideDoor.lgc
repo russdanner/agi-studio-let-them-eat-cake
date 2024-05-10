@@ -38,11 +38,15 @@ if(newRoom) {
     set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);
 
-    if(!isset(fEyesOpen)) {
+    if(isset(fEyesOpen)) {
+        set.loop(objTrunkDoor, 0);
+        set.cel(objTrunkDoor, 0);
+        stop.cycling(objTrunkDoor);
+    }
+    else {
         set.loop(objTrunkDoor, 1);
         set.cel(objTrunkDoor, 0);
         stop.cycling(objTrunkDoor);
-
     }
 
     position(objTrunkDoor, 100, 93);
