@@ -146,6 +146,8 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         
         position(ego, 81, 167);
         set.view(ego, vw.RogerSplash);
+        set.loop(ego, 0);
+        set.cel(ego, 0);
         start.cycling(ego);
         draw(ego);
             
@@ -174,6 +176,8 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
             erase(ego);
             stop.cycling(ego);
             set.view(objBucket, vw.RogerBucket);
+            position(objBucket, 76, 167);
+            [position(objRope2, 120, 80);
             set(fInBucket);      
         }
         else {
@@ -206,8 +210,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         if(!isset(fInBucket)) {
             print("You can't reach the rope from here.");
         }
-        
-        if(isset(fInBucket)) {    
+        else {    
             set.view(objBucket, vw.Bucket);        
             stop.cycling(objBucket);
             position(objBucket, 76, 152);
@@ -219,7 +222,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
             set.view(ego, vw.RogerClimbRope);
             reset(fInBucket);    
             draw(objBucket);
-            block(74, 146, 78, 148);
+            block(78, 1, 85, 125);
             observe.blocks(ego);
             draw(ego);
         

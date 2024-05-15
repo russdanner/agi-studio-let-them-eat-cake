@@ -51,10 +51,16 @@ if(newRoom) {
         }
     }
 
-    position(objMist, 1, 13);
-    position(objMist2, 43, 13);
-    position(objMist3, 84, 13);
-    position(objMist4, 120, 13);
+    ignore.objs(objMist);
+    ignore.objs(objMist2);
+    ignore.objs(objMist3);
+    ignore.objs(objMist4);
+    
+    position(objMist, 1, 43);
+    position(objMist2, 43, 43);
+    position(objMist3, 84, 43);
+    position(objMist4, 120, 43);    
+    
 
     [ add wider range to reduce instances of encounter
     reset(fGotcha);

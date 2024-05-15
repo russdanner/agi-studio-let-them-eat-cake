@@ -29,14 +29,14 @@ if(newRoom) {
     load.view(vw.Bucket);
 
     animate.obj(ego);
-    [animate.obj(objMist);
+    animate.obj(objMist);
     animate.obj(objMist2);
     animate.obj(objMist3);
     animate.obj(objMist4);
     animate.obj(objBucket);
 
     set.view(ego, vw.Roger);
-    [set.view(objMist, vw.Mist);
+    set.view(objMist, vw.Mist);
     set.view(objMist2, vw.Mist);
     set.view(objMist3, vw.Mist);
     set.view(objMist4, vw.Mist);
@@ -44,16 +44,22 @@ if(newRoom) {
     
     set.cel(objBucket, 0);
     
-    [stop.cycling(objMist);
+    stop.cycling(objMist);
     stop.cycling(objMist2);
     stop.cycling(objMist3);
     stop.cycling(objMist4);
     stop.cycling(objBucket);
 
-    [position(objMist, 1, 43);
+    ignore.objs(objMist);
+    ignore.objs(objMist2);
+    ignore.objs(objMist3);
+    ignore.objs(objMist4);
+                
+    position(objMist, 1, 43);
     position(objMist2, 43, 43);
     position(objMist3, 84, 43);
     position(objMist4, 120, 43);
+    
     position(objBucket, 38, 120);
 
     if(previousRoom == rm.DavWellBottom) {
@@ -67,7 +73,7 @@ if(newRoom) {
     set.horizon(50);
 
     draw(ego);
-    [draw(objMist);
+    draw(objMist);
     draw(objMist2);
     draw(objMist3);
     draw(objMist4);

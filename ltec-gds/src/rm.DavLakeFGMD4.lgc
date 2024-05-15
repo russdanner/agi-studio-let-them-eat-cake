@@ -45,6 +45,11 @@ if(newRoom) {
     stop.cycling(objMist3);
     stop.cycling(objMist4);
 
+    ignore.objs(objMist);
+    ignore.objs(objMist2);
+    ignore.objs(objMist3);
+    ignore.objs(objMist4);
+
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
             assignn(vEgoX, 140);
@@ -52,10 +57,10 @@ if(newRoom) {
         }
     }
 
-    position(objMist, 1, 13);
-     position(objMist2, 35, 13);
-     position(objMist3, 70, 13);
-     position(objMist4, 118, 13);
+    position(objMist, 1, 43);
+    position(objMist2, 40, 40);
+    position(objMist3, 84, 43);
+    position(objMist4, 120, 43);
 
     if(has("Invitation") && !isset(fEyesOpen) && !isset(fFlashed)) {
         load.view(vw.FGM);

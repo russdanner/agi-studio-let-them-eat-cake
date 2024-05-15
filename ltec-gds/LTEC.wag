@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/10/2024 8:48:21 AM"
+   LastEdit = "5/10/2024 10:05:59 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &H34B3D4D6
-   CRC32 = &H34B3D4D6
+   CompCRC32 = &H9EC8E3DB
+   CRC32 = &H9EC8E3DB
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -349,15 +349,15 @@
 [Logic16]
    ID = rm.DavLakeFGMD4
    Description = ""
-   CRC32 = &H2F00E056
-   CompCRC32 = &H2F00E056
+   CRC32 = &HB6809C5E
+   CompCRC32 = &HB6809C5E
    IsRoom = True
 
 [Logic18]
    ID = rm.DavWolfE1
    Description = ""
-   CRC32 = &H4972D54B
-   CompCRC32 = &H4972D54B
+   CRC32 = &H63D5A591
+   CompCRC32 = &H63D5A591
    IsRoom = True
 
 [Logic12]
@@ -398,8 +398,8 @@
 [Logic14]
    ID = rm.DavWellTopD1
    Description = ""
-   CRC32 = &H35BD54
-   CompCRC32 = &H35BD54
+   CRC32 = &H773C73C4
+   CompCRC32 = &H773C73C4
    IsRoom = True
 
 [Logic27]
@@ -412,8 +412,8 @@
 [Logic28]
    ID = rm.DavWellBottom
    Description = ""
-   CRC32 = &H26E8D28F
-   CompCRC32 = &H26E8D28F
+   CRC32 = &H7339E87D
+   CompCRC32 = &H7339E87D
    IsRoom = True
 
 [Logic15]
@@ -454,15 +454,15 @@
 [Logic119]
    ID = rm.DavHillsideDoor
    Description = ""
-   CRC32 = &H8118C4F6
-   CompCRC32 = &H8118C4F6
+   CRC32 = &HACFFCCE1
+   CompCRC32 = &HACFFCCE1
    IsRoom = True
 
 [Logic120]
    ID = rm.DavLabStairs
    Description = ""
-   CRC32 = &HA576F8AB
-   CompCRC32 = &HA576F8AB
+   CRC32 = &H11F71629
+   CompCRC32 = &H11F71629
    IsRoom = True
 
 [Logic121]

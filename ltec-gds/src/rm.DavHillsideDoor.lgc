@@ -52,7 +52,7 @@ if(newRoom) {
     position(objTrunkDoor, 100, 93);
     set.horizon(50); 
 
-    assignn(vEgoY, 155);
+    [assignn(vEgoY, 155);
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
             assignn(vEgoX, 140);

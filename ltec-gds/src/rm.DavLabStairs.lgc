@@ -68,7 +68,7 @@ if(isset(fRogerSplat)) {
     set(fDead);
 }
 
-if(obj.in.box(ego, 10, 158, 30, 162)) {
+if(posn(ego, 10, 158, 33, 167)) {
     assignn(vEgoX, 100);
     assignn(vEgoY, 105);
     stop.cycling(ego);
