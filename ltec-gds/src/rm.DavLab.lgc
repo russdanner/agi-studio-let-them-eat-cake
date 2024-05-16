@@ -294,13 +294,17 @@ if(isset(fRepairReturn3)) {
     }
 
     if(equaln(vClockTicks, 9)) {
-        display(4, 9, "Luke Boback: Stow    ");
-        display(5, 9, "                     ");
+        display(4, 9, "Luke Boback: Stow     ");
+        display(5, 9, "                      ");
     }
 
     if(equaln(vClockTicks, 10)) {
-        display(4, 9, "Russ Danner: Thanks  ");
-        display(5, 9, "to Ken and Roberta!  ");
+        display(4, 9, "Ricky Derocher: Yeah..");
+        display(5, 9, "but what about Cedric?");
+    }
+    if(equaln(vClockTicks, 11)) {
+        display(4, 9, "Russ Danner: Thanks   ");
+        display(5, 9, "to Ken and Roberta!   ");
 
         if(!isset(fMiBOnce)) {
             set(fMiBOnce);

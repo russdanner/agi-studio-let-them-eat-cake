@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &H9EC8E3DB
-   CRC32 = &H9EC8E3DB
+   CompCRC32 = &HDE20D911
+   CRC32 = &HDE20D911
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -440,8 +440,8 @@
 [Logic115]
    ID = rm.GrahamCastle
    Description = ""
-   CRC32 = &H8F3EC4A5
-   CompCRC32 = &H8F3EC4A5
+   CRC32 = &HC71E37D9
+   CompCRC32 = &HC71E37D9
    IsRoom = True
 
 [Logic118]
@@ -468,8 +468,8 @@
 [Logic121]
    ID = rm.DavLab
    Description = ""
-   CRC32 = &H60244043
-   CompCRC32 = &H60244043
+   CRC32 = &HB393D445
+   CompCRC32 = &HB393D445
    IsRoom = True
 [::END Logics::]
 
