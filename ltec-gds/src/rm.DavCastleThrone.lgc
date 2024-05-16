@@ -10,7 +10,7 @@
 [ LOCAL DEFINES
 [***************************************
 
-[ add local defines here
+#define objCedric o16
 
 [***************************************
 [ FIRST CYCLE ONLY
@@ -36,6 +36,7 @@ if(newRoom) {
     load.view(vw.Person3);
     load.view(vw.PersonG1);
     load.view(vw.PersonG2);
+    load.view(vw.Cedric);
 
     animate.obj(ego);
     animate.obj(objPersonA);
@@ -52,6 +53,7 @@ if(newRoom) {
     animate.obj(objParty2);
     animate.obj(objParty3);
     animate.obj(objParty4);
+    animate.obj(objCedric);
 
     set.view(ego, vw.Roger);
     set.view(objPersonA, vw.PersonA);
@@ -68,7 +70,8 @@ if(newRoom) {
     set.view(objParty2, vw.HBD);
     set.view(objParty3, vw.HBD);
     set.view(objParty4, vw.HBD);
-
+    set.view(objCedric, vw.Cedric);
+    
     if(equaln(vEgoX, 0)) {
         if(equaln(vEgoY, 0)) {
             assignn(vEgoX, 100);
@@ -110,6 +113,9 @@ if(newRoom) {
     set.cel(objParty2, 1);
     set.cel(objParty3, 1);
 
+    set.priority(objCedric, 15);
+    position(objCedric, 128, 139);
+
     position(objParty1, 33, 83);
     position(objParty2, 140, 92);
     position(objParty3, 26, 89);
@@ -133,6 +139,7 @@ if(newRoom) {
     draw(objParty1);
     draw(objParty2);
     draw(objParty3);
+    draw(objCedric);
  
     
     show.pic();
@@ -175,10 +182,19 @@ if(equaln(vClockTicks, 3) && equaln(vTimer, 80)) {
 [***************************************
 [ PROCESS PLAYER INPUT
 [***************************************
-[if (haveInput && !haveMatch && unknownWordNum == 0) {
-[
-[}
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if((said("look", "cedric") || said("talk", "cedric"))) {
+        print("Graham, watch out - that might be a poooooooisonous CAKE!");
+    }
+    
+    if(said("attack", "cedric")) {
+        print("He does look pretty annoying doesn't he?! You prepare to \%w1\ Cedric...");        
+        print("Wait.. what did that owl ever do to you Roger?");
+        addn(currentScore, 1);        
+    }
+}
 
+        
 [***************************************
 [ CHECK FOR AN EXIT CONDITION
 [***************************************

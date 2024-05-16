@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/10/2024 10:05:59 AM"
+   LastEdit = "5/16/2024 10:41:18 PM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -391,8 +391,8 @@
 [Logic30]
    ID = rm.DavCastleThrone
    Description = ""
-   CRC32 = &H95505D81
-   CompCRC32 = &H95505D81
+   CRC32 = &HF58D57FD
+   CompCRC32 = &HF58D57FD
    IsRoom = True
 
 [Logic14]
@@ -1360,5 +1360,9 @@
 
 [View166]
    ID = vw.PersonL
+   Description = ""
+
+[View221]
+   ID = vw.Cedric
    Description = ""
 [::END Views::]

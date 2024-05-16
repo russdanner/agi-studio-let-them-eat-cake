@@ -163,3 +163,15 @@ Error: 11 Value: 50
 Room 41
 Input line: flush
 Error: 11 Value: 50
+
+Room 30
+Input line: save
+Error: 13 Value: 237
+
+Room 30
+Input line: restore
+Error: 13 Value: 21
+
+Room 30
+Input line: restore
+Error: 13 Value: 18
