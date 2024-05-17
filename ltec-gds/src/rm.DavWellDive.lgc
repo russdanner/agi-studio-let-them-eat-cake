@@ -60,7 +60,7 @@ if(newRoom) {
 [ NON-INPUT CODE 
 [***************************************
 
-if(equaln(vClockTicks, 9)) {
+if(equaln(vClockTicks, 9) && equaln(vTimer, 0)) {
     print("On a scale of 1 to low on oxygen you are three fumes below empty.");
 }
 

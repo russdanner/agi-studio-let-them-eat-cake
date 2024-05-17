@@ -244,8 +244,8 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &HA18A457B
-   CompCRC32 = &HA18A457B
+   CRC32 = &HE4EA6584
+   CompCRC32 = &HE4EA6584
    IsRoom = True
 
 [Logic8]
@@ -391,8 +391,8 @@
 [Logic30]
    ID = rm.DavCastleThrone
    Description = ""
-   CRC32 = &HF58D57FD
-   CompCRC32 = &HF58D57FD
+   CRC32 = &H5B54E082
+   CompCRC32 = &H5B54E082
    IsRoom = True
 
 [Logic14]
@@ -426,8 +426,8 @@
 [Logic29]
    ID = rm.DavWellDive
    Description = ""
-   CRC32 = &HD9E6F81A
-   CompCRC32 = &HD9E6F81A
+   CRC32 = &HC6C58364
+   CompCRC32 = &HC6C58364
    IsRoom = True
 
 [Logic34]

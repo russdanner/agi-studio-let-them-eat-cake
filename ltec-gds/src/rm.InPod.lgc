@@ -217,10 +217,10 @@ if(isset(fPodLaunched)) {
         }    
 
         if(equaln(vClockTicks, 5) && equaln(vTimer, 0)) {
-            print("You pick at the bightly colored decal and peel it away from the console. It reveals a hard packard that says 'AUTONAV`");
+            print("You pick at the bightly colored decal and peel it away from the console. It reveals a hard placard that says 'AUTONAV`");
             erase(objDecal);
             set(fWarping);
-            print("The button you pushed WASN'T the AUTONAV... OH NO. You've been tricked into pushing the DO NOT TOUCH button! GULP!`");
+            print("The button you pushed WASN'T the AUTONAV... OH NO. You've been tricked into pushing the DO NOT TOUCH button! GULP!");
         }    
 
         if(equaln(vClockTicks, 6) && equaln(vTimer, 0)) {
