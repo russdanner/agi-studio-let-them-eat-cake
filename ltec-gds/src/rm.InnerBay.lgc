@@ -162,15 +162,11 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         print("I'll get naked if you get naked. You go first.");
     }
     
-    if(said("look")) {
-        print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a pneumatic transport tube and car.");
-    }
-    
     if(said("sleep")) {
         if(posn(ego, 100, 95, 120, 103)) {
             print("You have to admit this closet looks like a perfect place for a nap. You also have to admit that you had a similar thought earlier today. Given that you are running behind you decide with a degree of sadness NOT to take another nap.");
         }
-        if(!posn(ego, 100, 95, 120, 103)) {
+        else {
             print("You can't do that here. Perhaps a comfy janitorial closet would be a more suitable.");
         }
     }
@@ -284,12 +280,12 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         }
     }
 
-    if(said("look", "room")) {
-        print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom a closet and a pneumatic transport tube and car.");
+    if((said("look", "room") || said("look"))) {
+        print("This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom, a closet, and a pneumatic transport tube and car.");
     }
 
     if(said("look", "bathroom")) {
-        print("'Look' is really not really the verb you would prefer to associate with StarCon bathrooms. It appears to be your standard issue StarCon facilities. There is a button by the door and a small display which indicates that the room is currently unoccupied.");
+        print("'Look' is not really the verb you would prefer to associate with StarCon bathrooms. It appears to be your standard issue StarCon facilities. There is a button by the door and a small display which indicates that the room is currently unoccupied.");
     }
 
     if(said("look", "closet")) {

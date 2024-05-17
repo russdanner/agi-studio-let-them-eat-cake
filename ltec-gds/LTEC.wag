@@ -98,8 +98,8 @@
 [Logic95]
    ID = lgc.Death
    Description = "Death handler\n\nThis logic is run when the player dies. The death message displayed depends on the value of certain.death."
-   CRC32 = &H7B9071DA
-   CompCRC32 = &H7B9071DA
+   CRC32 = &H755341D4
+   CompCRC32 = &H755341D4
    IsRoom = False
    Size = 409
 
@@ -209,15 +209,15 @@
 [Logic36]
    ID = rm.InnerBay
    Description = ""
-   CRC32 = &HE62CD9AF
-   CompCRC32 = &HE62CD9AF
+   CRC32 = &HB4D41F5A
+   CompCRC32 = &HB4D41F5A
    IsRoom = True
 
 [Logic41]
    ID = rm.Bathroom
    Description = ""
-   CRC32 = &HAA9574DF
-   CompCRC32 = &HAA9574DF
+   CRC32 = &HA120F7AD
+   CompCRC32 = &HA120F7AD
    IsRoom = True
 
 [Logic37]
@@ -244,8 +244,8 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &H83DCD90E
-   CompCRC32 = &H83DCD90E
+   CRC32 = &HA18A457B
+   CompCRC32 = &HA18A457B
    IsRoom = True
 
 [Logic8]
@@ -454,8 +454,8 @@
 [Logic119]
    ID = rm.DavHillsideDoor
    Description = ""
-   CRC32 = &HACFFCCE1
-   CompCRC32 = &HACFFCCE1
+   CRC32 = &H4FB17794
+   CompCRC32 = &H4FB17794
    IsRoom = True
 
 [Logic120]

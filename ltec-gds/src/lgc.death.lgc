@@ -125,6 +125,8 @@ if(!isset(fGameOver)) {
 if(isset(fDeathSoundDone)) {
     reset(fDeathSoundDone);
     print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. Reload to restart.");
+    assignn(egoDir, STOPPED);
+    program.control();
 }
 
 

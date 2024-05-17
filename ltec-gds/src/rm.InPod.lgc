@@ -114,11 +114,17 @@ if(newRoom) {
     ignore.blocks(objPodStars3);
     ignore.horizon(objPodStars4);
     ignore.blocks(objPodStars4);
+
+    set.priority(objPodStars1, 15);
+    set.priority(objPodStars2, 15);
+    set.priority(objPodStars3, 15);
+    set.priority(objPodStars4, 15);
     
     position(objPodStars1, 65, 40);
     position(objPodStars2, 85, 40);
     position(objPodStars3, 65, 50);
     position(objPodStars4, 85, 50);
+
 
     draw(objCockpitThrottle);
     draw(objDecal);
@@ -214,10 +220,13 @@ if(isset(fPodLaunched)) {
             print("You pick at the bightly colored decal and peel it away from the console. It reveals a hard packard that says 'AUTONAV`");
             erase(objDecal);
             set(fWarping);
+            print("The button you pushed WASN'T the AUTONAV... OH NO. You've been tricked into pushing the DO NOT TOUCH button! GULP!`");
         }    
 
         if(equaln(vClockTicks, 6) && equaln(vTimer, 0)) {
-            print("When the button says not to touch it... you shouldn't touch it. Time and space begin to warp around you. You may be late for your next assignment.");
+            print("When the button says NOT to touch it... you shouldn't touch it!");
+            print("Time and space begin to warp around you.");
+            print("You may be late for your next assignment...");
         }  
 
         if(equaln(vClockTicks, 7) && equaln(vTimer, 0)) {

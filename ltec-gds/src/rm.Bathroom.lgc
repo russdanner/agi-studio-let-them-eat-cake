@@ -220,7 +220,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     }
     
     if(said("look", "graffiti")) {
-        print("The walls are cover in graffiti... err... wisdom captured in a variety of alien languages.");
+        print("The walls are covered in graffiti... err... wisdom captured in a variety of alien languages.");
     }
     
     if(said("read", "graffiti")) {
@@ -262,11 +262,11 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         set.view(objToiletWater, vw.Waterfill);
         set.view(objToiletOverflow, vw.Overflow);
     
-        draw(objToiletWater);
-        draw(objToiletOverflow)    ;
     
         position(objToiletOverflow, 71, 126);
         position(objToiletWater, 48, 150);
+        draw(objToiletWater);
+        draw(objToiletOverflow);
     
         end.of.loop(objToiletWater, fDoAction);
         set(fFlushing);
@@ -290,7 +290,7 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
     }
     
     if(said("look", "mirror")) {
-        print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. if the ladies don't find you handsome they should atleast find you handy. You thread that needle pretty well.");
+        print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. \"If the ladies don't find you handsome they should atleast find you handy.\" You thread that needle pretty well.");
     }    
 }
 

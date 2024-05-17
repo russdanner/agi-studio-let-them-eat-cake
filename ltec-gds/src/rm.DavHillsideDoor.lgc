@@ -143,6 +143,10 @@ if (haveInput && !haveMatch && unknownWordNum == 0) {
         }
     }
     
+    if(said("open", "door")) {
+        print("Try as you might, the darn thing wont budge.");
+    }
+    
     if(said("look", "door")) {
         if(isset(fEyesOpen)) {
             print("The door is made of wood and looks extremely sturdy. Theres a small slot in the door");

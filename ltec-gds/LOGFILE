@@ -175,3 +175,7 @@ Error: 13 Value: 21
 Room 30
 Input line: restore
 Error: 13 Value: 18
+
+Room 2
+Input line: stop sweeping
+Error: 11 Value: 50
