@@ -62,7 +62,7 @@ if(newRoom) {
 [***************************************
 
 if(isset(fDoAction)) {
-    print("You have won! Good luck on you next adventure and HAPPY 40th BIRTHDAY TO GRAPHIC ADVENTURE GAMES!! Thanks for playing!");
+    print("You have won! Good luck on your next adventure and HAPPY 40th BIRTHDAY TO GRAPHIC ADVENTURE GAMES!! Thanks for playing!");
     display(20, 1, m3);
     display(23, 1, m4);
     display(24, 1, m5);

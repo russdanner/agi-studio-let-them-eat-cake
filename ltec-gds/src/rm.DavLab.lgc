@@ -254,7 +254,7 @@ if(isset(fRepairReturn3)) {
     erase(objShaft2);
     
     if(equaln(vClockTicks, 1)) {
-        display(4, 9, "Incomming transmission");
+        display(4, 9, "Incoming transmission ");
         display(5, 9, "                      ");
     }
 
