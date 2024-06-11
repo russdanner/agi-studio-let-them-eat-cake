@@ -192,7 +192,7 @@ if(said("enter", "bucket")) {
 
 if(said("get", "bucket")) {
     // GET IN and GET OUT are not working properly
-    // this sucks becuase it overlaps with TAKE BUCKET
+    // this sucks because it overlaps with TAKE BUCKET
     // for the sake of the player let's go this route for now
     if(isset(fSysEgoOnWater)) {
         erase(objBucket)

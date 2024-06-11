@@ -293,7 +293,7 @@ if(said("take", "summons")) {
 if(said("take", "teapot")) {
     if(posn(objEgo, 104, 93, 123, 112)) {
         if(has(invTeapot)) {
-            print("You alread have it.")
+            print("You already have it.")
         }
         if(!has(invTeapot)) {
             print("You remove the teapot from the stove.")
@@ -324,7 +324,7 @@ if(said("take", "teacup")) {
     if(posn(objEgo, 40, 107, 56, 135)) {
         erase(objTeaCup)
         if(equaln(vTeaPoured, valTrue)) {
-            print("You pick up the tetakeacup full of hot clover tea and carry it with you.")
+            print("You pick up the teacup full of hot clover tea and carry it with you.")
             get(invTea)
         }
         if(!equaln(vTeaPoured, valTrue)) {

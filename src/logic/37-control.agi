@@ -215,7 +215,7 @@ if(said("talk", "man")) {
             set(fHasFlightPlan)
             addn(vCurrentScore, 1)
             assignn(vTimer, 0)
-            print("Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it.")
+            print("Hey Roger. I'm sending you over to Hangar B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it.")
         }
     }
     // need better control structures from the compiler

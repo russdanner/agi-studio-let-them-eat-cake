@@ -276,7 +276,7 @@ if(isset(fPodLaunched)) {
         }    
 
         if(equaln(vClockTicks, 5)) {
-            print("You pick at the bightly colored decal and peel it away from the console. It reveals a hard packard that says 'AUTONAV`")
+            print("You pick at the brightly colored decal and peel it away from the console. It reveals a hard placard that says 'AUTONAV`")
             erase(objDecal)
             set(fWarping)
         }    
@@ -423,7 +423,7 @@ if(said("push", "autonav")) {
 
 if(said("press", "power", "button")) {
     if(isset(fPodPoweredUp)) {
-        print("The system is already running. The onboard computer overrides your pood decisons and bad instincts.")
+        print("The system is already running. The onboard computer overrides your poor decisions and bad instincts.")
     }
     if(!isset(fPodPoweredUp)) {
         addn(vCurrentScore, 1)

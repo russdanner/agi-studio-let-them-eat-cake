@@ -61,7 +61,7 @@ if(!equaln(vEgoEdgeTouched, edgeNone)) {
 }
 
 if(said("look")) {
-    print("You are at the very bottom of the well. The walls are rough cut and the floor is full bits and bobs that people have thrown down the well over the ages. A large trunk lays up against the wall to the east. There's a small opening in the wall to the west.")
+    print("You are at the very bottom of the well. The walls are rough cut and the floor is full of bits and bobs that people have thrown down the well over the ages. A large trunk lays up against the wall to the east. There's a small opening in the wall to the west.")
 }
 up
 if(said("close", "trunk")) {
@@ -110,7 +110,7 @@ if(said("take", "ink")) {
     }  
 }
 if(said("look", "room")) {
-    print("You are at the very bottom of the well. The walls are rough cut and the floor is full bits and bobs that people have thrown down the well over the ages. A large trunk lays up againt the wall to the east. There's a small opening in the wall to the west.")
+    print("You are at the very bottom of the well. The walls are rough cut and the floor is full of bits and bobs that people have thrown down the well over the ages. A large trunk lays up againt the wall to the east. There's a small opening in the wall to the west.")
 }
 if(said("look", "hole")) {
     print("It's a hole that leads to a cave.")

@@ -127,7 +127,7 @@ if(!equaln(vEgoDirection, directionStopped)) {
 addn(vTimer, 1)
 
 if(equaln(vTimer, 20)) {
-    print("You walk into what looks like a huge party for KING Graham. He's surrounded by friends and love ones.")
+    print("You walk into what looks like a huge party for KING Graham. He's surrounded by friends and loved ones.")
 }
 
 if(equaln(vTimer, 100)) {

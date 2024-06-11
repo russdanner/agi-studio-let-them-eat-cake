@@ -93,7 +93,7 @@ if(equaln(vRoomInited, valFalse)) {
 }
 
 if(said("look")) {
-    print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.")
+    print("You are standing in a large hangar bay. The hangar door is open to the coldness of space. A shuttle sits in the middle of the bay.")
 }
 
 if(said("sweep")) {
@@ -303,7 +303,7 @@ if(isset(fDecompressed)) {
 
 
 if(said("look", "panel")) {
-    print("The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.")
+    print("The panel is used to operate hangar bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.")
 }
 if(said("look", "space")) {
     print("Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'")

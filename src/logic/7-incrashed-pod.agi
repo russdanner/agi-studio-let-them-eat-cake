@@ -116,7 +116,7 @@ if(said("look", "console")) {
 }
 
 if(said("look", "throttle")) {
-    print("She's locked in the on position but you are definately not going anywhere.")
+    print("She's locked in the on position but you are definitely not going anywhere.")
 }
 if(said("pull", "throttle")) {
     print("All of a sudden... nothing happens!")

@@ -114,10 +114,10 @@ if(said("knock")) {
     }
 }
 if(said("look")) {
-    print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south.")
+    print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick fog extends to the west and south.")
 }
 if(said("look", "room")) {
-    print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south.")
+    print("There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick fog extends to the west and south.")
 }
 if(said("look", "fog")) {
     print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.")
@@ -138,7 +138,7 @@ if(said("open", "door")) {
 }
 
 // have to enable sound off because of the 3 word checks
-// these comon things need to be built into a better inc stem
+// these common things need to be built into a better inc stem
 if(said("fastest", "speed")) {
     assignn(10, 1)
 }

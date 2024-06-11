@@ -422,8 +422,8 @@
 // global flags
 // Do not use for screen specific things
 // These should be 89 and lower
-// Note that we use flags in this game fore a few items in addition to inventory
-// because we change the character and have to clear / build the invetory when the 
+// Note that we use flags in this game for a few items in addition to inventory
+// because we change the character and have to clear / build the inventory when the 
 // character changes.
 #define fGameOver 74
 #define fDeathSoundDone 75

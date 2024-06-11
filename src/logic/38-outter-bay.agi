@@ -85,7 +85,7 @@ if(said("exit", "tram")) {
 }
 
 if(said("enter", "tram")) {
-    print("You pod is fueled and waiting... Better get out to the hanger.")
+    print("You pod is fueled and waiting... Better get out to the hangar.")
 }
 
 if(isset(fTramInboundDone)) {
@@ -146,10 +146,10 @@ if(obj.in.box(objEgo, 2, 123, 5, 128)) {
     assignn(vCurrentRoom, picHangerB)     
 }
 if(said("get", "pod")) {
-    print("Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger.")
+    print("Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hangar.")
 }
 if(said("enter", "pod")) {
-    print("Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger.")
+    print("Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hangar.")
 }
 
 if(said("look", "room")) {
