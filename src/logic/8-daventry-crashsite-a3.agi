@@ -131,7 +131,7 @@ if(said("look", "water")) {
     print("The river is flowing off to the east and looks to have a strong current.")
 }
 if(said("look", "castle")) {
-    print("There's a base of fortress of some kind off in the distance. You wonder how to get over there. Maybe there's someone there that could help you out.")
+    print("There's a base or fortress of some kind off in the distance. You wonder how to get over there. Maybe there's someone there that could help you out.")
 }
 if(said("search", "pod")) {
     print("You search the debris from the crash. You find nothing useful except a small piece of glass.")

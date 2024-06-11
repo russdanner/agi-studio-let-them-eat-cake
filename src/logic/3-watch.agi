@@ -69,7 +69,7 @@ if(equaln(vRoomInited, valFalse)) {
 addn(vTimer, 1)
 
 if(said("look")) {
-    print("This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also a incoming message indicator on the right side of the screen.")
+    print("This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also an incoming message indicator on the right side of the screen.")
 }
 
 if(said("exit")) {
@@ -78,7 +78,7 @@ if(said("exit")) {
 }
 
 if(said("look", "watch")) {
-    print("This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also a incoming message indicator on the right side of the screen.")
+    print("This is your StarCon communication device. It's built into the pressure suit. It has 3 buttons on it A C and T. There's also an incoming message indicator on the right side of the screen.")
 }
 
 if(said("look", "c")) {
