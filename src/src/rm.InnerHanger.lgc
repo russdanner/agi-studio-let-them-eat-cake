@@ -208,7 +208,7 @@ if (isset(haveInput) &&
         new.room(rm.Watch);
     }
     if (said("examine", "console")) {
-        print("The panel is used to operate hanger bay equipment. It's meant to "
+        print("The panel is used to operate hangar bay equipment. It's meant to "
               "be operated by personnel assigned to flight operations which "
               "does not include janitorial staff.");
     }
@@ -234,7 +234,7 @@ if (isset(haveInput) &&
     }
     if ((said("examine", "room") || 
         said("examine"))) {
-        print("You are standing in a large hanger bay. The hanger door is open "
+        print("You are standing in a large hangar bay. The hangar door is open "
               "to the coldness of space. A shuttle sits in the middle of the "
               "bay.");
     }
@@ -248,9 +248,9 @@ return();
 #message 4 "You don't have the proper equipment on hand for that job."
 #message 5 "Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking."
 #message 6 "You are too far away."
-#message 7 "The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff."
+#message 7 "The panel is used to operate hangar bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff."
 #message 8 "Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'"
 #message 9 "Yep that's a shuttle alright. Always coming and going. You can't count the number of times you've had to clean up after the space-sick scum that frequent these shuttles. Speaking of shuttle related messes you wonder if this craft is the one that left puddles of fuel on the deck."
 #message 10 "What a mess. There's fuel on the deck. It needs to be cleaned up."
 #message 11 "A spill?! Not on your watch! Roger Wilco. Ace Janitor!"
-#message 12 "You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay."
+#message 12 "You are standing in a large hangar bay. The hangar door is open to the coldness of space. A shuttle sits in the middle of the bay."

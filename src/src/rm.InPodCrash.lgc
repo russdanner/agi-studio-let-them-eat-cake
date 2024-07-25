@@ -89,7 +89,7 @@ if (isset(haveInput) &&
               "and wires.");
     }
     if (said("examine", "throttle")) {
-        print("She's locked in the on position but you are definately not going "
+        print("She's locked in the on position but you are definitely not going "
               "anywhere.");
     }
     if (said("pull", "throttle")) {
@@ -122,7 +122,7 @@ return();
 #message 11 "Oooof that's gonna leave a mark. Your seatbelt is still buckled."
 #message 12 "You climb out of the pod and discard your pressure suit."
 #message 13 "What was once a console is now a twisted mess of broken buttons and wires."
-#message 14 "She's locked in the on position but you are definately not going anywhere."
+#message 14 "She's locked in the on position but you are definitely not going anywhere."
 #message 15 "All of a sudden... nothing happens!"
 #message 16 "Nothing happens"
 #message 17 "The buttons are of no use at this point."

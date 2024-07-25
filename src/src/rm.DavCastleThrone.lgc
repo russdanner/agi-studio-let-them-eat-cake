@@ -111,7 +111,7 @@ if (isset(newRoom)) {
 if (v243 == 0 && 
     v242 == 20) {
     print("You walk into what looks like a huge party for KING Graham. He's "
-          "surrounded by friends and love ones.");
+          "surrounded by friends and loved ones.");
 }
 if (v243 == 1 && 
     v242 == 0) {
@@ -155,7 +155,7 @@ return();
 
 [ Messages
 #message 1 "You see nothing of interest."
-#message 2 "You walk into what looks like a huge party for KING Graham. He's surrounded by friends and love ones."
+#message 2 "You walk into what looks like a huge party for KING Graham. He's surrounded by friends and loved ones."
 #message 3 "... THE KING!! Oh My ..."
 #message 4 "Graham, watch out - that might be a poooooooisonous CAKE!"
 #message 5 "He does look pretty annoying doesn't he?! You prepare to %w1 Cedric..."

@@ -373,7 +373,7 @@ if (isset(haveInput) &&
         said("press", "power", "button"))) {
         if (isset(f90)) {
             print("The system is already running. The onboard computer "
-                  "overrides your pood decisons and bad instincts.");
+                  "overrides your poor decisons and bad instincts.");
         }
         else {
             currentScore  += 1;
@@ -454,7 +454,7 @@ return();
 #message 30 "You see a button marked 'POWER' and 'AUTONAV'. There's also button that clearly marked by a brightly colored decal that says 'DO NOT TOUCH!'"
 #message 31 "The screen lists start procedures: '1. Pull Throttle. 2. Press AutoNav.' Luckily for you the pod's navigational system is controlled automatically by StarCon. Clogs rather than pods are your forte."
 #message 32 "The screen is dark."
-#message 33 "The system is already running. The onboard computer overrides your pood decisons and bad instincts."
+#message 33 "The system is already running. The onboard computer overrides your poor decisons and bad instincts."
 #message 34 "You push the button but it has no effect."
 #message 35 "Nothing happens."
 #message 36 "You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly."

@@ -190,7 +190,7 @@ if (isset(haveInput) &&
                 set(f101);
                 currentScore  += 1;
                 v242 = 0;
-                print("\"Hey Roger. I'm sending you over to Hanger B for "
+                print("\"Hey Roger. I'm sending you over to Hangar B for "
                       "departure and transit to Orbital Station 3 per the "
                       "Commander. A pod has been prepared and is standing by. "
                       "Before you go... You know.. Swapping out my cave ball "
@@ -232,7 +232,7 @@ return();
 #message 3 "You are not close enough."
 #message 4 "You better speak with control first."
 #message 5 "\"You better get moving Roger. I've got a lot on my plate here.\""
-#message 6 "\"Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it.\""
+#message 6 "\"Hey Roger. I'm sending you over to Hangar B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it.\""
 #message 7 "\"Can't you see I am busy here?\""
 #message 8 "Who?"
 #message 9 "Keep your eyes to yourself Roger."

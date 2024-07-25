@@ -100,11 +100,11 @@ if (isset(haveInput) &&
     if ((said("examine", "room") || 
         said("examine"))) {
         print("There's a house nestled in to a heavily wooded area. It seems to "
-              "be made of gingerbread and candy. A thick flog extends to the "
+              "be made of gingerbread and candy. A `think` fog extends to the "
               "west and south.");
     }
     if (said("examine", "fog")) {
-        print("There's a thick fog here. It almost feels as much mental as it "
+        print("There's a `think` fog here. It almost feels as much mental as it "
               "is physical. The more you look into it the more lost you feel.");
     }
     if (said("examine", "candy")) {
@@ -130,7 +130,7 @@ return();
 #message 2 "You're a bit foggy here. You decide to turn back."
 #message 3 "There is no answer."
 #message 4 "You can't reach it from here."
-#message 5 "There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south."
-#message 6 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 5 "There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A 'think' fog extends to the west and south."
+#message 6 "There's a 'think' fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
 #message 7 "You are not quite sure what to make of it. It's a house made out of candy. It looks... sticky. As a janitor sticky bothers you."
 #message 8 "You give the house a lick. It looks better than it tastes."

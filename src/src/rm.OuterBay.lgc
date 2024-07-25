@@ -94,7 +94,7 @@ if (isset(haveInput) &&
     if ((said("acquire", "craft") || 
         said("enter", "craft"))) {
         print("Not a chance Roger. This ship is not StarCon property. Your pod "
-              "awaits you in the hanger.");
+              "awaits you in the hangar.");
     }
     if (said("examine", "craft")) {
         print("The ship is a well maintained vessel. It is currently fueling. "
@@ -143,14 +143,14 @@ if (isset(haveInput) &&
         draw(ego);
     }
     if (said("enter", "car")) {
-        print("You pod is fueled and waiting... Better get out to the hanger.");
+        print("You pod is fueled and waiting... Better get out to the hangar.");
     }
 }
 return();
 
 [ Messages
 #message 1 "This is Outer Bay B. Along the rear wall is a pneumatic transport tube and car. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left."
-#message 2 "Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger."
+#message 2 "Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hangar."
 #message 3 "The ship is a well maintained vessel. It is currently fueling. Unlike the typical StarCon shuttles you often find in these bays this is a privately owned and piloted ship. There's a call sign placard on the vessel. It reads: 'Cygnus1' You wonder who owns this beauty."
 #message 4 "The pneumatic transport tube is used to move about the various areas within the station. A car is currently waiting in this location."
 #message 5 "An EVA pressure suit hangs on the rack."
@@ -158,4 +158,4 @@ return();
 #message 7 "You don't have time for that."
 #message 8 "Ok"
 #message 9 "You can't reach it."
-#message 10 "You pod is fueled and waiting... Better get out to the hanger."
+#message 10 "You pod is fueled and waiting... Better get out to the hangar."

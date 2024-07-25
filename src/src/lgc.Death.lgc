@@ -44,7 +44,7 @@ if (!isset(f74)) {
             set(f76);
             print("What the ORAT was that? You've just become a snack for a "
                   "local species of ogre with a serious case of the munchies. "
-                  "He dusts you like bundt cake.");
+                  "He dusts you like Bundt cake.");
         }
         if (v29 == 9) {
             set(f76);
@@ -65,8 +65,8 @@ if (!isset(f74)) {
         }
         if (v29 == 13) {
             set(f77);
-            print("Graham you know it's dangerous outside at night. You're wolf "
-                  "chow.");
+            print("Graham, you know it's dangerous outside at night. 'Howl' could you make such a mistake?! You're wolf "
+                  "chow now.");
         }
         if (v29 == 12) {
             set(f76);
@@ -193,7 +193,7 @@ return();
 #message 12 "Graham you know it's dangerous outside at night. You're wolf chow."
 #message 13 "What you assume is one of the ugliest members of Vohaul's monkey troops swoops down and snatches you up."
 #message 14 "Whatever lives in that hole made speedy work of cleaning your bones. You really should mind your own business."
-#message 15 "That guy in the wierd space suit zaps you with some kind of laser beam. You are quickly turned to stone. You always dreamed of being immortalzied in a statue. Congratulations you got your wish! Unfortunately you are also now dead."
+#message 15 "That guy in the weird space suit zaps you with some kind of laser beam. You are quickly turned to stone. You always dreamed of being immortalized in a statue. Congratulations you got your wish! Unfortunately you are also now dead."
 #message 16 "To your great surprise it turns out you cannot breathe under water. Having depleted the available oxygen in your lungs you drown after a short and awkward struggle."
 #message 17 "You trip and fall from the stairs. Fortunately you are able to arrest the fall. Unfortunately you do so with your face. You really have to be more careful Roger."
 #message 18 "Your fuel has run out. Without thrust you can no longer chart a course. We're not sure where you are going but we know you'll be a popsicle when you arrive."

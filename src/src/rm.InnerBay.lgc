@@ -133,7 +133,7 @@ if (isset(haveInput) &&
         said("start", "clean"))) {
         if (has("Broom")) {
             print("With this broom?! ROGER! This is a polished floor not some "
-                  "crummy hanger deck. You know better. Ace janitor indeed.");
+                  "crummy hangar deck. You know better. Ace janitor indeed.");
         }
         if (!has("Broom")) {
             print("You don't have the proper equipment on hand for that.");
@@ -282,7 +282,7 @@ return();
 #message 1 "I'll get naked if you get naked. You go first."
 #message 2 "You have to admit this closet looks like a perfect place for a nap. You also have to admit that you had a similar thought earlier today. Given that you are running behind you decide with a degree of sadness NOT to take another nap."
 #message 3 "You can't do that here. Perhaps a comfy janitorial closet would be a more suitable."
-#message 4 "With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed."
+#message 4 "With this broom?! ROGER! This is a polished floor not some crummy hangar deck. You know better. Ace janitor indeed."
 #message 5 "You don't have the proper equipment on hand for that."
 #message 6 "You can't go in there wearing your EVA pressure suit. That could get VERY messy."
 #message 7 "Which one?"

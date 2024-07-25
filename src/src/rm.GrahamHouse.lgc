@@ -323,7 +323,7 @@ if (isset(haveInput) &&
     if (said("acquire", "kettle")) {
         if (posn(ego, 104, 93, 123, 112)) {
             if (has("Teapot")) {
-                print("You alread have it.");
+                print("You already have it.");
             }
             else {
                 print("You remove the teapot from the stove.");
@@ -352,7 +352,7 @@ if (isset(haveInput) &&
         if (posn(ego, 40, 107, 56, 135)) {
             erase(o4);
             if (v235 == 1) {
-                print("You pick up the tetakeacup full of hot clover tea and "
+                print("You pick up the teacup full of hot clover tea and "
                       "carry it with you.");
                 get("Tea");
             }

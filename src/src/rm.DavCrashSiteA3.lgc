@@ -146,7 +146,7 @@ if (isset(haveInput) &&
               "current.");
     }
     if (said("examine", "base")) {
-        print("There's a base of fortress of some kind off in the distance. You "
+        print("There's a base or fortress of some kind off in the distance. You "
               "wonder how to get over there. Maybe there's someone there that "
               "could help you out.");
     }
@@ -169,5 +169,5 @@ return();
 #message 5 "You are not close enough."
 #message 6 "It WAS a pod. It's now a pile of twisted parts and wreckage that has been thoroughly plowed into the ground. Your handiwork so-to-speak."
 #message 7 "The river is flowing off to the east and looks to have a strong current."
-#message 8 "There's a base of fortress of some kind off in the distance. You wonder how to get over there. Maybe there's someone there that could help you out."
+#message 8 "There's a base or fortress of some kind off in the distance. You wonder how to get over there. Maybe there's someone there that could help you out."
 #message 9 "You search the debris from the crash. You find nothing useful except a small piece of glass."

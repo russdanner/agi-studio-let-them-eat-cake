@@ -98,7 +98,7 @@
 [Logic95]
    ID = lgc.Death
    Description = "Death handler\n\nThis logic is run when the player dies. The death message displayed depends on the value of certain.death."
-   CRC32 = &H0
+   CRC32 = &H95D00D1
    CompCRC32 = &H9F7F9587
    IsRoom = False
    Size = 409
@@ -146,7 +146,7 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H2C8E50D6
    CompCRC32 = &H8B0DCBB1
    IsRoom = True
 
@@ -195,63 +195,63 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HE1D7BEBD
    CompCRC32 = &HD3B47642
    IsRoom = True
 
 [Logic3]
    ID = rm.Watch
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HAF0C25C1
    CompCRC32 = &HD7F07D4B
    IsRoom = True
 
 [Logic36]
    ID = rm.InnerBay
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H9AF0286A
    CompCRC32 = &HE71017B5
    IsRoom = True
 
 [Logic41]
    ID = rm.Bathroom
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H4B203FD4
    CompCRC32 = &H8E42EBC3
    IsRoom = True
 
 [Logic37]
    ID = rm.ControlRoom
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HA16BF2B3
    CompCRC32 = &H7B32569B
    IsRoom = True
 
 [Logic38]
    ID = rm.OuterBay
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H265A60D7
    CompCRC32 = &HDB4FF574
    IsRoom = True
 
 [Logic39]
    ID = rm.OuterHanger
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H8DCA172C
    CompCRC32 = &HA6F2BFAE
    IsRoom = True
 
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HD55A4FEB
    CompCRC32 = &H86230A17
    IsRoom = True
 
 [Logic8]
    ID = rm.DavCrashSiteA3
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H224AC1F
    CompCRC32 = &HA869554D
    IsRoom = True
 
@@ -265,14 +265,14 @@
 [Logic7]
    ID = rm.InPodCrash
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H6A0B1AB1
    CompCRC32 = &HE85EDD4A
    IsRoom = True
 
 [Logic10]
    ID = rm.DavRiverBendA4
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HAD99227E
    CompCRC32 = &HC6701AB1
    IsRoom = True
 
@@ -286,7 +286,7 @@
 [Logic11]
    ID = rm.DavBowlA5
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H2E7944D5
    CompCRC32 = &H2066ACA0
    IsRoom = True
 
@@ -307,7 +307,7 @@
 [Logic26]
    ID = rm.DavWalnutF5
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HEFAE2647
    CompCRC32 = &H4D3DA231
    IsRoom = True
 
@@ -370,7 +370,7 @@
 [Logic17]
    ID = rm.DavWitchHouseD5
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H5D3693A8
    CompCRC32 = &H3037D89E
    IsRoom = True
 
@@ -391,7 +391,7 @@
 [Logic30]
    ID = rm.DavCastleThrone
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H12142062
    CompCRC32 = &HBC0ACE05
    IsRoom = True
 
@@ -426,7 +426,7 @@
 [Logic29]
    ID = rm.DavWellDive
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HAECB0A9E
    CompCRC32 = &H80DC9826
    IsRoom = True
 
@@ -454,7 +454,7 @@
 [Logic119]
    ID = rm.DavHillsideDoor
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H9286E857
    CompCRC32 = &H782CE656
    IsRoom = True
 

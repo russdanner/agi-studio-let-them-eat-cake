@@ -51,7 +51,7 @@ if (isset(haveInput) &&
     !isset(haveMatch) && 
     unknownWordNum == 0) {
     if (said("examine")) {
-        print("The river winds off to the east into a mist which grow thicker "
+        print("The river winds off to the east into a mist which grows thicker "
               "to the east");
     }
     if (said("examine", "room")) {

@@ -105,7 +105,7 @@ if (isset(haveInput) &&
     if (said("examine", "door")) {
         if (isset(f150)) {
             print("The door is made of wood and looks extremely sturdy. Theres "
-                  "a small slot in the door");
+                  "a small slot in the door.");
         }
         else {
             print("The door is made of wood and looks extremely sturdy.");
@@ -122,11 +122,11 @@ if (isset(haveInput) &&
                   "You wonder what it could be for.");
         }
         else {
-            print("what slot? There's no slot here.");
+            print("What slot? There's no slot here.");
         }
     }
     if (said("examine", "fog")) {
-        print("There's a thick fog here. It almost feels as much mental as it "
+        print("There's a 'think' fog here. It almost feels as much mental as it "
               "is physical. The more you look into it the more lost you feel.");
     }
     if (said("insert", "card")) {
@@ -154,6 +154,6 @@ return();
 #message 6 "The door is made of wood and looks extremely sturdy. Theres a small slot in the door"
 #message 7 "The door is made of wood and looks extremely sturdy."
 #message 8 "On the door you find a panel with a small slot. A faint blinking red glow is emitted from somewhere inside the slot. You wonder what it could be for."
-#message 9 "what slot? There's no slot here."
-#message 10 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 9 "What slot? There's no slot here."
+#message 10 "There's a 'think' fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
 #message 11 "You can't do that."

@@ -170,7 +170,7 @@ if (isset(haveInput) &&
                 set(f140);
                 currentScore  += 1;
             }
-            print("Look at you siting here reflecting.. Don't hurt yourself. "
+            print("Look at you sitting here reflecting.. Don't hurt yourself. "
                   "You're about as sharp as a rock.");
         }
         if (v36 == 4) {
@@ -217,7 +217,7 @@ if (isset(haveInput) &&
     }
     if (said("examine", "mirror")) {
         print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. "
-              "\"If the ladies don't find you handsome they should atleast find "
+              "\"If the ladies don't find you handsome they should at least find "
               "you handy.\" You thread that needle pretty well.");
     }
 }
@@ -232,7 +232,7 @@ return();
 #message 6 "The walls are covered in graffiti... err... wisdom captured in a variety of alien languages."
 #message 7 "Use the force. Except here. Don't force anything in here."
 #message 8 "Al-be back."
-#message 9 "Look at you siting here reflecting.. Don't hurt yourself. You're about as sharp as a rock."
+#message 9 "Look at you sitting here reflecting.. Don't hurt yourself. You're about as sharp as a rock."
 #message 10 "Pull on paper for StarCon career application"
 #message 11 "N.S.P. yo!"
 #message 12 "Ken sent me"
@@ -240,4 +240,4 @@ return();
 #message 14 "To your surprise it is as it appears... a door. The door is locked."
 #message 15 "A worthy adversary indeed. Clean it is not."
 #message 16 "The sink appears to be broken. Gross."
-#message 17 "Hey buddy! That's you. Roger Wilco. Your mother always told ya.. \"If the ladies don't find you handsome they should atleast find you handy.\" You thread that needle pretty well."
+#message 17 "Hey buddy! That's you. Roger Wilco. Your mother always told ya.. \"If the ladies don't find you handsome they should at least find you handy.\" You thread that needle pretty well."

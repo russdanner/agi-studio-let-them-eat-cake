@@ -107,11 +107,11 @@ if (isset(haveInput) &&
     !isset(haveMatch) && 
     unknownWordNum == 0) {
     if (said("examine")) {
-        print("This is a forrested and rocky area. A 'think' fog has developed "
+        print("This is a forested and rocky area. A 'think' fog has developed "
               "to the south and the east.");
     }
     if (said("examine", "room")) {
-        print("This is a forrested and rocky area. A 'think' fog has developed "
+        print("This is a forested and rocky area. A 'think' fog has developed "
               "to the south and the east.");
     }
     if (said("examine", "fog")) {

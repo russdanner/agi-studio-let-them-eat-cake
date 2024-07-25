@@ -83,7 +83,7 @@ if (isset(haveInput) &&
     !isset(haveMatch) && 
     unknownWordNum == 0) {
     if (said("examine")) {
-        print("You are standing in a large hanger bay. The hanger door is open "
+        print("You are standing in a large hangar bay. The hangar door is open "
               "to the coldness of space. A shuttle sits in the middle of the "
               "bay.");
     }
@@ -111,12 +111,12 @@ if (isset(haveInput) &&
         }
     }
     if (said("examine", "room")) {
-        print("You are standing in a large hanger bay. The hanger door is open "
+        print("You are standing in a large hangar bay. The hangar door is open "
               "to the coldness of space. A shuttle sits in the middle of the "
               "bay.");
     }
     if (said("examine", "console")) {
-        print("The panel is used to operate hanger bay equipment. It's meant to "
+        print("The panel is used to operate hangar bay equipment. It's meant to "
               "be operated by personnel assigned to flight operations which "
               "does not include janitorial staff.");
     }
@@ -136,10 +136,10 @@ if (isset(haveInput) &&
 return();
 
 [ Messages
-#message 1 "You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay."
+#message 1 "You are standing in a large hangar bay. The hangar door is open to the coldness of space. A shuttle sits in the middle of the bay."
 #message 2 "You climb into the pod and shut the door."
 #message 3 "As you go to climb into the pod you realize you still have a broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door."
 #message 4 "You are too far away."
-#message 5 "The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff."
+#message 5 "The panel is used to operate hangar bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff."
 #message 6 "Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'"
 #message 7 "Ain't she cute? It's a standard issue StarCon shuttle pod used for short trips between stations and bases. In the extremely rare and unlikely event of an emergency including but not limited to a hostile encounter with a crew of marauding aliens it can be used as an escape vehicle. That'll never happen. 'Anywho'.. She's all fueled up and ready to go."

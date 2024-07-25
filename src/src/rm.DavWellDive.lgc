@@ -46,7 +46,7 @@ if (isset(haveInput) &&
     if ((said("examine", "room") || 
         said("examine"))) {
         print("You are at the very bottom of the well. The walls are rough cut "
-              "and the floor is full bits and bobs that people have thrown down "
+              "and the floor is full of bits and bobs that people have thrown down "
               "the well over the ages. A large trunk lays up against the wall "
               "to the east. There's a small opening in the wall to the west.");
     }
@@ -109,7 +109,7 @@ return();
 
 [ Messages
 #message 1 "On a scale of 1 to low on oxygen you are three fumes below empty."
-#message 2 "You are at the very bottom of the well. The walls are rough cut and the floor is full bits and bobs that people have thrown down the well over the ages. A large trunk lays up against the wall to the east. There's a small opening in the wall to the west."
+#message 2 "You are at the very bottom of the well. The walls are rough cut and the floor is full of bits and bobs that people have thrown down the well over the ages. A large trunk lays up against the wall to the east. There's a small opening in the wall to the west."
 #message 3 "You are not close enough."
 #message 4 "You open the trunk."
 #message 5 "You open the trunk to find a small bottle of ink inside."
