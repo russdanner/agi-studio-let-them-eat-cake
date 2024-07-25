@@ -1,0 +1,103 @@
+[*********************************************************************
+[
+[ rm.DavDwarfF4
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, 1);
+
+    load.view(vw.Roger);
+
+    animate.obj(ego);
+
+    set.view(ego, vw.Roger);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 100);
+            assignn(vEgoY, 110);
+        }
+    }
+
+    position.v(ego, vEgoX, vEgoY);
+    set.horizon(50);
+
+    draw(ego);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWalnutF5);     
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavRockE4);     
+}
+
+if(edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavOgreF3);    
+}
+    
+if(edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavRiverBendA4);     
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("This is a lightly wooded area with rocky outcroppings.");
+    }
+    
+    if(said("look", "room")) {
+        print("This is a lightly wooded area with rocky outcroppings.");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

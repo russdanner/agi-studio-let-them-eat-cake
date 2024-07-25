@@ -1,0 +1,486 @@
+[*********************************************************************
+[
+[ rm.InPod
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    call(lgc.RoomInit);
+    assignn(vRoomInited, valTrue);
+    
+    unanimate.all();
+    animate.obj(objPodStars1);
+    animate.obj(objPodStars2);
+    animate.obj(objPodStars3);
+    animate.obj(objPodStars4);
+    animate.obj(objCockpitThrottle);
+    animate.obj(objDecal);
+    animate.obj(objCockpitButtons1);
+    animate.obj(objCockpitButtons2);
+    animate.obj(objCockpitButtons3);
+    animate.obj(objCockpitButtons4);
+    animate.obj(objCockpitScreen1);
+    animate.obj(objCockpitPush);
+
+    load.view(vw.CockpitThrottle);
+    load.view(vw.Decal);
+    load.view(vw.Star);
+
+    set.view(objPodStars1, vw.Star);
+    set.view(objPodStars2, vw.Star);
+    set.view(objPodStars3, vw.Star);
+    set.view(objPodStars4, vw.Star);
+    set.view(objCockpitThrottle, vw.CockpitThrottle);
+    set.view(objDecal, vw.Decal);
+    
+    stop.cycling(objCockpitThrottle);
+    stop.cycling(objDecal);
+    stop.cycling(objPodStars1);
+    stop.cycling(objPodStars2);
+    stop.cycling(objPodStars3);
+    stop.cycling(objPodStars4);    
+    
+    position(objDecal, 119, 124);    
+    position(objCockpitThrottle, 106, 128);
+
+    if(!isset(fLaunchAnimationPlayed)) {
+        reset(fBeltBuckled);
+        reset(fPodPoweredUp);
+        reset(fPodThrottlePulled);
+        reset(fPodAutoNavPressed);
+        reset(fBeltBuckled);
+        reset(fPodStart);
+        reset(fPodLaunched);
+        reset(fPodAutoNaved);
+        reset(fWarping);
+        reset(fWarpingStarted);
+    }
+    else {
+        position(objCockpitThrottle,  106, 130);
+        
+        load.view(vw.CockpitButtons);
+        
+        set.view(objCockpitButtons1, vw.CockpitButtons);
+        set.view(objCockpitButtons2, vw.CockpitButtons);
+        set.view(objCockpitButtons3, vw.CockpitButtons);
+        set.view(objCockpitButtons4, vw.CockpitButtons);
+        set.view(objCockpitScreen1, vw.CockpitButtons);
+    
+        stop.cycling(objCockpitButtons1);
+        stop.cycling(objCockpitButtons2);
+        stop.cycling(objCockpitButtons3);
+        stop.cycling(objCockpitButtons4);
+        stop.cycling(objCockpitScreen1);
+    
+        set.cel(objCockpitButtons2, 1);
+        set.cel(objCockpitButtons3, 2);
+        set.cel(objCockpitButtons4, 4);
+        set.cel(objCockpitScreen1, 3);
+    
+        position(objCockpitButtons1, 32, 128);
+        position(objCockpitButtons2, 46, 110);
+        position(objCockpitButtons3, 47, 127);
+        position(objCockpitButtons4, 126, 127);    
+        position(objCockpitScreen1, 73, 92);   
+
+        draw(objCockpitButtons1);
+        draw(objCockpitButtons2);
+        draw(objCockpitButtons3);
+        draw(objCockpitButtons4);
+        draw(objCockpitScreen1);
+    }
+
+    ignore.horizon(objPodStars1);
+    ignore.blocks(objPodStars1);
+    ignore.horizon(objPodStars2);
+    ignore.blocks(objPodStars2);
+    ignore.horizon(objPodStars3);
+    ignore.blocks(objPodStars3);
+    ignore.horizon(objPodStars4);
+    ignore.blocks(objPodStars4);
+
+    set.priority(objPodStars1, 15);
+    set.priority(objPodStars2, 15);
+    set.priority(objPodStars3, 15);
+    set.priority(objPodStars4, 15);
+    
+    position(objPodStars1, 65, 40);
+    position(objPodStars2, 85, 40);
+    position(objPodStars3, 65, 50);
+    position(objPodStars4, 85, 50);
+
+
+    draw(objCockpitThrottle);
+    draw(objDecal);
+    draw(objPodStars1);
+    draw(objPodStars2);
+    draw(objPodStars3);
+    draw(objPodStars4);
+
+    assignn(vTimer, 0);
+    assignn(vClockTicks, 0);
+    
+    [ display the picture on screen
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(isset(fPodThrottlePulled)) {
+    if(!isset(fPodLaunched)) {
+        erase(objCockpitThrottle);
+        position(objCockpitThrottle,  106, 130);
+        set.cel(objCockpitThrottle, 1);
+        erase(objCockpitPush);
+        draw(objCockpitThrottle);
+    
+        set(fPodLaunched);
+        assignn(vTimer, 0);
+        print("With a roar the pod blasts from the launch platform hurling you into the blackness of space.");    
+    }
+}
+
+if(isset(fPodLaunched)) {
+    if(isset(fLaunchAnimationPlayed)) {
+        if(!isset(fWarping)) {
+            if(!isset(fStarDone1)) {
+                move.obj(objPodStars1, 20, 75, 2, fStarDone1);
+            }
+            else {
+               reset(fStarDone1);
+               erase(objPodStars1);
+               position(objPodStars1, 65, 40);
+               draw(objPodStars1);
+            }
+            
+            if(!isset(fStarDone2)) {
+                move.obj(objPodStars2, 125, 80, 2, fStarDone2);
+            }
+            else {
+                reset(fStarDone2);
+                erase(objPodStars2);
+                position(objPodStars2, 85, 40);
+                draw(objPodStars2);
+            }
+            
+            if(!isset(fStarDone3)) {
+               move.obj(objPodStars3, 20, 15, 2, fStarDone3);
+            }
+            else {
+                reset(fStarDone3);
+                erase(objPodStars3);
+                position(objPodStars3, 65, 50);
+                draw(objPodStars3);        
+            }
+
+            if(!isset(fStarDone4)) {
+               move.obj(objPodStars4, 130, 15, 2, fStarDone4);
+            }
+            else {
+                reset(fStarDone4);
+                erase(objPodStars4);
+                position(objPodStars4, 85, 50);
+                draw(objPodStars4);
+            }    
+        }
+    }
+    else {
+        assignn(vRoomInited, valFalse);
+        new.room(rm.Station);           
+    }
+
+    if(isset(fPodAutoNaved)){
+        if(equaln(vClockTicks, 2) && equaln(vTimer, 0)) {
+            print("You know.. that AUTONAV button is usually on the right...");
+        }    
+
+        if(equaln(vClockTicks, 4) && equaln(vTimer, 0)) {
+            print("A pit forms in your stomach... You may be in for some payback!");
+        }    
+
+        if(equaln(vClockTicks, 5) && equaln(vTimer, 0)) {
+            print("You pick at the bightly colored decal and peel it away from the console. It reveals a hard placard that says 'AUTONAV`");
+            erase(objDecal);
+            set(fWarping);
+            print("The button you pushed WASN'T the AUTONAV... OH NO. You've been tricked into pushing the DO NOT TOUCH button! GULP!");
+        }    
+
+        if(equaln(vClockTicks, 6) && equaln(vTimer, 0)) {
+            print("When the button says NOT to touch it... you shouldn't touch it!");
+            print("Time and space begin to warp around you.");
+            print("You may be late for your next assignment...");
+        }  
+
+        if(equaln(vClockTicks, 7) && equaln(vTimer, 0)) {
+            assignn(vRoomInited, valFalse);
+            reset(fCrashed);
+            new.room(rm.DavCrashSiteA3);       
+        }  
+    }
+    else {
+        if(equaln(vClockTicks, 6) && equaln(vTimer, 0)) {
+            print("There's only so much fuel on these pods. You should probably engage some form of navigation...");
+        }
+
+        if(equaln(vClockTicks, 17) && equaln(vTimer, 0)) {
+            print("Your computer flashes: \"Fuel Low!\"");
+        }
+        
+        if(equaln(vClockTicks, 20) && equaln(vTimer, 0)) {
+            assignn(vDeathReason, valXsNoFuel);
+            set(fDead);
+        }
+    }
+}
+
+if(isset(fWarping)) {
+    if(!isset(fWarpingStarted)) {
+        set(fWarpingStarted);
+        load.view(vw.WorldWarp);
+        set.view(objWarp, vw.WorldWarp);
+        set.priority(objWarp, 4);
+        start.cycling(objWarp);
+        stop.motion(objWarp);
+
+
+        erase(objPodStars2);
+        erase(objPodStars3);
+        erase(objPodStars4);    
+        position(objWarp, 9, 84);
+        draw(objWarp);
+    }
+}
+
+
+if(isset(fPodPoweredUp)) {
+    load.view(vw.CockpitButtons);
+
+    set.view(objCockpitButtons1, vw.CockpitButtons);
+    set.view(objCockpitButtons2, vw.CockpitButtons);
+    set.view(objCockpitButtons3, vw.CockpitButtons);
+    set.view(objCockpitButtons4, vw.CockpitButtons);
+    set.view(objCockpitScreen1, vw.CockpitButtons);
+
+    stop.cycling(objCockpitButtons1);
+    stop.cycling(objCockpitButtons2);
+    stop.cycling(objCockpitButtons3);
+    stop.cycling(objCockpitButtons4);
+    stop.cycling(objCockpitScreen1);
+
+    set.cel(objCockpitButtons2, 1);
+    set.cel(objCockpitButtons3, 2);
+    set.cel(objCockpitButtons4, 4);
+    set.cel(objCockpitScreen1, 3);
+
+    position(objCockpitButtons1, 32, 128);
+    position(objCockpitButtons2, 46, 110);
+    position(objCockpitButtons3, 47, 127);
+    position(objCockpitButtons4, 126.5, 127);
+    position(objCockpitScreen1, 73, 92);
+
+    draw(objCockpitButtons1);
+    draw(objCockpitButtons2);
+    draw(objCockpitButtons3);
+    draw(objCockpitButtons4);
+    draw(objCockpitScreen1);
+
+    reset(fPodPoweredUp);
+    erase(objCockpitPush);
+
+    set(fPodStart);
+
+    print("The pod's systems whir to life!");  
+}
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("You are in a standard issue StarCon pod used for short voyages and emergency escapes. In front of you there is a console and a screen.");
+    }
+
+    if(said("exit")) {
+        print("You shut the door behind you. You cannot get out now unless there is an emergency.");
+    }
+    
+    if(said("look", "keycard")) {
+        if(has("Keycard")) {
+            print("The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B.H.S.S.'");
+        }
+        else {
+            print("What is this keycard that you speak of? You don't have a keycard.");    
+        }
+    }
+    
+    if(said("take", "keycard")) {
+        if(has("Keycard")) {
+            print("You already have it.");
+        }
+        else {
+            print("Yoink! You can't help but wonder what highly secure area this keycard will permit you to enter.");
+            get("Keycard");
+        }
+    }
+
+    if(said("exit", "pod")) {
+        print("You shut the door behind you. You cannot get out now unless there is an emergency.");
+    }
+    
+    if(said("look", "pod")) {
+        print("You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen.");
+    }
+    
+    if(said("remove", "belt")) {
+        print("There's no need to do that.");
+    }
+
+    if((said("buckle", "up") || said("wear", "belt") || said("buckle", "belt"))){
+        if(isset(fBeltBuckled)) {
+            print("You are already buckled in.");
+        }
+        else {
+            set(fBeltBuckled);
+            addn(currentScore, 1);
+            print("Good move Roger. Safety third.");
+        }
+    }
+    
+    if((said("search") || said("search", "pod"))) {
+        if(has("Keycard")) {
+            print("You find nothing of importance.");
+        }
+        else {
+            print("You search the pod. Wedged under the seat you find... a keycard.");
+        }
+    }
+    
+    if(said("push", "throttle")) {
+        print("The throttle is topped out. There's no room to push it any further back."); 
+    }
+    
+    if(said("pull", "throttle")) {
+        if(isset(fPodThrottlePulled)) {
+            print("Are you nuts? Do you have any idea what could happen if you mess with the throttle mid-flight? Nothing. It's locked into position.");
+        }
+        if(!isset(fPodThrottlePulled)) {
+            if(isset(fPodStart)) { 
+                addn(currentScore, 1);
+        
+                load.view(vw.CockpitPull);
+                set.view(objCockpitPush, vw.CockpitPull);
+                stop.cycling(objCockpitPush);
+                erase(objCockpitPush);
+                position(objCockpitPush, 100, 180);
+                draw(objCockpitPush);
+        
+                move.obj(objCockpitPush, 100, 160, 1, fPodThrottlePulled);
+            }
+            else {
+                print("You can't. The throttle is locked in its position."); 
+            }    
+        }
+    }
+
+    if(said("look", "console")) {
+        print("The console has several buttons and a throttle.");
+    }
+    
+    if(said("look", "throttle")) {
+        print("That thing looks like it means business.");
+    }
+    
+    if(said("look", "buttons")) {
+        print("You see a button marked 'POWER' and 'AUTONAV'. There's also button that clearly marked by a brightly colored decal that says 'DO NOT TOUCH!'");
+    }
+    
+    if(said("look", "screen")) {
+        if(isset(fPodStart)) { 
+            print("The screen lists start procedures: '1. Pull Throttle. 2. Press AutoNav.' Luckily for you the pod's navigational system is controlled automatically by StarCon. Clogs rather than pods are your forte.");
+        }    
+        if(!isset(fPodStart)) { 
+            print("The screen is dark.");
+        }
+    }
+
+    if((said("push", "power") 
+    ||  said("press", "power") 
+    || said("press", "power", "button"))) {
+        if(isset(fPodPoweredUp)) {
+            print("The system is already running. The onboard computer overrides your pood decisons and bad instincts.");
+        }
+        else {
+            addn(currentScore, 1);
+            load.view(vw.CockpitPush);
+            set.view(objCockpitPush, vw.CockpitPush);
+            stop.cycling(objCockpitPush);        
+            position(objCockpitPush, 80, 165);
+            draw(objCockpitPush);
+
+            move.obj(objCockpitPush, 75, 145, 3, fPodPoweredUp);
+        }
+    }
+    
+    if((said("push", "autonav") 
+    ||  said("press", "autonav") 
+    || said("push", "autonav", "button"))) {
+        if(isset(fPodStart)) { 
+            if(isset(fPodAutoNaved)) {
+                print("You push the button but it has no effect.");
+            }
+            else {
+                if(!isset(fPodThrottlePulled)) {
+                    print("Nothing happens.");
+                }        
+                else {
+                    addn(currentScore, 1);
+                    set(fPodAutoNaved);
+                    assignn(vTimer, 0);
+                    assignn(vClockTicks, 0);        
+                    print("You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly.");
+                }    
+            }
+        }
+        else {
+            print("Nothing happens."); 
+        }
+    }
+    
+    if((said("push", "dont", "touch") 
+    || said("push", "do", "not", "touch") 
+    || said("push", "dont", "touch", "button")
+    || said("push", "do", "not", "touch", "button"))) {
+        print("Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`"); 
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

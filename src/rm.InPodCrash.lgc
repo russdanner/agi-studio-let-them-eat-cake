@@ -1,0 +1,149 @@
+[*********************************************************************
+[
+[ rm.InPodCrash
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.CockpitThrottle);
+
+    set.view(objCockpitThrottle, vw.CockpitThrottle);
+    
+    stop.cycling(objCockpitThrottle);
+    
+
+    set.cel(objCockpitThrottle, 1);
+
+    position(objCockpitThrottle,  106, 130);
+
+    set(fBeltBuckled);
+    draw(objCockpitThrottle);
+       
+    [ display the picture on screen
+    show.pic();
+    shake.screen(5);
+    print("After a skull-jarring landing you peer through the shattered viewing port out on to a lush green landscape. It feels alien and familiar all at once. You're in a fine mess now.");
+
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ add other room specific statements here
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment.");
+    }
+        
+    if((said("search") || said("search", "pod"))) {
+        if(has("Keycard")) {
+            print("You search the pod in hopes of finding supplies. You find only disappointment.");
+        }
+        else{
+            print("You search the pod. Wedged under the seat you find... a keycard.");
+        }
+    }
+    
+    if(said("look", "keycard")) {
+        if(has("Keycard")) {
+            print("The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B.H.S.S.'");
+        }   
+        else {
+            print("What is this keycard that you speak of? You don't have a keycard.");    
+        }
+    }
+    
+    if(said("take", "keycard")) {
+        if(has("Keycard")) {
+            print("You already have it.");
+        }
+        else {
+            print("Yoink! You can't help but wonder what highly secure area this keycard will permit you to enter.");
+            get("Keycard");
+        }
+    }
+    
+    if(said("look", "pod")) {
+        print("You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment.");
+    }
+    
+    if((said("unbuckle", "belt") || said("remove", "belt"))) {
+        reset(fBeltBuckled);
+        print("Ok");
+    }
+    
+    if((said("exit", "pod") || said("get", "pod") || said("exit"))) {
+        if(isset(fBeltBuckled)) {
+            print("Oooof that's gonna leave a mark. Your seatbelt is still buckled.");
+        }
+        else {
+            assignn(vEgoX, 0);
+            assignn(vEgoY, 0);        
+            assignn(vRoomInited, valFalse);
+            set(fCrashed);
+            print("You climb out of the pod and discard your pressure suit.");
+            new.room(rm.DavCrashSiteA3); 
+        }
+    }
+    
+    if(said("look", "console")) {
+        print("What was once a console is now a twisted mess of broken buttons and wires.");
+    }
+    
+    if(said("look", "throttle")) {
+        print("She's locked in the on position but you are definately not going anywhere.");
+    }
+    
+    if(said("pull", "throttle")) {
+        print("All of a sudden... nothing happens!");
+    }
+    
+    if(said("push", "power")) {
+        print("Nothing happens");
+    }
+    
+    if(said("look", "buttons")) {
+        print("The buttons are of no use at this point.");
+    }
+    
+    if(said("search", "pod")) {
+        print("You search the pod in hopes of finding supplies. You find only disappointment.");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

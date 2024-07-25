@@ -1,0 +1,281 @@
+[*********************************************************************
+[
+[ lgc.GameFunctions
+[
+[ You should use this logic to perform any game specific functions, 
+[ such as counting down timers, etc and processing player input 
+[ related to the game (such as examining/using inventory items) and 
+[ any other things that are required in several rooms that you don't
+[ want to duplicate in each room.
+[
+[ This logic is called from logic 0, on every cycle, unless 
+[ disableGameFunctions is set.
+[
+[ Sierra did not use a separate logic for all this - they just did it
+[ all from logic 0. I find it is neater this way, as you can keep your
+[ game specific processing separate from other system-related things
+[ (although these may require some modification for your game). Also,
+[ this makes logic 0 easier to manage.
+[
+[*********************************************************************
+
+#define entryDelay v240
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ if a new room was visited for first time
+[if (!egoExplored && currentRoom != rm.Entrance) {
+[  [ if ego has been in the room long enough, award one score point for
+[  [ exploration
+[  if (elapsedSeconds != oldSeconds) {
+[    [ increment delay counter until ~2 seconds has passed
+[    entryDelay += 1;
+[    if (entryDelay == 2) {
+[      print("You have explored a new room in this world! Good job!");
+[      currentScore += 1;
+[      set(egoExplored);
+[      entryDelay = 0;
+[    }
+[  }
+[}
+  
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+[ if player has provided input and match not yet found (regardless
+[ of any unknown words)
+[ do said tests
+if (haveInput && !haveMatch) {
+  [ put all generic said tests (those that apply in all rooms) here
+  
+  [ if player says any dirty words
+  if ((said("bad word", "rol") || 
+       said("anyword", "bad word", "rol") || 
+       said("anyword", "anyword", "bad word", "rol") || 
+       said("anyword", "anyword", "anyword", "bad word", "rol") || 
+       said("anyword", "anyword", "anyword", "anyword", "bad word", "rol") || 
+       said("anyword", "anyword", "anyword", "anyword", "anyword", "bad word", "rol"))) {
+    ++badWordCount;
+    if (badWordCount == 1) {
+      [ first warning
+      print("I am going to tell on you!");
+    }
+    if (badWordCount == 2) {
+      [second warning
+      print("Don't say anymore words like that!");
+    }
+    if (badWordCount == 3) {
+      [ no more warnings
+      print("Don't say I didn't warn you.");
+      quit(1);
+    }
+  }
+  
+    
+  if(said("look", "pot")) {
+        if(has("Teapot")) {
+            show.obj(vw.InvTeapot);
+        }
+        else {
+            print("You don't have it.");    
+        }
+    }
+    
+    if(said("look", "hat")) {
+        if(has("Hat") && !fReadyForAdventure) {
+            show.obj(vw.InvHat);
+        }
+        else {
+            if(has("Hat") && fReadyForAdventure) {
+                show.obj(vw.InvAdventureHat);
+            }
+            else {
+                print("You don't have it.");
+            }    
+        }
+    }
+    
+    if(said("look", "summons")) {
+        if(has("Summons")) {
+            show.obj(vw.InvSummons);
+        }
+        else {
+            print("You don't have it.");    
+        }
+    }
+    
+    if(said("look", "tea")) {
+        if(has("Tea")) {
+            show.obj(vw.InvTea);
+        }
+        else {
+            print("You don't have it.");    
+        }
+    }
+    
+    if(said("look", "cup")) {
+        if(has("Teacup")) {
+            show.obj(vw.InvTeacup);
+        }
+        else {
+            if(has("Tea")) {
+                show.obj(vw.InvTea);
+            }
+            else {
+                print("You don't have it.");    
+            }
+        }
+    }
+    
+    if(said("look", "broom")) {
+        if(has("Broom")) {
+            show.obj(vw.InvBroom);
+        }
+        else {
+            print("You don't have it.");  
+        }
+    }
+    
+    if(said("look", "keycard")) {
+        if(has("Keycard")) {
+            print("The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B. H. S. S.'");
+        }
+        else {
+            print("What is this keycard that you speak of? You don't have a keycard.");    
+        }
+    }
+    
+    if(said("look", "glass")) {
+        if(has("Glass") && !fGlassIsSharp) {
+            show.obj(vw.InvGlass);
+        }
+        else {
+            if(has("Glass") && fGlassIsSharp) {
+                show.obj(vw.InvGlassSharp);
+            }
+            else {
+                print("You don't have it.");    
+            }
+        }
+    }
+    
+    if(said("look", "cake")) {
+        if(has("Cake")) {
+            show.obj(vw.InvCake);
+        }
+        else {
+            print("You don't have it.");    
+        }
+    }
+    
+    if(said("look", "ink")) {
+        if(has("Ink")) {
+            show.obj(vw.InvInk);
+        }
+        else {
+            print("You don't have it.");    
+        }
+    }
+    
+    if(said("look", "quill")) {
+        if(has("Quill")) {
+            show.obj(vw.InvQuill);
+        }
+        else {
+            print("You don't have it.");    
+        }
+    }
+    
+    if(said("look", "feather")) {
+        if(has("Feather")) {
+            show.obj(vw.InvFeather);
+        }
+        else {
+            if(has("Quill")) {
+                show.obj(vw.InvQuill);
+            }
+            else {
+                print("You don't have it.");    
+            }
+        }
+    }
+    
+    if(said("look", "paper")) {
+        if(has("Paper")) {
+            show.obj(vw.InvPaper);
+        }
+        else {
+            print("You don't have it.");    
+        }        
+    }
+    
+    if(said("look", "invitation")) {
+        if(has("Invitation")) {
+            show.obj(vw.InvInvitation);
+        }
+        else {
+            print("You don't have it.");    
+        }
+    }
+    
+  [ look anything
+  if ((said("look", "anyword") || said("look", "anyword", "rol"))) {
+    print("What? Where?");
+  }
+  
+  [ get anything
+  if ((said("get", "anyword") || said("get", "anyword", "rol"))) {
+    print("You can't get that here!");
+  }
+  
+  [ use anything
+  if ((said("use", "anyword") || said("use", "anyword", "rol"))) {
+    print("What do you want me to do with it?");
+  }
+}
+
+
+if((said("make", "quill") || said("cut", "feather"))) {
+    if(has("Feather")) {
+        if(has("Glass")) {
+            if(isset(fGlassIsSharp)) {
+                drop("Feather");
+                get("Quill");
+                addn(currentScore, 1);    
+                print("You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP.");
+            }
+            if(!isset(fGlassIsSharp)) {
+                print("The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying.");
+            }
+        }
+    }
+}
+
+if(said("make", "invitation")) {
+    if((!has("Quill") || !has("Ink") || !has("Paper"))) {
+        print("How do you intend to do that?");
+    }
+    
+    if(has("Quill") && has("Ink") && has("Paper")) {
+        drop("Paper");
+        get("Invitation");
+        addn(currentScore, 1);
+        print("Dipping the quill into the ink you cleverly forge an invitation to the castle.");                         
+    }
+}
+
+  
+:done
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

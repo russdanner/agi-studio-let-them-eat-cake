@@ -1,0 +1,206 @@
+[*********************************************************************
+[
+[ lgc.Death
+[
+[ The death handler! This logic is run when ego dies, or otherwise
+[ ends the game. It handles the limited input that is allowed while
+[ ego is dead.
+[
+[ The deathType variable is used to track ego's death state:
+[
+[ 0: not dead
+[ 1: deathtype1
+[ 2: deathtype2
+[  etc.
+[ 255: death sequence complete
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+if(!isset(fGameOver)) {
+    if(isset(fDead)) {
+        reset(fDead);
+         
+        if(equaln(vDeathReason, valXsGeneric)) {
+            set(fRogerDead);
+            print("You are dead.");    
+        }
+        if(equaln(vDeathReason, valXsOversleep)) {
+            set(fGrahamDead);
+            print("You fall asleep and oversleep.");
+        }
+        if(equaln(vDeathReason, valXsNoSuitExplode)) {
+            set(fRogerDead);
+            print("Surgeon General's Warning: Exposing yourself to the vacuum of space is hazardous to your health.");
+        }
+        if(equaln(vDeathReason, valXsSpaceWalk)) {
+            set(fRogerDead);
+            print("You step off the deck and into the vaccuum of space. We're not sure where you are going but we know you'll be a popsicle when you arrive.");
+        }
+        if(equaln(vDeathReason, valXsFuelFoot)) {
+            set(fRogerDead);
+            print("As your boot touches the fuel spill you immediately feel the boot material begin to melt and separate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space.");
+        }
+        if(equaln(vDeathReason, valXsFlushola)) {
+            set(fRogerDead);
+            print("Unbelievable! The toilet begins to overflow. Where's a janitor when you need one?! As the room fills with 'WATER' you frantically search for a plunger but find only that you are trapped. How embarrassing.");
+        }
+        if(equaln(vDeathReason, valXsFastWater)) {
+            set(fRogerDead);
+            print("Oh no! The water here is too fast to swim. You are overcome by the current and rapids. You are quickly 'flushed' down river. An end fit for a janitor.");
+        }
+        if(equaln(vDeathReason, valXsOgreMunch)) {
+            set(fRogerDead);
+            print("What the ORAT was that? You've just become a snack for a local species of ogre with a serious case of the munchies. He dusts you like bundt cake.");
+        }
+        if(equaln(vDeathReason, valXsDrown)) {
+            set(fRogerDead);
+            print("You eventually become tired from struggling. Completely exhausted you slip below the water's surface and drown.");
+        }
+        if(equaln(vDeathReason, valXsSafteyThird)) {
+            set(fRogerDead);
+            print("StarCon requires all passengers to buckle up for a reason. That reason is sudden and violent deceleration. You have just become up close and personal with this concept... and the pod's shield.");
+        }
+        if(equaln(vDeathReason, valXsWolfMunch)) {
+            set(fRogerDead);
+            print("You would rather outrun a Sarien spider droid. Whatever that was it sure was fast. You're wolf chow.");
+        }
+        if(equaln(vDeathReason, valXsWolfMunchGraham)) {
+            set(fGrahamDead);
+            print("Graham you know it's dangerous outside at night. You're wolf chow.");
+        }
+        if(equaln(vDeathReason, valXsWitchSnag)) {
+            set(fRogerDead);
+            print("What you assume is one of the ugliest members of Vohaul's monkey troops swoops down and snatches you up.");
+        }
+        if(equaln(vDeathReason, valXsBewareRandomHoles)) {
+            set(fRogerDead);
+            print("Whatever lives in that hole made speedy work of cleaning your bones. You really should mind your own business.");
+        }
+        if(equaln(vDeathReason, valXsStoned)) {
+            set(fRogerDead);
+            print("That guy in the wierd space suit zaps you with some kind of laser beam. You are quickly turned to stone. You always dreamed of being immortalzied in a statue. Congratulations you got your wish! Unfortunately you are also now dead.");
+        }
+        if(equaln(vDeathReason, valXsOutOfAir)) {
+            set(fRogerDead);
+            print("To your great surprise it turns out you cannot breathe under water. Having depleted the available oxygen in your lungs you drown after a short and awkward struggle.");
+        }
+        if(equaln(vDeathReason, valXsFall)) {
+            set(fRogerDead);
+            print("You trip and fall from the stairs. Fortunately you are able to arrest the fall. Unfortunately you do so with your face. You really have to be more careful Roger.");
+        }
+        if(equaln(vDeathReason, valXsNoFuel)) {
+            set(fRogerDead);   
+            print("Your fuel has run out. Without thrust you can no longer chart a course. We're not sure where you are going but we know you'll be a popsicle when you arrive.");
+        }
+    }    
+}
+
+if(!isset(fGameOver)) {
+    set(fGameOver);
+
+    if(isset(fRogerDead)) {
+        reset(fRogerDead);        
+        load.sound(snd.RogerDead);
+        sound(snd.RogerDead, fDeathSoundDone);
+        set(fDeathSoundDone);
+    }
+    
+    if(isset(fGrahamDead)) {
+        reset(fGrahamDead);
+        load.sound(snd.GrahamDead);
+        sound(snd.GrahamDead, fDeathSoundDone);
+        set(fDeathSoundDone);
+    }    
+}
+
+if(isset(fDeathSoundDone)) {
+    reset(fDeathSoundDone);
+    print("You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. Reload to restart.");
+    assignn(egoDir, STOPPED);
+    program.control();
+}
+
+
+[ menu access is allowed, to restart or restore
+if (controller(cMenu)) {
+  menu.input();
+}
+
+[ looking at help screen is allowed
+if ((controller(cHelp) || said("help"))) {
+  call(lgc.GameHelp);
+}
+
+[ restoring game is allowed
+if ((controller(cRestore) || 
+     said("restore", "game") || 
+     said("restore"))) {
+  restore.game();
+}
+
+[ restarting game is allowed
+if ((controller(cRestart) || 
+     said("restart", "game") || 
+     said("restart"))) {
+  restart.game();
+}
+
+[ looking at inventory is allowed
+if ((controller(cStatus) || 
+     said("inventory"))) {
+  status();
+}
+
+[ quitting is allowed
+if ((controller(cQuit) || 
+     said("quit"))) {
+  quit(0);
+}
+
+[ toggling monitor (if in CGA mode) is allowed
+if (controller(cToggleMonitor)) {
+  toggle.monitor();
+}
+
+[ showing 'about' message is allowed
+if (controller(cAbout)) {
+  print(gameAboutMsg);
+}
+
+[ toggling sound is allowed
+if (controller(cToggleSound)) {
+  toggle(soundOn);
+}
+
+[ allow user to enable/use debug mode
+if ((said("debug") || controller(cDebug))) {
+  if (!debugging) {
+    set(debugging);
+  }
+}
+if (debugging) {
+  call(lgc.Debug);
+}
+
+[ if player tries to input anything else
+if (haveInput && !haveMatch) {
+  [ it's not allowed
+  set(haveMatch);
+  print("You are dead! You can only restore, restart, quit the game"
+        " or view your inventory.");
+}
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

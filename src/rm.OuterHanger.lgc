@@ -1,0 +1,180 @@
+[*********************************************************************
+[
+[ rm.OuterHanger
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+      
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);    
+    load.view(vw.RogerSpacesuitA);
+    load.view(vw.PodPlatform);
+    load.view(vw.Pod);
+
+    animate.obj(ego);
+    animate.obj(objPod);
+    animate.obj(objPodPlatform);
+
+    set.view(objPod, vw.Pod);
+    set.view(objPodPlatform, vw.PodPlatform);
+
+    start.cycling(ego);
+    stop.cycling(objPodPlatform);
+    stop.cycling(objPod);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            set(fWearingSuit);
+        }
+    }
+
+    if(isset(fWearingSuit)) {
+        set.view(ego, vw.RogerSpacesuitA);
+    }
+    else {
+        set.view(ego, vw.Roger);
+    }
+
+    set.priority(objPod, 12);
+    position(objPodPlatform, 55, 109);
+    position(objPod, 60, 100);
+    set.horizon(73); 
+
+    position.v(ego, vEgoX, vEgoY);    
+
+    draw(ego);
+    draw(objPodPlatform);
+    draw(objPod);
+    
+    [ display the picture on screen
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ hitbox for outer bay
+if(posn(ego, 145, 135, 160, 160)) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 15);
+    assignn(vEgoY, 126);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.OuterBay);         
+}
+
+if(edgeEgoHit == TOP_EDGE) {
+    stop.cycling(ego);
+    set.view(ego, vw.RogerspacesuitA);
+    set.priority(ego, 4);
+    move.obj(ego, 100, 40, 1, fAdrift);
+    [ DEAD: ADRIFT 
+    assignn(vDeathReason, valXsSpaceWalk);
+    set(fDead);
+}
+
+
+if(isset(fAdrift)) {
+    erase(ego);
+}
+
+if(!isset(fWearingSuit)) {
+    if(!isset(fDecompressing)) {
+        [ DEAD: DECOMP
+        get.posn(ego, vEgoX, vEgoY);
+        assignn(vEgoX, 100);
+        reset(fDecompressed);
+        reset(fDecompressOnce);
+        assignn(vTempVar1, 1);
+        move.obj.v(ego, vEgoX, vEgoY, vTempVar1, fDecompressing);
+    }
+}
+
+if(isset(fDecompressing)) {
+    if(!isset(fDecompressOnce)) {
+        set(fDecompressOnce);
+        stop.motion(ego);
+        load.view(vw.RogerExplode);
+        set.view(ego, vw.RogerExplode);
+        end.of.loop(ego, fDecompressed);     
+    }
+}
+
+if(isset(fDecompressed)) {
+    erase(ego);
+    assignn(vDeathReason, valXsNoSuitExplode);    
+    set(fDead);
+}
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.");
+    }
+
+    if((said("enter", "pod") || said("get", "pod"))) {
+        if(posn(ego, 39, 93, 60, 109)) {
+            addn(currentScore, 1);
+            reset(fLaunchAnimationPlayed);
+    
+            if(!has("Broom")) {
+                print("You climb into the pod and shut the door.");
+            }
+            else {
+                drop("Broom");
+                print("As you go to climb into the pod you realize you still have a broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door.");
+            }        
+
+            assignn(vRoomInited, valFalse);
+            new.room(rm.InPod);    
+        }
+        if(!posn(ego, 39, 93, 60, 109)) {
+            print("You are too far away.");
+        }
+    }
+    
+    if(said("look", "room")) {
+        print("You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay.");
+    }
+    if(said("look", "panel")) {
+        print("The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff.");
+    }
+    if(said("look", "space")) {
+        print("Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'");
+    }
+    if(said("look", "pod")) {
+        print("Ain't she cute? It's a standard issue StarCon shuttle pod used for short trips between stations and bases. In the extremely rare and unlikely event of an emergency including but not limited to a hostile encounter with a crew of marauding aliens it can be used as an escape vehicle. That'll never happen. 'Anywho'.. She's all fueled up and ready to go.");
+    }    
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

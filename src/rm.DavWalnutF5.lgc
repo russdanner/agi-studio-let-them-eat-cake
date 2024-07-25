@@ -1,0 +1,159 @@
+[*********************************************************************
+[
+[ rm.DavWalnutF5
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist3);
+    animate.obj(objMist4);
+       
+    set.view(ego, vw.Roger);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+    set.view(objMist3, vw.Mist);
+    set.view(objMist4, vw.Mist);
+
+    stop.cycling(objMist);
+    stop.cycling(objMist2);
+    stop.cycling(objMist3);
+    stop.cycling(objMist4);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 100);
+            assignn(vEgoY, 110);
+        }
+    }
+
+    position(objMist, 1, 166);
+    position(objMist2, 43, 166);
+    position(objMist3, 84, 166);
+    position(objMist4, 120, 166);
+
+    position.v(ego, vEgoX, vEgoY);
+
+    set.horizon(50);
+
+    draw(ego);
+    draw(objMist);
+    draw(objMist2);
+    draw(objMist3);
+    draw(objMist4);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 155);
+    assignn(egoDir, UP);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}   
+
+if(edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavDwarfF4);   
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavBowlA5);     
+}    
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWizardE5);     
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if((said("look") || said("look", "room"))) {
+        print("The ground is covered in walnuts. They have fallen from a beautiful walnut tree that towers into the sky. A pointy rock juts up from the ground by the tree. A thick fog rolls in from the south. ");
+    }
+    
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+    
+    if(said("look", "rock")) {
+        print("There's a rock here that that is very pointed. It has several facets on it. Some of them are rough and others are smooth.");
+    }
+    
+    if(said("look", "walnut")) {
+        print("The ground is covered with walnuts that have fallen from the tree.");
+    }
+
+    if(said("take", "walnut")) {
+        print("You don't need it.");
+    }
+
+    if((said("sharpen", "glass") || said("sharpen", "glass", "rock"))) {
+        if(posn(ego, 90, 115, 125, 130)) {
+            if(isset(fGlassIsSharp)) {
+                [ Should probably kill roger here
+                print("Sheesh Roger... the glass is as sharp as it's going to get.");
+            }
+            else {
+                set(fGlassIsSharp);
+                addn(currentScore, 1);
+                print("You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger.");    
+            }
+        }
+        else {
+            print("How?");
+        }
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

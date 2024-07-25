@@ -1,0 +1,79 @@
+[*********************************************************************
+[
+[ lgc.DebugHelp
+[
+[ Displays a help screen that lists the available debug commands
+[ when debug mode is active.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ no input allowed while help screen is displayed
+prevent.input();
+
+[ clear status line
+status.line.off();
+
+[ switch to text screen
+text.screen();
+
+[ make sure keyboard buffer is clear
+lastChar = 0;
+
+[ set colors
+set.text.attribute(LT_GRAY, BLACK);
+
+[ now display the help information
+display(0, 12, "DEBUG MODE HELP             ");
+display(1, 0, "(press ALT-D or type \"debug\" to enable)");
+display(3, 0, "trace on    - start tracing @next cycle");
+display(4, 0, "              (SCROlL LOCK to toggle)  ");
+display(5, 0, "show mem    - display memory stats     ");
+display(6, 0, "tp          - teleport                 ");
+display(7, 0, "pos         - change ego's position    ");
+display(8, 0, "show var    - display value of a var   ");
+display(9, 0, "set var     - change value of a var    ");
+display(10, 0, "show flag   - display status of a flag ");
+display(11, 0, "set flag    - set a flag               ");
+display(12, 0, "reset flag  - reset (clear) a flag     ");
+display(13, 0, "object      - display information about");
+display(14, 0, "              a screen object          ");
+display(15, 0, "show pri    - display priority screen  ");
+display(16, 0, "get item    - get any inventory item   ");
+display(17, 0, "gimme gimme - get all inventory items  ");
+display(18, 0, "item room   - display room number of   ");
+display(19, 0, "              an inventory item        ");
+display(20, 0, "set pri     - set ego's priority       ");
+display(21, 0, "release pri - release ego's priority   ");
+display(22, 0, "coords      - ego's coordinates on/off ");
+display(23, 0, "log         - logs error's into logfile");
+
+[ run a loop to wait for player to press any key
+:WaitForKey
+if (!have.key()) {
+  goto(WaitForKey);
+}
+
+[ restore input and status line
+accept.input();
+status.line.on();
+
+[ switch back to graphics display
+graphics();
+
+[ restore colors
+set.text.attribute(WHITE, BLACK);
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

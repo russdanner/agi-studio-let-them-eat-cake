@@ -1,0 +1,62 @@
+[*********************************************************************
+[
+[ lgc.Error
+[
+[ When AGI traps an error, this logic will display information on the
+[ error and then quit AGI.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ print and log the error
+print.v(errorNumber);
+log("Error: %v17 Value: %v18");
+
+[ force quit
+quit(1);
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "discard.view(%v18):%m30"
+#message 2 "set.view(%v18,--):%m26"
+#message 3 "set.view(--,%v18):%m30"
+#message 4 "set.loop(%v18,--):%m26"
+#message 5 "set.loop(%v18,--):\nInvalid loop #.%m25"
+#message 6 "set.loop(%v18,--):%m31"
+#message 7 "set.cel(%v18,--):%m26"
+#message 8 "set.cel(%v18,--):\nInvalid cel #.%m25"
+#message 9 "sound(%v18):\nSound not loaded.%m25"
+#message 10 "set.cel(%v18,--):%m31"
+#message 11 "Script buffer overflow.\nMaximum size = %v18%m25"
+#message 12 "erase(%v18):%m26"
+#message 13 "animate.obj(%v18):%m26"
+#message 14 "Invalid message (m%v18):%m25"
+#message 15 "Invalid test command: %v18%m25"
+#message 16 "Invalid action command: %v18%m25"
+#message 17 ""
+#message 18 "draw.pic(%v18):%m32"
+#message 19 "draw(%v18):%m26"
+#message 20 "draw(%v18):%m31"
+#message 21 "discard.pic(%v18):%m32"
+#message 22 ""
+#message 23 "get(%v18), put(%v18) or drop(%v18):%m33"
+#message 24 ""
+#message 25 "\nPress ESC to quit."
+#message 26 "%m27.%m25"
+#message 27 "\nInvalid screen object number"
+#message 28 "%m27 or screen object not drawn.%m25"
+#message 29 "\nView not "
+#message 30 "%m29loaded.%m25"
+#message 31 "%m29set.%m25"
+#message 32 "Picture not loaded.%m25"
+#message 33 "\nInvalid inventory item number%m25"

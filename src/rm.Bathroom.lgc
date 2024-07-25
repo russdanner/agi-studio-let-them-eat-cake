@@ -1,0 +1,307 @@
+[*********************************************************************
+[
+[ rm.Bathroom
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    assignn(vRoomInited, valTrue);
+    unanimate.all();
+
+    load.view(vw.Roger);
+    load.view(vw.LockedDoor);
+
+    animate.obj(ego);
+    animate.obj(objLockedDoor);
+
+    set.view(ego, vw.Roger);
+    set.view(objLockedDoor, vw.LockedDoor);
+
+    stop.cycling(objLockedDoor);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 75);
+            assignn(vEgoY, 148);
+        }
+    }
+
+    position(objLockedDoor, 51, 133);
+    set.priority(objLockedDoor, 4);
+
+    position.v(ego, vEgoX, vEgoY);
+
+    reset(fPooping);
+    reset(fStillPooping);
+    reset(fFlushing);
+    assignn(vReadCount, 0);
+
+    draw(ego);
+    draw(objLockedDoor);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(isset(fFlushing)) {
+    [sheesh I need a goto so I can build routines
+    if(equaln(vTimer, 30)) {
+        add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
+    }
+    if(equaln(vTimer, 35)) {
+        add.to.pic(vw.Waterfill, 0, 0, 47, 144, 6, 14);
+    }    
+    [if(equaln(vTimer, 40)) {
+    [    add.to.pic(vw.Waterfill, 0, 0, 47, 142, 6, 14);
+    [}    
+    [if(equaln(vTimer, 45)) {
+    [    add.to.pic(vw.Waterfill, 0, 0, 47, 140, 6, 14);
+    [}
+    
+    if(equaln(vTimer, 50)) {
+        reset(fFlushing);
+        set(fDead);
+        assignn(vDeathReason, valXsFlushola);
+    }
+}
+
+if(isset(fDead)) {
+    [ fill the room w water and leave it
+    add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 144, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 142, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 140, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 138, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 136, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 134, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 132, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 130, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 128, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 126, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 124, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 122, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 120, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 118, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 116, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 114, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 112, 6, 14);
+    [add.to.pic(vw.Waterfill, 0, 0, 47, 110, 6, 14);
+}
+
+
+if(isset(fPooping)) {
+    
+    if(equaln(vTimer, 10)) {
+        set.loop(ego, 1); 
+        set.cel(ego, 0);
+        reset(fStillPooping);
+        end.of.loop(ego, fStillPooping);
+    }
+    
+    if(equaln(vTimer, 20)) {
+        set.loop(ego, 0); 
+        set.cel(ego, 0);
+        reset(fStillPooping);
+        end.of.loop(ego, fStillPooping); 
+    }
+    
+    if(equaln(vTimer, 50)) {
+        set.loop(ego, 1); 
+        set.cel(ego, 0);
+        reset(fStillPooping);
+        end.of.loop(ego, fStillPooping);
+    }
+    
+    if(equaln(vTimer, 90)) {
+        position(ego, 73, 126);
+        player.control();
+        set.view(ego, vw.Roger);
+        set.loop(ego, 0); 
+        set.cel(ego, 0); 
+        reset(fPooping);
+        reset(fStillPooping);
+
+        print("Whew! You feel relieved. It turns out you are as good at making clogs as you are at clearing them.");
+    }
+}
+
+[ hitbox to leave bathroom
+if(obj.in.box(ego, 68, 149, 84, 151)) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 73);
+    assignn(vEgoY, 100);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.InnerBay);     
+}
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.");
+    }
+    
+    if(said("poop")) {
+        set(fPooping);
+        assignn(vTimer, 0);
+        load.view(vw.RogerPotty);
+        set.view(ego, vw.RogerPotty);
+        set.cel(ego, 0);
+        position(ego, 73, 126);
+        start.cycling(ego);
+        end.of.loop(ego, fStillPooping); 
+    }
+    
+    if(said("sweep")) {
+        if(has("Broom")) {
+            print("Nah. This place is beyond hope.");
+        }
+        else {
+            print("You don't have the proper equipment on hand for that.");
+        }
+    }
+    
+    if(said("start", "sweeping")) {
+        if(has("Broom")) {
+            print("Nah. This place is beyond hope.");
+        }
+        else {
+            print("You don't have the proper equipment on hand for that.");
+        }
+    }
+    
+    if(said("look", "room")) {
+        print("This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages.");
+    }
+    
+    if(said("go", "poop")) {
+        set(fPooping);
+        assignn(vTimer, 0);
+        load.view(vw.RogerPotty);
+        set.view(ego, vw.RogerPotty);
+        set.cel(ego, 0);
+        position(ego, 73, 126);
+        start.cycling(ego);
+        assignn(vGameCycleDelay, 6);
+        end.of.loop(ego, fStillPooping); 
+    }
+    
+    if(said("use", "toilet")) {
+        set(fPooping);
+        assignn(vTimer, 0);
+        load.view(vw.RogerPotty);
+        set.view(ego, vw.RogerPotty);
+        set.cel(ego, 0);
+        position(ego, 73, 126);
+        start.cycling(ego);
+        assignn(vGameCycleDelay, 6);
+        end.of.loop(ego, fStillPooping);
+    }
+    
+    if(said("look", "graffiti")) {
+        print("The walls are covered in graffiti... err... wisdom captured in a variety of alien languages.");
+    }
+    
+    if(said("read", "graffiti")) {
+        addn(vReadCount, 1);
+        if(equaln(vReadCount, 1)) {
+            print("Use the force. Except here. Don't force anything in here.");
+        }
+        if(equaln(vReadCount, 2)) {
+            print("Al-be back.");
+        }
+        if(equaln(vReadCount, 3)) {
+    
+            if(!isset(fPointsForReadWall)) {
+                set(fPointsForReadWall);
+                addn(currentScore, 1);
+            }
+            
+            print("Look at you siting here reflecting.. Don't hurt yourself. You're about as sharp as a rock.");
+        }
+        if(equaln(vReadCount, 4)) {
+            print("Pull on paper for StarCon career application");
+        }
+        if(equaln(vReadCount, 5)) {
+            print("N.S.P. yo!");
+        }
+        if(equaln(vReadCount, 6)) {
+            print("Ken sent me");
+        }
+        if(equaln(vReadCount, 7)) {
+            print("You're in the Smell Room. There is an enormous 'oyster' here. Your nose should be tightly closed.");
+            assignn(vReadCount, 1);
+        }
+    }
+    
+    if((said("flush", "toilet") || said("flush"))) {
+        load.view(vw.Waterfill);
+        load.view(vw.Overflow);
+    
+        set.view(objToiletWater, vw.Waterfill);
+        set.view(objToiletOverflow, vw.Overflow);
+    
+    
+        position(objToiletOverflow, 71, 126);
+        position(objToiletWater, 48, 150);
+        draw(objToiletWater);
+        draw(objToiletOverflow);
+    
+        end.of.loop(objToiletWater, fDoAction);
+        set(fFlushing);
+        assignn(vTimer, 0);
+    }
+    
+    if(said("look", "door")) {
+        print("To your surprise it is as it appears... a door. The door is locked.");
+    }
+
+    if(said("look", "commode")) {
+        print("A worthy adversary indeed. Clean it is not.");
+    }
+    
+    if(said("look", "sink")) {
+        print("The sink appears to be broken. Gross.");
+    }
+    
+    if(said("wash", "hands")) {
+        print("The sink appears to be broken. Gross.");
+    }
+    
+    if(said("look", "mirror")) {
+        print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. \"If the ladies don't find you handsome they should atleast find you handy.\" You thread that needle pretty well.");
+    }    
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

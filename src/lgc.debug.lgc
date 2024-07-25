@@ -1,0 +1,274 @@
+[*********************************************************************
+[
+[ lgc.Debug
+[
+[ When debugging, use this logic to handle debug commands.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+#define xPos            v240
+#define yPos            v241
+
+#define tmpVarA         v254
+#define tmpVarB         v255
+
+#define comment          s20 
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ show/hide ego coordinates
+if ((controller(cXY) || 
+     said("coords"))) {
+  toggle(showCoords);
+  [ if coordinate are now hidden
+  if (!showCoords) {
+    [ clear the coordinate line
+    clear.lines(24, 24, BLACK);
+  }
+}
+
+[ game version
+if ((controller(cVersion) ||  
+     said("game version"))) {
+  print(gameVersionMsg);
+  version();
+}
+
+[ debug help screen
+if ((controller(cDebugHelp) || said("debug", "help"))) {
+  call(lgc.DebugHelp);
+}
+
+[ start command tracing
+if (said("trace", "on")) {
+  set(startTrace);
+}
+
+[ show ego object information
+if (controller(cShowEgo)) {
+  tmpVarB = 0;
+  obj.status.v(tmpVarB);
+}
+
+[ force ego to die
+if (said("die")) {
+  load.view(vw.EgoDead);
+  set.view(ego, vw.EgoDead);
+  program.control();
+  stop.motion(ego);
+  deathType = 1;
+}        
+
+[ show current memory status
+if ((controller(cShowMem) ||  
+     said("show", "mem"))) {
+  show.mem();
+}
+
+[ teleport to another room
+if (said("tp")) {
+  get.num("new room: ", tmpVarB);
+  [ don't allow teleporting to room 0
+  [ you can also add other tests for valid room, such as 
+  [ not allowing a number greater than highest room number
+  [ in your game
+  if (tmpVarB > 0) {
+    [ it is up to player to make sure 
+    [ new room value points to an
+    [ actual room
+    new.room.v(tmpVarB);
+  } else {
+    print("not a valid room");
+  }
+}
+
+[ move ego to new position
+if (said("pos")) {
+  get.num("x: ", xPos);
+  get.num("y: ", yPos);
+  erase(ego);
+  reposition.to.v(ego, xPos, yPos);
+  draw(ego);
+}
+
+[ show value of a variable
+if (said("show", "var")) {
+  get.num("var number: ", tmpVarB);
+  tmpVarA = *tmpVarB;
+  print("var %v255: %v254");
+}
+
+[ change a variable value
+if (said("set", "var")) {
+  get.num("var number: ", tmpVarA);
+  get.num("var value: ", tmpVarB);
+  *tmpVarA = tmpVarB;
+}
+
+[ show value of a flag
+if (said("show", "flag")) {
+  get.num("flag number: ", tmpVarB);
+  if (issetv(tmpVarB)) {
+    print("flag %v255 is set");
+  } else {
+    print("flag %v255 is not set");
+  }
+}
+
+[ set a flag to TRUE
+if (said("set", "flag")) {
+  get.num("flag number: ", tmpVarB);
+  set.v(tmpVarB);
+}
+
+[ reset a flag to FALSE
+if (said("reset", "flag")) {
+  get.num("flag number: ", tmpVarB);
+  reset.v(tmpVarB);
+}
+
+[ display status of any object
+if ((controller(cObjInfo) || 
+     said("object"))) {
+  get.num("object #: ", tmpVarB);
+  [ confirm valid number (change this 
+  [ to match your current maxScreenObj value)
+  if (tmpVarB > 16) {
+    print("Invalid object number!");
+  } else {
+    obj.status.v(tmpVarB);
+  }
+}
+
+[ show the priority screen
+if ((controller(cShowPriority) ||  
+     said("show", "pri"))) {
+  show.pri.screen();
+}
+
+[ move an inventory item to ego's inventory
+if (said("get", "item")) {
+  get.num("item number: ", tmpVarB);
+  if (tmpVarB > numberOfItems) {
+    print("Invalid item number!");
+  } else {
+    get.v(tmpVarB);
+  }
+}
+
+[ get all inventory items
+if ((controller(cGimme) || 
+     said("gimme", "gimme"))) {
+  print("You gottum!");
+  tmpVarB = 0;
+NextObj:
+  if (tmpVarB < numberOfItems) {
+    tmpVarB += 1;
+    get.v(tmpVarB);
+    goto(NextObj);
+  }
+}
+
+[ display the room where an inventory item is located
+if (said("item", "room")) {
+  get.num("Item number: ", tmpVarB);
+  if (tmpVarB > numberOfItems) {
+    print("Invalid item number!");
+  } else {
+    get.room.v(tmpVarB, tmpVarA);
+    [ a room value of 255 means 'in player inventory'
+    if (tmpVarA == 255) {
+      print("Item %v255 is in your inventory.");
+    } else {
+      print("Item %v255 is in room %v254.");
+    }
+  }
+}
+
+[ set ego priority to a fixed value
+if (said("set", "pri")) {
+  get.num("New priority: ", tmpVarB);
+  if (tmpVarB > 3 && tmpVarB < 16) {
+    set.priority.v(ego, tmpVarB);
+  } else {
+    print("Invalid priority value");
+  }
+}
+
+[ restore auto priority assignment
+if (said("release", "pri")) {
+  release.priority(ego);
+}
+
+[ if ego coordinates need to be shown
+if (showCoords) {
+  [ get ego's current position and priority
+  get.posn(ego, xPos, yPos);
+  get.priority(ego, tmpVarA);
+  [ change color to brown on black
+  set.text.attribute(BROWN, BLACK);
+  display(24, 15, "Rm %v0|3 Pri %v254|2 x:%v240|3 y:%v241|3");
+  [ restore colors to white on black
+  set.text.attribute(WHITE, BLACK);
+}
+
+[ if an unknown word was entered and input not matched yet
+if (isset(haveInput) && !isset(haveMatch) && 
+    unknownWordNum > 0) {
+  [ adjust input/match flags to indicate nothing to parse
+  set(haveMatch);
+  reset(haveInput);
+  [ log the unknown word
+  if (unknownWordNum == 1) {
+    log("%m1%w1");
+  }
+  if (unknownWordNum == 2) {
+    log("%m1%w2");
+  }
+  if (unknownWordNum == 3) {
+    log("%m1%w3");
+  }
+  if (unknownWordNum == 4) {
+    log("%m1%w4");
+  }
+  if (unknownWordNum == 5) {
+    log("%m1%w5");
+  }
+  if (unknownWordNum == 6) {
+    log("%m1%w6");
+  }
+  if (unknownWordNum == 7) {
+    log("%m1%w7");
+  }
+  if (unknownWordNum == 8) {
+    log("%m1%w8");
+  }
+  if (unknownWordNum == 9) {
+    log("%m1%w9");
+  }
+  if (unknownWordNum == 10) {
+    log("%m1%w10");
+  }
+  print("Logged an unknown word.");
+}
+
+[ add a comment to log file
+if (said("log")) {
+  get.string(comment, "Comment: ", 22, 0, 25);
+  log("%m2%s1");
+  clear.lines(22, 24, 0);
+  accept.input();
+}
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "Unknown word: "
+#message 2 "Comment: "

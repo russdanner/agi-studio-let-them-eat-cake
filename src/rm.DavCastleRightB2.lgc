@@ -1,0 +1,132 @@
+[*********************************************************************
+[
+[ rm.DavCastleRightB2
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);
+    load.view(vw.CastleFlags);
+    load.view(vw.CastleCrocs);
+    load.view(vw.Mist);
+
+    animate.obj(ego);
+    animate.obj(objCastleFlags);
+    animate.obj(objCastleCrocs);
+
+    set.view(ego, vw.Roger);
+    set.view(objCastleFlags, vw.CastleFlags);
+    set.view(objCastleCrocs, vw.CastleCrocs);
+    set.view(objMist, vw.Mist);
+    
+    stop.cycling(objMist);
+
+    object.on.water(objCastleCrocs);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 140);
+            assignn(vEgoY, 130);
+        }
+    }
+
+    stop.cycling(ego);
+
+    position(objMist, 80, 40);
+    ignore.horizon(objCastleFlags);
+    ignore.blocks(objCastleFlags);
+    position(objCastleFlags, 5, 20);
+    position(objCastleCrocs, 50, 165);
+    
+    wander(objCastleCrocs);    
+
+    position.v(ego, vEgoX, vEgoY);
+
+    draw(ego);
+    draw(objCastleFlags);
+    draw(objCastleCrocs);
+    draw(objMist);
+
+    set.horizon(40);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 45);
+    assignn(egoDir, DOWN);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavCastleLeftA2);     
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(egoDir, LEFT);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if((said("look", "room") || said("look"))) {
+        print("You are at the east end of a castle. There is a thick fog to the north and east.");
+    }
+
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

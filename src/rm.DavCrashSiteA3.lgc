@@ -1,0 +1,210 @@
+[*********************************************************************
+[
+[ rm.DavCrashSiteA3
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    assignn(vRoomInited, valTrue);
+
+    unanimate.all();
+    load.view(vw.Roger);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);
+    load.view(vw.GlassSparkle);
+    load.view(vw.CrashingPod);
+
+    animate.obj(ego);
+    animate.obj(objCrashingPod);
+    animate.obj(objGlassSparkle);
+
+    set.view(ego, vw.Roger);
+    set.view(objCrashingPod, vw.CrashingPod);
+    set.view(objGlassSparkle, vw.GlassSparkle);    
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 13);
+            assignn(vEgoY, 140);
+            stop.cycling(ego);
+            assignn(egoDir, STOPPED);
+        }
+    }
+
+    if(fCrashed) {
+        observe.blocks(ego);
+        position.v(ego, vEgoX, vEgoY);
+        
+        stop.cycling(objCrashingPod);
+        set.cel(objCrashingPod, 7);
+        position(objCrashingPod, 20, 140);
+        set.priority(objCrashingPod, 13);
+        block(15, 128, 38, 146);
+        
+        draw(ego);
+    }
+    else {
+        position(objCrashingPod, 1, 1);
+    }
+    
+    reset(fDrowning);
+    
+    assignn(vActionCount, 1);
+    
+    draw(objCrashingPod);
+    
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(!fCrashed) {
+    if(lessn(vActionCount, 60)) {
+        if(lessn(vActionCount, 10)) {
+            assignn(vTempVar1, 2);
+            assignn(vTempVar2, 10);
+            erase(objCrashingPod);
+            reposition(objCrashingPod, vTempVar1, vTempVar2);
+            draw(objCrashingPod);
+        }                
+
+        addn(vActionCount, 1);
+    }
+    
+    if(equaln(vActionCount, 8)) {
+        stop.cycling(objCrashingPod);
+    }
+    
+    if(equaln(vActionCount, 50)) {
+    
+        if(!isset(fBeltBuckled)) {
+            assignn(vDeathReason, valXsSafteyThird);    
+            set(fDead);    
+        }
+        else {
+            assignn(vRoomInited, valFalse);
+            new.room(rm.InPodCrash);         
+        }    
+    }
+}
+
+if(!has("Glass")) {
+    random(1, 125, vDiceRoll);
+
+    if(equaln(vDiceRoll, 40)) {
+        position(objGlassSparkle, 32, 148);
+        start.cycling(objGlassSparkle);
+        draw(objGlassSparkle);
+    }
+    else {
+        erase(objGlassSparkle);
+    }
+}
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavRiverBendA4);     
+}
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavOgreF3);     
+}
+
+if(isset(fSysEgoOnWater)) {
+    if(!isset(fDrowning)) {
+        set(fDrowning);
+        stop.motion(ego);
+        set.view(ego, vw.RogerSplash);
+        assignn(vDeathReason, valXsFastWater);
+        move.obj(ego, 25, 50, 2, fDead);
+    }
+}
+    
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance.");
+    }
+    
+    if(said("swim")) {
+        if(isset(fSysEgoOnWater)) {
+            print("The water is too fast here.");
+        }
+        else {
+            print("This may come as a surprise to you but you need to be IN the water in order to go swimming.");
+        }
+    }
+    
+    if(said("look", "room")) {
+        print("The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance.");
+    }
+    
+    if(said("take", "glass")) {
+        if(!has("Glass")) {
+            if(posn(ego, 28, 138, 37, 150)) {    
+                get("Glass");
+                addn(currentScore, 1);    
+                print("A small piece of highly reflective safety glass has broken away from the shield as it is known to do. You pick it up and carry it with you.");
+            }
+            else {    
+                print("You are not close enough.");
+            }
+        }
+    }
+    
+    if(said("look", "pod")) {
+        print("It WAS a pod. It's now a pile of twisted parts and wreckage that has been thoroughly plowed into the ground. Your handiwork so-to-speak.");
+    }
+
+    if(said("look", "water")) {
+        print("The river is flowing off to the east and looks to have a strong current.");
+    }
+
+    if(said("look", "castle")) {
+        print("There's a base of fortress of some kind off in the distance. You wonder how to get over there. Maybe there's someone there that could help you out.");
+    }
+
+    if(said("search", "pod")) {
+        print("You search the debris from the crash. You find nothing useful except a small piece of glass.");
+    }
+    
+    if(said("look", "sparkle")) {
+        print("You search the debris from the crash. You find nothing useful except a small piece of glass.");
+    }    
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

@@ -1,0 +1,199 @@
+[*********************************************************************
+[
+[ rm.DavLakeFGMD4
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, 1);
+    load.view(vw.Roger);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);    
+    load.view(vw.Mist);
+    
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist3);
+    animate.obj(objMist4);
+
+    set.view(ego, vw.Roger);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+    set.view(objMist3, vw.Mist);
+    set.view(objMist4, vw.Mist);
+
+    stop.cycling(objMist);
+    stop.cycling(objMist2);
+    stop.cycling(objMist3);
+    stop.cycling(objMist4);
+
+    ignore.objs(objMist);
+    ignore.objs(objMist2);
+    ignore.objs(objMist3);
+    ignore.objs(objMist4);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 140);
+            assignn(vEgoY, 70);
+        }
+    }
+
+    position(objMist, 1, 43);
+    position(objMist2, 40, 40);
+    position(objMist3, 84, 43);
+    position(objMist4, 120, 43);
+
+    if(has("Invitation") && !isset(fEyesOpen) && !isset(fFlashed)) {
+        load.view(vw.FGM);
+        animate.obj(objFGM);
+        set.view(objFGM, vw.FGM);
+        position(objFGM, 139, 61);
+        draw(objFGM);
+        follow.ego(objFGM, 2, fGotcha);    
+    }
+
+    reset(fSwimming);
+    reset(fDrowning);
+    reset(fGotcha);
+
+    position.v(ego, vEgoX, vEgoY);
+
+    set.horizon(43);
+
+    draw(ego);
+    draw(objMist);
+    draw(objMist2);
+    draw(objMist3);
+    draw(objMist4);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(isset(fGotcha)) {
+    reset(fGotcha);
+    set(fEyesOpen);
+    print("A strange female alien dressed in beautiful shimmering robes catches up to you. In a voice that can only be described as song she says:");
+    print("\"Traveler though you are asleep, by my spell, your eyes are now opened.\"");
+    print("A wave of energy errupts from a gadget she is carrying and blasts right into you. With a 'poof' she disappears.");
+    erase(objFGM);
+    print("Based on your past experience with sudden and unexpected encounters of the \"energy burst\" variety, you assume firstly that you have been hit with a laser and secondly that your body is now as chard as the surface of Ortega.");
+    print("Contrary to your expectations of cause and effect you find you have no injuries at all. What in Fester Blatz World o Wonders was that all about?!");
+
+}
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWitchHouseD5);             
+}   
+
+if(edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(egoDir, DOWN);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavRockE4);     
+}    
+
+if(edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 15);
+    assignn(egoDir, RIGHT);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}
+    
+
+
+[in the lake
+if(isset(fSysEgoOnWater)) {
+    if(!isset(fSwimming)) {
+        if(!isset(fDrowning)) {
+            set(fDrowning);
+            set.view(ego, vw.RogerSplash);
+        }
+    }
+}
+else {
+    if((isset(fSwimming) || isset(fDrowning))) {
+        set.view(ego, vw.Roger);
+        reset(fSwimming);
+        reset(fDrowning);
+        normal.motion(ego);    
+    }
+}        
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("swim")) {
+        if(isset(fSysEgoOnWater)) {
+            if(isset(fDrowning)) {
+                set.view(ego, vw.RogerSwim);
+                reset(fDrowning);
+                set(fSwimming);
+                print("ok");
+           } 
+        }
+    }
+
+    if((said("look", "room") || said("look"))) {
+        print("There's a beautiful lake here and a thick fog to the north and west.");
+    }
+
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+    
+    if(said("look", "water")) {
+        print("The lake is calm and beautiful.");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

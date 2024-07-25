@@ -1,0 +1,308 @@
+[*********************************************************************
+[ 
+[ rm.GrahamHouse
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+    [ load, draw and discard the picture resource for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+            
+    load.view(vw.GrahamNoHat);
+    load.view(vw.Summons);
+    load.view(vw.Hat);
+    load.view(vw.Teapot);
+    load.view(vw.Teacup);
+    load.view(vw.GrahamHouseWindow);
+    load.view(vw.GrahamHouseDoor);
+    load.view(vw.GrahamHatNoFeather);
+    
+    animate.obj(ego);
+    animate.obj(objHat);
+    animate.obj(objTeapot);
+    animate.obj(objTeaCup);    
+    animate.obj(objSummons);    
+    animate.obj(objWindow);    
+    animate.obj(objCabinDoor);    
+    
+    set.view(ego, vw.GrahamNoHat);
+    set.view(objHat, vw.Hat);
+    set.view(objTeapot, vw.Teapot);
+    set.view(objTeaCup, vw.Teacup);
+    set.view(objSummons, vw.Summons);
+    set.view(objWindow, vw.GrahamHouseWindow);
+    set.view(objCabinDoor, vw.GrahamHouseDoor);
+    
+    start.cycling(ego);
+    stop.cycling(objHat);
+    stop.cycling(objTeaCup);
+    stop.cycling(objSummons);
+    stop.cycling(objWindow);
+    stop.cycling(objCabinDoor);
+    
+    set.cel(objCabinDoor, 1);
+    position(objCabinDoor, 26, 131);      
+    position(objWindow, 90, 58);
+
+        [switching from roger back to graham
+        drop("Keycard");
+        drop("Glass");
+        drop("Cake");
+        drop("Ink");
+        drop("Quill");
+        drop("Invitation");
+    
+        drop("Tea");
+        get("Teacup");
+        get("Teapot");
+    
+        if(isset(fHasHat)) {
+            get("Hat");
+        }        
+        if(isset(fHasSummons)) {
+            get("Summons");
+        }        
+    
+    if(!has("Hat")) {
+        set.priority(objHat, 15);
+        position(objHat, 130, 125);
+        draw(objHat);
+    }
+    
+    if(!has("Summons")) {
+        set.priority(objSummons, 15);
+        position(objSummons, 80, 105);
+        draw(objSummons);
+    }
+    
+    if(!has("Teacup")) {    
+        set.priority(objTeaCup, 15);
+        position(objTeaCup, 55, 105);
+        draw(objTeaCup);
+    }
+
+    if(!has("Teapot")) {
+        set.priority(objTeapot, 15);
+        position(objTeapot, 110, 87);
+        draw(objTeapot);
+    }    
+
+    assignn(vSleeping, valFalse);
+    assignn(vClockTicks, 0);
+        print("Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!");
+        assignn(vSleeping, valFalse);
+        set.cel(objWindow, 1);
+        [assignn(egoDir, STOPPED);
+        [animate.obj(ego);
+        [set.view(ego, vw.GrahamNoHat);
+        [set.loop(ego, 0);
+        [set.cel(ego, 0);
+        [start.cycling(ego);
+        [start.motion(ego);
+        [start.update(ego);
+        position(ego, 100, 80);
+
+    draw(objWindow);
+    draw(objCabinDoor);
+    draw(ego);
+    
+    [ display the picture on screen
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+[ if player has provided input and match not yet found,
+[ do said tests
+if (haveInput && !haveMatch) {  
+    if(said("look")) {
+        if(!has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter with a hat on it in the corner.");
+        }
+        if(has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter in the corner.");
+        }
+    }
+    
+    if(said("look", "room")) {
+        if(!has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter with a hat on it in the corner.");
+        }
+        if(has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter in the corner.");
+        }
+    }
+    if(said("look", "stove")) {
+        if(has("Teapot")) {
+            print("The stove is made of cast iron and keeps the room toasty.");
+        }
+        if(!has("Teapot")) {
+            print("The stove is made of cast iron and keeps the room toasty. There's a teapot on top of the stove.");
+        }
+    }
+    
+    if(said("look", "table")) {
+        if(has("Summons")) {
+            if(!has("Teacup")) {
+                print("There is a sturdy table here. A teacup sits on table");
+            }
+            if(has("Teacup")) {
+                print("There is a sturdy table here.");
+            }
+        }
+        if(!has("Summons")) {
+            if(!has("Teacup")) {
+                print("There is a sturdy table here. The summons you received from the King today lays on one side of the table and a teacup sits on the opposite side.");
+            }
+            if(has("Teacup")) {
+                print("There is a sturdy table here. The summons you received from the King today lays on the table.");
+            }
+        }
+    }
+    
+    if(said("open", "door")) {
+        if(posn(ego, 16, 108, 35, 124)) {
+            if(!has("Hat")) {
+                print("You would never leave the house without your hat.");
+            }
+            if(has("Hat")) {
+                if(isset(fIsMorning)) {
+                    addn(vCurrentScore, 1);    
+                    get.posn(ego, vEgoX, vEgoY);
+                    assignn(vEgoX, 119);
+                    assignn(vEgoY, 126);
+                    assignn(vRoomInited, valFalse);
+                    new.room(rm.GrahamLawnDay);     
+                }
+                else {
+                    get.posn(ego, vEgoX, vEgoY);
+                    assignn(vEgoX, 119);
+                    assignn(vEgoY, 126);
+                    assignn(vRoomInited, valFalse);
+                    new.room(rm.GrahamLawnNight);     
+                }
+            }
+        }
+        else {
+            print("You can't do that from here.");
+        }
+    }
+    
+    if(said("wear", "hat")) {
+        if(has("Hat")) {
+            if(isset(fWearingHat)) {
+                print("You are already wearing it.");
+            }
+            else {
+                set(fWearingHat);
+                set.view(ego, vw.GrahamHatNoFeather);
+                print("You put on your trusty hat!");
+    
+                if(!isset(fPointsForHatWear)) {
+                    set(fPointsForHatWear);
+                    addn(vCurrentScore, 1);    
+                }
+            }
+        }
+        else {
+            print("You don't have it.");
+        }
+    }   
+    
+    if(said("remove", "hat")) {
+        if(has("Hat")) {
+            if(!isset(fWearingHat)) {
+                print("You are not wearing your hat.");
+            }
+            else {
+                reset(fWearingHat);
+                set.view(ego, vw.GrahamHatNoFeather);
+            }
+        }
+        else {
+            print("You don't have it.");
+        }
+    }  
+    
+    if(said("take", "summons")) {
+        if(posn(ego, 80, 100, 100, 130)) {
+            if(has("Summons")) {
+                print("You already have it.");
+            }
+            else {
+                print("You take the summons.");
+                set(fHasSummons);
+                get("Summons");
+                erase(objSummons);
+                addn(vCurrentScore, 1);        
+            }
+        }
+        else {
+            print("Get closer.");
+        }
+    }
+    
+    
+    if(said("take", "hat")) {
+        if(posn(ego, 117, 131, 129, 150)) {
+            print("You pocket your hat.");
+            set(fHasHat);
+            erase(objHat);
+            get("Hat");
+            addn(vCurrentScore, 1);
+        }
+        else {
+            print("You cannot reach it.");
+        }
+    }
+    
+    if(said("take", "teacup")) {
+        if(posn(ego, 40, 107, 56, 135)) {
+            erase(objTeaCup);
+            if(equaln(vTeaPoured, valTrue)) {
+                print("You pick up the tetakeacup full of hot clover tea and carry it with you.");
+                get("Tea");
+            }
+            else {
+                print("You pick up the teacup and carry it with you.");
+                get("Teacup");            
+            }
+        }
+        else {
+            print("It is not within your reach.");
+        }
+    }
+    
+    if(said("drop", "teacup")) {
+        if(posn(ego, 40, 107, 56, 135)) {
+            print("You place the teacup on the table.");
+            draw(objTeaCup);
+            drop("Teacup");
+        }
+        else {
+            print("Get closer.");
+        }
+    }    
+}
+
+:done
+return();
+
+[ DECLARED MESSAGES
+[***************************************

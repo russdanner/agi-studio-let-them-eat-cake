@@ -1,0 +1,36 @@
+[*********************************************************************
+[
+[ lgc.Joystick
+[
+[ If you intend to support a joystick, you can use this logic 
+[ to handle joystick input. Usually, joystick keys are assigned to 
+[ controllers that are also keyboard/menu controllers, so a separate
+[ logic isn't needed. But if you want to assign special actions to
+[ joystick buttons that are different than other controller actions, 
+[ assign them separate controllers, and put your handling code here.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ if button one is pressed
+if (controller(keyJoyBtn1)) {
+  [ ignore if no room set yet
+  if (currentRoom > 0) {
+    print("This is an empty room.");
+  }
+}
+  
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

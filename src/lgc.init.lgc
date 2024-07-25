@@ -1,0 +1,86 @@
+[*********************************************************************
+[
+[ lgc.Init
+[
+[
+[ This logic should only be called once, when the game first starts
+[ see the 'Keyboard Controller' topic in the Help file for details on
+[ key assignments.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ MAIN CODE BLOCK 
+[***************************************
+
+[ set up trace window (remove this before releasing your game if
+[ you don't want debug features included)
+trace.info(lgc.traceinfo, 3, 10);
+
+[ assign key controllers
+set.key(0, 59, cHelp);             [ F1 - Help
+set.key(0, 60, cToggleSound);      [ F2 - Sound on/off
+set.key(0, 61, cEchoLine);         [ F3 - Echo line
+set.key(0, 62, cShowObj);          [ F4 - See object
+set.key(0, 63, cSave);             [ F5 - Save game
+set.key(0, 64, cClock);            [ F6 - Clock on/off
+set.key(0, 65, cRestore);          [ F7 - Restore game
+set.key(0, 67, cRestart);          [ F9 - Restart game
+set.key(0, 44, cQuit);             [ ALT-Z - quit game
+set.key(3, 0, cCancelLine);        [ CTRL-C - Clear input line
+set.key(5, 0, cEchoLine);          [ CTRL-E - Echo line
+set.key(9, 0, cStatus);            [ CTRL-I/TAB - inventory
+set.key(10, 0, cInitJoy);          [ CTRL-J - Configure joystick
+set.key(18, 0, cToggleMonitor);    [ CTRL-R - Switches between RGB and CGA graphics
+set.key(19, 0, cToggleSound);      [ CTRL-S - Sound on/off
+set.key(45, 0, cDecrescendo);      [ - - decrease volume
+set.key(43, 0, cCrescendo);        [ + - increase volume
+set.key(27, 0, cMenu);             [ ESC - activate menu
+
+[ debug shortcuts - remove these if you don't want
+[ to include debug features in your game
+set.key(0, 32, cDebug);            [ ALT-D - Enable debug mode
+set.key(0, 18, cShowEgo);          [ ALT-E - Displays info about EGO
+set.key(0, 23, cObjInfo);          [ ALT-I - Shows information about screen objects
+set.key(0, 50, cShowMem);          [ ALT-M - Displays heapsize
+set.key(0, 25, cShowPriority);     [ ALT-P - Displays priority screen
+set.key(0, 47, cVersion);          [ ALT-V - Shows game version info
+set.key(0, 45, cXY);               [ ALT-X - Show ego oordinates
+
+[ set up joystick (remove if you do not want to support joystick)
+set.key(1, 1, keyJoyBtn1);         [ Joystick button 1 (custom action - see lgc.Joystick)
+set.key(1, 2, cMenu);              [ Joystick button 2 (calls up the menu)
+set.key(1, 3, cVersion);           [ Joystick button 1 dbl-click (displays version info)
+set.key(1, 4, cHelp);              [ Joystick button 2 dbl-click (show help screen)
+[ set joystick parameters
+set(enableDblClick);
+dblClickDelay = 3;
+
+[ no attenuation - full volume (on non-MSDOS systems)
+attenuation = 0;
+
+[set.game.id("AGI");      [ Don't actually need to set the game ID. It's
+                          [ best not to, then the game can run on any
+                          [ interpreter (provided it's the right version).
+                          [ but if you are intending to run the game on 
+                          [ a modified interpreter this can be safe.
+                         
+[ set up screen conguration (agi's default of 0, 23, 21 is not desired)
+configure.screen(1, 22, 0);
+
+[ assign input prompt and cursor character
+set.string(inputPrompt, ">");
+set.cursor.char(cursor);
+
+assignn(vHasOrders, valFalse);
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

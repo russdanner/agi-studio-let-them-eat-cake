@@ -1,0 +1,295 @@
+[*********************************************************************
+[
+[ rm.ControlRoom
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    [ the horizon defines the upper limit of ego's movement
+    set.horizon(0);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+    load.view(vw.Tram);
+    load.view(vw.Lift);
+
+    animate.obj(ego);
+    animate.obj(objLiftRod);
+    animate.obj(objCrew1);
+    animate.obj(objCrew2);
+    animate.obj(objTram);
+    animate.obj(objLift);
+
+    set.view(ego, vw.Roger);
+    set.view(objTram, vw.Tram);
+    set.view(objLift, vw.Lift);
+    set.view(objLiftRod, vw.Lift);
+    set.view(objCrew1, vw.Lift);
+    set.view(objCrew2, vw.Lift);
+
+    stop.cycling(objTram);
+    stop.cycling(objLift);
+    stop.cycling(objLiftRod);
+
+    set.loop(objLiftRod, 1);
+    set.cel(objLiftRod, 0);
+    fix.loop(objLift);
+    fix.loop(objLiftRod);
+    
+    set.loop(objCrew1, 2);
+    set.loop(objCrew2, 3);
+
+    position(objLift, 21, 92);
+    position(objLiftRod, 34, 130);
+    position(objCrew1, 70, 110);
+    position(objCrew2, 100, 110);
+
+    set.priority(objTram, 4);
+    set.priority(objLift, 4);
+    set.priority(objLiftRod, 4);
+    set.priority(objCrew1, 4);
+    set.priority(objCrew2, 4);
+
+    block(68, 90, 78, 112);
+    block(98, 90, 108, 112);
+
+    set(fLiftGoingDown);
+
+    reset(fOnLift);
+    reset(fTramReady);
+    reset(fTramRunning);
+    reset(fTramInboundDone);
+    reset(fTramOutboundDone);
+    reset(fHasFlightPlan);
+
+    ignore.blocks(objTram);
+    position(objTram, 5, 72);
+    move.obj(objTram, 95, 72, 2, fTramInboundDone);
+
+    draw(objTram);
+    draw(objLift);
+    draw(objLiftRod);
+    draw(objCrew1);
+    draw(objCrew2);
+
+    load.sound(snd.Tube);
+    sound(snd.Tube, fSoundDone);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+
+[ going down
+if(posn(ego, 24, 86, 34, 89)) {
+    if(!isset(fOnLift)) {
+        stop.motion(ego);
+        program.control();
+        set(fOnLift);
+        set(fLiftRunning);
+        set(fLiftGoingDown);
+    }
+}
+else {
+    [ going up
+    if(posn(ego, 24, 114, 34, 123)) {
+        if(!isset(fOnLift)) {
+            stop.motion(ego);
+            program.control();
+            set(fOnLift);
+            set(fLiftRunning);
+            reset(fLiftGoingDown);
+        }
+    }
+    else {
+        [ roger stepped off the list
+        reset(fOnLift);
+    }
+}
+
+if(isset(fLiftRunning)) {
+
+    if(isset(fLiftGoingDown)) {
+        [ render down
+        erase(ego);
+        erase(objLift);
+        erase(objLiftRod);
+        position(ego, 31, 120);
+        position(objLift, 25, 120);
+        position(objLiftRod, 34, 158);
+        draw(ego);
+        draw(objLift);
+        draw(objLiftRod);
+        set(f233);
+        [move.obj(ego, 35, 120, 1, f233);
+        [move.obj(objLift, 21, 97, 1, f234);
+        [move.obj(objLiftRod, 34, 138, 1, f235);
+    }
+    else {
+        [ render up
+        erase(ego);
+        erase(objLift);
+        erase(objLiftRod);
+        position(ego, 31, 88);
+        position(objLift, 25, 92);
+        position(objLiftRod, 34, 130);
+        draw(ego);
+        draw(objLift);
+        draw(objLiftRod);
+        set(f233);
+        [move.obj(ego, 35, 88, 1, f233);
+        [move.obj(objLift, 21, 92, 1, f234);
+        [move.obj(objLiftRod, 34, 130, 1, f235);
+    }
+    
+    if(isset(f233)) {
+        reset(f233);
+        reset(f234);
+        reset(f235);
+        reset(fLiftRunning);
+        player.control();
+    }
+}
+
+if(isset(fTramReady)) {
+    if(isset(fHasFlightPlan)) {
+        reset(fTramReady);
+        move.obj(objTram, 160, 72, 2, fTramOutboundDone);    
+    }
+}
+
+if(isset(fTramOutboundDone)) {
+    reset(fTramOutboundDone);
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.OuterBay);     
+}
+
+if(isset(fTramInboundDone)) {
+    reset(fTramInboundDone);
+    position(objTram, 94, 72);
+    set.cel(objTram, 1);
+}
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if((said("look","room") || said("look"))) {
+        print("This is the main control room for the station. It's alive with activity. To the rear wall there is a pneumatic transport tube and car. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.");
+    }
+    
+    if(said("get", "tram")) {    
+        if(isset(fHasFlightPlan)) {
+            if(posn(ego, 91, 73, 109, 76)) {
+                erase(ego);
+                end.of.loop(objTram, fTramReady); 
+                set(fTramRunning);       
+        
+                [load.sound(sndTramGo)
+                [sound(sndTramGo, fSoundDone)        
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+        else {
+            position(ego, 95, 74);
+            set.cel(objTram, 0);
+            draw(ego);
+        }
+    }
+    
+    if(said("exit", "tram")) {    
+        position(ego, 95, 74);
+        set.cel(objTram, 0);
+        draw(ego);
+    }
+    
+    if(said("enter", "tram")) {
+        if(isset(fHasFlightPlan)) {
+            if(posn(ego, 91, 73, 109, 76)) {
+                erase(ego);
+                end.of.loop(objTram, fTramReady);
+                set(fTramRunning);       
+        
+                [load.sound(sndTramGo);
+                [sound(sndTramGo, fSoundDone);        
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+        else {
+            print("You better speak with control first.");
+        }
+    }
+
+    if(said("talk", "man")) {
+        if(posn(ego, 94, 111, 116, 125)) {
+            if(isset(fHasFlightPlan)) {
+                print("\"You better get moving Roger. I've got a lot on my plate here.\"");
+            }
+            else {
+                set(fHasFlightPlan);
+                addn(currentScore, 1);
+                assignn(vTimer, 0);
+                print("\"Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it.\"");
+            }
+        }
+        else {
+            if(posn(ego, 53, 111, 80, 125)) {
+                print("\"Can't you see I am busy here?\"");
+            }
+            else {
+                print("Who?");
+            }
+        }
+    }
+    
+    if((said("look", "room") || said("look"))) {
+        print("This is the main control room for the station. It's alive with activity. To the rear wall there is a pneumatic transport tube and car. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station.");
+    }
+
+    if(said("look", "man")) {
+        print("Keep your eyes to yourself Roger.");
+    }
+
+    if(said("look", "tram")) {
+        print("The pneumatic transport tube enables personnel to move about the station. It's destinations are managed by control. #tramIt");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

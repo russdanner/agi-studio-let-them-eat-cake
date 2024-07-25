@@ -1,0 +1,80 @@
+[*********************************************************************
+[
+[ rm.Station
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.CrashingPod);
+
+    animate.obj(objShip);
+
+    set.view(objShip, vw.CrashingPod);
+
+    stop.cycling(objShip);
+    set.cel(objShip, 5);
+
+    assignn(vClockTicks, 0);
+    position(objShip, 35, 100);
+
+    draw(objShip);
+
+    reset(fDoAction);
+
+    load.sound(snd.SpaceTravel);
+    sound(snd.SpaceTravel, fSoundDone);    
+    
+    [ display the picture on screen
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+assignn(vTempVar1, 1);
+assignn(vTempVar2, 3);
+reposition(objShip, vTempVar1, vTempVar2);
+addn(vClockTicks, 1);
+
+if(equaln(vClockTicks, 24)) {
+    erase(objShip);
+    set(fDoAction);
+}
+
+if(isset(fDoAction) && isset(fSoundDone)) {
+    set(fLaunchAnimationPlayed);
+    assignn(vRoomInited, valFalse);     
+    new.room(rm.InPod);
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

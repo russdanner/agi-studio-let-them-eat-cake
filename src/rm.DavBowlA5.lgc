@@ -1,0 +1,195 @@
+[*********************************************************************
+[
+[ rm.DavBowlA5
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist3);
+    animate.obj(objMist4);
+
+    set.view(ego, vw.Roger);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+    set.view(objMist3, vw.Mist);
+    set.view(objMist4, vw.Mist);
+
+    stop.cycling(objMist);
+    stop.cycling(objMist2);
+    stop.cycling(objMist3);
+    stop.cycling(objMist4);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 140);
+            assignn(vEgoY, 70);
+        }
+    }
+
+    position(objMist, 1, 166);
+    position(objMist2, 43, 166);
+    position(objMist3, 84, 166);
+    position(objMist4, 120, 166);
+
+    reset(fHawkFlightADone);
+    reset(fHawkFlightBDone);
+    reset(fFeatherFallDone);
+
+    position.v(ego, vEgoX, vEgoY);
+
+    set.horizon(50);
+
+    draw(ego);
+    draw(objMist);
+    draw(objMist2);
+    draw(objMist3);
+    draw(objMist4);
+
+    if(!has("Feather") && !has("Quill")) {
+        if(has("Cake") && has("Ink")) {
+
+            load.view(vw.Hawk);
+            load.view(vw.FeatherFall);
+            set.view(objHawk, vw.Hawk);
+            set.view(objFeatherFall, vw.FeatherFall);
+            animate.obj(objHawk);
+            animate.obj(objFeatherFall);
+            set.priority(objHawk, 15);    
+            position(objHawk, 159, 70);
+            ignore.blocks(objHawk);
+            draw(objHawk);
+            
+            move.obj(objHawk, 46, 76, 2, fHawkFlightADone);                
+        }
+    }
+        
+    [ display the picture on screen
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(isset(fHawkFlightADone)) {
+    reset(fHawkFlightADone);
+    position(objFeatherFall, 46, 76);
+    draw(objFeatherFall);
+
+    move.obj(objHawk, 1, 76, 1, fHawkFlightBDone);
+    move.obj(objFeatherFall, 40, 105, 1, fFeatherFallDone);
+}
+
+if(isset(fFeatherFallDone)) {
+    reset(fFeatherFallDone);
+    stop.cycling(objFeatherFall);
+}
+
+if(isset(fHawkFlightBDone)) {
+   erase(objHawk);
+}
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 155);
+    assignn(egoDir, UP);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}   
+
+if(edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavRiverBendA4);     
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(egoDir, LEFT);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}    
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWalnutF5);    
+}
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("This is a forrested and rocky area. A 'think' fog has developed to the south and the east.");
+    }
+    
+    if(said("look", "room")) {
+        print("This is a forrested and rocky area. A 'think' fog has developed to the south and the east.");
+    }
+    
+    if(said("look", "fog")) {
+        print("There's a 'think' fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+    
+    if(said("take", "feather")) {
+        if(!has("Feather")) {
+            if(!has("Quill")) {
+                if(posn(ego, 40, 101, 52, 107)) {
+                    get("Feather");
+                    print("You reach down and pick up the fallen feather.");
+                    addn(currentScore, 1);    
+                    erase(objFeatherFall);     
+                }
+                else {
+                    print("You can't reach it from here.");
+                }
+            }
+        }
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

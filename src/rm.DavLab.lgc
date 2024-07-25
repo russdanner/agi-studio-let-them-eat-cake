@@ -1,0 +1,394 @@
+[*********************************************************************
+[
+[ rm.DavLab
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);    
+    load.view(vw.EgoParts);
+    load.view(vw.LarryDump);
+    load.view(vw.PersonL);
+    load.view(vw.SierraWorker);
+    load.view(vw.MIB);
+    
+    animate.obj(ego);
+    animate.obj(objBods);
+    animate.obj(objPlatform2);
+    animate.obj(objShaft2);
+    animate.obj(objHeads);
+    animate.obj(objCleanup);
+    animate.obj(objRepair);    
+    animate.obj(objPersonL);
+
+    set.view(ego, vw.Roger);
+    set.view(objBods, vw.EgoParts);
+    set.view(objPlatform2, vw.EgoParts);
+    set.view(objShaft2, vw.EgoParts);
+    set.view(objHeads, vw.EgoParts);
+    set.view(objCleanup, vw.LarryDump);
+    set.view(objRepair, vw.SierraWorker);
+    set.view(objPersonL, vw.PersonL);
+
+    set.loop(objBods, 0);
+    set.loop(objPlatform2, 1);
+    set.loop(objShaft2, 2);
+    set.loop(objHeads, 3);
+    set.loop(objRepair, 4);
+    set.loop(objPersonL, 2);
+    set.cel(objBods, 1);
+
+    fix.loop(objBods);
+    fix.loop(objShaft2);
+    fix.loop(objPersonL);
+
+    observe.objs(ego);
+    set.priority(ego, 11);
+    set.priority(objShaft2, 4);
+    set.priority(objPlatform2, 6);
+    set.priority(objHeads, 10);
+    set.priority(objRepair, 9);
+
+    stop.cycling(objBods);
+    stop.cycling(objHeads);
+    stop.cycling(objShaft2);
+    stop.cycling(objPlatform2);
+    stop.cycling(objCleanup);
+    stop.cycling(objPersonL);
+    start.cycling(objRepair);
+
+    assignn(vEgoX, 6);
+    assignn(vEgoY, 146);
+    position.v(ego, vEgoX, vEgoY);
+
+    position(objHeads, 38, 121);
+    position(objBods, 150, 105);    
+    position(objPlatform2, 79, 111);    
+    position(objShaft2, 74, 74);    
+    position(objCleanup, 56, 25);
+    position(objRepair, 36, 108);
+
+    reset(fCleaupDown);
+    reset(fCleaupDone);
+    reset(fBodsReady);
+    reset(fRepairHead1);
+    reset(fRepairHead2);
+    reset(fRepairHead3);
+    reset(fRepairHead4);   
+    reset(fRepairSent);
+    reset(fRepairSent1);
+    reset(fRepairSent2);
+    reset(fRepairReturn1);
+    reset(fRepairReturn2);
+    reset(fRepairDone);
+    reset(fMiB);
+
+    move.obj(objBods, 82, 105, 1, fBodsReady);  
+    move.obj(objShaft2, 74, 113, 1, fDoAction);    
+    move.obj(objCleanup, 56, 60, 1, fCleaupDown);
+
+    draw(ego);
+    draw(objBods);
+    draw(objHeads);
+    draw(objShaft2);
+    draw(objPlatform2);
+    draw(objCleanup);
+    draw(objRepair);
+    draw(objPersonL);
+
+    block(1,135, 35,155);
+    
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(isset(fCleaupDown)) {
+    [ dump the body
+    reset(fCleaupDown);
+    end.of.loop(objCleanup, fCleaupDone);
+    move.obj(objShaft2, 74, 130, 1, fDoAction);    
+    move.obj(objCleanup, 56, 80, 1, fDoAction);   
+}
+
+if(isset(fBodsReady)) {
+    [ bodies are ready
+    reset(fBodsReady);
+    start.cycling(objRepair);
+    move.obj(objRepair, 54, 114, 1, fRepairHead1);    
+}
+
+if(isset(fRepairHead1)) {
+    [ pick up the head
+    reset(fRepairHead1);
+    set.cel(objHeads, 1);
+    set.loop(objRepair, 2);
+    set.cel(objRepair, 0);
+    fix.loop(objRepair);
+    start.cycling(objRepair);
+    move.obj(objRepair, 78, 110, 1, fRepairHead2);    
+}
+
+if(isset(fRepairHead2)) {
+    [ screw the head on
+    reset(fRepairHead2);
+    set.loop(objRepair, 3);
+    set.cel(objRepair, 0);
+    fix.loop(objRepair);
+    start.cycling(objRepair);
+    end.of.loop(objRepair, fRepairHead3);    
+}
+
+if(isset(fRepairHead3)) {
+    [ return to controls
+    reset(fRepairHead3);
+
+    erase(objPersonL);
+    set.priority(objPersonL, 11);
+    position(objPersonL, 82, 104);            
+    draw(objPersonL);
+
+    set.cel(objRepair, 0);
+    set.loop(objRepair, 1);
+    start.cycling(objRepair);
+    move.obj(objRepair, 50, 108, 1, fRepairHead4);    
+}
+
+if(isset(fRepairHead4)) {
+    [ return to controls
+    reset(fRepairHead4);
+    set.cel(objRepair, 0);
+    start.cycling(objRepair);    
+    move.obj(objRepair, 40, 108, 1, fRepairDone);    
+
+    set.cel(objBods, 2);
+
+    [set.priority(objPlatform2, 10);
+    [set.priority(objShaft2, 5);
+
+    [fix.loop(objPlatform2);
+    [move.obj(objPlatform2, 79, 20, 1, fRepairSent);
+
+    [set.priority(objShaft2, 4);
+    [position(objShaft2, 84, 175);            
+    [move.obj(objShaft2, 84, 135, 1, fRepairSent2);    
+
+    [move.obj(objPersonL, 82, 15, 1, fRepairSent1);
+    set(fRepairSent2);
+}
+
+if(isset(fRepairDone)) {
+    [ Send repair up
+    reset(fRepairDone);
+}
+
+if(isset(fRepairSent)) {
+    reset(fRepairSent);
+}
+
+if(isset(fRepairSent1)) {
+    reset(fRepairSent1);
+}
+
+if(isset(fRepairSent2)) {
+    reset(fRepairSent2);
+    set(fRepairReturn3);
+    assignn(vClockTicks, 0);
+    assignn(vTimer, 0);
+    
+[    [ half way up
+[    reset(fRepairSent2);
+[    set.view(objShaft3, vw.EgoParts);
+[    set.loop(objShaft3, 2);
+[    fix.loop(objShaft3);
+[    stop.cycling(objShaft3);
+[    set.priority(objShaft3, 7);
+[    position(objShaft3, 84, 130);
+[    draw(objShaft3);
+[
+[    move.obj(objShaft3, 84, 80, 1, fRepairReturn1);        
+}
+
+[if(isset(fRepairReturn1)) {
+[    [ drop off person l and return halfway down
+[    reset(fRepairReturn1);
+[    erase(objPersonL);
+[    move.obj(objPlatform2, 79, 111, 1, fRepairReturn3);        
+[    move.obj(objShaft3, 84, 130, 1, fRepairReturn2);        
+[}
+
+[if(isset(fRepairReturn2)) {
+[    [ return the rest of the way down 
+[    reset(fRepairReturn2);
+[    erase(objShaft3);
+[    move.obj(objShaft2, 84, 168, 1, fRepairReturn3);        
+[    assignn(vClockTicks, 0);
+[
+[    assignn(vBdMsgCount, 6);    
+[    assignn(vBdMsgCount2, 7);    
+[}
+
+if(isset(fRepairReturn3)) {
+    [  return the rest of the way down 
+    erase(objShaft2);
+    
+    if(equaln(vClockTicks, 1)) {
+        display(4, 9, "Incoming transmission ");
+        display(5, 9, "                      ");
+    }
+
+    if(equaln(vClockTicks, 2)) {
+        display(4, 9, "Markus Louw:          ");
+        display(5, 9, "My best to Sierra!    ");
+    }
+
+    if(equaln(vClockTicks, 3)) {
+        display(4, 9, "Marco Giglio:        ");
+        display(5, 9, "Happy birthday!      ");
+    }
+
+    if(equaln(vClockTicks, 4)) {
+        display(4, 9, "Andrea Tanguay:       ");
+        display(5, 9, "Long live adventures! ");
+    }
+
+    if(equaln(vClockTicks, 5)) {
+        display(4, 9, "Liz Cook: 40 years & ");
+        display(5, 9, "the hat still fits!  ");
+    }
+
+    if(equaln(vClockTicks, 6)) {
+        display(4, 9, "Lance Ewing & SCI   ");
+        display(5, 9, "programming.com:HBD!");
+    }
+
+    if(equaln(vClockTicks, 7)) {
+        display(4, 9, "Zach Bleacher: ThankU");
+        display(5, 9, "for all the memories!");
+    }
+
+    if(equaln(vClockTicks, 8)) {
+        display(4, 9, "Chase Spangenberg:  A");
+        display(5, 9, "regal celebration 2U!");
+    }
+
+    if(equaln(vClockTicks, 9)) {
+        display(4, 9, "Luke Boback: Stow     ");
+        display(5, 9, "                      ");
+    }
+
+    if(equaln(vClockTicks, 10)) {
+        display(4, 9, "Ricky Derocher: Yeah..");
+        display(5, 9, "but what about Cedric?");
+    }
+    if(equaln(vClockTicks, 11)) {
+        display(4, 9, "Russ Danner: Thanks   ");
+        display(5, 9, "to Ken and Roberta!   ");
+
+        if(!isset(fMiBOnce)) {
+            set(fMiBOnce);
+            set(fMiB);
+        }
+    }
+ }
+
+if(isset(fMiB)) {
+    reset(fMiB);
+    load.view(vw.MIB);    
+    animate.obj(objPersonM);
+    set.view(objPersonM, vw.MIB);
+    position(objPersonM, 30, 155);
+    follow.ego(objPersonM, 4, fGotcha);
+    draw(objPersonM);
+}
+
+if(isset(fGotcha)) {
+    [ roger get's flashed
+    reset(fGotcha);
+    load.view(vw.MIBFlash);    
+    set.view(objPersonM, vw.MIBFlash);
+    normal.motion(objPersonM);
+    stop.motion(objPersonM);
+    get.posn(ego, vEgoX, vEgoY);
+
+    if(greatern(vEgoX, 25)) {
+        subn(vEgoX, 15);
+        set.loop(objPersonM, 0);
+    }
+
+    if(!greatern(vEgoX, 25)) {
+        subn(vEgoX, 5);
+        set.loop(objPersonM, 1);
+    }
+
+    reposition.to.v(objPersonM, vEgoX, vEgoY);
+    end.of.loop(objPersonM, fRogerFlashed);
+}
+
+if(isset(fRogerFlashed)) {
+    [ Roger appears back outside the lab        
+    print("A large man dressed in a black suit appears out of nowhere. He pulls a small pen like device from his pocket and clicks a button on it. In a flash of bright light you find yourself outside. You could swear you knew what was behind this door but you just can't remember what it was.");
+    drop("Keycard");
+
+    reset(fRogerFlashed);
+    assignn(vEgoX, 100);
+    assignn(vEgoY, 110);
+    reset(fEyesOpen);
+    set(fFlashed);
+
+    stop.cycling(ego);
+    reset(fDoAction);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavHillsideDoor);     
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+if(said("look")) {
+    print("You have found your way into some kind of lab where adventurers are made. There's an engineer here busy at work.");
+}
+
+if(said("look", "room")) {
+    print("You have found your way into some kind of lab where adventurers are made. There's an engineer here busy at work.");
+}
+
+if(said("talk", "man")) {
+    print("You startle the engineer and he immediately calls out for 'SECURITY!!!'");
+    set(fMiB);
+}
+
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

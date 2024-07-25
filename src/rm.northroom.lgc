@@ -1,0 +1,77 @@
+[*********************************************************************
+[
+[ rm.NorthRoom
+[
+[ An example room. This one is empty - nothing special.
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+[ none
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+  [ load, draw and discard the picture resource for the current room
+  load.pic(currentRoom);
+  draw.pic(currentRoom);
+  discard.pic(currentRoom);
+  
+  [ do basic room initialization
+  call(lgc.RoomInit);
+  
+  [ add room-specific initialization here
+  
+  [ default horizon is 36; adjust it as needed
+  [set.horizon(36);
+
+  [ set ego parameters, if different from lgc.RoomInit
+  
+  [ AGI will automatically position ego on the opposite
+  [ edge when entering a new room, but if you want to manually
+  [ position ego, do that here, before drawing ego
+  
+  [ add ego to the room
+  draw(ego);
+  
+  [ display the picture on screen
+  show.pic();
+}
+
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ add room specific statements here
+
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+
+[ if player has provided input and match not yet found,
+[ do said tests
+if (haveInput && !haveMatch) {
+  [ look
+  if (said("look")) {
+    print("You see nothing of interest.");
+  }
+}
+  
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+if (edgeEgoHit == BOTTOM_EDGE) {
+  new.room(rm.Entrance);  [ ##LE001##
+}
+
+:done
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

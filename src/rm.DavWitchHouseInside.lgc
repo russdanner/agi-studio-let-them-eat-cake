@@ -1,0 +1,209 @@
+[*********************************************************************
+[
+[ rm.DavWitchHouseInside
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);
+    load.view(vw.WitchCabinet);
+    load.view(vw.Paper);
+
+    animate.obj(ego);
+    animate.obj(objPaper);
+    animate.obj(objWitchCabinet);
+    
+    set.view(ego, vw.Roger);
+    set.view(objPaper, vw.Paper);
+    set.view(objWitchCabinet, vw.WitchCabinet);
+
+    stop.cycling(objPaper);
+    stop.cycling(objWitchCabinet);
+    
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 50);
+            assignn(vEgoY, 140);
+        }
+    }
+
+    position.v(ego, vEgoX, vEgoY);
+
+    position(objWitchCabinet, 35, 80);
+
+    if(!has("Paper")) {
+        position(objPaper, 55, 120);
+        set.priority(objPaper, 13);
+    }
+    
+    reset(fCabinetOpen);
+    
+    set.priority(ego, 14);
+
+    draw(ego);
+    draw(objWitchCabinet);
+    draw(objPaper);
+    
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 51);
+    assignn(vEgoY, 133);
+    set.priority(ego, 11);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWitchHouseD5); 
+}
+
+if(isset(fCabinetOpen)) {
+    if(!has("Cake")) {
+        load.view(vw.Cake); 
+        set.view(objCake, vw.Cake);
+        animate.obj(objCake);
+        set.cel(objCake, 0);
+        position(objCake, 35, 69);
+        set.priority(objCake, 10);
+        draw(objCake);
+    }
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+if((said("look", "room") || said("look"))) {
+    print("You stand in a large open room with a door to a small bedroom in the back. The inside of the house is clean and tidy. There's a large oven here and a cage... That's right... A CAGE!? Not cool. Better get out of here.");
+}
+
+if(said("look", "table")) {
+    if(!has("Paper")) {
+        print("There's a large table here with a piece of paper on it.");
+    }
+    else {
+        print("There's a large table here.");
+    }
+}
+
+if(said("look", "wall")) {
+    print("There's a cupboard built into the wall.");
+}
+
+if(said("look", "cupboard")) {
+    if(isset(fCabinetOpen)) {
+        if(has("Cake")) {
+            print("There's a large cupboard here that is built into the wall.");
+        }
+        else {
+            print("There's a large cupboard here that is built into the wall. There's a cake on the shelf.");
+        }
+    }
+    else {
+        print("There's a large cupboard here that is built into the wall.");
+    }
+}
+
+if(said("close", "cupboard")) {
+    if(posn(ego, 34, 89, 51, 92)) {
+        set.cel(objWitchCabinet, 0);
+    }
+    else {
+        print("From here? Not happening.");
+    }
+}
+
+if(said("open", "cupboard")) {
+    if(posn(ego, 34, 89, 51, 92)) {
+        end.of.loop(objWitchCabinet, fCabinetOpen);
+    }
+    else {
+        print("From here? Not happening.");
+    }
+}
+
+if(said("open", "door")) {
+    if(posn(ego, 89, 95, 94, 115)) {
+        print("It's locked.");
+    }
+    else {
+        print("You can't reach it from here.");
+    }
+}
+
+if(said("take", "cake")) {
+    if(has("Cake")) {
+        print("You already have it.");
+    }
+    if(!has("Cake")) {
+        if(isset(fCabinetOpen)) {
+            if(posn(ego, 34, 89, 51, 92)) {
+                get("Cake");
+                erase(objCake);
+                addn(currentScore, 1);
+                print("You remove the cake from the cupboard and carry it with you.");        
+            }
+            else {
+                print("Try as you may you cannot reach it.");
+            }
+        }
+        else {
+            print("Cake? What cake?");
+        }        
+    }    
+}
+
+if(said("take", "paper")) {
+    if(has("Paper")) {
+        print("You already have it.");
+    }
+    else {
+        if(posn(ego, 45, 129, 63, 139)) {    
+            get("Paper");
+            erase(objPaper);        
+            addn(currentScore, 1);
+            set.priority(ego, 12);
+            print("Ok");
+        }
+        else {
+            print("You can't reach it.");
+        }    
+    }
+}
+
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+#message 1 "You see nothing of interest." 

@@ -1,0 +1,156 @@
+[*********************************************************************
+[
+[ rm.DavRockE4
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+#define objHole o7
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+    
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+
+    animate.obj(ego);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    animate.obj(objMist4);
+
+    set.view(ego, vw.Roger);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+    set.view(objMist4, vw.Mist);
+
+    stop.cycling(objMist);
+    stop.cycling(objMist2);
+    stop.cycling(objMist4);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 140);
+            assignn(vEgoY, 70);
+        }
+    }
+
+    position(objMist, 1, 43);
+    position(objMist2, 63, 43);
+    position(objMist4, 120, 43);
+
+    reset(fDoAction);
+    
+    position.v(ego, vEgoX, vEgoY);
+    
+    set.horizon(50);
+
+    draw(ego);
+    draw(objMist);
+    draw(objMist2);
+    draw(objMist4);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWizardE5);             
+}   
+
+if(edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    assignn(egoDir, DOWN);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    new.room(rm.DavDwarfF4);     
+}    
+
+if(edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavLakeFGMD4);
+}
+
+if(isset(fDoAction)) {
+    reset(fDoAction);
+    set.loop(objHole , 1);
+    set.cel(objHole, 0);
+    assignn(vDeathReason, valXsBewareRandomHoles);
+    end.of.loop(objHole, fDead);
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("The area is heavily wooded. A large rock dominates the area.");
+    }
+    
+    if(said("look", "room")) {
+        print("The area is heavily wooded. A large rock dominates the area.");
+    }
+    
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+    
+    if(said("look", "rock")) {
+        print("There's a large rock here. A large hole can be seen at the base of the rock.");
+    }
+    
+    if(said("look", "hole")) {
+        if(posn(ego, 88, 128, 104, 140)) {
+            erase(ego);
+            load.view(vw.RogerEaten);
+            set.view(objHole, vw.RogerEaten);
+            position(objHole, 97, 138);
+            animate.obj(objHole);
+            draw(objHole);
+            end.of.loop(objHole , fDoAction);
+        }
+        else {
+            print("You can't see much from here.");        
+        }
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

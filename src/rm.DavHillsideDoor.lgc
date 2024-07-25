@@ -1,0 +1,200 @@
+[*********************************************************************
+[
+[ rm.DavHillsideDoor
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.Roger);    
+    load.view(vw.HillDoor);
+    load.view(vw.Mist);
+
+    animate.obj(ego);
+    animate.obj(objTrunkDoor);
+    animate.obj(objMist);
+    animate.obj(objMist2);
+    
+    set.view(ego, vw.Roger);
+    set.view(objTrunkDoor, vw.HillDoor);
+    set.view(objMist, vw.Mist);
+    set.view(objMist2, vw.Mist);
+
+    if(isset(fEyesOpen)) {
+        set.loop(objTrunkDoor, 0);
+        set.cel(objTrunkDoor, 0);
+        stop.cycling(objTrunkDoor);
+    }
+    else {
+        set.loop(objTrunkDoor, 1);
+        set.cel(objTrunkDoor, 0);
+        stop.cycling(objTrunkDoor);
+    }
+
+    position(objTrunkDoor, 100, 93);
+    set.horizon(50); 
+
+    [assignn(vEgoY, 155);
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 140);
+        }
+    }
+
+    position.v(ego, vEgoX, vEgoY);    
+    
+    position(objMist, 1, 47);
+    position(objMist2, 43, 47);
+
+    stop.cycling(objTrunkDoor);
+    stop.cycling(objMist);
+    stop.cycling(objMist2);
+
+    draw(ego);
+    draw(objTrunkDoor);
+    draw(objMist);
+    draw(objMist2);
+
+    [ display the picture on screen
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+if(isset(fDoAction)) {
+    reset(fDoAction);
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 20);
+    assignn(vEgoY, 157);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavLabStairs);
+} 
+
+
+if(edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(egoY, 55);
+    assignn(egoDir, DOWN);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+    }   
+
+if(edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 55);
+    new.room(rm.DavTreeF1);
+}
+
+if(edgeEgoHit == RIGHT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 150);
+    assignn(egoDir, LEFT);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}    
+
+if(edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoX, 5);
+    assignn(egoDir, RIGHT);
+    erase(ego);
+    position.v(ego, vEgoX, vEgoY);
+    draw(ego);
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if(said("look")) {
+        print("There's a hillside here with a door built into the side of it. There is a thick fog to the north the east and the west.");
+    }
+    
+    if(said("knock")) {
+        if(posn(ego, 95, 96, 118, 102)) {
+            print("There is no answer.");
+        }
+        else {
+            print("You can't reach it from here.");
+        }
+    }
+    
+    if(said("open", "door")) {
+        print("Try as you might, the darn thing wont budge.");
+    }
+    
+    if(said("look", "door")) {
+        if(isset(fEyesOpen)) {
+            print("The door is made of wood and looks extremely sturdy. Theres a small slot in the door");
+        }
+        else {
+            print("The door is made of wood and looks extremely sturdy.");
+        }
+    }
+    
+    if(said("look", "room")) {
+        print("There's a hillside here with a door built into the side of it. There is a thick fog to the north the east and the west.");
+    }
+    
+    if(said("look", "slot")) {
+        if(isset(fEyesOpen)) {
+            print("On the door you find a panel with a small slot. A faint blinking red glow is emitted from somewhere inside the slot. You wonder what it could be for.");
+        }
+        else {
+            print("what slot? There's no slot here.");
+        }
+    }
+    
+    if(said("look", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel.");
+    }
+    
+    if(said("insert", "keycard")) {
+        if(isset(fEyesOpen)) {
+            if(posn(ego, 95, 96, 118, 102)) {
+                end.of.loop(objTrunkDoor, fDoAction);
+            }
+            else {
+                print("You can't reach it from here.");
+            }        
+        }
+        else {
+            print("You can't do that.");
+        }
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************

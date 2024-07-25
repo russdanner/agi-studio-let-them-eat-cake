@@ -1,0 +1,229 @@
+[********************************************************************
+[
+[ rm.Title
+[
+[ This is an example of an intro screen, with scrolling credits and
+[ a theme song.
+[
+[********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+#define hat                      o1
+#define feather                  o2
+
+#define objDir                     v223
+#define speed                      v224
+#define musicDelay                 v226
+#define vRate v232
+#define vFeatherLocation v233
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if (newRoom) {
+  [ load, draw, discard the picture for the current room
+  load.pic(currentRoom);
+  draw.pic(currentRoom);
+  discard.pic(currentRoom);
+  animationInterval = NORMAL_SPEED;
+  vRate = NORMAL_SPEED;
+  vFeatherLocation = 30;
+   
+  [ skip basic room initialization for title; all 
+  [ initialization will be done in this logic
+  [call(lgc.RoomInit);
+
+  [ add room-specific initialization here
+  [speed = 2; 
+  objDir = DOWN;
+  
+  assignn(vEgoX, 150);
+  assignn(vEgoY, 0);
+  
+  [ hard to undertand text vars
+  reset(fDoAction);
+  
+  [ message
+  assignn(v71, 12); 
+  assignn(v72, 4);
+  assignn(v73, 5);
+  assignn(v74, 6);
+  assignn(v75, 7);
+  assignn(v76, 8);
+  assignn(v77, 9);
+  assignn(v78, 10);
+  assignn(v79, 11);
+
+  [ message y coords
+  assignn(v80, 20); 
+  assignn(v81, 21);  
+  assignn(v82, 22);   
+  assignn(v83, 23);  
+  assignn(v84, 25);  
+  assignn(v85, 26);  
+  assignn(v86, 27);  
+  assignn(v87, 28);  
+      
+  [ set horizon to just above scroll window
+  set.horizon(0);
+  
+  [ disable player control and input
+  status.line.off();
+  prevent.input();
+  program.control();
+  
+  [ initialize the feather element that hints at the win
+  load.view(vw.titleFeatherHat);
+  animate.obj(hat);
+  animate.obj(feather);
+  [cycle.time(hat, speed);
+  [cycle.time(feather, speed);
+  
+  stop.cycling(feather);
+  stop.cycling(hat);
+
+  [ ignore other objects; otherwise
+  [ reposition.to.v command will 'shuffle'
+  [ the objects to avoid collisions
+  ignore.objs(hat);
+  ignore.objs(feather);
+  
+  [ object 1 is the hat
+  set.view(hat, vw.titleFeatherHat);
+  set.loop(hat, 0);
+  fix.loop(hat);
+  set.cel(hat, 1);
+  position(hat, 3, 165);
+  
+  [ second object is the feather
+  set.view(feather, vw.titleFeatherHat);
+  set.loop(feather, 0);
+  set.cel(feather, 0);
+  fix.loop(feather);
+  position.v(feather, vEgoX, vEgoY);
+
+  ignore.blocks(feather);
+  ignore.horizon(feather);
+
+  draw(hat);
+  draw(feather);
+  
+  [ show the picture on screen
+  show.pic(); 
+  
+  [ load the theme song
+  load.sound(snd.Theme);
+  [ and begin playing
+  sound(snd.Theme, musicDone);
+  
+  [ make sure keybuffer is empty
+  lastChar = 0;
+
+  [ Display game title
+  display(10, 12, m12);     
+  display(12, 14, m13);    
+  
+  [ Display by message
+  display(23, 9, m2);
+  display(24, 8, m3);
+  
+}
+
+[ float the feather down
+if(lessn(vFeatherLocation, 175)){
+    random(110, 125, vTempVar1);
+    addn(vFeatherLocation, 2);
+    move.obj.v(feather, vTempVar1, vFeatherLocation, vRate, fUndoAction);  
+}
+
+if(vClockTicks == 0 && vTimer == 60) {
+  display(10, 12, m4);     
+  display(11, 14, m5);    
+  display(12, 14, m6);    
+}
+
+if(vClockTicks == 1 && vTimer == 60) {
+  display(10, 12, m7);     
+  display(11, 11, m8);    
+  display(12, 11, m9);    
+  display(13, 11, m10);    
+  display(14, 11, m11);    
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+[ restart theme music if the intro screen is still showing
+[ and end was reached
+if (musicDone) {
+  [ reset the flag
+  reset(musicDone);
+  display(17, 12, m14);     
+  display(18, 14, m15);    
+
+  [ start a timer to set a short delay before restarting music
+  musicDelay = 1;
+}
+  
+[ if music interlude is active
+if (musicDelay  > 0) {
+  [ increment interlude delay counter
+  musicDelay += 1;
+  
+  [ after 36 cycles
+  if (musicDelay == 36) {
+    [ reset timer
+    musicDelay = 0;
+    
+    [ play it again sam
+    sound(m.theme, musicDone);
+  }
+}
+  
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+[ no input during title sequence
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+[ check for a keypress or joystick button
+if ((have.key() || controller(keyJoyBtn1))) {
+  [ allow menu use
+  set(enableMenu);
+  [ game functions are no longer disabled
+  reset(disableGameFunctions);
+  [ begin game in starting room
+  new.room(rm.GrahamHouse); [ ##LE001##
+  [new.room(rm.InPod);
+}
+
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
+
+#message 1 "Title"
+#message 2 "let-them-eat-cake.com"
+#message 3 "One Guy from CrafterCMS"
+
+#message 4 "A heartfelt thanks"
+#message 5 "to the heroes &"
+#message 6 "fans of Sierra."
+
+#message 7 "Early adventure   "
+#message 8 "games amazed us,"
+#message 9 "taught us to solve"
+#message 10 "problems & to"
+#message 11 "be resilient."
+
+#message 12 "Let Them Eat Cake"
+#message 13 "Version 1.7.2"
+
+#message 14 "Press Any Key"
+#message 15 "to Continue"

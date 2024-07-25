@@ -1,0 +1,155 @@
+[*********************************************************************
+[
+[ rm.DavWellDive
+[
+[ 
+[
+[*********************************************************************
+
+[***************************************
+[ LOCAL DEFINES
+[***************************************
+
+[ add local defines here
+
+[***************************************
+[ FIRST CYCLE ONLY
+[***************************************
+if(newRoom) {
+    [ load, draw and discard the picture for the current room
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    
+    unanimate.all();
+    assignn(vRoomInited, valTrue);
+
+    load.view(vw.RogerDive);
+    load.view(vw.Trunk);
+
+    animate.obj(ego);
+    animate.obj(objTrunk);
+
+    set.view(ego, vw.RogerDive);
+    set.view(objTrunk, vw.Trunk);
+    
+    stop.cycling(objTrunk);
+
+    if(equaln(vEgoX, 0)) {
+        if(equaln(vEgoY, 0)) {
+            assignn(vEgoX, 100);
+            assignn(vEgoY, 110);
+        }
+    }
+
+    position(objTrunk, 105, 130);
+    position.v(ego, vEgoX, vEgoY);
+
+    set.horizon(30);  
+    
+    assignn(vTimer, 0);
+    assignn(vClockTicks, 0);
+
+    draw(ego);
+    draw(objTrunk);
+
+    show.pic();
+}
+
+[***************************************
+[ NON-INPUT CODE 
+[***************************************
+
+if(equaln(vClockTicks, 9) && equaln(vTimer, 0)) {
+    print("On a scale of 1 to low on oxygen you are three fumes below empty.");
+}
+
+if(equaln(vClockTicks, 12)) {
+    // DEAD: Drown
+    assignn(vDeathReason, valXsOutOfAir);
+    set(fDead);
+}
+
+if(edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, vEgoX, vEgoY);
+    assignn(vEgoY, 150);
+    assignn(vRoomInited, valFalse);
+    new.room(rm.DavWellBottom);     
+}
+
+[***************************************
+[ PROCESS PLAYER INPUT
+[***************************************
+if (haveInput && !haveMatch && unknownWordNum == 0) {
+    if((said("look","room") || said("look"))) {
+        print("You are at the very bottom of the well. The walls are rough cut and the floor is full bits and bobs that people have thrown down the well over the ages. A large trunk lays up against the wall to the east. There's a small opening in the wall to the west.");
+    }
+    
+    if(said("close", "trunk")) {
+        if(posn(ego, 95, 110, 107, 134)) {      
+            set.cel(objTrunk, 0);
+        }
+        else {    
+            print("You are not close enough.");
+        }  
+    }
+    
+    if(said("open", "trunk")) {
+        if(posn(ego, 95, 110, 107, 134)) { 
+            if(!isset(fPointsForOpenTrunk)) {
+                set(fPointsForOpenTrunk);
+                addn(currentScore, 1);
+            } 
+                
+            end.of.loop(objTrunk, fTrunkOpen);
+    
+            if(has("Ink")) {
+                print("You open the trunk.");
+            }
+            else {
+                print("You open the trunk to find a small bottle of ink inside.");            
+            }
+        }
+        else {    
+            print("You are not close enough.");
+        }  
+    }
+    
+    if(said("take", "ink")) {
+        if(posn(ego, 95, 110, 107, 134)) {      
+            if(has("Ink")) {
+                print("You already have it.");
+            }
+            else {
+                get("Ink");
+                addn(currentScore, 1);    
+                print("You remove the bottle of ink from inside the trunk and carry it with you.");
+            }
+        }
+        else {    
+            print("You are not close enough.");
+        }  
+    }
+
+    if(said("look", "hole")) {
+        print("It's a hole that leads to a cave.");
+    }
+
+    if(said("look", "cave")) {
+        print("Wow.. It looks like a COLOSSAL CAVE. That's different game Roger. Go check it out. You don't have the time or oxygen required for cave splunking right now.");
+    }
+
+    if(said("look", "trunk")) {
+        print("The large trunk looks old but sturdy. It's clear that it has been here for some time.");
+    }
+}
+
+[***************************************
+[ CHECK FOR AN EXIT CONDITION
+[***************************************
+:exit
+return();
+
+[***************************************
+[ DECLARED MESSAGES
+[***************************************
