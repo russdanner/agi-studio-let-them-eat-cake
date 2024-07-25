@@ -23,7 +23,7 @@ This is the source code of the game. Don't venture further here unless you wish 
 
 # Source Code
 The game is free. I wrote the AGI scripts that 'power' the game. I borrowed, modified, and mashed up graphics and sounds.
-The source files are now WinAGI GDS compatible and compile for DosBox and also run in the AGILE engine.
+The source files are now WinAGI GDS compatible and thus compile for DosBox and the AGILE engine.
 
 ## Version 1.0.0 - 1.7.1 
 The source files were text and JSON files that can be edited by any tool. I've built plugins for CrafterCMS to edit graphic files and build the game.
@@ -33,7 +33,7 @@ The game source, the tools I've created, and the engine are all open source. Dow
 
 # Code contributions by
 * Mike Pumphrey @bmmpxf
-* 
+  
 # Suggestions & Bug Reports by
 * https://www.youtube.com/@LetsPlaySierraGames
 * Markus Louw
