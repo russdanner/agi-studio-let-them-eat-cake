@@ -1,3 +1,0 @@
-[
-[ global defines file for AGI
-[
