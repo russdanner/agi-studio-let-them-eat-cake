@@ -1,0 +1,147 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    load.view(vw.GrahamNoHat);
+    load.view(vw.GrahamHatNoFeather);
+    load.view(vw.Wolf);
+    load.view(vw.GrahamHouseDoor);
+    animate.obj(ego);
+    animate.obj(o6);
+    animate.obj(o7);
+    animate.obj(o8);
+    set.view(o6, vw.Wolf);
+    set.view(o7, vw.Wolf);
+    set.view(o8, vw.GrahamHouseDoor);
+    stop.cycling(o6);
+    stop.cycling(o7);
+    stop.cycling(o8);
+    set.cel(o8, 0);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 119;
+            v253 = 126;
+        }
+    }
+    if (isset(f88)) {
+        set.view(ego, vw.GrahamHatNoFeather);
+    }
+    else {
+        set.view(ego, vw.GrahamNoHat);
+    }
+    reset(f83);
+    reset(f95);
+    reset(f90);
+    reset(f97);
+    position.v(ego, v30, v253);
+    position(o6, 15, 40);
+    position(o7, 159, 167);
+    position(o8, 121, 130);
+    set.priority(o8, 4);
+    set.priority(ego, 11);
+    draw(o8);
+    draw(ego);
+    show.pic();
+}
+if (!isset(f86)) {
+    if (!obj.in.box(ego, 100, 116, 158, 130)) {
+        if (!isset(f91)) {
+            set(f91);
+            load.sound(snd.MonsterAlert);
+            sound(snd.MonsterAlert, f83);
+            set(f95);
+        }
+    }
+    if (isset(f83)) {
+        if (!isset(f95)) {
+            set(f95);
+        }
+    }
+    if (isset(f95)) {
+        reset(f83);
+        reset(f95);
+        draw(o6);
+        draw(o7);
+        start.cycling(o6);
+        follow.ego(o6, 8, f90);
+        start.cycling(o7);
+        follow.ego(o7, 3, f90);
+    }
+    if (isset(f90)) {
+        erase(o6);
+        erase(o7);
+        reset(f90);
+        set(f86);
+        v29 = 13;
+        load.view(vw.GrahamFightCloud);
+        set.view(ego, vw.GrahamFightCloud);
+    }
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("You are standing outside your house. It is dark out here. The "
+              "landscape is cast in pale moonlight and shadow.");
+    }
+    if (said("examine", "room")) {
+        print("You are standing outside your house. It is dark out here. The "
+              "landscape is cast in pale moonlight and shadow.");
+    }
+    if (said("put on", "cap")) {
+        if (has("Hat")) {
+            if (isset(f88)) {
+                print("You are already wearing it.");
+            }
+            if (!isset(f88)) {
+                set(f88);
+                set.view(ego, vw.GrahamHatNoFeather);
+                print("You put on your trusty hat!");
+                if (!isset(f130)) {
+                    set(f130);
+                    currentScore  += 1;
+                }
+            }
+        }
+        if (!has("Hat")) {
+            print("You don't have it.");
+        }
+    }
+    if (said("remove", "cap")) {
+        if (has("Hat")) {
+            if (!isset(f88)) {
+                print("You are not wearing your hat.");
+            }
+            if (isset(f88)) {
+                reset(f88);
+                set.view(ego, vw.GrahamNoHat);
+            }
+        }
+        if (!has("Hat")) {
+            print("You don't have it.");
+        }
+    }
+    if (said("open", "door")) {
+        if (obj.in.box(ego, 100, 116, 158, 130)) {
+            get.posn(ego, v30, v253);
+            v30 = 35;
+            v253 = 110;
+            reset(f88);
+            v34 = 0;
+            new.room(rm.GrahamHouse);
+        }
+        if (!obj.in.box(ego, 100, 116, 158, 130)) {
+            print("You are not close enough.");
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You are standing outside your house. It is dark out here. The landscape is cast in pale moonlight and shadow."
+#message 3 "You are already wearing it."
+#message 4 "You put on your trusty hat!"
+#message 5 "You don't have it."
+#message 6 "You are not wearing your hat."
+#message 7 "You are not close enough."

@@ -1,0 +1,118 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    animationInterval = 2;
+    v232 = 2;
+    v233 = 30;
+    v223 = 5;
+    v30 = 150;
+    v253 = 0;
+    reset(f95);
+    v71 = 12;
+    v72 = 4;
+    v73 = 5;
+    v74 = 6;
+    v75 = 7;
+    v76 = 8;
+    v77 = 9;
+    v78 = 10;
+    v79 = 11;
+    v80 = 20;
+    v81 = 21;
+    v82 = 22;
+    v83 = 23;
+    v84 = 25;
+    v85 = 26;
+    v86 = 27;
+    v87 = 28;
+    set.horizon(0);
+    status.line.off();
+    prevent.input();
+    program.control();
+    load.view(vw.titleFeatherHat);
+    animate.obj(o1);
+    animate.obj(o2);
+    stop.cycling(o2);
+    stop.cycling(o1);
+    ignore.objs(o1);
+    ignore.objs(o2);
+    set.view(o1, vw.titleFeatherHat);
+    set.loop(o1, 0);
+    fix.loop(o1);
+    set.cel(o1, 1);
+    position(o1, 3, 165);
+    set.view(o2, vw.titleFeatherHat);
+    set.loop(o2, 0);
+    set.cel(o2, 0);
+    fix.loop(o2);
+    position.v(o2, v30, v253);
+    ignore.blocks(o2);
+    ignore.horizon(o2);
+    draw(o1);
+    draw(o2);
+    show.pic();
+    load.sound(snd.Theme);
+    sound(snd.Theme, f25);
+    lastChar = 0;
+    display(10, 12, "Let Them Eat Cake");
+    display(12, 14, "Version 1.7.2");
+    display(23, 9, "let-them-eat-cake.com");
+    display(24, 8, "One Guy from CrafterCMS");
+}
+if (v233 < 175) {
+    random(110, 125, v251);
+    v233  += 2;
+    move.obj.v(o2, v251, v233, v232, f96);
+}
+if (v243 == 0 && 
+    v242 == 60) {
+    display(10, 12, "A heartfelt thanks");
+    display(11, 14, "to the heroes &");
+    display(12, 14, "fans of Sierra.");
+}
+if (v243 == 1 && 
+    v242 == 60) {
+    display(10, 12, "Early adventure   ");
+    display(11, 11, "games amazed us,");
+    display(12, 11, "taught us to solve");
+    display(13, 11, "problems & to");
+    display(14, 11, "be resilient.");
+}
+if (isset(f25)) {
+    reset(f25);
+    display(17, 12, "Press Any Key");
+    display(18, 14, "to Continue");
+    v226 = 1;
+}
+if (v226 > 0) {
+    v226  += 1;
+    if (v226 == 36) {
+        v226 = 0;
+        sound(m.Theme, f25);
+    }
+}
+if ((have.key() || 
+    controller(c31))) {
+    set(enableMenu);
+    reset(f22);
+    new.room(rm.GrahamHouse);
+}
+return();
+
+[ Messages
+#message 1 "Title"
+#message 2 "let-them-eat-cake.com"
+#message 3 "One Guy from CrafterCMS"
+#message 4 "A heartfelt thanks"
+#message 5 "to the heroes &"
+#message 6 "fans of Sierra."
+#message 7 "Early adventure   "
+#message 8 "games amazed us,"
+#message 9 "taught us to solve"
+#message 10 "problems & to"
+#message 11 "be resilient."
+#message 12 "Let Them Eat Cake"
+#message 13 "Version 2.0.0"
+#message 14 "Press Any Key"
+#message 15 "to Continue"

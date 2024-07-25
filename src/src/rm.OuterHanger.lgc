@@ -1,0 +1,145 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.RogerSpacesuitA);
+    load.view(vw.PodPlatform);
+    load.view(vw.Pod);
+    animate.obj(ego);
+    animate.obj(o10);
+    animate.obj(o11);
+    set.view(o10, vw.Pod);
+    set.view(o11, vw.PodPlatform);
+    start.cycling(ego);
+    stop.cycling(o11);
+    stop.cycling(o10);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            set(f96);
+        }
+    }
+    if (isset(f96)) {
+        set.view(ego, vw.RogerSpacesuitA);
+    }
+    else {
+        set.view(ego, vw.Roger);
+    }
+    set.priority(o10, 12);
+    position(o11, 55, 109);
+    position(o10, 60, 100);
+    set.horizon(73);
+    position.v(ego, v30, v253);
+    draw(ego);
+    draw(o11);
+    draw(o10);
+    show.pic();
+}
+if (posn(ego, 145, 135, 160, 160)) {
+    get.posn(ego, v30, v253);
+    v30 = 15;
+    v253 = 126;
+    v34 = 0;
+    new.room(rm.OuterBay);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    stop.cycling(ego);
+    set.view(ego, vw.RogerSpacesuitA);
+    set.priority(ego, 4);
+    move.obj(ego, 100, 40, 1, f93);
+    v29 = 4;
+    set(f86);
+}
+if (isset(f93)) {
+    erase(ego);
+}
+if (!isset(f96)) {
+    if (!isset(f90)) {
+        get.posn(ego, v30, v253);
+        v30 = 100;
+        reset(f91);
+        reset(f94);
+        v251 = 1;
+        move.obj.v(ego, v30, v253, v251, f90);
+    }
+}
+if (isset(f90)) {
+    if (!isset(f94)) {
+        set(f94);
+        stop.motion(ego);
+        load.view(vw.RogerExplode);
+        set.view(ego, vw.RogerExplode);
+        end.of.loop(ego, f91);
+    }
+}
+if (isset(f91)) {
+    erase(ego);
+    v29 = 3;
+    set(f86);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("You are standing in a large hanger bay. The hanger door is open "
+              "to the coldness of space. A shuttle sits in the middle of the "
+              "bay.");
+    }
+    if ((said("enter", "craft") || 
+        said("acquire", "craft"))) {
+        if (posn(ego, 39, 93, 60, 109)) {
+            currentScore  += 1;
+            reset(f93);
+            if (!has("Broom")) {
+                print("You climb into the pod and shut the door.");
+            }
+            else {
+                drop("Broom");
+                print("As you go to climb into the pod you realize you still "
+                      "have a broom with you. Since you are in a hurry you "
+                      "discard the broom here. You'll catch some grief for "
+                      "that. Broomless you now climb into the pod and shut the "
+                      "door.");
+            }
+            v34 = 0;
+            new.room(rm.InPod);
+        }
+        if (!posn(ego, 39, 93, 60, 109)) {
+            print("You are too far away.");
+        }
+    }
+    if (said("examine", "room")) {
+        print("You are standing in a large hanger bay. The hanger door is open "
+              "to the coldness of space. A shuttle sits in the middle of the "
+              "bay.");
+    }
+    if (said("examine", "console")) {
+        print("The panel is used to operate hanger bay equipment. It's meant to "
+              "be operated by personnel assigned to flight operations which "
+              "does not include janitorial staff.");
+    }
+    if (said("examine", "space")) {
+        print("Ah space... 'It's beautiful and big. Really big. You just won't "
+              "believe how vastly hugely mind-bogglingly big it is.'");
+    }
+    if (said("examine", "craft")) {
+        print("Ain't she cute? It's a standard issue StarCon shuttle pod used "
+              "for short trips between stations and bases. In the extremely "
+              "rare and unlikely event of an emergency including but not "
+              "limited to a hostile encounter with a crew of marauding aliens "
+              "it can be used as an escape vehicle. That'll never happen. "
+              "'Anywho'.. She's all fueled up and ready to go.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay."
+#message 2 "You climb into the pod and shut the door."
+#message 3 "As you go to climb into the pod you realize you still have a broom with you. Since you are in a hurry you discard the broom here. You'll catch some grief for that. Broomless you now climb into the pod and shut the door."
+#message 4 "You are too far away."
+#message 5 "The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff."
+#message 6 "Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'"
+#message 7 "Ain't she cute? It's a standard issue StarCon shuttle pod used for short trips between stations and bases. In the extremely rare and unlikely event of an emergency including but not limited to a hostile encounter with a crew of marauding aliens it can be used as an escape vehicle. That'll never happen. 'Anywho'.. She's all fueled up and ready to go."

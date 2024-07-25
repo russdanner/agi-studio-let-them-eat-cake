@@ -1,0 +1,243 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    v34 = 1;
+    unanimate.all();
+    load.view(vw.Roger);
+    load.view(vw.LockedDoor);
+    animate.obj(ego);
+    animate.obj(o4);
+    set.view(ego, vw.Roger);
+    set.view(o4, vw.LockedDoor);
+    stop.cycling(o4);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 75;
+            v253 = 148;
+        }
+    }
+    position(o4, 51, 133);
+    set.priority(o4, 4);
+    position.v(ego, v30, v253);
+    reset(f90);
+    reset(f95);
+    reset(f91);
+    v36 = 0;
+    draw(ego);
+    draw(o4);
+    show.pic();
+}
+if (isset(f91)) {
+    if (v242 == 30) {
+        add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
+    }
+    if (v242 == 35) {
+        add.to.pic(vw.Waterfill, 0, 0, 47, 144, 6, 14);
+    }
+    if (v242 == 50) {
+        reset(f91);
+        set(f86);
+        v29 = 6;
+    }
+}
+if (isset(f86)) {
+    add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 144, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 142, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 140, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 138, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 136, 6, 14);
+    add.to.pic(vw.Waterfill, 0, 0, 47, 134, 6, 14);
+}
+if (isset(f90)) {
+    if (v242 == 10) {
+        set.loop(ego, 1);
+        set.cel(ego, 0);
+        reset(f95);
+        end.of.loop(ego, f95);
+    }
+    if (v242 == 20) {
+        set.loop(ego, 0);
+        set.cel(ego, 0);
+        reset(f95);
+        end.of.loop(ego, f95);
+    }
+    if (v242 == 50) {
+        set.loop(ego, 1);
+        set.cel(ego, 0);
+        reset(f95);
+        end.of.loop(ego, f95);
+    }
+    if (v242 == 90) {
+        position(ego, 73, 126);
+        player.control();
+        set.view(ego, vw.Roger);
+        set.loop(ego, 0);
+        set.cel(ego, 0);
+        reset(f90);
+        reset(f95);
+        print("Whew! You feel relieved. It turns out you are as good at making "
+              "clogs as you are at clearing them.");
+    }
+}
+if (obj.in.box(ego, 68, 149, 84, 151)) {
+    get.posn(ego, v30, v253);
+    v30 = 73;
+    v253 = 100;
+    v34 = 0;
+    new.room(rm.InnerBay);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("This room looks much better than it smells. There's a door to "
+              "the left which appears to be locked. A single commode sits in "
+              "the middle of the room. There's a sink and mirror to the right. "
+              "The walls are covered in colorful messages scrawled in a variety "
+              "of alien languages.");
+    }
+    if (said("bathroom")) {
+        set(f90);
+        v242 = 0;
+        load.view(vw.RogerPotty);
+        set.view(ego, vw.RogerPotty);
+        set.cel(ego, 0);
+        position(ego, 73, 126);
+        start.cycling(ego);
+        end.of.loop(ego, f95);
+    }
+    if (said("clean")) {
+        if (has("Broom")) {
+            print("Nah. This place is beyond hope.");
+        }
+        else {
+            print("You don't have the proper equipment on hand for that.");
+        }
+    }
+    if (said("start", "clean")) {
+        if (has("Broom")) {
+            print("Nah. This place is beyond hope.");
+        }
+        else {
+            print("You don't have the proper equipment on hand for that.");
+        }
+    }
+    if (said("examine", "room")) {
+        print("This room looks much better than it smells. There's a door to "
+              "the left which appears to be locked. A single commode sits in "
+              "the middle of the room. There's a sink and mirror to the right. "
+              "The walls are covered in colorful messages scrawled in a variety "
+              "of alien languages.");
+    }
+    if (said("go", "bathroom")) {
+        set(f90);
+        v242 = 0;
+        load.view(vw.RogerPotty);
+        set.view(ego, vw.RogerPotty);
+        set.cel(ego, 0);
+        position(ego, 73, 126);
+        start.cycling(ego);
+        animationInterval = 6;
+        end.of.loop(ego, f95);
+    }
+    if (said("use", "commode")) {
+        set(f90);
+        v242 = 0;
+        load.view(vw.RogerPotty);
+        set.view(ego, vw.RogerPotty);
+        set.cel(ego, 0);
+        position(ego, 73, 126);
+        start.cycling(ego);
+        animationInterval = 6;
+        end.of.loop(ego, f95);
+    }
+    if (said("examine", "graffiti")) {
+        print("The walls are covered in graffiti... err... wisdom captured in a "
+              "variety of alien languages.");
+    }
+    if (said("read", "graffiti")) {
+        v36  += 1;
+        if (v36 == 1) {
+            print("Use the force. Except here. Don't force anything in here.");
+        }
+        if (v36 == 2) {
+            print("Al-be back.");
+        }
+        if (v36 == 3) {
+            if (!isset(f140)) {
+                set(f140);
+                currentScore  += 1;
+            }
+            print("Look at you siting here reflecting.. Don't hurt yourself. "
+                  "You're about as sharp as a rock.");
+        }
+        if (v36 == 4) {
+            print("Pull on paper for StarCon career application");
+        }
+        if (v36 == 5) {
+            print("N.S.P. yo!");
+        }
+        if (v36 == 6) {
+            print("Ken sent me");
+        }
+        if (v36 == 7) {
+            print("You're in the Smell Room. There is an enormous 'oyster' "
+                  "here. Your nose should be tightly closed.");
+            v36 = 1;
+        }
+    }
+    if ((said("flush", "commode") || 
+        said("flush"))) {
+        load.view(vw.Waterfill);
+        load.view(vw.Overflow);
+        set.view(o3, vw.Waterfill);
+        set.view(o2, vw.Overflow);
+        position(o2, 71, 126);
+        position(o3, 48, 150);
+        draw(o3);
+        draw(o2);
+        end.of.loop(o3, f95);
+        set(f91);
+        v242 = 0;
+    }
+    if (said("examine", "door")) {
+        print("To your surprise it is as it appears... a door. The door is "
+              "locked.");
+    }
+    if (said("examine", "commode")) {
+        print("A worthy adversary indeed. Clean it is not.");
+    }
+    if (said("examine", "sink")) {
+        print("The sink appears to be broken. Gross.");
+    }
+    if (said("clean", "hands")) {
+        print("The sink appears to be broken. Gross.");
+    }
+    if (said("examine", "mirror")) {
+        print("Hey buddy! That's you. Roger Wilco. Your mother always told ya.. "
+              "\"If the ladies don't find you handsome they should atleast find "
+              "you handy.\" You thread that needle pretty well.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "Whew! You feel relieved. It turns out you are as good at making clogs as you are at clearing them."
+#message 3 "This room looks much better than it smells. There's a door to the left which appears to be locked. A single commode sits in the middle of the room. There's a sink and mirror to the right. The walls are covered in colorful messages scrawled in a variety of alien languages."
+#message 4 "Nah. This place is beyond hope."
+#message 5 "You don't have the proper equipment on hand for that."
+#message 6 "The walls are covered in graffiti... err... wisdom captured in a variety of alien languages."
+#message 7 "Use the force. Except here. Don't force anything in here."
+#message 8 "Al-be back."
+#message 9 "Look at you siting here reflecting.. Don't hurt yourself. You're about as sharp as a rock."
+#message 10 "Pull on paper for StarCon career application"
+#message 11 "N.S.P. yo!"
+#message 12 "Ken sent me"
+#message 13 "You're in the Smell Room. There is an enormous 'oyster' here. Your nose should be tightly closed."
+#message 14 "To your surprise it is as it appears... a door. The door is locked."
+#message 15 "A worthy adversary indeed. Clean it is not."
+#message 16 "The sink appears to be broken. Gross."
+#message 17 "Hey buddy! That's you. Roger Wilco. Your mother always told ya.. \"If the ladies don't find you handsome they should atleast find you handy.\" You thread that needle pretty well."

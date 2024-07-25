@@ -1,0 +1,21 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    call(lgc.RoomInit);
+    draw(ego);
+    show.pic();
+}
+if (isset(haveInput) && 
+    !isset(haveMatch)) {
+    if (said("examine")) {
+        print("You see nothing of interest.");
+    }
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    new.room(rm.Entrance);
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."

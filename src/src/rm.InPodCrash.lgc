@@ -1,0 +1,128 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.CockpitThrottle);
+    set.view(o1, vw.CockpitThrottle);
+    stop.cycling(o1);
+    set.cel(o1, 1);
+    position(o1, 106, 130);
+    set(f94);
+    draw(o1);
+    show.pic();
+    shake.screen(5);
+    print("After a skull-jarring landing you peer through the shattered viewing "
+          "port out on to a lush green landscape. It feels alien and familiar "
+          "all at once. You're in a fine mess now.");
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("You are in what was once a standard issue StarCon pod used from "
+              "small voyages and emergency escape scenarios. None of which seem "
+              "to accurately describe your current situation. Through the "
+              "cracked shield you see a lush green environment.");
+    }
+    if ((said("canvas") || 
+        said("canvas", "craft"))) {
+        if (has("Keycard")) {
+            print("You search the pod in hopes of finding supplies. You find "
+                  "only disappointment.");
+        }
+        else {
+            print("You search the pod. Wedged under the seat you find... a "
+                  "keycard.");
+        }
+    }
+    if (said("examine", "card")) {
+        if (has("Keycard")) {
+            print("The keycard is a flat rectangular piece of synthetic "
+                  "material. Written in tiny letters is 'B.H.S.S.'");
+        }
+        else {
+            print("What is this keycard that you speak of? You don't have a "
+                  "keycard.");
+        }
+    }
+    if (said("acquire", "card")) {
+        if (has("Keycard")) {
+            print("You already have it.");
+        }
+        else {
+            print("Yoink! You can't help but wonder what highly secure area "
+                  "this keycard will permit you to enter.");
+            get("Keycard");
+        }
+    }
+    if (said("examine", "craft")) {
+        print("You are in what was once a standard issue StarCon pod used from "
+              "small voyages and emergency escape scenarios. None of which seem "
+              "to accurately describe your current situation. Through the "
+              "cracked shield you see a lush green environment.");
+    }
+    if ((said("unbuckle", "belt") || 
+        said("remove", "belt"))) {
+        reset(f94);
+        print("Ok");
+    }
+    if ((said("exit", "craft") || 
+        said("acquire", "craft") || 
+        said("exit"))) {
+        if (isset(f94)) {
+            print("Oooof that's gonna leave a mark. Your seatbelt is still "
+                  "buckled.");
+        }
+        else {
+            v30 = 0;
+            v253 = 0;
+            v34 = 0;
+            set(f200);
+            print("You climb out of the pod and discard your pressure suit.");
+            new.room(rm.DavCrashSiteA3);
+        }
+    }
+    if (said("examine", "console")) {
+        print("What was once a console is now a twisted mess of broken buttons "
+              "and wires.");
+    }
+    if (said("examine", "throttle")) {
+        print("She's locked in the on position but you are definately not going "
+              "anywhere.");
+    }
+    if (said("pull", "throttle")) {
+        print("All of a sudden... nothing happens!");
+    }
+    if (said("press", "power")) {
+        print("Nothing happens");
+    }
+    if (said("examine", "button")) {
+        print("The buttons are of no use at this point.");
+    }
+    if (said("canvas", "craft")) {
+        print("You search the pod in hopes of finding supplies. You find only "
+              "disappointment.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "After a skull-jarring landing you peer through the shattered viewing port out on to a lush green landscape. It feels alien and familiar all at once. You're in a fine mess now."
+#message 3 "You are in what was once a standard issue StarCon pod used from small voyages and emergency escape scenarios. None of which seem to accurately describe your current situation. Through the cracked shield you see a lush green environment."
+#message 4 "You search the pod in hopes of finding supplies. You find only disappointment."
+#message 5 "You search the pod. Wedged under the seat you find... a keycard."
+#message 6 "The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B.H.S.S.'"
+#message 7 "What is this keycard that you speak of? You don't have a keycard."
+#message 8 "You already have it."
+#message 9 "Yoink! You can't help but wonder what highly secure area this keycard will permit you to enter."
+#message 10 "Ok"
+#message 11 "Oooof that's gonna leave a mark. Your seatbelt is still buckled."
+#message 12 "You climb out of the pod and discard your pressure suit."
+#message 13 "What was once a console is now a twisted mess of broken buttons and wires."
+#message 14 "She's locked in the on position but you are definately not going anywhere."
+#message 15 "All of a sudden... nothing happens!"
+#message 16 "Nothing happens"
+#message 17 "The buttons are of no use at this point."

@@ -1,0 +1,145 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+    animate.obj(ego);
+    animate.obj(o14);
+    animate.obj(o13);
+    animate.obj(o12);
+    animate.obj(o11);
+    set.view(ego, vw.Roger);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    set.view(o12, vw.Mist);
+    set.view(o11, vw.Mist);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o12);
+    stop.cycling(o11);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 140;
+            v253 = 70;
+        }
+    }
+    position(o14, 1, 166);
+    position(o13, 43, 166);
+    position(o12, 84, 166);
+    position(o11, 120, 166);
+    reset(f95);
+    reset(f96);
+    reset(f97);
+    position.v(ego, v30, v253);
+    set.horizon(50);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o12);
+    draw(o11);
+    if (!has("Feather") && 
+        !has("Quill")) {
+        if (has("Cake") && 
+            has("Ink")) {
+            load.view(vw.Hawk);
+            load.view(vw.FeatherFall);
+            set.view(o7, vw.Hawk);
+            set.view(o9, vw.FeatherFall);
+            animate.obj(o7);
+            animate.obj(o9);
+            set.priority(o7, 15);
+            position(o7, 159, 70);
+            ignore.blocks(o7);
+            draw(o7);
+            move.obj(o7, 46, 76, 2, f95);
+        }
+    }
+    show.pic();
+}
+if (isset(f95)) {
+    reset(f95);
+    position(o9, 46, 76);
+    draw(o9);
+    move.obj(o7, 1, 76, 1, f96);
+    move.obj(o9, 40, 105, 1, f97);
+}
+if (isset(f97)) {
+    reset(f97);
+    stop.cycling(o9);
+}
+if (isset(f96)) {
+    erase(o7);
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v253 = 155;
+    egoDir = UP;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 150;
+    v34 = 0;
+    new.room(rm.DavRiverBendA4);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    egoDir = LEFT;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    v34 = 0;
+    new.room(rm.DavWalnutF5);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("This is a forrested and rocky area. A 'think' fog has developed "
+              "to the south and the east.");
+    }
+    if (said("examine", "room")) {
+        print("This is a forrested and rocky area. A 'think' fog has developed "
+              "to the south and the east.");
+    }
+    if (said("examine", "fog")) {
+        print("There's a 'think' fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+    if (said("acquire", "feather")) {
+        if (!has("Feather")) {
+            if (!has("Quill")) {
+                if (posn(ego, 40, 101, 52, 107)) {
+                    get("Feather");
+                    print("You reach down and pick up the fallen feather.");
+                    currentScore  += 1;
+                    erase(o9);
+                }
+                else {
+                    print("You can't reach it from here.");
+                }
+            }
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "This is a forrested and rocky area. A 'think' fog has developed to the south and the east."
+#message 4 "There's a 'think' fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 5 "You reach down and pick up the fallen feather."
+#message 6 "You can't reach it from here."

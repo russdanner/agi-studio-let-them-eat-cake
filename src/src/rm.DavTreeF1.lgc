@@ -1,0 +1,106 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+    animate.obj(ego);
+    animate.obj(o14);
+    animate.obj(o13);
+    set.view(ego, vw.Roger);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 15;
+            v253 = 130;
+        }
+    }
+    position.v(ego, v30, v253);
+    position(o14, 1, 40);
+    position(o13, 43, 40);
+    set.horizon(50);
+    draw(ego);
+    if (!isset(f150)) {
+        draw(o14);
+        draw(o13);
+    }
+    show.pic();
+}
+if (edgeEgoHit == TOP_EDGE) {
+    if (!isset(f150)) {
+        print("You're a bit foggy here. You decide to turn back.");
+        get.posn(ego, v30, v253);
+        v253 = 55;
+        egoDir = DOWN;
+        erase(ego);
+        position.v(ego, v30, v253);
+        draw(ego);
+    }
+    else {
+        get.posn(ego, v30, v253);
+        v253 = 150;
+        v34 = 0;
+        new.room(rm.DavHillsideDoor);
+    }
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    v34 = 0;
+    new.room(rm.DavWolfE1);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    egoDir = LEFT;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    v253 = 62;
+    v34 = 0;
+    new.room(rm.DavDaggerF2);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        if (isset(f150)) {
+            print("This a beautiful area. A large and strong tree provides "
+                  "shade. A thick fog creeps in from the east.");
+        }
+        else {
+            print("This a beautiful area. A large and strong tree provides "
+                  "shade. A thick fog creeps in from the north and the east.");
+        }
+    }
+    if (said("examine", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+    if (said("examine", "tree")) {
+        print("What a beautiful tree.");
+    }
+    if (said("climb", "tree")) {
+        print("Good idea. On second thought.. bad idea. Given your situation "
+              "you decide NOT to climb the tree.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the east."
+#message 4 "This a beautiful area. A large and strong tree provides shade. A thick fog creeps in from the north and the east."
+#message 5 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 6 "What a beautiful tree."
+#message 7 "Good idea. On second thought.. bad idea. Given your situation you decide NOT to climb the tree."

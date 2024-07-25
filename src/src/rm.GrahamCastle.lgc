@@ -1,0 +1,43 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.CastleFlags);
+    load.view(vw.GrahamAdvHat);
+    animate.obj(ego);
+    animate.obj(o3);
+    set.view(ego, vw.GrahamAdvHat);
+    set.view(o3, vw.CastleFlags);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 150;
+            v253 = 109;
+        }
+    }
+    currentScore  += 2;
+    reset(f95);
+    ignore.horizon(o3);
+    ignore.blocks(o3);
+    position(o3, 5, 20);
+    position.v(ego, v30, v253);
+    draw(ego);
+    draw(o3);
+    move.obj(ego, 116, 112, 1, f95);
+    show.pic();
+}
+if (isset(f95)) {
+    print("You have won! Good luck on your next adventure and HAPPY 40th "
+          "BIRTHDAY TO GRAPHIC ADVENTURE GAMES!! Thanks for playing!");
+    display(20, 1, "Contact ltecgame page via");
+    display(23, 1, "Facebook to be added IN game for win.");
+    display(24, 1, "Please share the game on social media!");
+}
+return();
+
+[ Messages
+#message 1 "You have won! Good luck on your next adventure and HAPPY 40th BIRTHDAY TO GRAPHIC ADVENTURE GAMES!! Thanks for playing!"
+#message 3 "Contact ltecgame page via"
+#message 4 "Facebook to be added IN game for win."
+#message 5 "Please share the game on social media!"

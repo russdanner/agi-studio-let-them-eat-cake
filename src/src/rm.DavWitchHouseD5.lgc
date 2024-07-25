@@ -1,0 +1,136 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.RogerSwim);
+    load.view(vw.Mist);
+    load.view(vw.WitchDoor);
+    animate.obj(ego);
+    animate.obj(o14);
+    animate.obj(o13);
+    animate.obj(o12);
+    animate.obj(o11);
+    animate.obj(o1);
+    set.view(ego, vw.Roger);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    set.view(o12, vw.Mist);
+    set.view(o11, vw.Mist);
+    set.view(o1, vw.WitchDoor);
+    set.cel(o1, 0);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o12);
+    stop.cycling(o11);
+    stop.cycling(o1);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 140;
+            v253 = 130;
+        }
+    }
+    reset(f95);
+    position(o14, 1, 166);
+    position(o13, 43, 166);
+    position(o12, 84, 166);
+    position(o11, 120, 166);
+    position(o1, 45, 129);
+    position.v(ego, v30, v253);
+    set.priority(o1, 10);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o12);
+    draw(o11);
+    draw(o1);
+    set.horizon(50);
+    show.pic();
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v253 = 155;
+    egoDir = UP;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 150;
+    v34 = 0;
+    new.room(rm.DavLakeFGMD4);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 5;
+    v34 = 0;
+    new.room(rm.DavWizardE5);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v30 = 15;
+    egoDir = RIGHT;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (isset(f95)) {
+    get.posn(ego, v30, v253);
+    v30 = 50;
+    v253 = 150;
+    v34 = 0;
+    new.room(rm.DavWitchHouseInside);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("bang")) {
+        if (posn(ego, 38, 128, 56, 135)) {
+            print("There is no answer.");
+        }
+        else {
+            print("You can't reach it from here.");
+        }
+    }
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("There's a house nestled in to a heavily wooded area. It seems to "
+              "be made of gingerbread and candy. A thick flog extends to the "
+              "west and south.");
+    }
+    if (said("examine", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+    if (said("examine", "candy")) {
+        print("You are not quite sure what to make of it. It's a house made out "
+              "of candy. It looks... sticky. As a janitor sticky bothers you.");
+    }
+    if (said("consume", "candy")) {
+        print("You give the house a lick. It looks better than it tastes.");
+    }
+    if (said("open", "door")) {
+        if (posn(ego, 38, 128, 56, 135)) {
+            end.of.loop(o1, f95);
+        }
+        else {
+            print("You can't reach it from here.");
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "There is no answer."
+#message 4 "You can't reach it from here."
+#message 5 "There's a house nestled in to a heavily wooded area. It seems to be made of gingerbread and candy. A thick flog extends to the west and south."
+#message 6 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 7 "You are not quite sure what to make of it. It's a house made out of candy. It looks... sticky. As a janitor sticky bothers you."
+#message 8 "You give the house a lick. It looks better than it tastes."

@@ -1,0 +1,173 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    v34 = 1;
+    unanimate.all();
+    load.view(vw.Roger);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);
+    load.view(vw.GlassSparkle);
+    load.view(vw.CrashingPod);
+    animate.obj(ego);
+    animate.obj(o9);
+    animate.obj(o1);
+    set.view(ego, vw.Roger);
+    set.view(o9, vw.CrashingPod);
+    set.view(o1, vw.GlassSparkle);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 13;
+            v253 = 140;
+            stop.cycling(ego);
+            egoDir = STOPPED;
+        }
+    }
+    if (isset(f200)) {
+        observe.blocks(ego);
+        position.v(ego, v30, v253);
+        stop.cycling(o9);
+        set.cel(o9, 7);
+        position(o9, 20, 140);
+        set.priority(o9, 13);
+        block(15, 128, 38, 146);
+        draw(ego);
+    }
+    else {
+        position(o9, 1, 1);
+    }
+    reset(f93);
+    v35 = 1;
+    draw(o9);
+    show.pic();
+}
+if (!isset(f200)) {
+    if (v35 < 60) {
+        if (v35 < 10) {
+            v251 = 2;
+            v252 = 10;
+            erase(o9);
+            reposition(o9, v251, v252);
+            draw(o9);
+        }
+        v35  += 1;
+    }
+    if (v35 == 8) {
+        stop.cycling(o9);
+    }
+    if (v35 == 50) {
+        if (!isset(f94)) {
+            v29 = 10;
+            set(f86);
+        }
+        else {
+            v34 = 0;
+            new.room(rm.InPodCrash);
+        }
+    }
+}
+if (!has("Glass")) {
+    random(1, 125, v37);
+    if (v37 == 40) {
+        position(o1, 32, 148);
+        start.cycling(o1);
+        draw(o1);
+    }
+    else {
+        erase(o1);
+    }
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 55;
+    v34 = 0;
+    new.room(rm.DavRiverBendA4);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    v34 = 0;
+    new.room(rm.DavOgreF3);
+}
+if (isset(onWater)) {
+    if (!isset(f93)) {
+        set(f93);
+        stop.motion(ego);
+        set.view(ego, vw.RogerSplash);
+        v29 = 7;
+        move.obj(ego, 25, 50, 2, f86);
+    }
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("The defining element of the setting is a crashed pod. The area "
+              "is lush and green. It feels alien and familiar all at once. The "
+              "air is breathable and amazingly clean. A river winds off to the "
+              "east. There's a base or fortress of some sort in the distance.");
+    }
+    if (said("swim")) {
+        if (isset(onWater)) {
+            print("The water is too fast here.");
+        }
+        else {
+            print("This may come as a surprise to you but you need to be IN the "
+                  "water in order to go swimming.");
+        }
+    }
+    if (said("examine", "room")) {
+        print("The defining element of the setting is a crashed pod. The area "
+              "is lush and green. It feels alien and familiar all at once. The "
+              "air is breathable and amazingly clean. A river winds off to the "
+              "east. There's a base or fortress of some sort in the distance.");
+    }
+    if (said("acquire", "glass")) {
+        if (!has("Glass")) {
+            if (posn(ego, 28, 138, 37, 150)) {
+                get("Glass");
+                currentScore  += 1;
+                print("A small piece of highly reflective safety glass has "
+                      "broken away from the shield as it is known to do. You "
+                      "pick it up and carry it with you.");
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+    }
+    if (said("examine", "craft")) {
+        print("It WAS a pod. It's now a pile of twisted parts and wreckage that "
+              "has been thoroughly plowed into the ground. Your handiwork "
+              "so-to-speak.");
+    }
+    if (said("examine", "lake")) {
+        print("The river is flowing off to the east and looks to have a strong "
+              "current.");
+    }
+    if (said("examine", "base")) {
+        print("There's a base of fortress of some kind off in the distance. You "
+              "wonder how to get over there. Maybe there's someone there that "
+              "could help you out.");
+    }
+    if (said("canvas", "craft")) {
+        print("You search the debris from the crash. You find nothing useful "
+              "except a small piece of glass.");
+    }
+    if (said("examine", "sparkle")) {
+        print("You search the debris from the crash. You find nothing useful "
+              "except a small piece of glass.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "The defining element of the setting is a crashed pod. The area is lush and green. It feels alien and familiar all at once. The air is breathable and amazingly clean. A river winds off to the east. There's a base or fortress of some sort in the distance."
+#message 2 "The water is too fast here."
+#message 3 "This may come as a surprise to you but you need to be IN the water in order to go swimming."
+#message 4 "A small piece of highly reflective safety glass has broken away from the shield as it is known to do. You pick it up and carry it with you."
+#message 5 "You are not close enough."
+#message 6 "It WAS a pod. It's now a pile of twisted parts and wreckage that has been thoroughly plowed into the ground. Your handiwork so-to-speak."
+#message 7 "The river is flowing off to the east and looks to have a strong current."
+#message 8 "There's a base of fortress of some kind off in the distance. You wonder how to get over there. Maybe there's someone there that could help you out."
+#message 9 "You search the debris from the crash. You find nothing useful except a small piece of glass."

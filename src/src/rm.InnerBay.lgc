@@ -1,0 +1,300 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    load.view(vw.Roger);
+    load.view(vw.RogerSpacesuitA);
+    load.view(vw.Closet);
+    load.view(vw.Tram);
+    load.view(vw.BathroomDoor);
+    load.view(vw.HangerDoorLeft);
+    animate.obj(ego);
+    animate.obj(o5);
+    animate.obj(o10);
+    animate.obj(o6);
+    animate.obj(o1);
+    animate.obj(o9);
+    animate.obj(o11);
+    set.view(o10, vw.Tram);
+    set.view(o5, vw.Closet);
+    set.view(o6, vw.RogerSpacesuitA);
+    set.view(o7, vw.RogerSpacesuitA);
+    set.view(o1, vw.BathroomDoor);
+    set.view(o9, vw.BathroomDoor);
+    set.view(o11, vw.HangerDoorLeft);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 10;
+            v253 = 126;
+            set(f96);
+        }
+    }
+    if (isset(f96)) {
+        set.view(ego, vw.RogerSpacesuitA);
+    }
+    else {
+        set.view(ego, vw.Roger);
+        position(o7, 43, 95);
+        draw(o7);
+    }
+    stop.cycling(o5);
+    stop.cycling(o10);
+    stop.cycling(o6);
+    stop.cycling(o7);
+    stop.cycling(o1);
+    stop.cycling(o9);
+    stop.cycling(o11);
+    set.loop(o9, 1);
+    set.loop(o6, 2);
+    set.loop(o7, 2);
+    position(o5, 100, 101);
+    position(o10, 55, 47);
+    position(o1, 60, 98);
+    position(o9, 67, 98);
+    position(o6, 35, 95);
+    position(o11, 6, 131);
+    position.v(ego, v30, v253);
+    set.cel(o1, 0);
+    set.loop(o1, 0);
+    set.cel(o9, 0);
+    set.loop(o9, 1);
+    set.priority(ego, 13);
+    reset(f99);
+    reset(f102);
+    reset(f95);
+    draw(ego);
+    draw(o5);
+    draw(o10);
+    draw(o6);
+    draw(o9);
+    draw(o1);
+    draw(o11);
+    show.pic();
+}
+if (posn(ego, 100, 95, 108, 115)) {
+    if (!isset(f102)) {
+        end.of.loop(o5, f102);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, f83);
+        set(f102);
+    }
+}
+else {
+    if (isset(f102)) {
+        set.cel(o5, 0);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, f83);
+        reset(f102);
+    }
+}
+if (posn(ego, 2, 120, 24, 128)) {
+    if (!isset(f99)) {
+        set(f99);
+        set.cel(o11, 4);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, f83);
+    }
+}
+else {
+    if (isset(f99)) {
+        set.cel(o11, 0);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, f83);
+        reset(f99);
+    }
+}
+if (posn(ego, 2, 120, 14, 130)) {
+    get.posn(ego, v30, v253);
+    v30 = 140;
+    v253 = 141;
+    v34 = 0;
+    new.room(rm.InnerHanger);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("naked")) {
+        print("I'll get naked if you get naked. You go first.");
+    }
+    if (said("nap")) {
+        if (posn(ego, 100, 95, 120, 103)) {
+            print("You have to admit this closet looks like a perfect place for "
+                  "a nap. You also have to admit that you had a similar thought "
+                  "earlier today. Given that you are running behind you decide "
+                  "with a degree of sadness NOT to take another nap.");
+        }
+        else {
+            print("You can't do that here. Perhaps a comfy janitorial closet "
+                  "would be a more suitable.");
+        }
+    }
+    if ((said("clean") || 
+        said("start", "clean"))) {
+        if (has("Broom")) {
+            print("With this broom?! ROGER! This is a polished floor not some "
+                  "crummy hanger deck. You know better. Ace janitor indeed.");
+        }
+        if (!has("Broom")) {
+            print("You don't have the proper equipment on hand for that.");
+        }
+    }
+    if (said("press", "button")) {
+        if (isset(f96)) {
+            print("You can't go in there wearing your EVA pressure suit. That "
+                  "could get VERY messy.");
+        }
+        else {
+            if (posn(ego, 71, 100, 85, 105)) {
+                load.sound(snd.SpaceDoor);
+                sound(snd.SpaceDoor, f83);
+                get.posn(ego, v30, v253);
+                v30 = 75;
+                v253 = 148;
+                v34 = 0;
+                new.room(rm.Bathroom);
+            }
+            else {
+                print("Which one?");
+            }
+        }
+    }
+    if ((said("put on", "eva") || 
+        said("acquire", "eva"))) {
+        if (isset(f96)) {
+            print("You are already wearing it.");
+        }
+        else {
+            if (posn(ego, 35, 100, 50, 105)) {
+                set.view(ego, vw.RogerSpacesuitA);
+                erase(o7);
+                set(f96);
+                print("Ok");
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+    }
+    if (said("remove", "eva")) {
+        if (!isset(f96)) {
+            print("You are not wearing it.");
+        }
+        else {
+            if (posn(ego, 35, 100, 50, 105)) {
+                if (!isset(f139)) {
+                    set(f139);
+                    currentScore  += 1;
+                }
+                load.view(vw.Roger);
+                set.view(ego, vw.Roger);
+                animate.obj(o7);
+                stop.cycling(o7);
+                position(o7, 43, 95);
+                draw(o7);
+                reset(f96);
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+    }
+    if ((said("enter", "car") || 
+        said("acquire", "car"))) {
+        if (isset(f96)) {
+            print("You can't get in the pneumatic transport tube car in your "
+                  "EVA pressure suit.");
+        }
+        else {
+            if (posn(ego, 56, 45, 68, 51)) {
+                erase(ego);
+                end.of.loop(o10, f95);
+            }
+            else {
+                print("Get closer.");
+            }
+        }
+    }
+    if ((said("drop", "broom") || 
+        said("put", "broom"))) {
+        if (posn(ego, 100, 95, 120, 103)) {
+            if (!has("Broom")) {
+                print("You don't have one.");
+            }
+            else {
+                currentScore  += 1;
+                drop("Broom");
+                print("Ok");
+            }
+        }
+    }
+    if (said("acquire", "broom")) {
+        if (!has("Broom")) {
+            get("Broom");
+            currentScore -= 1;
+            print("Ok");
+        }
+    }
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("This is Inner Bay A of the station. There are currently no ships "
+              "in this bay and it is sealed and pressurized. Along the rear "
+              "wall you see a bathroom, a closet, and a pneumatic transport "
+              "tube and car.");
+    }
+    if (said("examine", "bathroom")) {
+        print("'Look' is not really the verb you would prefer to associate with "
+              "StarCon bathrooms. It appears to be your standard issue StarCon "
+              "facilities. There is a button by the door and a small display "
+              "which indicates that the room is currently unoccupied.");
+    }
+    if (said("examine", "closet")) {
+        print("This is a janitorial supply closet. It sure looks comfy... I "
+              "mean... like the pinnacle of janitorial supply storage "
+              "solutions.");
+    }
+    if (said("examine", "eva")) {
+        print("Good eye. There is a EVA pressure suit rack here.");
+    }
+    if (said("examine", "car")) {
+        print("The pneumatic transport tube is used to move about the various "
+              "areas within the station. The car is currently waiting in this "
+              "location.");
+    }
+}
+if (isset(f95)) {
+    reset(f95);
+    reset(f91);
+    v242 = 0;
+    set(f97);
+    load.sound(snd.Tube);
+    sound(snd.Tube, f83);
+    ignore.blocks(o10);
+    move.obj(o10, 110, 47, 2, f91);
+}
+if (isset(f91)) {
+    v34 = 0;
+    new.room(rm.ControlRoom);
+}
+return();
+
+[ Messages
+#message 1 "I'll get naked if you get naked. You go first."
+#message 2 "You have to admit this closet looks like a perfect place for a nap. You also have to admit that you had a similar thought earlier today. Given that you are running behind you decide with a degree of sadness NOT to take another nap."
+#message 3 "You can't do that here. Perhaps a comfy janitorial closet would be a more suitable."
+#message 4 "With this broom?! ROGER! This is a polished floor not some crummy hanger deck. You know better. Ace janitor indeed."
+#message 5 "You don't have the proper equipment on hand for that."
+#message 6 "You can't go in there wearing your EVA pressure suit. That could get VERY messy."
+#message 7 "Which one?"
+#message 8 "You are already wearing it."
+#message 9 "Ok"
+#message 10 "You are not close enough."
+#message 11 "You are not wearing it."
+#message 12 "You can't get in the pneumatic transport tube car in your EVA pressure suit."
+#message 13 "Get closer."
+#message 14 "You don't have one."
+#message 15 "This is Inner Bay A of the station. There are currently no ships in this bay and it is sealed and pressurized. Along the rear wall you see a bathroom, a closet, and a pneumatic transport tube and car."
+#message 16 "'Look' is not really the verb you would prefer to associate with StarCon bathrooms. It appears to be your standard issue StarCon facilities. There is a button by the door and a small display which indicates that the room is currently unoccupied."
+#message 17 "This is a janitorial supply closet. It sure looks comfy... I mean... like the pinnacle of janitorial supply storage solutions."
+#message 18 "Good eye. There is a EVA pressure suit rack here."
+#message 19 "The pneumatic transport tube is used to move about the various areas within the station. The car is currently waiting in this location."

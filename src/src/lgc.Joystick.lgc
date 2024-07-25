@@ -1,0 +1,9 @@
+if (controller(c31)) {
+    if (currentRoom > 0) {
+        print("This is an empty room.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "This is an empty room."

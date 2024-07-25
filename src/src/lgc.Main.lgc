@@ -1,0 +1,356 @@
+if (errorNumber > 0) {
+    call(lgc.Error);
+}
+if (isset(f18)) {
+    reset(f18);
+    set(enableTrace);
+    trace.on();
+}
+if (currentRoom == 0) {
+    v45 = 1;
+    v44 = 1;
+    v43 = 1;
+    maxScore = 40;
+    animationInterval = 2;
+    if (isset(gameRestarted)) {
+        disable.item(c32);
+        set(enableMenu);
+        clear.lines(22, 24, BLACK);
+        if (!isset(f17)) {
+            disable.item(c19);
+            disable.item(c20);
+            disable.item(c21);
+            disable.item(c22);
+            disable.item(c23);
+            disable.item(c24);
+            disable.item(c25);
+        }
+        new.room(rm.GrahamHouse);
+    }
+    else {
+        set.menu("AGI");
+        set.menu.item("About      ", c1);
+        set.menu.item("Help   <F1>", c3);
+        set.menu("File");
+        set.menu.item("Save     <F5>", c4);
+        set.menu.item("Restore  <F7>", c5);
+        set.menu.item("-------------", c32);
+        set.menu.item("Restart  <F9>", c6);
+        set.menu.item("Quit  <Alt-Z>", c7);
+        set.menu("Action");
+        set.menu.item("See Object  <F4>", c8);
+        set.menu.item("Inventory  <Tab>", c9);
+        set.menu("Special");
+        set.menu.item("Sound On/Off      <F2>", c10);
+        if (machineType == PC && 
+            monitorType < MONO) {
+            set.menu.item("Color/BW      <Ctrl R>", c11);
+        }
+        set.menu.item("Clock On/Off      <F6>", c12);
+        set.menu.item("Joystick      <Ctrl J>", c13);
+        set.menu.item("Pause            <Esc>", c14);
+        set.menu("Speed");
+        set.menu.item("Normal ", c15);
+        set.menu.item("Slow   ", c16);
+        set.menu.item("Fast   ", c17);
+        set.menu.item("Fastest", c18);
+        set.menu("Debug");
+        set.menu.item("Debug Help        ", c19);
+        set.menu.item("Ego Info   <Alt-E>", c20);
+        set.menu.item("Pri Screen <Alt-P>", c21);
+        set.menu.item("Memory     <Alt-M>", c22);
+        set.menu.item("Obj Info   <Alt-I>", c23);
+        set.menu.item("Coords     <Alt-X>", c24);
+        set.menu.item("Get All           ", c25);
+        submit.menu();
+        disable.item(c32);
+        if (!isset(f17)) {
+            disable.item(c19);
+            disable.item(c20);
+            disable.item(c21);
+            disable.item(c22);
+            disable.item(c23);
+            disable.item(c24);
+            disable.item(c25);
+        }
+        call(lgc.Init);
+        set(f22);
+        new.room(rm.Title);
+    }
+}
+if (isset(newRoom)) {
+    load.logics(lgc.GameFunctions);
+    load.logics(lgc.Joystick);
+    load.logics(lgc.Debug);
+    animate.obj(ego);
+    load.view.v(currentEgoView);
+    set.view.v(ego, currentEgoView);
+    v37 = 255;
+}
+if (isset(f86)) {
+    disable.item(c4);
+    disable.item(c14);
+    disable.item(c8);
+    disable.item(c12);
+    disable.item(c13);
+    disable.item(c15);
+    disable.item(c18);
+    disable.item(c17);
+    disable.item(c16);
+    load.logics(lgc.Death);
+    call(lgc.Death);
+    return();
+}
+if (!isset(f22)) {
+    call(lgc.Joystick);
+    if (controller(c0)) {
+        menu.input();
+    }
+    if (controller(c11)) {
+        toggle.monitor();
+    }
+    if ((controller(c4) || 
+        said("save", "game") || 
+        said("save"))) {
+        save.game();
+    }
+    if ((controller(c5) || 
+        said("restore", "game") || 
+        said("restore"))) {
+        restore.game();
+    }
+    if ((controller(c6) || 
+        said("restart", "game") || 
+        said("restart"))) {
+        restart.game();
+    }
+    if ((controller(c3) || 
+        said("help"))) {
+        call(lgc.GameHelp);
+    }
+    if (controller(c27)) {
+        echo.line();
+    }
+    if (controller(c26)) {
+        cancel.line();
+    }
+    if (controller(c13)) {
+        init.joy();
+    }
+    if ((controller(c14) || 
+        said("pause", "game") || 
+        said("pause"))) {
+        pause();
+    }
+    if ((controller(c9) || 
+        said("inv"))) {
+        status();
+    }
+    if ((controller(c8) || 
+        said("examine", "inv"))) {
+        set(enableItemSelect);
+        status();
+        if (selectedItem > 0 && 
+            selectedItem != 255) {
+            if (selectedItem == 1) {
+                show.obj(vw.Inv.TestItem);
+            }
+        }
+        reset(enableItemSelect);
+    }
+    if ((controller(c7) || 
+        said("quit", "game") || 
+        said("quit"))) {
+        stop.sound();
+        quit(0);
+    }
+    if (controller(c1)) {
+        print("AGI Game by <author>");
+    }
+}
+if ((said("debug") || 
+    controller(c28))) {
+    if (!isset(f17)) {
+        set(f17);
+        print("AGI Game version 0.0");
+        version();
+        enable.item(c19);
+        enable.item(c20);
+        enable.item(c21);
+        enable.item(c22);
+        enable.item(c23);
+        enable.item(c24);
+        enable.item(c25);
+    }
+}
+if ((controller(c18) || 
+    said("fastest") || 
+    said("fastest", "speed"))) {
+    animationInterval = 0;
+}
+if ((controller(c17) || 
+    said("fast") || 
+    said("fast", "speed"))) {
+    animationInterval = 1;
+}
+if ((controller(c15) || 
+    said("normal") || 
+    said("normal", "speed"))) {
+    animationInterval = 2;
+}
+if ((controller(c16) || 
+    said("slow") || 
+    said("slow", "speed"))) {
+    animationInterval = 4;
+}
+if (controller(c29) && 
+    attenuation > 0) {
+    --attenuation;
+}
+if (controller(c30) && 
+    attenuation < 15) {
+    ++attenuation;
+}
+if (controller(c10)) {
+    toggle(soundOn);
+}
+if ((said("clock") || 
+    controller(c12))) {
+    toggle(f23);
+    if (!isset(f23)) {
+        status.line.on();
+    }
+    else {
+        v37 = 255;
+    }
+}
+if (isset(gameRestored)) {
+    clear.lines(23, 24, BLACK);
+}
+if (isset(f23) && 
+    !isset(f22)) {
+    if (v37 != elapsedSeconds) {
+        set.text.attribute(BLACK, WHITE);
+        display(0, 18, " %v13:%v12|2:%v11|2 ");
+        set.text.attribute(WHITE, BLACK);
+        v37 = elapsedSeconds;
+    }
+}
+v242  += 1;
+if (v242 > 100) {
+    v242 = 0;
+    v243  += 1;
+}
+get.posn(ego, v38, v39);
+if (!isset(f21)) {
+    if (egoDir == STOPPED) {
+        stop.cycling(ego);
+    }
+    else {
+        if (egoDir == v42 && 
+            v38 == v40 && 
+            v39 == v41) {
+            stop.cycling(ego);
+        }
+        else {
+            start.cycling(ego);
+        }
+    }
+}
+v40 = v38;
+v41 = v39;
+v42 = egoDir;
+call.v(currentRoom);
+if (isset(f17)) {
+    call(lgc.Debug);
+}
+if (!isset(f22)) {
+    call(lgc.GameFunctions);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum > 0) {
+    reset(haveInput);
+    if (unknownWordNum == 1) {
+        word.to.string(s1, w1);
+    }
+    if (unknownWordNum == 2) {
+        word.to.string(s1, w2);
+    }
+    if (unknownWordNum == 3) {
+        word.to.string(s1, w3);
+    }
+    if (unknownWordNum == 4) {
+        word.to.string(s1, w4);
+    }
+    if (unknownWordNum == 5) {
+        word.to.string(s1, w5);
+    }
+    if (unknownWordNum == 6) {
+        word.to.string(s1, w6);
+    }
+    if (unknownWordNum == 7) {
+        word.to.string(s1, w7);
+    }
+    if (unknownWordNum == 8) {
+        word.to.string(s1, w8);
+    }
+    if (unknownWordNum == 9) {
+        word.to.string(s1, w9);
+    }
+    if (unknownWordNum == 10) {
+        word.to.string(s1, w10);
+    }
+    random(1, 3, v30);
+    print.v(v30);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch)) {
+    print("I don't understand your request.");
+    reset(haveInput);
+}
+v31 = elapsedSeconds;
+v32 = elapsedMinutes;
+v33 = elapsedHours;
+v34 = elapsedDays;
+return();
+
+[ Messages
+#message 1 "I don't understand \"%s1\""
+#message 2 "\"%s1\" is not in my vocabulary."
+#message 3 "What is \"%s1\""
+#message 4 "AGI"
+#message 5 "About      "
+#message 6 "Help   <F1>"
+#message 7 "File"
+#message 8 "Save     <F5>"
+#message 9 "Restore  <F7>"
+#message 10 "-------------"
+#message 11 "Restart  <F9>"
+#message 12 "Quit  <Alt-Z>"
+#message 13 "Action"
+#message 14 "See Object  <F4>"
+#message 15 "Inventory  <Tab>"
+#message 16 "Special"
+#message 17 "Sound On/Off      <F2>"
+#message 18 "Color/BW      <Ctrl R>"
+#message 19 "Clock On/Off      <F6>"
+#message 20 "Joystick      <Ctrl J>"
+#message 21 "Pause            <Esc>"
+#message 22 "Speed"
+#message 23 "Normal "
+#message 24 "Slow   "
+#message 25 "Fast   "
+#message 26 "Fastest"
+#message 27 "Debug"
+#message 28 "Debug Help        "
+#message 29 "Ego Info   <Alt-E>"
+#message 30 "Pri Screen <Alt-P>"
+#message 31 "Memory     <Alt-M>"
+#message 32 "Obj Info   <Alt-I>"
+#message 33 "Coords     <Alt-X>"
+#message 34 "Get All           "
+#message 35 "AGI Game by <author>"
+#message 36 "AGI Game version 0.0"
+#message 37 " %v13:%v12|2:%v11|2 "
+#message 38 "I don't understand your request."

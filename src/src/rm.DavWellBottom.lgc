@@ -1,0 +1,198 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.RogerBucket);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);
+    load.view(vw.RogerClimbRope);
+    load.view(vw.Bucket);
+    load.view(vw.Rope);
+    animate.obj(ego);
+    animate.obj(o5);
+    animate.obj(o6);
+    animate.obj(o4);
+    set.view(o5, vw.Rope);
+    set.view(o6, vw.Rope);
+    reset(f96);
+    reset(f91);
+    stop.cycling(o4);
+    set.view(o4, vw.RogerBucket);
+    position(o4, 76, 150);
+    position(o6, 120, 80);
+    if (v253 == 150) {
+        set.view(o4, vw.Bucket);
+        stop.cycling(o4);
+        position(o4, 76, 152);
+        set.view(ego, vw.RogerSwim);
+        start.cycling(ego);
+        position(ego, 81, 167);
+        reset(f90);
+        draw(ego);
+    }
+    draw(o4);
+    draw(o6);
+    set.horizon(16);
+    show.pic();
+}
+if (isset(f96)) {
+    reset(f96);
+    position(o6, 81, 152);
+    end.of.loop(ego, f188);
+    normal.motion(ego);
+}
+if (isset(onWater)) {
+    if (!isset(f94)) {
+        set(f93);
+    }
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 42;
+    v253 = 109;
+    v34 = 0;
+    print("You climb out of the bucket and well. In a uncharacteristic moment "
+          "of thoughtfulness and remembering to 'be kind and rewind' you "
+          "laboriously return the bucket to its original location.");
+    new.room(rm.DavWellTopD1);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("swim")) {
+        if (isset(f93)) {
+            set.view(ego, vw.RogerSwim);
+            reset(f93);
+            set(f94);
+            if (!isset(f135)) {
+                set(f135);
+                currentScore  += 1;
+            }
+            player.control();
+            print("ok");
+        }
+    }
+    if (said("dive")) {
+        if (!isset(f136)) {
+            set(f136);
+            currentScore  += 1;
+        }
+        get.posn(ego, v30, v253);
+        v253 = 50;
+        v34 = 0;
+        new.room(rm.DavWellDive);
+    }
+    if (said("climb")) {
+        print("Climb what?");
+    }
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("You are at the bottom of the ancient well.");
+    }
+    if (said("exit", "bucket")) {
+        set.view(o4, vw.Bucket);
+        stop.cycling(o4);
+        position(o4, 75, 152);
+        set.cel(o4, 0);
+        position(ego, 81, 167);
+        set.view(ego, vw.RogerSplash);
+        set.loop(ego, 0);
+        set.cel(ego, 0);
+        start.cycling(ego);
+        draw(ego);
+        set(f93);
+        if (!isset(f137)) {
+            set(f137);
+            currentScore  += 1;
+        }
+        reset(f90);
+    }
+    if (said("enter", "bucket")) {
+        erase(ego);
+        set.view(o4, vw.RogerBucket);
+        set(f90);
+    }
+    if (said("acquire", "bucket")) {
+        if (isset(onWater)) {
+            erase(ego);
+            stop.cycling(ego);
+            set.view(o4, vw.RogerBucket);
+            position(o4, 76, 167);
+            set(f90);
+        }
+        else {
+            set.view(o4, vw.Bucket);
+            draw(o4);
+            stop.cycling(o4);
+            position(o4, 76, 152);
+            set.cel(o4, 0);
+            position(ego, 81, 167);
+            set(f93);
+            set.view(ego, vw.RogerSplash);
+            start.cycling(ego);
+            if (!isset(f137)) {
+                set(f137);
+                currentScore  += 1;
+            }
+            reset(f90);
+        }
+    }
+    if (said("climb", "cable")) {
+        if (!isset(f90)) {
+            print("You can't reach the rope from here.");
+        }
+        else {
+            set.view(o4, vw.Bucket);
+            stop.cycling(o4);
+            position(o4, 76, 152);
+            set.cel(o4, 0);
+            egoDir = STOPPED;
+            position(ego, 80, 123);
+            set.view(ego, vw.RogerClimbRope);
+            reset(f90);
+            draw(o4);
+            block(78, 1, 85, 125);
+            observe.blocks(ego);
+            draw(ego);
+            if (!isset(f134)) {
+                set(f134);
+                currentScore  += 1;
+            }
+        }
+    }
+    if (said("climb", "graffiti")) {
+        print("You try and climb the walls of the well but they are much too "
+              "slippery.");
+    }
+    if (said("climb", "graffiti")) {
+        print("You try and climb the walls of the well but they are much too "
+              "slippery.");
+    }
+    if (said("acquire", "air")) {
+        print("You take a deep breath.");
+    }
+    if (said("examine", "lake")) {
+        print("It's water. Wet. Hydrated. Liquid even.");
+    }
+    if (said("examine", "cable")) {
+        print("The rope reaches up to the top of the well.");
+    }
+    if (said("examine", "bucket")) {
+        print("You gotta admit that it is a nice bucket.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You climb out of the bucket and well. In a uncharacteristic moment of thoughtfulness and remembering to 'be kind and rewind' you laboriously return the bucket to its original location."
+#message 2 "ok"
+#message 3 "Climb what?"
+#message 4 "You are at the bottom of the ancient well."
+#message 5 "You can't reach the rope from here."
+#message 6 "You try and climb the walls of the well but they are much too slippery."
+#message 7 "You take a deep breath."
+#message 8 "It's water. Wet. Hydrated. Liquid even."
+#message 9 "The rope reaches up to the top of the well."
+#message 10 "You gotta admit that it is a nice bucket."

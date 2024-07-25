@@ -1,0 +1,147 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    v34 = 1;
+    load.view(vw.GrahamHouseDoor);
+    load.view(vw.GrahamHatNoFeather);
+    load.view(vw.Hawk);
+    load.view(vw.FeatherFall);
+    animate.obj(ego);
+    animate.obj(o7);
+    animate.obj(o9);
+    animate.obj(o8);
+    set.view(ego, vw.GrahamHatNoFeather);
+    set.view(o7, vw.Hawk);
+    set.view(o9, vw.FeatherFall);
+    set.view(o8, vw.GrahamHouseDoor);
+    stop.cycling(o8);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 119;
+            v253 = 126;
+        }
+    }
+    position.v(ego, v30, v253);
+    set.priority(o8, 4);
+    position(o8, 121, 130);
+    set.priority(o7, 13);
+    ignore.blocks(o7);
+    position(o7, 98, 76);
+    draw(o7);
+    move.obj(o7, 40, 76, 2, f95);
+    reset(f95);
+    reset(f96);
+    reset(f97);
+    if (!isset(f88)) {
+        set(f88);
+        set(f130);
+    }
+    reset(f93);
+    set.horizon(46);
+    draw(o8);
+    draw(ego);
+    show.pic();
+}
+if ((edgeEgoHit == BOTTOM_EDGE || 
+    edgeEgoHit == TOP_EDGE || 
+    edgeEgoHit == LEFT_EDGE || 
+    edgeEgoHit == RIGHT_EDGE) && 
+    isset(f93)) {
+    get.posn(ego, v30, v253);
+    v30 = 0;
+    v253 = 0;
+    v34 = 0;
+    new.room(rm.GrahamCastle);
+}
+else {
+    if (edgeEgoHit == BOTTOM_EDGE) {
+        get.posn(ego, v30, v253);
+        v253 = 150;
+        egoDir = UP;
+        print("You feel like you are forgetting something.");
+        erase(ego);
+        position.v(ego, v30, v253);
+        draw(ego);
+    }
+    if (edgeEgoHit == TOP_EDGE) {
+        get.posn(ego, v30, v253);
+        v253 = 50;
+        egoDir = DOWN;
+        print("You feel like you are forgetting something.");
+        erase(ego);
+        position.v(ego, v30, v253);
+        draw(ego);
+    }
+    if (edgeEgoHit == LEFT_EDGE) {
+        get.posn(ego, v30, v253);
+        v30 = 15;
+        egoDir = RIGHT;
+        print("You feel like you are forgetting something.");
+        erase(ego);
+        position.v(ego, v30, v253);
+        draw(ego);
+    }
+    if (edgeEgoHit == RIGHT_EDGE) {
+        get.posn(ego, v30, v253);
+        v30 = 150;
+        egoDir = LEFT;
+        print("You feel like you are forgetting something.");
+        erase(ego);
+        position.v(ego, v30, v253);
+        draw(ego);
+    }
+}
+if (isset(f95)) {
+    reset(f95);
+    position(o9, 40, 76);
+    draw(o9);
+    move.obj(o7, 1, 76, 1, f96);
+    move.obj(o9, 40, 105, 1, f97);
+}
+if (isset(f97)) {
+    reset(f97);
+    stop.cycling(o9);
+}
+if (isset(f96)) {
+    erase(o7);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine", "room")) {
+        print("This is the front lawn of your home.");
+    }
+    if (said("open", "door")) {
+        print("No time to waste Graham. You'll be late for your meeting with "
+              "the king.");
+    }
+    if (said("remove", "cap")) {
+        print("No way. You love this hat... it stays.");
+    }
+    if (said("acquire", "feather")) {
+        if (has("Feather")) {
+            print("You have it. It's in your cap!");
+        }
+        else {
+            get("Feather");
+            erase(o9);
+            currentScore  += 1;
+            load.view(vw.GrahamAdvHat);
+            set.view(ego, vw.GrahamAdvHat);
+            set(f93);
+            print("You pick up the feather. Recalling your dream you put this "
+                  "feather in your cap. You feel ready for a real adventure.");
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You feel like you are forgetting something."
+#message 3 "This is the front lawn of your home."
+#message 4 "No time to waste Graham. You'll be late for your meeting with the king."
+#message 5 "No way. You love this hat... it stays."
+#message 6 "You have it. It's in your cap!"
+#message 7 "You pick up the feather. Recalling your dream you put this feather in your cap. You feel ready for a real adventure."

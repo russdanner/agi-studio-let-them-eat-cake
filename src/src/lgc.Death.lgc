@@ -1,0 +1,202 @@
+if (!isset(f74)) {
+    if (isset(f86)) {
+        reset(f86);
+        if (v29 == 1) {
+            set(f76);
+            print("You are dead.");
+        }
+        if (v29 == 2) {
+            set(f77);
+            print("You fall asleep and oversleep.");
+        }
+        if (v29 == 3) {
+            set(f76);
+            print("Surgeon General's Warning: Exposing yourself to the vacuum "
+                  "of space is hazardous to your health.");
+        }
+        if (v29 == 4) {
+            set(f76);
+            print("You step off the deck and into the vaccuum of space. We're "
+                  "not sure where you are going but we know you'll be a "
+                  "popsicle when you arrive.");
+        }
+        if (v29 == 5) {
+            set(f76);
+            print("As your boot touches the fuel spill you immediately feel the "
+                  "boot material begin to melt and separate. Within moments "
+                  "your suit is breached and decompresses as it equalizes with "
+                  "the vacuum of space.");
+        }
+        if (v29 == 6) {
+            set(f76);
+            print("Unbelievable! The toilet begins to overflow. Where's a "
+                  "janitor when you need one?! As the room fills with 'WATER' "
+                  "you frantically search for a plunger but find only that you "
+                  "are trapped. How embarrassing.");
+        }
+        if (v29 == 7) {
+            set(f76);
+            print("Oh no! The water here is too fast to swim. You are overcome "
+                  "by the current and rapids. You are quickly 'flushed' down "
+                  "river. An end fit for a janitor.");
+        }
+        if (v29 == 8) {
+            set(f76);
+            print("What the ORAT was that? You've just become a snack for a "
+                  "local species of ogre with a serious case of the munchies. "
+                  "He dusts you like bundt cake.");
+        }
+        if (v29 == 9) {
+            set(f76);
+            print("You eventually become tired from struggling. Completely "
+                  "exhausted you slip below the water's surface and drown.");
+        }
+        if (v29 == 10) {
+            set(f76);
+            print("StarCon requires all passengers to buckle up for a reason. "
+                  "That reason is sudden and violent deceleration. You have "
+                  "just become up close and personal with this concept... and "
+                  "the pod's shield.");
+        }
+        if (v29 == 11) {
+            set(f76);
+            print("You would rather outrun a Sarien spider droid. Whatever that "
+                  "was it sure was fast. You're wolf chow.");
+        }
+        if (v29 == 13) {
+            set(f77);
+            print("Graham you know it's dangerous outside at night. You're wolf "
+                  "chow.");
+        }
+        if (v29 == 12) {
+            set(f76);
+            print("What you assume is one of the ugliest members of Vohaul's "
+                  "monkey troops swoops down and snatches you up.");
+        }
+        if (v29 == 14) {
+            set(f76);
+            print("Whatever lives in that hole made speedy work of cleaning "
+                  "your bones. You really should mind your own business.");
+        }
+        if (v29 == 15) {
+            set(f76);
+            print("That guy in the wierd space suit zaps you with some kind of "
+                  "laser beam. You are quickly turned to stone. You always "
+                  "dreamed of being immortalzied in a statue. Congratulations "
+                  "you got your wish! Unfortunately you are also now dead.");
+        }
+        if (v29 == 16) {
+            set(f76);
+            print("To your great surprise it turns out you cannot breathe under "
+                  "water. Having depleted the available oxygen in your lungs "
+                  "you drown after a short and awkward struggle.");
+        }
+        if (v29 == 17) {
+            set(f76);
+            print("You trip and fall from the stairs. Fortunately you are able "
+                  "to arrest the fall. Unfortunately you do so with your face. "
+                  "You really have to be more careful Roger.");
+        }
+        if (v29 == 18) {
+            set(f76);
+            print("Your fuel has run out. Without thrust you can no longer "
+                  "chart a course. We're not sure where you are going but we "
+                  "know you'll be a popsicle when you arrive.");
+        }
+    }
+}
+if (!isset(f74)) {
+    set(f74);
+    if (isset(f76)) {
+        reset(f76);
+        load.sound(snd.RogerDead);
+        sound(snd.RogerDead, f75);
+        set(f75);
+    }
+    if (isset(f77)) {
+        reset(f77);
+        load.sound(snd.GrahamDead);
+        sound(snd.GrahamDead, f75);
+        set(f75);
+    }
+}
+if (isset(f75)) {
+    reset(f75);
+    print("You are dead. It's been a real hoot watching play. Thanks for "
+          "playing Let Them Eat Cake. Reload to restart.");
+    egoDir = STOPPED;
+    program.control();
+}
+if (controller(c0)) {
+    menu.input();
+}
+if ((controller(c3) || 
+    said("help"))) {
+    call(lgc.GameHelp);
+}
+if ((controller(c5) || 
+    said("restore", "game") || 
+    said("restore"))) {
+    restore.game();
+}
+if ((controller(c6) || 
+    said("restart", "game") || 
+    said("restart"))) {
+    restart.game();
+}
+if ((controller(c9) || 
+    said("inv"))) {
+    status();
+}
+if ((controller(c7) || 
+    said("quit"))) {
+    quit(0);
+}
+if (controller(c11)) {
+    toggle.monitor();
+}
+if (controller(c1)) {
+    print("AGI Game by <author>");
+}
+if (controller(c10)) {
+    toggle(soundOn);
+}
+if ((said("debug") || 
+    controller(c28))) {
+    if (!isset(f17)) {
+        set(f17);
+    }
+}
+if (isset(f17)) {
+    call(lgc.Debug);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch)) {
+    set(haveMatch);
+    print("You are dead! You can only restore, restart, quit the game or view "
+          "your inventory.");
+}
+return();
+
+[ Messages
+#message 1 "You are dead."
+#message 2 "You fall asleep and oversleep."
+#message 3 "Surgeon General's Warning: Exposing yourself to the vacuum of space is hazardous to your health."
+#message 4 "You step off the deck and into the vaccuum of space. We're not sure where you are going but we know you'll be a popsicle when you arrive."
+#message 5 "As your boot touches the fuel spill you immediately feel the boot material begin to melt and separate. Within moments your suit is breached and decompresses as it equalizes with the vacuum of space."
+#message 6 "Unbelievable! The toilet begins to overflow. Where's a janitor when you need one?! As the room fills with 'WATER' you frantically search for a plunger but find only that you are trapped. How embarrassing."
+#message 7 "Oh no! The water here is too fast to swim. You are overcome by the current and rapids. You are quickly 'flushed' down river. An end fit for a janitor."
+#message 8 "What the ORAT was that? You've just become a snack for a local species of ogre with a serious case of the munchies. He dusts you like bundt cake."
+#message 9 "You eventually become tired from struggling. Completely exhausted you slip below the water's surface and drown."
+#message 10 "StarCon requires all passengers to buckle up for a reason. That reason is sudden and violent deceleration. You have just become up close and personal with this concept... and the pod's shield."
+#message 11 "You would rather outrun a Sarien spider droid. Whatever that was it sure was fast. You're wolf chow."
+#message 12 "Graham you know it's dangerous outside at night. You're wolf chow."
+#message 13 "What you assume is one of the ugliest members of Vohaul's monkey troops swoops down and snatches you up."
+#message 14 "Whatever lives in that hole made speedy work of cleaning your bones. You really should mind your own business."
+#message 15 "That guy in the wierd space suit zaps you with some kind of laser beam. You are quickly turned to stone. You always dreamed of being immortalzied in a statue. Congratulations you got your wish! Unfortunately you are also now dead."
+#message 16 "To your great surprise it turns out you cannot breathe under water. Having depleted the available oxygen in your lungs you drown after a short and awkward struggle."
+#message 17 "You trip and fall from the stairs. Fortunately you are able to arrest the fall. Unfortunately you do so with your face. You really have to be more careful Roger."
+#message 18 "Your fuel has run out. Without thrust you can no longer chart a course. We're not sure where you are going but we know you'll be a popsicle when you arrive."
+#message 19 "You are dead. It's been a real hoot watching play. Thanks for playing Let Them Eat Cake. Reload to restart."
+#message 20 "AGI Game by <author>"
+#message 21 "You are dead! You can only restore, restart, quit the game or view your inventory."

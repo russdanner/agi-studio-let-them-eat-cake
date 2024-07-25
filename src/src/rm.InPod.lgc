@@ -1,0 +1,461 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    call(lgc.RoomInit);
+    v34 = 1;
+    unanimate.all();
+    animate.obj(o10);
+    animate.obj(o11);
+    animate.obj(o12);
+    animate.obj(o13);
+    animate.obj(o1);
+    animate.obj(o9);
+    animate.obj(o2);
+    animate.obj(o3);
+    animate.obj(o4);
+    animate.obj(o5);
+    animate.obj(o6);
+    animate.obj(o7);
+    load.view(vw.CockpitThrottle);
+    load.view(vw.Decal);
+    load.view(vw.Star);
+    set.view(o10, vw.Star);
+    set.view(o11, vw.Star);
+    set.view(o12, vw.Star);
+    set.view(o13, vw.Star);
+    set.view(o1, vw.CockpitThrottle);
+    set.view(o9, vw.Decal);
+    stop.cycling(o1);
+    stop.cycling(o9);
+    stop.cycling(o10);
+    stop.cycling(o11);
+    stop.cycling(o12);
+    stop.cycling(o13);
+    position(o9, 119, 124);
+    position(o1, 106, 128);
+    if (!isset(f93)) {
+        reset(f94);
+        reset(f90);
+        reset(f91);
+        reset(f92);
+        reset(f94);
+        reset(f95);
+        reset(f96);
+        reset(f97);
+        reset(f105);
+        reset(f106);
+    }
+    else {
+        position(o1, 106, 130);
+        load.view(vw.CockpitButtons);
+        set.view(o2, vw.CockpitButtons);
+        set.view(o3, vw.CockpitButtons);
+        set.view(o4, vw.CockpitButtons);
+        set.view(o5, vw.CockpitButtons);
+        set.view(o6, vw.CockpitButtons);
+        stop.cycling(o2);
+        stop.cycling(o3);
+        stop.cycling(o4);
+        stop.cycling(o5);
+        stop.cycling(o6);
+        set.cel(o3, 1);
+        set.cel(o4, 2);
+        set.cel(o5, 4);
+        set.cel(o6, 3);
+        position(o2, 32, 128);
+        position(o3, 46, 110);
+        position(o4, 47, 127);
+        position(o5, 126, 127);
+        position(o6, 73, 92);
+        draw(o2);
+        draw(o3);
+        draw(o4);
+        draw(o5);
+        draw(o6);
+    }
+    ignore.horizon(o10);
+    ignore.blocks(o10);
+    ignore.horizon(o11);
+    ignore.blocks(o11);
+    ignore.horizon(o12);
+    ignore.blocks(o12);
+    ignore.horizon(o13);
+    ignore.blocks(o13);
+    set.priority(o10, 15);
+    set.priority(o11, 15);
+    set.priority(o12, 15);
+    set.priority(o13, 15);
+    position(o10, 65, 40);
+    position(o11, 85, 40);
+    position(o12, 65, 50);
+    position(o13, 85, 50);
+    draw(o1);
+    draw(o9);
+    draw(o10);
+    draw(o11);
+    draw(o12);
+    draw(o13);
+    v242 = 0;
+    v243 = 0;
+    show.pic();
+}
+if (isset(f91)) {
+    if (!isset(f96)) {
+        erase(o1);
+        position(o1, 106, 130);
+        set.cel(o1, 1);
+        erase(o7);
+        draw(o1);
+        set(f96);
+        v242 = 0;
+        print("With a roar the pod blasts from the launch platform hurling you "
+              "into the blackness of space.");
+    }
+}
+if (isset(f96)) {
+    if (isset(f93)) {
+        if (!isset(f105)) {
+            if (!isset(f100)) {
+                move.obj(o10, 20, 75, 2, f100);
+            }
+            else {
+                reset(f100);
+                erase(o10);
+                position(o10, 65, 40);
+                draw(o10);
+            }
+            if (!isset(f101)) {
+                move.obj(o11, 125, 80, 2, f101);
+            }
+            else {
+                reset(f101);
+                erase(o11);
+                position(o11, 85, 40);
+                draw(o11);
+            }
+            if (!isset(f102)) {
+                move.obj(o12, 20, 15, 2, f102);
+            }
+            else {
+                reset(f102);
+                erase(o12);
+                position(o12, 65, 50);
+                draw(o12);
+            }
+            if (!isset(f103)) {
+                move.obj(o13, 130, 15, 2, f103);
+            }
+            else {
+                reset(f103);
+                erase(o13);
+                position(o13, 85, 50);
+                draw(o13);
+            }
+        }
+    }
+    else {
+        v34 = 0;
+        new.room(rm.Station);
+    }
+    if (isset(f97)) {
+        if (v243 == 2 && 
+            v242 == 0) {
+            print("You know.. that AUTONAV button is usually on the right...");
+        }
+        if (v243 == 4 && 
+            v242 == 0) {
+            print("A pit forms in your stomach... You may be in for some "
+                  "payback!");
+        }
+        if (v243 == 5 && 
+            v242 == 0) {
+            print("You pick at the bightly colored decal and peel it away from "
+                  "the console. It reveals a hard placard that says 'AUTONAV`");
+            erase(o9);
+            set(f105);
+            print("The button you pushed WASN'T the AUTONAV... OH NO. You've "
+                  "been tricked into pushing the DO NOT TOUCH button! GULP!");
+        }
+        if (v243 == 6 && 
+            v242 == 0) {
+            print("When the button says NOT to touch it... you shouldn't touch "
+                  "it!");
+            print("Time and space begin to warp around you.");
+            print("You may be late for your next assignment...");
+        }
+        if (v243 == 7 && 
+            v242 == 0) {
+            v34 = 0;
+            reset(f200);
+            new.room(rm.DavCrashSiteA3);
+        }
+    }
+    else {
+        if (v243 == 6 && 
+            v242 == 0) {
+            print("There's only so much fuel on these pods. You should probably "
+                  "engage some form of navigation...");
+        }
+        if (v243 == 17 && 
+            v242 == 0) {
+            print("Your computer flashes: \"Fuel Low!\"");
+        }
+        if (v243 == 20 && 
+            v242 == 0) {
+            v29 = 18;
+            set(f86);
+        }
+    }
+}
+if (isset(f105)) {
+    if (!isset(f106)) {
+        set(f106);
+        load.view(vw.WorldWarp);
+        set.view(o10, vw.WorldWarp);
+        set.priority(o10, 4);
+        start.cycling(o10);
+        stop.motion(o10);
+        erase(o11);
+        erase(o12);
+        erase(o13);
+        position(o10, 9, 84);
+        draw(o10);
+    }
+}
+if (isset(f90)) {
+    load.view(vw.CockpitButtons);
+    set.view(o2, vw.CockpitButtons);
+    set.view(o3, vw.CockpitButtons);
+    set.view(o4, vw.CockpitButtons);
+    set.view(o5, vw.CockpitButtons);
+    set.view(o6, vw.CockpitButtons);
+    stop.cycling(o2);
+    stop.cycling(o3);
+    stop.cycling(o4);
+    stop.cycling(o5);
+    stop.cycling(o6);
+    set.cel(o3, 1);
+    set.cel(o4, 2);
+    set.cel(o5, 4);
+    set.cel(o6, 3);
+    position(o2, 32, 128);
+    position(o3, 46, 110);
+    position(o4, 47, 127);
+    position(o5, 126, 127);
+    position(o6, 73, 92);
+    draw(o2);
+    draw(o3);
+    draw(o4);
+    draw(o5);
+    draw(o6);
+    reset(f90);
+    erase(o7);
+    set(f95);
+    print("The pod's systems whir to life!");
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("You are in a standard issue StarCon pod used for short voyages "
+              "and emergency escapes. In front of you there is a console and a "
+              "screen.");
+    }
+    if (said("exit")) {
+        print("You shut the door behind you. You cannot get out now unless "
+              "there is an emergency.");
+    }
+    if (said("examine", "card")) {
+        if (has("Keycard")) {
+            print("The keycard is a flat rectangular piece of synthetic "
+                  "material. Written in tiny letters is 'B.H.S.S.'");
+        }
+        else {
+            print("What is this keycard that you speak of? You don't have a "
+                  "keycard.");
+        }
+    }
+    if (said("acquire", "card")) {
+        if (has("Keycard")) {
+            print("You already have it.");
+        }
+        else {
+            print("Yoink! You can't help but wonder what highly secure area "
+                  "this keycard will permit you to enter.");
+            get("Keycard");
+        }
+    }
+    if (said("exit", "craft")) {
+        print("You shut the door behind you. You cannot get out now unless "
+              "there is an emergency.");
+    }
+    if (said("examine", "craft")) {
+        print("You are in a standard issue StarCon pod used from small voyages "
+              "and emergency escapes. In front of you there is a console and a "
+              "screen.");
+    }
+    if (said("remove", "belt")) {
+        print("There's no need to do that.");
+    }
+    if ((said("buckle", "up") || 
+        said("put on", "belt") || 
+        said("buckle", "belt"))) {
+        if (isset(f94)) {
+            print("You are already buckled in.");
+        }
+        else {
+            set(f94);
+            currentScore  += 1;
+            print("Good move Roger. Safety third.");
+        }
+    }
+    if ((said("canvas") || 
+        said("canvas", "craft"))) {
+        if (has("Keycard")) {
+            print("You find nothing of importance.");
+        }
+        else {
+            print("You search the pod. Wedged under the seat you find... a "
+                  "keycard.");
+        }
+    }
+    if (said("press", "throttle")) {
+        print("The throttle is topped out. There's no room to push it any "
+              "further back.");
+    }
+    if (said("pull", "throttle")) {
+        if (isset(f91)) {
+            print("Are you nuts? Do you have any idea what could happen if you "
+                  "mess with the throttle mid-flight? Nothing. It's locked into "
+                  "position.");
+        }
+        if (!isset(f91)) {
+            if (isset(f95)) {
+                currentScore  += 1;
+                load.view(vw.CockpitPull);
+                set.view(o7, vw.CockpitPull);
+                stop.cycling(o7);
+                erase(o7);
+                position(o7, 100, 180);
+                draw(o7);
+                move.obj(o7, 100, 160, 1, f91);
+            }
+            else {
+                print("You can't. The throttle is locked in its position.");
+            }
+        }
+    }
+    if (said("examine", "console")) {
+        print("The console has several buttons and a throttle.");
+    }
+    if (said("examine", "throttle")) {
+        print("That thing looks like it means business.");
+    }
+    if (said("examine", "button")) {
+        print("You see a button marked 'POWER' and 'AUTONAV'. There's also "
+              "button that clearly marked by a brightly colored decal that says "
+              "'DO NOT TOUCH!'");
+    }
+    if (said("examine", "display")) {
+        if (isset(f95)) {
+            print("The screen lists start procedures: '1. Pull Throttle. 2. "
+                  "Press AutoNav.' Luckily for you the pod's navigational "
+                  "system is controlled automatically by StarCon. Clogs rather "
+                  "than pods are your forte.");
+        }
+        if (!isset(f95)) {
+            print("The screen is dark.");
+        }
+    }
+    if ((said("press", "power") || 
+        said("press", "power") || 
+        said("press", "power", "button"))) {
+        if (isset(f90)) {
+            print("The system is already running. The onboard computer "
+                  "overrides your pood decisons and bad instincts.");
+        }
+        else {
+            currentScore  += 1;
+            load.view(vw.CockpitPush);
+            set.view(o7, vw.CockpitPush);
+            stop.cycling(o7);
+            position(o7, 80, 165);
+            draw(o7);
+            move.obj(o7, 75, 145, 3, f90);
+        }
+    }
+    if ((said("press", "autonav") || 
+        said("press", "autonav") || 
+        said("press", "autonav", "button"))) {
+        if (isset(f95)) {
+            if (isset(f97)) {
+                print("You push the button but it has no effect.");
+            }
+            else {
+                if (!isset(f91)) {
+                    print("Nothing happens.");
+                }
+                else {
+                    currentScore  += 1;
+                    set(f97);
+                    v242 = 0;
+                    v243 = 0;
+                    print("You press the button marked AUTONAV and the ship "
+                          "immediately banks. You sit back to relax. You will "
+                          "be arriving Orbital Station 3 shortly.");
+                }
+            }
+        }
+        else {
+            print("Nothing happens.");
+        }
+    }
+    if ((said("press", "do not touch", "touch") || 
+        said("press", "do", "not", "touch") || 
+        said("press", "do not touch", "touch", "button") || 
+        said("press", "do", "not", "touch", "button"))) {
+        print("Based on past experience you heed the warning above the button "
+              "and restrain from pressing the button marked `DO NOT TOUCH!`");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "With a roar the pod blasts from the launch platform hurling you into the blackness of space."
+#message 3 "You know.. that AUTONAV button is usually on the right..."
+#message 4 "A pit forms in your stomach... You may be in for some payback!"
+#message 5 "You pick at the bightly colored decal and peel it away from the console. It reveals a hard placard that says 'AUTONAV`"
+#message 6 "The button you pushed WASN'T the AUTONAV... OH NO. You've been tricked into pushing the DO NOT TOUCH button! GULP!"
+#message 7 "When the button says NOT to touch it... you shouldn't touch it!"
+#message 8 "Time and space begin to warp around you."
+#message 9 "You may be late for your next assignment..."
+#message 10 "There's only so much fuel on these pods. You should probably engage some form of navigation..."
+#message 11 "Your computer flashes: \"Fuel Low!\""
+#message 12 "The pod's systems whir to life!"
+#message 13 "You are in a standard issue StarCon pod used for short voyages and emergency escapes. In front of you there is a console and a screen."
+#message 14 "You shut the door behind you. You cannot get out now unless there is an emergency."
+#message 15 "The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B.H.S.S.'"
+#message 16 "What is this keycard that you speak of? You don't have a keycard."
+#message 17 "You already have it."
+#message 18 "Yoink! You can't help but wonder what highly secure area this keycard will permit you to enter."
+#message 19 "You are in a standard issue StarCon pod used from small voyages and emergency escapes. In front of you there is a console and a screen."
+#message 20 "There's no need to do that."
+#message 21 "You are already buckled in."
+#message 22 "Good move Roger. Safety third."
+#message 23 "You find nothing of importance."
+#message 24 "You search the pod. Wedged under the seat you find... a keycard."
+#message 25 "The throttle is topped out. There's no room to push it any further back."
+#message 26 "Are you nuts? Do you have any idea what could happen if you mess with the throttle mid-flight? Nothing. It's locked into position."
+#message 27 "You can't. The throttle is locked in its position."
+#message 28 "The console has several buttons and a throttle."
+#message 29 "That thing looks like it means business."
+#message 30 "You see a button marked 'POWER' and 'AUTONAV'. There's also button that clearly marked by a brightly colored decal that says 'DO NOT TOUCH!'"
+#message 31 "The screen lists start procedures: '1. Pull Throttle. 2. Press AutoNav.' Luckily for you the pod's navigational system is controlled automatically by StarCon. Clogs rather than pods are your forte."
+#message 32 "The screen is dark."
+#message 33 "The system is already running. The onboard computer overrides your pood decisons and bad instincts."
+#message 34 "You push the button but it has no effect."
+#message 35 "Nothing happens."
+#message 36 "You press the button marked AUTONAV and the ship immediately banks. You sit back to relax. You will be arriving Orbital Station 3 shortly."
+#message 37 "Based on past experience you heed the warning above the button and restrain from pressing the button marked `DO NOT TOUCH!`"

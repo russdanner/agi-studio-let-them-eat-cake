@@ -1,0 +1,174 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.WitchCabinet);
+    load.view(vw.Paper);
+    animate.obj(ego);
+    animate.obj(o7);
+    animate.obj(o2);
+    set.view(ego, vw.Roger);
+    set.view(o7, vw.Paper);
+    set.view(o2, vw.WitchCabinet);
+    stop.cycling(o7);
+    stop.cycling(o2);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 50;
+            v253 = 140;
+        }
+    }
+    position.v(ego, v30, v253);
+    position(o2, 35, 80);
+    if (!has("Paper")) {
+        position(o7, 55, 120);
+        set.priority(o7, 13);
+    }
+    reset(f95);
+    set.priority(ego, 14);
+    draw(ego);
+    draw(o2);
+    draw(o7);
+    show.pic();
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 51;
+    v253 = 133;
+    set.priority(ego, 11);
+    v34 = 0;
+    new.room(rm.DavWitchHouseD5);
+}
+if (isset(f95)) {
+    if (!has("Cake")) {
+        load.view(vw.Cake);
+        set.view(o3, vw.Cake);
+        animate.obj(o3);
+        set.cel(o3, 0);
+        position(o3, 35, 69);
+        set.priority(o3, 10);
+        draw(o3);
+    }
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("You stand in a large open room with a door to a small bedroom in "
+              "the back. The inside of the house is clean and tidy. There's a "
+              "large oven here and a cage... That's right... A CAGE!? Not cool. "
+              "Better get out of here.");
+    }
+    if (said("examine", "table")) {
+        if (!has("Paper")) {
+            print("There's a large table here with a piece of paper on it.");
+        }
+        else {
+            print("There's a large table here.");
+        }
+    }
+    if (said("examine", "graffiti")) {
+        print("There's a cupboard built into the wall.");
+    }
+    if (said("examine", "cabinet")) {
+        if (isset(f95)) {
+            if (has("Cake")) {
+                print("There's a large cupboard here that is built into the "
+                      "wall.");
+            }
+            else {
+                print("There's a large cupboard here that is built into the "
+                      "wall. There's a cake on the shelf.");
+            }
+        }
+        else {
+            print("There's a large cupboard here that is built into the wall.");
+        }
+    }
+    if (said("close", "cabinet")) {
+        if (posn(ego, 34, 89, 51, 92)) {
+            set.cel(o2, 0);
+        }
+        else {
+            print("From here? Not happening.");
+        }
+    }
+    if (said("open", "cabinet")) {
+        if (posn(ego, 34, 89, 51, 92)) {
+            end.of.loop(o2, f95);
+        }
+        else {
+            print("From here? Not happening.");
+        }
+    }
+    if (said("open", "door")) {
+        if (posn(ego, 89, 95, 94, 115)) {
+            print("It's locked.");
+        }
+        else {
+            print("You can't reach it from here.");
+        }
+    }
+    if (said("acquire", "cake")) {
+        if (has("Cake")) {
+            print("You already have it.");
+        }
+        if (!has("Cake")) {
+            if (isset(f95)) {
+                if (posn(ego, 34, 89, 51, 92)) {
+                    get("Cake");
+                    erase(o3);
+                    currentScore  += 1;
+                    print("You remove the cake from the cupboard and carry it "
+                          "with you.");
+                }
+                else {
+                    print("Try as you may you cannot reach it.");
+                }
+            }
+            else {
+                print("Cake? What cake?");
+            }
+        }
+    }
+    if (said("acquire", "paper")) {
+        if (has("Paper")) {
+            print("You already have it.");
+        }
+        else {
+            if (posn(ego, 45, 129, 63, 139)) {
+                get("Paper");
+                erase(o7);
+                currentScore  += 1;
+                set.priority(ego, 12);
+                print("Ok");
+            }
+            else {
+                print("You can't reach it.");
+            }
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You stand in a large open room with a door to a small bedroom in the back. The inside of the house is clean and tidy. There's a large oven here and a cage... That's right... A CAGE!? Not cool. Better get out of here."
+#message 3 "There's a large table here with a piece of paper on it."
+#message 4 "There's a large table here."
+#message 5 "There's a cupboard built into the wall."
+#message 6 "There's a large cupboard here that is built into the wall."
+#message 7 "There's a large cupboard here that is built into the wall. There's a cake on the shelf."
+#message 8 "From here? Not happening."
+#message 9 "It's locked."
+#message 10 "You can't reach it from here."
+#message 11 "You already have it."
+#message 12 "You remove the cake from the cupboard and carry it with you."
+#message 13 "Try as you may you cannot reach it."
+#message 14 "Cake? What cake?"
+#message 15 "Ok"
+#message 16 "You can't reach it."

@@ -1,0 +1,228 @@
+if ((controller(c24) || 
+    said("coordinates"))) {
+    toggle(f19);
+    if (!isset(f19)) {
+        clear.lines(24, 24, BLACK);
+    }
+}
+if ((controller(c2) || 
+    said("game ver"))) {
+    print("AGI Game version 0.0");
+    version();
+}
+if ((controller(c19) || 
+    said("debug", "help"))) {
+    call(lgc.DebugHelp);
+}
+if (said("trace", "on")) {
+    set(f18);
+}
+if (controller(c20)) {
+    v255 = 0;
+    obj.status.v(v255);
+}
+if (said("die")) {
+    load.view(vw.EgoDead);
+    set.view(ego, vw.EgoDead);
+    program.control();
+    stop.motion(ego);
+    v35 = 1;
+}
+if ((controller(c22) || 
+    said("show", "mem"))) {
+    show.mem();
+}
+if (said("tp")) {
+    get.num("new room: ", v255);
+    if (v255 > 0) {
+        new.room.v(v255);
+    }
+    else {
+        print("not a valid room");
+    }
+}
+if (said("pos")) {
+    get.num("x: ", v240);
+    get.num("y: ", v241);
+    erase(ego);
+    reposition.to.v(ego, v240, v241);
+    draw(ego);
+}
+if (said("show", "var")) {
+    get.num("var number: ", v255);
+    v254 = *v255;
+    print("var %v255: %v254");
+}
+if (said("set", "var")) {
+    get.num("var number: ", v254);
+    get.num("var value: ", v255);
+    *v254 = v255;
+}
+if (said("show", "flag")) {
+    get.num("flag number: ", v255);
+    if (issetv(v255)) {
+        print("flag %v255 is set");
+    }
+    else {
+        print("flag %v255 is not set");
+    }
+}
+if (said("set", "flag")) {
+    get.num("flag number: ", v255);
+    set.v(v255);
+}
+if (said("reset", "flag")) {
+    get.num("flag number: ", v255);
+    reset.v(v255);
+}
+if ((controller(c23) || 
+    said("object"))) {
+    get.num("object #: ", v255);
+    if (v255 > 16) {
+        print("Invalid object number!");
+    }
+    else {
+        obj.status.v(v255);
+    }
+}
+if ((controller(c21) || 
+    said("show", "pri"))) {
+    show.pri.screen();
+}
+if (said("acquire", "item")) {
+    get.num("item number: ", v255);
+    if (v255 > 15) {
+        print("Invalid item number!");
+    }
+    else {
+        get.v(v255);
+    }
+}
+if ((controller(c25) || 
+    said("gimme", "gimme"))) {
+    print("You gottum!");
+    v255 = 0;
+Label1:
+    if (v255 < 15) {
+        v255  += 1;
+        get.v(v255);
+        goto(Label1);
+    }
+}
+if (said("item", "room")) {
+    get.num("Item number: ", v255);
+    if (v255 > 15) {
+        print("Invalid item number!");
+    }
+    else {
+        get.room.v(v255, v254);
+        if (v254 == 255) {
+            print("Item %v255 is in your inventory.");
+        }
+        else {
+            print("Item %v255 is in room %v254.");
+        }
+    }
+}
+if (said("set", "pri")) {
+    get.num("New priority: ", v255);
+    if (v255 > 3 && 
+        v255 < 16) {
+        set.priority.v(ego, v255);
+    }
+    else {
+        print("Invalid priority value");
+    }
+}
+if (said("release", "pri")) {
+    release.priority(ego);
+}
+if (isset(f19)) {
+    get.posn(ego, v240, v241);
+    get.priority(ego, v254);
+    set.text.attribute(BROWN, BLACK);
+    display(24, 15, "Rm %v0|3 Pri %v254|2 x:%v240|3 y:%v241|3");
+    set.text.attribute(WHITE, BLACK);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum > 0) {
+    set(haveMatch);
+    reset(haveInput);
+    if (unknownWordNum == 1) {
+        log("%m1%w1");
+    }
+    if (unknownWordNum == 2) {
+        log("%m1%w2");
+    }
+    if (unknownWordNum == 3) {
+        log("%m1%w3");
+    }
+    if (unknownWordNum == 4) {
+        log("%m1%w4");
+    }
+    if (unknownWordNum == 5) {
+        log("%m1%w5");
+    }
+    if (unknownWordNum == 6) {
+        log("%m1%w6");
+    }
+    if (unknownWordNum == 7) {
+        log("%m1%w7");
+    }
+    if (unknownWordNum == 8) {
+        log("%m1%w8");
+    }
+    if (unknownWordNum == 9) {
+        log("%m1%w9");
+    }
+    if (unknownWordNum == 10) {
+        log("%m1%w10");
+    }
+    print("Logged an unknown word.");
+}
+if (said("log")) {
+    get.string(s20, "Comment: ", 22, 0, 25);
+    log("%m2%s1");
+    clear.lines(22, 24, BLACK);
+    accept.input();
+}
+return();
+
+[ Messages
+#message 1 "Unknown word: "
+#message 2 "Comment: "
+#message 3 "AGI Game version 0.0"
+#message 4 "new room: "
+#message 5 "not a valid room"
+#message 6 "x: "
+#message 7 "y: "
+#message 8 "var number: "
+#message 9 "var %v255: %v254"
+#message 10 "var value: "
+#message 11 "flag number: "
+#message 12 "flag %v255 is set"
+#message 13 "flag %v255 is not set"
+#message 14 "object #: "
+#message 15 "Invalid object number!"
+#message 16 "item number: "
+#message 17 "Invalid item number!"
+#message 18 "You gottum!"
+#message 19 "Item number: "
+#message 20 "Item %v255 is in your inventory."
+#message 21 "Item %v255 is in room %v254."
+#message 22 "New priority: "
+#message 23 "Invalid priority value"
+#message 24 "Rm %v0|3 Pri %v254|2 x:%v240|3 y:%v241|3"
+#message 25 "%m1%w1"
+#message 26 "%m1%w2"
+#message 27 "%m1%w3"
+#message 28 "%m1%w4"
+#message 29 "%m1%w5"
+#message 30 "%m1%w6"
+#message 31 "%m1%w7"
+#message 32 "%m1%w8"
+#message 33 "%m1%w9"
+#message 34 "%m1%w10"
+#message 35 "Logged an unknown word."
+#message 36 "%m2%s1"

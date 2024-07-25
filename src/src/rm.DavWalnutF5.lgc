@@ -1,0 +1,126 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+    animate.obj(ego);
+    animate.obj(o14);
+    animate.obj(o13);
+    animate.obj(o12);
+    animate.obj(o11);
+    set.view(ego, vw.Roger);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    set.view(o12, vw.Mist);
+    set.view(o11, vw.Mist);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o12);
+    stop.cycling(o11);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 100;
+            v253 = 110;
+        }
+    }
+    position(o14, 1, 166);
+    position(o13, 43, 166);
+    position(o12, 84, 166);
+    position(o11, 120, 166);
+    position.v(ego, v30, v253);
+    set.horizon(50);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o12);
+    draw(o11);
+    show.pic();
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v253 = 155;
+    egoDir = UP;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 150;
+    v34 = 0;
+    new.room(rm.DavDwarfF4);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 5;
+    v34 = 0;
+    new.room(rm.DavBowlA5);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    v34 = 0;
+    new.room(rm.DavWizardE5);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine") || 
+        said("examine", "room"))) {
+        print("The ground is covered in walnuts. They have fallen from a "
+              "beautiful walnut tree that towers into the sky. A pointy rock "
+              "juts up from the ground by the tree. A thick fog rolls in from "
+              "the south. ");
+    }
+    if (said("examine", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+    if (said("examine", "boulder")) {
+        print("There's a rock here that that is very pointed. It has several "
+              "facets on it. Some of them are rough and others are smooth.");
+    }
+    if (said("examine", "nut")) {
+        print("The ground is covered with walnuts that have fallen from the "
+              "tree.");
+    }
+    if (said("acquire", "nut")) {
+        print("You don't need it.");
+    }
+    if ((said("sharpen", "glass") || 
+        said("sharpen", "glass", "boulder"))) {
+        if (posn(ego, 90, 115, 125, 130)) {
+            if (isset(f81)) {
+                print("Sheesh Roger... the glass is as sharp as it's going to "
+                      "get.");
+            }
+            else {
+                set(f81);
+                currentScore  += 1;
+                print("You sharpen the highly reflective safety glass by "
+                      "rubbing the edge of the glass repeatedly against the "
+                      "rock. Be careful with that thing Roger.");
+            }
+        }
+        else {
+            print("How?");
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "The ground is covered in walnuts. They have fallen from a beautiful walnut tree that towers into the sky. A pointy rock juts up from the ground by the tree. A thick fog rolls in from the south. "
+#message 4 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 5 "There's a rock here that that is very pointed. It has several facets on it. Some of them are rough and others are smooth."
+#message 6 "The ground is covered with walnuts that have fallen from the tree."
+#message 7 "You don't need it."
+#message 8 "Sheesh Roger... the glass is as sharp as it's going to get."
+#message 9 "You sharpen the highly reflective safety glass by rubbing the edge of the glass repeatedly against the rock. Be careful with that thing Roger."
+#message 10 "How?"

@@ -1,0 +1,101 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    call(lgc.RoomInit);
+    load.view(vw.WestRoomArt);
+    add.to.pic(vw.WestRoomArt, 0, 0, 67, 149, 0, 0);
+    v30 = 1;
+    get.room.v(v30, v220);
+    if (v220 == 3) {
+        animate.obj(o1);
+        set.view(o1, vw.WestRoomArt);
+        set.loop(o1, 0);
+        set.cel(o1, 1);
+        position(o1, 74, 136);
+        ignore.objs(o1);
+        set.priority(o1, 13);
+        draw(o1);
+        stop.update(o1);
+    }
+    draw(ego);
+    show.pic();
+}
+if (isset(haveInput) && 
+    !isset(haveMatch)) {
+    if (said("examine")) {
+        print("There is an old wooden table in the middle of the room.");
+    }
+    if (said("examine", "table")) {
+        if (posn(ego, 68, 132, 93, 151)) {
+            print("The table is covered with dust and scratches.");
+            if (v220 == 3) {
+                print("There is a strange, colored cube on the table.");
+            }
+        }
+        else {
+            print("There is an old wooden table in the middle of the room.");
+            if (v220 == 3) {
+                print("It looks like there is something on the table.");
+            }
+        }
+    }
+    if (said("examine", "under", "table")) {
+        if (posn(ego, 68, 132, 93, 151)) {
+            print("There is a lot of gum stuck to the underside of the table. "
+                  "But nothing else of interest.");
+        }
+        else {
+            print("You can't see under the table from here.");
+        }
+    }
+    if (said("examine", "cube")) {
+        if (v220 == 3) {
+            if (posn(ego, 68, 132, 93, 151)) {
+                print("There is a strange, colored cube on the table. You "
+                      "wonder how it got there.");
+            }
+            else {
+                print("You're not sure, but from this distance the thing on the "
+                      "table looks like a cube.");
+            }
+        }
+        else {
+            reset(haveMatch);
+        }
+    }
+    if (said("acquire", "cube")) {
+        if (v220 == 3) {
+            if (posn(ego, 68, 132, 93, 151)) {
+                print("You carefully pick up the cube, and put it in your "
+                      "oversized pocket.");
+                erase(o1);
+                v220 = 0;
+                currentScore  += 2;
+            }
+            else {
+                print("You need to move closer to the table.");
+            }
+        }
+        else {
+            print("You already have the cube. It's in your pocket.");
+        }
+    }
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    new.room(rm.Entrance);
+}
+return();
+
+[ Messages
+#message 1 "There is an old wooden table in the middle of the room."
+#message 2 "The table is covered with dust and scratches."
+#message 3 "There is a strange, colored cube on the table."
+#message 4 "It looks like there is something on the table."
+#message 5 "There is a lot of gum stuck to the underside of the table. But nothing else of interest."
+#message 6 "You can't see under the table from here."
+#message 7 "There is a strange, colored cube on the table. You wonder how it got there."
+#message 8 "You're not sure, but from this distance the thing on the table looks like a cube."
+#message 9 "You carefully pick up the cube, and put it in your oversized pocket."
+#message 10 "You need to move closer to the table."
+#message 11 "You already have the cube. It's in your pocket."

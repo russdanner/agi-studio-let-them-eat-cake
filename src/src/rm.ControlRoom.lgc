@@ -1,0 +1,239 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    set.horizon(0);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.Tram);
+    load.view(vw.Lift);
+    animate.obj(ego);
+    animate.obj(o2);
+    animate.obj(o3);
+    animate.obj(o4);
+    animate.obj(o10);
+    animate.obj(o1);
+    set.view(ego, vw.Roger);
+    set.view(o10, vw.Tram);
+    set.view(o1, vw.Lift);
+    set.view(o2, vw.Lift);
+    set.view(o3, vw.Lift);
+    set.view(o4, vw.Lift);
+    stop.cycling(o10);
+    stop.cycling(o1);
+    stop.cycling(o2);
+    set.loop(o2, 1);
+    set.cel(o2, 0);
+    fix.loop(o1);
+    fix.loop(o2);
+    set.loop(o3, 2);
+    set.loop(o4, 3);
+    position(o1, 21, 92);
+    position(o2, 34, 130);
+    position(o3, 70, 110);
+    position(o4, 100, 110);
+    set.priority(o10, 4);
+    set.priority(o1, 4);
+    set.priority(o2, 4);
+    set.priority(o3, 4);
+    set.priority(o4, 4);
+    block(68, 90, 78, 112);
+    block(98, 90, 108, 112);
+    set(f99);
+    reset(f100);
+    reset(f92);
+    reset(f97);
+    reset(f93);
+    reset(f91);
+    reset(f101);
+    ignore.blocks(o10);
+    position(o10, 5, 72);
+    move.obj(o10, 95, 72, 2, f93);
+    draw(o10);
+    draw(o1);
+    draw(o2);
+    draw(o3);
+    draw(o4);
+    load.sound(snd.Tube);
+    sound(snd.Tube, f83);
+    show.pic();
+}
+if (posn(ego, 24, 86, 34, 89)) {
+    if (!isset(f100)) {
+        stop.motion(ego);
+        program.control();
+        set(f100);
+        set(f98);
+        set(f99);
+    }
+}
+else {
+    if (posn(ego, 24, 114, 34, 123)) {
+        if (!isset(f100)) {
+            stop.motion(ego);
+            program.control();
+            set(f100);
+            set(f98);
+            reset(f99);
+        }
+    }
+    else {
+        reset(f100);
+    }
+}
+if (isset(f98)) {
+    if (isset(f99)) {
+        erase(ego);
+        erase(o1);
+        erase(o2);
+        position(ego, 31, 120);
+        position(o1, 25, 120);
+        position(o2, 34, 158);
+        draw(ego);
+        draw(o1);
+        draw(o2);
+        set(f233);
+    }
+    else {
+        erase(ego);
+        erase(o1);
+        erase(o2);
+        position(ego, 31, 88);
+        position(o1, 25, 92);
+        position(o2, 34, 130);
+        draw(ego);
+        draw(o1);
+        draw(o2);
+        set(f233);
+    }
+    if (isset(f233)) {
+        reset(f233);
+        reset(f234);
+        reset(f235);
+        reset(f98);
+        player.control();
+    }
+}
+if (isset(f92)) {
+    if (isset(f101)) {
+        reset(f92);
+        move.obj(o10, 160, 72, 2, f91);
+    }
+}
+if (isset(f91)) {
+    reset(f91);
+    get.posn(ego, v30, v253);
+    v34 = 0;
+    new.room(rm.OuterBay);
+}
+if (isset(f93)) {
+    reset(f93);
+    position(o10, 94, 72);
+    set.cel(o10, 1);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("This is the main control room for the station. It's alive with "
+              "activity. To the rear wall there is a pneumatic transport tube "
+              "and car. The StarCon Control personnel sit on the first level "
+              "coordinating flight activities and tram movements within the "
+              "station.");
+    }
+    if (said("acquire", "car")) {
+        if (isset(f101)) {
+            if (posn(ego, 91, 73, 109, 76)) {
+                erase(ego);
+                end.of.loop(o10, f92);
+                set(f97);
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+        else {
+            position(ego, 95, 74);
+            set.cel(o10, 0);
+            draw(ego);
+        }
+    }
+    if (said("exit", "car")) {
+        position(ego, 95, 74);
+        set.cel(o10, 0);
+        draw(ego);
+    }
+    if (said("enter", "car")) {
+        if (isset(f101)) {
+            if (posn(ego, 91, 73, 109, 76)) {
+                erase(ego);
+                end.of.loop(o10, f92);
+                set(f97);
+            }
+            else {
+                print("You are not close enough.");
+            }
+        }
+        else {
+            print("You better speak with control first.");
+        }
+    }
+    if (said("ask", "control")) {
+        if (posn(ego, 94, 111, 116, 125)) {
+            if (isset(f101)) {
+                print("\"You better get moving Roger. I've got a lot on my "
+                      "plate here.\"");
+            }
+            else {
+                set(f101);
+                currentScore  += 1;
+                v242 = 0;
+                print("\"Hey Roger. I'm sending you over to Hanger B for "
+                      "departure and transit to Orbital Station 3 per the "
+                      "Commander. A pod has been prepared and is standing by. "
+                      "Before you go... You know.. Swapping out my cave ball "
+                      "whistle for a Labion terror beast mating whistle was not "
+                      "funny... I mean... just look at these marks! I'll get "
+                      "you back for that at some point... Better watch it.\"");
+            }
+        }
+        else {
+            if (posn(ego, 53, 111, 80, 125)) {
+                print("\"Can't you see I am busy here?\"");
+            }
+            else {
+                print("Who?");
+            }
+        }
+    }
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("This is the main control room for the station. It's alive with "
+              "activity. To the rear wall there is a pneumatic transport tube "
+              "and car. The StarCon Control personnel sit on the first level "
+              "coordinating flight activities and tram movements within the "
+              "station.");
+    }
+    if (said("examine", "control")) {
+        print("Keep your eyes to yourself Roger.");
+    }
+    if (said("examine", "car")) {
+        print("The pneumatic transport tube enables personnel to move about the "
+              "station. It's destinations are managed by control. #tramIt");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "This is the main control room for the station. It's alive with activity. To the rear wall there is a pneumatic transport tube and car. The StarCon Control personnel sit on the first level coordinating flight activities and tram movements within the station."
+#message 3 "You are not close enough."
+#message 4 "You better speak with control first."
+#message 5 "\"You better get moving Roger. I've got a lot on my plate here.\""
+#message 6 "\"Hey Roger. I'm sending you over to Hanger B for departure and transit to Orbital Station 3 per the Commander. A pod has been prepared and is standing by. Before you go... You know.. Swapping out my cave ball whistle for a Labion terror beast mating whistle was not funny... I mean... just look at these marks! I'll get you back for that at some point... Better watch it.\""
+#message 7 "\"Can't you see I am busy here?\""
+#message 8 "Who?"
+#message 9 "Keep your eyes to yourself Roger."
+#message 10 "The pneumatic transport tube enables personnel to move about the station. It's destinations are managed by control. #tramIt"

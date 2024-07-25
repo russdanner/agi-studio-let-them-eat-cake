@@ -1,0 +1,37 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.CrashingPod);
+    animate.obj(o5);
+    set.view(o5, vw.CrashingPod);
+    stop.cycling(o5);
+    set.cel(o5, 5);
+    v243 = 0;
+    position(o5, 35, 100);
+    draw(o5);
+    reset(f95);
+    load.sound(snd.SpaceTravel);
+    sound(snd.SpaceTravel, f83);
+    show.pic();
+}
+v251 = 1;
+v252 = 3;
+reposition(o5, v251, v252);
+v243  += 1;
+if (v243 == 24) {
+    erase(o5);
+    set(f95);
+}
+if (isset(f95) && 
+    isset(f83)) {
+    set(f93);
+    v34 = 0;
+    new.room(rm.InPod);
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."

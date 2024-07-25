@@ -1,0 +1,36 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    call(lgc.RoomInit);
+    set.horizon(120);
+    if ((previousRoom == 100 || 
+        previousRoom == 0)) {
+        position(ego, 74, 150);
+        status.line.on();
+    }
+    draw(ego);
+    show.pic();
+}
+if (isset(haveInput) && 
+    !isset(haveMatch)) {
+    if (said("examine")) {
+        print("This is an empty room.");
+    }
+}
+if (edgeEgoHit == TOP_EDGE) {
+    new.room(rm.NorthRoom);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    new.room(rm.EastRoom);
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    new.room(rm.Outside);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    new.room(rm.WestRoom);
+}
+return();
+
+[ Messages
+#message 1 "This is an empty room."

@@ -1,0 +1,125 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.RogerSwim);
+    load.view(vw.Mist);
+    set.view(ego, vw.Roger);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    set.view(o12, vw.Mist);
+    set.view(o11, vw.Mist);
+    animate.obj(ego);
+    animate.obj(o14);
+    animate.obj(o13);
+    animate.obj(o12);
+    animate.obj(o11);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o12);
+    stop.cycling(o11);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 50;
+            v253 = 140;
+        }
+    }
+    position(o14, 1, 166);
+    position(o13, 43, 166);
+    position(o12, 84, 166);
+    position(o11, 120, 166);
+    position.v(ego, v30, v253);
+    set.horizon(40);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o12);
+    draw(o11);
+    show.pic();
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 150;
+    v34 = 0;
+    new.room(rm.DavWellTopD1);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v30 = 15;
+    egoDir = RIGHT;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 5;
+    v253 = 100;
+    v34 = 0;
+    new.room(rm.DavBigLakeRightE2);
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v253 = 155;
+    egoDir = UP;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (isset(onWater)) {
+    if (!isset(f94)) {
+        if (!isset(f93)) {
+            set(f93);
+            set.view(ego, vw.RogerSplash);
+        }
+    }
+}
+else {
+    if ((isset(f94) || 
+        isset(f93))) {
+        set.view(ego, vw.Roger);
+        reset(f94);
+        reset(f93);
+        normal.motion(ego);
+    }
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("swim")) {
+        if (isset(onWater)) {
+            if (isset(f93)) {
+                set.view(ego, vw.RogerSwim);
+                reset(f93);
+                set(f94);
+                print("ok");
+            }
+        }
+    }
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("There's a large beautiful lake that goes off to the east here "
+              "and a thick fog to the south and west.");
+    }
+    if (said("examine", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+    if (said("examine", "lake")) {
+        print("The lake is calm and beautiful.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "ok"
+#message 4 "There's a large beautiful lake that goes off to the east here and a thick fog to the south and west."
+#message 5 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 6 "The lake is calm and beautiful."

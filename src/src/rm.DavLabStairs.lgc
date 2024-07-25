@@ -1,0 +1,62 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    animate.obj(ego);
+    set.view(ego, vw.Roger);
+    position.v(ego, v30, v253);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            position(ego, 20, 157);
+        }
+    }
+    draw(ego);
+    show.pic();
+}
+if (isset(onWater)) {
+    load.view(vw.RogerFall);
+    set.view(ego, vw.RogerFall);
+    start.cycling(ego);
+    stop.motion(ego);
+    get.posn(ego, v30, v253);
+    v253 = 135;
+    v251 = 6;
+    move.obj.v(ego, v30, v253, v251, f118);
+}
+if (isset(f118)) {
+    reset(f118);
+    stop.motion(ego);
+    stop.cycling(ego);
+    egoDir = STOPPED;
+    v29 = 17;
+    set(f86);
+}
+if (posn(ego, 10, 158, 33, 167)) {
+    v30 = 100;
+    v253 = 105;
+    stop.cycling(ego);
+    v34 = 0;
+    new.room(rm.DavHillsideDoor);
+}
+if (obj.in.box(ego, 145, 23, 159, 37)) {
+    v30 = 100;
+    v253 = 105;
+    stop.cycling(ego);
+    v34 = 0;
+    new.room(rm.DavLab);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("You find yourself inside the hill. There's a long stairwell here "
+              "that ascends to the right.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You find yourself inside the hill. There's a long stairwell here that ascends to the right."

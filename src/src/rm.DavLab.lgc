@@ -1,0 +1,289 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.EgoParts);
+    load.view(vw.LarryDump);
+    load.view(vw.PersonL);
+    load.view(vw.SierraWorker);
+    load.view(vw.MIB);
+    animate.obj(ego);
+    animate.obj(o1);
+    animate.obj(o2);
+    animate.obj(o3);
+    animate.obj(o4);
+    animate.obj(o6);
+    animate.obj(o5);
+    animate.obj(o7);
+    set.view(ego, vw.Roger);
+    set.view(o1, vw.EgoParts);
+    set.view(o2, vw.EgoParts);
+    set.view(o3, vw.EgoParts);
+    set.view(o4, vw.EgoParts);
+    set.view(o6, vw.LarryDump);
+    set.view(o5, vw.SierraWorker);
+    set.view(o7, vw.PersonL);
+    set.loop(o1, 0);
+    set.loop(o2, 1);
+    set.loop(o3, 2);
+    set.loop(o4, 3);
+    set.loop(o5, 4);
+    set.loop(o7, 2);
+    set.cel(o1, 1);
+    fix.loop(o1);
+    fix.loop(o3);
+    fix.loop(o7);
+    observe.objs(ego);
+    set.priority(ego, 11);
+    set.priority(o3, 4);
+    set.priority(o2, 6);
+    set.priority(o4, 10);
+    set.priority(o5, 9);
+    stop.cycling(o1);
+    stop.cycling(o4);
+    stop.cycling(o3);
+    stop.cycling(o2);
+    stop.cycling(o6);
+    stop.cycling(o7);
+    start.cycling(o5);
+    v30 = 6;
+    v253 = 146;
+    position.v(ego, v30, v253);
+    position(o4, 38, 121);
+    position(o1, 150, 105);
+    position(o2, 79, 111);
+    position(o3, 74, 74);
+    position(o6, 56, 25);
+    position(o5, 36, 108);
+    reset(f100);
+    reset(f101);
+    reset(f102);
+    reset(f103);
+    reset(f104);
+    reset(f105);
+    reset(f106);
+    reset(f108);
+    reset(f109);
+    reset(f110);
+    reset(f111);
+    reset(f112);
+    reset(f107);
+    reset(f115);
+    move.obj(o1, 82, 105, 1, f102);
+    move.obj(o3, 74, 113, 1, f95);
+    move.obj(o6, 56, 60, 1, f100);
+    draw(ego);
+    draw(o1);
+    draw(o4);
+    draw(o3);
+    draw(o2);
+    draw(o6);
+    draw(o5);
+    draw(o7);
+    block(1, 135, 35, 155);
+    show.pic();
+}
+if (isset(f100)) {
+    reset(f100);
+    end.of.loop(o6, f101);
+    move.obj(o3, 74, 130, 1, f95);
+    move.obj(o6, 56, 80, 1, f95);
+}
+if (isset(f102)) {
+    reset(f102);
+    start.cycling(o5);
+    move.obj(o5, 54, 114, 1, f103);
+}
+if (isset(f103)) {
+    reset(f103);
+    set.cel(o4, 1);
+    set.loop(o5, 2);
+    set.cel(o5, 0);
+    fix.loop(o5);
+    start.cycling(o5);
+    move.obj(o5, 78, 110, 1, f104);
+}
+if (isset(f104)) {
+    reset(f104);
+    set.loop(o5, 3);
+    set.cel(o5, 0);
+    fix.loop(o5);
+    start.cycling(o5);
+    end.of.loop(o5, f105);
+}
+if (isset(f105)) {
+    reset(f105);
+    erase(o7);
+    set.priority(o7, 11);
+    position(o7, 82, 104);
+    draw(o7);
+    set.cel(o5, 0);
+    set.loop(o5, 1);
+    start.cycling(o5);
+    move.obj(o5, 50, 108, 1, f106);
+}
+if (isset(f106)) {
+    reset(f106);
+    set.cel(o5, 0);
+    start.cycling(o5);
+    move.obj(o5, 40, 108, 1, f107);
+    set.cel(o1, 2);
+    set(f110);
+}
+if (isset(f107)) {
+    reset(f107);
+}
+if (isset(f108)) {
+    reset(f108);
+}
+if (isset(f109)) {
+    reset(f109);
+}
+if (isset(f110)) {
+    reset(f110);
+    set(f113);
+    v243 = 0;
+    v242 = 0;
+}
+if (isset(f113)) {
+    erase(o3);
+    if (v243 == 1) {
+        display(4, 9, "Incoming transmission ");
+        display(5, 9, "                      ");
+    }
+    if (v243 == 2) {
+        display(4, 9, "Markus Louw:          ");
+        display(5, 9, "My best to Sierra!    ");
+    }
+    if (v243 == 3) {
+        display(4, 9, "Marco Giglio:        ");
+        display(5, 9, "Happy birthday!      ");
+    }
+    if (v243 == 4) {
+        display(4, 9, "Andrea Tanguay:       ");
+        display(5, 9, "Long live adventures! ");
+    }
+    if (v243 == 5) {
+        display(4, 9, "Liz Cook: 40 years & ");
+        display(5, 9, "the hat still fits!  ");
+    }
+    if (v243 == 6) {
+        display(4, 9, "Lance Ewing & SCI   ");
+        display(5, 9, "programming.com:HBD!");
+    }
+    if (v243 == 7) {
+        display(4, 9, "Zach Bleacher: ThankU");
+        display(5, 9, "for all the memories!");
+    }
+    if (v243 == 8) {
+        display(4, 9, "Chase Spangenberg:  A");
+        display(5, 9, "regal celebration 2U!");
+    }
+    if (v243 == 9) {
+        display(4, 9, "Luke Boback: Stow     ");
+        display(5, 9, "                      ");
+    }
+    if (v243 == 10) {
+        display(4, 9, "Ricky Derocher: Yeah..");
+        display(5, 9, "but what about Cedric?");
+    }
+    if (v243 == 11) {
+        display(4, 9, "Russ Danner: Thanks   ");
+        display(5, 9, "to Ken and Roberta!   ");
+        if (!isset(f116)) {
+            set(f116);
+            set(f115);
+        }
+    }
+}
+if (isset(f115)) {
+    reset(f115);
+    load.view(vw.MIB);
+    animate.obj(o9);
+    set.view(o9, vw.MIB);
+    position(o9, 30, 155);
+    follow.ego(o9, 4, f90);
+    draw(o9);
+}
+if (isset(f90)) {
+    reset(f90);
+    load.view(vw.MIBFlash);
+    set.view(o9, vw.MIBFlash);
+    normal.motion(o9);
+    stop.motion(o9);
+    get.posn(ego, v30, v253);
+    if (v30 > 25) {
+        v30 -= 15;
+        set.loop(o9, 0);
+    }
+    if (v30 <= 25) {
+        v30 -= 5;
+        set.loop(o9, 1);
+    }
+    reposition.to.v(o9, v30, v253);
+    end.of.loop(o9, f117);
+}
+if (isset(f117)) {
+    print("A large man dressed in a black suit appears out of nowhere. He pulls "
+          "a small pen like device from his pocket and clicks a button on it. "
+          "In a flash of bright light you find yourself outside. You could "
+          "swear you knew what was behind this door but you just can't remember "
+          "what it was.");
+    drop("Keycard");
+    reset(f117);
+    v30 = 100;
+    v253 = 110;
+    reset(f150);
+    set(f151);
+    stop.cycling(ego);
+    reset(f95);
+    v34 = 0;
+    new.room(rm.DavHillsideDoor);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("You have found your way into some kind of lab where adventurers "
+              "are made. There's an engineer here busy at work.");
+    }
+    if (said("examine", "room")) {
+        print("You have found your way into some kind of lab where adventurers "
+              "are made. There's an engineer here busy at work.");
+    }
+    if (said("ask", "control")) {
+        print("You startle the engineer and he immediately calls out for "
+              "'SECURITY!!!'");
+        set(f115);
+    }
+}
+return();
+
+[ Messages
+#message 1 "Incoming transmission "
+#message 2 "                      "
+#message 3 "Markus Louw:          "
+#message 4 "My best to Sierra!    "
+#message 5 "Marco Giglio:        "
+#message 6 "Happy birthday!      "
+#message 7 "Andrea Tanguay:       "
+#message 8 "Long live adventures! "
+#message 9 "Liz Cook: 40 years & "
+#message 10 "the hat still fits!  "
+#message 11 "Lance Ewing & SCI   "
+#message 12 "programming.com:HBD!"
+#message 13 "Zach Bleacher: ThankU"
+#message 14 "for all the memories!"
+#message 15 "Chase Spangenberg:  A"
+#message 16 "regal celebration 2U!"
+#message 17 "Luke Boback: Stow     "
+#message 18 "Ricky Derocher: Yeah.."
+#message 19 "but what about Cedric?"
+#message 20 "Russ Danner: Thanks   "
+#message 21 "to Ken and Roberta!   "
+#message 22 "A large man dressed in a black suit appears out of nowhere. He pulls a small pen like device from his pocket and clicks a button on it. In a flash of bright light you find yourself outside. You could swear you knew what was behind this door but you just can't remember what it was."
+#message 23 "You have found your way into some kind of lab where adventurers are made. There's an engineer here busy at work."
+#message 24 "You startle the engineer and he immediately calls out for 'SECURITY!!!'"

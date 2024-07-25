@@ -1,0 +1,256 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    drop("Summons");
+    drop("Hat");
+    drop("Teapot");
+    drop("Teacup");
+    drop("Tea");
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.RogerSpacesuitBroom);
+    load.view(vw.RogerSpacesuitA);
+    load.view(vw.Splat);
+    load.view(vw.BigShuttle);
+    animate.obj(ego);
+    animate.obj(o7);
+    animate.obj(o8);
+    animate.obj(o6);
+    set.view(o7, vw.Splat);
+    set.view(o8, vw.Splat);
+    set.view(o6, vw.BigShuttle);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 20;
+            v253 = 100;
+            v141 = 1;
+            set(f96);
+            get("Broom");
+            v144 = 0;
+            v145 = 0;
+            v139 = 0;
+            v140 = 0;
+            position(o7, 100, 150);
+            position(o8, 40, 90);
+            print("What is going on here?! Your dreams get more and more wild. "
+                  "You find yourself in a castle fortress unlike anything you "
+                  "have ever seen. Your suit of armor seems to be made of some "
+                  "kind of magical cloth. The stars are so close and bright "
+                  "that you could almost reach out and touch them. HOW "
+                  "STRANGE?!? And.. you're a janitor... Seriously?! Wow! That "
+                  "Daventry clover tea really packs a punch. The longer your "
+                  "dream continues the more familiar the situation feels.");
+        }
+    }
+    if (isset(f96)) {
+        if (v141 == 1) {
+            set.view(ego, vw.RogerSpacesuitBroom);
+        }
+        else {
+            set.view(ego, vw.RogerSpacesuitA);
+        }
+    }
+    else {
+        set.view(ego, vw.Roger);
+    }
+    start.cycling(ego);
+    stop.cycling(o7);
+    stop.cycling(o8);
+    stop.cycling(o6);
+    position(o6, 50, 120);
+    position.v(ego, v30, v253);
+    set.priority(o6, 9);
+    set.priority(o7, 4);
+    set.priority(o8, 4);
+    if (v144 == 0) {
+        draw(o7);
+    }
+    if (v145 == 0) {
+        draw(o8);
+    }
+    draw(o6);
+    draw(ego);
+    v242 = 0;
+    set.horizon(73);
+    reset(f93);
+    reset(f91);
+    show.pic();
+}
+if (v140 == 1) {
+    if (v242 > 99) {
+        if (!isset(f192)) {
+            set(f192);
+            load.sound(snd.WatchBeep);
+            sound(snd.WatchBeep, f83);
+            print("A long beep is emitted from the watch on your arm.");
+        }
+    }
+    if (v139 != 1) {
+        v242  += 1;
+    }
+}
+if (posn(ego, 85, 139, 105, 151)) {
+    if (v144 == 0) {
+        if (v141 == 0) {
+            v29 = 5;
+            set(f86);
+        }
+        else {
+            currentScore  += 1;
+            v144 = 1;
+            v140 = 1;
+            erase(o7);
+        }
+    }
+}
+if (posn(ego, 36, 80, 48, 95)) {
+    if (v145 == 0) {
+        if (v141 == 0) {
+            v29 = 5;
+            set(f86);
+        }
+        else {
+            v145 = 1;
+            v140 = 1;
+            currentScore  += 1;
+            erase(o8);
+        }
+    }
+}
+if (posn(ego, 145, 135, 160, 160)) {
+    if (v139 == 1) {
+        v141 = 0;
+        get.posn(ego, v30, v253);
+        v30 = 15;
+        v253 = 126;
+        v34 = 0;
+        new.room(rm.InnerBay);
+    }
+    else {
+        print("Look at that deck!! You better keep cleaning.");
+        get.posn(ego, v30, v253);
+        v30 = 140;
+        egoDir = LEFT;
+        erase(ego);
+        position.v(ego, v30, v253);
+        draw(ego);
+    }
+}
+if (edgeEgoHit == TOP_EDGE) {
+    stop.cycling(ego);
+    set.view(ego, vw.RogerSpacesuitA);
+    set.priority(ego, 4);
+    move.obj(ego, 100, 40, 1, f93);
+    v29 = 4;
+    set(f86);
+}
+if (isset(f93)) {
+    erase(ego);
+}
+if (!isset(f96)) {
+    if (!isset(f90)) {
+        get.posn(ego, v30, v253);
+        v30 = 100;
+        reset(f91);
+        reset(f94);
+        v252 = 1;
+        move.obj.v(ego, v30, v253, v252, f90);
+    }
+}
+if (isset(f90)) {
+    if (!isset(f94)) {
+        set(f94);
+        stop.motion(ego);
+        load.view(vw.RogerExplode);
+        set.view(ego, vw.RogerExplode);
+        end.of.loop(ego, f91);
+    }
+}
+if (isset(f91)) {
+    erase(ego);
+    v29 = 3;
+    set(f86);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("stop", "clean")) {
+        set.view(ego, vw.RogerSpacesuitA);
+        v141 = 0;
+    }
+    if ((said("start", "clean") || 
+        said("clean"))) {
+        if (has("Broom")) {
+            set.view(ego, vw.RogerSpacesuitBroom);
+            v141 = 1;
+            start.cycling(ego);
+        }
+        else {
+            print("You don't have the proper equipment on hand for that job.");
+        }
+    }
+    if ((said("acquire", "craft") || 
+        said("enter", "craft"))) {
+        if (posn(ego, 31, 104, 50, 127)) {
+            print("Get real... This is a serious spacecraft. Access to this "
+                  "craft requires the appropriate orders or serious clearance "
+                  "-- both of which you are seriously lacking.");
+        }
+        else {
+            print("You are too far away.");
+        }
+    }
+    if (said("examine", "watch")) {
+        get.posn(ego, v30, v253);
+        v34 = 0;
+        new.room(rm.Watch);
+    }
+    if (said("examine", "console")) {
+        print("The panel is used to operate hanger bay equipment. It's meant to "
+              "be operated by personnel assigned to flight operations which "
+              "does not include janitorial staff.");
+    }
+    if (said("examine", "space")) {
+        print("Ah space... 'It's beautiful and big. Really big. You just won't "
+              "believe how vastly hugely mind-bogglingly big it is.'");
+    }
+    if (said("examine", "craft")) {
+        print("Yep that's a shuttle alright. Always coming and going. You can't "
+              "count the number of times you've had to clean up after the "
+              "space-sick scum that frequent these shuttles. Speaking of "
+              "shuttle related messes you wonder if this craft is the one that "
+              "left puddles of fuel on the deck.");
+    }
+    if (said("examine", "fuel")) {
+        if (v140 == 0) {
+            print("What a mess. There's fuel on the deck. It needs to be "
+                  "cleaned up.");
+        }
+        else {
+            print("A spill?! Not on your watch! Roger Wilco. Ace Janitor!");
+        }
+    }
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("You are standing in a large hanger bay. The hanger door is open "
+              "to the coldness of space. A shuttle sits in the middle of the "
+              "bay.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "What is going on here?! Your dreams get more and more wild. You find yourself in a castle fortress unlike anything you have ever seen. Your suit of armor seems to be made of some kind of magical cloth. The stars are so close and bright that you could almost reach out and touch them. HOW STRANGE?!? And.. you're a janitor... Seriously?! Wow! That Daventry clover tea really packs a punch. The longer your dream continues the more familiar the situation feels."
+#message 2 "A long beep is emitted from the watch on your arm."
+#message 3 "Look at that deck!! You better keep cleaning."
+#message 4 "You don't have the proper equipment on hand for that job."
+#message 5 "Get real... This is a serious spacecraft. Access to this craft requires the appropriate orders or serious clearance -- both of which you are seriously lacking."
+#message 6 "You are too far away."
+#message 7 "The panel is used to operate hanger bay equipment. It's meant to be operated by personnel assigned to flight operations which does not include janitorial staff."
+#message 8 "Ah space... 'It's beautiful and big. Really big. You just won't believe how vastly hugely mind-bogglingly big it is.'"
+#message 9 "Yep that's a shuttle alright. Always coming and going. You can't count the number of times you've had to clean up after the space-sick scum that frequent these shuttles. Speaking of shuttle related messes you wonder if this craft is the one that left puddles of fuel on the deck."
+#message 10 "What a mess. There's fuel on the deck. It needs to be cleaned up."
+#message 11 "A spill?! Not on your watch! Roger Wilco. Ace Janitor!"
+#message 12 "You are standing in a large hanger bay. The hanger door is open to the coldness of space. A shuttle sits in the middle of the bay."

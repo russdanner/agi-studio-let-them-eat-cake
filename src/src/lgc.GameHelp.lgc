@@ -1,0 +1,97 @@
+prevent.input();
+status.line.off();
+text.screen();
+lastChar = 0;
+set.text.attribute(LT_GRAY, BLACK);
+display(2, 0, "ษอออออออออออออออออออออออออออออออออออออป");
+display(3, 0, "บ                                     บ");
+display(4, 0, "บ ๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐ บ");
+display(5, 0, "ฬอออออออออออออออออออออออออออออออออออออน");
+display(6, 0, "บ                                     บ");
+display(7, 0, "บ                                     บ");
+display(8, 0, "บ                                     บ");
+display(9, 0, "บ                                     บ");
+display(10, 0, "บ                                     บ");
+display(11, 0, "บ                                     บ");
+display(12, 0, "บ                                     บ");
+display(13, 0, "บ                                     บ");
+display(14, 0, "บ                                     บ");
+display(15, 0, "บ                                     บ");
+display(16, 0, "บ                                     บ");
+display(17, 0, "บ                                     บ");
+display(18, 0, "บ                                     บ");
+display(19, 0, "บ                                     บ");
+display(20, 0, "บ                                     บ");
+display(21, 0, "ศอออออออออออออออออออออออออออออออออออออผ");
+display(3, 1, "             AGI Help");
+set.text.attribute(LT_GREEN, BLACK);
+display(7, 1, "      F1");
+display(8, 1, "      F2");
+display(9, 1, "      F3");
+display(10, 1, "      F4");
+display(11, 1, "      F5");
+display(12, 1, "      F7");
+display(13, 1, "      F9");
+display(14, 1, "   ALT-Z");
+display(15, 1, "     TAB");
+display(16, 1, "     ESC");
+display(17, 1, "  Ctrl-J");
+display(18, 1, "      +");
+display(19, 1, "      -");
+set.text.attribute(YELLOW, BLACK);
+display(7, 10, "displays this message.");
+display(8, 10, "turns the sound off and on.");
+display(9, 10, "retypes the last line typed.");
+display(10, 10, "look at item in inventory.");
+display(11, 10, "saves your current game.");
+display(12, 10, "restores a saved game.");
+display(13, 10, "restarts the game.");
+display(14, 10, "quits the game.");
+display(15, 10, "shows the inventory screen.");
+display(16, 10, "displays the menu.");
+display(17, 10, "sets up your joystick.");
+display(18, 10, "increases volume.");
+display(19, 10, "decreases volume.");
+Label1:
+if (!have.key()) {
+    goto(Label1);
+}
+accept.input();
+status.line.on();
+set.text.attribute(WHITE, BLACK);
+graphics();
+return();
+
+[ Messages
+#message 1 "ษอออออออออออออออออออออออออออออออออออออป"
+#message 2 "บ                                     บ"
+#message 3 "บ ๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐๐ บ"
+#message 4 "ฬอออออออออออออออออออออออออออออออออออออน"
+#message 5 "ศอออออออออออออออออออออออออออออออออออออผ"
+#message 6 "             AGI Help"
+#message 7 "      F1"
+#message 8 "      F2"
+#message 9 "      F3"
+#message 10 "      F4"
+#message 11 "      F5"
+#message 12 "      F7"
+#message 13 "      F9"
+#message 14 "   ALT-Z"
+#message 15 "     TAB"
+#message 16 "     ESC"
+#message 17 "  Ctrl-J"
+#message 18 "      +"
+#message 19 "      -"
+#message 20 "displays this message."
+#message 21 "turns the sound off and on."
+#message 22 "retypes the last line typed."
+#message 23 "look at item in inventory."
+#message 24 "saves your current game."
+#message 25 "restores a saved game."
+#message 26 "restarts the game."
+#message 27 "quits the game."
+#message 28 "shows the inventory screen."
+#message 29 "displays the menu."
+#message 30 "sets up your joystick."
+#message 31 "increases volume."
+#message 32 "decreases volume."

@@ -1,0 +1,286 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    load.view(vw.GrahamNoHat);
+    load.view(vw.Summons);
+    load.view(vw.Hat);
+    load.view(vw.Teapot);
+    load.view(vw.Teacup);
+    load.view(vw.GrahamHouseWindow);
+    load.view(vw.GrahamHouseDoor);
+    load.view(vw.GrahamHatNoFeather);
+    animate.obj(ego);
+    animate.obj(o2);
+    animate.obj(o3);
+    animate.obj(o4);
+    animate.obj(o1);
+    animate.obj(o6);
+    animate.obj(o8);
+    set.view(ego, vw.GrahamNoHat);
+    set.view(o2, vw.Hat);
+    set.view(o3, vw.Teapot);
+    set.view(o4, vw.Teacup);
+    set.view(o1, vw.Summons);
+    set.view(o6, vw.GrahamHouseWindow);
+    set.view(o8, vw.GrahamHouseDoor);
+    start.cycling(ego);
+    stop.cycling(o2);
+    stop.cycling(o4);
+    stop.cycling(o1);
+    stop.cycling(o6);
+    stop.cycling(o8);
+    set.cel(o8, 1);
+    position(o8, 26, 131);
+    position(o6, 90, 58);
+    drop("Keycard");
+    drop("Glass");
+    drop("Cake");
+    drop("Ink");
+    drop("Quill");
+    drop("Invitation");
+    drop("Tea");
+    get("Teacup");
+    get("Teapot");
+    if (isset(f87)) {
+        get("Hat");
+    }
+    if (isset(f85)) {
+        get("Summons");
+    }
+    if (!has("Hat")) {
+        set.priority(o2, 15);
+        position(o2, 130, 125);
+        draw(o2);
+    }
+    if (!has("Summons")) {
+        set.priority(o1, 15);
+        position(o1, 80, 105);
+        draw(o1);
+    }
+    if (!has("Teacup")) {
+        set.priority(o4, 15);
+        position(o4, 55, 105);
+        draw(o4);
+    }
+    if (!has("Teapot")) {
+        set.priority(o3, 15);
+        position(o3, 110, 87);
+        draw(o3);
+    }
+    v37 = 0;
+    v243 = 0;
+    print("Thinking of the King you are jarred awake. It's morning. You must "
+          "get to the castle to meet with King Edward!");
+    v37 = 0;
+    set.cel(o6, 1);
+    position(ego, 100, 80);
+    draw(o6);
+    draw(o8);
+    draw(ego);
+    show.pic();
+}
+if (isset(haveInput) && 
+    !isset(haveMatch)) {
+    if (said("examine")) {
+        if (!has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom "
+                  "of Daventry. Graham keeps the place neat and tidy. In the "
+                  "center of the room is a large table. There's small counter "
+                  "with a hat on it in the corner.");
+        }
+        if (has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom "
+                  "of Daventry. Graham keeps the place neat and tidy. In the "
+                  "center of the room is a large table. There's small counter "
+                  "in the corner.");
+        }
+    }
+    if (said("examine", "room")) {
+        if (!has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom "
+                  "of Daventry. Graham keeps the place neat and tidy. In the "
+                  "center of the room is a large table. There's small counter "
+                  "with a hat on it in the corner.");
+        }
+        if (has("Hat")) {
+            print("This is Graham's home. It's one of many homes in the kingdom "
+                  "of Daventry. Graham keeps the place neat and tidy. In the "
+                  "center of the room is a large table. There's small counter "
+                  "in the corner.");
+        }
+    }
+    if (said("examine", "stove")) {
+        if (has("Teapot")) {
+            print("The stove is made of cast iron and keeps the room toasty.");
+        }
+        if (!has("Teapot")) {
+            print("The stove is made of cast iron and keeps the room toasty. "
+                  "There's a teapot on top of the stove.");
+        }
+    }
+    if (said("examine", "table")) {
+        if (has("Summons")) {
+            if (!has("Teacup")) {
+                print("There is a sturdy table here. A teacup sits on table");
+            }
+            if (has("Teacup")) {
+                print("There is a sturdy table here.");
+            }
+        }
+        if (!has("Summons")) {
+            if (!has("Teacup")) {
+                print("There is a sturdy table here. The summons you received "
+                      "from the King today lays on one side of the table and a "
+                      "teacup sits on the opposite side.");
+            }
+            if (has("Teacup")) {
+                print("There is a sturdy table here. The summons you received "
+                      "from the King today lays on the table.");
+            }
+        }
+    }
+    if (said("open", "door")) {
+        if (posn(ego, 16, 108, 35, 124)) {
+            if (!has("Hat")) {
+                print("You would never leave the house without your hat.");
+            }
+            if (has("Hat")) {
+                if (isset(f89)) {
+                    currentScore  += 1;
+                    get.posn(ego, v30, v253);
+                    v30 = 119;
+                    v253 = 126;
+                    v34 = 0;
+                    new.room(rm.GrahamLawnDay);
+                }
+                else {
+                    get.posn(ego, v30, v253);
+                    v30 = 119;
+                    v253 = 126;
+                    v34 = 0;
+                    new.room(rm.GrahamLawnNight);
+                }
+            }
+        }
+        else {
+            print("You can't do that from here.");
+        }
+    }
+    if (said("put on", "cap")) {
+        if (has("Hat")) {
+            if (isset(f88)) {
+                print("You are already wearing it.");
+            }
+            else {
+                set(f88);
+                set.view(ego, vw.GrahamHatNoFeather);
+                print("You put on your trusty hat!");
+                if (!isset(f130)) {
+                    set(f130);
+                    currentScore  += 1;
+                }
+            }
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("remove", "cap")) {
+        if (has("Hat")) {
+            if (!isset(f88)) {
+                print("You are not wearing your hat.");
+            }
+            else {
+                reset(f88);
+                set.view(ego, vw.GrahamHatNoFeather);
+            }
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("acquire", "letter")) {
+        if (posn(ego, 80, 100, 100, 130)) {
+            if (has("Summons")) {
+                print("You already have it.");
+            }
+            else {
+                print("You take the summons.");
+                set(f85);
+                get("Summons");
+                erase(o1);
+                currentScore  += 1;
+            }
+        }
+        else {
+            print("Get closer.");
+        }
+    }
+    if (said("acquire", "cap")) {
+        if (posn(ego, 117, 131, 129, 150)) {
+            print("You pocket your hat.");
+            set(f87);
+            erase(o2);
+            get("Hat");
+            currentScore  += 1;
+        }
+        else {
+            print("You cannot reach it.");
+        }
+    }
+    if (said("acquire", "cup")) {
+        if (posn(ego, 40, 107, 56, 135)) {
+            erase(o4);
+            if (v235 == 1) {
+                print("You pick up the tetakeacup full of hot clover tea and "
+                      "carry it with you.");
+                get("Tea");
+            }
+            else {
+                print("You pick up the teacup and carry it with you.");
+                get("Teacup");
+            }
+        }
+        else {
+            print("It is not within your reach.");
+        }
+    }
+    if (said("drop", "cup")) {
+        if (posn(ego, 40, 107, 56, 135)) {
+            print("You place the teacup on the table.");
+            draw(o4);
+            drop("Teacup");
+        }
+        else {
+            print("Get closer.");
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "Thinking of the King you are jarred awake. It's morning. You must get to the castle to meet with King Edward!"
+#message 2 "This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter with a hat on it in the corner."
+#message 3 "This is Graham's home. It's one of many homes in the kingdom of Daventry. Graham keeps the place neat and tidy. In the center of the room is a large table. There's small counter in the corner."
+#message 4 "The stove is made of cast iron and keeps the room toasty."
+#message 5 "The stove is made of cast iron and keeps the room toasty. There's a teapot on top of the stove."
+#message 6 "There is a sturdy table here. A teacup sits on table"
+#message 7 "There is a sturdy table here."
+#message 8 "There is a sturdy table here. The summons you received from the King today lays on one side of the table and a teacup sits on the opposite side."
+#message 9 "There is a sturdy table here. The summons you received from the King today lays on the table."
+#message 10 "You would never leave the house without your hat."
+#message 11 "You can't do that from here."
+#message 12 "You are already wearing it."
+#message 13 "You put on your trusty hat!"
+#message 14 "You don't have it."
+#message 15 "You are not wearing your hat."
+#message 16 "You already have it."
+#message 17 "You take the summons."
+#message 18 "Get closer."
+#message 19 "You pocket your hat."
+#message 20 "You cannot reach it."
+#message 21 "You pick up the tetakeacup full of hot clover tea and carry it with you."
+#message 22 "You pick up the teacup and carry it with you."
+#message 23 "It is not within your reach."
+#message 24 "You place the teacup on the table."

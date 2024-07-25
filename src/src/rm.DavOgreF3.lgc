@@ -1,0 +1,103 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    animate.obj(ego);
+    set.view(ego, vw.Roger);
+    reset(f90);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 100;
+            v253 = 100;
+        }
+    }
+    position.v(ego, v30, v253);
+    draw(ego);
+    set.horizon(55);
+    random(1, 100, v37);
+    if (v37 < 50) {
+        if (!isset(f90)) {
+            load.view(vw.Ogre);
+            animate.obj(o6);
+            set.view(o6, vw.Ogre);
+            position(o6, 80, 80);
+            draw(o6);
+            follow.ego(o6, 8, f90);
+            load.sound(snd.MonsterAlert);
+            sound(snd.MonsterAlert, f83);
+        }
+    }
+    show.pic();
+}
+if (isset(f90)) {
+    reset(f90);
+    if (!isset(f86)) {
+        erase(ego);
+        load.view(vw.OgreMunch);
+        set.view(o6, vw.OgreMunch);
+        normal.motion(o6);
+        v29 = 8;
+        stop.cycling(o6);
+        set.cel(o6, 0);
+        stop.motion(o6);
+        end.of.loop(o6, f86);
+    }
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 55;
+    v34 = 0;
+    new.room(rm.DavDwarfF4);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v30 = 15;
+    egoDir = RIGHT;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 150;
+    v34 = 0;
+    new.room(rm.DavDaggerF2);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 5;
+    v34 = 0;
+    new.room(rm.DavCrashSiteA3);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("The river winds off to the east into a mist which grow thicker "
+              "to the east");
+    }
+    if (said("examine", "room")) {
+        print("The river winds off to the east into a mist which grow thicker "
+              "to the east");
+    }
+    if (said("examine", "lake")) {
+        print("The river is flowing off to the east and looks to have a strong "
+              "current.");
+    }
+    if (said("examine", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "The river winds off to the east into a mist which grow thicker to the east"
+#message 4 "The river is flowing off to the east and looks to have a strong current."
+#message 5 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."

@@ -1,0 +1,49 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    animate.obj(ego);
+    set.view(ego, vw.Roger);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 100;
+            v253 = 100;
+        }
+    }
+    position.v(ego, v30, v253);
+    set.horizon(43);
+    draw(ego);
+    show.pic();
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 73;
+    v253 = 160;
+    v34 = 0;
+    new.room(rm.DavCastleCorner);
+}
+if (obj.in.box(ego, 10, 166, 160, 168)) {
+    reset(f95);
+    get.posn(ego, v30, v253);
+    v30 = 110;
+    v253 = 123;
+    v34 = 0;
+    new.room(rm.DavCastleLeftA2);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("You are in large ornate hallway. You can hear music and laughter "
+              "further down the hall.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You are in large ornate hallway. You can hear music and laughter further down the hall."

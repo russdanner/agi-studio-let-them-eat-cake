@@ -1,0 +1,161 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.Tram);
+    load.view(vw.RogerSpacesuitA);
+    load.view(vw.LockedDoor);
+    load.view(vw.Plate);
+    animate.obj(ego);
+    animate.obj(o10);
+    animate.obj(o6);
+    animate.obj(o11);
+    animate.obj(o5);
+    set.view(ego, vw.Roger);
+    set.view(o10, vw.Tram);
+    set.view(o6, vw.RogerSpacesuitA);
+    set.view(o11, vw.LockedDoor);
+    set.view(o5, vw.Plate);
+    stop.cycling(o10);
+    stop.cycling(o6);
+    stop.cycling(o11);
+    stop.cycling(o5);
+    if (v30 == 15) {
+        if (v253 == 126) {
+            set.view(ego, vw.RogerSpacesuitA);
+            draw(ego);
+            position(o10, 55, 47);
+            set.priority(o10, 4);
+            position.v(ego, v30, v253);
+        }
+    }
+    if (v253 != 126) {
+        set.cel(o10, 4);
+        set.loop(o6, 2);
+        position(o6, 35, 95);
+        set(f97);
+        set.priority(o10, 4);
+        position(o10, 5, 47);
+        move.obj(o10, 55, 47, 2, f93);
+        load.sound(snd.Tube);
+        sound(snd.Tube, f83);
+    }
+    position(o11, 5, 129);
+    set.priority(o5, 15);
+    position(o5, 85, 118);
+    v242 = 0;
+    draw(o10);
+    draw(o6);
+    draw(o11);
+    draw(o5);
+    reset(f99);
+    show.pic();
+}
+if (isset(f93)) {
+    reset(f93);
+    set.cel(o10, 1);
+}
+if (posn(ego, 2, 120, 24, 128)) {
+    if (!isset(f99)) {
+        set(f99);
+        set.cel(o11, 4);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, f83);
+    }
+}
+else {
+    if (isset(f99)) {
+        set.cel(o11, 0);
+        load.sound(snd.SpaceDoor);
+        sound(snd.SpaceDoor, f83);
+        reset(f99);
+    }
+}
+if (posn(ego, 2, 120, 14, 130)) {
+    get.posn(ego, v30, v253);
+    v30 = 140;
+    v253 = 141;
+    v34 = 0;
+    new.room(rm.OuterHanger);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("This is Outer Bay B. Along the rear wall is a pneumatic "
+              "transport tube and car. The bay is currently pressurized. A "
+              "large ship sits in the middle of the bay. A door exits the bay "
+              "to the left.");
+    }
+    if ((said("acquire", "craft") || 
+        said("enter", "craft"))) {
+        print("Not a chance Roger. This ship is not StarCon property. Your pod "
+              "awaits you in the hanger.");
+    }
+    if (said("examine", "craft")) {
+        print("The ship is a well maintained vessel. It is currently fueling. "
+              "Unlike the typical StarCon shuttles you often find in these bays "
+              "this is a privately owned and piloted ship. There's a call sign "
+              "placard on the vessel. It reads: 'Cygnus1' You wonder who owns "
+              "this beauty.");
+    }
+    if (said("examine", "car")) {
+        print("The pneumatic transport tube is used to move about the various "
+              "areas within the station. A car is currently waiting in this "
+              "location.");
+    }
+    if (said("examine", "eva")) {
+        if (!isset(f96)) {
+            print("An EVA pressure suit hangs on the rack.");
+        }
+        else {
+            print("Mosly you see the fog of your breath on the suit's visor.");
+        }
+    }
+    if (said("remove", "eva")) {
+        print("You don't have time for that.");
+    }
+    if ((said("acquire", "eva") || 
+        said("put on", "eva"))) {
+        if (posn(ego, 28, 100, 50, 103)) {
+            set.view(ego, vw.RogerSpacesuitA);
+            erase(o6);
+            set(f96);
+            currentScore  += 1;
+            print("Ok");
+        }
+        else {
+            print("You can't reach it.");
+        }
+    }
+    if (said("acquire", "car")) {
+        set.cel(o10, 0);
+        position(ego, 55, 50);
+        draw(ego);
+    }
+    if (said("exit", "car")) {
+        set.cel(o10, 0);
+        position(ego, 55, 50);
+        draw(ego);
+    }
+    if (said("enter", "car")) {
+        print("You pod is fueled and waiting... Better get out to the hanger.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "This is Outer Bay B. Along the rear wall is a pneumatic transport tube and car. The bay is currently pressurized. A large ship sits in the middle of the bay. A door exits the bay to the left."
+#message 2 "Not a chance Roger. This ship is not StarCon property. Your pod awaits you in the hanger."
+#message 3 "The ship is a well maintained vessel. It is currently fueling. Unlike the typical StarCon shuttles you often find in these bays this is a privately owned and piloted ship. There's a call sign placard on the vessel. It reads: 'Cygnus1' You wonder who owns this beauty."
+#message 4 "The pneumatic transport tube is used to move about the various areas within the station. A car is currently waiting in this location."
+#message 5 "An EVA pressure suit hangs on the rack."
+#message 6 "Mosly you see the fog of your breath on the suit's visor."
+#message 7 "You don't have time for that."
+#message 8 "Ok"
+#message 9 "You can't reach it."
+#message 10 "You pod is fueled and waiting... Better get out to the hanger."

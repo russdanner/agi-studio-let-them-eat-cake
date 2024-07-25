@@ -1,0 +1,110 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+    animate.obj(ego);
+    animate.obj(o14);
+    animate.obj(o13);
+    animate.obj(o11);
+    set.view(ego, vw.Roger);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    set.view(o11, vw.Mist);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o11);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 140;
+            v253 = 70;
+        }
+    }
+    position(o14, 1, 43);
+    position(o13, 63, 43);
+    position(o11, 120, 43);
+    reset(f95);
+    position.v(ego, v30, v253);
+    set.horizon(50);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o11);
+    show.pic();
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 55;
+    v34 = 0;
+    new.room(rm.DavWizardE5);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v253 = 55;
+    egoDir = DOWN;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 5;
+    new.room(rm.DavDwarfF4);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    v34 = 0;
+    new.room(rm.DavLakeFGMD4);
+}
+if (isset(f95)) {
+    reset(f95);
+    set.loop(o7, 1);
+    set.cel(o7, 0);
+    v29 = 14;
+    end.of.loop(o7, f86);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("The area is heavily wooded. A large rock dominates the area.");
+    }
+    if (said("examine", "room")) {
+        print("The area is heavily wooded. A large rock dominates the area.");
+    }
+    if (said("examine", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+    if (said("examine", "boulder")) {
+        print("There's a large rock here. A large hole can be seen at the base "
+              "of the rock.");
+    }
+    if (said("examine", "hole")) {
+        if (posn(ego, 88, 128, 104, 140)) {
+            erase(ego);
+            load.view(vw.RogerEaten);
+            set.view(o7, vw.RogerEaten);
+            position(o7, 97, 138);
+            animate.obj(o7);
+            draw(o7);
+            end.of.loop(o7, f95);
+        }
+        else {
+            print("You can't see much from here.");
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You're a bit foggy here. You decide to turn back."
+#message 2 "The area is heavily wooded. A large rock dominates the area."
+#message 3 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 4 "There's a large rock here. A large hole can be seen at the base of the rock."
+#message 5 "You can't see much from here."

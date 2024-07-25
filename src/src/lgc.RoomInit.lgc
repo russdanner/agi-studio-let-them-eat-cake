@@ -1,0 +1,25 @@
+if (monitorType != MONO) {
+    clear.lines(22, 24, BLACK);
+    accept.input();
+}
+animate.obj(ego);
+step.size(ego, v45);
+step.time(ego, v44);
+cycle.time(ego, v43);
+get.posn(ego, v38, v39);
+observe.blocks(ego);
+observe.objs(ego);
+observe.horizon(ego);
+reset(f25);
+reset(f24);
+v30 = 255;
+Label1:
+reset.v(v30);
+*v30 = 0;
+--v30;
+if (v30 > 219) {
+    goto(Label1);
+}
+return();
+
+[ Messages

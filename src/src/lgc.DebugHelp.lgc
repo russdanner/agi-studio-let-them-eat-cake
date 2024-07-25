@@ -1,0 +1,62 @@
+prevent.input();
+status.line.off();
+text.screen();
+lastChar = 0;
+set.text.attribute(LT_GRAY, BLACK);
+display(0, 12, "DEBUG MODE HELP             ");
+display(1, 0, "(press ALT-D or type \"debug\" to enable)");
+display(3, 0, "trace on    - start tracing @next cycle");
+display(4, 0, "              (SCROlL LOCK to toggle)  ");
+display(5, 0, "show mem    - display memory stats     ");
+display(6, 0, "tp          - teleport                 ");
+display(7, 0, "pos         - change ego's position    ");
+display(8, 0, "show var    - display value of a var   ");
+display(9, 0, "set var     - change value of a var    ");
+display(10, 0, "show flag   - display status of a flag ");
+display(11, 0, "set flag    - set a flag               ");
+display(12, 0, "reset flag  - reset (clear) a flag     ");
+display(13, 0, "object      - display information about");
+display(14, 0, "              a screen object          ");
+display(15, 0, "show pri    - display priority screen  ");
+display(16, 0, "get item    - get any inventory item   ");
+display(17, 0, "gimme gimme - get all inventory items  ");
+display(18, 0, "item room   - display room number of   ");
+display(19, 0, "              an inventory item        ");
+display(20, 0, "set pri     - set ego's priority       ");
+display(21, 0, "release pri - release ego's priority   ");
+display(22, 0, "coords      - ego's coordinates on/off ");
+display(23, 0, "log         - logs error's into logfile");
+Label1:
+if (!have.key()) {
+    goto(Label1);
+}
+accept.input();
+status.line.on();
+graphics();
+set.text.attribute(WHITE, BLACK);
+return();
+
+[ Messages
+#message 1 "DEBUG MODE HELP             "
+#message 2 "(press ALT-D or type \"debug\" to enable)"
+#message 3 "trace on    - start tracing @next cycle"
+#message 4 "              (SCROlL LOCK to toggle)  "
+#message 5 "show mem    - display memory stats     "
+#message 6 "tp          - teleport                 "
+#message 7 "pos         - change ego's position    "
+#message 8 "show var    - display value of a var   "
+#message 9 "set var     - change value of a var    "
+#message 10 "show flag   - display status of a flag "
+#message 11 "set flag    - set a flag               "
+#message 12 "reset flag  - reset (clear) a flag     "
+#message 13 "object      - display information about"
+#message 14 "              a screen object          "
+#message 15 "show pri    - display priority screen  "
+#message 16 "get item    - get any inventory item   "
+#message 17 "gimme gimme - get all inventory items  "
+#message 18 "item room   - display room number of   "
+#message 19 "              an inventory item        "
+#message 20 "set pri     - set ego's priority       "
+#message 21 "release pri - release ego's priority   "
+#message 22 "coords      - ego's coordinates on/off "
+#message 23 "log         - logs error's into logfile"

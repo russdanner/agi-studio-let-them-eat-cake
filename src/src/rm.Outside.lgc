@@ -1,0 +1,81 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    call(lgc.RoomInit);
+    set.horizon(91);
+    load.view(vw.Door);
+    load.sound(s.DoorClose);
+    load.sound(s.DoorOpen);
+    animate.obj(o1);
+    set.view(o1, vw.Door);
+    ignore.objs(o1);
+    ignore.horizon(o1);
+    position(o1, 64, 91);
+    if (previousRoom == 201) {
+        set.cel(o1, 5);
+        set(f220);
+    }
+    else {
+        set.cel(o1, 0);
+        reset(f220);
+    }
+    draw(o1);
+    stop.update(o1);
+    draw(ego);
+    show.pic();
+}
+if (obj.in.box(ego, 64, 80, 92, 102) && 
+    !isset(f220)) {
+    set(f220);
+    start.update(o1);
+    end.of.loop(o1, f221);
+    sound(s.DoorOpen, f24);
+}
+if (!obj.in.box(ego, 64, 80, 92, 102) && 
+    isset(f220)) {
+    reset(f220);
+    start.update(o1);
+    reverse.loop(o1, f221);
+    sound(s.DoorClose, f24);
+}
+if (isset(f221)) {
+    reset(f221);
+    stop.update(o1);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch)) {
+    if (said("examine")) {
+        print("You see nothing of interest.");
+    }
+    if (said("examine", "door")) {
+        print("It looks like a very sturdy wooden door.");
+    }
+    if (said("open", "door")) {
+        if (!center.posn(ego, 72, 88, 83, 99)) {
+            print("You are not close enough.");
+        }
+        else {
+            print("The door opens automatically when you approach it.");
+        }
+    }
+    if (said("examine", "fence")) {
+        print("It is a tall white picket fence. Too tall to climb.");
+    }
+    if (said("climb", "fence")) {
+        print("It is too tall. Besides, there's nothing on the other side "
+              "anyway.");
+    }
+}
+if (edgeEgoHit == TOP_EDGE) {
+    new.room(rm.Entrance);
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "It looks like a very sturdy wooden door."
+#message 3 "You are not close enough."
+#message 4 "The door opens automatically when you approach it."
+#message 5 "It is a tall white picket fence. Too tall to climb."
+#message 6 "It is too tall. Besides, there's nothing on the other side anyway."

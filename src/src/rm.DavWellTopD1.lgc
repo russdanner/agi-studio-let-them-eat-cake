@@ -1,0 +1,156 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+    load.view(vw.Bucket);
+    animate.obj(ego);
+    animate.obj(o14);
+    animate.obj(o13);
+    animate.obj(o12);
+    animate.obj(o11);
+    animate.obj(o4);
+    set.view(ego, vw.Roger);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    set.view(o12, vw.Mist);
+    set.view(o11, vw.Mist);
+    set.view(o4, vw.Bucket);
+    set.cel(o4, 0);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o12);
+    stop.cycling(o11);
+    stop.cycling(o4);
+    ignore.objs(o14);
+    ignore.objs(o13);
+    ignore.objs(o12);
+    ignore.objs(o11);
+    position(o14, 1, 43);
+    position(o13, 43, 43);
+    position(o12, 84, 43);
+    position(o11, 120, 43);
+    position(o4, 38, 120);
+    if (previousRoom == 28) {
+        position(ego, 43, 109);
+    }
+    reset(f90);
+    reset(f95);
+    set.horizon(50);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o12);
+    draw(o11);
+    draw(o4);
+    show.pic();
+}
+if (isset(f95)) {
+    v30 = 0;
+    v253 = 0;
+    v34 = 0;
+    new.room(rm.DavWellBottom);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v253 = 55;
+    egoDir = DOWN;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v30 = 15;
+    egoDir = RIGHT;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 5;
+    v253 = 100;
+    v34 = 0;
+    new.room(rm.DavWolfE1);
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 50;
+    v34 = 0;
+    new.room(rm.DavBigLakeLeftD2);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("There's an ancient well here. There's a thick fog to the north "
+              "and west.");
+    }
+    if (said("examine", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+    if (said("examine", "well")) {
+        print("The ancient well reaches deep into the earth. There's a bucket "
+              "at the top of the well.");
+    }
+    if (said("examine", "bucket")) {
+        print("The bucket is old but looks sturdy and watertight.");
+    }
+    if (said("lower", "bucket")) {
+        print("There's no crank here.");
+    }
+    if ((said("enter", "bucket") || 
+        said("acquire", "bucket"))) {
+        if (posn(ego, 21, 105, 110, 145)) {
+            load.view(vw.RogerBucket);
+            erase(ego);
+            set.view(o4, vw.RogerBucket);
+            position(o4, 37, 145);
+            set.priority(o4, 11);
+            stop.cycling(o4);
+            set.cel(o4, 0);
+            set(f90);
+            if (!isset(f133)) {
+                set(f133);
+                currentScore  += 1;
+            }
+            end.of.loop(o4, f95);
+        }
+        else {
+            print("You are not close enough.");
+        }
+    }
+    if (said("exit", "bucket")) {
+        if (isset(f90)) {
+            set.view(ego, vw.Roger);
+            set.view(o4, vw.Bucket);
+            stop.cycling(o4);
+            position(ego, 42, 110);
+            position(o4, 38, 120);
+            draw(o4);
+            draw(ego);
+        }
+        else {
+            print("Say what?");
+        }
+    }
+}
+return();
+
+[ Messages
+#message 1 "You're a bit foggy here. You decide to turn back."
+#message 2 "There's an ancient well here. There's a thick fog to the north and west."
+#message 3 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
+#message 4 "The ancient well reaches deep into the earth. There's a bucket at the top of the well."
+#message 5 "The bucket is old but looks sturdy and watertight."
+#message 6 "There's no crank here."
+#message 7 "You are not close enough."
+#message 8 "Say what?"

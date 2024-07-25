@@ -1,0 +1,59 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    animate.obj(ego);
+    set.view(ego, vw.Roger);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 100;
+            v253 = 110;
+        }
+    }
+    position.v(ego, v30, v253);
+    set.horizon(50);
+    draw(ego);
+    show.pic();
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 55;
+    v34 = 0;
+    new.room(rm.DavWalnutF5);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    v34 = 0;
+    new.room(rm.DavRockE4);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 150;
+    v34 = 0;
+    new.room(rm.DavOgreF3);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 5;
+    v34 = 0;
+    new.room(rm.DavRiverBendA4);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("examine")) {
+        print("This is a lightly wooded area with rocky outcroppings.");
+    }
+    if (said("examine", "room")) {
+        print("This is a lightly wooded area with rocky outcroppings.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "This is a lightly wooded area with rocky outcroppings."

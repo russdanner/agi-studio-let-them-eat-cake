@@ -1,0 +1,222 @@
+if (isset(haveInput) && 
+    !isset(haveMatch)) {
+    if ((said("ass", "rol") || 
+        said("anyword", "ass", "rol") || 
+        said("anyword", "anyword", "ass", "rol") || 
+        said("anyword", "anyword", "anyword", "ass", "rol") || 
+        said("anyword", "anyword", "anyword", "anyword", "ass", "rol") || 
+        said("anyword", "anyword", "anyword", "anyword", "anyword", "ass", "rol"))) {
+        ++v46;
+        if (v46 == 1) {
+            print("I am going to tell on you!");
+        }
+        if (v46 == 2) {
+            print("Don't say anymore words like that!");
+        }
+        if (v46 == 3) {
+            print("Don't say I didn't warn you.");
+            quit(1);
+        }
+    }
+    if (said("examine", "kettle")) {
+        if (has("Teapot")) {
+            show.obj(vw.InvTeapot);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("examine", "cap")) {
+        if (has("Hat") && 
+            !isset(f93)) {
+            show.obj(vw.InvHat);
+        }
+        else {
+            if (has("Hat") && 
+                isset(f93)) {
+                show.obj(vw.InvAdventureHat);
+            }
+            else {
+                print("You don't have it.");
+            }
+        }
+    }
+    if (said("examine", "letter")) {
+        if (has("Summons")) {
+            show.obj(vw.InvSummons);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("examine", "tea")) {
+        if (has("Tea")) {
+            show.obj(vw.InvTea);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("examine", "cup")) {
+        if (has("Teacup")) {
+            show.obj(vw.InvTeacup);
+        }
+        else {
+            if (has("Tea")) {
+                show.obj(vw.InvTea);
+            }
+            else {
+                print("You don't have it.");
+            }
+        }
+    }
+    if (said("examine", "broom")) {
+        if (has("Broom")) {
+            show.obj(vw.InvBroom);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("examine", "card")) {
+        if (has("Keycard")) {
+            print("The keycard is a flat rectangular piece of synthetic "
+                  "material. Written in tiny letters is 'B. H. S. S.'");
+        }
+        else {
+            print("What is this keycard that you speak of? You don't have a "
+                  "keycard.");
+        }
+    }
+    if (said("examine", "glass")) {
+        if (has("Glass") && 
+            !isset(f81)) {
+            show.obj(vw.InvGlass);
+        }
+        else {
+            if (has("Glass") && 
+                isset(f81)) {
+                show.obj(vw.InvGlassSharp);
+            }
+            else {
+                print("You don't have it.");
+            }
+        }
+    }
+    if (said("examine", "cake")) {
+        if (has("Cake")) {
+            show.obj(vw.InvCake);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("examine", "ink")) {
+        if (has("Ink")) {
+            show.obj(vw.InvInk);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("examine", "quill")) {
+        if (has("Quill")) {
+            show.obj(vw.InvQuill);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("examine", "feather")) {
+        if (has("Feather")) {
+            show.obj(vw.InvFeather);
+        }
+        else {
+            if (has("Quill")) {
+                show.obj(vw.InvQuill);
+            }
+            else {
+                print("You don't have it.");
+            }
+        }
+    }
+    if (said("examine", "paper")) {
+        if (has("Paper")) {
+            show.obj(vw.InvPaper);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if (said("examine", "invitation")) {
+        if (has("Invitation")) {
+            show.obj(vw.InvInvitation);
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
+    if ((said("examine", "anyword") || 
+        said("examine", "anyword", "rol"))) {
+        print("What? Where?");
+    }
+    if ((said("acquire", "anyword") || 
+        said("acquire", "anyword", "rol"))) {
+        print("You can't get that here!");
+    }
+    if ((said("use", "anyword") || 
+        said("use", "anyword", "rol"))) {
+        print("What do you want me to do with it?");
+    }
+}
+if ((said("counterfeit", "quill") || 
+    said("carve", "feather"))) {
+    if (has("Feather")) {
+        if (has("Glass")) {
+            if (isset(f81)) {
+                drop("Feather");
+                get("Quill");
+                currentScore  += 1;
+                print("You cut the feather into a quill. Roger we are "
+                      "impressed! That's thinking outside the box - A real "
+                      "FEATHER IN ANY ADVENTURER'S CAP.");
+            }
+            if (!isset(f81)) {
+                print("The highly reflective safety glass couldn't cut through "
+                      "hot Monolith butter. It's no use trying.");
+            }
+        }
+    }
+}
+if (said("counterfeit", "invitation")) {
+    if ((!has("Quill") || 
+        !has("Ink") || 
+        !has("Paper"))) {
+        print("How do you intend to do that?");
+    }
+    if (has("Quill") && 
+        has("Ink") && 
+        has("Paper")) {
+        drop("Paper");
+        get("Invitation");
+        currentScore  += 1;
+        print("Dipping the quill into the ink you cleverly forge an invitation "
+              "to the castle.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "I am going to tell on you!"
+#message 2 "Don't say anymore words like that!"
+#message 3 "Don't say I didn't warn you."
+#message 4 "You don't have it."
+#message 5 "The keycard is a flat rectangular piece of synthetic material. Written in tiny letters is 'B. H. S. S.'"
+#message 6 "What is this keycard that you speak of? You don't have a keycard."
+#message 7 "What? Where?"
+#message 8 "You can't get that here!"
+#message 9 "What do you want me to do with it?"
+#message 10 "You cut the feather into a quill. Roger we are impressed! That's thinking outside the box - A real FEATHER IN ANY ADVENTURER'S CAP."
+#message 11 "The highly reflective safety glass couldn't cut through hot Monolith butter. It's no use trying."
+#message 12 "How do you intend to do that?"
+#message 13 "Dipping the quill into the ink you cleverly forge an invitation to the castle."

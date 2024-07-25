@@ -1,0 +1,114 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.Mist);
+    set.view(ego, vw.Roger);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    set.view(o12, vw.Mist);
+    set.view(o11, vw.Mist);
+    animate.obj(ego);
+    animate.obj(o14);
+    animate.obj(o13);
+    animate.obj(o12);
+    animate.obj(o11);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o12);
+    stop.cycling(o11);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 100;
+            v253 = 110;
+        }
+    }
+    position(o14, 1, 166);
+    position(o13, 43, 166);
+    position(o12, 84, 166);
+    position(o11, 120, 166);
+    random(1, 100, v37);
+    reset(f90);
+    if (v37 < 50) {
+        load.view(vw.Wizard);
+        set.view(o6, vw.Wizard);
+        animate.obj(o6);
+        draw(o6);
+        position(o6, 15, 50);
+        follow.ego(o6, 2, f90);
+        load.sound(snd.MonsterAlert);
+        sound(snd.MonsterAlert, f83);
+    }
+    position.v(ego, v30, v253);
+    draw(ego);
+    draw(o14);
+    draw(o13);
+    draw(o12);
+    draw(o11);
+    set.horizon(50);
+    show.pic();
+}
+if (edgeEgoHit == BOTTOM_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v253 = 155;
+    egoDir = UP;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    get.posn(ego, v30, v253);
+    v253 = 150;
+    v34 = 0;
+    new.room(rm.DavRockE4);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 5;
+    v34 = 0;
+    new.room(rm.DavWalnutF5);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    v34 = 0;
+    new.room(rm.DavWitchHouseD5);
+}
+if (isset(f90)) {
+    reset(f90);
+    if (!isset(f86)) {
+        load.view(vw.RogerStoned);
+        set.view(ego, vw.RogerStoned);
+        end.of.loop(ego, f107);
+    }
+}
+if (isset(f107)) {
+    egoDir = STOPPED;
+    v29 = 15;
+    set(f86);
+    wander(o6);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("You are at the edge of a thick forest. A clearing sits aside of "
+              "the wooded area. There's a thick fog to the south.");
+    }
+    if (said("examine", "fog")) {
+        print("There's a thick fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "You are at the edge of a thick forest. A clearing sits aside of the wooded area. There's a thick fog to the south."
+#message 4 "There's a thick fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."

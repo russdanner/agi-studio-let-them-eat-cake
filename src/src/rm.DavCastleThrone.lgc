@@ -1,0 +1,162 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.PersonA);
+    load.view(vw.PersonB);
+    load.view(vw.GrahamKing);
+    load.view(vw.Rosella);
+    load.view(vw.Alexander);
+    load.view(vw.Valanice);
+    load.view(vw.Crowd);
+    load.view(vw.HBD);
+    load.view(vw.Person3);
+    load.view(vw.PersonG1);
+    load.view(vw.PersonG2);
+    load.view(vw.Cedric);
+    animate.obj(ego);
+    animate.obj(o1);
+    animate.obj(o2);
+    animate.obj(o3);
+    animate.obj(o4);
+    animate.obj(o5);
+    animate.obj(o6);
+    animate.obj(o7);
+    animate.obj(o12);
+    animate.obj(o13);
+    animate.obj(o14);
+    animate.obj(o8);
+    animate.obj(o9);
+    animate.obj(o10);
+    animate.obj(o11);
+    animate.obj(o16);
+    set.view(ego, vw.Roger);
+    set.view(o1, vw.PersonA);
+    set.view(o2, vw.PersonB);
+    set.view(o3, vw.GrahamKing);
+    set.view(o4, vw.Rosella);
+    set.view(o5, vw.Alexander);
+    set.view(o6, vw.Valanice);
+    set.view(o7, vw.Crowd);
+    set.view(o12, vw.Person3);
+    set.view(o13, vw.PersonG1);
+    set.view(o14, vw.PersonG2);
+    set.view(o8, vw.HBD);
+    set.view(o9, vw.HBD);
+    set.view(o10, vw.HBD);
+    set.view(o11, vw.HBD);
+    set.view(o16, vw.Cedric);
+    if (v30 == 0) {
+        if (v253 == 0) {
+            v30 = 100;
+            v253 = 100;
+        }
+    }
+    position(o1, 50, 100);
+    position(o2, 50, 130);
+    position(o3, 60, 100);
+    position(o4, 60, 130);
+    position(o5, 80, 100);
+    position(o6, 80, 130);
+    position(o12, 50, 80);
+    position(o13, 90, 130);
+    position(o14, 100, 130);
+    stop.cycling(o3);
+    wander(o4);
+    wander(o1);
+    wander(o2);
+    wander(o5);
+    wander(o6);
+    wander(o12);
+    wander(o13);
+    wander(o14);
+    position(o7, 96, 89);
+    set.priority(o7, 4);
+    set.loop(o7, 0);
+    position.v(ego, v30, v253);
+    stop.cycling(o8);
+    stop.cycling(o9);
+    stop.cycling(o10);
+    set.cel(o8, 1);
+    set.cel(o9, 1);
+    set.cel(o10, 1);
+    set.priority(o16, 15);
+    position(o16, 128, 139);
+    position(o8, 33, 83);
+    position(o9, 140, 92);
+    position(o10, 26, 89);
+    v242 = 0;
+    v243 = 0;
+    set.horizon(43);
+    draw(ego);
+    draw(o1);
+    draw(o2);
+    draw(o3);
+    draw(o4);
+    draw(o5);
+    draw(o6);
+    draw(o7);
+    draw(o12);
+    draw(o13);
+    draw(o14);
+    draw(o8);
+    draw(o9);
+    draw(o10);
+    draw(o16);
+    show.pic();
+}
+if (v243 == 0 && 
+    v242 == 20) {
+    print("You walk into what looks like a huge party for KING Graham. He's "
+          "surrounded by friends and love ones.");
+}
+if (v243 == 1 && 
+    v242 == 0) {
+    set.cel(o11, 0);
+    set.priority(o11, 15);
+    stop.cycling(o11);
+    position(o11, 60, 100);
+    draw(o11);
+    load.sound(snd.HBD);
+    sound(snd.HBD, f83);
+}
+if (v243 == 3 && 
+    v242 == 25) {
+    print("... THE KING!! Oh My ...");
+}
+if (v243 == 3 && 
+    v242 == 80) {
+    set(f89);
+    reset(f88);
+    get.posn(ego, v30, v253);
+    v30 = 15;
+    v253 = 120;
+    v34 = 0;
+    new.room(rm.GrahamHouseMorning);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if ((said("examine", "cedric") || 
+        said("ask", "cedric"))) {
+        print("Graham, watch out - that might be a poooooooisonous CAKE!");
+    }
+    if (said("attack", "cedric")) {
+        print("He does look pretty annoying doesn't he?! You prepare to %w1 "
+              "Cedric...");
+        print("Wait.. what did that owl ever do to you Roger?");
+        currentScore  += 1;
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You walk into what looks like a huge party for KING Graham. He's surrounded by friends and love ones."
+#message 3 "... THE KING!! Oh My ..."
+#message 4 "Graham, watch out - that might be a poooooooisonous CAKE!"
+#message 5 "He does look pretty annoying doesn't he?! You prepare to %w1 Cedric..."
+#message 6 "Wait.. what did that owl ever do to you Roger?"

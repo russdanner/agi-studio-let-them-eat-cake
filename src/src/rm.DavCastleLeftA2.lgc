@@ -1,0 +1,148 @@
+if (isset(newRoom)) {
+    load.pic(currentRoom);
+    draw.pic(currentRoom);
+    discard.pic(currentRoom);
+    unanimate.all();
+    v34 = 1;
+    load.view(vw.Roger);
+    load.view(vw.RogerSplash);
+    load.view(vw.RogerSwim);
+    load.view(vw.CastleFlags);
+    load.view(vw.CastleCrocs);
+    load.view(vw.CastleDoors);
+    load.view(vw.Mist);
+    animate.obj(ego);
+    animate.obj(o3);
+    animate.obj(o4);
+    animate.obj(o5);
+    animate.obj(o14);
+    animate.obj(o13);
+    set.view(ego, vw.Roger);
+    set.view(o3, vw.CastleFlags);
+    set.view(o4, vw.CastleCrocs);
+    set.view(o5, vw.CastleDoors);
+    set.view(o14, vw.Mist);
+    set.view(o13, vw.Mist);
+    set.loop(o5, 1);
+    set.cel(o5, 0);
+    set.priority(o5, 10);
+    stop.cycling(o14);
+    stop.cycling(o13);
+    stop.cycling(o5);
+    object.on.water(o4);
+    if (v30 == 0) {
+        stop.cycling(ego);
+        if (v253 == 0) {
+            v30 = 15;
+            v253 = 130;
+        }
+    }
+    position(o14, 1, 40);
+    position(o13, 30, 40);
+    ignore.horizon(o3);
+    ignore.blocks(o3);
+    position(o3, 115, 20);
+    position(o4, 50, 165);
+    position(o5, 104, 120);
+    position.v(ego, v30, v253);
+    draw(ego);
+    draw(o3);
+    draw(o4);
+    draw(o5);
+    draw(o14);
+    draw(o13);
+    wander(o4);
+    reset(f95);
+    set.horizon(40);
+    show.pic();
+}
+if (isset(f95)) {
+    get.posn(ego, v30, v253);
+    v30 = 75;
+    v253 = 163;
+    v34 = 0;
+    new.room(rm.DavCastleHall);
+}
+if (edgeEgoHit == TOP_EDGE) {
+    print("You're a bit foggy here. You decide to turn back.");
+    get.posn(ego, v30, v253);
+    v253 = 45;
+    egoDir = DOWN;
+    erase(ego);
+    position.v(ego, v30, v253);
+    draw(ego);
+}
+if (edgeEgoHit == LEFT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 150;
+    v34 = 0;
+    new.room(rm.DavDaggerF2);
+}
+if (edgeEgoHit == RIGHT_EDGE) {
+    get.posn(ego, v30, v253);
+    v30 = 15;
+    v34 = 0;
+    new.room(rm.DavCastleRightB2);
+}
+if (isset(haveInput) && 
+    !isset(haveMatch) && 
+    unknownWordNum == 0) {
+    if (said("open", "door")) {
+        if (posn(ego, 97, 122, 121, 125)) {
+            if (has("Invitation") && 
+                has("Cake")) {
+                if (!isset(f132)) {
+                    set(f132);
+                    currentScore  += 1;
+                }
+                end.of.loop(o5, f95);
+            }
+            else {
+                print("The doors are locked. On the door is a notice.");
+            }
+        }
+        else {
+            print("You need to be closer.");
+        }
+    }
+    if ((said("examine", "room") || 
+        said("examine"))) {
+        print("You find yourself at the west end of a great castle. There's a "
+              "large staircase and door here that leads into the castle.");
+    }
+    if (said("examine", "door")) {
+        print("The castle doors are made of heavy wood and iron. There's a "
+              "notice nailed to the doors.");
+    }
+    if ((said("read", "announcement") || 
+        said("examine", "announcement"))) {
+        if (posn(ego, 97, 122, 121, 125)) {
+            if (!isset(f131)) {
+                set(f131);
+                currentScore  += 1;
+            }
+            print("The notice reads 'Hear Ye! Hear Ye! A party for the King "
+                  "will be held today. Attendees must bring an invitation and a "
+                  "party favor.' The notice gets you thinking. You need to get "
+                  "in here. If anyone can be of service. They will be inside.");
+        }
+        else {
+            print("You need to be closer.");
+        }
+    }
+    if (said("examine", "fog")) {
+        print("There's a 'think' fog here. It almost feels as much mental as it "
+              "is physical. The more you look into it the more lost you feel.");
+    }
+}
+return();
+
+[ Messages
+#message 1 "You see nothing of interest."
+#message 2 "You're a bit foggy here. You decide to turn back."
+#message 3 "The doors are locked. On the door is a notice."
+#message 4 "You need to be closer."
+#message 5 "You find yourself at the west end of a great castle. There's a large staircase and door here that leads into the castle."
+#message 6 "The castle doors are made of heavy wood and iron. There's a notice nailed to the doors."
+#message 7 "The notice reads 'Hear Ye! Hear Ye! A party for the King will be held today. Attendees must bring an invitation and a party favor.' The notice gets you thinking. You need to get in here. If anyone can be of service. They will be inside."
+#message 8 "There's a 'think' fog here. It almost feels as much mental as it is physical. The more you look into it the more lost you feel."
