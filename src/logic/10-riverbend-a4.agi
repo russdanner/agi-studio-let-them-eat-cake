@@ -70,10 +70,10 @@ if(!equaln(vEgoDirection, directionStopped)) {
 }
 
 if(said("look")) {
-    print("The river winds off to the east into a mist which grow thicker to the east")
+    print("The river winds off to the east into a mist which grows thicker to the east.")
 }
 if(said("look", "room")) {
-    print("The river winds off to the east into a mist which grow thicker to the east")
+    print("The river winds off to the east into a mist which grows thicker to the east.")
 }
 if(said("look", "water")) {
     print("The river is flowing off to the east and looks to have a strong current.")
