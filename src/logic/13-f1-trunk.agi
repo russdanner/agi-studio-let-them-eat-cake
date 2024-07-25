@@ -127,7 +127,7 @@ if(said("knock")) {
 
 if(said("look", "door")) {
     if(isset(fEyesOpen)) {
-        print("The door is made of wood and looks extremely sturdy. Theres a small slot in the door")
+        print("The door is made of wood and looks extremely sturdy. Theres a small slot in the door.")
     }
     if(!isset(fEyesOpen)) {
         print("The door is made of wood and looks extremely sturdy.")
@@ -141,7 +141,7 @@ if(said("look", "slot")) {
         print("On the door you find a panel with a small slot. A faint blinking red glow is emitted from somewhere inside the slot. You wonder what it could be for.")
     }
     if(!isset(fEyesOpen)) {
-        print("what slot? There's no slot here.")
+        print("What slot? There's no slot here.")
     }
 }
 if(said("look", "fog")) {
