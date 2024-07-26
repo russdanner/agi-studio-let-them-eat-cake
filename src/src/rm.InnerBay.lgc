@@ -72,6 +72,14 @@ if (isset(newRoom)) {
     draw(o11);
     show.pic();
 }
+
+if (!isset(f96)) {
+    animate.obj(o7);
+    stop.cycling(o7);
+    position(o7, 43, 95);
+    draw(o7);
+}
+
 if (posn(ego, 100, 95, 108, 115)) {
     if (!isset(f102)) {
         end.of.loop(o5, f102);
@@ -225,6 +233,15 @@ if (isset(haveInput) &&
                 currentScore  += 1;
                 drop("Broom");
                 print("Ok");
+            
+            }
+        }
+        else {
+            if (!has("Broom")) {
+                print("You don't have one.");
+            }
+            else {
+               print("If you left the broom here, someone would have to come clean it up --- and you might know him. You decide instead to keep the broom with you. ");
             }
         }
     }

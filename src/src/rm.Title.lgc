@@ -56,7 +56,7 @@ if (isset(newRoom)) {
     sound(snd.Theme, f25);
     lastChar = 0;
     display(10, 12, "Let Them Eat Cake");
-    display(12, 14, "Version 1.7.2");
+    display(12, 14, "Version 2.0.0");
     display(23, 9, "let-them-eat-cake.com");
     display(24, 8, "One Guy from CrafterCMS");
 }

@@ -17,8 +17,8 @@ if (isset(newRoom)) {
             v253 = 148;
         }
     }
-    position(o4, 51, 133);
-    set.priority(o4, 4);
+    position(o4, 51, 134);
+    set.priority(o4, 15);
     position.v(ego, v30, v253);
     reset(f90);
     reset(f95);
@@ -29,6 +29,7 @@ if (isset(newRoom)) {
     show.pic();
 }
 if (isset(f91)) {
+    program.control();
     if (v242 == 30) {
         add.to.pic(vw.Waterfill, 0, 0, 47, 146, 6, 14);
     }
@@ -98,16 +99,6 @@ if (isset(haveInput) &&
               "The walls are covered in colorful messages scrawled in a variety "
               "of alien languages.");
     }
-    if (said("bathroom")) {
-        set(f90);
-        v242 = 0;
-        load.view(vw.RogerPotty);
-        set.view(ego, vw.RogerPotty);
-        set.cel(ego, 0);
-        position(ego, 73, 126);
-        start.cycling(ego);
-        end.of.loop(ego, f95);
-    }
     if (said("clean")) {
         if (has("Broom")) {
             print("Nah. This place is beyond hope.");
@@ -131,7 +122,8 @@ if (isset(haveInput) &&
               "The walls are covered in colorful messages scrawled in a variety "
               "of alien languages.");
     }
-    if (said("go", "bathroom")) {
+    if ((said("use", "commode") || said("go", "bathroom") || said("poop"))) {
+        program.control();  
         set(f90);
         v242 = 0;
         load.view(vw.RogerPotty);
@@ -139,18 +131,7 @@ if (isset(haveInput) &&
         set.cel(ego, 0);
         position(ego, 73, 126);
         start.cycling(ego);
-        animationInterval = 6;
-        end.of.loop(ego, f95);
-    }
-    if (said("use", "commode")) {
-        set(f90);
-        v242 = 0;
-        load.view(vw.RogerPotty);
-        set.view(ego, vw.RogerPotty);
-        set.cel(ego, 0);
-        position(ego, 73, 126);
-        start.cycling(ego);
-        animationInterval = 6;
+        //animationInterval = 6;
         end.of.loop(ego, f95);
     }
     if (said("examine", "graffiti")) {
