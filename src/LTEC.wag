@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "5/17/2024 2:10:07 AM"
+   LastEdit = "7/26/2024 10:49:18 PM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -49,7 +49,7 @@
 [::BEGIN Logics::]
 [Logic0]
    CompCRC32 = &HB2F510B5
-   CRC32 = &H0
+   CRC32 = &HB2F510B5
    ID = lgc.Main
    IsRoom = False
    Size = 1735
@@ -57,7 +57,7 @@
 
 [Logic90]
    CompCRC32 = &HA8F91084
-   CRC32 = &H0
+   CRC32 = &HA8F91084
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
@@ -65,7 +65,7 @@
 
 [Logic91]
    CompCRC32 = &HA669A244
-   CRC32 = &H0
+   CRC32 = &HA669A244
    IsRoom = False
    ID = lgc.Init
    Size = 162
@@ -74,7 +74,7 @@
 [Logic92]
    ID = lgc.RoomInit
    Description = "Room Initialization\n\nThis logic is called by room logics when they are executed for the first time when a new.room() command is encountered. It takes care of the common items that are done for all rooms."
-   CRC32 = &H0
+   CRC32 = &H41D85F7A
    CompCRC32 = &H41D85F7A
    IsRoom = False
    Size = 64
@@ -82,7 +82,7 @@
 [Logic93]
    ID = lgc.GameHelp
    Description = "Help Screen\n\nThis screen also demonstrates the use of extended characters in text mode."
-   CRC32 = &H0
+   CRC32 = &H47042181
    CompCRC32 = &H47042181
    IsRoom = False
    Size = 1360
@@ -90,7 +90,7 @@
 [Logic94]
    ID = lgc.DebugHelp
    Description = "Debug mode help screen\n\nDisplays a help screen with typical debug mode commands."
-   CRC32 = &H0
+   CRC32 = &HD7ABFC02
    CompCRC32 = &HD7ABFC02
    IsRoom = False
    Size = 1077
@@ -106,14 +106,14 @@
 [Logic96]
    ID = lgc.TraceInfo
    Description = "Tracer Info\n\nThis logic includes the text of agi commands so the trace window will display the command text instead of just numbers."
-   CRC32 = &H0
+   CRC32 = &HBC3FB6F8
    CompCRC32 = &HBC3FB6F8
    IsRoom = False
    Size = 2617
 
 [Logic97]
    CompCRC32 = &H2B079074
-   CRC32 = &H0
+   CRC32 = &H2B079074
    ID = lgc.Joystick
    IsRoom = False
    Size = 46
@@ -121,7 +121,7 @@
 
 [Logic98]
    CompCRC32 = &H1890C0B2
-   CRC32 = &H0
+   CRC32 = &H1890C0B2
    ID = lgc.Error
    IsRoom = False
    Size = 813
@@ -129,7 +129,7 @@
 
 [Logic99]
    CompCRC32 = &H3C23AA28
-   CRC32 = &H0
+   CRC32 = &H3C23AA28
    ID = lgc.Debug
    IsRoom = False
    Size = 1137
@@ -153,50 +153,50 @@
 [Logic203]
    ID = rm.NorthRoom
    Description = "An example room."
-   CRC32 = &H0
+   CRC32 = &H68A5D47D
    CompCRC32 = &H68A5D47D
    IsRoom = True
 
 [Logic4]
    ID = rm.GrahamLawnNight
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HB3DFEE67
    CompCRC32 = &HB3DFEE67
    IsRoom = True
 
 [Logic201]
    ID = rm.Entrance
    Description = "An example room with several exits."
-   CRC32 = &H0
+   CRC32 = &H79B86FF3
    CompCRC32 = &H79B86FF3
    IsRoom = True
 
 [Logic202]
    ID = rm.Outside
    Description = "An example room with an automatic door and sound effects."
-   CRC32 = &H0
+   CRC32 = &HF80E8426
    CompCRC32 = &HF80E8426
    IsRoom = True
 
 [Logic204]
    ID = rm.WestRoom
    Description = "An example room."
-   CRC32 = &H0
+   CRC32 = &HE7781EAC
    CompCRC32 = &HE7781EAC
    IsRoom = True
 
 [Logic205]
    ID = rm.EastRoom
    Description = "An example room."
-   CRC32 = &H0
+   CRC32 = &HC144128D
    CompCRC32 = &HC144128D
    IsRoom = True
 
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &HE1D7BEBD
-   CompCRC32 = &HE1D7BEBD
+   CRC32 = &HECBF6DED
+   CompCRC32 = &HECBF6DED
    IsRoom = True
 
 [Logic3]
@@ -237,15 +237,15 @@
 [Logic39]
    ID = rm.OuterHanger
    Description = ""
-   CRC32 = &H4737EC55
-   CompCRC32 = &H4737EC55
+   CRC32 = &HEA121F3C
+   CompCRC32 = &HEA121F3C
    IsRoom = True
 
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &HD55A4FEB
-   CompCRC32 = &HD55A4FEB
+   CRC32 = &H2E67F2C9
+   CompCRC32 = &H2E67F2C9
    IsRoom = True
 
 [Logic8]
@@ -258,7 +258,7 @@
 [Logic40]
    ID = rm.Station
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H5A915BD
    CompCRC32 = &H5A915BD
    IsRoom = True
 
@@ -279,7 +279,7 @@
 [Logic24]
    ID = rm.DavOgreF3
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HC35945F3
    CompCRC32 = &HC35945F3
    IsRoom = True
 
@@ -293,14 +293,14 @@
 [Logic25]
    ID = rm.DavDwarfF4
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HD259D456
    CompCRC32 = &HD259D456
    IsRoom = True
 
 [Logic23]
    ID = rm.DavDaggerF2
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HFF84C4DD
    CompCRC32 = &HFF84C4DD
    IsRoom = True
 
@@ -314,56 +314,56 @@
 [Logic20]
    ID = rm.DavRockE4
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H18E9B088
    CompCRC32 = &H18E9B088
    IsRoom = True
 
 [Logic22]
    ID = rm.DavTreeF1
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HEF590626
    CompCRC32 = &HEF590626
    IsRoom = True
 
 [Logic19]
    ID = rm.DavBigLakeRightE2
    Description = ""
-   CRC32 = &H0
-   CompCRC32 = &HC225EE0C
+   CRC32 = &HDAAF4C07
+   CompCRC32 = &HDAAF4C07
    IsRoom = True
 
 [Logic9]
    ID = rm.DavCastleLeftA2
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H71392CD8
    CompCRC32 = &H71392CD8
    IsRoom = True
 
 [Logic21]
    ID = rm.DavWizardE5
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HE10A2A3D
    CompCRC32 = &HE10A2A3D
    IsRoom = True
 
 [Logic16]
    ID = rm.DavLakeFGMD4
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H97CEBBA
    CompCRC32 = &H97CEBBA
    IsRoom = True
 
 [Logic18]
    ID = rm.DavWolfE1
    Description = ""
-   CRC32 = &H0
-   CompCRC32 = &H45271A85
+   CRC32 = &HC30938C3
+   CompCRC32 = &HC30938C3
    IsRoom = True
 
 [Logic12]
    ID = rm.DavCastleRightB2
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H35EBC47D
    CompCRC32 = &H35EBC47D
    IsRoom = True
 
@@ -377,14 +377,14 @@
 [Logic32]
    ID = rm.DavCastleHall
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H38293D
    CompCRC32 = &H38293D
    IsRoom = True
 
 [Logic31]
    ID = rm.DavCastleCorner
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HEB1B0F47
    CompCRC32 = &HEB1B0F47
    IsRoom = True
 
@@ -398,28 +398,28 @@
 [Logic14]
    ID = rm.DavWellTopD1
    Description = ""
-   CRC32 = &H0
-   CompCRC32 = &HA1B0ADB7
+   CRC32 = &H18AECA3
+   CompCRC32 = &H18AECA3
    IsRoom = True
 
 [Logic27]
    ID = rm.DavWitchHouseInside
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HA02FC549
    CompCRC32 = &HA02FC549
    IsRoom = True
 
 [Logic28]
    ID = rm.DavWellBottom
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H3DCA78B
    CompCRC32 = &H3DCA78B
    IsRoom = True
 
 [Logic15]
    ID = rm.DavBigLakeLeftD2
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H54A18EC2
    CompCRC32 = &H54A18EC2
    IsRoom = True
 
@@ -433,21 +433,21 @@
 [Logic34]
    ID = rm.GrahamLawnDay
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HCCB93860
    CompCRC32 = &HCCB93860
    IsRoom = True
 
 [Logic115]
    ID = rm.GrahamCastle
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H4738FE2C
    CompCRC32 = &H4738FE2C
    IsRoom = True
 
 [Logic118]
    ID = rm.GrahamHouseMorning
    Description = ""
-   CRC32 = &H0
+   CRC32 = &HA51B6EEF
    CompCRC32 = &HA51B6EEF
    IsRoom = True
 
@@ -461,14 +461,14 @@
 [Logic120]
    ID = rm.DavLabStairs
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H1205E910
    CompCRC32 = &H1205E910
    IsRoom = True
 
 [Logic121]
    ID = rm.DavLab
    Description = ""
-   CRC32 = &H0
+   CRC32 = &H6A62D2F8
    CompCRC32 = &H6A62D2F8
    IsRoom = True
 [::END Logics::]

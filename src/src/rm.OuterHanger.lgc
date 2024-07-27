@@ -27,7 +27,8 @@ if (isset(newRoom)) {
     else {
         set.view(ego, vw.Roger);
     }
-    set.priority(o10, 12);
+    set.priority(o11, 9);
+    set.priority(o10, 10);
     position(o11, 55, 109);
     position(o10, 60, 100);
     set.horizon(73);
@@ -45,36 +46,51 @@ if (posn(ego, 145, 135, 160, 160)) {
     new.room(rm.OuterBay);
 }
 if (edgeEgoHit == TOP_EDGE) {
-    stop.cycling(ego);
+    program.control();
     set.view(ego, vw.RogerSpacesuitA);
+    set.loop(ego, 4);
+    set.cel(ego, 0);
     set.priority(ego, 4);
+    fix.loop(ego);
+    ignore.horizon(ego);
     move.obj(ego, 100, 40, 1, f93);
-    v29 = 4;
-    set(f86);
 }
 if (isset(f93)) {
+    reset(f93);
+    v29 = 4;
+    set(f86);
     erase(ego);
 }
 if (!isset(f96)) {
     if (!isset(f90)) {
-        get.posn(ego, v30, v253);
-        v30 = 100;
-        reset(f91);
-        reset(f94);
-        v251 = 1;
-        move.obj.v(ego, v30, v253, v251, f90);
+        if(!isset(f86)) {
+            if(!isset(f186)) {
+                set(f186);
+                get.posn(ego, v30, v253);
+                v30 = 100;
+                reset(f91);
+                reset(f94);
+                v252 = 1;
+                move.obj.v(ego, v30, v253, v252, f90);
+            }
+        }
     }
 }
+
 if (isset(f90)) {
     if (!isset(f94)) {
         set(f94);
-        stop.motion(ego);
         load.view(vw.RogerExplode);
         set.view(ego, vw.RogerExplode);
+        start.cycling(ego);
+        normal.motion(ego);
+        assignn(v6, 7);
         end.of.loop(ego, f91);
     }
 }
+
 if (isset(f91)) {
+    reset(f91);
     erase(ego);
     v29 = 3;
     set(f86);

@@ -79,7 +79,7 @@ if (edgeEgoHit == RIGHT_EDGE) {
 }
 if (edgeEgoHit == BOTTOM_EDGE) {
     get.posn(ego, v30, v253);
-    v253 = 50;
+    v253 = 55;
     v34 = 0;
     new.room(rm.DavBigLakeRightE2);
 }

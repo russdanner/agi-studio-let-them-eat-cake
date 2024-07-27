@@ -26,6 +26,8 @@ if (isset(newRoom)) {
     position(o13, 43, 166);
     position(o12, 84, 166);
     position(o11, 120, 166);
+    position.v(ego, v30, v253);
+
     draw(ego);
     draw(o14);
     draw(o13);

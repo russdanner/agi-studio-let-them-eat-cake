@@ -125,7 +125,7 @@ if (isset(haveInput) &&
             end.of.loop(o4, f95);
         }
         else {
-            print("You are not close enough.");
+            print("You are not close enough. You can't reach the bucket from the south side of the well.");
         }
     }
     if (said("exit", "bucket")) {

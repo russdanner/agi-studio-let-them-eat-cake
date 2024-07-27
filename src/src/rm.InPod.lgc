@@ -28,10 +28,6 @@ if (isset(newRoom)) {
     set.view(o9, vw.Decal);
     stop.cycling(o1);
     stop.cycling(o9);
-    stop.cycling(o10);
-    stop.cycling(o11);
-    stop.cycling(o12);
-    stop.cycling(o13);
     position(o9, 119, 124);
     position(o1, 106, 128);
     if (!isset(f93)) {
@@ -87,9 +83,14 @@ if (isset(newRoom)) {
     set.priority(o12, 15);
     set.priority(o13, 15);
     position(o10, 65, 40);
-    position(o11, 85, 40);
     position(o12, 65, 50);
     position(o13, 85, 50);
+    
+    position(o11, 85, 40);
+    set.dir(o11, v6);
+    start.motion(o11);
+    
+    reset(f101);
     draw(o1);
     draw(o9);
     draw(o10);
@@ -116,6 +117,8 @@ if (isset(f91)) {
 if (isset(f96)) {
     if (isset(f93)) {
         if (!isset(f105)) {
+        
+        
             if (!isset(f100)) {
                 move.obj(o10, 20, 75, 2, f100);
             }
@@ -125,15 +128,24 @@ if (isset(f96)) {
                 position(o10, 65, 40);
                 draw(o10);
             }
+
             if (!isset(f101)) {
-                move.obj(o11, 125, 80, 2, f101);
+                if(!isset(f240)) {
+                    print("move");
+                    set(f240);
+                    move.obj(o11, 125, 80, 2, f101);
+                }
             }
             else {
+                reset(f240);
+                print("reset");
+            
                 reset(f101);
                 erase(o11);
                 position(o11, 85, 40);
                 draw(o11);
             }
+
             if (!isset(f102)) {
                 move.obj(o12, 20, 15, 2, f102);
             }
@@ -323,6 +335,9 @@ if (isset(haveInput) &&
     if (said("press", "throttle")) {
         print("The throttle is topped out. There's no room to push it any "
               "further back.");
+    }
+    if (said("press", "button")) {
+        print("There are many buttons here. Which one do you want to push?");
     }
     if (said("pull", "throttle")) {
         if (isset(f91)) {
