@@ -101,7 +101,7 @@ if (posn(ego, 85, 139, 105, 151)) {
         else {
             currentScore  += 1;
             v144 = 1;
-            v140 = 1;
+            v140 += 1;
             erase(o7);
         }
     }
@@ -114,7 +114,7 @@ if (posn(ego, 36, 80, 48, 95)) {
         }
         else {
             v145 = 1;
-            v140 = 1;
+            v140 += 1;
             currentScore  += 1;
             erase(o8);
         }
@@ -130,7 +130,13 @@ if (posn(ego, 145, 135, 160, 160)) {
         new.room(rm.InnerBay);
     }
     else {
-        print("Look at that deck!! You better keep cleaning.");
+        if (v140 == 2) {
+            print("You have an urgent message on your communicator. You better check on it.");        
+        }
+        else {
+            print("Look at that deck!! You better keep cleaning.");
+        }
+
         get.posn(ego, v30, v253);
         v30 = 140;
         egoDir = LEFT;

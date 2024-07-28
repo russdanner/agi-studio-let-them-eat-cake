@@ -147,6 +147,14 @@ if (isset(haveInput) &&
             print("You don't have the proper equipment on hand for that.");
         }
     }
+    if (said("look", "watch")) {
+        if (isset(f96)) {
+            print("You heard the commander. Get a move on it. You don't have time for that now.");
+        }
+        else {
+            print("You don't have it.");
+        }
+    }
     if (said("press", "button")) {
         if (isset(f96)) {
             print("You can't go in there wearing your EVA pressure suit. That "

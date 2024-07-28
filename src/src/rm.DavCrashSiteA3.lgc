@@ -92,12 +92,17 @@ if (edgeEgoHit == LEFT_EDGE) {
 if (isset(onWater)) {
     if (!isset(f93)) {
         set(f93);
-        stop.motion(ego);
         set.view(ego, vw.RogerSplash);
-        v29 = 7;
-        move.obj(ego, 25, 50, 2, f86);
+        move.obj(ego, 125, 165, 2, f186);
     }
 }
+if(isset(f186)) {
+    reset(f186);
+    set(f86);
+    erase(ego);
+    v29 = 7;
+}
+
 if (isset(haveInput) && 
     !isset(haveMatch) && 
     unknownWordNum == 0) {

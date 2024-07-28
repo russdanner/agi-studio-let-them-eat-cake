@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "7/26/2024 10:49:18 PM"
+   LastEdit = "7/28/2024 2:47:39 PM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -195,8 +195,8 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &HECBF6DED
-   CompCRC32 = &HECBF6DED
+   CRC32 = &H73CE862F
+   CompCRC32 = &H73CE862F
    IsRoom = True
 
 [Logic3]
@@ -209,8 +209,8 @@
 [Logic36]
    ID = rm.InnerBay
    Description = ""
-   CRC32 = &HC8779AD2
-   CompCRC32 = &HC8779AD2
+   CRC32 = &HB46E279F
+   CompCRC32 = &HB46E279F
    IsRoom = True
 
 [Logic41]
@@ -230,8 +230,8 @@
 [Logic38]
    ID = rm.OuterBay
    Description = ""
-   CRC32 = &H265A60D7
-   CompCRC32 = &H265A60D7
+   CRC32 = &HDC216A53
+   CompCRC32 = &HDC216A53
    IsRoom = True
 
 [Logic39]
@@ -251,8 +251,8 @@
 [Logic8]
    ID = rm.DavCrashSiteA3
    Description = ""
-   CRC32 = &HDBA703C7
-   CompCRC32 = &HDBA703C7
+   CRC32 = &H423209FD
+   CompCRC32 = &H423209FD
    IsRoom = True
 
 [Logic40]
@@ -412,8 +412,8 @@
 [Logic28]
    ID = rm.DavWellBottom
    Description = ""
-   CRC32 = &H3DCA78B
-   CompCRC32 = &H3DCA78B
+   CRC32 = &H34038A73
+   CompCRC32 = &H34038A73
    IsRoom = True
 
 [Logic15]

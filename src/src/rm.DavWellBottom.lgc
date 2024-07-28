@@ -101,6 +101,8 @@ if (isset(haveInput) &&
         set.loop(ego, 0);
         set.cel(ego, 0);
         start.cycling(ego);
+        //assignn(v6, 1);
+        wander(ego);
         draw(ego);
         set(f93);
         if (!isset(f137)) {
