@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H2C8E50D6
-   CompCRC32 = &H2C8E50D6
+   CRC32 = &HDD1D5BA4
+   CompCRC32 = &HDD1D5BA4
    IsRoom = True
 
 [Logic203]
@@ -447,8 +447,8 @@
 [Logic118]
    ID = rm.GrahamHouseMorning
    Description = ""
-   CRC32 = &HA51B6EEF
-   CompCRC32 = &HA51B6EEF
+   CRC32 = &H77479C78
+   CompCRC32 = &H77479C78
    IsRoom = True
 
 [Logic119]
@@ -972,7 +972,7 @@
 
 [View69]
    ID = vw.InvTeapot
-   Description = "A Pot is a pot is a pot"
+   Description = "A pot is a pot is a pot"
 
 [View89]
    ID = vw.InvGlassSharp
