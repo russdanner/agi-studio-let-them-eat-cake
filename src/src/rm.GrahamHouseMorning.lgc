@@ -233,7 +233,7 @@ if (isset(haveInput) &&
         if (posn(ego, 40, 107, 56, 135)) {
             erase(o4);
             if (v235 == 1) {
-                print("You pick up the tetakeacup full of hot clover tea and "
+                print("You pick up the teacup full of hot clover tea and "
                       "carry it with you.");
                 get("Tea");
             }
