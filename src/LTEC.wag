@@ -56,8 +56,8 @@
    Description = "This logic runs in every interpreter cycle and calls other logics as needed."
 
 [Logic90]
-   CompCRC32 = &HA8F91084
-   CRC32 = &HA8F91084
+   CompCRC32 = &H442641F9
+   CRC32 = &H442641F9
    ID = lgc.GameFunctions
    IsRoom = False
    Size = 641
@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &HDD1D5BA4
-   CompCRC32 = &HDD1D5BA4
+   CRC32 = &HCA48F3E0
+   CompCRC32 = &HCA48F3E0
    IsRoom = True
 
 [Logic203]

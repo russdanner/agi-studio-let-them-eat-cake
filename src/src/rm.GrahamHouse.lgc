@@ -147,13 +147,13 @@ if (isset(haveInput) &&
             print("This is Graham's home. It's one of many homes in the kingdom "
                   "of Daventry. Graham keeps the place neat and tidy. In the "
                   "center of the room is a large table. There's small counter "
-                  "with a hat on it in the corner.");
+                  "with a hat on it in the corner. A stove warms the room.");
         }
         if (has("Hat")) {
             print("This is Graham's home. It's one of many homes in the kingdom "
                   "of Daventry. Graham keeps the place neat and tidy. In the "
                   "center of the room is a large table. There's small counter "
-                  "in the corner.");
+                  "in the corner. A stove warms the room.");
         }
     }
     if (said("nap")) {
@@ -199,10 +199,25 @@ if (isset(haveInput) &&
             print("You're not close enough.");
         }
     }
-    
+
     if (said("examine", "door")) {    
-        print("The door is closed. It leads outide.");
+        print("The door is closed. It leads outside.");
+    }    
+        
+    if (said("examine", "bed")) {    
+        print("The red covers on your bed look so comfy!");
+    }    
+    
+    if (said("examine", "counter")) {    
+        if (has("Hat")) {
+            print("It's a yellow counter.");
+        }
+        else {
+            print("It's a yellow counter. A blue hat rests on the counter.");
+        }
     }
+    
+    
             
     if (said("examine", "room")) {
         if (!has("Hat")) {
