@@ -53,114 +53,114 @@ if (isset(newRoom)) {
     draw(o5);
     reset(f99);
     show.pic();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    load.view(vw.Roger);
-    load.view(vw.PersonA);
-    load.view(vw.PersonB);
-    load.view(vw.GrahamAdvHat);
-    load.view(vw.Rosella);
-    load.view(vw.Alexander);
-    load.view(vw.Valanice);
-    load.view(vw.Person3);
-    load.view(vw.PersonG1);
-    load.view(vw.PersonG2);
-    load.view(vw.Cedric);
 
+    load.view(vw.Roger);
     animate.obj(ego);
-    animate.obj(o1);
-    animate.obj(o2);
-    animate.obj(o3);
-    animate.obj(o4);
-    animate.obj(o5);
-    animate.obj(o6);
-    animate.obj(o7);
-    animate.obj(o12);
-    animate.obj(o13);
-    animate.obj(o14);
     animate.obj(o8);
     animate.obj(o9);
     animate.obj(o10);
     animate.obj(o11);
-    animate.obj(o16);
 
-    stop.cycling(o1);
-    stop.cycling(o2);
-    stop.cycling(o3);
-    stop.cycling(o4);
-    stop.cycling(o5);
-    stop.cycling(o6);
-    stop.cycling(o7);
-    animate.obj(o12);
-    stop.cycling(o13);
-    stop.cycling(o14);
     stop.cycling(o8);
     stop.cycling(o9);
     stop.cycling(o10);
     stop.cycling(o11);
-    stop.cycling(o16);
 
     set.view(ego, vw.Roger);
-    set.view(o1, vw.PersonA);
-    set.view(o2, vw.PersonB);
-    set.view(o3, vw.GrahamAdvHat);
-    set.view(o4, vw.Rosella);
-    set.view(o5, vw.Alexander);
-    set.view(o6, vw.Valanice);
-    set.view(o12, vw.Person3);
-    set.view(o13, vw.PersonG1);
-    set.view(o14, vw.PersonG2);
-    set.view(o16, vw.Cedric);
 
-    position(o1, 30, 160);
-    position(o2, 40, 160);
-    position(o3, 50, 160);
-    position(o6, 60, 160);
-    position(o4, 70, 160);
-    position(o5, 80, 160);
-    position(o16, 90, 160);
-    position(o12, 100, 160);
-    position(o13, 110, 160);
-    //position(o14, 110, 160);
-    //position(o15, 110, 160);
-
-    set.loop(o1, 2);
-    set.loop(o2, 2);
-    set.loop(o3, 2);
-    set.loop(o4, 2);
-    set.loop(o5, 2);
-    //set.loop(o6, 2);
-    set.loop(o12, 2);
-    set.loop(o13, 2);
-    //set.loop(o16, 2);
-
-    draw(o1);
-    draw(o2);
-    draw(o3);
-    draw(o4);
-    draw(o5);
-    draw(o6);
-    draw(o12);
-    draw(o13);
-    draw(o16);
-
-    stop.motion(o1);
-    stop.motion(o2);
-    stop.motion(o3);
-    stop.motion(o4);
-    stop.motion(o5);
-    stop.motion(o6);
-    stop.motion(o12);
-    stop.motion(o13);
-    stop.motion(o16);
+    // I left this code in because it was a picture I was
+    // making at/for the adventure game fan fair 2024 in the
+    // cafe of the Marriott Court yard. Ken Williams walked up
+    // behind me and said: "That looks like Space Quest."     
+    
+    //    load.view(vw.PersonA);
+    //    load.view(vw.PersonB);
+    //    load.view(vw.GrahamAdvHat);
+    //    load.view(vw.Rosella);
+    //    load.view(vw.Alexander);
+    //    load.view(vw.Valanice);
+    //    load.view(vw.Person3);
+    //    load.view(vw.PersonG1);
+    //    load.view(vw.PersonG2);
+    //    load.view(vw.Cedric);
+    
+    
+    //    animate.obj(o1);
+    //    animate.obj(o2);
+    //    animate.obj(o3);
+    //    animate.obj(o4);
+    //    animate.obj(o5);
+    //    animate.obj(o6);
+    //    animate.obj(o7);
+    //    animate.obj(o12);
+    //    animate.obj(o13);
+    //    animate.obj(o14);
+    //    animate.obj(o16);
+    
+    //    stop.cycling(o1);
+    //    stop.cycling(o2);
+    //    stop.cycling(o3);
+    //    stop.cycling(o4);
+    //    stop.cycling(o5);
+    //    stop.cycling(o6);
+    //    stop.cycling(o7);
+    //    animate.obj(o12);
+    //    stop.cycling(o13);
+    //    stop.cycling(o14);
+    //    stop.cycling(o16);
+    
+    //    set.view(o1, vw.PersonA);
+    //    set.view(o2, vw.PersonB);
+    //    set.view(o3, vw.GrahamAdvHat);
+    //    set.view(o4, vw.Rosella);
+    //    set.view(o5, vw.Alexander);
+    //    set.view(o6, vw.Valanice);
+    //    set.view(o12, vw.Person3);
+    //    set.view(o13, vw.PersonG1);
+    //    set.view(o14, vw.PersonG2);
+    //    set.view(o16, vw.Cedric);
+    
+    //    position(o1, 30, 160);
+    //    position(o2, 40, 160);
+    //    position(o3, 50, 160);
+    //    position(o6, 60, 160);
+    //    position(o4, 70, 160);
+    //    position(o5, 80, 160);
+    //    position(o16, 90, 160);
+    //    position(o12, 100, 160);
+    //    position(o13, 110, 160);
+    //    position(o14, 110, 160);
+    //    position(o15, 110, 160);
+    
+    //    set.loop(o1, 2);
+    //    set.loop(o2, 2);
+    //    set.loop(o3, 2);
+    //    set.loop(o4, 2);
+    //    set.loop(o5, 2);
+    //    set.loop(o6, 2);
+    //    set.loop(o12, 2);
+    //    set.loop(o13, 2);
+    //    set.loop(o16, 2);
+    
+    //    draw(o1);
+    //    draw(o2);
+    //    draw(o3);
+    //    draw(o4);
+    //    draw(o5);
+    //    draw(o6);
+    //    draw(o12);
+    //    draw(o13);
+    //    draw(o16);
+    
+    //    stop.motion(o1);
+    //    stop.motion(o2);
+    //    stop.motion(o3);
+    //    stop.motion(o4);
+    //    stop.motion(o5);
+    //    stop.motion(o6);
+    //    stop.motion(o12);
+    //    stop.motion(o13);
+    //    stop.motion(o16);
     
     
 }

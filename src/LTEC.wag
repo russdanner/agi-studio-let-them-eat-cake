@@ -230,8 +230,8 @@
 [Logic38]
    ID = rm.OuterBay
    Description = ""
-   CRC32 = &HDC216A53
-   CompCRC32 = &HDC216A53
+   CRC32 = &HAF6A15B9
+   CompCRC32 = &HAF6A15B9
    IsRoom = True
 
 [Logic39]
