@@ -41,7 +41,7 @@ if (isset(haveInput) &&
             }
         }
     }
-    if (said("examine", "letter")) {
+    if ((said("examine", "letter") || said("read", "letter"))) {
         if (has("Summons")) {
             show.obj(vw.InvSummons);
         }
