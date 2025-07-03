@@ -146,8 +146,8 @@
 [Logic6]
    ID = rm.GrahamHouse
    Description = ""
-   CRC32 = &H72126F3A
-   CompCRC32 = &H72126F3A
+   CRC32 = &HC1BDA7C4
+   CompCRC32 = &HC1BDA7C4
    IsRoom = True
 
 [Logic203]

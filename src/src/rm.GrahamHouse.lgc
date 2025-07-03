@@ -103,7 +103,7 @@ if (isset(newRoom)) {
     show.pic();
 }
 if (!isset(f200)) {
-    print("It is getting late and you should go to bed but you cannot sleep. "
+    print("It is getting late and you should go to bed but you cannot sleep. You have a too much anxiety. "
           "Earlier today you received a summons to appear at the castle to meet "
           "with King Edward for reasons unknown.");
     set(f200);
