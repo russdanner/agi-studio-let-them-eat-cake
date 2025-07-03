@@ -207,6 +207,18 @@ if (isset(haveInput) &&
     if (said("examine", "bed")) {    
         print("The red covers on your bed look so comfy!");
     }    
+
+    if (said("examine", "window")) { 
+        if (isset(f89)) {   
+            print("Through the window you can see the beauty of Daventry under the bright morning sun.");
+        } else {   
+            print("Through the window you can see the dark purple night. Daventry can be a much more dangerous place at night.");
+        }
+    }    
+
+    if (said("examine", "cupboard")) {
+        print("The old grey cabinets sit in the corner. There's nothing of interest about them.");
+    } 
     
     if (said("examine", "counter")) {    
         if (has("Hat")) {
@@ -239,7 +251,7 @@ if (isset(haveInput) &&
     if (said("examine", "table")) {
         if (has("Summons")) {
             if (!has("Teacup")) {
-                print("There is a sturdy table here. A teacup sits on table");
+                print("There is a sturdy table here. A teacup sits on the left side of the table");
             }
             if (has("Teacup")) {
                 print("There is a sturdy table here.");
@@ -248,17 +260,17 @@ if (isset(haveInput) &&
         if (!has("Summons")) {
             if (!has("Teacup")) {
                 print("There is a sturdy table here. The summons you received "
-                      "from the King today lays on one side of the table and a "
+                      "from the King today lays on one right side of the table and a "
                       "teacup sits on the opposite side.");
             }
             if (has("Teacup")) {
                 print("There is a sturdy table here. The summons you received "
-                      "from the King today lays on the table.");
+                      "from the King today lays on the right side of the table.");
             }
         }
     }
     if (said("open", "door")) {
-        if (posn(ego, 16, 108, 35, 124)) {
+        if (posn(ego, 10, 90, 50, 150)) {
             if (!has("Hat")) {
                 print("You would never leave the house without your hat.");
             }
@@ -318,7 +330,7 @@ if (isset(haveInput) &&
         }
     }
     if (said("acquire", "letter")) {
-        if (posn(ego, 80, 100, 100, 130)) {
+        if (posn(ego, 70, 90, 110, 145)) {
             if (has("Summons")) {
                 print("You already have it.");
             }
@@ -335,7 +347,7 @@ if (isset(haveInput) &&
         }
     }
     if (said("acquire", "kettle")) {
-        if (posn(ego, 104, 93, 123, 112)) {
+        if (posn(ego, 95, 90, 123, 125)) {
             if (has("Teapot")) {
                 print("You already have it.");
             }
@@ -351,7 +363,7 @@ if (isset(haveInput) &&
         }
     }
     if (said("acquire", "cap")) {
-        if (posn(ego, 117, 131, 129, 150)) {
+        if (posn(ego, 105, 131, 129, 150)) {
             print("You pocket your hat.");
             set(f87);
             erase(o2);
@@ -363,7 +375,7 @@ if (isset(haveInput) &&
         }
     }
     if (said("acquire", "cup")) {
-        if (posn(ego, 40, 107, 56, 135)) {
+        if (posn(ego, 30, 100, 70, 150)) {
             erase(o4);
             if (v235 == 1) {
                 print("You pick up the teacup full of hot clover tea and "
@@ -380,7 +392,7 @@ if (isset(haveInput) &&
         }
     }
     if (said("drop", "cup")) {
-        if (posn(ego, 40, 107, 56, 135)) {
+        if (posn(ego, 30, 100, 70, 150)) {
             print("You place the teacup on the table.");
             draw(o4);
             drop("Teacup");
@@ -399,7 +411,7 @@ if (isset(haveInput) &&
                     print("the teapot is empty.");
                 }
                 else {
-                    if (posn(ego, 40, 107, 56, 135)) {
+                    if (posn(ego, 30, 100, 70, 150)) {
                         print("You pour a cup of hot tea.");
                         v235 = 1;
                         currentScore  += 1;
@@ -415,7 +427,7 @@ if (isset(haveInput) &&
         }
     }
     if (said("acquire", "tea")) {
-        if (posn(ego, 40, 107, 56, 135)) {
+        if (posn(ego, 30, 100, 70, 150)) {
             if (v235 == 1) {
                 get("Tea");
                 erase(o4);
