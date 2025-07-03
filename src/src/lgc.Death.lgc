@@ -7,7 +7,7 @@ if (!isset(f74)) {
         }
         if (v29 == 2) {
             set(f77);
-            print("You fall asleep and oversleep.");
+            print("You can't remember when but eventually you fell alseep 'standing up.' Unfortunately oversleep and missed your meeting with King Edwards!. That's what happens when you stay up too late.");
         }
         if (v29 == 3) {
             set(f76);

@@ -130,7 +130,7 @@ if (v37 == 1) {
 if (!isset(f89) && 
     v242 == 0) {
     if (v243 == 20) {
-        print("It sure is getting late");
+        print("It sure is getting late. You need to get some rest.");
     }
     if (v243 == 40) {
         print("If you don't get to sleep you'll be a real mess in the morning.");
