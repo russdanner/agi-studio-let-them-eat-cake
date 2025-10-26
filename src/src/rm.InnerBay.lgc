@@ -141,7 +141,7 @@ if (isset(haveInput) &&
         said("start", "clean"))) {
         if (has("Broom")) {
             print("With this broom?! ROGER! This is a polished floor not some "
-                  "crummy hangar deck. You know better. Ace janitor indeed.");
+                  "crummy hangar deck. You know better! Ace janitor indeed. Hrmpf.");
         }
         if (!has("Broom")) {
             print("You don't have the proper equipment on hand for that.");

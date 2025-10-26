@@ -182,7 +182,7 @@ if (isset(f96)) {
         }
         if (v243 == 5 && 
             v242 == 0) {
-            print("You pick at the bightly colored decal and peel it away from "
+            print("You pick at the brightly colored decal and peel it away from "
                   "the console. It reveals a hard placard that says 'AUTONAV`");
             erase(o9);
             set(f105);

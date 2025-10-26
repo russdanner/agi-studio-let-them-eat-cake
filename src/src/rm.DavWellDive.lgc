@@ -28,7 +28,7 @@ if (isset(newRoom)) {
 }
 if (v243 == 9 && 
     v242 == 0) {
-    print("On a scale of 1 to low on oxygen you are three fumes below empty.");
+    print("On a scale of 1 to low on oxygen, you are currently three fumes below empty.");
 }
 if (v243 == 12) {
     v29 = 16;
@@ -97,7 +97,7 @@ if (isset(haveInput) &&
     }
     if (said("examine", "cave")) {
         print("Wow.. It looks like a COLOSSAL CAVE. That's different game "
-              "Roger. Go check it out. You don't have the time or oxygen "
+              "Roger. Go check it out later. You don't have the time or oxygen "
               "required for cave splunking right now.");
     }
     if (said("examine", "chest")) {

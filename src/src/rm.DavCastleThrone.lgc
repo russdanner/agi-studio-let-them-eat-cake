@@ -142,7 +142,7 @@ if (isset(haveInput) &&
     unknownWordNum == 0) {
     if ((said("examine", "cedric") || 
         said("ask", "cedric"))) {
-        print("Graham, watch out - that might be a poooooooisonous CAKE!");
+        print("Graham, watch out!! - that might be a poooooooisonous CAKE!");
     }
     if (said("attack", "cedric")) {
         print("He does look pretty annoying doesn't he?! You prepare to %w1 "

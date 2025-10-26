@@ -24,7 +24,7 @@ if (isset(haveInput) &&
         print("You are in what was once a standard issue StarCon pod used from "
               "small voyages and emergency escape scenarios. None of which seem "
               "to accurately describe your current situation. Through the "
-              "cracked shield you see a lush green environment.");
+              "cracked view shield you see a lush green environment.");
     }
     if ((said("canvas") || 
         said("canvas", "craft"))) {
@@ -61,7 +61,7 @@ if (isset(haveInput) &&
         print("You are in what was once a standard issue StarCon pod used from "
               "small voyages and emergency escape scenarios. None of which seem "
               "to accurately describe your current situation. Through the "
-              "cracked shield you see a lush green environment.");
+              "cracked view shield you see a lush green environment.");
     }
     if ((said("unbuckle", "belt") || 
         said("remove", "belt"))) {

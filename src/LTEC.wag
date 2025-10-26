@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "6/27/2025 3:55:17 AM"
+   LastEdit = "10/26/2025 3:33:15 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -136,8 +136,8 @@
    Description = "Debug mode\n\nWhen debugging, use this logic to handle debug commands."
 
 [Logic100]
-   CompCRC32 = &HA5386AF8
-   CRC32 = &HA5386AF8
+   CompCRC32 = &HC037A58A
+   CRC32 = &HC037A58A
    ID = rm.Title
    IsRoom = True
    Size = 345
@@ -195,29 +195,29 @@
 [Logic2]
    ID = rm.InnerHanger
    Description = ""
-   CRC32 = &H73CE862F
-   CompCRC32 = &H73CE862F
+   CRC32 = &HC58B7C41
+   CompCRC32 = &HC58B7C41
    IsRoom = True
 
 [Logic3]
    ID = rm.Watch
    Description = ""
-   CRC32 = &HAF0C25C1
-   CompCRC32 = &HAF0C25C1
+   CRC32 = &HE8A8852F
+   CompCRC32 = &HE8A8852F
    IsRoom = True
 
 [Logic36]
    ID = rm.InnerBay
    Description = ""
-   CRC32 = &HB46E279F
-   CompCRC32 = &HB46E279F
+   CRC32 = &H4F227BF4
+   CompCRC32 = &H4F227BF4
    IsRoom = True
 
 [Logic41]
    ID = rm.Bathroom
    Description = ""
-   CRC32 = &H682E49C9
-   CompCRC32 = &H682E49C9
+   CRC32 = &HC2882A93
+   CompCRC32 = &HC2882A93
    IsRoom = True
 
 [Logic37]
@@ -230,29 +230,29 @@
 [Logic38]
    ID = rm.OuterBay
    Description = ""
-   CRC32 = &HAF6A15B9
-   CompCRC32 = &HAF6A15B9
+   CRC32 = &HC2BD8F6
+   CompCRC32 = &HC2BD8F6
    IsRoom = True
 
 [Logic39]
    ID = rm.OuterHanger
    Description = ""
-   CRC32 = &HEA121F3C
-   CompCRC32 = &HEA121F3C
+   CRC32 = &HEF05C7A
+   CompCRC32 = &HEF05C7A
    IsRoom = True
 
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &H2E67F2C9
-   CompCRC32 = &H2E67F2C9
+   CRC32 = &H10F7911A
+   CompCRC32 = &H10F7911A
    IsRoom = True
 
 [Logic8]
    ID = rm.DavCrashSiteA3
    Description = ""
-   CRC32 = &H423209FD
-   CompCRC32 = &H423209FD
+   CRC32 = &H23DA99C3
+   CompCRC32 = &H23DA99C3
    IsRoom = True
 
 [Logic40]
@@ -265,8 +265,8 @@
 [Logic7]
    ID = rm.InPodCrash
    Description = ""
-   CRC32 = &H72877B40
-   CompCRC32 = &H72877B40
+   CRC32 = &H725EB1D6
+   CompCRC32 = &H725EB1D6
    IsRoom = True
 
 [Logic10]
@@ -307,8 +307,8 @@
 [Logic26]
    ID = rm.DavWalnutF5
    Description = ""
-   CRC32 = &HEFAE2647
-   CompCRC32 = &HEFAE2647
+   CRC32 = &H7270ECD9
+   CompCRC32 = &H7270ECD9
    IsRoom = True
 
 [Logic20]
@@ -335,8 +335,8 @@
 [Logic9]
    ID = rm.DavCastleLeftA2
    Description = ""
-   CRC32 = &H71392CD8
-   CompCRC32 = &H71392CD8
+   CRC32 = &HD83E7026
+   CompCRC32 = &HD83E7026
    IsRoom = True
 
 [Logic21]
@@ -349,8 +349,8 @@
 [Logic16]
    ID = rm.DavLakeFGMD4
    Description = ""
-   CRC32 = &H97CEBBA
-   CompCRC32 = &H97CEBBA
+   CRC32 = &H8F7900DC
+   CompCRC32 = &H8F7900DC
    IsRoom = True
 
 [Logic18]
@@ -391,8 +391,8 @@
 [Logic30]
    ID = rm.DavCastleThrone
    Description = ""
-   CRC32 = &H12142062
-   CompCRC32 = &H12142062
+   CRC32 = &HFCE5C1B7
+   CompCRC32 = &HFCE5C1B7
    IsRoom = True
 
 [Logic14]
@@ -405,8 +405,8 @@
 [Logic27]
    ID = rm.DavWitchHouseInside
    Description = ""
-   CRC32 = &HA02FC549
-   CompCRC32 = &HA02FC549
+   CRC32 = &H45A53664
+   CompCRC32 = &HD51BEB54
    IsRoom = True
 
 [Logic28]
@@ -426,8 +426,8 @@
 [Logic29]
    ID = rm.DavWellDive
    Description = ""
-   CRC32 = &HAECB0A9E
-   CompCRC32 = &HAECB0A9E
+   CRC32 = &H4CFBEAC9
+   CompCRC32 = &H4CFBEAC9
    IsRoom = True
 
 [Logic34]

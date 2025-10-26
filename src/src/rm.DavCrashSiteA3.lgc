@@ -133,7 +133,7 @@ if (isset(haveInput) &&
                 get("Glass");
                 currentScore  += 1;
                 print("A small piece of highly reflective safety glass has "
-                      "broken away from the shield as it is known to do. You "
+                      "broken away from the view shield as it is known to do. You "
                       "pick it up and carry it with you.");
             }
             else {

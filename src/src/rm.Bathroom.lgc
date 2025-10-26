@@ -17,7 +17,7 @@ if (isset(newRoom)) {
             v253 = 148;
         }
     }
-    position(o4, 51, 134);
+    position(o4, 51, 139);
     set.priority(o4, 15);
     position.v(ego, v30, v253);
     reset(f90);

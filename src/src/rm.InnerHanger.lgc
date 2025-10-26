@@ -131,7 +131,7 @@ if (posn(ego, 145, 135, 160, 160)) {
     }
     else {
         if (v140 == 2) {
-            print("You have an urgent message on your communicator. You better check on it.");        
+            print("You have an urgent message on your communicator watch. You better check on it.");        
         }
         else {
             print("Look at that deck!! You better keep cleaning.");
@@ -146,7 +146,6 @@ if (posn(ego, 145, 135, 160, 160)) {
     }
 }
 if (edgeEgoHit == TOP_EDGE) {
-    program.control();
     set.view(ego, vw.RogerSpacesuitA);
     set.loop(ego, 4);
     set.cel(ego, 0);
@@ -218,8 +217,8 @@ if (isset(haveInput) &&
         said("enter", "craft"))) {
         if (posn(ego, 31, 104, 50, 127)) {
             print("Get real... This is a serious spacecraft. Access to this "
-                  "craft requires the appropriate orders or serious clearance "
-                  "-- both of which you are seriously lacking.");
+                  "craft requires the appropriate orders or serious clearance. "
+                  "Appropriately, you are seriously lacking both.");
         }
         else {
             print("You are too far away.");

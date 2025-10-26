@@ -107,7 +107,7 @@ if (isset(haveInput) &&
             }
         }
         else {
-            print("How?");
+            print("Good idea, How?");
         }
     }
 }

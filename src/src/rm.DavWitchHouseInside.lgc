@@ -32,6 +32,20 @@ if (isset(newRoom)) {
     draw(ego);
     draw(o2);
     draw(o7);
+    
+    // rng cedric
+    random(0, 100, v248); 
+
+    //v248 = 86; 
+    if(v248 == 86) {
+        load.view(vw.Cedric);
+        set.view(o8, vw.Cedric);
+        animate.obj(o8);
+        set.priority(o8, 7);
+        position(o8, 75, 85);
+        draw(o8);
+    }
+    
     show.pic();
 }
 if (edgeEgoHit == BOTTOM_EDGE) {
@@ -56,11 +70,35 @@ if (isset(f95)) {
 if (isset(haveInput) && 
     !isset(haveMatch) && 
     unknownWordNum == 0) {
+
+    if ((said("examine", "cedric") || 
+        said("ask", "cedric"))) {
+        
+        if(v248 == 86) {
+            print("There's a seeminly helpess and probably useless owl behind the bars. He keeps saying GRAHAM.... Heeeeeelp me! You don't know who he is talking about and he seems pretty annoying. You decide you better get out of here so you don't end up in the same cage.");
+        }
+        else {
+            print("Huh?");
+        }
+    }
+    if (said("attack", "cedric")) {
+        if(v248 == 86) {
+            print("He does look pretty annoying doesn't he?! You prepare to %w1 "
+                  "Cedric...");
+            print("Wait.. what did that owl ever do to you Roger?");
+            currentScore  += 1;
+        }
+        else {
+            print("Huh?");
+        }
+
+    }    
+    
     if ((said("examine", "room") || 
         said("examine"))) {
         print("You stand in a large open room with a door to a small bedroom in "
               "the back. The inside of the house is clean and tidy. There's a "
-              "large oven here and a cage... That's right... A CAGE!? Not cool. "
+              "large oven here and a cage... That's right... A CAGE! Not cool. "
               "Better get out of here.");
     }
     if (said("examine", "table")) {

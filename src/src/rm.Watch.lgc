@@ -63,7 +63,7 @@ if (isset(haveInput) &&
     unknownWordNum == 0) {
     if (said("examine")) {
         print("This is your StarCon communication device. It's built into the "
-              "pressure suit. It has 3 buttons on it A C and T. There's also an "
+              "pressure suit. It has 3 buttons on it A, C, and T. There's also an "
               "incoming message indicator on the right side of the screen.");
     }
     if (said("exit")) {
@@ -73,13 +73,12 @@ if (isset(haveInput) &&
     }
     if (said("examine", "watch")) {
         print("This is your StarCon communication device. It's built into the "
-              "pressure suit. It has 3 buttons on it A C and T. There's also an "
+              "pressure suit. It has 3 buttons on it A, C, and T. There's also an "
               "incoming message indicator on the right side of the screen.");
     }
     if (said("examine", "c")) {
         print("This is the very handy StarCon Communications app. You can use "
-              "it to talk with the crew or theoretically your friends if you "
-              "had any.");
+              "it to talk with other crew members.");
     }
     if (said("press", "c")) {
         if (isset(f192)) {

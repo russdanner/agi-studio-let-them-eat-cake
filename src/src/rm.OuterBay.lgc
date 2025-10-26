@@ -210,7 +210,7 @@ if (isset(haveInput) &&
         print("The ship is a well maintained vessel. It is currently fueling. "
               "Unlike the typical StarCon shuttles you often find in these bays "
               "this is a privately owned and piloted ship. There's a call sign "
-              "placard on the vessel. It reads: 'Cygnus1' You wonder who owns "
+              "placard on the vessel. It reads: 'Cygnus 1' You wonder who owns "
               "this beauty.");
     }
     if (said("examine", "car")) {
@@ -261,7 +261,7 @@ if (isset(haveInput) &&
         draw(ego);
     }
     if (said("enter", "car")) {
-        print("You pod is fueled and waiting... Better get out to the hangar.");
+        print("Your pod is fueled and waiting... Better get out to the hangar.");
     }
 }
 return();

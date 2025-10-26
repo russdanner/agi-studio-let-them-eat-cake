@@ -116,7 +116,7 @@ if (isset(haveInput) &&
                 print("As you go to climb into the pod you realize you still "
                       "have a broom with you. Since you are in a hurry you "
                       "discard the broom here. You'll catch some grief for "
-                      "that. Broomless you now climb into the pod and shut the "
+                      "that. Broomless, you now climb into the pod and shut the "
                       "door.");
             }
             v34 = 0;
@@ -143,10 +143,10 @@ if (isset(haveInput) &&
     if (said("examine", "craft")) {
         print("Ain't she cute? It's a standard issue StarCon shuttle pod used "
               "for short trips between stations and bases. In the extremely "
-              "rare and unlikely event of an emergency including but not "
-              "limited to a hostile encounter with a crew of marauding aliens "
-              "it can be used as an escape vehicle. That'll never happen. "
-              "'Anywho'.. She's all fueled up and ready to go.");
+              "rare and unlikely event of an emergency (including but not "
+              "limited to a hostile encounter with a crew of marauding aliens) "
+              "it can be used as an escape vehicle. That'll never happen! "
+              "Anywho... She's all fueled up and ready to go.");
     }
 }
 return();

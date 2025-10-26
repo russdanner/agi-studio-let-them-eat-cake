@@ -63,7 +63,7 @@ if (isset(f90)) {
     set(f150);
     print("A strange female alien dressed in beautiful shimmering robes catches "
           "up to you. In a voice that can only be described as song she says:");
-    print("\"Traveler though you are asleep, by my spell, your eyes are now "
+    print("\"Traveler, though you are asleep, by my spell, your eyes are now "
           "opened.\"");
     print("A wave of energy errupts from a gadget she is carrying and blasts "
           "right into you. With a 'poof' she disappears.");
@@ -73,7 +73,7 @@ if (isset(f90)) {
           "been hit with a laser and secondly that your body is now as chard as "
           "the surface of Ortega.");
     print("Contrary to your expectations of cause and effect you find you have "
-          "no injuries at all. What in Fester Blatz World o Wonders was that "
+          "no injuries at all. What in Fester Blatz World 'o Wonders was that "
           "all about?!");
 }
 if (edgeEgoHit == BOTTOM_EDGE) {

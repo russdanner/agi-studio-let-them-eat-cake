@@ -98,7 +98,7 @@ if (isset(haveInput) &&
                 end.of.loop(o5, f95);
             }
             else {
-                print("The doors are locked. On the door is a notice.");
+                print("The doors are locked. Nailed to the door is a notice.");
             }
         }
         else {
@@ -121,7 +121,7 @@ if (isset(haveInput) &&
                 set(f131);
                 currentScore  += 1;
             }
-            print("The notice reads 'Hear Ye! Hear Ye! A party for the King "
+            print("The notice reads: 'Hear Ye! Hear Ye! A party for the King "
                   "will be held today. Attendees must bring an invitation and a "
                   "party favor.' The notice gets you thinking. You need to get "
                   "in here. If anyone can be of service. They will be inside.");
