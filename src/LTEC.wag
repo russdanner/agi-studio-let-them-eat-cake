@@ -5,7 +5,7 @@
    WinAGIVersion = 2.3
    GameID = LTEC
    Interpreter = 2.917
-   LastEdit = "10/26/2025 3:33:15 AM"
+   LastEdit = "10/26/2025 4:25:37 AM"
    Description = "WinAGI v2 Template Game"
    GameVersion = "AGI Game version 0.0"
    About = "AGI Game by <author>"
@@ -244,8 +244,8 @@
 [Logic5]
    ID = rm.InPod
    Description = ""
-   CRC32 = &H10F7911A
-   CompCRC32 = &H10F7911A
+   CRC32 = &HC9446FA7
+   CompCRC32 = &HC9446FA7
    IsRoom = True
 
 [Logic8]
@@ -406,7 +406,7 @@
    ID = rm.DavWitchHouseInside
    Description = ""
    CRC32 = &H45A53664
-   CompCRC32 = &HD51BEB54
+   CompCRC32 = &H45A53664
    IsRoom = True
 
 [Logic28]

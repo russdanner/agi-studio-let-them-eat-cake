@@ -30,7 +30,8 @@ if (isset(newRoom)) {
     stop.cycling(o9);
     position(o9, 119, 124);
     position(o1, 106, 128);
-    if (!isset(f93)) {
+    
+    if(!isset(f93)) {
         reset(f94);
         reset(f90);
         reset(f91);
@@ -70,25 +71,24 @@ if (isset(newRoom)) {
         draw(o5);
         draw(o6);
     }
-    ignore.horizon(o10);
-    ignore.blocks(o10);
-    ignore.horizon(o11);
-    ignore.blocks(o11);
-    ignore.horizon(o12);
-    ignore.blocks(o12);
-    ignore.horizon(o13);
-    ignore.blocks(o13);
-    set.priority(o10, 15);
-    set.priority(o11, 15);
-    set.priority(o12, 15);
-    set.priority(o13, 15);
+    
+//    ignore.horizon(o10);
+//    ignore.blocks(o10);
+//    ignore.horizon(o11);
+//    ignore.blocks(o11);
+//    ignore.horizon(o12);
+//    ignore.blocks(o12);
+//    ignore.horizon(o13);
+//    ignore.blocks(o13);
+    set.priority(o10, 5);
+    set.priority(o11, 5);
+    set.priority(o12, 5);
+    set.priority(o13, 5);
     position(o10, 65, 40);
     position(o12, 65, 50);
     position(o13, 85, 50);
-    
     position(o11, 85, 40);
-    set.dir(o11, v6);
-    start.motion(o11);
+
     
     reset(f101);
     draw(o1);
@@ -117,51 +117,37 @@ if (isset(f91)) {
 if (isset(f96)) {
     if (isset(f93)) {
         if (!isset(f105)) {
-        
-        
-            if (!isset(f100)) {
-                move.obj(o10, 20, 75, 2, f100);
-            }
-            else {
-                reset(f100);
-                erase(o10);
-                position(o10, 65, 40);
-                draw(o10);
-            }
 
-            if (!isset(f101)) {
+            if ((!isset(f100) || !isset(f101) || !isset(f102) || !isset(f103))) {
                 if(!isset(f240)) {
-                    print("move");
-                    set(f240);
-                    move.obj(o11, 125, 80, 2, f101);
+                  set(f240);
+                  move.obj(o10, 25, 10, 3, f100);
+                  move.obj(o11, 115, 10, 3, f101);
+                  move.obj(o12, 25, 80, 3, f102);
+                  move.obj(o13, 115, 80, 3, f103);                  
                 }
             }
             else {
                 reset(f240);
-                print("reset");
-            
-                reset(f101);
-                erase(o11);
-                position(o11, 85, 40);
-                draw(o11);
-            }
 
-            if (!isset(f102)) {
-                move.obj(o12, 20, 15, 2, f102);
-            }
-            else {
+                reset(f100);
+                reset(f101);
                 reset(f102);
-                erase(o12);
-                position(o12, 65, 50);
-                draw(o12);
-            }
-            if (!isset(f103)) {
-                move.obj(o13, 130, 15, 2, f103);
-            }
-            else {
                 reset(f103);
+
+                erase(o10);
+                erase(o11);
+                erase(o12);
                 erase(o13);
+
+                position(o10, 65, 40);
+                position(o11, 85, 40);
+                position(o12, 65, 50);
                 position(o13, 85, 50);
+
+                draw(o10);
+                draw(o11);
+                draw(o12);
                 draw(o13);
             }
         }
@@ -170,6 +156,8 @@ if (isset(f96)) {
         v34 = 0;
         new.room(rm.Station);
     }
+    
+    
     if (isset(f97)) {
         if (v243 == 2 && 
             v242 == 0) {
@@ -355,6 +343,12 @@ if (isset(haveInput) &&
                 position(o7, 100, 180);
                 draw(o7);
                 move.obj(o7, 100, 160, 1, f91);
+                
+                reset(f240);
+                start.motion(o10);
+                start.motion(o11);
+                start.motion(o12);
+                start.motion(o13);
             }
             else {
                 print("You can't. The throttle is locked in its position.");
